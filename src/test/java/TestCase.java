@@ -6,8 +6,13 @@ import org.junit.Test;
 public class TestCase {
 
 	@Test
-	public void test() {
+	public void testTrue() {
 		assertTrue(true);
+	}
+	
+	@Test
+	public void testFalse() {
+		assertFalse(false);
 	}
 
 }
