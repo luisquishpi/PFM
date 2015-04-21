@@ -6,8 +6,9 @@ public class Project {
 	
 	private Date start;
 	private Date end;
-	private Double cost;
+	private Double cost;	
 	private String name;
+	private ProjectSchedule projectSchedule;
 	
 	public Project(){
 	    
@@ -20,7 +21,10 @@ public class Project {
 		this.name = name;
 	}
 
-	@Override
+	public Project() {
+    }
+
+    @Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -86,6 +90,14 @@ public class Project {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+    public ProjectSchedule getProjectSchedule() {
+        return projectSchedule;
+    }
+
+    public void setProjectSchedule(ProjectSchedule schedule) {
+        this.projectSchedule = schedule;
+    }
 
 	@Override
 	public String toString() {
