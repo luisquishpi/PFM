@@ -25,18 +25,9 @@ public class MockProjectDao extends MockUp<ProjectDaoHibernate> {
     }
 
     @Mock
-    public Project read(Integer id) {
-        return project;
-    }
-
-    @Mock
     public List<Project> findAll() {
         return projectList;
     }
-
-    @Mock
-    public void update(Project project) {
-        if (project.getProjectSchedule() != null) {
 	
 	@Mock
 	public Project create(Project project) {
