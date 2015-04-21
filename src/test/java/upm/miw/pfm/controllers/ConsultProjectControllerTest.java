@@ -35,13 +35,14 @@ public class ConsultProjectControllerTest {
 	         System.out.println("Unable to parse " + startString);
 	      }
 		  consultProjectController = new ConsultProjectControllerEjb();
-		  project = new Project("Mi proyecto", start, end, 100000.00);		  
+		  project = new Project("Mi proyecto", start, end, 100000.00);
+		  project.setId(10);
 	}
 
 	@Test
 	public void testGetProyect() {
 		new MockProjectDao(project);
-		Project project = consultProjectController.getProyect(1);
-		assertEquals(project, new Project("Mi proyecto", start,end, 100000.00));
+		Project project = consultProjectController.getProyect(10);
+		assertEquals(project, new Project(10,"Mi proyecto", start,end, 100000.00));
 	}
 }

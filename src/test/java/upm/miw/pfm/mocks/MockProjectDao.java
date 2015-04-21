@@ -15,6 +15,7 @@ public class MockProjectDao extends MockUp<ProjectDaoHibernate> {
 	
 	@Mock
 	public Project read(Integer id){
+		project.setId(id);
 	    return project;
 	}
 }

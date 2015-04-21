@@ -2,6 +2,7 @@ package upm.miw.pfm.models.entities;
 
 import java.util.Date;
 
+
 public class Project {
 	
 	private Date start;
@@ -9,11 +10,21 @@ public class Project {
 	private Double cost;
 	private String name;
 	
+	private int id;
+	
 	public Project(String name, Date start, Date end, Double cost){
 		this.start = start;
 		this.end = end;
 		this.cost = cost;
 		this.name = name;
+	}
+	
+	public Project(int id, String name, Date start, Date end, Double cost){
+		this.start = start;
+		this.end = end;
+		this.cost = cost;
+		this.name = name;
+		this.id = id;
 	}
 
 	@Override
@@ -28,34 +39,14 @@ public class Project {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Project other = (Project) obj;
-		if (cost == null) {
-			if (other.cost != null)
-				return false;
-		} else if (!cost.equals(other.cost))
-			return false;
-		if (end == null) {
-			if (other.end != null)
-				return false;
-		} else if (!end.equals(other.end))
-			return false;
-		if (start == null) {
-			if (other.start != null)
-				return false;
-		} else if (!start.equals(other.start))
-			return false;
-		return true;
+		assert obj != null;
+        Project other = (Project) obj;
+        return id==other.id && start.equals(other.start)
+                && end.equals(other.end) && cost.equals(other.cost) && name.equals(other.name);
 	}
-
-	public void setId(int i) {
-		// TODO Auto-generated method stub
-		
+	
+	public void setId(int id){
+		this.id = id;;
 	}
 
 	public Date getStart() {
@@ -74,8 +65,7 @@ public class Project {
 	}
 
 	public int getId() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.id;
 	}
 
 	public String getName() {
@@ -86,7 +76,6 @@ public class Project {
 	@Override
 	public String toString() {
 		return "Project [start=" + start + ", end=" + end + ", cost=" + cost
-				+ "]";
+				+ ", name=" + name + ", id=" + id + "]";
 	}
-	
 }
