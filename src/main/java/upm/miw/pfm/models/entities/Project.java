@@ -10,15 +10,15 @@ public class Project {
 	private String name;
 	private ProjectSchedule projectSchedule;
 	
+	public Project(){
+	}
+	
 	public Project(String name, Date start, Date end, Double cost){
 		this.start = start;
 		this.end = end;
 		this.cost = cost;
 		this.name = name;
 	}
-
-	public Project() {
-    }
 
     @Override
 	public int hashCode() {
