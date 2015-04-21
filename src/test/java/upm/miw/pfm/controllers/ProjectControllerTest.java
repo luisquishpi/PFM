@@ -14,6 +14,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import upm.miw.pfm.controllers.ejbs.ProjectControllerEjb;
+import upm.miw.pfm.mocks.MockProjectDao;
 import upm.miw.pfm.models.daos.ProjectDao;
 import upm.miw.pfm.models.entities.Project;
 
@@ -39,32 +40,13 @@ public class ProjectControllerTest {
 		}
 		project = new Project("Scrum", start, end, 85000.0);
 	}
-
-	@Test
-	public void createAndConsultProjectTest() {
-		new MockUp<ProjectDao>() {
-			@Mock
-			public Project create(Project project) {
-				Project returnProject = new Project(project.getName(), project.getStart(),
-						project.getEnd(), project.getCost());
-				returnProject.setId(12);
-				return returnProject;
-			}
-		};
-		Project project2 = projectController.createProject(project);
-		assertNotEquals(0, project2.getId());
-	}
 	
 	@Test
-	public void test() {
-		new MockUp<ProjectDao>() {
-			@Mock
-			public Project read(Integer id){
-			    return new Project("Scrum", start, end, 100000.00);
-			}
-		};
-		Project project2 = projectController.getProyect(1);
-		assertEquals(project2, new Project("Scrum", start,end, 100000.00));
+	public void testCreateAndGetProyect() {
+		new MockProjectDao(new Project());
+		projectController.createProject(project);
+		Project project = projectController.getProyect(10);
+		assertEquals(project, new Project(10,"Scrum", start,end, 85000.00));
 	}
 
 }
