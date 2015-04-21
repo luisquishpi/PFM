@@ -42,11 +42,11 @@ public class ConsultProjectControllerTest {
 		new MockUp<ProjectDao>() {
 			@Mock
 			public Project read(Integer id){
-			    return new Project(start, end, 100000.00);
+			    return new Project("Scrum", start, end, 100000.00);
 			}
 		};
 		Project project = cProjectController.getProyect(1);
-		assertEquals(project, new Project(start,end, 100000.00));
+		assertEquals(project, new Project("Scrum", start,end, 100000.00));
 	}
 
 }

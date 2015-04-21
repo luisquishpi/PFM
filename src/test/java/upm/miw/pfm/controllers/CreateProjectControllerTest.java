@@ -33,12 +33,12 @@ public class CreateProjectControllerTest {
 		Date start = new Date();
 		Date end = new Date();
 		try {
-			start = new SimpleDateFormat("dd-MM-yyyy").parse("02/02/2015");
-			end = new SimpleDateFormat("dd-MM-yyyy").parse("02/06/2015");
+			start = new SimpleDateFormat("dd-MM-yyyy").parse("02/03/2015");
+			end = new SimpleDateFormat("dd-MM-yyyy").parse("04/09/2015");
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		project = new Project(start, end, 100000.0);
+		project = new Project("Scrum", start, end, 85000.0);
 	}
 
 	@Test
@@ -46,7 +46,7 @@ public class CreateProjectControllerTest {
 		new MockUp<ProjectDao>() {
 			@Mock
 			public Project create(Project project) {
-				Project returnProject = new Project(project.getStart(),
+				Project returnProject = new Project(project.getName(), project.getStart(),
 						project.getEnd(), project.getCost());
 				returnProject.setId(12);
 				return returnProject;
