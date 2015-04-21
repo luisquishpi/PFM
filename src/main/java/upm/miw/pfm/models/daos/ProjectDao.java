@@ -1,5 +1,9 @@
 package upm.miw.pfm.models.daos;
 
-public class ProjectDao {
+import upm.miw.pfm.models.daos.GenericDao;
+import upm.miw.pfm.models.entities.Project;;
+
+public interface ProjectDao extends GenericDao<Project, Integer> {
 
 }
+
