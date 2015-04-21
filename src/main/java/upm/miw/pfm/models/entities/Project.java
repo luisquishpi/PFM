@@ -5,17 +5,17 @@ import java.util.Date;
 
 public class Project {
 	
+	private int id;
 	private Date start;
 	private Date end;
 	private Double cost;	
 	private String name;
+
 	private ProjectSchedule projectSchedule;
 	
 	public Project(){
 	}
-	
-	private int id;
-	
+		
 	public Project(String name, Date start, Date end, Double cost){
 		this.start = start;
 		this.end = end;
@@ -48,24 +48,22 @@ public class Project {
         return id==other.id && start.equals(other.start)
                 && end.equals(other.end) && cost.equals(other.cost) && name.equals(other.name);
 	}
-	
+
 	public void setId(int id){
 		this.id = id;;
+
 	}
 
 	public Date getStart() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.start;
 	}
 
 	public Date getEnd() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.end;
 	}
 
 	public Double getCost() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.cost;
 	}
 
 	public int getId() {
@@ -73,8 +71,7 @@ public class Project {
 	}
 
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.name;
 	}
 
     public ProjectSchedule getProjectSchedule() {
