@@ -50,4 +50,29 @@ public class Project {
 			return false;
 		return true;
 	}
+
+	public void setId(int i) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public Date getStart() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Date getEnd() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Double getCost() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Object getId() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
