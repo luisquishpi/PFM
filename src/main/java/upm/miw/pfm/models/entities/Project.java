@@ -7,11 +7,13 @@ public class Project {
 	private Date start;
 	private Date end;
 	private Double cost;
+	private String name;
 	
-	public Project(Date start, Date end, Double cost){
+	public Project(String name, Date start, Date end, Double cost){
 		this.start = start;
 		this.end = end;
 		this.cost = cost;
+		this.name = name;
 	}
 
 	@Override
@@ -71,7 +73,12 @@ public class Project {
 		return null;
 	}
 
-	public Object getId() {
+	public int getId() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public String getName() {
 		// TODO Auto-generated method stub
 		return null;
 	}

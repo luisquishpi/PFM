@@ -6,15 +6,13 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.Date;
 
-import mockit.Mock;
-import mockit.MockUp;
-
 import org.junit.Before;
 import org.junit.Test;
 
 import upm.miw.pfm.controllers.ejbs.ConsultProjectControllerEjb;
+
 import upm.miw.pfm.mocks.MockProjectDao;
-import upm.miw.pfm.models.daos.hibernate.ProjectDaoHibernate;
+
 import upm.miw.pfm.models.entities.Project;
 
 public class ConsultProjectControllerTest {
@@ -37,13 +35,13 @@ public class ConsultProjectControllerTest {
 	         System.out.println("Unable to parse " + startString);
 	      }
 		  consultProjectController = new ConsultProjectControllerEjb();
-		  project = new Project(start, end, 100000.00);		  
+		  project = new Project("Mi proyecto", start, end, 100000.00);		  
 	}
 
 	@Test
 	public void testGetProyect() {
 		new MockProjectDao(project);
 		Project project = consultProjectController.getProyect(1);
-		assertEquals(project, new Project(start,end, 100000.00));
+		assertEquals(project, new Project("Mi proyecto", start,end, 100000.00));
 	}
 }
