@@ -1,7 +1,7 @@
 
 package upm.miw.pfm.controllers;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -11,30 +11,26 @@ import mockit.Mock;
 import mockit.MockUp;
 
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
+import upm.miw.pfm.controllers.ejbs.ProjectControllerEjb;
 import upm.miw.pfm.models.daos.ProjectDao;
 import upm.miw.pfm.models.entities.Project;
 
 public class CreateProjectControllerTest {
 
-	private CreateProjectController createProjectController;
+	private ProjectController ProjectController;
 
 	private Project project;
 
-	@BeforeClass
-	public void beforeClass() {
-		createProjectController = new CreateProjectController();
-	}
-
 	@Before
 	public void before() {
+		ProjectController = new ProjectControllerEjb();
 		Date start = new Date();
 		Date end = new Date();
 		try {
-			start = new SimpleDateFormat("dd-MM-yyyy").parse("02/03/2015");
-			end = new SimpleDateFormat("dd-MM-yyyy").parse("04/09/2015");
+			start = new SimpleDateFormat("dd-MM-yyyy").parse("02-03-2015");
+			end = new SimpleDateFormat("dd-MM-yyyy").parse("04-09-2015");
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -52,7 +48,7 @@ public class CreateProjectControllerTest {
 				return returnProject;
 			}
 		};
-		Project project2 = createProjectController.createProject(project);
-		assertEquals(project2.getId(), 12);
+		Project project2 = ProjectController.createProject(project);
+		assertNotEquals(0, project2.getId());
 	}
 }

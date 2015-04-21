@@ -4,10 +4,12 @@ import java.util.Date;
 
 public class Project {
 	
+	private int id;
 	private Date start;
 	private Date end;
 	private Double cost;
 	private String name;
+	
 	
 	public Project(String name, Date start, Date end, Double cost){
 		this.start = start;
@@ -53,33 +55,27 @@ public class Project {
 		return true;
 	}
 
-	public void setId(int i) {
-		// TODO Auto-generated method stub
-		
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public Date getStart() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.start;
 	}
 
 	public Date getEnd() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.end;
 	}
 
 	public Double getCost() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.cost;
 	}
 
 	public int getId() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.id;
 	}
 
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.name;
 	}
 }
