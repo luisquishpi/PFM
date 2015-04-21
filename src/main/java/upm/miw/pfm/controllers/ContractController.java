@@ -1,9 +1,8 @@
-
 package upm.miw.pfm.controllers;
 
 import upm.miw.pfm.models.entities.Contract;
 
-public interface NewContractController {
+public interface ContractController {
 
     void saveContract(Contract contract);
     boolean existContract(Contract contract);
