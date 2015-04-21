@@ -11,7 +11,6 @@ public class Project {
 	private ProjectSchedule projectSchedule;
 	
 	public Project(){
-	    
 	}
 	
 	public Project(String name, Date start, Date end, Double cost){
@@ -20,9 +19,6 @@ public class Project {
 		this.cost = cost;
 		this.name = name;
 	}
-
-	public Project() {
-    }
 
     @Override
 	public int hashCode() {
