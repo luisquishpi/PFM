@@ -6,3 +6,4 @@ import upm.miw.pfm.models.entities.Project;;
 public interface ProjectDao extends GenericDao<Project, Integer> {
 
 }
+

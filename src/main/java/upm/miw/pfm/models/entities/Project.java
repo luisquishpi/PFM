@@ -6,13 +6,15 @@ public class Project {
 	
 	private Date start;
 	private Date end;
-	private Double cost;
+	private Double cost;	
+	private String name;
 	private ProjectSchedule projectSchedule;
 	
-	public Project(Date start, Date end, Double cost){
+	public Project(String name, Date start, Date end, Double cost){
 		this.start = start;
 		this.end = end;
 		this.cost = cost;
+		this.name = name;
 	}
 
 	public Project() {
@@ -75,7 +77,12 @@ public class Project {
 		return null;
 	}
 
-	public Object getId() {
+	public int getId() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public String getName() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -87,4 +94,11 @@ public class Project {
     public void setProjectSchedule(ProjectSchedule schedule) {
         this.projectSchedule = schedule;
     }
+
+	@Override
+	public String toString() {
+		return "Project [start=" + start + ", end=" + end + ", cost=" + cost
+				+ "]";
+	}
+	
 }
