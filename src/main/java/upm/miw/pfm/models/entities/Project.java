@@ -9,6 +9,10 @@ public class Project {
 	private Double cost;
 	private String name;
 	
+	public Project(){
+	    
+	}
+	
 	public Project(String name, Date start, Date end, Double cost){
 		this.start = start;
 		this.end = end;
