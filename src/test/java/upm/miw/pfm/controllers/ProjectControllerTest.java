@@ -1,21 +1,17 @@
 package upm.miw.pfm.controllers;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import mockit.Mock;
-import mockit.MockUp;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import upm.miw.pfm.controllers.ejbs.ProjectControllerEjb;
 import upm.miw.pfm.mocks.MockProjectDao;
-import upm.miw.pfm.models.daos.ProjectDao;
 import upm.miw.pfm.models.entities.Project;
 
 public class ProjectControllerTest {
