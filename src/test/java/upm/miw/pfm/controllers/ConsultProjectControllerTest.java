@@ -13,6 +13,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import upm.miw.pfm.controllers.ejbs.ConsultProjectControllerEjb;
+import upm.miw.pfm.models.daos.ProjectDao;
 import upm.miw.pfm.models.entities.Project;
 
 public class ConsultProjectControllerTest {
