@@ -17,6 +17,11 @@
 	</repositories>
 	<dependencies>
 		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>4.3.9.Final</version>
+		</dependency>
+		<dependency>
 			<groupId>org.jmockit</groupId>
 			<artifactId>jmockit</artifactId>
 			<version>1.16</version>
