@@ -7,6 +7,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import upm.miw.pfm.controllers.ejbs.SetScheduleControllerEjb;
 import upm.miw.pfm.mocks.MockProjectDao;
 import upm.miw.pfm.models.entities.Project;
 import upm.miw.pfm.models.entities.ProjectSchedule;
@@ -19,7 +20,7 @@ public class SetScheduleControllerMockTest {
 
     @Before
     public void setUp() throws Exception {
-        controller = new SetScheduleController();
+        controller = new SetScheduleControllerEjb();
         new MockProjectDao();
     }
 
