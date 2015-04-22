@@ -18,6 +18,8 @@ public abstract class DaoFactory {
     }
 
     public abstract ProjectDao getProjectDao();
+    
+    public abstract ContractDao getContractDao();
    
 }
 

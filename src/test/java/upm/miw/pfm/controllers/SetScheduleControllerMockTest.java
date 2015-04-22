@@ -2,6 +2,8 @@ package upm.miw.pfm.controllers;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -51,5 +53,9 @@ public class SetScheduleControllerMockTest {
         assertEquals(8, controller.getProjectSchedule(1).getFridayHours(), DELTA);
         assertEquals(0, controller.getProjectSchedule(1).getSaturdayHours(), DELTA);
         assertEquals(0, controller.getProjectSchedule(1).getSundayHours(), DELTA);
+        List<Integer> workdays = controller.getProjectSchedule(1).getWorkDaysArray();
+        for(Integer i : new Integer[]{1,2,3,4,5}){
+            assertTrue(workdays.contains(i));
+        }
     }
 }
