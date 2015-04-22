@@ -26,13 +26,10 @@ public class ContractDaoTest {
     public void before() {
         contractDao = DaoFactory.getFactory().getContractDao();
         contract = new Contract(ContractType.FIJO, 32.5);
-        new MockContractDao(contract);
-        contractDao.create(contract);
     }
 
     @Test
     public void testCreateAndRead() {
-        contract = new Contract(ContractType.CONSULTOR, 33.0);
         new MockContractDao(contract);
         contractDao.create(contract);
         assertEquals(contractDao.read(contract.getId()), contract);
@@ -40,12 +37,17 @@ public class ContractDaoTest {
 
     @Test
     public void testUpdate() {
+        new MockContractDao(contract);
+        contractDao.create(contract);
+        
         Contract contractClone = new Contract(contract.getContractType(), contract.getInsurance());
         contractClone.setId(contract.getId());
+        
         contract.setContractType(ContractType.BECARIO);
         contract.setInsurance(30.0);
         new MockContractDao(contract);
         contractDao.update(contract);
+        
         assertNotEquals(contractClone, contractDao.read(contract.getId()));
     }
 
