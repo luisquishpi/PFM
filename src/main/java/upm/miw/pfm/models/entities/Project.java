@@ -14,6 +14,10 @@ public class Project {
 	private ProjectSchedule projectSchedule;
 	
 	public Project(){
+	    start = new Date();
+	    end = new Date();
+	    cost  = 0.00;
+	    name = "";
 	}
 		
 	public Project(String name, Date start, Date end, Double cost){
