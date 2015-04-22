@@ -1,7 +1,17 @@
 package upm.miw.pfm.models.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ProjectSchedule {
     
+    public static final Integer MONDAY_INDEX = 1;
+    public static final Integer TUESDAY_INDEX = 2;
+    public static final Integer WEDNESDAY_INDEX = 3;
+    public static final Integer THURSDAY_INDEX = 4;
+    public static final Integer FRIDAY_INDEX = 5;
+    public static final Integer SATURDAY_INDEX = 6;
+    public static final Integer SUNDAY_INDEX = 7;
     private Project project;
     private Integer workDays;
     private Double mondayHours;
@@ -85,6 +95,32 @@ public class ProjectSchedule {
 
     public Double getSundayHours() {
         return sundayHours;
+    }
+    
+    public List<Integer> getWorkDaysArray(){
+        List<Integer> days = new ArrayList<Integer>();
+        if(getMondayHours() > 0){
+            days.add(MONDAY_INDEX);
+        }
+        if(getTuesdayHours() > 0){
+            days.add(TUESDAY_INDEX);
+        }
+        if(getWednesdayHours() > 0){
+            days.add(WEDNESDAY_INDEX);
+        }
+        if(getThursdayHours() > 0){
+            days.add(THURSDAY_INDEX);
+        }
+        if(getFridayHours() > 0){
+            days.add(FRIDAY_INDEX);
+        }
+        if(getSaturdayHours() > 0){
+            days.add(SATURDAY_INDEX);
+        }
+        if(getSundayHours() > 0){
+            days.add(SUNDAY_INDEX);
+        }
+        return days;
     }
 
 }
