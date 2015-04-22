@@ -44,6 +44,7 @@ public class MockContractDao extends MockUp<ContractDaoHibernate> {
 
 	@Mock
 	public void update(Contract contract) {
+	    contract.setId(10);
 		this.contract = contract;
 	}
 
