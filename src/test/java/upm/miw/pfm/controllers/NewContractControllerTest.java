@@ -7,17 +7,17 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import upm.miw.pfm.controllers.ejbs.ContractControllerEjb;
+import upm.miw.pfm.controllers.ejbs.NewContractControllerEjb;
 import upm.miw.pfm.models.entities.Contract;
 import upm.miw.pfm.utils.ContractType;
 
-public class ContractControllerTest {
+public class NewContractControllerTest {
 
-    ContractControllerEjb contractControllerEjb;
+    NewContractControllerEjb contractControllerEjb;
 
     @Before
     public void before() {
-        contractControllerEjb = new ContractControllerEjb();
+        contractControllerEjb = new NewContractControllerEjb();
         contractControllerEjb.saveContract(new Contract(ContractType.BECARIO, 32.5));
     }
 
