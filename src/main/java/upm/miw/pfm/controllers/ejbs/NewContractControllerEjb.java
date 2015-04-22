@@ -2,16 +2,15 @@ package upm.miw.pfm.controllers.ejbs;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import upm.miw.pfm.controllers.ContractController;
+import upm.miw.pfm.controllers.NewContractController;
 import upm.miw.pfm.models.entities.Contract;
 import upm.miw.pfm.utils.ContractType;
 
-public class ContractControllerEjb implements ContractController {
+public class NewContractControllerEjb implements NewContractController {
 
     @Override
     public void saveContract(Contract contract) {
-        
+
     }
 
     @Override
@@ -20,7 +19,7 @@ public class ContractControllerEjb implements ContractController {
     }
 
     public List<Contract> contractList() {
-        List<Contract> lista=new ArrayList<Contract>();
+        List<Contract> lista = new ArrayList<Contract>();
         lista.add(new Contract(ContractType.BECARIO, 1));
         lista.add(new Contract(ContractType.BECARIO, 2));
         return lista;
