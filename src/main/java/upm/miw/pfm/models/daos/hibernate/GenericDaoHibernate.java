@@ -2,13 +2,16 @@ package upm.miw.pfm.models.daos.hibernate;
 
 import java.util.List;
 
+import org.hibernate.SessionFactory;
+
 import upm.miw.pfm.models.daos.GenericDao;
 
 public class GenericDaoHibernate<T, ID> implements GenericDao<T, ID> {
 
+   private static SessionFactory factory; 
+	
 	@Override
 	public void create(T entity) {
-		// TODO Auto-generated method stub
 		
 	}
 
