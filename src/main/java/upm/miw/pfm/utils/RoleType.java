@@ -3,7 +3,7 @@ package upm.miw.pfm.utils;
 public enum RoleType {
 	GESTION_PROYECTO, 
 	REQUISITOS, 
-	ANALISIS_DISEÑO,
+	ANALISIS_DISEÃ‘O,
 	IMPLEMENTACION, 
 	PRUEBAS, 
 	DESPLIEGUE, 

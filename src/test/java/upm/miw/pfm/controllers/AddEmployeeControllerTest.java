@@ -32,7 +32,7 @@ public class AddEmployeeControllerTest {
 		roles = new ArrayList<RoleType>();
 		roles.add(RoleType.GESTION_PROYECTO);
 		roles.add(RoleType.REQUISITOS);
-		roles.add(RoleType.ANALISIS_DISEÑO);
+		roles.add(RoleType.ANALISIS_DISEÃ‘O);
 		employee = new Employee("Anibal","Lecter","A",40500.00,contract,roles);
 	}
 	
