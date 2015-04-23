@@ -52,7 +52,7 @@ public class Project {
     public boolean equals(Object obj) {
         assert obj != null;
         Project other = (Project) obj;
-        return id == other.id && start.equals(other.start) && end.equals(other.end)
+        return id == other.id && start.compareTo(other.start) == 0 && end.compareTo(other.end) == 0
                 && cost.equals(other.cost) && name.equals(other.name);
     }
 

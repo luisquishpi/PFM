@@ -43,6 +43,5 @@ public class AddEmployeeControllerTest {
 		Employee employee = addEmployeeController.getEmployee(1);
 		assertEquals(new Employee(1,"Anibal","Lecter","A",40500.00,contract,roles), employee);
 	}
-	
-
 }
+

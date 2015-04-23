@@ -1,6 +1,7 @@
 package upm.miw.pfm.models.daos.hibernate;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Hibernate;
@@ -41,7 +42,8 @@ public class GenericDaoHibernate<T, ID extends Serializable> implements GenericD
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		T entity = null;
 		try {
-            entity = (T) session.load(persistentClass, id);
+			session.beginTransaction();
+            entity = (T) session.get(persistentClass, id);
             Hibernate.initialize(entity);
         } catch (Exception e) {
             e.printStackTrace();
@@ -70,16 +72,42 @@ public class GenericDaoHibernate<T, ID extends Serializable> implements GenericD
          }
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void deleteById(ID id) {
-		// TODO Auto-generated method stub
-		
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        try{
+            session.beginTransaction();
+            T entity = (T) session.load(persistentClass, id);
+            session.delete(entity); 
+            session.getTransaction().commit();
+         }catch (HibernateException e) {
+            if (session.getTransaction()!=null) session.getTransaction().rollback();
+            e.printStackTrace(); 
+         }finally {
+             if (session != null && session.isOpen()) {
+                 session.close();
+             }
+         }
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<T> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		List<T> list = new ArrayList<T>();
+		try {
+			session.beginTransaction();
+			list = session.createCriteria(persistentClass).list();
+            Hibernate.initialize(list);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+		return list;
 	}
 
 }
