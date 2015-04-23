@@ -88,7 +88,23 @@ public class Project {
         this.projectSchedule = schedule;
     }
 
-    @Override
+    public void setStart(Date start) {
+		this.start = start;
+	}
+
+	public void setEnd(Date end) {
+		this.end = end;
+	}
+
+	public void setCost(Double cost) {
+		this.cost = cost;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	@Override
     public String toString() {
         return "Project [start=" + start + ", end=" + end + ", cost=" + cost + ", name=" + name
                 + ", id=" + id + "]";
