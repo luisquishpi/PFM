@@ -1,3 +1,4 @@
+
 package upm.miw.pfm.models.daos.hibernate;
 
 import upm.miw.pfm.models.daos.EmployeeDao;
@@ -10,3 +11,4 @@ public class EmployeeDaoHibernate extends GenericDaoHibernate<Employee, Integer>
 	}
 
 }
+

@@ -1,3 +1,4 @@
+
 package upm.miw.pfm.utils;
 
 public enum RoleType {
