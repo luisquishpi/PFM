@@ -2,14 +2,25 @@ package upm.miw.pfm.models.daos.hibernate;
 
 import java.util.List;
 
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+
 import upm.miw.pfm.models.daos.GenericDao;
+import upm.miw.pfm.utils.HibernateUtil;
 
 public class GenericDaoHibernate<T, ID> implements GenericDao<T, ID> {
-
+	
 	@Override
 	public void create(T entity) {
-		// TODO Auto-generated method stub
-		
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        try{
+            session.beginTransaction();
+            session.save(entity); 
+            session.getTransaction().commit();
+         }catch (HibernateException e) {
+            if (session.getTransaction()!=null) session.getTransaction().rollback();
+            e.printStackTrace(); 
+         }
 	}
 
 	@Override
