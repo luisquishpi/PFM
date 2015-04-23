@@ -1,28 +1,31 @@
 package upm.miw.pfm.controllers.ejbs;
 
-import java.util.ArrayList;
 import java.util.List;
 import upm.miw.pfm.controllers.NewContractController;
+import upm.miw.pfm.models.daos.ContractDao;
+import upm.miw.pfm.models.daos.DaoFactory;
 import upm.miw.pfm.models.entities.Contract;
-import upm.miw.pfm.utils.ContractType;
 
 public class NewContractControllerEjb implements NewContractController {
 
+    private ContractDao contractDao;
+
+    public NewContractControllerEjb() {
+        contractDao = DaoFactory.getFactory().getContractDao();
+    }
+
     @Override
     public void saveContract(Contract contract) {
-
+        contractDao.create(contract);
     }
 
     @Override
     public boolean existContract(Contract contract) {
-        return true;
+        return contractDao.read(contract.getId()) != null;
     }
 
     public List<Contract> contractList() {
-        List<Contract> lista = new ArrayList<Contract>();
-        lista.add(new Contract(ContractType.BECARIO, 1));
-        lista.add(new Contract(ContractType.BECARIO, 2));
-        return lista;
+        return contractDao.findAll();
     }
 
 }
