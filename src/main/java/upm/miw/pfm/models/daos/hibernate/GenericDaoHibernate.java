@@ -20,8 +20,6 @@ public class GenericDaoHibernate<T, ID> implements GenericDao<T, ID> {
          }catch (HibernateException e) {
             if (session.getTransaction()!=null) session.getTransaction().rollback();
             e.printStackTrace(); 
-         }finally {
-            session.close(); 
          }
 	}
 

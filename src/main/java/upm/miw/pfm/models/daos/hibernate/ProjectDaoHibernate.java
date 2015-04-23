@@ -16,7 +16,7 @@ public class ProjectDaoHibernate extends GenericDaoHibernate<Project, Integer>
 		ProjectDaoHibernate pHibernate = new ProjectDaoHibernate();
 		Project project;
 		Date start = new Date();
-		Date end = new Date();
+		Date end = new Date(); 
 		try {
 			start = new SimpleDateFormat("dd-MM-yyyy").parse("02-03-2015");
 			end = new SimpleDateFormat("dd-MM-yyyy").parse("04-09-2015");

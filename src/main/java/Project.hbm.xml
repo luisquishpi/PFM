@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="upm.miw.pfm.models.entities.Project" table="PROJECT">
+		<meta attribute="class-description">
+			This class contains the project detail.
+		</meta>
+		<id name="id" type="int" column="id">
+			<generator class="native" />
+		</id>
+		<property name="name" column="name" type="string" />
+		<property name="start" column="start" type="date" />
+		<property name="end" column="end" type="date" />
+		<property name="cost" column="cost" type="double" />
+	</class>
+</hibernate-mapping>
