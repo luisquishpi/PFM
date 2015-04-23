@@ -5,4 +5,8 @@ import upm.miw.pfm.models.entities.Contract;
 
 public class ContractDaoHibernate extends GenericDaoHibernate<Contract, Integer> implements ContractDao{
 
+	public ContractDaoHibernate() {
+		super(Contract.class);
+	}
+
 }
