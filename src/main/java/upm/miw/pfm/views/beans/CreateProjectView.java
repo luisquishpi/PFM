@@ -6,7 +6,7 @@ import upm.miw.pfm.controllers.ProjectController;
 import upm.miw.pfm.models.entities.Project;
 import upm.miw.pfm.models.entities.ProjectSchedule;
 
-public class ProjectView extends ViewBean {
+public class CreateProjectView extends ViewBean {
 
     private Project project;
 
@@ -24,7 +24,7 @@ public class ProjectView extends ViewBean {
 
     private ProjectController projectController;
 
-    public ProjectView() {
+    public CreateProjectView() {
         projectController = getControllerFactory().getProjectController();
     }
 
