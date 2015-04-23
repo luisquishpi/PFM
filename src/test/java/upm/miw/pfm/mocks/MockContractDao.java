@@ -47,5 +47,4 @@ public class MockContractDao extends MockUp<ContractDaoHibernate> {
 	    contract.setId(10);
 		this.contract = contract;
 	}
-
 }

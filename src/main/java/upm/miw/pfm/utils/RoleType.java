@@ -1,0 +1,11 @@
+package upm.miw.pfm.utils;
+
+public enum RoleType {
+	GESTION_PROYECTO, 
+	REQUISITOS, 
+	ANALISIS_DISEÑO,
+	IMPLEMENTACION, 
+	PRUEBAS, 
+	DESPLIEGUE, 
+	ENTORNO_CONTROL_VERSIONES
+}
