@@ -9,6 +9,5 @@ public class EmployeeDaoHibernate extends GenericDaoHibernate<Employee, Integer>
 	public EmployeeDaoHibernate() {
 		super(Employee.class);
 	}
-
 }
 
