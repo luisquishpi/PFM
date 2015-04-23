@@ -13,6 +13,17 @@ public class Employee {
 	private Double brutoAnual;
 	private Contract contrato;
 	private List<RoleType> roles;
+	
+	public Employee(int id, String nombre, String apellidos, String codigoEmpleado,
+			double brutoAnual, Contract contrato, List<RoleType> roles) {
+		this.id = id;
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+		this.codigoEmpleado = codigoEmpleado;
+		this.brutoAnual = brutoAnual;
+		this.contrato = contrato;
+		this.roles = roles;
+	}
 
 	public Employee(String nombre, String apellidos, String codigoEmpleado,
 			Double brutoAnual, Contract contrato, List<RoleType> roles) {
@@ -26,7 +37,7 @@ public class Employee {
 	
 	public Employee(){
 	}
-	
+
 	public Integer getId() {
 		return id;
 	}

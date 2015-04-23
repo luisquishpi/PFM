@@ -7,9 +7,13 @@ import upm.miw.pfm.models.entities.Employee;
 public class AddEmployeeControllerEjb implements AddEmployeeController{
 
 	@Override
-	public Employee addEmployee(Employee employee) {
+	public void addEmployee(Employee employee) {
 		DaoFactory.getFactory().getEmployeeDao().create(employee);
-		return employee;
+	}
+
+	@Override
+	public Employee getEmployee(Integer id) {
+		return DaoFactory.getFactory().getEmployeeDao().read(id);
 	}
 
 }

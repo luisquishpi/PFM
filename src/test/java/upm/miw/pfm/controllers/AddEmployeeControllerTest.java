@@ -37,10 +37,11 @@ public class AddEmployeeControllerTest {
 	}
 	
 	@Test
-	public void addEmployeeTest(){//MIRAR
+	public void addEmployeeTest(){
 		new MockEmployeeDao(new Employee());
 		addEmployeeController.addEmployee(employee);
-		assertEquals(employee, new Employee("Anibal","Lecter","A",40500.00,contract,roles));
+		Employee employee = addEmployeeController.getEmployee(1);
+		assertEquals(new Employee(1,"Anibal","Lecter","A",40500.00,contract,roles), employee);
 	}
 	
 
