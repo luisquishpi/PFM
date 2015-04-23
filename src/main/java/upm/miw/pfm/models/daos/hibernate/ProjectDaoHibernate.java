@@ -12,6 +12,10 @@ import upm.miw.pfm.models.entities.Project;
 public class ProjectDaoHibernate extends GenericDaoHibernate<Project, Integer>
 		implements ProjectDao {
 
+	public ProjectDaoHibernate() {
+		super(Project.class);
+	}
+
 	public static void main(String[] args) {
 		ProjectDaoHibernate pHibernate = new ProjectDaoHibernate();
 		Project project;

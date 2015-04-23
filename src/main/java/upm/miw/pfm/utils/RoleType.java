@@ -9,3 +9,4 @@ public enum RoleType {
 	DESPLIEGUE, 
 	ENTORNO_CONTROL_VERSIONES
 }
+
