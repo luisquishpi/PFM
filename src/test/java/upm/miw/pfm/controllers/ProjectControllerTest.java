@@ -1,11 +1,10 @@
 package upm.miw.pfm.controllers;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 
 import org.junit.Before;
 import org.junit.Test;
@@ -46,3 +45,4 @@ public class ProjectControllerTest {
 	}
 
 }
+
