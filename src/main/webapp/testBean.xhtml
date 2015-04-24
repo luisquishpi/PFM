@@ -2,49 +2,23 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:ng="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:ac="http://beyondjava.net/angularFacesCore"
+	xmlns:prime="http://primefaces.org/ui">
 	<h:head>
 		<title>List Themes</title>
-		<script src="/PFM/js/libs/angular.min.js"></script>
-		<script>
-		var phonecatApp = angular.module('phonecatApp', []);
-
-		phonecatApp.controller('PhoneListCtrl', function ($scope) {
-		  $scope.phones = [
-		    {'name': 'Nexus S',
-		     'snippet': 'Fast just got faster with Nexus S.',
-		     'age': 1},
-		    {'name': 'Motorola XOOM™ with Wi-Fi',
-		     'snippet': 'The Next, Next Generation tablet.',
-		     'age': 2},
-		    {'name': 'MOTOROLA XOOM™',
-		     'snippet': 'The Next, Next Generation tablet.',
-		     'age': 3}
-		  ];
-
-		  $scope.orderProp = 'age';
-		  $scope.laborDay = #{testBean.intTest};
-		  
-		  $scope.laborMonth = function(){
-			  return $scope.laborDay/30;  
-		  } 
-		});
-		</script>
+		<script src="/PFM/js/controllerTest.js"></script>
 	</h:head>
-	<body ng-app="phonecatApp">
-		<h4>#{testBean.intTest}</h4>
-		<div ng-controller="PhoneListCtrl">
-			<input type="text" ng-model="laborDay" placeholder="Enter a name here"/>
-		  <ul>
-		    <li ng-repeat="phone in phones">
-		      <span>{{phone.name}}</span>
-		      <p>{{phone.snippet}}</p>
-		    </li>
-		  </ul>	
-		  {{laborMonth()}}
-		  {{laborDay}}	
-		</div>
-	</body>
+	<h:body>
+	<div class="main-grid main-body-grid" ng-app="phonecatApp" ng-controller="PhoneListCtrl">
+		<h:form prependId="false" id="angular">
+			<ngsync direction="serverToClient" value="{{testBean.laborDay}}" />
+						<h:inputText value="{{testBean.laborDay}}" />
+						{{laborMonth()}}
+		</h:form>	  
+	</div>	  
+	</h:body>
 </html>

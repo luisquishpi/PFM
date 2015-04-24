@@ -4,8 +4,8 @@ import java.util.List;
 
 import upm.miw.pfm.models.entities.Project;
 
-public interface ListProjectController {
-    
+public interface ListProjectsController {
+
     public List<Project> listProjects();
 
 }
