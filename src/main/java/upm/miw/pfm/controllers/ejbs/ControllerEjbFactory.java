@@ -11,6 +11,7 @@ import upm.miw.pfm.controllers.SetScheduleController;
 public class ControllerEjbFactory extends ControllerFactory {
 
     private ProjectController projectController;
+    private NewContractController newContractController;
 
     @Override
     public ProjectController getProjectController() {
@@ -27,8 +28,9 @@ public class ControllerEjbFactory extends ControllerFactory {
 
     @Override
     public NewContractController getNewContractController() {
-        // TODO Auto-generated method stub
-        return null;
+        if (newContractController == null)
+            newContractController = new NewContractControllerEjb();
+        return newContractController;
     }
 
     @Override
