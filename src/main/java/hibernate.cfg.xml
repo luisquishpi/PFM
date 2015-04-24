@@ -30,6 +30,7 @@
 		
 		<!-- Mapping files -->
 		<mapping resource='Project.hbm.xml'/>
+		<mapping resource='Contract.hbm.xml'/>
 
 	</session-factory>
 </hibernate-configuration>
