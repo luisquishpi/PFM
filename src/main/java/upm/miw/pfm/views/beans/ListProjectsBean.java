@@ -6,16 +6,16 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 
-import upm.miw.pfm.controllers.ListProjectController;
+import upm.miw.pfm.controllers.ListProjectsController;
 import upm.miw.pfm.models.entities.Project;
 
 @ManagedBean
-public class ListProjectBean extends ViewBean {
+public class ListProjectsBean extends ViewBean {
 
 	private List<Project> projects;
 	
     @EJB
-    private ListProjectController listProjectController;	
+    private ListProjectsController listProjectController;	
 
 	public List<Project> getProjects() {
 		return projects;
