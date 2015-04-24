@@ -1,7 +1,10 @@
 package upm.miw.pfm.views.beans;
 
+import javax.faces.bean.ManagedBean;
+
 import upm.miw.pfm.models.entities.Project;
 
+@ManagedBean
 public class CreateProjectView extends ViewBean {
 
     private Project project;
