@@ -31,7 +31,7 @@ public class ProjectDaoTest {
 	
 	@After
 	public void after(){
-		//projectDao.deleteById(project.getId());
+		projectDao.deleteById(project.getId());
 	}
 	
 	@Test
