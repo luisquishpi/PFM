@@ -1,3 +1,4 @@
+
  var phonecatApp = angular.module('phonecatApp', ["angularfaces"]).controller(
 	  'PhoneListCtrl', function ($scope) {
 		  
@@ -17,6 +18,6 @@
 	
 	  $scope.orderProp = 'age';
 	  $scope.laborMonth = function(){
-		  return $scope.testBean.laborDay/30;  
+		  return $scope.testBean2.laborDay/30;  
 	  }
 });
