@@ -14,10 +14,11 @@
 		<script src="/PFM/resources/js/controllerTest.js"></script>
 	</h:head>
 	<h:body>
+	<c:set var="testBean2" value="#{testBean}" scope="request" />
 	<div class="main-grid main-body-grid" ng-app="phonecatApp" ng-controller="PhoneListCtrl">
 		<h:form prependId="false" id="angular">
 			<ngsync direction="serverToClient" value="{{testBean.laborDay}}" />
-			<h:inputText value="{{testBean.laborDay}}" />
+			<h:inputText value="{{testBean2.laborDay}}" />
 			{{laborMonth()}}
 		</h:form>	  
 	</div>	  
