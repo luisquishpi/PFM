@@ -1,0 +1,10 @@
+@CHARSET "ISO-8859-1";
+
+.ui-widget, .ui-widget .ui-widget {
+	font-size: 90% !important;
+}
+
+.ui-growl {
+	right: 20px;
+	top: 50%;
+}
