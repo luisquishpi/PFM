@@ -53,7 +53,6 @@ projectApp.controller(
 	  }
 	  
 	  $scope.mediumPersonMonth = function(){
-		  //alert($scope.costWorkMonth());
 		  return $scope.costWorkMonth()/$scope.consultProjectBean.mediumCostMonth;
 	  }
 	  
@@ -63,7 +62,5 @@ projectApp.controller(
 	  
 	  $scope.mediumPersonHour = function(){
 		  return $scope.costWorkHour()/$scope.consultProjectBean.mediumCostHour;
-	  }
-	  
-	  
+	  }	  
 });

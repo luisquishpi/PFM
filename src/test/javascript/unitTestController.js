@@ -1,4 +1,4 @@
-describe("Testing the controller", function(){
+describe("Test projectController", function(){
 	
 	beforeEach(module("projectApp"));
 	
@@ -63,16 +63,16 @@ describe("Testing the controller", function(){
 		expect(scope.costWorkHour()).toBe(78.70370370370371);
 	});
 		
-	it("Medium person month should be 5.121438340894987", function(){
-		expect(scope.mediumPersonMonth()).toBe(5.121438340894987);
+	it("Medium person month should be 5.121557366607101", function(){
+		expect(scope.mediumPersonMonth()).toBe(5.121557366607101);
 	});
 	
 	it("Medium person day should be 5.121438340894987", function(){
 		expect(scope.mediumPersonDay()).toBe(5.121438340894987);
 	});
 	
-	it("Medium person hour should be 5.121438340894987", function(){
-		expect(scope.mediumPersonHour()).toBe(5.121438340894987);
+	it("Medium person hour should be 5.120605315790742", function(){
+		expect(scope.mediumPersonHour()).toBe(5.120605315790742);
 	});
 
 })
