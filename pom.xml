@@ -134,7 +134,10 @@
 						<source>${project.basedir}/src/main/webapp/js/libs/jquery-1.11.2.min.js</source>
 						<source>${project.basedir}/src/main/webapp/js/libs/angular.min.js</source>
 						<source>${project.basedir}/src/main/webapp/js/libs/angular-mocks.js</source>
+						<source>${project.basedir}/src/main/webapp/js/libs/mockAngularFaces.js</source>
+						<source>${project.basedir}/src/main/webapp/js/libs/moment.js</source>
 					</preloadSources>
+					<jsSrcDir>${project.basedir}/src/main/webapp/js/controllers</jsSrcDir>
 				</configuration>
 			</plugin>
 		</plugins>
