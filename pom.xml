@@ -86,6 +86,12 @@
 			<version>2.2.10</version>
 			<scope>compile</scope>
 		</dependency>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>7.0</version>
+            <scope>provided</scope>
+        </dependency>		
 	</dependencies>
 	<build>
 		<resources>
@@ -131,13 +137,13 @@
 				</executions>
 				<configuration>
 					<preloadSources>
-						<source>${project.basedir}/src/main/webapp/js/libs/jquery-1.11.2.min.js</source>
-						<source>${project.basedir}/src/main/webapp/js/libs/angular.min.js</source>
-						<source>${project.basedir}/src/main/webapp/js/libs/angular-mocks.js</source>
-						<source>${project.basedir}/src/main/webapp/js/libs/mockAngularFaces.js</source>
-						<source>${project.basedir}/src/main/webapp/js/libs/moment.js</source>
+						<source>${project.basedir}/src/main/webapp/resources/js/libs/jquery-1.11.2.min.js</source>
+						<source>${project.basedir}/src/main/webapp/resources/js/libs/angular.min.js</source>
+						<source>${project.basedir}/src/main/webapp/resources/js/libs/angular-mocks.js</source>
+						<source>${project.basedir}/src/main/webapp/resources/js/libs/mockAngularFaces.js</source>
+						<source>${project.basedir}/src/main/webapp/resources/js/libs/moment.js</source>
 					</preloadSources>
-					<jsSrcDir>${project.basedir}/src/main/webapp/js/controllers</jsSrcDir>
+					<jsSrcDir>${project.basedir}/src/main/resources/webapp/js/controllers</jsSrcDir>
 				</configuration>
 			</plugin>
 		</plugins>

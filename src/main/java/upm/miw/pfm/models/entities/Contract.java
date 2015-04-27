@@ -8,6 +8,10 @@ public class Contract {
 	private ContractType contractType;
 	private double insurance;
 
+	public Contract(){
+	    this.contractType=null;
+	    this.insurance=0;
+	}
 	public Contract(ContractType contractType, double insurance) {
 		this.contractType = contractType;
 		this.insurance = insurance;

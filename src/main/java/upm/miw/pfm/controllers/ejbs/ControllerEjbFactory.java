@@ -3,7 +3,7 @@ package upm.miw.pfm.controllers.ejbs;
 import upm.miw.pfm.controllers.AddEmployeeController;
 import upm.miw.pfm.controllers.ControllerFactory;
 import upm.miw.pfm.controllers.ListContractsController;
-import upm.miw.pfm.controllers.ListProjectController;
+import upm.miw.pfm.controllers.ListProjectsController;
 import upm.miw.pfm.controllers.NewContractController;
 import upm.miw.pfm.controllers.ProjectController;
 import upm.miw.pfm.controllers.SetScheduleController;
@@ -11,6 +11,7 @@ import upm.miw.pfm.controllers.SetScheduleController;
 public class ControllerEjbFactory extends ControllerFactory {
 
     private ProjectController projectController;
+    private NewContractController newContractController;
 
     @Override
     public ProjectController getProjectController() {
@@ -20,15 +21,16 @@ public class ControllerEjbFactory extends ControllerFactory {
     }
 
     @Override
-    public ListProjectController getListProjectController() {
+    public ListProjectsController getListProjectController() {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public NewContractController getNewContractController() {
-        // TODO Auto-generated method stub
-        return null;
+        if (newContractController == null)
+            newContractController = new NewContractControllerEjb();
+        return newContractController;
     }
 
     @Override

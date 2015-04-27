@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:jsf="http://xmlns.jcp.org/jsf"
@@ -16,11 +17,12 @@
 	    </script>
 	</h:head>
 	<h:body>
+	<c:set var="testBean2" value="#{testBean}" scope="request" />
 	<div class="main-grid main-body-grid" ng-app="phonecatApp" ng-controller="PhoneListCtrl">
 		<h:form prependId="false" id="angular">
 			<ngsync direction="serverToClient" value="{{testBean.laborDay}}" />
-						<h:inputText value="{{testBean.laborDay}}" />
-						{{laborMonth()}}
+			<h:inputText value="{{testBean2.laborDay}}" />
+			{{laborMonth()}}
 		</h:form>	  
 	</div>	  
 	</h:body>

@@ -29,7 +29,11 @@
         <property name="hbm2ddl.auto">create-drop</property>
 		
 		<!-- Mapping files -->
-		<mapping resource='Project.hbm.xml'/>
+
+		<mapping resource='upm/miw/pfm/models/entities/hibernate/Project.hbm.xml'/>
+		<mapping resource='upm/miw/pfm/models/entities/hibernate/ProjectSchedule.hbm.xml'/>
+		<mapping resource='upm/miw/pfm/models/entities/hibernate/Contract.hbm.xml'/>
+
 
 	</session-factory>
 </hibernate-configuration>
