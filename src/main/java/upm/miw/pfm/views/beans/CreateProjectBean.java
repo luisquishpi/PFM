@@ -1,13 +1,17 @@
 package upm.miw.pfm.views.beans;
 
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 
+import upm.miw.pfm.controllers.ProjectController;
 import upm.miw.pfm.models.entities.Project;
 
 @ManagedBean
-public class CreateProjectView extends ViewBean {
+public class CreateProjectBean extends ViewBean {
 
     private Project project;
+    @EJB
+    private ProjectController projectController;
 
     public Project getProject() {
         return project;
@@ -18,7 +22,7 @@ public class CreateProjectView extends ViewBean {
     }
 
     public String process() {
-        this.getControllerFactory().getProjectController().createProject(project);
+        projectController.createProject(project);
         return "home";
     }
 

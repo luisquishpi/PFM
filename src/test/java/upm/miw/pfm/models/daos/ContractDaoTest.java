@@ -6,7 +6,6 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import upm.miw.pfm.mocks.MockContractDao;
 import upm.miw.pfm.models.daos.hibernate.DaoHibernateFactory;
 import upm.miw.pfm.models.entities.Contract;
 import upm.miw.pfm.utils.ContractType;
@@ -26,14 +25,14 @@ public class ContractDaoTest {
     public void before() {
         contractDao = DaoFactory.getFactory().getContractDao();
         contract = new Contract(ContractType.FIJO, 32.5);
-        new MockContractDao(contract);
+        //new MockContractDao(contract);
         contractDao.create(contract);
     }
 
     @Test
     public void testCreateAndRead() {
         contract = new Contract(ContractType.CONSULTOR, 33.0);
-        new MockContractDao(contract);
+        //new MockContractDao(contract);
         contractDao.create(contract);
         assertEquals(contractDao.read(contract.getId()), contract);
     }
@@ -44,7 +43,7 @@ public class ContractDaoTest {
         contractClone.setId(contract.getId());
         contract.setContractType(ContractType.BECARIO);
         contract.setInsurance(30.0);
-        new MockContractDao(contract);
+        //new MockContractDao(contract);
         contractDao.update(contract);
         assertNotEquals(contractClone, contractDao.read(contract.getId()));
     }
@@ -60,7 +59,7 @@ public class ContractDaoTest {
         listContract.add(contract);
         listContract.add(contract1);
         listContract.add(contract2);
-        new MockContractDao(listContract);
+        //new MockContractDao(listContract);
 
         assertEquals(3, contractDao.findAll().size());
     }

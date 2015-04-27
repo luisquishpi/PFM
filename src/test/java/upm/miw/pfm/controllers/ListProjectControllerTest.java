@@ -9,18 +9,18 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import upm.miw.pfm.controllers.ejbs.ListProjectControllerEjb;
+import upm.miw.pfm.controllers.ejbs.ListProjectsControllerEjb;
 import upm.miw.pfm.mocks.MockProjectDao;
 import upm.miw.pfm.models.entities.Project;
 import upm.miw.pfm.utils.Utils;
 
 public class ListProjectControllerTest {
 
-    private ListProjectController listProjectController;
+    private ListProjectsController listProjectController;
 
     @Before
     public void before() {
-        listProjectController = new ListProjectControllerEjb();
+        listProjectController = new ListProjectsControllerEjb();
     }
 
     @Test

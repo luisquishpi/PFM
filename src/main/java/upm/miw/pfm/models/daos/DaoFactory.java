@@ -22,6 +22,8 @@ public abstract class DaoFactory {
     public abstract ContractDao getContractDao();
     
     public abstract EmployeeDao getEmployeeDao();
+
+	public abstract ProjectScheduleDao getProjectScheduleDao();
    
 }
 
