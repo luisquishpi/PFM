@@ -1,8 +1,6 @@
 describe("Testing the controller", function(){
-	beforeEach(function(){
-	    module('angularfaces');
-	    module('projectApp');
-	});
+	
+	beforeEach(module("projectApp"));
 	
 	var projectCtrl, scope;
 	
@@ -19,7 +17,7 @@ describe("Testing the controller", function(){
 				  'mediumCostDay':122.94,
 				  'mediumCostHour':15.37
 		};
-		sampleCtrl = $controller("ProjectCtrl", {
+		sampleCtrl = $controller("projectController", {
 			$scope: scope,
 			test: true
 		});

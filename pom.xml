@@ -142,8 +142,9 @@
 						<source>${project.basedir}/src/main/webapp/resources/js/libs/angular-mocks.js</source>
 						<source>${project.basedir}/src/main/webapp/resources/js/libs/mockAngularFaces.js</source>
 						<source>${project.basedir}/src/main/webapp/resources/js/libs/moment.js</source>
+						<source>${project.basedir}/src/test/resources/app.js</source>
 					</preloadSources>
-					<jsSrcDir>${project.basedir}/src/main/resources/webapp/js/controllers</jsSrcDir>
+					<jsSrcDir>${project.basedir}/src/main/webapp/resources/js/controllers</jsSrcDir>
 				</configuration>
 			</plugin>
 		</plugins>
