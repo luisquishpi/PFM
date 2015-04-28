@@ -17,14 +17,15 @@ describe("Test projectController", function(){
 				  'mediumCostDay':122.94,
 				  'mediumCostHour':15.37
 		};
+
 		sampleCtrl = $controller("projectController", {
 			$scope: scope,
 			test: true
 		});
 	}));
-		
+	
 	it("Natural days should be 187", function(){
-		expect(scope.naturalDays()).toBe(187);
+		expect(scope.naturalDays()).toBe(186);
 	});
 	
 	it("Natural months should be 6.233333333333333", function(){
@@ -74,5 +75,4 @@ describe("Test projectController", function(){
 	it("Medium person hour should be 5.120605315790742", function(){
 		expect(scope.mediumPersonHour()).toBe(5.120605315790742);
 	});
-
 })

@@ -45,4 +45,5 @@ describe("Test scheduleController", function(){
 	it("hoursPerYear : should be 2016", function(){        
         expect(scope.hoursPerYear()).toBe(2016);        
 	});
+	
 })
