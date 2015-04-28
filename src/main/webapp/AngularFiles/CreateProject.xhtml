@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:body>
+
+	<ui:composition template="../template/commonLayout.xhtml">
+		<ui:define name="content">
+		<c:set var="ProjectCtrl" scope="request" value="${createProjectBean}" />
+			<h:form>
+				<div class="row">
+					<div class='col-sm-6'>
+						<div class="form-group">
+							<div class='input-group date calendar'>
+								<label>Start date</label> 
+								<input type='text' name='start' value="#{createProjectBean.project.start}" ng-model="consultProjectBean.start" class="form-control" /> 
+									<span class="input-group-addon">
+									<span class="glyphicon glyphicon-calendar"></span>
+								</span>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class='input-group date calendar'>
+								<label>End date</label> 
+								<input type='text' name='end' value="#{createProjectBean.project.end}" ng-model="consultProjectBean.end" class="form-control" /> 
+									<span class="input-group-addon">
+									<span class="glyphicon glyphicon-calendar"></span>
+								</span>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class='input-group'>
+								<label>Cost</label>
+								<div class="input-group-addon">€</div>
+								<input type='text' name='cost' ng-model="consultProjectBean.cost" value="#{createProjectBean.project.cost}" class="form-control" />
+							</div>
+						</div>
+						<h:commandButton class='btn btn-default' value="Guardar"
+							action="#{createProjectBean.process}" />
+					</div>
+					<div class='col-sm-6'>
+						<ul class="list-group">
+							<li class="list-group-item"><div class="input-group-addon">Meses naturales</div>{{ProjectCtrl.naturalMonths}}</li>
+							<li class="list-group-item"><div class="input-group-addon">Dias naturales</div>{{ProjectCtrl.naturalDays}}</li>
+							<li class="list-group-item"><div class="input-group-addon">Coste/Mes Natural</div>{{ProjectCtrl.costNaturalMonth}}</li>
+							<li class="list-group-item"><div class="input-group-addon">Coste/Dias Naturales</div>{{ProjectCtrl.costNaturalDay}}</li>
+						</ul>
+					</div>
+				</div>
+			</h:form>
+			<script type="text/javascript">
+				$(function() {
+					$('.calendar').datetimepicker();
+				});
+			</script>
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+
+</html>

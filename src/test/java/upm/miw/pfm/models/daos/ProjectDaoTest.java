@@ -36,6 +36,7 @@ public class ProjectDaoTest {
 	
 	@Test
 	public void createAndReadTest() {
+		System.out.println(projectDao.read(project.getId()));
 		assertEquals(projectDao.read(project.getId()), project);
 	}
 	
