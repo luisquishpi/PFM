@@ -9,11 +9,11 @@ public class TestBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 		private Integer laborDay=100; 
 
-		public Integer getLaborDay() {
+		public Integer getlaborDay() {
 			return laborDay;
 		}
 
-		public void setLaborDay(Integer laborDay) {
+		public void setlaborDay(Integer laborDay) {
 			this.laborDay = laborDay;
 		}
 }
