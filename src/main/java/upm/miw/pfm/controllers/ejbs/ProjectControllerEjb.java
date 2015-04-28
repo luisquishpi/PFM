@@ -1,9 +1,12 @@
 package upm.miw.pfm.controllers.ejbs;
 
+import javax.ejb.Stateless;
+
 import upm.miw.pfm.controllers.ProjectController;
 import upm.miw.pfm.models.daos.DaoFactory;
 import upm.miw.pfm.models.entities.Project;
 
+@Stateless
 public class ProjectControllerEjb implements ProjectController{
 
 	@Override

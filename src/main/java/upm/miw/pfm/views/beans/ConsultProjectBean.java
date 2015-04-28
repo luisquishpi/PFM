@@ -15,20 +15,29 @@ public class ConsultProjectBean extends ViewBean {
     private int id;
 
     private Project project;
-
+    
     @EJB
     private ProjectController projectController;
 
-    public Project getProject() {
+	public Project getProject() {
         return project;
     }
 
-    public void setProject(Project project) {
+    public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setProject(Project project) {
         this.project = project;
     }
 
     @PostConstruct
     public void update() {
+    	System.out.println(id);
         project = projectController.getProyect(id);
     }
 

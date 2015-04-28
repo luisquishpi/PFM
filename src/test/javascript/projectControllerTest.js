@@ -7,10 +7,9 @@ describe("Test projectController", function(){
 	beforeEach(inject(function($controller, $rootScope){
 		scope = $rootScope;
 		scope.consultProjectBean = {
-				  'laborDay': 40,
 				  'cost': 85000,
-				  'start': moment('2015-03-02'),
-				  'end': moment('2015-09-04'),
+				  'start': '2015-03-02',
+				  'end': '2015-09-04',
 				  'workingDays': [1,2,3,4,5],
 				  'WorkDaysMonth': 21,
 				  'mediumCostMonth':2581.68,

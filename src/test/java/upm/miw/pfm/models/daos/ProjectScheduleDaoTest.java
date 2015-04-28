@@ -31,8 +31,10 @@ public class ProjectScheduleDaoTest {
 		Date end = Utils.buildDate(2015, 9, 4);
 		project = new Project("Scrum", start, end, 85000.0);
 		projectSchedule = new ProjectSchedule(project, 21, 8D, 8D, 8D, 8D, 8D, 0D, 0D);
+		project.setProjectSchedule(projectSchedule);
+		projectSchedule.setProject(project);
 		projectDao.create(project);
-		projectScheduleDao.create(projectSchedule);
+		
 	}
 	
 	@After
@@ -45,20 +47,20 @@ public class ProjectScheduleDaoTest {
 		assertEquals(project.getId(), projectSchedule.getId());
 		assert(projectSchedule.equals(projectScheduleDao.read(projectSchedule.getId())));
 	}
-	
+
 	@Test
 	public void deleteById(){
 		projectScheduleDao.deleteById(projectSchedule.getId());
 		assertNull(projectScheduleDao.read(projectSchedule.getId()));
 	}
-	
+
 	@Test
 	public void updateTest(){
 		ProjectSchedule projectschedule2 = new ProjectSchedule(project, 20, 8D, 8D, 6D, 6D, 8D, 0D, 0D);
 		projectScheduleDao.update(projectschedule2);
 		assert(projectschedule2.equals(projectScheduleDao.read(projectSchedule.getId())));
 	}
-	
+
 	@Test
 	public void findAllTest(){
 		List<ProjectSchedule> projects = new ArrayList<ProjectSchedule>();
