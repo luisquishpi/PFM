@@ -41,7 +41,6 @@ public class NewContractControllerTest {
 
     @Test
     public void testExistContract() {
-        contractController.saveContract(contract);
         assertTrue(contractController.existContract(contract));
     }
 }

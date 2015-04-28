@@ -8,14 +8,14 @@ public class Contract {
 
     private ContractType contractType;
 
-    private double insurance;
+    private Double insurance;
 
     public Contract() {
         this.contractType = null;
-        this.insurance = 0;
+        this.insurance = 0.0;
     }
 
-    public Contract(ContractType contractType, double insurance) {
+    public Contract(ContractType contractType, Double insurance) {
         this.contractType = contractType;
         this.insurance = insurance;
     }
@@ -50,6 +50,15 @@ public class Contract {
         Contract other = (Contract) obj;
         return id.equals(other.id) && contractType.equals(other.contractType)
                 && insurance == other.insurance;
+    }
+    
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((contractType == null) ? 0 : contractType.hashCode());
+        result = prime * result + ((insurance == null) ? 0 : insurance.hashCode());
+        return result;
     }
 
     @Override

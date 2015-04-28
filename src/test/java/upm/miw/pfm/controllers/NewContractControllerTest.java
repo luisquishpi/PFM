@@ -33,9 +33,7 @@ public class NewContractControllerTest {
         Contract contract = new Contract(ContractType.FIJO, 32.5);
         contractController.saveContract(contract);
         
-        contractList.add(contract);
-
-       
+        contractList.add(contract);       
         new MockContractDao(contractList);
         contractList = contractController.contractList();
 
@@ -44,8 +42,7 @@ public class NewContractControllerTest {
 
     @Test
     public void testExistContract() {
-        Contract contract = new Contract(ContractType.BECARIO, 32.5);
         new MockContractDao(contract);
-        assertTrue(contractController.existContract(new Contract(ContractType.BECARIO, 32.5)));
+        assertTrue(contractController.existContract(contract));
     }
 }
