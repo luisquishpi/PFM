@@ -27,13 +27,13 @@
 		<property name="show_sql">true</property>
 
 		<!-- Drop and re-create the database schema on startup -->
-		<property name="hbm2ddl.auto">update</property>
+		<property name="hbm2ddl.auto">create-drop</property>
 
 		<!-- Mapping files -->
 
-		<mapping resource='upm/miw/pfm/models/entities/hibernate/Project.hbm.xml' />
-		<mapping resource='upm/miw/pfm/models/entities/hibernate/ProjectSchedule.hbm.xml' />
-		<mapping resource='upm/miw/pfm/models/entities/hibernate/Contract.hbm.xml' />
+		<mapping class='upm.miw.pfm.models.entities.Project' />
+		<mapping class='upm.miw.pfm.models.entities.ProjectSchedule' />
+		<mapping class='upm.miw.pfm.models.entities.Contract' />
 
 	</session-factory>
 </hibernate-configuration>
