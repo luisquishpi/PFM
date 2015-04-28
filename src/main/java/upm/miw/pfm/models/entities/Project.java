@@ -2,8 +2,18 @@ package upm.miw.pfm.models.entities;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
+
+@Entity
 public class Project {
 
+	@Id
+	@GeneratedValue
     private int id;
 
     private Date start;
@@ -14,6 +24,7 @@ public class Project {
 
     private String name;
 
+    @OneToOne(mappedBy="project", cascade=CascadeType.ALL)
     private ProjectSchedule projectSchedule;
 
     public Project() {
