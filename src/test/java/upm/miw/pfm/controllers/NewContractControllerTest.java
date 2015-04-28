@@ -15,31 +15,37 @@ import upm.miw.pfm.utils.ContractType;
 
 public class NewContractControllerTest {
 
-    NewContractControllerEjb contractControllerEjb;
+    NewContractController contractController;
+    Contract contract;
 
     @Before
     public void before() {
-        contractControllerEjb = new NewContractControllerEjb();
-        contractControllerEjb.saveContract(new Contract(ContractType.BECARIO, 32.5));
+        contractController = new NewContractControllerEjb();
+        contract=new Contract(ContractType.BECARIO, 32.5);
+        contractController.saveContract(contract);
     }
 
     @Test
     public void testNewContract() {
-        Contract contract = new Contract(ContractType.FIJO, 32.5);
-        contractControllerEjb.saveContract(contract);
-
         List<Contract> contractList = new ArrayList<Contract>();
         contractList.add(contract);
-        new MockContractDao(contractList);
-        contractList = contractControllerEjb.contractList();
+        
+        Contract contract = new Contract(ContractType.FIJO, 32.5);
+        contractController.saveContract(contract);
+        
+        contractList.add(contract);
 
-        assertEquals(1, contractList.size());
+       
+        new MockContractDao(contractList);
+        contractList = contractController.contractList();
+
+        assertEquals(2, contractList.size());
     }
 
     @Test
     public void testExistContract() {
         Contract contract = new Contract(ContractType.BECARIO, 32.5);
         new MockContractDao(contract);
-        assertTrue(contractControllerEjb.existContract(new Contract(ContractType.BECARIO, 32.5)));
+        assertTrue(contractController.existContract(new Contract(ContractType.BECARIO, 32.5)));
     }
 }
