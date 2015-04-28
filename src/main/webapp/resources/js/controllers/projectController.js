@@ -55,7 +55,7 @@ phonecatApp.controller(
 	  }
 	  
 	  $scope.mediumPersonMonth = function(){
-		  alert($scope.costWorkMonth());
+		  //alert($scope.costWorkMonth());
 		  return $scope.costWorkMonth()/$scope.consultProjectBean.mediumCostMonth;
 	  }
 	  

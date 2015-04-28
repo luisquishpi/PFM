@@ -1,5 +1,5 @@
 describe("Testing the controller", function(){
-	beforeEach(function(){
+	/*beforeEach(function(){
 	    module('angularfaces');
 	    module('projectApp');
 	});
@@ -19,12 +19,12 @@ describe("Testing the controller", function(){
 				  'mediumCostDay':122.94,
 				  'mediumCostHour':15.37
 		};
-		sampleCtrl = $controller("ProjectCtrl", {
+		projectCtrl = $controller("ProjectCtrl", {
 			$scope: scope,
 			test: true
 		});
-	}));
-		
+	}));/*
+		/*
 	it("Natural days should be 187", function(){
 		expect(scope.naturalDays()).toBe(187);
 	});
@@ -75,6 +75,6 @@ describe("Testing the controller", function(){
 	
 	it("Medium person hour should be 5.121438340894987", function(){
 		expect(scope.mediumPersonHour()).toBe(5.121438340894987);
-	});
+	});*/
 
 })
