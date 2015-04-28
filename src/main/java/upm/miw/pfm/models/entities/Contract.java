@@ -4,54 +4,57 @@ import upm.miw.pfm.utils.ContractType;
 
 public class Contract {
 
-	private Integer id;
-	private ContractType contractType;
-	private double insurance;
+    private Integer id;
 
-	public Contract(){
-	    this.contractType=null;
-	    this.insurance=0;
-	}
-	public Contract(ContractType contractType, double insurance) {
-		this.contractType = contractType;
-		this.insurance = insurance;
-	}
+    private ContractType contractType;
 
-	public ContractType getContractType() {
-		return contractType;
-	}
+    private double insurance;
 
-	public void setContractType(ContractType contractType) {
-		this.contractType = contractType;
-	}
+    public Contract() {
+        this.contractType = null;
+        this.insurance = 0;
+    }
 
-	public double getInsurance() {
-		return insurance;
-	}
+    public Contract(ContractType contractType, double insurance) {
+        this.contractType = contractType;
+        this.insurance = insurance;
+    }
 
-	public void setInsurance(double insurance) {
-		this.insurance = insurance;
-	}
+    public ContractType getContractType() {
+        return contractType;
+    }
 
-	public Integer getId() {
-		return id;
-	}
+    public void setContractType(ContractType contractType) {
+        this.contractType = contractType;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public double getInsurance() {
+        return insurance;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		assert obj != null;
-		Contract other = (Contract) obj;
-		return id.equals(other.id) && contractType.equals(other.contractType)
-				&& insurance == other.insurance;
-	}
+    public void setInsurance(double insurance) {
+        this.insurance = insurance;
+    }
 
-	@Override
-	public String toString() {
-		return "Contract [id=" + id + ", contractType=" + contractType
-				+ ", insurance=" + insurance + "]";
-	}
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        assert obj != null;
+        Contract other = (Contract) obj;
+        return id.equals(other.id) && contractType.equals(other.contractType)
+                && insurance == other.insurance;
+    }
+
+    @Override
+    public String toString() {
+        return "Contract [id=" + id + ", contractType=" + contractType + ", insurance=" + insurance
+                + "]";
+    }
 }
