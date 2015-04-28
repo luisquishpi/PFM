@@ -11,7 +11,7 @@
 			</generator>
 		</id>
 		<one-to-one name="project" class="upm.miw.pfm.models.entities.Project"
-			constrained="true"></one-to-one>
+			constrained="true" property-ref="projectSchedule"></one-to-one>
 		<property name="workDays" type="java.lang.Integer">
 			<column name="work_days" not-null="true" />
 		</property>
