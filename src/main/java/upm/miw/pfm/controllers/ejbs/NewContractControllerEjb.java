@@ -28,9 +28,9 @@ public class NewContractControllerEjb implements NewContractController {
     public boolean existContract(Contract contract) {
         return contractDao.read(contract.getId()) != null;
     }
-
+    
+    @Override
     public List<Contract> contractList() {
         return contractDao.findAll();
     }
-
 }
