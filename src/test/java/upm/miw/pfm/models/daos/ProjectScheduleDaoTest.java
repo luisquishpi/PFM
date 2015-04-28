@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import upm.miw.pfm.models.daos.hibernate.DaoHibernateFactory;
@@ -17,33 +18,40 @@ import upm.miw.pfm.utils.Utils;
 
 public class ProjectScheduleDaoTest {
 
-	private ProjectDao projectDao;
+	private static ProjectDao projectDao;
 	private Project project;
-	private ProjectScheduleDao projectScheduleDao;
+	private static ProjectScheduleDao projectScheduleDao;
 	private ProjectSchedule projectSchedule;
+	
+	@BeforeClass
+	public static void beforeClass(){
+		DaoFactory.setFactory(new DaoHibernateFactory());
+		projectScheduleDao = DaoFactory.getFactory().getProjectScheduleDao();
+		projectDao = DaoFactory.getFactory().getProjectDao();
+	}
 	
 	@Before
 	public void before(){
-		DaoFactory.setFactory(new DaoHibernateFactory());
-		projectDao = DaoFactory.getFactory().getProjectDao();
-		projectScheduleDao = DaoFactory.getFactory().getProjectScheduleDao();
 		Date start = Utils.buildDate(2015, 3, 2);
 		Date end = Utils.buildDate(2015, 9, 4);
 		project = new Project("Scrum", start, end, 85000.0);
+		Project project2 = new Project("ScrumXP", start, end, 80000.0);
 		projectSchedule = new ProjectSchedule(project, 21, 8D, 8D, 8D, 8D, 8D, 0D, 0D);
+		project.setProjectSchedule(projectSchedule);
+		projectSchedule.setProject(project);
+		projectDao.create(project2);
 		projectDao.create(project);
-		projectScheduleDao.create(projectSchedule);
 	}
 	
 	@After
 	public void after(){
-		projectScheduleDao.deleteById(project.getId());
+		//projectScheduleDao.deleteById(project.getId());
 	}
 	
 	@Test
 	public void createAndReadTest() {
 		assertEquals(project.getId(), projectSchedule.getId());
-		assert(projectSchedule.equals(projectScheduleDao.read(projectSchedule.getId())));
+		assert(projectSchedule.equals(projectDao.read(projectSchedule.getId()).getProjectSchedule()));
 	}
 	
 	@Test

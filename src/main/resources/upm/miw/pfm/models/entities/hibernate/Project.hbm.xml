@@ -15,7 +15,7 @@
 		<property name="start" column="start" type="date" />
 		<property name="end" column="end" type="date" />
 		<property name="cost" column="cost" type="double" />
-		<one-to-one name="projectSchedule" lazy="false" class="upm.miw.pfm.models.entities.ProjectSchedule"
-			cascade="all"></one-to-one>
+		<one-to-one name="projectSchedule" class="upm.miw.pfm.models.entities.ProjectSchedule"
+			cascade="save-update"></one-to-one>
 	</class>
 </hibernate-mapping>

@@ -1,7 +1,5 @@
-var phonecatApp = angular.module('projectApp', ["angularfaces"]); 
-
-phonecatApp.controller(
-	  'ProjectCtrl', function ($scope, test) {  
+projectApp.controller(
+	  'projectController', function ($scope, test) {  
  
 	  !test && initJSFScope($scope);
 	   
@@ -55,7 +53,6 @@ phonecatApp.controller(
 	  }
 	  
 	  $scope.mediumPersonMonth = function(){
-		  alert($scope.costWorkMonth());
 		  return $scope.costWorkMonth()/$scope.consultProjectBean.mediumCostMonth;
 	  }
 	  
@@ -65,7 +62,5 @@ phonecatApp.controller(
 	  
 	  $scope.mediumPersonHour = function(){
 		  return $scope.costWorkHour()/$scope.consultProjectBean.mediumCostHour;
-	  }
-	  
-	  
+	  }	  
 });
