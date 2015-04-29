@@ -1,16 +1,15 @@
 package upm.miw.pfm.views.beans;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.model.SelectItem;
 
 import org.apache.logging.log4j.LogManager;
 
 import upm.miw.pfm.controllers.NewContractController;
 import upm.miw.pfm.models.entities.Contract;
-import upm.miw.pfm.utils.ContractType;
 
-@ManagedBean
+@ManagedBean(name="newContractBean")
 public class NewContractBean extends ViewBean {
 
     private Contract contract;
@@ -31,18 +30,9 @@ public class NewContractBean extends ViewBean {
         LogManager.getLogger(this).info("Guardado " + contract);
         return "home";
     }
-
-    public SelectItem[] getContractTypeValues() {
-        SelectItem[] items = new SelectItem[ContractType.values().length];
-        int i = 0;
-        for (ContractType g : ContractType.values()) {
-            items[i++] = new SelectItem(g, g.toString());
-            System.out.println("item:" + items[i++]);
-        }
-        return items;
+    
+    @PostConstruct
+    public void init(){
+    	contract = new Contract();
     }
-    public ContractType[] getListContractType(){
-        return ContractType.values();
-    }
-
 }
