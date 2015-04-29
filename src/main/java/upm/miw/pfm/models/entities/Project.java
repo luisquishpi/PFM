@@ -6,8 +6,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Entity(name = "project")
+@Entity
+@Table(name = "project")
 public class Project {
 
     @Id
@@ -21,10 +23,10 @@ public class Project {
     private Date end;
 
 	@Column(nullable = false)
-    private Double cost=0.00;
+    private Double cost;
 	
 	@Column(nullable = false)
-    private String name="New Project";
+    private String name;
 
     public Project() {
     }

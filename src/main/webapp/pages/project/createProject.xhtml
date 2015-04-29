@@ -11,61 +11,103 @@
 	<ui:composition template="#{root}/pages/template/commonLayout.xhtml">
 		<ui:define name="javascript">
 			<script>
-			app.value("test", false);
-			var projectApp = angular.module('projectApp', ["angularfaces"]);	 	
+				app.value("test", false);
+				var projectApp = angular.module('projectApp',
+						[ "angularfaces" ]);
+			    $(function () {
+			        $('#datetimepicker6').datetimepicker();
+			        $('#datetimepicker7').datetimepicker();
+			        $("#datetimepicker6").on("dp.change", function (e) {
+			            $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+			        });
+			        $("#datetimepicker7").on("dp.change", function (e) {
+			            $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+			        });
+			    });				
 			</script>
 			<script src="/PFM/resources/js/libs/moment.js"></script>
 			<script src="/PFM/resources/js/controllers/projectController.js"></script>
 		</ui:define>
 		<ui:define name="css">
-			<link href="/PFM/resources/css/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+			<link href="/PFM/resources/css/bootstrap/css/bootstrap.min.css"
+				rel="stylesheet" />
 		</ui:define>
 		<ui:define name="content">
-            <h:form prependId="false" id="angular">
-			<div class="main-grid main-body-grid" ng-app="projectApp" ng-controller="projectController">
-					<c:set var="workingDays" scope="request" value="#{projectBean.project.projectSchedule.getWorkDaysArray()}" />
-					<ngsync direction="serverToClient" value="{{projectBean.project.name}}"/> 
-					<ngsync direction="serverToClient" value="{{projectBean.project.projectSchedule.workDays}}"/> 
-					<ngsync direction="serverToClient" value="{{workingDays}}"/> 
-					#{projectBean.project.name}
-					<p:panelGrid style="margin:0 auto;">   
+			<h:form prependId="false" id="angular">
+				<div class="main-grid main-body-grid" ng-app="projectApp"
+					ng-controller="projectController">
+					<c:set var="projectBean" scope="request"
+						value="#{createProjectBean}" />
+					<c:set var="workingDays" scope="request"
+						value="#{projectBean.projectSchedule.getWorkDaysArray()}" />
+					<ngsync direction="serverToClient"
+						value="{{projectBean.project.name}}" />
+					<ngsync direction="serverToClient"
+						value="{{projectBean.projectSchedule.workDays}}" />
+					<ngsync direction="serverToClient" value="{{workingDays}}" />
+
+					<p:panelGrid style="margin:0 auto;">
 						<f:facet name="header">
-	        				<p:row>
-						            <p:column colspan="7">{{projectBean.project.name}}</p:column>
-						        </p:row>						 
-						    </f:facet>
-						    <p:row>
-						        <p:column style="font-weight: bold;">
-						        	<p><h:inputText  value="{{projectBean.project.start}}"/></p>
-						        	<p><h:inputText  value="{{projectBean.project.end}}" /></p>							
+							<p:row>
+								<p:column colspan="7">
+									<h:inputText value="{{projectBean.project.name}}" />
 								</p:column>
-								<p:column style="font-weight: bold;">
-									<p><h:inputText value="{{naturalMonths()}}"/></p>
-									<p><h:inputText value="{{naturalDays()}}"/></p>
-								</p:column>
-								<p:column style="font-weight: bold;">
-									<p><h:inputText value="{{workMonths()}}"/></p>
-									<p><h:inputText value="{{workDays()}}"/></p>
-									<p><h:inputText value="{{workHours()}}"/></p>
-								</p:column>
-						 	</p:row> 
-						 	<p:row>
-						        <p:column rowspan="2" style="font-weight: bold;">
-						        	<p><h:inputText  value="{{projectBean.project.cost}}" /></p>
-						        </p:column>
-						        <p:column rowspan="2" style="font-weight: bold;">
-							        <p><h:inputText value="{{costNaturalMonth()}}"/></p>
-							        <p><h:inputText value="{{costNaturalDay()}}"/></p>					        	
-						        </p:column>
-						        <p:column rowspan="2" style="font-weight: bold;">
-							        <p><h:inputText value="{{costWorkMonth()}}"/></p>
-							        <p><h:inputText value="{{costWorkDay()}}"/></p>	
-							        <p><h:inputText value="{{costWorkHour()}}"/></p>					        	
-						        </p:column>
-						    </p:row> 
+							</p:row>
+						</f:facet>
+						<p:row>
+							<p:column style="font-weight: bold;">
+								<div class="container">
+									<div class='col-md-5'>
+										<div class="form-group">
+											<div class='input-group date' id='datetimepicker6'>
+												<input type='text' class="form-control" /> <span
+													class="input-group-addon"> <span
+													class="glyphicon glyphicon-calendar"></span>
+												</span>
+											</div>
+										</div>
+									</div>
+									<div class='col-md-5'>
+										<div class="form-group">
+											<div class='input-group date' id='datetimepicker7'>
+												<input type='text' class="form-control" /> <span
+													class="input-group-addon"> <span
+													class="glyphicon glyphicon-calendar"></span>
+												</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</p:column>
+							<p:column style="font-weight: bold;">
+								<p>
+									<h:inputText value="{{naturalMonths()}}" />
+								</p>
+								<p>
+									<h:inputText value="{{naturalDays()}}" />
+								</p>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column rowspan="2" style="font-weight: bold;">
+								<p>
+									<h:inputText value="{{projectBean.project.cost}}" />
+								</p>
+							</p:column>
+							<p:column rowspan="2" style="font-weight: bold;">
+								<p>
+									<h:inputText value="{{costNaturalMonth()}}" />
+								</p>
+								<p>
+									<h:inputText value="{{costNaturalDay()}}" />
+								</p>
+							</p:column>
+						</p:row>
+						<p:commandButton value="Guardar" action="#{projectBean.process}"
+							icon="ui-icon-disk" />
 					</p:panelGrid>
 				</div>
-			</h:form>	             
+			</h:form>
 		</ui:define>
 	</ui:composition>
 

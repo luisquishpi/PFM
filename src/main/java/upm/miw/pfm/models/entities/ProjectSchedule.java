@@ -9,12 +9,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
-@Entity(name = "project_schedule")
+@Entity
+@Table(name="project_schedule")
 public class ProjectSchedule {
 
     public static final Integer MONDAY_INDEX = 1;
