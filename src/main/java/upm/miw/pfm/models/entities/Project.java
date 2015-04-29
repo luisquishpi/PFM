@@ -2,36 +2,31 @@ package upm.miw.pfm.models.entities;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
-
-@Entity
+@Entity(name = "project")
 public class Project {
 
-	@Id
-	@GeneratedValue
-    private int id;
+    @Id
+    @GeneratedValue
+    private Integer id;
 
+    @Column(nullable = false)
     private Date start;
 
+    @Column(nullable = false)
     private Date end;
 
+	@Column(nullable = false)
     private Double cost=0.00;
-
+	
+	@Column(nullable = false)
     private String name="New Project";
 
-    @OneToOne(mappedBy="project", cascade=CascadeType.ALL)
-    private ProjectSchedule projectSchedule;
-
     public Project() {
-        start = new Date();
-        end = new Date();
-        cost = 0.00;
-        name = "";
     }
 
     public Project(String name, Date start, Date end, Double cost) {
@@ -42,11 +37,48 @@ public class Project {
     }
 
     public Project(int id, String name, Date start, Date end, Double cost) {
-        this.start = start;
-        this.end = end;
-        this.cost = cost;
-        this.name = name;
+        this(name, start, end, cost);
         this.id = id;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Date getStart() {
+        return start;
+    }
+
+    public void setStart(Date start) {
+        this.start = start;
+    }
+
+    public Date getEnd() {
+        return end;
+    }
+
+    public void setEnd(Date end) {
+        this.end = end;
+    }
+
+    public Double getCost() {
+        return cost;
+    }
+
+    public void setCost(Double cost) {
+        this.cost = cost;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
@@ -67,57 +99,9 @@ public class Project {
                 && cost.equals(other.cost) && name.equals(other.name);
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Date getStart() {
-        return this.start;
-    }
-
-    public Date getEnd() {
-        return this.end;
-    }
-
-    public Double getCost() {
-        return this.cost;
-    }
-
-    public int getId() {
-        return this.id;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public ProjectSchedule getProjectSchedule() {
-        return projectSchedule;
-    }
-
-    public void setProjectSchedule(ProjectSchedule schedule) {
-        this.projectSchedule = schedule;
-    }
-
-    public void setStart(Date start) {
-        this.start = start;
-    }
-
-    public void setEnd(Date end) {
-        this.end = end;
-    }
-
-    public void setCost(Double cost) {
-        this.cost = cost;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     @Override
     public String toString() {
         return "Project [start=" + start + ", end=" + end + ", cost=" + cost + ", name=" + name
-                + ", id=" + id + " schedule="+ projectSchedule +"]";
+                + ", id=" + id + "]";
     }
 }
