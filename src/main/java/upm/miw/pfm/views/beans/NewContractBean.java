@@ -28,7 +28,7 @@ public class NewContractBean extends ViewBean {
     public String process() {
         newContractsController.saveContract(contract);
         LogManager.getLogger(this).info("Guardado " + contract);
-        return "home";
+        return "index";
     }
     
     @PostConstruct

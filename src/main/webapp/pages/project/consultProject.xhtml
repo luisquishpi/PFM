@@ -44,27 +44,30 @@
 						<p:row>
 							<p:column style="font-weight: bold;">
 								<p>
-									<h:outputText
-										value="Fecha de inicio: {{projectBean.project.start}}" />
+									Fecha Inicio: <h:outputText value="{{projectBean.project.start}}" >
+										<f:convertDateTime pattern="d-M-yyyy" />
+									</h:outputText>	
 								</p>
 								<p>
-									<h:outputText value="Fecha de fin: {{projectBean.project.end}}" />
-								</p>
-							</p:column>
-							<p:column style="font-weight: bold;">
-								<p>
-									<h:outputText value="Meses naturales: {{naturalMonths()}}" />
-								</p>
-								<p>
-									<h:outputText value="Dias naturales: {{naturalDays()}}" />
+									Fecha fin: <h:outputText value="{{projectBean.project.end}}" >
+										<f:convertDateTime pattern="d-M-yyyy" />
+									</h:outputText>
 								</p>
 							</p:column>
 							<p:column style="font-weight: bold;">
 								<p>
-									<h:outputText value="Meses laborales: {{workMonths()}}" />
+									<h:outputText value="Meses naturales: {{naturalMonths() | number : 2}}" />
 								</p>
 								<p>
-									<h:outputText value="Dias laborales: {{workDays()}}" />
+									<h:outputText value="Dias naturales: {{naturalDays}}" />
+								</p>
+							</p:column>
+							<p:column style="font-weight: bold;">
+								<p>
+									<h:outputText value="Meses laborales: {{workMonths()| number : 2}}" />
+								</p>
+								<p>
+									<h:outputText value="Dias laborales: {{workDays}}" />
 								</p>
 								<p>
 									<h:outputText value="Horas laborales: {{workHours()}}" />
@@ -74,26 +77,26 @@
 						<p:row>
 							<p:column rowspan="2" style="font-weight: bold;">
 								<p>
-									<h:outputText value="Costo: {{projectBean.project.cost}}" />
+									<h:outputText value="Costo: {{projectBean.project.cost}}" />&euro;
 								</p>
 							</p:column>
 							<p:column rowspan="2" style="font-weight: bold;">
 								<p>
-									<h:outputText value="Coste/mes natural: {{costNaturalMonth()}}" />
+									<h:outputText value="Coste/mes natural: {{costNaturalMonth() | number : 2}}" />&euro;
 								</p>
 								<p>
-									<h:outputText value="Coste/día natural: {{costNaturalDay()}}" />
+									<h:outputText value="Coste/día natural: {{costNaturalDay() | number : 2}}" />&euro;
 								</p>
 							</p:column>
 							<p:column rowspan="2" style="font-weight: bold;">
 								<p>
-									<h:outputText value="Coste/mes natural: {{costWorkMonth()}}" />
+									<h:outputText value="Coste/mes natural: {{costWorkMonth()| number : 2}}" />&euro;
 								</p>
 								<p>
-									<h:outputText value="Coste/día natural: {{costWorkDay()}}" />
+									<h:outputText value="Coste/día natural: {{costWorkDay()| number : 2}}" />&euro;
 								</p>
 								<p>
-									<h:outputText value="Coste/día natural: {{costWorkHour()}}" />
+									<h:outputText value="Coste/hora natural: {{costWorkHour()| number : 2}}" />&euro;
 								</p>
 							</p:column>
 						</p:row>

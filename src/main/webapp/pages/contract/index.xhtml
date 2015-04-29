@@ -7,6 +7,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <ui:composition template="#{root}/pages/template/commonLayout.xhtml">
 	<ui:define name="content">
+		<h:form>
 			<p:dataTable var="contract" value="#{listContractBean.contracts}">
 				<p:column headerText="Nombre">
 					<h:outputText value="#{contract.contractType}" />
@@ -35,6 +36,7 @@
 					</div>
 				</p:column>
 			</p:dataTable>
+		</h:form>
 	</ui:define>
 </ui:composition>
 </html>

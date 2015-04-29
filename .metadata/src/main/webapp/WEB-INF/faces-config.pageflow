@@ -1,2 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageflow:Pageflow xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14297782869690" configfile="/PFM/src/main/webapp/WEB-INF/faces-config.xml"/>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14297782869690" configfile="/PFM/src/main/webapp/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="PFM/pages/contract/newContract.xhtml" id="pf14303094302893" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf14303094302894" path="/PFM/pages/contract/newContract.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="PFM/pages/contract/index.xhtml" id="pf14303094302895" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf14303094302894" path="/PFM/pages/contract/index.xhtml"/>
+  <links id="pf14303094302894" target="pf14303094302895" source="pf14303094302893" outcome="index" redirect="true" fromaction="#{newContractBean.process}"/>
+</pageflow:Pageflow>
