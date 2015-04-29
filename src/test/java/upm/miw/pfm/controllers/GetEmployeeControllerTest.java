@@ -13,7 +13,6 @@ import upm.miw.pfm.controllers.ejbs.GetEmployeeControllerEjb;
 import upm.miw.pfm.mocks.MockEmployeeDao;
 import upm.miw.pfm.models.entities.Contract;
 import upm.miw.pfm.models.entities.Employee;
-import upm.miw.pfm.utils.ContractType;
 import upm.miw.pfm.utils.RoleType;
 
 public class GetEmployeeControllerTest {
@@ -30,7 +29,7 @@ public class GetEmployeeControllerTest {
 	public void before(){
 		getEmployeeController = new GetEmployeeControllerEjb();
 		AddEmployeeController addEmployeeController = new AddEmployeeControllerEjb();
-		contract = new Contract(ContractType.FIJO, 32.5);
+		contract = new Contract("Fijo", 32.5);
 		roles = new ArrayList<RoleType>();
 		roles.add(RoleType.GESTION_PROYECTO);
 		roles.add(RoleType.REQUISITOS);
