@@ -9,7 +9,9 @@ projectApp.controller(
 	  $scope.projectBean.project.start = moment(new Date($scope.projectBean.project.start));
 	  $scope.projectBean.project.end = moment(new Date($scope.projectBean.project.end));
 	  
-	  $scope.workDays = function (){
+	  $scope.workDays = 0;
+	  /*
+	  $scope.$watchGroup(['start', 'end'], function(newValues, oldValues, scope) {
 		  var days=0;
 		  start = $scope.projectBean.project.start;
 		  end = $scope.projectBean.project.end;		  
@@ -17,8 +19,9 @@ projectApp.controller(
 			  if(($scope.workingDays).indexOf(m.day())>-1)
 				  days++	
 			}
-		  return days+1;
-	  }
+		  $scope.workDays = 32;
+	  });
+	  */
 	  	  
 	  var start;
 	  var end;

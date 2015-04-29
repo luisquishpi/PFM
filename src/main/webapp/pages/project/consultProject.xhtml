@@ -22,11 +22,12 @@
 		</ui:define>
 		<ui:define name="content">
             <h:form prependId="false" id="angular">
+            #{projectBean.project}
 			<div class="main-grid main-body-grid" ng-app="projectApp" ng-controller="projectController">
-					<c:set var="workingDays" scope="request" value="#{projectBean.project.projectSchedule.getWorkDaysArray()}" />
+					<!-- <c:set var="workingDays" scope="request" value="#{projectBean.project.projectSchedule.getWorkDaysArray()}" />-->
 					<ngsync direction="serverToClient" value="{{projectBean.project.name}}"/> 
-					<ngsync direction="serverToClient" value="{{projectBean.project.projectSchedule.workDays}}"/> 
-					<ngsync direction="serverToClient" value="{{workingDays}}"/> 
+					<!-- <ngsync direction="serverToClient" value="{{projectBean.project.projectSchedule.workDays}}"/> -->
+					<!-- <ngsync direction="serverToClient" value="{{workingDays}}"/> -->
 					<p:panelGrid style="margin:0 auto;">   
 						<f:facet name="header">
 	        				<p:row>
