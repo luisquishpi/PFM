@@ -20,11 +20,11 @@ public class Project {
     @Column(nullable = false)
     private Date end;
 
-    @Column(nullable = false)
-    private Double cost;
-
-    @Column(nullable = false)
-    private String name;
+	@Column(nullable = false)
+    private Double cost=0.00;
+	
+	@Column(nullable = false)
+    private String name="New Project";
 
     public Project() {
     }
