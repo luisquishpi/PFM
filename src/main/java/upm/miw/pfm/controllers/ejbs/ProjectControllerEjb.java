@@ -1,5 +1,7 @@
 package upm.miw.pfm.controllers.ejbs;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 
 import upm.miw.pfm.controllers.ProjectController;
@@ -24,6 +26,11 @@ public class ProjectControllerEjb implements ProjectController {
     @Override
     public ProjectSchedule getProjectScheduleByProject(Project project) {
         return DaoFactory.getFactory().getProjectScheduleDao().findByProject(project);
+    }
+
+    @Override
+    public List<Project> listProjects() {
+        return DaoFactory.getFactory().getProjectDao().findAll();
     }
 
 }

@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 import upm.miw.pfm.models.daos.GenericDao;
@@ -109,5 +110,21 @@ public class GenericDaoHibernate<T, ID extends Serializable> implements GenericD
         }
 		return list;
 	}
+	
+	@Override
+    public void query(String hql) {
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        try {
+            session.beginTransaction();
+            Query query = session.createQuery(hql);
+            query.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+    }
 
 }
