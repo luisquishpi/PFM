@@ -204,7 +204,7 @@ public class ProjectSchedule {
 	@Override
 	public boolean equals(Object obj) {
 		ProjectSchedule project = (ProjectSchedule) obj;
-		return this.project.equals(project.getProject())
+		return this.project.getName().equals(project.getProject().getName())
 				&& this.workDays == project.getWorkDays()
 				&& this.mondayHours == project.getMondayHours()
 				&& this.tuesdayHours == project.getTuesdayHours()
@@ -221,7 +221,7 @@ public class ProjectSchedule {
 				+ ", TuesdayHours=" + tuesdayHours + ", WednesdayHours="
 				+ wednesdayHours + ", ThursdayHours=" + thursdayHours
 				+ ", FridayHours=" + fridayHours + ", SaturdayHours="
-				+ saturdayHours + ", SundayHours=" + sundayHours +"]";
+				+ saturdayHours + ", SundayHours=" + sundayHours +", Project="+ project.getName() +"]";
 	}
 
 }
