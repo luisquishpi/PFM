@@ -52,15 +52,16 @@
 							<p:column style="font-weight: bold;">
 								<p>
 									Fecha de inicio: 
-									<input type="text" id="start_date" value="{{projectBean.project.start}}"/>
-								</p>
 								<h:inputText value="{{projectBean.project.start}}" >
 									<f:convertDateTime pattern="d-M-yyyy" />
 								</h:inputText>
+								</p>
                                 <p>
                                 
                                     Fecha de fin: 
-                                    <input type="text" id="end_date" value="{{projectBean.project.end}}"/>
+                                    <h:inputText value="{{projectBean.project.end}}" >
+										<f:convertDateTime pattern="d-M-yyyy" />
+									</h:inputText>
                                 </p>								
 							</p:column>
 							<p:column style="font-weight: bold;">

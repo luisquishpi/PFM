@@ -10,22 +10,18 @@ projectApp.controller(
 	
 	  $scope.projectBean.project.start = moment(new Date($scope.projectBean.project.start));
 	  $scope.projectBean.project.end = moment(new Date($scope.projectBean.project.end));
-	  console.log($scope.projectBean.project.start);
-	  console.log($scope.projectBean.project.end);
 	  $scope.workDays = 0;
 	  $scope.naturalDays = 0;
 	  
 	  $scope.$watchGroup(['projectBean.project.start', 'projectBean.project.end'], function(newValues, oldValues, scope) {
 		  var days=0;
-		  start = $scope.projectBean.project.start;
-		  end = $scope.projectBean.project.end;	
-		  console.log($scope.workingDays);
+		  start = moment($scope.projectBean.project.start);
+		  end = moment($scope.projectBean.project.end);	
 		  for (var m = moment(start); m.isBefore(end); m.add(1, 'days')) {
 			  if(($scope.workingDays).indexOf(m.day())>-1)
 				  days++	
 			}
 		  $scope.workDays = days;
-		  
 		  $scope.naturalDays= end.add(1,'days').diff(start,'days');
 	  });
 	  
