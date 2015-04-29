@@ -25,5 +25,10 @@ public class ListProjectsBean extends ViewBean {
 	public void update() {
 		projects = listProjectController.listProjects();
 	}
+	
+	public String delete(String id) {
+        System.out.println(id);
+        return "index";
+    }
 
 }
