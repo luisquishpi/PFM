@@ -8,7 +8,7 @@ import javax.faces.bean.ManagedBean;
 
 import org.apache.logging.log4j.LogManager;
 
-import upm.miw.pfm.controllers.ListProjectsController;
+import upm.miw.pfm.controllers.ProjectController;
 import upm.miw.pfm.models.entities.Project;
 
 @ManagedBean
@@ -19,7 +19,7 @@ public class ListProjectsBean extends ViewBean {
     private final static Class<ListProjectsBean> clazz = ListProjectsBean.class;
 
     @EJB
-    private ListProjectsController listProjectController;
+    private ProjectController projectController;
 
     public List<Project> getProjects() {
         return projects;
@@ -27,7 +27,7 @@ public class ListProjectsBean extends ViewBean {
 
     @PostConstruct
     public void update() {
-        projects = listProjectController.listProjects();
+        projects = projectController.listProjects();
         LogManager.getLogger(clazz).info("Se encontraron " + projects.size() + " proyectos");
     }
 	

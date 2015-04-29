@@ -11,60 +11,95 @@
 	<ui:composition template="#{root}/pages/template/commonLayout.xhtml">
 		<ui:define name="javascript">
 			<script>
-			app.value("test", false);
-			var projectApp = angular.module('projectApp', ["angularfaces"]);	 	
+				app.value("test", false);
+				var projectApp = angular.module('projectApp',
+						[ "angularfaces" ]);
 			</script>
 			<script src="/PFM/resources/js/libs/moment.js"></script>
 			<script src="/PFM/resources/js/controllers/projectController.js"></script>
 		</ui:define>
 		<ui:define name="css">
-			<link href="/PFM/resources/css/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+			<link href="/PFM/resources/css/bootstrap/css/bootstrap.min.css"
+				rel="stylesheet" />
 		</ui:define>
 		<ui:define name="content">
-            <h:form prependId="false" id="angular">
-			<div class="main-grid main-body-grid" ng-app="projectApp" ng-controller="projectController">
-					<c:set var="workingDays" scope="request" value="#{projectBean.project.projectSchedule.getWorkDaysArray()}" />
-					<ngsync direction="serverToClient" value="{{projectBean.project.name}}"/> 
-					<ngsync direction="serverToClient" value="{{projectBean.project.projectSchedule.workDays}}"/> 
-					<ngsync direction="serverToClient" value="{{workingDays}}"/> 
-					<p:panelGrid style="margin:0 auto;">   
+			<h:form prependId="false" id="angular">
+				<div class="main-grid main-body-grid" ng-app="projectApp"
+					ng-controller="projectController">
+                    <c:set var="projectBean" scope="request"
+                        value="#{consultProjectBean}" />					
+					<c:set var="workingDays" scope="request"
+						value="#{projectBean.projectSchedule.getWorkDaysArray()}" />
+					<ngsync direction="serverToClient"
+						value="{{projectBean.project.name}}" />
+					<ngsync direction="serverToClient"
+						value="{{projectBean.projectSchedule.workDays}}" />
+					<ngsync direction="serverToClient" value="{{workingDays}}" />
+					<p:panelGrid style="margin:0 auto;">
 						<f:facet name="header">
-	        				<p:row>
-						            <p:column colspan="7">{{projectBean.project.name}}</p:column>
-						        </p:row>						 
-						    </f:facet>
-						    <p:row>
-						        <p:column style="font-weight: bold;">
-						        	<p><h:outputText  value="Fecha de inicio: {{projectBean.project.start}}"/></p>
-						        	<p><h:outputText  value="Fecha de fin: {{projectBean.project.end}}" /></p>							
-								</p:column>
-								<p:column style="font-weight: bold;">
-									<p><h:outputText value="Meses naturales: {{naturalMonths()}}"/></p>
-									<p><h:outputText value="Dias naturales: {{naturalDays()}}"/></p>
-								</p:column>
-								<p:column style="font-weight: bold;">
-									<p><h:outputText value="Meses laborales: {{workMonths()}}"/></p>
-									<p><h:outputText value="Dias laborales: {{workDays()}}"/></p>
-									<p><h:outputText value="Horas laborales: {{workHours()}}"/></p>
-								</p:column>
-						 	</p:row> 
-						 	<p:row>
-						        <p:column rowspan="2" style="font-weight: bold;">
-						        	<p><h:outputText  value="Costo: {{projectBean.project.cost}}" /></p>
-						        </p:column>
-						        <p:column rowspan="2" style="font-weight: bold;">
-							        <p><h:outputText value="Coste/mes natural: {{costNaturalMonth()}}"/></p>
-							        <p><h:outputText value="Coste/día natural: {{costNaturalDay()}}"/></p>					        	
-						        </p:column>
-						        <p:column rowspan="2" style="font-weight: bold;">
-							        <p><h:outputText value="Coste/mes natural: {{costWorkMonth()}}"/></p>
-							        <p><h:outputText value="Coste/día natural: {{costWorkDay()}}"/></p>	
-							        <p><h:outputText value="Coste/día natural: {{costWorkHour()}}"/></p>					        	
-						        </p:column>
-						    </p:row> 
+							<p:row>
+								<p:column colspan="7">{{projectBean.project.name}}</p:column>
+							</p:row>
+						</f:facet>
+						<p:row>
+							<p:column style="font-weight: bold;">
+								<p>
+									<h:outputText
+										value="Fecha de inicio: {{projectBean.project.start}}" />
+								</p>
+								<p>
+									<h:outputText value="Fecha de fin: {{projectBean.project.end}}" />
+								</p>
+							</p:column>
+							<p:column style="font-weight: bold;">
+								<p>
+									<h:outputText value="Meses naturales: {{naturalMonths()}}" />
+								</p>
+								<p>
+									<h:outputText value="Dias naturales: {{naturalDays()}}" />
+								</p>
+							</p:column>
+							<p:column style="font-weight: bold;">
+								<p>
+									<h:outputText value="Meses laborales: {{workMonths()}}" />
+								</p>
+								<p>
+									<h:outputText value="Dias laborales: {{workDays()}}" />
+								</p>
+								<p>
+									<h:outputText value="Horas laborales: {{workHours()}}" />
+								</p>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column rowspan="2" style="font-weight: bold;">
+								<p>
+									<h:outputText value="Costo: {{projectBean.project.cost}}" />
+								</p>
+							</p:column>
+							<p:column rowspan="2" style="font-weight: bold;">
+								<p>
+									<h:outputText value="Coste/mes natural: {{costNaturalMonth()}}" />
+								</p>
+								<p>
+									<h:outputText value="Coste/día natural: {{costNaturalDay()}}" />
+								</p>
+							</p:column>
+							<p:column rowspan="2" style="font-weight: bold;">
+								<p>
+									<h:outputText value="Coste/mes natural: {{costWorkMonth()}}" />
+								</p>
+								<p>
+									<h:outputText value="Coste/día natural: {{costWorkDay()}}" />
+								</p>
+								<p>
+									<h:outputText value="Coste/día natural: {{costWorkHour()}}" />
+								</p>
+							</p:column>
+						</p:row>
 					</p:panelGrid>
 				</div>
-			</h:form>	             
+			</h:form>
 		</ui:define>
 	</ui:composition>
 
