@@ -14,6 +14,7 @@ import upm.miw.pfm.models.entities.Contract;
 @ManagedBean
 public class ListContractBean {
     private List<Contract> contracts;
+    private String id;
 
     @EJB
     private ListContractsController listContractsController;
@@ -30,6 +31,13 @@ public class ListContractBean {
     public void update() {
         contracts = listContractsController.listContracts();
         LogManager.getLogger(this).info("Se encontraron " + contracts.size() + " contratos");
+    }
+    public void setId(String id){
+        this.id=id;
+    }
+    public String delete() {
+        System.out.println("Eliminado cotrato:"+id);
+        return "index";
     }
 
 }
