@@ -1,13 +1,26 @@
 package upm.miw.pfm.models.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 import upm.miw.pfm.utils.ContractType;
 
+@Entity(name = "contract")
 public class Contract {
 
+    @Id
+    @GeneratedValue
     private Integer id;
 
+    @Column(nullable = false)
+    @Enumerated(EnumType.ORDINAL)
     private ContractType contractType;
 
+    @Column(nullable = false)
     private Double insurance;
 
     public Contract() {
@@ -46,8 +59,8 @@ public class Contract {
     public boolean equals(Object obj) {
         assert obj != null;
         Contract other = (Contract) obj;
-        return id.equals(other.id) && contractType.equals(other.contractType)
-                && insurance == other.insurance;
+        return id == other.id && contractType.equals(other.contractType)
+                && insurance.equals(other.insurance);
     }
     
     @Override
