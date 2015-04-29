@@ -6,16 +6,14 @@
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:p="http://primefaces.org/ui">
-    <ui:composition template="#{root}/pages/template/commonLayout.xhtml">        
-        <ui:define name="content">            
-            <h3>Proyectos</h3>
-            <div class="pull-right" style="padding:5px;">
-                <a class="btn btn-default" href="create" role="button">Crear</a>
-                <a class="btn btn-default" href="#" onclick="window.history.back();" role="button">Volver</a>
-            </div>
+    <ui:composition template="#{root}/pages/template/commonLayout.xhtml">
+        <ui:define name="header">
+            Proyectos
+        </ui:define>        
+        <ui:define name="content">                
             <h:form>
             <p:dataTable var="project" value="#{listProjectsBean.projects}">
-			    <p:column width="90%" headerText="Nombre">
+			    <p:column width="90%" headerText="Proyectos">
 			        <h:outputText value="#{project.name}" />
 			    </p:column>
 			    <p:column style="text-align:center" headerText="">			        
@@ -51,6 +49,10 @@
 			    </p:column>
 			</p:dataTable>
 			</h:form>
+			<div class="" style="padding:5px; margin-top:20px;">
+                <a class="btn btn-default" href="create" role="button">Nuevo proyecto</a>
+                <a class="btn btn-default" href="#" onclick="window.history.back();" role="button">Volver</a>
+            </div>
         </ui:define>
     </ui:composition>
 </html>
