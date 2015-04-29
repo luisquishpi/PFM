@@ -2,33 +2,43 @@ package upm.miw.pfm.controllers;
 
 import static org.junit.Assert.*;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import upm.miw.pfm.controllers.ejbs.ProjectControllerEjb;
 import upm.miw.pfm.controllers.ejbs.SetScheduleControllerEjb;
 import upm.miw.pfm.mocks.MockProjectDao;
+import upm.miw.pfm.mocks.MockProjectScheduleDao;
 import upm.miw.pfm.models.entities.Project;
 import upm.miw.pfm.models.entities.ProjectSchedule;
+import upm.miw.pfm.utils.Utils;
 
 public class SetScheduleControllerMockTest {
 
     private SetScheduleController controller;
+    private ProjectController projectController;
 
     private static final double DELTA = 1e-15;
 
     @Before
     public void setUp() throws Exception {
         controller = new SetScheduleControllerEjb();
+        projectController = new ProjectControllerEjb();
         new MockProjectDao();
+        new MockProjectScheduleDao();
     }
 
     @Test
     public void SetScheduleTest() {
         ProjectSchedule schedule = new ProjectSchedule();
 
-        Project project = new Project();
+        Date start = Utils.buildDate(2015, Calendar.MARCH, 2);
+        Date end = Utils.buildDate(2015, Calendar.SEPTEMBER, 4);
+        Project project = new Project("Scrum", start, end, 85000.0);
         project.setId(1);
 
         schedule.setWorkDays(21);
@@ -39,10 +49,12 @@ public class SetScheduleControllerMockTest {
         schedule.setFridayHours(8D);
         schedule.setSaturdayHours(0D);
         schedule.setSundayHours(0D);
-
-        project.setProjectSchedule(schedule);
         
-        controller.setProjectSchedule(project);
+        schedule.setProject(project);
+        
+        projectController.createProject(project);
+        
+        controller.setProjectSchedule(schedule);
         assertEquals(project, controller.getProjectSchedule(1).getProject());
         assertEquals(schedule, controller.getProjectSchedule(1));
         Integer expectedWorkDays = 21;

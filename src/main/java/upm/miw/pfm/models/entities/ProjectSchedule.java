@@ -9,12 +9,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
-@Entity(name = "project_schedule")
+@Entity
+@Table(name="project_schedule")
 public class ProjectSchedule {
 
     public static final Integer MONDAY_INDEX = 1;
@@ -207,10 +209,9 @@ public class ProjectSchedule {
         return result;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        ProjectSchedule project = (ProjectSchedule) obj;
-
+	@Override
+	public boolean equals(Object obj) {
+		ProjectSchedule project = (ProjectSchedule) obj;
         return this.project.equals(project.getProject()) && this.workDays == project.getWorkDays()
                 && this.mondayHours.doubleValue() == project.getMondayHours().doubleValue()
                 && this.tuesdayHours.doubleValue() == project.getTuesdayHours().doubleValue()
@@ -229,5 +230,4 @@ public class ProjectSchedule {
                 + ", fridayHours=" + fridayHours + ", saturdayHours=" + saturdayHours
                 + ", sundayHours=" + sundayHours + "]";
     }
-
 }
