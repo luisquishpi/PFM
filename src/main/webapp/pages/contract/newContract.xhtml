@@ -15,9 +15,8 @@
             <h:panelGrid columns="2" cellpadding="5">
 
                 <p:outputLabel for="contractType" value="Tipo:" />
-                <h:selectOneMenu id="contractType" value="#{newContractBean.contract.contractType}">
-                   	<f:selectItems value="#{newContractBean.getListContractType()}" />
-                </h:selectOneMenu>
+                <p:inputText id="contractType"
+                    value="#{newContractBean.contract.contractType}" required="true" />
                 <p:spacer />
 
                 <p:outputLabel for="insurance" value="Seguro:" />

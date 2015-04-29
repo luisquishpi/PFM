@@ -34,14 +34,6 @@ public class Contract {
         this.contractType = contractType;
     }
 
-    public double getInsurance() {
-        return insurance;
-    }
-
-    public void setInsurance(double insurance) {
-        this.insurance = insurance;
-    }
-
     public Integer getId() {
         return id;
     }
@@ -50,7 +42,15 @@ public class Contract {
         this.id = id;
     }
 
-    @Override
+	public Double getInsurance() {
+		return insurance;
+	}
+
+	public void setInsurance(Double insurance) {
+		this.insurance = insurance;
+	}
+
+	@Override
     public boolean equals(Object obj) {
         assert obj != null;
         Contract other = (Contract) obj;
