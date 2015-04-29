@@ -68,5 +68,10 @@ public class ProjectScheduleDaoTest {
         projectScheduleDao.update(projectSchedule2);
         assertEquals(projectSchedule2, projectScheduleDao.read(projectSchedule.getId()));
     }
+    
+    @Test
+    public void findByProjectTest(){
+    	 assertEquals(projectSchedule, projectScheduleDao.findByProject(projectSchedule.getProject()));
+    }
 
 }

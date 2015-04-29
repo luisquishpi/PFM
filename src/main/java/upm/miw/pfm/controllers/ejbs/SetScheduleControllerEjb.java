@@ -7,17 +7,17 @@ import upm.miw.pfm.models.entities.ProjectSchedule;
 
 public class SetScheduleControllerEjb implements SetScheduleController{
     
-    public void setProjectSchedule(Project project) {
-        DaoFactory.getFactory().getProjectDao().update(project);
+    public void setProjectSchedule(ProjectSchedule projectSchedule) {
+        DaoFactory.getFactory().getProjectScheduleDao().create(projectSchedule);
     }
 
     public ProjectSchedule getProjectSchedule(int projectId) {
-        Project project = DaoFactory.getFactory().getProjectDao().read(projectId);
-        if(project != null){
-            return DaoFactory.getFactory().getProjectScheduleDao().findByProject(project);
-        }else{
-            return null;
-        }
+    	Project project = DaoFactory.getFactory().getProjectDao().read(projectId);
+    	if(project != null){
+	        return DaoFactory.getFactory().getProjectScheduleDao().findByProject(project);
+    	}else{
+    		return null;
+    	}
     }
 
 }

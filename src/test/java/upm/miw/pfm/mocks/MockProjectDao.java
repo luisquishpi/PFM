@@ -44,9 +44,6 @@ public class MockProjectDao extends MockUp<ProjectDaoHibernate> {
 	
 	@Mock
     public void update(Project project){
-	    if(project.getProjectSchedule() != null){
-            project.getProjectSchedule().setProject(project);
-        }
         this.project = project;
     }
 }
