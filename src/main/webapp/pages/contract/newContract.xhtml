@@ -3,29 +3,34 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui">
 <h:head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
     <title>Insert title here</title>
 </h:head>
 <h:body>
-    <h:form>
-        <p:panel id="newContract" header="Nuevo Contrato">
-            <p:messages id="messages" autoUpdate="true" closable="true" />
-            <h:panelGrid columns="2" cellpadding="5">
-
-                <p:outputLabel for="contractType" value="Tipo:" />
-                <p:inputText id="contractType"
-                    value="#{newContractBean.contract.contractType}" required="true" />
-                <p:spacer />
-
-                <p:outputLabel for="insurance" value="Seguro:" />
-                <p:inputText id="insurance"
-                    value="#{newContractBean.contract.insurance}" required="true" />
-                <p:spacer />
-                <p:commandButton value="Crear" action="#{newContractBean.process}" />
-            </h:panelGrid>
-        </p:panel>
-    </h:form>
+	<ui:composition template="#{root}/pages/template/commonLayout.xhtml">
+	    <ui:define name="content">
+		    <h:form>
+		        <p:panel id="newContract" header="Nuevo Contrato">
+		            <p:messages id="messages" autoUpdate="true" closable="true" />
+		            <h:panelGrid columns="2" cellpadding="5">
+		
+		                <p:outputLabel for="contractType" value="Tipo:" />
+		                <p:inputText id="contractType"
+		                    value="#{newContractBean.contract.contractType}" required="true" />
+		                <p:spacer />
+		
+		                <p:outputLabel for="insurance" value="Seguro:" />
+		                <p:inputText id="insurance"
+		                    value="#{newContractBean.contract.insurance}" required="true" />
+		                <p:spacer />
+		                <p:commandButton value="Crear" action="#{newContractBean.process}" />
+		            </h:panelGrid>
+		        </p:panel>
+		    </h:form>
+    	</ui:define>
+    </ui:composition>
 </h:body>
 </html>
