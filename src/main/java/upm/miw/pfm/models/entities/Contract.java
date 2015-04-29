@@ -11,8 +11,6 @@ public class Contract {
     private Double insurance;
 
     public Contract() {
-        this.contractType = null;
-        this.insurance = 0.0;
     }
 
     public Contract(ContractType contractType, Double insurance) {

@@ -11,10 +11,10 @@ public class SetScheduleControllerEjb implements SetScheduleController{
         DaoFactory.getFactory().getProjectDao().update(project);
     }
 
-    public ProjectSchedule getProjectSchedule(int id) {
-        Project project = DaoFactory.getFactory().getProjectDao().read(id);
+    public ProjectSchedule getProjectSchedule(int projectId) {
+        Project project = DaoFactory.getFactory().getProjectDao().read(projectId);
         if(project != null){
-            return project.getProjectSchedule();
+            return DaoFactory.getFactory().getProjectScheduleDao().findByProject(project);
         }else{
             return null;
         }

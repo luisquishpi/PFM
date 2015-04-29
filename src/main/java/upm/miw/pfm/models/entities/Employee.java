@@ -21,7 +21,10 @@ public class Employee {
 
     private List<RoleType> roles;
 
-    public Employee(int id, String name, String surname, String employeeCode,
+    public Employee() {
+    }
+
+public Employee(int id, String name, String surname, String employeeCode,
             Double annualGrossSalary, Contract contract, List<RoleType> roles) {
         this.id = id;
         this.name = name;
@@ -40,9 +43,6 @@ public class Employee {
         this.annualGrossSalary = annualGrossSalary;
         this.contract = contract;
         this.roles = roles;
-    }
-
-    public Employee() {
     }
 
     public Integer getId() {
