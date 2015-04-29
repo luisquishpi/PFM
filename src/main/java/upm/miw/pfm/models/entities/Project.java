@@ -20,9 +20,9 @@ public class Project {
 
     private Date end;
 
-    private Double cost;
+    private Double cost=0.00;
 
-    private String name;
+    private String name="New Project";
 
     @OneToOne(mappedBy="project", cascade=CascadeType.ALL)
     private ProjectSchedule projectSchedule;

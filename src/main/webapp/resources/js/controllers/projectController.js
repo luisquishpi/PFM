@@ -5,12 +5,27 @@ projectApp.controller(
 	  'projectController', function ($scope, test) {  
 	  
 	  !test && initJSFScope($scope);
-
-	  $scope.consultProjectBean.project.start = moment($scope.consultProjectBean.project.start);
-	  $scope.consultProjectBean.project.end = moment($scope.consultProjectBean.project.end);
-
+	
+	  $scope.projectBean.project.start = moment(new Date($scope.projectBean.project.start));
+	  $scope.projectBean.project.end = moment(new Date($scope.projectBean.project.end));
+	  
+	  $scope.workDays = function (){
+		  var days=0;
+		  start = $scope.projectBean.project.start;
+		  end = $scope.projectBean.project.end;		  
+		  for (var m = moment(start); m.isBefore(end); m.add(1, 'days')) {
+			  if(($scope.workingDays).indexOf(m.day())>-1)
+				  days++	
+			}
+		  return days+1;
+	  }
+	  	  
+	  var start;
+	  var end;
 	  $scope.naturalDays = function(){
-		  return $scope.consultProjectBean.project.end.add(1,'days').diff($scope.consultProjectBean.project.start,'days');
+		  start = $scope.projectBean.project.start;
+		  end = $scope.projectBean.project.end;
+		  return end.add(1,'days').diff(start,'days');
 	  }
 	  
 	  $scope.naturalMonths = function(){
@@ -18,51 +33,31 @@ projectApp.controller(
 	  }
 	  
 	  $scope.workMonths = function(){
-		  return $scope.workDays()/$scope.consultProjectBean.project.WorkDaysMonth;
+		  return $scope.workDays()/$scope.projectBean.project.projectSchedule.workDays;
 	  }
-	  
-	  $scope.workDays = function (){
-		  var days=0;
-		  for (var m = $scope.consultProjectBean.project.start; m.isBefore($scope.consultProjectBean.project.end); $scope.consultProjectBean.project.start.add(1, 'days')) {
-			  if(($scope.consultProjectBean.workingDays).indexOf(m.day())>-1)
-				  days++
-			}
-		  return days+1;
-	  }
-	  
+	  	  
 	  $scope.workHours = function(){
 		  return 1080;
 	  }
 	  
 	  $scope.costNaturalMonth = function(){
-		  return (($scope.consultProjectBean.project.cost/$scope.naturalMonths()).toFixed(2)/1);
+		  return (($scope.projectBean.project.cost/$scope.naturalMonths()).toFixed(2)/1);
 	  }
 	  
 	  $scope.costNaturalDay = function(){
-		  return (($scope.consultProjectBean.project.cost/$scope.naturalDays()).toFixed(2)/1);
+		  return (($scope.projectBean.project.cost/$scope.naturalDays()).toFixed(2)/1);
 	  }
 	  
 	  $scope.costWorkMonth = function(){
-		  return $scope.consultProjectBean.project.cost/$scope.workMonths();
+		  return $scope.projectBean.project.cost/$scope.workMonths();
 	  }
 	  
 	  $scope.costWorkDay = function(){
-		  return $scope.consultProjectBean.project.cost/$scope.workDays();
+		  return $scope.projectBean.project.cost/$scope.workDays();
 	  }
 	  
 	  $scope.costWorkHour = function(){
-		  return $scope.consultProjectBean.project.cost/$scope.workHours();
+		  return $scope.projectBean.project.cost/$scope.workHours();
 	  }
-	  
-	  $scope.mediumPersonMonth = function(){
-		  return $scope.costWorkMonth()/$scope.consultProjectBean.project.mediumCostMonth;
-	  }
-	  
-	  $scope.mediumPersonDay = function(){
-		  return $scope.costWorkDay()/$scope.consultProjectBean.project.mediumCostDay;
-	  }
-	  
-	  $scope.mediumPersonHour = function(){
-		  return $scope.costWorkHour()/$scope.consultProjectBean.project.mediumCostHour;
-	  }	  
+	  	   
 });

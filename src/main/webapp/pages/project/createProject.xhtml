@@ -27,6 +27,7 @@
 					<ngsync direction="serverToClient" value="{{projectBean.project.name}}"/> 
 					<ngsync direction="serverToClient" value="{{projectBean.project.projectSchedule.workDays}}"/> 
 					<ngsync direction="serverToClient" value="{{workingDays}}"/> 
+					#{projectBean.project.name}
 					<p:panelGrid style="margin:0 auto;">   
 						<f:facet name="header">
 	        				<p:row>
@@ -35,31 +36,31 @@
 						    </f:facet>
 						    <p:row>
 						        <p:column style="font-weight: bold;">
-						        	<p><h:outputText  value="Fecha de inicio: {{projectBean.project.start}}"/></p>
-						        	<p><h:outputText  value="Fecha de fin: {{projectBean.project.end}}" /></p>							
+						        	<p><h:inputText  value="{{projectBean.project.start}}"/></p>
+						        	<p><h:inputText  value="{{projectBean.project.end}}" /></p>							
 								</p:column>
 								<p:column style="font-weight: bold;">
-									<p><h:outputText value="Meses naturales: {{naturalMonths()}}"/></p>
-									<p><h:outputText value="Dias naturales: {{naturalDays()}}"/></p>
+									<p><h:inputText value="{{naturalMonths()}}"/></p>
+									<p><h:inputText value="{{naturalDays()}}"/></p>
 								</p:column>
 								<p:column style="font-weight: bold;">
-									<p><h:outputText value="Meses laborales: {{workMonths()}}"/></p>
-									<p><h:outputText value="Dias laborales: {{workDays()}}"/></p>
-									<p><h:outputText value="Horas laborales: {{workHours()}}"/></p>
+									<p><h:inputText value="{{workMonths()}}"/></p>
+									<p><h:inputText value="{{workDays()}}"/></p>
+									<p><h:inputText value="{{workHours()}}"/></p>
 								</p:column>
 						 	</p:row> 
 						 	<p:row>
 						        <p:column rowspan="2" style="font-weight: bold;">
-						        	<p><h:outputText  value="Costo: {{projectBean.project.cost}}" /></p>
+						        	<p><h:inputText  value="{{projectBean.project.cost}}" /></p>
 						        </p:column>
 						        <p:column rowspan="2" style="font-weight: bold;">
-							        <p><h:outputText value="Coste/mes natural: {{costNaturalMonth()}}"/></p>
-							        <p><h:outputText value="Coste/día natural: {{costNaturalDay()}}"/></p>					        	
+							        <p><h:inputText value="{{costNaturalMonth()}}"/></p>
+							        <p><h:inputText value="{{costNaturalDay()}}"/></p>					        	
 						        </p:column>
 						        <p:column rowspan="2" style="font-weight: bold;">
-							        <p><h:outputText value="Coste/mes natural: {{costWorkMonth()}}"/></p>
-							        <p><h:outputText value="Coste/día natural: {{costWorkDay()}}"/></p>	
-							        <p><h:outputText value="Coste/día natural: {{costWorkHour()}}"/></p>					        	
+							        <p><h:inputText value="{{costWorkMonth()}}"/></p>
+							        <p><h:inputText value="{{costWorkDay()}}"/></p>	
+							        <p><h:inputText value="{{costWorkHour()}}"/></p>					        	
 						        </p:column>
 						    </p:row> 
 					</p:panelGrid>

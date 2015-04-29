@@ -8,7 +8,7 @@ import javax.faces.bean.ManagedProperty;
 import upm.miw.pfm.controllers.ProjectController;
 import upm.miw.pfm.models.entities.Project;
 
-@ManagedBean
+@ManagedBean(name="projectBean")
 public class ConsultProjectBean extends ViewBean {
 
     @ManagedProperty(value = "#{param.id}")

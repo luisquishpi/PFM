@@ -6,7 +6,7 @@ import javax.faces.bean.ManagedBean;
 import upm.miw.pfm.controllers.ProjectController;
 import upm.miw.pfm.models.entities.Project;
 
-@ManagedBean
+@ManagedBean(name="projectBean")
 public class CreateProjectBean extends ViewBean {
 
     private Project project;
