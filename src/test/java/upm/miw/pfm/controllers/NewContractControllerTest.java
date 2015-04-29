@@ -11,7 +11,6 @@ import org.junit.Test;
 import upm.miw.pfm.controllers.ejbs.NewContractControllerEjb;
 import upm.miw.pfm.mocks.MockContractDao;
 import upm.miw.pfm.models.entities.Contract;
-import upm.miw.pfm.utils.ContractType;
 
 public class NewContractControllerTest {
 
@@ -21,7 +20,7 @@ public class NewContractControllerTest {
     @Before
     public void before() {
         contractController = new NewContractControllerEjb();
-        contract=new Contract(ContractType.BECARIO, 32.5);
+        contract=new Contract("Becario", 32.5);
         contractController.saveContract(contract);
     }
 
@@ -30,7 +29,7 @@ public class NewContractControllerTest {
         List<Contract> contractList = new ArrayList<Contract>();
         contractList.add(contract);
         
-        Contract contract = new Contract(ContractType.FIJO, 32.5);
+        Contract contract = new Contract("Fijo", 32.5);
         contractController.saveContract(contract);
         
         contractList.add(contract);       

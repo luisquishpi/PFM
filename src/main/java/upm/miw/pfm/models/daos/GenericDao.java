@@ -13,6 +13,8 @@ public interface GenericDao<T, ID> {
     public void deleteById(ID id);
 
     public List<T> findAll();
+    
+    public void query(String hql);
 
 }
 
