@@ -3,6 +3,18 @@ package upm.miw.pfm.models.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Transient;
+
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
+
+@Entity(name = "project_schedule")
 public class ProjectSchedule {
 
     public static final Integer MONDAY_INDEX = 1;
@@ -19,33 +31,44 @@ public class ProjectSchedule {
 
     public static final Integer SUNDAY_INDEX = 7;
 
-    private int id;
+    @Id
+    @Column
+    @GeneratedValue(generator = "gen")
+    @GenericGenerator(name = "gen", strategy = "foreign", parameters = @Parameter(name = "property", value = "project"))
+    private Integer id;
 
+    @OneToOne(cascade = CascadeType.ALL, optional = false)
     private Project project;
 
+    @Column(name = "work_days", nullable = false)
     private Integer workDays;
 
+    @Column(name = "monday_hours", nullable = false)
     private Double mondayHours;
 
+    @Column(name = "tuesday_hours", nullable = false)
     private Double tuesdayHours;
 
+    @Column(name = "wednesday_hours", nullable = false)
     private Double wednesdayHours;
 
+    @Column(name = "thursday_hours", nullable = false)
     private Double thursdayHours;
 
+    @Column(name = "friday_hours", nullable = false)
     private Double fridayHours;
 
+    @Column(name = "saturday_hours", nullable = false)
     private Double saturdayHours;
 
+    @Column(name = "sunday_hours", nullable = false)
     private Double sundayHours;
 
     public ProjectSchedule() {
-
     }
 
-    public ProjectSchedule(Project project, int workdays, Double monday, Double tuesday,
-            Double wednesday, Double thursday, Double friday, Double saturday, Double sunday) {
-        this.project = project;
+    public ProjectSchedule(int workdays, Double monday, Double tuesday, Double wednesday,
+            Double thursday, Double friday, Double saturday, Double sunday) {
         this.workDays = workdays;
         this.mondayHours = monday;
         this.tuesdayHours = tuesday;
@@ -56,86 +79,93 @@ public class ProjectSchedule {
         this.sundayHours = sunday;
     }
 
-    public int getId() {
+    public ProjectSchedule(Project project, int workdays, Double monday, Double tuesday,
+            Double wednesday, Double thursday, Double friday, Double saturday, Double sunday) {
+        this(workdays, monday, tuesday, wednesday, thursday, friday, saturday, sunday);
+        this.project = project;
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
     public Project getProject() {
-        return this.project;
+        return project;
     }
 
     public void setProject(Project project) {
         this.project = project;
     }
 
-    public void setWorkDays(Integer i) {
-        this.workDays = i;
-    }
-
-    public void setMondayHours(Double i) {
-        this.mondayHours = i;
-    }
-
-    public void setTuesdayHours(Double i) {
-        this.tuesdayHours = i;
-    }
-
-    public void setWednesdayHours(Double i) {
-        this.wednesdayHours = i;
-    }
-
-    public void setThursdayHours(Double i) {
-        this.thursdayHours = i;
-    }
-
-    public void setFridayHours(Double i) {
-        this.fridayHours = i;
-    }
-
-    public void setSaturdayHours(Double i) {
-        this.saturdayHours = i;
-    }
-
-    public void setSundayHours(Double i) {
-        this.sundayHours = i;
-    }
-
     public Integer getWorkDays() {
         return workDays;
+    }
+
+    public void setWorkDays(Integer workDays) {
+        this.workDays = workDays;
     }
 
     public Double getMondayHours() {
         return mondayHours;
     }
 
+    public void setMondayHours(Double mondayHours) {
+        this.mondayHours = mondayHours;
+    }
+
     public Double getTuesdayHours() {
         return tuesdayHours;
+    }
+
+    public void setTuesdayHours(Double tuesdayHours) {
+        this.tuesdayHours = tuesdayHours;
     }
 
     public Double getWednesdayHours() {
         return wednesdayHours;
     }
 
+    public void setWednesdayHours(Double wednesdayHours) {
+        this.wednesdayHours = wednesdayHours;
+    }
+
     public Double getThursdayHours() {
         return thursdayHours;
+    }
+
+    public void setThursdayHours(Double thursdayHours) {
+        this.thursdayHours = thursdayHours;
     }
 
     public Double getFridayHours() {
         return fridayHours;
     }
 
+    public void setFridayHours(Double fridayHours) {
+        this.fridayHours = fridayHours;
+    }
+
     public Double getSaturdayHours() {
         return saturdayHours;
+    }
+
+    public void setSaturdayHours(Double saturdayHours) {
+        this.saturdayHours = saturdayHours;
     }
 
     public Double getSundayHours() {
         return sundayHours;
     }
 
+    public void setSundayHours(Double sundayHours) {
+        this.sundayHours = sundayHours;
+    }
+
+    @Transient
     public List<Integer> getWorkDaysArray() {
         List<Integer> days = new ArrayList<Integer>();
         if (getMondayHours() > 0) {
@@ -180,14 +210,24 @@ public class ProjectSchedule {
     @Override
     public boolean equals(Object obj) {
         ProjectSchedule project = (ProjectSchedule) obj;
+
         return this.project.equals(project.getProject()) && this.workDays == project.getWorkDays()
-                && this.mondayHours == project.getMondayHours()
-                && this.tuesdayHours == project.getTuesdayHours()
-                && this.mondayHours == project.getWednesdayHours()
-                && this.thursdayHours == project.getThursdayHours()
-                && this.fridayHours == project.getFridayHours()
-                && this.saturdayHours == project.getFridayHours()
-                && this.sundayHours == project.getSundayHours();
+                && this.mondayHours.doubleValue() == project.getMondayHours().doubleValue()
+                && this.tuesdayHours.doubleValue() == project.getTuesdayHours().doubleValue()
+                && this.wednesdayHours.doubleValue() == project.getWednesdayHours().doubleValue()
+                && this.thursdayHours.doubleValue() == project.getThursdayHours().doubleValue()
+                && this.fridayHours.doubleValue() == project.getFridayHours().doubleValue()
+                && this.saturdayHours.doubleValue() == project.getSaturdayHours().doubleValue()
+                && this.sundayHours.doubleValue() == project.getSundayHours().doubleValue();
+    }
+
+    @Override
+    public String toString() {
+        return "ProjectSchedule [id=" + id + ", project=" + project + ", workDays=" + workDays
+                + ", mondayHours=" + mondayHours + ", tuesdayHours=" + tuesdayHours
+                + ", wednesdayHours=" + wednesdayHours + ", thursdayHours=" + thursdayHours
+                + ", fridayHours=" + fridayHours + ", saturdayHours=" + saturdayHours
+                + ", sundayHours=" + sundayHours + "]";
     }
 
 }

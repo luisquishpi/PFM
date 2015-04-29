@@ -7,25 +7,23 @@ describe("Test projectController", function(){
 	beforeEach(inject(function($controller, $rootScope){
 		scope = $rootScope;
 		scope.consultProjectBean = {
-				  'laborDay': 40,
 				  'cost': 85000,
-				  'start': moment('2015-03-02'),
-				  'end': moment('2015-09-04'),
+				  'start': '2015-03-02',
+				  'end': '2015-09-04',
 				  'workingDays': [1,2,3,4,5],
 				  'WorkDaysMonth': 21,
 				  'mediumCostMonth':2581.68,
 				  'mediumCostDay':122.94,
 				  'mediumCostHour':15.37
 		};
-
 		sampleCtrl = $controller("projectController", {
 			$scope: scope,
 			test: true
 		});
 	}));
-	
+		
 	it("Natural days should be 187", function(){
-		expect(scope.naturalDays()).toBe(186);
+		expect(scope.naturalDays()).toBe(187);
 	});
 	
 	it("Natural months should be 6.233333333333333", function(){
@@ -75,4 +73,5 @@ describe("Test projectController", function(){
 	it("Medium person hour should be 5.120605315790742", function(){
 		expect(scope.mediumPersonHour()).toBe(5.120605315790742);
 	});
+
 })

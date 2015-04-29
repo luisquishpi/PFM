@@ -5,11 +5,10 @@
 <hibernate-configuration>
 	<session-factory>
 		<property name='connection.driver_class'>com.mysql.jdbc.Driver</property>
-		<property name='connection.url'>jdbc:mysql://localhost:3306/pfm</property>
+		<property name='connection.url'>jdbc:mysql://localhost:3306/pfm-test</property>
 		<property name='connection.username'>root</property>
 		<property name='connection.password'></property>
 		<property name="hibernate.current_session_context_class">org.hibernate.context.internal.ThreadLocalSessionContext</property>
-
 
 		<!-- JDBC connection pool (use the built-in) -->
 		<property name='connection.pool_size'>1</property>
@@ -27,7 +26,7 @@
 		<property name="show_sql">true</property>
 
 		<!-- Drop and re-create the database schema on startup -->
-		<property name="hbm2ddl.auto">update</property>
+		<property name="hbm2ddl.auto">create-drop</property>
 
 		<!-- Mapping files -->
 
@@ -37,3 +36,4 @@
 
 	</session-factory>
 </hibernate-configuration>
+
