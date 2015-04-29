@@ -2,12 +2,8 @@ package upm.miw.pfm.models.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
-import upm.miw.pfm.utils.ContractType;
 
 @Entity(name = "contract")
 public class Contract {
@@ -17,8 +13,7 @@ public class Contract {
     private Integer id;
 
     @Column(nullable = false)
-    @Enumerated(EnumType.ORDINAL)
-    private ContractType contractType;
+    private String contractType;
 
     @Column(nullable = false)
     private Double insurance;
@@ -26,16 +21,16 @@ public class Contract {
     public Contract() {
     }
 
-    public Contract(ContractType contractType, Double insurance) {
+    public Contract(String contractType, Double insurance) {
         this.contractType = contractType;
         this.insurance = insurance;
     }
 
-    public ContractType getContractType() {
+    public String getContractType() {
         return contractType;
     }
 
-    public void setContractType(ContractType contractType) {
+    public void setContractType(String contractType) {
         this.contractType = contractType;
     }
 

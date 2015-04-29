@@ -1,6 +1,5 @@
 package upm.miw.pfm.views.beans;
 
-import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.model.SelectItem;
 
@@ -15,7 +14,7 @@ public class NewContractBean extends ViewBean {
 
     private Contract contract;
 
-    @EJB
+    
     private NewContractController newContractsController;
 
     public Contract getContract() {
@@ -37,7 +36,6 @@ public class NewContractBean extends ViewBean {
         int i = 0;
         for (ContractType g : ContractType.values()) {
             items[i++] = new SelectItem(g, g.toString());
-            System.out.println("item:" + items[i++]);
         }
         return items;
     }
