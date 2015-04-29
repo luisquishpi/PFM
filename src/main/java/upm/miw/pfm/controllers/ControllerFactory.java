@@ -14,8 +14,6 @@ public abstract class ControllerFactory {
 
     public abstract ProjectController getProjectController();
 
-    public abstract ListProjectsController getListProjectController();
-
     public abstract NewContractController getNewContractController();
 
     public abstract ListContractsController getListContractsController();
