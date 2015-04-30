@@ -22,10 +22,10 @@ public class Project {
     @Column(nullable = false)
     private Date end;
 
-	@Column(nullable = false)
+    @Column(nullable = false)
     private Double cost;
-	
-	@Column(nullable = false)
+
+    @Column(nullable = false)
     private String name;
 
     public Project() {
@@ -104,8 +104,7 @@ public class Project {
     @Override
     public String toString() {
         return "Project [start=" + start + ", end=" + end + ", cost=" + cost + ", name=" + name
-                + ", id=" + id +"]";
-
+                + ", id=" + id + "]";
 
     }
 }
