@@ -51,12 +51,10 @@
 						<p:row>
 							<p:column style="font-weight: bold;">
 								<p>
-									<p:calendar id="startDate" value="#{projectBean.project.start}"
-										pattern="dd/MM/yyyy" label="Fecha de inicio: " required="true" />
+									<p:inputMask label="Fecha de inicio" value="{{projectBean.project.start}}" mask="99/99/9999"/>	
 								</p>
 								<p>
-									<p:calendar id="endDate" value="#{projectBean.project.end}"
-										pattern="dd/MM/yyyy" label="Fecha de fin: " required="true" />
+									<p:inputMask label="Fecha de inicio" value="{{projectBean.project.end}}" mask="99/99/9999"/>
 								</p>
 							</p:column>
 							<p:column style="font-weight: bold;">

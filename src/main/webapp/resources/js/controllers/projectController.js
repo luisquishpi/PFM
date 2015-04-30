@@ -7,16 +7,17 @@ projectApp.controller(
 	  !test && initJSFScope($scope);
 	  var start;
 	  var end;
-	
-	  $scope.projectBean.project.start = moment(new Date($scope.projectBean.project.start));
-	  $scope.projectBean.project.end = moment(new Date($scope.projectBean.project.end));
+	  
+	  $scope.projectBean.project.start = moment(new Date($scope.projectBean.project.start)).format("DD/MM/YYYY");
+	  $scope.projectBean.project.end = moment(new Date($scope.projectBean.project.end)).format("DD/MM/YYYY");
+	  
 	  $scope.workDays = 0;
 	  $scope.naturalDays = 0;
 	  
 	  $scope.$watchGroup(['projectBean.project.start', 'projectBean.project.end'], function(newValues, oldValues, scope) {
 		  var days=0;
-		  start = moment($scope.projectBean.project.start);
-		  end = moment($scope.projectBean.project.end);	
+		  start = moment($scope.projectBean.project.start, "DD/MM/YYYY");
+		  end = moment($scope.projectBean.project.end, "DD/MM/YYYY");	
 		  for (var m = moment(start); m.isBefore(end); m.add(1, 'days')) {
 			  if(($scope.workingDays).indexOf(m.day())>-1)
 				  days++	
