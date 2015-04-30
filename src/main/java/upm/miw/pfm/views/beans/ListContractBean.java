@@ -8,7 +8,7 @@ import javax.faces.bean.ManagedBean;
 
 import org.apache.logging.log4j.LogManager;
 
-import upm.miw.pfm.controllers.ListContractsController;
+import upm.miw.pfm.controllers.ContractsController;
 import upm.miw.pfm.models.entities.Contract;
 
 @ManagedBean
@@ -17,7 +17,7 @@ public class ListContractBean {
     private String id;
 
     @EJB
-    private ListContractsController listContractsController;
+    private ContractsController listContractsController;
 
     public List<Contract> getContracts() {
         return contracts;

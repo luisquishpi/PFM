@@ -15,7 +15,7 @@ public class NewContractBean extends ViewBean {
     private Contract contract;
 
     @EJB
-    private NewContractController newContractsController;
+    private ContractController newContractsController;
 
     public Contract getContract() {
         return contract;
@@ -26,7 +26,7 @@ public class NewContractBean extends ViewBean {
     }
 
     public String process() {
-        //newContractsController.saveContract(contract);
+        newContractsController.saveContract(contract);
         LogManager.getLogger(this).info("Guardado " + contract);
         return "index";
     }
