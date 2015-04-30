@@ -1,15 +1,6 @@
-<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
-<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14297782869690" configfile="/PFM/src/main/webapp/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="PFM/pages/contract/newContract.xhtml" id="pf14303094302893" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf14303094302894" path="/PFM/pages/contract/newContract.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="PFM/pages/contract/index.xhtml" id="pf14303094302895" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf14303094302894" path="/PFM/pages/contract/index.xhtml"/>
-  <links id="pf14303094302894" target="pf14303094302895" source="pf14303094302893" outcome="index" redirect="true" fromaction="#{newContractBean.process}"/>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14303828977006" configfile="/PFM/src/main/webapp/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="pages/contract/create.xhtml" id="pf14303829632237" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf14303829632238" path="/pages/contract/create.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/contract/index.xhtml" id="pf14303829632239" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf14303829632238" path="/pages/contract/index.xhtml"/>
+  <links id="pf14303829632238" target="pf14303829632239" source="pf14303829632237" outcome="index" redirect="true" fromaction="#{newContractBean.process}"/>
 </pageflow:Pageflow>
-=======
-<?xml version="1.0" encoding="UTF-8"?>
-<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14297782869690" configfile="/PFM/src/main/webapp/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="pages/contract/newContract.xhtml" x="12" y="12" id="pf14303796475000" outlinks="pf14303796475001" path="/pages/contract/newContract.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="pages/contract/index.xhtml" x="31" y="144" id="pf14303796475002" inlinks="pf14303796475001" path="/pages/contract/index.xhtml"/>
-  <links id="pf14303796475001" target="pf14303796475002" source="pf14303796475000" outcome="index" redirect="true" fromaction="#{newContractBean.process}"/>
-</pageflow:Pageflow>
->>>>>>> branch 'develop' of https://github.com/rlopez0689/PFM.git
