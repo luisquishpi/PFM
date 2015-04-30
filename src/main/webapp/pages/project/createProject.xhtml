@@ -15,11 +15,6 @@
 				var projectApp = angular.module('projectApp',
 						[ "angularfaces" ]);
 			</script>
-			<script type="text/javascript">
-				$(function() {
-					$("#start_date, #end_date").datepicker();
-				});
-			</script>
 			<script src="/PFM/resources/js/libs/moment.js"></script>
 			<script src="/PFM/resources/js/controllers/projectController.js"></script>
 		</ui:define>
@@ -29,6 +24,8 @@
 		</ui:define>
 		<ui:define name="content">
 			<h:form prependId="false" id="angular">
+				<p:messages id="messages" showDetail="false" autoUpdate="true"
+					closable="true" />
 				<div class="main-grid main-body-grid" ng-app="projectApp"
 					ng-controller="projectController">
 					<c:set var="projectBean" scope="request"
@@ -44,52 +41,55 @@
 						<f:facet name="header">
 							<p:row>
 								<p:column colspan="7">
-									<h:inputText value="{{projectBean.project.name}}" />
+									<p:inplace id="basic" editor="true">
+										<p:inputText value="{{projectBean.project.name}}"
+											required="true" label="text" />
+									</p:inplace>
 								</p:column>
 							</p:row>
 						</f:facet>
 						<p:row>
 							<p:column style="font-weight: bold;">
 								<p>
-									Fecha de inicio: 
-								<h:inputText value="{{projectBean.project.start}}" >
-									<f:convertDateTime pattern="d-M-yyyy" />
-								</h:inputText>
+									<p:calendar id="startDate" value="#{projectBean.project.start}"
+										pattern="dd/MM/yyyy" label="Fecha de inicio: " required="true" />
 								</p>
-                                <p>
-                                
-                                    Fecha de fin: 
-                                    <h:inputText value="{{projectBean.project.end}}" >
-										<f:convertDateTime pattern="d-M-yyyy" />
-									</h:inputText>
-                                </p>								
+								<p>
+									<p:calendar id="endDate" value="#{projectBean.project.end}"
+										pattern="dd/MM/yyyy" label="Fecha de fin: " required="true" />
+								</p>
 							</p:column>
 							<p:column style="font-weight: bold;">
 								<p>
-									Meses naturales: <h:inputText value="{{naturalMonths()}}" />
+									<p:inputText value="{{naturalMonths()}}"
+										label="Meses naturales: " />
 								</p>
 								<p>
-									Dias naturales: <h:inputText value="{{naturalDays}}" />
+									<p:inputText value="{{naturalDays}}" label="Días naturales: " />
 								</p>
 							</p:column>
 						</p:row>
 						<p:row>
 							<p:column rowspan="2" style="font-weight: bold;">
 								<p>
-									Costo: <h:inputText value="{{projectBean.project.cost}}" />
+									<p:inputText value="{{projectBean.project.cost}}"
+										label="Costo: " />
 								</p>
 							</p:column>
 							<p:column rowspan="2" style="font-weight: bold;">
 								<p>
-									Costo mes natural: <h:inputText value="{{costNaturalMonth()}}" />
+									<p:inputText value="{{costNaturalMonth()}}"
+										label="Costo mes natural: " />
 								</p>
 								<p>
-									Costo dia natural: <h:inputText value="{{costNaturalDay()}}" />
+									<p:inputText value="{{costNaturalDay()}}"
+										label="Costo día natural: " />
 								</p>
 							</p:column>
 						</p:row>
-						<p:commandButton value="Guardar" action="#{projectBean.process}"
-							icon="ui-icon-disk" />
+						<p:commandButton value="Guardar"
+							action="#{createProjectBean.process}" icon="ui-icon-disk"
+							ajax="false" />
 					</p:panelGrid>
 				</div>
 			</h:form>

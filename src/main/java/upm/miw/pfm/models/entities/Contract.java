@@ -12,7 +12,7 @@ public class Contract {
     @GeneratedValue
     private Integer id;
 
-    @Column(nullable = false)
+    @Column(name="contract_type", nullable = false)
     private String contractType;
 
     @Column(nullable = false)

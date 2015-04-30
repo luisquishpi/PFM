@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
-	version="2.2">
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+    version="2.2">
 	<navigation-rule>
-		<from-view-id>/PFM/pages/contract/newContract.xhtml</from-view-id>
+		<display-name>pages/contract/newContract.xhtml</display-name>
+		<from-view-id>/pages/contract/newContract.xhtml</from-view-id>
 		<navigation-case>
 			<from-action>#{newContractBean.process}</from-action>
 			<from-outcome>index</from-outcome>
-			<to-view-id>/PFM/pages/contract/index.xhtml</to-view-id>
-			<redirect></redirect>
+			<to-view-id>/pages/contract/index.xhtml</to-view-id>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
+
 </faces-config>

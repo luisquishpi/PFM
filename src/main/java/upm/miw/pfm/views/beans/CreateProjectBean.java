@@ -3,6 +3,8 @@ package upm.miw.pfm.views.beans;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 
+import org.apache.logging.log4j.LogManager;
+
 import upm.miw.pfm.controllers.ProjectController;
 import upm.miw.pfm.models.entities.Project;
 import upm.miw.pfm.models.entities.ProjectSchedule;
@@ -15,6 +17,8 @@ public class CreateProjectBean extends ViewBean {
 
     private ProjectSchedule projectSchedule;
 
+    private final static Class<CreateProjectBean> clazz = CreateProjectBean.class;
+
     @EJB
     private ProjectController projectController;
 
@@ -22,8 +26,8 @@ public class CreateProjectBean extends ViewBean {
         project = new Project();
         project.setName("New project");
         project.setCost(0.00);
-        project.setStart(Utils.now());
-        project.setEnd(Utils.now());
+        project.setStart(Utils.now("dd-MM-yyyy"));
+        project.setEnd(Utils.addDaysToNow(1, "dd-MM-yyyy"));
 
         projectSchedule = new ProjectSchedule();
 
@@ -57,7 +61,7 @@ public class CreateProjectBean extends ViewBean {
 
     public String process() {
         projectController.createProject(project);
+        LogManager.getLogger(clazz).debug("Creación de proyecto " + project);
         return "home";
     }
-
 }
