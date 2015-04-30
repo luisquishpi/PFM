@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import upm.miw.pfm.utils.Utils;
+
 @Entity
 @Table(name = "project")
 public class Project {
@@ -54,6 +56,14 @@ public class Project {
     public Date getStart() {
         return start;
     }
+    
+    public String getStartString(){
+        return Utils.convertDateToString(start, "dd/MM/yyyy");
+    }
+    
+    public void setStartString(String startString){
+        this.start = Utils.convertStringToDate(startString, "dd/MM/yyyy");
+    }
 
     public void setStart(Date start) {
         this.start = start;
@@ -62,10 +72,18 @@ public class Project {
     public Date getEnd() {
         return end;
     }
+    
+    public String getEndString(){
+        return Utils.convertDateToString(end, "dd/MM/yyyy");
+    } 
 
     public void setEnd(Date end) {
         this.end = end;
     }
+    
+    public void setEndString(String endString){
+        this.end = Utils.convertStringToDate(endString, "dd/MM/yyyy");
+    }    
 
     public Double getCost() {
         return cost;

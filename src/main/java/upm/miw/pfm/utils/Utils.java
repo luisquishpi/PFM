@@ -22,17 +22,21 @@ public class Utils {
     }
 
     public static Date format(Date date, String format) {
+        return convertStringToDate(convertDateToString(date, format), format);
+    }
+
+    public static String convertDateToString(Date date, String format) {
+        SimpleDateFormat sdf = new SimpleDateFormat(format);
+        return sdf.format(date);
+    }
+
+    public static Date convertStringToDate(String date, String format) {
         SimpleDateFormat sdf = new SimpleDateFormat(format);
         try {
-            return sdf.parse(sdf.format(date));
+            return sdf.parse(date);
         } catch (ParseException e) {
             return null;
         }
-    }
-
-    public static String formatString(Date date, String format) {
-        SimpleDateFormat sdf = new SimpleDateFormat(format);
-        return sdf.format(date);
     }
 
 }
