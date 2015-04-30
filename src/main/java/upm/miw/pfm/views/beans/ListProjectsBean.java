@@ -12,7 +12,7 @@ import upm.miw.pfm.controllers.ProjectController;
 import upm.miw.pfm.models.entities.Project;
 
 @ManagedBean
-public class ListProjectsBean extends ViewBean {
+public class ListProjectsBean {
 
     private List<Project> projects;
 

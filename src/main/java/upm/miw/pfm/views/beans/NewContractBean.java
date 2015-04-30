@@ -6,16 +6,16 @@ import javax.faces.bean.ManagedBean;
 
 import org.apache.logging.log4j.LogManager;
 
-import upm.miw.pfm.controllers.NewContractController;
+import upm.miw.pfm.controllers.ContractController;
 import upm.miw.pfm.models.entities.Contract;
 
-@ManagedBean(name="newContractBean")
-public class NewContractBean extends ViewBean {
+@ManagedBean
+public class NewContractBean {
 
     private Contract contract;
 
     @EJB
-    private NewContractController newContractsController;
+    private ContractController newContractsController;
 
     public Contract getContract() {
         return contract;
@@ -28,7 +28,7 @@ public class NewContractBean extends ViewBean {
     public String process() {
         newContractsController.saveContract(contract);
         LogManager.getLogger(this).info("Guardado " + contract);
-        return "home";
+        return "index";
     }
     
     @PostConstruct

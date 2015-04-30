@@ -4,18 +4,18 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 
-import upm.miw.pfm.controllers.NewContractController;
+import upm.miw.pfm.controllers.ContractController;
 import upm.miw.pfm.models.daos.ContractDao;
 import upm.miw.pfm.models.daos.DaoFactory;
 import upm.miw.pfm.models.entities.Contract;
 
 
 @Stateless
-public class NewContractControllerEjb implements NewContractController {
+public class ContractControllerEjb implements ContractController {
 
     private ContractDao contractDao;
 
-    public NewContractControllerEjb() {
+    public ContractControllerEjb() {
         contractDao = DaoFactory.getFactory().getContractDao();
     }
 
