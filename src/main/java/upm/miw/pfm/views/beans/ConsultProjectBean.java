@@ -10,7 +10,7 @@ import upm.miw.pfm.models.entities.Project;
 import upm.miw.pfm.models.entities.ProjectSchedule;
 
 @ManagedBean
-public class ConsultProjectBean extends ViewBean {
+public class ConsultProjectBean {
 
     @ManagedProperty(value = "#{param.id}")
     private int id;

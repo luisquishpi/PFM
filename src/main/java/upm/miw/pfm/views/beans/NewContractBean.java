@@ -6,11 +6,11 @@ import javax.faces.bean.ManagedBean;
 
 import org.apache.logging.log4j.LogManager;
 
-import upm.miw.pfm.controllers.NewContractController;
+import upm.miw.pfm.controllers.ContractController;
 import upm.miw.pfm.models.entities.Contract;
 
 @ManagedBean
-public class NewContractBean extends ViewBean {
+public class NewContractBean {
 
     private Contract contract;
 

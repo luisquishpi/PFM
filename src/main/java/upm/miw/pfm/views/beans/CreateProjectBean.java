@@ -11,7 +11,7 @@ import upm.miw.pfm.models.entities.ProjectSchedule;
 import upm.miw.pfm.utils.Utils;
 
 @ManagedBean
-public class CreateProjectBean extends ViewBean {
+public class CreateProjectBean {
 
     private Project project;
 
