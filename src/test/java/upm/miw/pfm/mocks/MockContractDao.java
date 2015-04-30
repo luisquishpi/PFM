@@ -30,15 +30,14 @@ public class MockContractDao extends MockUp<ContractDaoHibernate> {
 	}
 
 	@Mock
-	public Contract create(Contract contract) {
-		this.contract = contract;
+	public Contract create(Contract contract) {		
 		contract.setId(10);
+		this.contract = contract;
 		return contract;
 	}
 
 	@Mock
-	public Contract read(Integer id) {
-		contract.setId(id);
+	public Contract read(Integer id) {		
 		return contract;
 	}
 

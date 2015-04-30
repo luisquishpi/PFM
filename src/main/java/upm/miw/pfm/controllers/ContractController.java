@@ -5,7 +5,7 @@ import java.util.List;
 
 import upm.miw.pfm.models.entities.Contract;
 
-public interface NewContractController {
+public interface ContractController {
 
     public void saveContract(Contract contract);
     public boolean existContract(Contract contract);
