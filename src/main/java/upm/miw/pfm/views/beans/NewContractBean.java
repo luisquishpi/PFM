@@ -9,7 +9,7 @@ import org.apache.logging.log4j.LogManager;
 import upm.miw.pfm.controllers.NewContractController;
 import upm.miw.pfm.models.entities.Contract;
 
-@ManagedBean(name="newContractBean")
+@ManagedBean
 public class NewContractBean extends ViewBean {
 
     private Contract contract;
