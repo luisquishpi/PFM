@@ -16,3 +16,6 @@
 .padding-table{
 	padding-bottom:20px;
 }
+.ui-growl{
+   top: 20px !important;
+}

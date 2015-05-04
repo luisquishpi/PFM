@@ -11,23 +11,22 @@
 </h:head>
 <h:body>
 	<ui:composition template="#{root}/WEB-INF/template/commonLayout.xhtml">
+        <ui:define name="header">
+            Crear Contrato
+        </ui:define>	    
 		<ui:define name="content">
 			<h:form>
-				<p:messages id="messages" showDetail="true" autoUpdate="true"
-					closable="true" />
+			    <p:growl id="growl" sticky="true" />
 				<h:panelGrid id="newContract" columns="2" cellpadding="5">
-
 					<p:outputLabel for="contractType" value="Tipo:" />
-					<p:inputText id="contractType"
-						value="#{newContractBean.contract.contractType}" required="true" />
+					<p:inputText requiredMessage="El tipo de contrato es obligatorio" id="contractType" value="#{newContractBean.contract.contractType}" required="true" />
 						
 					<p:spacer />
 					<p:outputLabel for="insurance" value="Seguro:" />
-					<p:inputText id="insurance"
-						value="#{newContractBean.contract.insurance}" required="true" />
+					<p:inputText requiredMessage="El porcentaje de seguro es obligatorio" id="insurance" value="#{newContractBean.contract.insurance}" required="true" />
 					<p:spacer />
 					<p:commandButton value="Crear" action="#{newContractBean.process}"
-						update="newContract" />
+						update="growl" />
 				</h:panelGrid>
 			</h:form>
 		</ui:define>
