@@ -62,6 +62,6 @@ public class CreateProjectBean {
     public String process() {
         projectController.createProject(project);
         LogManager.getLogger(clazz).debug("Creación de proyecto " + project);
-        return "home";
+        return "index";
     }
 }
