@@ -34,6 +34,7 @@
 		<mapping class='upm.miw.pfm.models.entities.Project' />
 		<mapping class='upm.miw.pfm.models.entities.ProjectSchedule' />
 		<mapping class='upm.miw.pfm.models.entities.Contract' />
+		<mapping class='upm.miw.pfm.models.entities.Employee' />
 
 	</session-factory>
 </hibernate-configuration>
