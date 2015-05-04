@@ -42,7 +42,7 @@
 							</p:row>
 						</f:facet>
 						<p:row>
-							<p:column style="font-weight: bold;">
+							<p:column style="width:30%; font-weight: bold;">
 								<p>
 									Fecha Inicio: <h:outputText value="{{projectBean.project.startString}}" >
 										<f:convertDateTime pattern="d-M-yyyy" />
@@ -54,7 +54,7 @@
 									</h:outputText>
 								</p>
 							</p:column>
-							<p:column style="font-weight: bold;">
+							<p:column style="width:35%; font-weight: bold;">
 								<p>
 									<h:outputText value="Meses naturales: {{naturalMonths() | number : 2}}" />
 								</p>
