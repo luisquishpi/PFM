@@ -9,6 +9,9 @@
 	xmlns:p="http://primefaces.org/ui">
 <h:body>
 	<ui:composition template="#{root}/WEB-INF/template/commonLayout.xhtml">
+		<ui:define name="header">
+            Crear Proyecto
+        </ui:define>  
 		<ui:define name="javascript">
 			<script>
 				app.value("test", false);
@@ -103,8 +106,8 @@
 					<p:commandButton value="Guardar"
 							action="#{createProjectBean.process}" icon="ui-icon-disk" update="growl"
 							onclick="alert('Proyecto creado correctamente')" ajax="false" />
-					<p:button outcome="index.html" value="Volver">
-					</p:button>								
+					<p:button outcome="index.html" value="Volver" icon="ui-icon-arrowreturn-1-w">
+					</p:button>					
 				</div>
 			</h:form>
 		</ui:define>
