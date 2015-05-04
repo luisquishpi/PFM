@@ -1,7 +1,9 @@
 package upm.miw.pfm.views.beans;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 
 import org.apache.logging.log4j.LogManager;
 
@@ -62,6 +64,10 @@ public class CreateProjectBean {
     public String process() {
         projectController.createProject(project);
         LogManager.getLogger(clazz).debug("Creación de proyecto " + project);
+        
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Proyecto creado", "El proyecto ha sido creado con exito"));
+        context.getExternalContext().getFlash().setKeepMessages(true);
         
         return "index";
     }
