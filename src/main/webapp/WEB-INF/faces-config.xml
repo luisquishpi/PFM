@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
-    version="2.2">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+	version="2.2">
 	<navigation-rule>
 		<display-name>pages/contract/create.xhtml</display-name>
 		<from-view-id>/pages/contract/create.xhtml</from-view-id>
@@ -13,5 +13,16 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
+	
+    <navigation-rule>
+        <display-name>pages/project/create.xhtml</display-name>
+        <from-view-id>/pages/project/create.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{createProjectBean.process}</from-action>
+            <from-outcome>index</from-outcome>
+            <to-view-id>/pages/project/index.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>	
 
 </faces-config>

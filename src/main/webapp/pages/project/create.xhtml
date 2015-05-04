@@ -12,8 +12,7 @@
 		<ui:define name="javascript">
 			<script>
 				app.value("test", false);
-				var projectApp = angular.module('projectApp',
-						[ "angularfaces" ]);
+				var projectApp = angular.module('projectApp',[ "angularfaces" ]);
 			</script>
 			<script src="/PFM/resources/js/libs/moment.js"></script>
 			<script src="/PFM/resources/js/controllers/projectController.js"></script>
@@ -24,8 +23,7 @@
 		</ui:define>
 		<ui:define name="content">
 			<h:form prependId="false" id="angular">
-				<p:messages id="messages" showDetail="false" autoUpdate="true"
-					closable="true" />
+				<p:growl id="growl" sticky="true" />
 				<div class="main-grid main-body-grid" ng-app="projectApp"
 					ng-controller="projectController">
 					<c:set var="projectBean" scope="request"
@@ -74,7 +72,7 @@
 						<p:row>
 							<p:column rowspan="2" style="font-weight: bold;">
 								<p>
-									<p:inputText value="{{projectBean.project.cost}}"
+									<p:inputText validatorMessage="El costo debe ser mayor a 1" value="{{projectBean.project.cost}}"
 										label="Costo: ">
 										<f:validateDoubleRange minimum="1" />
 									</p:inputText>
@@ -92,9 +90,8 @@
 							</p:column>
 						</p:row>
 						<p:commandButton value="Guardar"
-							action="#{createProjectBean.process}" icon="ui-icon-disk"
-							ajax="false" >
-						</p:commandButton>
+							action="#{createProjectBean.process}" icon="ui-icon-disk" update="growl"
+							ajax="false" />
 					</p:panelGrid>
 				</div>
 			</h:form>
