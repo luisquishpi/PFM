@@ -30,9 +30,9 @@ public class ListProjectsBean {
         projects = projectController.listProjects();
         LogManager.getLogger(clazz).info("Se encontraron " + projects.size() + " proyectos");
     }
-	
-	public String delete(String id) {
-        System.out.println(id);
+
+    public String delete(String id) {
+        LogManager.getLogger(clazz).info("Borrando proyecto con Id " + id);
         return "index";
     }
 
