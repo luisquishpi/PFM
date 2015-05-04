@@ -25,7 +25,7 @@
 					<p:outputLabel for="insurance" value="Seguro:" />
 					<p:inputText requiredMessage="El porcentaje de seguro es obligatorio" id="insurance" value="#{newContractBean.contract.insurance}" required="true" />
 					<p:spacer />
-					<p:commandButton value="Crear" action="#{newContractBean.process}"
+					<p:commandButton value="Crear" onclick="alert('Contrato creado correctamente')" icon="ui-icon-disk" action="#{newContractBean.process}"
 						update="growl" />
 				</h:panelGrid>
 			</h:form>
