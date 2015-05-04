@@ -46,10 +46,11 @@
 			    </p:column>
 			</p:dataTable>
 			</h:form>
-			<div class="" style="padding:5px; margin-top:20px;">
-                <a class="btn btn-default" href="create.xhtml" role="button">Nuevo proyecto</a>
-                <a class="btn btn-default" href="#{request.contextPath}/home.xhtml" role="button">Volver</a>                
-            </div>
+			<br/>
+            <p:button outcome="create.xhtml" value="Nuevo Proyecto" icon="ui-icon-plus">
+					</p:button> 
+            <p:button outcome="/home.xhtml" value="Volver" icon="ui-icon-arrowreturn-1-w">
+					</p:button>    
         </ui:define>
     </ui:composition>
 </html>
