@@ -9,7 +9,6 @@ import upm.miw.pfm.models.daos.ContractDao;
 import upm.miw.pfm.models.daos.DaoFactory;
 import upm.miw.pfm.models.entities.Contract;
 
-
 @Stateless
 public class ContractControllerEjb implements ContractController {
 
@@ -28,7 +27,7 @@ public class ContractControllerEjb implements ContractController {
     public boolean existContract(Contract contract) {
         return contractDao.read(contract.getId()) != null;
     }
-    
+
     @Override
     public List<Contract> contractList() {
         return contractDao.findAll();
