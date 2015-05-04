@@ -29,9 +29,9 @@ public class AddEmployeeControllerTest {
 		addEmployeeController = new AddEmployeeControllerEjb();
 		contract = new Contract("Fijo", 32.5);
 		roles = new ArrayList<RoleType>();
-		roles.add(RoleType.GESTION_PROYECTO);
-		roles.add(RoleType.REQUISITOS);
-		roles.add(RoleType.ANALISIS_DISEÑO);
+		roles.add(RoleType.PROJECT_MANAGEMENT);
+		roles.add(RoleType.REQUIREMENTS);
+		roles.add(RoleType.ANALYSIS_DESIGN);
 		employee = new Employee("Anibal","Lecter","A",40500.00,contract,roles);
 	}
 	

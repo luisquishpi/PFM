@@ -33,9 +33,9 @@ public class ListEmployeesControllerTest {
 		List<Employee> employeeList = new ArrayList<Employee>(); 
 		contract = new Contract("Fijo", 32.5);
 		roles = new ArrayList<RoleType>();
-		roles.add(RoleType.GESTION_PROYECTO);
-		roles.add(RoleType.REQUISITOS);
-		roles.add(RoleType.ANALISIS_DISEÑO);
+		roles.add(RoleType.PROJECT_MANAGEMENT);
+		roles.add(RoleType.REQUIREMENTS);
+		roles.add(RoleType.ANALYSIS_DESIGN);
 		Employee employee1 = new Employee("Anibal","Lecter","A",40500.00,contract,roles);
 		employeeList.add(employee1);
 		
