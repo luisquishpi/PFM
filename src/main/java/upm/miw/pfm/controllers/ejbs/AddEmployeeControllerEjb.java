@@ -1,9 +1,12 @@
 package upm.miw.pfm.controllers.ejbs;
 
+import javax.ejb.Stateless;
+
 import upm.miw.pfm.controllers.AddEmployeeController;
 import upm.miw.pfm.models.daos.DaoFactory;
 import upm.miw.pfm.models.entities.Employee;
 
+@Stateless
 public class AddEmployeeControllerEjb implements AddEmployeeController{
 
 	@Override
