@@ -37,20 +37,25 @@
 					<ngsync direction="serverToClient"
 						value="{{projectBean.projectSchedule.workDays}}" />
 					<ngsync direction="serverToClient" value="{{workingDays}}" />
-					<p:panelGrid style="margin:0 auto;">
-						<f:facet name="header">
-							<p:row>
-								<p:column colspan="7">
-									<p:inplace id="basic" editor="true">
-										<p:inputText value="{{projectBean.project.name}}"
-											required="true" label="text" />
-									</p:inplace>
-								</p:column>
-							</p:row>
-						</f:facet>
-						<p:row>
-							<p:column style="font-weight: bold;">
-								<p>
+					
+					
+					<div class="ui-grid ui-grid-responsive" style="text-align:center;">
+					    <div class="ui-grid-row">
+					        <div class="ui-grid-col-12">
+					        	<p:inplace id="basic" editor="true">
+									<p:inputText value="{{projectBean.project.name}}"
+												required="true" label="{{projectBean.project.name}}" />
+								</p:inplace>
+					        </div>
+					    </div>
+					</div>
+					
+					<br/>
+					
+					<div class="ui-grid ui-grid-responsive" style="text-align:center;">
+					    <div class="ui-grid-row">
+					        <div class="ui-grid-col-6">
+					        	<p>
 									<p:inputMask label="Fecha de inicio: "
 										value="{{projectBean.project.startString}}" mask="99/99/9999"
 										required="true" />
@@ -60,28 +65,31 @@
 										value="{{projectBean.project.endString}}" mask="99/99/9999"
 										required="true" />
 								</p>
-							</p:column>
-							<p:column style="font-weight: bold;">
-								<p>
+					        </div>
+					        <div class="ui-grid-col-6">
+					        	<p>
 									<p:inputText value="{{naturalMonths()}}"
 										label="Meses naturales: " />
 								</p>
 								<p>
 									<p:inputText value="{{naturalDays}}" label="Días naturales: " />
 								</p>
-							</p:column>
-						</p:row>
-						<p:row>
-							<p:column rowspan="2" style="font-weight: bold;">
-								<p>
+					        </div>
+					    </div>
+					</div>
+					<br/>
+					<div class="ui-grid ui-grid-responsive" style="text-align:center;">
+					    <div class="ui-grid-row">
+					        <div class="ui-grid-col-6">
+					        	<p>
 									<p:inputText value="{{projectBean.project.cost}}"
-										label="Costo: ">
+										label="Coste: ">
 										<f:validateDoubleRange minimum="1" />
 									</p:inputText>
 								</p>
-							</p:column>
-							<p:column rowspan="2" style="font-weight: bold;">
-								<p>
+					        </div>
+					        <div class="ui-grid-col-6">
+					        	<p>
 									<p:inputText value="{{costNaturalMonth()}}"
 										label="Costo mes natural: " />
 								</p>
@@ -89,17 +97,18 @@
 									<p:inputText value="{{costNaturalDay()}}"
 										label="Costo día natural: " />
 								</p>
-							</p:column>
-						</p:row>
-						<p:commandButton value="Guardar"
-							action="#{createProjectBean.process}" icon="ui-icon-disk"
+					        </div>
+					    </div>
+					</div>
+					<p:commandButton value="Guardar"
+							action="#{createProjectBean.process}" icon="ui-icon-disk" update="growl"
 							ajax="false" />
-					</p:panelGrid>
+					<p:button outcome="index.html" value="Volver">
+					</p:button>								
 				</div>
 			</h:form>
 		</ui:define>
 	</ui:composition>
-
 </h:body>
 
 </html>
