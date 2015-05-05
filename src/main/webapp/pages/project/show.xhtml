@@ -72,20 +72,23 @@
 									<h:outputText value="Dias naturales: {{naturalDays}}" />
 								</p>
 					        </div>
-					        <div class="ui-grid-col-4">	
-					        	<p>
-									<h:outputText value="Meses laborales: {{workMonths()| number : 2}}" />
-								</p>
-								<p>
-									<h:outputText value="Dias laborales: {{workDays}}" />
-								</p>
-								<p>
-									<h:outputText value="Horas laborales: {{workHours()}}" />
-								</p>
-					        </div>
+					        <h:panelGroup rendered="#{projectBean.projectSchedule!=null}">
+						        <div class="ui-grid-col-4">	
+						        	<p>
+										<h:outputText value="Meses laborales: {{workMonths()| number : 2}}" />
+									</p>
+									<p>
+										<h:outputText value="Dias laborales: {{workDays}}" />
+									</p>
+									<p>
+										<h:outputText value="Horas laborales: {{workHours()}}" />
+									</p>
+						        </div>
+					        </h:panelGroup>
 					    </div>
 					</div>
 					<br/>
+					
 					<div class="ui-grid ui-grid-responsive" style="text-align:center;">
 					    <div class="ui-grid-row">
 					        <div class="ui-grid-col-4">
@@ -101,17 +104,19 @@
 									<h:outputText value="Coste/día natural: {{costNaturalDay() | number : 2}}" />&euro;
 								</p>
 					        </div>
-					        <div class="ui-grid-col-4">	
-					        	<p>
-									<h:outputText value="Coste/mes natural: {{costWorkMonth()| number : 2}}" />&euro;
-								</p>
-								<p>
-									<h:outputText value="Coste/día natural: {{costWorkDay()| number : 2}}" />&euro;
-								</p>
-								<p>
-									<h:outputText value="Coste/hora natural: {{costWorkHour()| number : 2}}" />&euro;
-								</p>
-					        </div>
+					        <h:panelGroup rendered="#{projectBean.projectSchedule!=null}">
+						        <div class="ui-grid-col-4">	
+						        	<p>
+										<h:outputText value="Coste/mes laboral: {{costWorkMonth()| number : 2}}" />&euro;
+									</p>
+									<p>
+										<h:outputText value="Coste/día laboral: {{costWorkDay()| number : 2}}" />&euro;
+									</p>
+									<p>
+										<h:outputText value="Coste/hora laboral: {{costWorkHour()| number : 2}}" />&euro;
+									</p>
+						        </div>
+					        </h:panelGroup>
 					    </div>
 					</div>
 					<p:button outcome="index.html" value="Volver" icon="ui-icon-arrowreturn-1-w">
