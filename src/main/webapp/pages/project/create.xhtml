@@ -71,7 +71,7 @@
 					        </div>
 					        <div class="ui-grid-col-6">
 					        	<p>
-									<p:inputText value="{{naturalMonths()}}"
+									<p:inputText value="{{naturalMonths() | number : 2}}"
 										label="Meses naturales: " />
 								</p>
 								<p>
@@ -80,32 +80,34 @@
 					        </div>
 					    </div>
 					</div>
+					
 					<br/>
+					
 					<div class="ui-grid ui-grid-responsive" style="text-align:center;">
 					    <div class="ui-grid-row">
 					        <div class="ui-grid-col-6">
 					        	<p>
 									<p:inputText value="{{projectBean.project.cost}}"
-										label="Coste: ">
+										label="Coste(&euro;): ">
 										<f:validateDoubleRange minimum="1" />
 									</p:inputText>
 								</p>
 					        </div>
 					        <div class="ui-grid-col-6">
 					        	<p>
-									<p:inputText value="{{costNaturalMonth()}}"
-										label="Costo mes natural: " />
+									<p:inputText value="{{costNaturalMonth() | number : 2}}"
+										label="Coste mes natural(&euro;): " />
 								</p>
 								<p>
-									<p:inputText value="{{costNaturalDay()}}"
-										label="Costo día natural: " />
+									<p:inputText value="{{costNaturalDay() | number : 2 }}"
+										label="Coste día natural(&euro;): " />
 								</p>
 					        </div>
 					    </div>
 					</div>
 					<p:commandButton value="Guardar"
 							action="#{createProjectBean.process}" icon="ui-icon-disk" update="growl"
-							onclick="alert('Proyecto creado correctamente')" ajax="false" />
+							ajax="false" />
 					<p:button outcome="index.html" value="Volver" icon="ui-icon-arrowreturn-1-w">
 					</p:button>					
 				</div>

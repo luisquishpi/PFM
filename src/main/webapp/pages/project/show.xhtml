@@ -42,10 +42,9 @@
 					<div class="ui-grid ui-grid-responsive" style="text-align:center;">
 					    <div class="ui-grid-row">
 					        <div class="ui-grid-col-12">
-					        	<p:inplace id="basic" editor="true">
-									<p:inputText value="{{projectBean.project.name}}"
-												required="true" label="{{projectBean.project.name}}" />
-								</p:inplace>
+					        	<h3>
+					        		<h:outputText value="{{projectBean.project.name}}" />
+					        	</h3>	
 					        </div>
 					    </div>
 					</div>
@@ -54,64 +53,70 @@
 					    <div class="ui-grid-row">
 					        <div class="ui-grid-col-4">
 					        	<p>
-									Fecha Inicio: <h:outputText value="{{projectBean.project.startString}}" >
+									<strong>Fecha Inicio: </strong> <h:outputText value="{{projectBean.project.startString}}" >
 										<f:convertDateTime pattern="d-M-yyyy" />
 									</h:outputText>	
 								</p>
 								<p>
-									Fecha fin: <h:outputText value="{{projectBean.project.endString}}" >
+									<strong>Fecha Fin: </strong> <h:outputText value="{{projectBean.project.endString}}" >
 										<f:convertDateTime pattern="d-M-yyyy" />
 									</h:outputText>
 								</p>
 					        </div>
 					        <div class="ui-grid-col-4">
 					        	<p>
-									<h:outputText value="Meses naturales: {{naturalMonths() | number : 2}}" />
+									<strong>Meses naturales: </strong> <h:outputText value="{{naturalMonths() | number : 2}}" />
 								</p>
 								<p>
-									<h:outputText value="Dias naturales: {{naturalDays}}" />
+									<strong>Dias naturales: </strong> <h:outputText value="{{naturalDays}}" />
 								</p>
 					        </div>
-					        <div class="ui-grid-col-4">	
-					        	<p>
-									<h:outputText value="Meses laborales: {{workMonths()| number : 2}}" />
-								</p>
-								<p>
-									<h:outputText value="Dias laborales: {{workDays}}" />
-								</p>
-								<p>
-									<h:outputText value="Horas laborales: {{workHours()}}" />
-								</p>
-					        </div>
+					        <h:panelGroup rendered="#{projectBean.projectSchedule!=null}">
+						        <div class="ui-grid-col-4">	
+						        	<p>
+										<strong>Meses laborales: </strong> <h:outputText value="Meses laborales: {{workMonths()| number : 2}}" />
+									</p>
+									<p>
+										<strong>Dias laborales: </strong> <h:outputText value="{{workDays}}" />
+									</p>
+									<p>
+										<strong>Horas laborales: </strong> <h:outputText value="{{workHours()}}" />
+									</p>
+						        </div>
+					        </h:panelGroup>
 					    </div>
 					</div>
 					<br/>
+					
 					<div class="ui-grid ui-grid-responsive" style="text-align:center;">
 					    <div class="ui-grid-row">
 					        <div class="ui-grid-col-4">
 					        	<p>
-									<h:outputText value="Costo: {{projectBean.project.cost}}" />&euro;
+									<strong>Coste: </strong> <h:outputText value="{{projectBean.project.cost}}" />&euro;
 								</p>
 					        </div>
 					        <div class="ui-grid-col-4">
 					        	<p>
-									<h:outputText value="Coste/mes natural: {{costNaturalMonth() | number : 2}}" />&euro;
+									<strong>Coste/mes natural: </strong> <h:outputText value="{{costNaturalMonth() | number : 2}}" />&euro;
 								</p>
 								<p>
-									<h:outputText value="Coste/día natural: {{costNaturalDay() | number : 2}}" />&euro;
+									<strong>Coste/día natural: </strong> <h:outputText value="{{costNaturalDay() | number : 2}}" />&euro;
 								</p>
 					        </div>
-					        <div class="ui-grid-col-4">	
-					        	<p>
-									<h:outputText value="Coste/mes natural: {{costWorkMonth()| number : 2}}" />&euro;
-								</p>
-								<p>
-									<h:outputText value="Coste/día natural: {{costWorkDay()| number : 2}}" />&euro;
-								</p>
-								<p>
-									<h:outputText value="Coste/hora natural: {{costWorkHour()| number : 2}}" />&euro;
-								</p>
-					        </div>
+
+					        <h:panelGroup rendered="#{projectBean.projectSchedule!=null}">
+						        <div class="ui-grid-col-4">	
+						        	<p>
+										<strong>Coste/mes natural: </strong> <h:outputText value="{{costWorkMonth()| number : 2}}" />&euro;
+									</p>
+									<p>
+										<strong>Coste/día natural: </strong> <h:outputText value="{{costWorkDay()| number : 2}}" />&euro;
+									</p>
+									<p>
+										<strong>Coste/hora natural: </strong> <h:outputText value="{{costWorkHour()| number : 2}}" />&euro;
+									</p>
+						        </div>
+					        </h:panelGroup>
 					    </div>
 					</div>
 					<p:button outcome="index.html" value="Volver" icon="ui-icon-arrowreturn-1-w">
