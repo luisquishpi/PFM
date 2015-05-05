@@ -121,6 +121,14 @@ public class Employee {
     public void setRoles(Collection<RoleType> roles) {
         this.roles = roles;
     }
+    
+    public String getFullName(){
+        return this.getName() + " " + this.getSurname();
+    }
+    
+    public Double getAnnualNetSalary(){
+        return this.getAnnualGrossSalary() * ( 1 + this.getContract().getInsurance() );
+    }
 
     @Override
     public int hashCode() {
