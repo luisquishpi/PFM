@@ -1,9 +1,9 @@
 package upm.miw.pfm.models.daos;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -22,7 +22,7 @@ public class ViewEmployeesDaoTest {
 
     private Employee employee;
 
-    List<RoleType> roles = new ArrayList<RoleType>();
+    private Set<RoleType> roles = new HashSet<RoleType>();
 
     private Contract contract;
 
