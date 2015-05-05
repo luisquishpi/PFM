@@ -14,7 +14,7 @@ import upm.miw.pfm.models.entities.Contract;
 import upm.miw.pfm.models.entities.Employee;
 import upm.miw.pfm.utils.RoleType;
 
-public class ViewEmployeesDaoTest {
+public class GetEmployeeDaoTest {
 
     private EmployeeDao employeeDao;
 
