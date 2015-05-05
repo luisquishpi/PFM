@@ -1,6 +1,7 @@
 package upm.miw.pfm.views.beans;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -54,7 +55,7 @@ public class CreateEmployeeBean {
     }
 
     public String process() {
-        employee.setRoles(Arrays.asList(getCheckedRoles()));
+        employee.setRoles(new HashSet<RoleType>(Arrays.asList(getCheckedRoles())));
         addEmployeeController.addEmployee(employee);
         LogManager.getLogger(clazz).debug("Creación de empleado " + employee);
         return "index";

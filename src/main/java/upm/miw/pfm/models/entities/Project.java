@@ -58,11 +58,11 @@ public class Project {
     }
     
     public String getStartString(){
-        return Utils.convertDateToString(start, "dd/MM/yyyy");
+        return Utils.convertDateToString(start, Utils.DD_MM_YYYY_FORMAT);
     }
     
     public void setStartString(String startString){
-        this.start = Utils.convertStringToDate(startString, "dd/MM/yyyy");
+        this.start = Utils.convertStringToDate(startString, Utils.DD_MM_YYYY_FORMAT);
     }
 
     public void setStart(Date start) {
@@ -74,7 +74,7 @@ public class Project {
     }
     
     public String getEndString(){
-        return Utils.convertDateToString(end, "dd/MM/yyyy");
+        return Utils.convertDateToString(end, Utils.DD_MM_YYYY_FORMAT);
     } 
 
     public void setEnd(Date end) {
@@ -82,8 +82,8 @@ public class Project {
     }
     
     public void setEndString(String endString){
-        this.end = Utils.convertStringToDate(endString, "dd/MM/yyyy");
-    }    
+        this.end = Utils.convertStringToDate(endString, Utils.DD_MM_YYYY_FORMAT);
+    }
 
     public Double getCost() {
         return cost;
