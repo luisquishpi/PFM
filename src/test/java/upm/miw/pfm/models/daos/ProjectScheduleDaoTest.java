@@ -6,6 +6,7 @@ import static org.junit.Assert.assertNull;
 import java.util.Calendar;
 import java.util.Date;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -72,6 +73,12 @@ public class ProjectScheduleDaoTest {
     @Test
     public void findByProjectTest(){
     	 assertEquals(projectSchedule, projectScheduleDao.findByProject(projectSchedule.getProject()));
+    }
+    
+    @After
+    public void after(){
+        projectScheduleDao.query("delete from ProjectSchedule");
+        projectDao.query("delete from Project");
     }
 
 }

@@ -1,6 +1,7 @@
 package upm.miw.pfm.integracion;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -16,31 +17,30 @@ import upm.miw.pfm.controllers.ejbs.SetScheduleControllerEjb;
 import upm.miw.pfm.models.entities.Project;
 import upm.miw.pfm.models.entities.ProjectSchedule;
 import upm.miw.pfm.utils.Utils;
+import upm.miw.pfm.utils.WorkDay;
 
 public class SetScheduleControllerTest {
 
-    private SetScheduleController controller;
+    private SetScheduleController setScheduleController;
+
     private ProjectController projectController;
 
     private static final double DELTA = 1e-15;
 
     @Before
     public void setUp() throws Exception {
-        controller = new SetScheduleControllerEjb();
+        setScheduleController = new SetScheduleControllerEjb();
         projectController = new ProjectControllerEjb();
     }
 
-    
-    
     @Test
-    public void SetScheduleTest() {
-        ProjectSchedule schedule = new ProjectSchedule();
-
+    public void setScheduleTest() {
         Date start = Utils.buildDate(2015, Calendar.MARCH, 2);
         Date end = Utils.buildDate(2015, Calendar.SEPTEMBER, 4);
         Project project = new Project("Scrum", start, end, 85000.0);
-        project.setId(1);
+        projectController.createProject(project);
 
+        ProjectSchedule schedule = new ProjectSchedule();
         schedule.setWorkDays(21);
         schedule.setMondayHours(8D);
         schedule.setTuesdayHours(8D);
@@ -49,26 +49,35 @@ public class SetScheduleControllerTest {
         schedule.setFridayHours(8D);
         schedule.setSaturdayHours(0D);
         schedule.setSundayHours(0D);
-
         schedule.setProject(project);
-        
-        projectController.createProject(project);
-        
-        controller.setProjectSchedule(schedule);
-        assertEquals(project, controller.getProjectSchedule(1).getProject());
-        assertEquals(schedule, controller.getProjectSchedule(1));
+        setScheduleController.setProjectSchedule(schedule);
+
+        assertEquals(project, setScheduleController.getProjectSchedule(project.getId())
+                .getProject());
+        assertEquals(schedule, setScheduleController.getProjectSchedule(project.getId()));
         Integer expectedWorkDays = 21;
-        assertEquals(expectedWorkDays, controller.getProjectSchedule(1).getWorkDays());
-        assertEquals(8, controller.getProjectSchedule(1).getMondayHours(), DELTA);
-        assertEquals(8, controller.getProjectSchedule(1).getTuesdayHours(), DELTA);
-        assertEquals(8, controller.getProjectSchedule(1).getWednesdayHours(), DELTA);
-        assertEquals(8, controller.getProjectSchedule(1).getThursdayHours(), DELTA);
-        assertEquals(8, controller.getProjectSchedule(1).getFridayHours(), DELTA);
-        assertEquals(0, controller.getProjectSchedule(1).getSaturdayHours(), DELTA);
-        assertEquals(0, controller.getProjectSchedule(1).getSundayHours(), DELTA);
-        List<Integer> workdays = controller.getProjectSchedule(1).getWorkDaysArray();
-        for(Integer i : new Integer[]{1,2,3,4,5}){
-            assertTrue(workdays.contains(i));
+        assertEquals(expectedWorkDays, setScheduleController.getProjectSchedule(project.getId())
+                .getWorkDays());
+        assertEquals(8, setScheduleController.getProjectSchedule(project.getId()).getMondayHours(),
+                DELTA);
+        assertEquals(8,
+                setScheduleController.getProjectSchedule(project.getId()).getTuesdayHours(), DELTA);
+        assertEquals(8, setScheduleController.getProjectSchedule(project.getId())
+                .getWednesdayHours(), DELTA);
+        assertEquals(8, setScheduleController.getProjectSchedule(project.getId())
+                .getThursdayHours(), DELTA);
+        assertEquals(8, setScheduleController.getProjectSchedule(project.getId()).getFridayHours(),
+                DELTA);
+        assertEquals(0, setScheduleController.getProjectSchedule(project.getId())
+                .getSaturdayHours(), DELTA);
+        assertEquals(0, setScheduleController.getProjectSchedule(project.getId()).getSundayHours(),
+                DELTA);
+
+        List<WorkDay> workdays = setScheduleController.getProjectSchedule(1).getWorkDaysArray();
+        for (int i = 1; i < 6; i++) {
+            assertTrue(workdays.get(i).getWorkHours() > 0);
         }
+        assertTrue(workdays.get(0).getWorkHours() == 0);
+        assertTrue(workdays.get(6).getWorkHours() == 0);
     }
 }

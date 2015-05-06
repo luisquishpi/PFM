@@ -30,10 +30,15 @@ public class Project {
     @Column(nullable = false)
     private String name;
 
+    @Column(name = "iteration_days", nullable = true)
+    private Integer iterationDays;
+
     public Project() {
+        this.iterationDays = 0;
     }
 
     public Project(String name, Date start, Date end, Double cost) {
+        this();
         this.start = start;
         this.end = end;
         this.cost = cost;
@@ -56,12 +61,12 @@ public class Project {
     public Date getStart() {
         return start;
     }
-    
-    public String getStartString(){
+
+    public String getStartString() {
         return Utils.convertDateToString(start, Utils.DD_MM_YYYY_FORMAT);
     }
-    
-    public void setStartString(String startString){
+
+    public void setStartString(String startString) {
         this.start = Utils.convertStringToDate(startString, Utils.DD_MM_YYYY_FORMAT);
     }
 
@@ -72,16 +77,16 @@ public class Project {
     public Date getEnd() {
         return end;
     }
-    
-    public String getEndString(){
+
+    public String getEndString() {
         return Utils.convertDateToString(end, Utils.DD_MM_YYYY_FORMAT);
-    } 
+    }
 
     public void setEnd(Date end) {
         this.end = end;
     }
-    
-    public void setEndString(String endString){
+
+    public void setEndString(String endString) {
         this.end = Utils.convertStringToDate(endString, Utils.DD_MM_YYYY_FORMAT);
     }
 
@@ -101,6 +106,14 @@ public class Project {
         this.name = name;
     }
 
+    public Integer getIterationDays() {
+        return iterationDays;
+    }
+
+    public void setIterationDays(Integer iterationDays) {
+        this.iterationDays = iterationDays;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -116,7 +129,8 @@ public class Project {
         assert obj != null;
         Project other = (Project) obj;
         return id == other.id && start.compareTo(other.start) == 0 && end.compareTo(other.end) == 0
-                && cost.equals(other.cost) && name.equals(other.name);
+                && cost.equals(other.cost) && name.equals(other.name)
+                && iterationDays.intValue() == other.iterationDays.intValue();
     }
 
     @Override
