@@ -14,7 +14,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import upm.miw.pfm.utils.RoleType;
@@ -39,7 +39,7 @@ public class Employee {
     @Column(name = "annual_gross_salary", nullable = false)
     private Double annualGrossSalary;
 
-    @OneToOne(cascade = CascadeType.REFRESH, optional = false)
+    @ManyToOne(cascade = CascadeType.REFRESH, optional = false)
     private Contract contract;
 
     @ElementCollection(targetClass = RoleType.class, fetch = FetchType.EAGER)
@@ -52,20 +52,26 @@ public class Employee {
         this.roles = new HashSet<RoleType>();
     }
 
-    public Employee(int id, String name, String surname, String employeeCode,
-            Double annualGrossSalary, Contract contract, Set<RoleType> roles) {
-        this(name, surname, employeeCode, annualGrossSalary, contract, roles);
-        this.id = id;
-    }
-
     public Employee(String name, String surname, String employeeCode, Double annualGrossSalary,
-            Contract contract, Set<RoleType> roles) {
+            Contract contract) {
+        this();
         this.name = name;
         this.surname = surname;
         this.employeeCode = employeeCode;
         this.annualGrossSalary = annualGrossSalary;
         this.contract = contract;
+    }
+
+    public Employee(String name, String surname, String employeeCode, Double annualGrossSalary,
+            Contract contract, Set<RoleType> roles) {
+        this(name, surname, employeeCode, annualGrossSalary, contract);
         this.roles = roles;
+    }
+
+    public Employee(int id, String name, String surname, String employeeCode,
+            Double annualGrossSalary, Contract contract, Set<RoleType> roles) {
+        this(name, surname, employeeCode, annualGrossSalary, contract, roles);
+        this.id = id;
     }
 
     public Integer getId() {
