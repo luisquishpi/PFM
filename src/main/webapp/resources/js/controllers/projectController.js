@@ -11,6 +11,7 @@ projectApp.controller(
 	  $scope.projectBean.project.start = moment(new Date($scope.projectBean.project.startString)).format("DD/MM/YYYY");
 	  $scope.projectBean.project.end = moment(new Date($scope.projectBean.project.endString)).format("DD/MM/YYYY");
 	  
+	  
 	  $scope.workDays = 0;
 	  $scope.workHours = 0;
 	  $scope.naturalDays = 0;
@@ -28,7 +29,6 @@ projectApp.controller(
 			  	  hours+=workHours;
 			  }
 			}
-		  
 		  $scope.workDays = days;
 		  $scope.workHours = hours;
 		  $scope.naturalDays= end.diff(start,'days');
@@ -39,6 +39,7 @@ projectApp.controller(
 	  }
 	  
 	  $scope.workMonths = function(){
+		  console.log($scope.workDays);
 		  return $scope.workDays/$scope.projectBean.projectSchedule.workDays;
 	  }
 	  	  	  

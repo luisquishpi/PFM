@@ -6,24 +6,28 @@ describe("Test projectController", function(){
 	
 	beforeEach(inject(function($controller, $rootScope){
 		scope = $rootScope;
-		scope.consultProjectBean = {
-				  'cost': 85000,
-				  'start': '2015-03-02',
-				  'end': '2015-09-04',
-				  'workingDays': [1,2,3,4,5],
-				  'WorkDaysMonth': 21,
-				  'mediumCostMonth':2581.68,
-				  'mediumCostDay':122.94,
-				  'mediumCostHour':15.37
+		scope.workingDays = [
+			                 {'workHours':0},{'workHours':8},{'workHours':8},{'workHours':8},{'workHours':8},{'workHours':5},{'workHours':0}
+							  ];
+		scope.projectBean = {
+				  'project':{
+					  'cost': 85000,
+					  'startString': '02-03-2015',
+					  'endString': '04-09-2015', 
+				  },
+				  'projectSchedule': {
+						  'workDays':21
+				  }
 		};
 		sampleCtrl = $controller("projectController", {
 			$scope: scope,
 			test: true
 		});
+		scope.$digest();
 	}));
 		
 	it("Natural days should be 187", function(){
-		expect(scope.naturalDays()).toBe(187);
+		expect(scope.naturalDays).toBe(187);
 	});
 	
 	it("Natural months should be 6.233333333333333", function(){
@@ -35,11 +39,11 @@ describe("Test projectController", function(){
 	});
 	
 	it("Work days should be 135", function(){
-		expect(scope.workDays()).toBe(135);
+		expect(scope.workDays).toBe(135);
 	});
 	
-	it("Work hours should be 1080", function(){
-		expect(scope.workHours()).toBe(1080);
+	it("Work hours should be 999", function(){
+		expect(scope.workHours).toBe(999);
 	});
 	
 	it("Natural month cost should be 13636.36", function(){
@@ -58,20 +62,8 @@ describe("Test projectController", function(){
 		expect(scope.costWorkDay()).toBe(629.6296296296297);
 	});
 
-	it("Work hour cost should be 78.70370370370371", function(){
-		expect(scope.costWorkHour()).toBe(78.70370370370371);
-	});
-		
-	it("Medium person month should be 5.121557366607101", function(){
-		expect(scope.mediumPersonMonth()).toBe(5.121557366607101);
+	it("Work hour cost should be 85.08508508508508", function(){
+		expect(scope.costWorkHour()).toBe(85.08508508508508);
 	});
 	
-	it("Medium person day should be 5.121438340894987", function(){
-		expect(scope.mediumPersonDay()).toBe(5.121438340894987);
-	});
-	
-	it("Medium person hour should be 5.120605315790742", function(){
-		expect(scope.mediumPersonHour()).toBe(5.120605315790742);
-	});
-
 })
