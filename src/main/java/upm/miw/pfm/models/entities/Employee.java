@@ -134,7 +134,12 @@ public class Employee {
     }
 
     public Double getAnnualNetSalary() {
-        return this.getAnnualGrossSalary() * (1 + this.getContract().getInsurance());
+        return this.getAnnualGrossSalary()
+                + (this.getAnnualGrossSalary() * (this.getContract().getInsurance() / 100));
+    }
+
+    public Double getMonthlySalary() {
+        return getAnnualNetSalary() / 12;
     }
 
     @Override
