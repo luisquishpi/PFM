@@ -10,16 +10,18 @@ describe("Test projectController", function(){
 	beforeEach(inject(function($controller, $rootScope){
 		scope = $rootScope;
 		scope.workingDays = [
-			                 {'workHours':0},{'workHours':8},{'workHours':8},{'workHours':8},{'workHours':8},{'workHours':5},{'workHours':0}
-							  ];
+                 {workHours:0},{workHours:8},{workHours:8},
+                 {workHours:8},{workHours:8},{workHours:5},
+                 {workHours:0}
+		];
 		scope.projectBean = {
-				  'project':{
-					  'cost': 85000,
-					  'startString': '02-03-2015',
-					  'endString': '04-09-2015', 
+				  project:{
+					  cost: 85000,
+					  startString: "02-03-2015",
+					  endString: "04-09-2015", 
 				  },
-				  'projectSchedule': {
-						  'workDays':21
+				  projectSchedule: {
+						  workDays:21
 				  }
 		};
 		controller = $controller("projectController", {
