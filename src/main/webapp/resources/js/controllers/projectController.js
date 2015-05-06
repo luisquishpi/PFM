@@ -7,15 +7,11 @@ projectApp.controller('projectController', function ($scope, $isTest) {
 	  }
 	  var start;
 	  var end;
-	  
-	  $scope.projectBean.project.start = moment(new Date($scope.projectBean.project.startString)).format("DD/MM/YYYY");
-	  $scope.projectBean.project.end = moment(new Date($scope.projectBean.project.endString)).format("DD/MM/YYYY");
-	  
-	  
+	  	  
 	  $scope.workDays = 0;
 	  $scope.workHours = 0;
 	  $scope.naturalDays = 0;
-	  
+
 	  $scope.$watchGroup(['projectBean.project.startString', 'projectBean.project.endString'], function(newValues, oldValues, scope) {
 		  var days=0;
 		  var hours=0;
