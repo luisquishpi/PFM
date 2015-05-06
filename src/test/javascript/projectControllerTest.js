@@ -17,8 +17,8 @@ describe("Test projectController", function(){
 		scope.projectBean = {
 				  project:{
 					  cost: 85000,
-					  startString: 1425250800000, //"02/03/2015",
-					  endString: 1441317600000, //"04/09/2015", 
+					  startString: "02/03/2015",
+					  endString: "04/09/2015", 
 				  },
 				  projectSchedule: {
 						  workDays:21
@@ -28,7 +28,7 @@ describe("Test projectController", function(){
 			$scope: scope,
 			$isTest: true
 		});
-		scope.$digest();
+		scope.initForTest();
 	}));
 		
 	it("Natural days should be 187", function(){

@@ -11,18 +11,32 @@ projectApp.controller("projectController", function ($scope, $isTest) {
 	  $scope.workDays = 0;
 	  $scope.workHours = 0;
 	  $scope.naturalDays = 0;
+	  
+	  $scope.initForTest = function(){
+		  var days=0;
+		  var hours=0;
+		  
+		  start = moment($scope.projectBean.project.startString, "DD/MM/YYYY");
+		  end = moment($scope.projectBean.project.endString, "DD/MM/YYYY");
+		  end = end.add(1,"days");
+		  for (var m = moment(start); m.isBefore(end); m.add(1, "days")) {
+			  var workHours = $scope.workingDays[m.day()].workHours;
+			  if(workHours>0){
+				  days++;
+			  	  hours+=workHours;
+			  }
+			}
+		  $scope.workDays = days;
+		  $scope.workHours = hours;
+		  $scope.naturalDays= end.diff(start,"days");
+	  }
 
 	  $scope.$watchGroup(["projectBean.project.startString", "projectBean.project.endString"], function(newValues, oldValues, scope) {
 		  var days=0;
 		  var hours=0;
-		  if($isTest){
-			  start = moment($scope.projectBean.project.startString);
-			  end = moment($scope.projectBean.project.endString);
-		  }
-		  else{
-			  start = moment($scope.projectBean.project.startString, "DD/MM/YYYY");
-			  end = moment($scope.projectBean.project.endString, "DD/MM/YYYY");
-		  }
+		  
+		  start = moment($scope.projectBean.project.startString, "DD/MM/YYYY");
+		  end = moment($scope.projectBean.project.endString, "DD/MM/YYYY");
 		  end = end.add(1,"days");
 		  for (var m = moment(start); m.isBefore(end); m.add(1, "days")) {
 			  var workHours = $scope.workingDays[m.day()].workHours;
