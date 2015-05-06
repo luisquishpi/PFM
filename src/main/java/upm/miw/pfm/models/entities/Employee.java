@@ -52,25 +52,20 @@ public class Employee {
         this.roles = new HashSet<RoleType>();
     }
 
+    public Employee(int id, String name, String surname, String employeeCode,
+            Double annualGrossSalary, Contract contract, Set<RoleType> roles) {
+        this(name, surname, employeeCode, annualGrossSalary, contract, roles);
+        this.id = id;
+    }
+
     public Employee(String name, String surname, String employeeCode, Double annualGrossSalary,
-            Contract contract) {
+            Contract contract, Set<RoleType> roles) {
         this.name = name;
         this.surname = surname;
         this.employeeCode = employeeCode;
         this.annualGrossSalary = annualGrossSalary;
         this.contract = contract;
-    }
-
-    public Employee(String name, String surname, String employeeCode, Double annualGrossSalary,
-            Contract contract, Set<RoleType> roles) {
-        this(name, surname, employeeCode, annualGrossSalary, contract);
         this.roles = roles;
-    }
-
-    public Employee(int id, String name, String surname, String employeeCode,
-            Double annualGrossSalary, Contract contract, Set<RoleType> roles) {
-        this(name, surname, employeeCode, annualGrossSalary, contract, roles);
-        this.id = id;
     }
 
     public Integer getId() {
@@ -128,13 +123,9 @@ public class Employee {
     public void setRoles(Set<RoleType> roles) {
         this.roles = roles;
     }
-
-    public String getFullName() {
+    
+    public String getFullName(){
         return this.getName() + " " + this.getSurname();
-    }
-
-    public Double getAnnualNetSalary() {
-        return this.getAnnualGrossSalary() * (1 + this.getContract().getInsurance());
     }
 
     @Override
@@ -158,12 +149,4 @@ public class Employee {
                 && contract.equals(other.contract) && employeeCode.equals(other.employeeCode)
                 && roles.containsAll(other.roles);
     }
-
-    @Override
-    public String toString() {
-        return "Employee [id=" + id + ", name=" + name + ", surname=" + surname + ", employeeCode="
-                + employeeCode + ", annualGrossSalary=" + annualGrossSalary + ", contract="
-                + contract + ", roles=" + roles + "]";
-    }
-
 }

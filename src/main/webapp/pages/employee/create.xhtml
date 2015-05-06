@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Nuevo Empleado</title>
+</h:head>
+<h:body>
+	<ui:composition template="#{root}/WEB-INF/template/commonLayout.xhtml">
+		<ui:define name="header">
+            Añadir empleado
+        </ui:define>
+		<ui:define name="css">
+			<link href="/PFM/resources/css/bootstrap/css/bootstrap.min.css"
+				rel="stylesheet" />
+		</ui:define>
+		<ui:define name="content">
+			<div class="main-grid main-body-grid">
+				<h:form>
+					<div class="ui-grid ui-grid-responsive">
+						<div class="ui-grid-row">
+							<div class="ui-grid-col-6">
+								<p>
+									<p:inputText label="Nombre"
+										requiredMessage="El nombre es obligatorio" id="name"
+										value="#{createEmployeeBean.employee.name}" required="true" />
+								</p>
+								<p>
+									<p:inputText label="Apellidos"
+										requiredMessage="Los apellidos son obligatorios" id="surname"
+										value="#{createEmployeeBean.employee.surname}" required="true" />
+								</p>
+								<p>
+									<p:inputText label="Codigo de empleado"
+										requiredMessage="El codigo de empleado es obligatorio"
+										id="code" value="#{createEmployeeBean.employee.employeeCode}"
+										required="true" />
+								</p>
+								<p>
+									<p:inputText label="Bruto anual" id="bruto"
+										requiredMessage="El bruto anual es obligatorio"
+										value="#{createEmployeeBean.employee.annualGrossSalary}"
+										required="true"
+										validationMessage="Solo se acepta un rango de valores del 0 a un millon">
+										<f:validateDoubleRange minimum="0.0" maximum="1000000.0"
+											for="bruto" />
+									</p:inputText>
+								</p>
+								<p>
+									<h:selectOneMenu label="Contrato"
+										value="#{createEmployeeBean.selectedContractId}">
+										<f:selectItems value="#{createEmployeeBean.items}" />
+									</h:selectOneMenu>
+								</p>
+							</div>
+							<div class="ui-grid-col-6">
+								<h:selectManyCheckbox styleClass="left" label="Roles:"
+									value="#{createEmployeeBean.checkedRoles}"
+									layout="pageDirection">
+									<f:selectItems value="#{createEmployeeBean.roles}" var="role"
+										itemLabel="#{role}" itemValue="#{role}" />
+								</h:selectManyCheckbox>
+
+								<p:commandButton value="Crear" icon="ui-icon-disk"
+									action="#{createEmployeeBean.process}" />
+								<p:button outcome="index.xhtml" value="Volver"
+									icon="ui-icon-arrowreturn-1-w" ajax="false" />
+							</div>
+						</div>
+					</div>
+				</h:form>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

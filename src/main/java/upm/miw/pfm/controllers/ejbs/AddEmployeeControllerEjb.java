@@ -27,4 +27,9 @@ public class AddEmployeeControllerEjb implements AddEmployeeController {
         return DaoFactory.getFactory().getContractDao().findAll();
     }
 
+	@Override
+	public Contract getContract(int selectedContractId) {
+		return DaoFactory.getFactory().getContractDao().read(selectedContractId);
+	}
+
 }
