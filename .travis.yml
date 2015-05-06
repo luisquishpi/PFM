@@ -2,4 +2,4 @@ language: java
 jdk: oraclejdk8
 script: mvn test
 before_script:
-  - mysql -e 'create database pfm-test;'
+  - mysql -e 'create database pfm_test;'
