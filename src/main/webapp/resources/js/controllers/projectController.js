@@ -1,6 +1,6 @@
 /**
  * AngularJS ProjectController
- */
+ 
 projectApp.controller(
 	  'projectController', function ($scope, test) {  
 	  
@@ -64,3 +64,4 @@ projectApp.controller(
 	  }
 	  	   
 });
+*/
