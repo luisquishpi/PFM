@@ -63,10 +63,12 @@ public class SetScheduleControllerMockTest {
         assertEquals(8, controller.getProjectSchedule(1).getFridayHours(), DELTA);
         assertEquals(0, controller.getProjectSchedule(1).getSaturdayHours(), DELTA);
         assertEquals(0, controller.getProjectSchedule(1).getSundayHours(), DELTA);
-        /*
+        
         List<WorkDay> workdays = controller.getProjectSchedule(1).getWorkDaysArray();
         for(int i=1;i<6;i++){
         	assertTrue(workdays.get(i).getWorkHours()>0);
-        }*/
+        }
+        assertTrue(workdays.get(0).getWorkHours()==0);
+        assertTrue(workdays.get(6).getWorkHours()==0);
     }
 }

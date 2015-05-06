@@ -18,4 +18,10 @@ public class WorkDay implements Serializable {
 	public void setWorkHours(Double workHours) {
 		this.workHours = workHours;
 	}
+
+	@Override
+	public String toString() {
+		return "WorkDay [workHours=" + workHours + "]";
+	}
+
 }
