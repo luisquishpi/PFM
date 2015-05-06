@@ -73,7 +73,7 @@ public class SetScheduleControllerTest {
         assertEquals(0, setScheduleController.getProjectSchedule(project.getId()).getSundayHours(),
                 DELTA);
 
-        List<WorkDay> workdays = setScheduleController.getProjectSchedule(1).getWorkDaysArray();
+        List<WorkDay> workdays = setScheduleController.getProjectSchedule(project.getId()).getWorkDaysArray();
         for (int i = 1; i < 6; i++) {
             assertTrue(workdays.get(i).getWorkHours() > 0);
         }
