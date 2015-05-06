@@ -41,11 +41,7 @@ projectApp.controller(
 	  $scope.workMonths = function(){
 		  return $scope.workDays/$scope.projectBean.projectSchedule.workDays;
 	  }
-	  	  
-	  $scope.workHours = function(){
-		  return 1;
-	  }
-	  
+	  	  	  
 	  $scope.costNaturalMonth = function(){
 		  return (($scope.projectBean.project.cost/$scope.naturalMonths()).toFixed(2)/1);
 	  }
@@ -63,7 +59,7 @@ projectApp.controller(
 	  }
 	  
 	  $scope.costWorkHour = function(){
-		  return $scope.projectBean.project.cost/$scope.workHours();
+		  return $scope.projectBean.project.cost/$scope.workHours;
 	  }
 	  	   
 });
