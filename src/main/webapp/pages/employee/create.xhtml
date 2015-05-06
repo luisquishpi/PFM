@@ -16,50 +16,67 @@
 		<ui:define name="header">
             Añadir empleado
         </ui:define>
-        <ui:define name="css">
+		<ui:define name="css">
 			<link href="/PFM/resources/css/bootstrap/css/bootstrap.min.css"
 				rel="stylesheet" />
 		</ui:define>
-        <ui:define name="content">
-	        <div class="main-grid main-body-grid">
-	        	<h:form>
-	        		<p:growl id="growl" sticky="true" />
-	        		<div class="ui-grid ui-grid-responsive">
-					    <div class="ui-grid-row">
-								<div class="ui-grid-col-6">
-										<p>
-											<p:inputText label="Nombre" requiredMessage="El nombre es obligatorio" id="name" value="#{createEmployeeBean.employee.name}" required="true" />
-										</p>
-										<p>
-											<p:inputText label="Apellidos" requiredMessage="Los apellidos son obligatorios" id="surname" value="#{createEmployeeBean.employee.surname}" required="true" />
-										</p>
-										<p>
-											<p:inputText label="Codigo de empleado" requiredMessage="El codigo de empleado es obligatorio" id="code" value="#{createEmployeeBean.employee.employeeCode}" required="true" />
-										</p>
-										<p>
-											<p:inputText label="Bruto anual" requiredMessage="El bruto anual es obligatorio" id="bruto" value="#{createEmployeeBean.employee.annualGrossSalary}" required="true" />
-										</p>
-										<p>
-											<h:selectOneMenu label="Contrato" id="contract" value="#{createEmployeeBean.employee.contract}">
-											   	<f:selectItems value="#{createEmployeeBean.contracts}" var="contract" 
-		        									itemLabel="#{contract.contractType}" itemValue="#{contract.id}" />  
-											</h:selectOneMenu>
-										</p>	
-								</div>
-								<div class="ui-grid-col-6">				
-										<h:selectManyCheckbox styleClass="left" label="Roles:" value="#{createEmployeeBean.employee.roles}" layout="pageDirection">
-										   	<f:selectItems value="#{createEmployeeBean.roles}" var="role" 
-	        									itemLabel="#{role}" itemValue="#{role}"/>
-										</h:selectManyCheckbox>
-										
-										<p:commandButton value="Crear" icon="ui-icon-disk" action="#{createEmployeeBean.process}"
-											update="growl" />
-								</div>
+		<ui:define name="content">
+			<div class="main-grid main-body-grid">
+				<h:form>
+					<div class="ui-grid ui-grid-responsive">
+						<div class="ui-grid-row">
+							<div class="ui-grid-col-6">
+								<p>
+									<p:inputText label="Nombre"
+										requiredMessage="El nombre es obligatorio" id="name"
+										value="#{createEmployeeBean.employee.name}" required="true" />
+								</p>
+								<p>
+									<p:inputText label="Apellidos"
+										requiredMessage="Los apellidos son obligatorios" id="surname"
+										value="#{createEmployeeBean.employee.surname}" required="true" />
+								</p>
+								<p>
+									<p:inputText label="Codigo de empleado"
+										requiredMessage="El codigo de empleado es obligatorio"
+										id="code" value="#{createEmployeeBean.employee.employeeCode}"
+										required="true" />
+								</p>
+								<p>
+									<p:inputText label="Bruto anual" id="bruto"
+										requiredMessage="El bruto anual es obligatorio" id="bruto"
+										value="#{createEmployeeBean.employee.annualGrossSalary}"
+										required="true"
+										validationMessage="Solo se acepta un rango de valores del 0 a un millon">
+										<f:validateDoubleRange minimum="0.0" maximum="1000000.0"
+											for="bruto" />
+									</p:inputText>
+								</p>
+								<p>
+									<h:selectOneMenu label="Contrato"
+										value="#{createEmployeeBean.selectedContractId}">
+										<f:selectItems value="#{createEmployeeBean.items}" />
+									</h:selectOneMenu>
+								</p>
+							</div>
+							<div class="ui-grid-col-6">
+								<h:selectManyCheckbox styleClass="left" label="Roles:"
+									value="#{createEmployeeBean.checkedRoles}"
+									layout="pageDirection">
+									<f:selectItems value="#{createEmployeeBean.roles}" var="role"
+										itemLabel="#{role}" itemValue="#{role}" />
+								</h:selectManyCheckbox>
+
+								<p:commandButton value="Crear" icon="ui-icon-disk"
+									action="#{createEmployeeBean.process}" />
+								<p:button outcome="index.xhtml" value="Volver"
+									icon="ui-icon-arrowreturn-1-w" ajax="false" />
+							</div>
 						</div>
 					</div>
-	        	</h:form>
-	       	</div>
-        </ui:define>
+				</h:form>
+			</div>
+		</ui:define>
 	</ui:composition>
 </h:body>
 </html>
