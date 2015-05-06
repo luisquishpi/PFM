@@ -78,7 +78,7 @@ public class ProjectControllerTest {
     
     @After
     public void after() {
-        DaoFactory.getFactory().getProjectDao().query("delete from project");
+        DaoFactory.getFactory().getProjectDao().query("delete from Project");
     }
 
 }

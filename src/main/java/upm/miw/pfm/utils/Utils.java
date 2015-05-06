@@ -6,6 +6,8 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Utils {
+    
+    public static String DD_MM_YYYY_FORMAT = "dd/MM/yyyy";
 
     public static Date buildDate(int year, int month, int day) {
         return new Calendar.Builder().setDate(year, month, day).build().getTime();

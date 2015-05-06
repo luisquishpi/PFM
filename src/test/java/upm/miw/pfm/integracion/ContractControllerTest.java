@@ -67,6 +67,6 @@ public class ContractControllerTest {
     
     @After
     public void after() {
-        DaoFactory.getFactory().getContractDao().query("delete from contract");
+        DaoFactory.getFactory().getContractDao().query("delete from Contract");
     }
 }
