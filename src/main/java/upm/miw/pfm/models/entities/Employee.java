@@ -123,6 +123,10 @@ public class Employee {
     public void setRoles(Set<RoleType> roles) {
         this.roles = roles;
     }
+    
+    public String getFullName(){
+        return this.getName() + " " + this.getSurname();
+    }
 
     @Override
     public int hashCode() {
