@@ -1,10 +1,10 @@
 /**
  * AngularJS ProjectController
  */
-projectApp.controller(
-	  'projectController', function ($scope, test) {  
-	  
-	  !test && initJSFScope($scope);
+projectApp.controller('projectController', function ($scope, $isTest) {  
+	if(!$isTest){
+		  initJSFScope($scope);
+	  }
 	  var start;
 	  var end;
 	  

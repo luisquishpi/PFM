@@ -1,9 +1,11 @@
-/*
+/**
+ * Test de controlador de angularjs: projectController
+ */
 describe("Test projectController", function(){
 	
 	beforeEach(module("projectApp"));
 	
-	var projectCtrl, scope;
+	var controller, scope;
 	
 	beforeEach(inject(function($controller, $rootScope){
 		scope = $rootScope;
@@ -20,9 +22,9 @@ describe("Test projectController", function(){
 						  'workDays':21
 				  }
 		};
-		sampleCtrl = $controller("projectController", {
+		controller = $controller("projectController", {
 			$scope: scope,
-			test: true
+			$isTest: true
 		});
 		scope.$digest();
 	}));
@@ -68,4 +70,3 @@ describe("Test projectController", function(){
 	});
 	
 })
-*/
