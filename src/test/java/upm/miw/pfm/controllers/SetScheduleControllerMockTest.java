@@ -1,11 +1,9 @@
 package upm.miw.pfm.controllers;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -16,7 +14,6 @@ import upm.miw.pfm.mocks.MockProjectScheduleDao;
 import upm.miw.pfm.models.entities.Project;
 import upm.miw.pfm.models.entities.ProjectSchedule;
 import upm.miw.pfm.utils.Utils;
-import upm.miw.pfm.utils.WorkDay;
 
 public class SetScheduleControllerMockTest {
 
