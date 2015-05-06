@@ -1,7 +1,7 @@
 /**
  * AngularJS ProjectController
  */
-projectApp.controller('projectController', function ($scope, $isTest) {  
+projectApp.controller("projectController", function ($scope, $isTest) {  
 	if(!$isTest){
 		  initJSFScope($scope);
 	  }
@@ -12,7 +12,7 @@ projectApp.controller('projectController', function ($scope, $isTest) {
 	  $scope.workHours = 0;
 	  $scope.naturalDays = 0;
 
-	  $scope.$watchGroup(['projectBean.project.startString', 'projectBean.project.endString'], function(newValues, oldValues, scope) {
+	  $scope.$watchGroup(["projectBean.project.startString", "projectBean.project.endString"], function(newValues, oldValues, scope) {
 		  var days=0;
 		  var hours=0;
 		  if($isTest){
@@ -23,8 +23,8 @@ projectApp.controller('projectController', function ($scope, $isTest) {
 			  start = moment($scope.projectBean.project.startString, "DD/MM/YYYY");
 			  end = moment($scope.projectBean.project.endString, "DD/MM/YYYY");
 		  }
-		  end = end.add(1,'days');
-		  for (var m = moment(start); m.isBefore(end); m.add(1, 'days')) {
+		  end = end.add(1,"days");
+		  for (var m = moment(start); m.isBefore(end); m.add(1, "days")) {
 			  var workHours = $scope.workingDays[m.day()].workHours;
 			  if(workHours>0){
 				  days++;
@@ -33,7 +33,7 @@ projectApp.controller('projectController', function ($scope, $isTest) {
 			}
 		  $scope.workDays = days;
 		  $scope.workHours = hours;
-		  $scope.naturalDays= end.diff(start,'days');
+		  $scope.naturalDays= end.diff(start,"days");
 	  });
 	  
 	  $scope.naturalMonths = function(){
