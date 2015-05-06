@@ -37,9 +37,9 @@ public class CreateProjectBean {
         projectSchedule.setTuesdayHours(8.00);
         projectSchedule.setWednesdayHours(8.00);
         projectSchedule.setThursdayHours(8.00);
-        projectSchedule.setFridayHours(5.00);
-        projectSchedule.setSaturdayHours(5.00);
-        projectSchedule.setSundayHours(5.00);
+        projectSchedule.setFridayHours(8.00);
+        projectSchedule.setSaturdayHours(0.00);
+        projectSchedule.setSundayHours(0.00);
         projectSchedule.setWorkDays(21);
 
         projectSchedule.setProject(project);
