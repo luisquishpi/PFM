@@ -46,4 +46,9 @@ public class MockEmployeeDao extends MockUp<EmployeeDaoHibernate>{
 	public void update(Employee employee) {
 		this.employee = employee;
 	}
+	
+	@Mock
+	public List<Employee> findAllWithoutRoles(){
+	    return listEmployee;
+	}
 } 

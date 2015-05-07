@@ -76,6 +76,15 @@ public class ProjectControllerTest {
         assertEquals(0, projectController.listProjects().size());
     }
     
+    @Test
+    public void testUpdateProyect(){
+    	projectController.createProject(project);
+    	project.setIterationDays(12.3);
+    	projectController.updateProject(project);
+    	Project project2 = projectController.getProyect(project.getId());
+    	assertEquals(project2, project);
+    }
+    
     @After
     public void after() {
         DaoFactory.getFactory().getProjectDao().query("delete from Project");
