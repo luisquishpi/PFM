@@ -13,4 +13,6 @@ public interface AddEmployeeController {
 
     public List<Contract> listContracts();
 
+	public Contract getContract(int selectedContractId);
+
 }

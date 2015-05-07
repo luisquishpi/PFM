@@ -73,8 +73,8 @@ public class EmployeeDaoTest {
         employeeList.add(employee2);
         employeeDao.create(employee2);
 
-        assertEquals(employeeDao.findAll().size(), employeeList.size());
-        assertEquals(employeeDao.findAll(), employeeList);
+        assertEquals(employeeDao.findAllWithoutRoles().size(), employeeList.size());
+        assertEquals(employeeDao.findAllWithoutRoles(), employeeList);
     }
 
     @Test
@@ -136,9 +136,9 @@ public class EmployeeDaoTest {
 
     @After
     public void after() {
-        List<Employee> employeeList = employeeDao.findAll();
-        for (Employee employee : employeeList) {
-            employeeDao.deleteById(employee.getId());
+        List<Employee> employeeList = employeeDao.findAllWithoutRoles();
+        for (Employee tmpEmployee : employeeList) {
+            employeeDao.deleteById(tmpEmployee.getId());
         }
         contractDao.query("delete from Contract");
     }
