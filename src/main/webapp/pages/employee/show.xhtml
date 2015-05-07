@@ -36,27 +36,34 @@ td {
 						style="font-weight: bold" />
 
 					<h:outputText value="Bruto anual" />
-					<h:outputText
-						value="#{getEmployeeBean.employee.annualGrossSalary}&euro;"
-						style="font-weight: bold" />
+					<h:outputText value="#{getEmployeeBean.employee.annualGrossSalary}"
+						style="font-weight: bold">
+						<f:convertNumber maxFractionDigits="2" />
+					</h:outputText>
 
 					<h:outputText value="Total anual" />
-					<h:outputText
-						value="#{getEmployeeBean.employee.getAnnualNetSalary()}&euro;"
-						style="font-weight: bold" />
+					<h:outputText value="#{getEmployeeBean.employee.annualNetSalary}"
+						style="font-weight: bold">
+						<f:convertNumber maxFractionDigits="2" />
+					</h:outputText>
 
 					<h:outputText value="Total mensual" />
-					<h:outputText
-						value="#{getEmployeeBean.employee.getMonthlySalary()}&euro;"
-						style="font-weight: bold" />
+					<h:outputText value="#{getEmployeeBean.employee.monthlySalary}"
+						style="font-weight: bold">
+						<f:convertNumber maxFractionDigits="2" />
+					</h:outputText>
 
 					<h:outputText value="Total día" />
-					<h:outputText value="#{getEmployeeBean.getDaySalary()}&euro;"
-						style="font-weight: bold" />
+					<h:outputText value="#{getEmployeeBean.daySalary}"
+						style="font-weight: bold">
+						<f:convertNumber maxFractionDigits="2" />
+					</h:outputText>
 
 					<h:outputText value="Total hora" />
-					<h:outputText value="#{getEmployeeBean.getHourSalary()}&euro;"
-						style="font-weight: bold" />
+					<h:outputText value="#{getEmployeeBean.hourSalary}"
+						style="font-weight: bold">
+						<f:convertNumber maxFractionDigits="2" />
+					</h:outputText>
 
 				</h:panelGrid>
 			</p:panel>
