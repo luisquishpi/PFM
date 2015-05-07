@@ -7,16 +7,16 @@ describe("Test TheoricalPhaseController", function(){
 	beforeEach(inject(function($controller, $rootScope){
 		scope = $rootScope;
 		scope.theoricalPhaseBean = {
-				  'cost': 85000,
-				  'start': '2015-03-02',
-				  'end': '2015-09-04',
-				  'workHours': 1064.0,
-				  'workDays': 133,
-				  'workMonths': 6.3,
-				  'naturalDays': 187,
-				  'mediumCostMonth':2581.68,
-				  'mediumCostDay':122.94,
-				  'mediumCostHour':15.37
+				  cost: 85000,
+				  start: '2015-03-02',
+				  end: '2015-09-04',
+				  workHours: 1064.0,
+				  workDays: 133,
+				  workMonths: 6.3,
+				  naturalDays: 187,
+				  mediumCostMonth: 2581.68,
+				  mediumCostDay: 122.94,
+				  mediumCostHour: 15.37
 		};
 		sampleCtrl = $controller("theoricalPhaseController", {
 			$scope: scope,
