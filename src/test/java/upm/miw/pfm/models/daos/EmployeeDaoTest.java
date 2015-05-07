@@ -6,8 +6,10 @@ import static org.junit.Assert.assertNull;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -61,6 +63,18 @@ public class EmployeeDaoTest {
     public void testDeleteById() {
         employeeDao.deleteById(employee.getId());
         assertNull(employeeDao.read(employee.getId()));
+    }
+
+    @Test
+    public void testFindAll() {
+        List<Employee> employeeList = new ArrayList<Employee>();
+        employeeList.add(employee);
+        Employee employee2 = new Employee("José", "Pacheco", "0922596192", 1500.00, contract);
+        employeeList.add(employee2);
+        employeeDao.create(employee2);
+
+        assertEquals(employeeDao.findAllWithoutRoles().size(), employeeList.size());
+        assertEquals(employeeDao.findAllWithoutRoles(), employeeList);
     }
 
     @Test
@@ -118,6 +132,15 @@ public class EmployeeDaoTest {
         employeeDao.update(employeePreUpdate);
         Employee employeePostUpdate = employeeDao.read(employee.getId());
         assertEquals(true, employeePostUpdate.getRoles().isEmpty());
+    }
+
+    @After
+    public void after() {
+        List<Employee> employeeList = employeeDao.findAllWithoutRoles();
+        for (Employee tmpEmployee : employeeList) {
+            employeeDao.deleteById(tmpEmployee.getId());
+        }
+        contractDao.query("delete from Contract");
     }
 
 }

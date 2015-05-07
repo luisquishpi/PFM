@@ -63,9 +63,7 @@ td {
 			<br />
 			<p:dataList value="#{getEmployeeBean.employee.roles}" var="rol"
 				type="ordered">
-				<f:facet name="header">
-                         Roles
-                </f:facet>
+				<f:facet name="header">Roles</f:facet>
                        #{rol.description}
             </p:dataList>
 			<br />

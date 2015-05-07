@@ -6,6 +6,6 @@ public interface SetScheduleController {
 
     public void setProjectSchedule(ProjectSchedule projectSchedule);
 
-    public ProjectSchedule getProjectSchedule(int id);
+    public ProjectSchedule getProjectSchedule(int projectId);
 
 }

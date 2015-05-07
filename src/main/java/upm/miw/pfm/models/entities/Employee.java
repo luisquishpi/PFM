@@ -14,7 +14,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import upm.miw.pfm.utils.RoleType;
@@ -39,7 +39,7 @@ public class Employee {
     @Column(name = "annual_gross_salary", nullable = false)
     private Double annualGrossSalary;
 
-    @OneToOne(cascade = CascadeType.REFRESH, optional = false)
+    @ManyToOne(cascade = CascadeType.REFRESH, optional = false)
     private Contract contract;
 
     @ElementCollection(targetClass = RoleType.class, fetch = FetchType.EAGER)
@@ -54,6 +54,7 @@ public class Employee {
 
     public Employee(String name, String surname, String employeeCode, Double annualGrossSalary,
             Contract contract) {
+        this();
         this.name = name;
         this.surname = surname;
         this.employeeCode = employeeCode;
@@ -163,12 +164,4 @@ public class Employee {
                 && contract.equals(other.contract) && employeeCode.equals(other.employeeCode)
                 && roles.containsAll(other.roles);
     }
-
-    @Override
-    public String toString() {
-        return "Employee [id=" + id + ", name=" + name + ", surname=" + surname + ", employeeCode="
-                + employeeCode + ", annualGrossSalary=" + annualGrossSalary + ", contract="
-                + contract + ", roles=" + roles + "]";
-    }
-
 }
