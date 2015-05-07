@@ -26,3 +26,7 @@ puilabel, label{
 .left label{
 	text-align: left !important;
 }
+
+.center{
+	text-align:center;
+}
