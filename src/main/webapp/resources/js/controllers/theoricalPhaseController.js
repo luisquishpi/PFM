@@ -24,11 +24,11 @@ projectApp.controller("theoricalPhaseController", function ($scope, $isTest) {
 	}
 	
 	$scope.initStartDate = function(){
-		  return new Date("2/3/2015");
+		  return "02/03/2015";
 	}
 	
 	$scope.initEndDate = function(){
-		  return new Date("20/3/2015");
+		  return "20/03/2015";
 	}
 	
 	$scope.iterationAverageHours = function(){
@@ -37,6 +37,10 @@ projectApp.controller("theoricalPhaseController", function ($scope, $isTest) {
 	
 	$scope.iterationAverageDays = function(){
 		  return 13.3;
+	}
+	
+	$scope.iterationAverageMonths = function(){
+		return 0.63;
 	}
 	
 	$scope.ElabHours = function(){
@@ -52,11 +56,11 @@ projectApp.controller("theoricalPhaseController", function ($scope, $isTest) {
 	}
 	
 	$scope.ElabStartDate = function(){
-		  return new Date("21/3/2015");
+		  return "21/03/2015";
 	}
 	
 	$scope.ElabEndDate = function(){
-		  return new Date("15/5/2015");
+		  return "15/05/2015";
 	}
 	
 	$scope.ConstrHours = function(){
@@ -72,19 +76,19 @@ projectApp.controller("theoricalPhaseController", function ($scope, $isTest) {
 	}
 	
 	$scope.ConstrStartDate = function(){
-		  return new Date("16/5/2015");
+		  return "16/05/2015";
 	}
 	
 	$scope.ConstrEndDate = function(){
-		  return new Date("17/5/2015");
+		  return "17/05/2015";
 	}
 	
 	$scope.transStartDate = function(){
-		  return new Date("18/8/2015");
+		  return "18/08/2015";
 	}
 	
 	$scope.transEndDate = function(){
-		  return new Date("5/9/2015");
+		  return "05/09/2015";
 	}
 	
 	$scope.initCost = function(){
