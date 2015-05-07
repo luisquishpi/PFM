@@ -24,5 +24,16 @@
             <redirect />
         </navigation-case>
     </navigation-rule>	
+    
+    <navigation-rule>
+        <display-name>pages/employee/create.xhtml</display-name>
+        <from-view-id>/pages/employee/create.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{createEmployeeBean.process}</from-action>
+            <from-outcome>index</from-outcome>
+            <to-view-id>/pages/employee/index.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>	
 
 </faces-config>

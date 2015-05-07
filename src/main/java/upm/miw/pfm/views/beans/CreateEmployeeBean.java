@@ -8,7 +8,7 @@ import java.util.Set;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 import javax.faces.model.SelectItem;
 
 import org.apache.logging.log4j.LogManager;
@@ -19,7 +19,7 @@ import upm.miw.pfm.models.entities.Employee;
 import upm.miw.pfm.utils.RoleType;
 
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class CreateEmployeeBean {
 
     private Employee employee;
