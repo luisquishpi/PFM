@@ -2,25 +2,29 @@
  * AngularJS theoricalPhaseController
  */
 
-projectApp.controller("theoricalPhaseController", function ($scope, $isTest) {  
+projectApp.controller("theoricalPhaseController", ['$scope', '$controller', function ($scope, $controller, $isTest) {  
 	if(!$isTest){
 		  initJSFScope($scope);
-	  }
+	 }
+	
+	var projectControllerViewModel = $scope.$new();
+	
+	$controller('projectController',{$scope : projectControllerViewModel });                                                                                                                                                                                     
 	
 	$scope.recomendedDays = function(){
 		  return 13.3;
 	}
 	
 	$scope.initTransHours = function(){
-		  return 106.4;
+		  return projectControllerViewModel.workhours/10;
 	}
 	
 	$scope.initTransDays = function(){
-		  return 13.3;
+		  return projectControllerViewModel.workdays/10;
 	}
 	
 	$scope.initTransMonths = function(){
-		  return 0.63;
+		  return projectControllerViewModel.workmonths/10;
 	}
 	
 	$scope.initStartDate = function(){
@@ -263,4 +267,4 @@ projectApp.controller("theoricalPhaseController", function ($scope, $isTest) {
 		  return 3.29;
 	}
 	
-});
+}]);
