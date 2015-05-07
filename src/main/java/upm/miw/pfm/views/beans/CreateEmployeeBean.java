@@ -88,8 +88,6 @@ public class CreateEmployeeBean {
         
         employee.setContract(addEmployeeController.getContract(selectedContractId));
         
-        //employee.setContract(this.getContracts().get(0));
-        System.out.println(employee);
         addEmployeeController.addEmployee(employee);
         LogManager.getLogger(clazz).debug("Creación de empleado " + employee);
         return "index";
