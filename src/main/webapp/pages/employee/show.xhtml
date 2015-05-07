@@ -15,7 +15,7 @@ td {
 </style>
 	</ui:define>
 	<ui:define name="header">
-            Consulta de Empleado
+            Consultar Empleado
         </ui:define>
 	<ui:define name="content">
 		<h:form>
@@ -67,16 +67,8 @@ td {
                        #{rol.description}
             </p:dataList>
 			<br />
-			<p:button outcome="index" value="Volver"
+			<p:button outcome="index.html" value="Volver"
 				icon="ui-icon-arrowreturn-1-w">
-			</p:button>
-			<p:button outcome="index.xhtml" value="Nuevo" icon="ui-icon-plus">
-			</p:button>
-			<p:button outcome="index.xhtml" value="Editar" icon="ui-icon-plus">
-			</p:button>
-
-			<p:button outcome="/home.xhtml" value="Ir al inicio"
-				icon="ui-icon-home">
 			</p:button>
 
 		</h:form>
