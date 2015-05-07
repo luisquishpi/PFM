@@ -129,9 +129,18 @@ public class Employee {
     public void setRoles(Set<RoleType> roles) {
         this.roles = roles;
     }
-    
-    public String getFullName(){
+
+    public String getFullName() {
         return this.getName() + " " + this.getSurname();
+    }
+
+    public Double getAnnualNetSalary() {
+        return this.getAnnualGrossSalary()
+                + (this.getAnnualGrossSalary() * (this.getContract().getInsurance() / 100));
+    }
+
+    public Double getMonthlySalary() {
+        return getAnnualNetSalary() / 12;
     }
 
     @Override
