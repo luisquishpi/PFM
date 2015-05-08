@@ -1,7 +1,7 @@
 /**
  * AngularJS HorarioController
  */
-projectApp.controller("scheduleController", function($scope, $isTest) {
+projectApp.controller("scheduleController",['$scope', '$isTest', 'bridgeService', function($scope, $isTest, bridgeService) {
 
 	if(!$isTest){
 		  initJSFScope($scope);
@@ -29,4 +29,28 @@ projectApp.controller("scheduleController", function($scope, $isTest) {
 	$scope.hoursPerYear = function() {
 		return $scope.hoursPerDay() * $scope.daysPerYear();
 	}
-});
+	$scope.$watchGroup(["projectBean.projectSchedule.mondayHours",
+	                    "projectBean.projectSchedule.tuesdayHours",
+	                    "projectBean.projectSchedule.wednesdayHours",
+	                    "projectBean.projectSchedule.thursdayHours",
+	    				"projectBean.projectSchedule.fridayHours",
+	    				"projectBean.projectSchedule.saturdayHours",
+	    				"projectBean.projectSchedule.sundayHours",
+	    				"projectBean.projectSchedule.workDays"
+	                    ], function(newValues, oldValues, scope) {
+		console.log("escribiendo")
+		bridgeService.shareData=scope;
+	  });
+	$scope.listHoursEachDay = function(){
+		var lista = [];
+		
+		lista.push({workHours:$scope.projectBean.projectSchedule.sundayHours});
+		lista.push({workHours:$scope.projectBean.projectSchedule.mondayHours});
+		lista.push({workHours:$scope.projectBean.projectSchedule.tuesdayHours});
+		lista.push({workHours:$scope.projectBean.projectSchedule.wednesdayHours});
+		lista.push({workHours:$scope.projectBean.projectSchedule.thursdayHours});
+		lista.push({workHours:$scope.projectBean.projectSchedule.fridayHours});
+		lista.push({workHours:$scope.projectBean.projectSchedule.saturdayHours});
+		return lista;
+	}
+}]);
