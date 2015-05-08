@@ -10,13 +10,15 @@
 	xmlns:p="http://primefaces.org/ui">
 <h:body ng-controller="scheduleController">
 	<ui:composition template="#{root}/WEB-INF/template/commonLayout.xhtml">
+		<ui:define name="header">
+            Crear Proyecto
+        </ui:define>  
 		<ui:define name="javascript">
 			<script>
-				app.value("test", false);
-				var projectApp = angular.module('projectApp', [ "angularfaces",
-						'ngAnimate', 'ui.bootstrap' ]);
+				var projectApp = angular.module('projectApp', [ "angularfaces",'ngAnimate', 'ui.bootstrap' ]);
 			</script>
 			<script src="/PFM/resources/js/libs/moment.js"></script>
+			<script src="/PFM/resources/js/controllers/projectApp.js"></script>
 			<script src="/PFM/resources/js/controllers/scheduleController.js"></script>
 			<script src="/PFM/resources/js/controllers/projectController.js"></script>
 			<script
@@ -29,6 +31,11 @@
 		</ui:define>
 		<ui:define name="css">
 			<link href="/PFM/resources/css/wizard.css" rel="stylesheet" />
+			<style>
+				.ng-isolate-scope{
+					
+				}
+			</style>
 		</ui:define>
 		<ui:define name="header">
             Crear Proyecto
@@ -38,20 +45,19 @@
 			<h:form ng-app="projectApp">
 				<div novalidate="" ng-controller="wizardController" ng-form="" id="scheduleForm" name="scheduleForm">
 					<div>
-						<div>
-							<div class="btn-group">
-								<button class="btn" onclick="return false;" ng-class="{'btn-primary':isCurrentStep(0)}" >Establecer horario</button>
-								<button class="btn" onclick="return false;" ng-class="{'btn-primary':isCurrentStep(1)}">Establecer variables proyecto</button>
-							</div>
+						<div class="btn-group">
+							<button class="btn" onclick="return false;" ng-class="{'btn-primary':isCurrentStep(0)}" >Establecer horario</button>
+							<button class="btn" onclick="return false;" ng-class="{'btn-primary':isCurrentStep(1)}">Establecer variables proyecto</button>
+						</div>
 							<div ng-switch="getCurrentStep()" class="slide-frame">
 								<div ng-switch-when="one" class="wave">	
 									<fieldset ng-controller="scheduleController">
 										<div class="row">
 											<div class="col-lg-3">
-												<label>Días laborales/mes </label>	
+												<p:outputLabel for="workDays" value="Días laborales/mes" />	
 											</div>
 											<div class="col-lg-2">
-												<p:inputText id="workDays" value="{{projectBean.projectSchedule.workDays}}" ng-required="true" label=""/>
+												<p:inputText id="workDays" value="{{projectBean.projectSchedule.workDays}}" ng-required="true" />
 											</div>
 											<div class="col-lg-2">
 												<label>Lunes </label>	
@@ -280,17 +286,19 @@
 									</fieldset>
 								</div>
 							</div>
-						</div>
 					</div>
 					<div>
 						<a class="btn btn-default" ng-click="handlePrevious()" ng-show="!isFirstStep()">Back</a>
-						<a class="btn btn-primary" ng-click="handleNext()">{{getNextLabel()}}</a>
+						<a class="btn btn-primary" ng-click="handleNext()" ng-show="isFirstStep()">{{getNextLabel()}}</a>
+						<p:commandButton value="Guardar"
+							action="#{createProjectBean.process}" ng-show="!isFirstStep()" icon="ui-icon-disk" update="growl"
+							ajax="false" />
+						<p:button outcome="index.html" value="Volver" icon="ui-icon-arrowreturn-1-w"></p:button>
 					</div>
 				</div>
 			</h:form>
 		</ui:define>
 	</ui:composition>
-
 </h:body>
 
 </html>

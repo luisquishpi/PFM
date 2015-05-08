@@ -1,9 +1,11 @@
 /**
  * AngularJS HorarioController
  */
-projectApp.controller("scheduleController", function($scope, test) {
+projectApp.controller("scheduleController", function($scope, $isTest) {
 
-	!test && initJSFScope($scope);
+	if(!$isTest){
+		  initJSFScope($scope);
+	}
 
 	$scope.monthsPerYear = 12;
 	$scope.hoursPerDay = function() {

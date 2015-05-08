@@ -8,6 +8,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -32,8 +33,7 @@ public class ProjectDaoTest {
     }
 
     @Test
-    public void createAndReadTest() {
-        System.out.println(projectDao.read(project.getId()));
+    public void testCreateAndRead() {
         assertEquals(projectDao.read(project.getId()), project);
     }
 
@@ -61,7 +61,23 @@ public class ProjectDaoTest {
         projects.add(project2);
         projectDao.create(project2);
 
+        assertEquals(projectDao.findAll().size(), projects.size());
         assertEquals(projectDao.findAll(), projects);
+    }
+
+    @Test
+    public void testSetIterationDays() {
+        project.setIterationDays(15.0);
+        projectDao.update(project);
+        Project postUpdateProject = projectDao.read(project.getId());
+        assertEquals(postUpdateProject.getIterationDays().intValue(), project.getIterationDays()
+                .intValue());
+        assertEquals(postUpdateProject, project);
+    }
+
+    @After
+    public void after() {
+        projectDao.query("delete from Project");
     }
 
 }

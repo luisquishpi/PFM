@@ -16,6 +16,17 @@
 .padding-table{
 	padding-bottom:20px;
 }
+
+puilabel, label{
+	display: inline-block;
+}
 .ui-growl{
    top: 20px !important;
+}
+.left label{
+	text-align: left !important;
+}
+
+.center{
+	text-align:center;
 }

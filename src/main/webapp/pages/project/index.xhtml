@@ -10,7 +10,8 @@
         <ui:define name="header">
             Proyectos
         </ui:define>        
-        <ui:define name="content">                
+        <ui:define name="content"> 
+        <p:growl id="growl" sticky="true" />               
             <h:form>
             <p:dataTable var="project" value="#{listProjectsBean.projects}">
 			    <p:column width="75%" headerText="Proyectos">
@@ -46,10 +47,11 @@
 			    </p:column>
 			</p:dataTable>
 			</h:form>
-			<div class="" style="padding:5px; margin-top:20px;">
-                <a class="btn btn-default" href="create.xhtml" role="button">Nuevo proyecto</a>
-                <a class="btn btn-default" href="#{request.contextPath}/home.xhtml" role="button">Volver</a>                
-            </div>
+			<br/>
+            <p:button outcome="create.xhtml" value="Nuevo Proyecto" icon="ui-icon-plus">
+					</p:button> 
+            <p:button outcome="/home.xhtml" value="Ir al inicio" icon="ui-icon-home">
+					</p:button>    
         </ui:define>
     </ui:composition>
 </html>

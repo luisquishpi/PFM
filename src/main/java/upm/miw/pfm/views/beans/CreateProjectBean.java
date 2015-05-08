@@ -3,8 +3,10 @@ package upm.miw.pfm.views.beans;
 import java.io.Serializable;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import org.apache.logging.log4j.LogManager;
 import org.primefaces.event.FlowEvent;
@@ -41,9 +43,9 @@ public class CreateProjectBean implements Serializable{
         projectSchedule.setTuesdayHours(8.00);
         projectSchedule.setWednesdayHours(8.00);
         projectSchedule.setThursdayHours(8.00);
-        projectSchedule.setFridayHours(5.00);
-        projectSchedule.setSaturdayHours(5.00);
-        projectSchedule.setSundayHours(5.00);
+        projectSchedule.setFridayHours(8.00);
+        projectSchedule.setSaturdayHours(0.00);
+        projectSchedule.setSundayHours(0.00);
         projectSchedule.setWorkDays(21);
 
         projectSchedule.setProject(project);
@@ -68,6 +70,11 @@ public class CreateProjectBean implements Serializable{
     public String process() {
         projectController.createProject(project);
         LogManager.getLogger(clazz).debug("Creación de proyecto " + project);
+        
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Proyecto creado", "El proyecto ha sido creado con exito"));
+        context.getExternalContext().getFlash().setKeepMessages(true);
+        
         return "index";
     }
     

@@ -22,12 +22,14 @@
 					<p:inputText requiredMessage="El tipo de contrato es obligatorio" id="contractType" value="#{newContractBean.contract.contractType}" required="true" />
 						
 					<p:spacer />
-					<p:outputLabel for="insurance" value="Seguro:" />
+					<p:outputLabel for="insurance" value="Seguro(%):" />
 					<p:inputText requiredMessage="El porcentaje de seguro es obligatorio" id="insurance" value="#{newContractBean.contract.insurance}" required="true" />
 					<p:spacer />
-					<p:commandButton value="Crear" action="#{newContractBean.process}"
-						update="growl" />
 				</h:panelGrid>
+				<p:commandButton value="Crear" icon="ui-icon-disk" action="#{newContractBean.process}"
+						update="growl" />
+				<p:button outcome="index.html" value="Volver" icon="ui-icon-arrowreturn-1-w">
+				</p:button>		
 			</h:form>
 		</ui:define>
 	</ui:composition>

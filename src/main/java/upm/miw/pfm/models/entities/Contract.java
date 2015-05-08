@@ -4,18 +4,20 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Entity(name = "contract")
+@Entity
+@Table(name = "contract")
 public class Contract {
 
     @Id
     @GeneratedValue
     private Integer id;
 
-    @Column(nullable = false)
+    @Column(name="contract_type", nullable = false)
     private String contractType;
 
-    @Column(nullable = false)
+    @Column(name="insurance", nullable = false)
     private Double insurance;
 
     public Contract() {

@@ -1,5 +1,6 @@
 package upm.miw.pfm.models.entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,23 +16,13 @@ import javax.persistence.Transient;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
+import upm.miw.pfm.utils.WorkDay;
+
 @Entity
 @Table(name="project_schedule")
-public class ProjectSchedule {
-
-    public static final Integer MONDAY_INDEX = 1;
-
-    public static final Integer TUESDAY_INDEX = 2;
-
-    public static final Integer WEDNESDAY_INDEX = 3;
-
-    public static final Integer THURSDAY_INDEX = 4;
-
-    public static final Integer FRIDAY_INDEX = 5;
-
-    public static final Integer SATURDAY_INDEX = 6;
-
-    public static final Integer SUNDAY_INDEX = 7;
+public class ProjectSchedule implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 
     @Id
     @Column
@@ -168,29 +159,15 @@ public class ProjectSchedule {
     }
 
     @Transient
-    public List<Integer> getWorkDaysArray() {
-        List<Integer> days = new ArrayList<Integer>();
-        if (getMondayHours() > 0) {
-            days.add(MONDAY_INDEX);
-        }
-        if (getTuesdayHours() > 0) {
-            days.add(TUESDAY_INDEX);
-        }
-        if (getWednesdayHours() > 0) {
-            days.add(WEDNESDAY_INDEX);
-        }
-        if (getThursdayHours() > 0) {
-            days.add(THURSDAY_INDEX);
-        }
-        if (getFridayHours() > 0) {
-            days.add(FRIDAY_INDEX);
-        }
-        if (getSaturdayHours() > 0) {
-            days.add(SATURDAY_INDEX);
-        }
-        if (getSundayHours() > 0) {
-            days.add(SUNDAY_INDEX);
-        }
+    public List<WorkDay> getWorkDaysArray() {
+        List<WorkDay> days = new ArrayList<WorkDay>();
+        days.add(new WorkDay(getSundayHours()));
+        days.add(new WorkDay(getMondayHours()));
+        days.add(new WorkDay(getTuesdayHours()));
+        days.add(new WorkDay(getWednesdayHours()));
+        days.add(new WorkDay(getThursdayHours()));
+        days.add(new WorkDay(getFridayHours()));
+        days.add(new WorkDay(getSaturdayHours()));
         return days;
     }
 

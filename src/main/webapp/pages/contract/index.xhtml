@@ -6,7 +6,11 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <ui:composition template="#{root}/WEB-INF/template/commonLayout.xhtml">
+	<ui:define name="header">
+            Contratos
+        </ui:define> 
 	<ui:define name="content">
+	<p:growl id="growlmsg2" showDetail="true" sticky="true" autoUpdate="true"/>
 		<h:form>
 			<p:dataTable var="contract" value="#{listContractBean.contracts}">
 				<p:column headerText="Nombre">
@@ -22,9 +26,6 @@
 							Opciones <span class="caret"></span>
 						</button>
 						<ul class="dropdown-menu" role="menu">
-							<li><h:outputLink value="show/#{contract.id}">
-									<span class="glyphicon glyphicon-search" aria-hidden="true"></span> Detalles
-                            </h:outputLink></li>
 							<li><h:outputLink value="edit/#{contract.id}">
 									<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar
                             </h:outputLink></li>
@@ -37,10 +38,11 @@
 				</p:column>
 			</p:dataTable>
 		</h:form>
-		<div class="" style="padding:5px; margin-top:20px;">
-                <a class="btn btn-default" href="create.xhtml" role="button">Nuevo Contrato</a>
-                <a class="btn btn-default" href="#" onclick="window.history.back();" role="button">Volver</a>
-            </div>
+		<br/>
+		<p:button outcome="create.xhtml" value="Nuevo Contrato" icon="ui-icon-plus">
+					</p:button> 
+        <p:button outcome="/home.xhtml" value="Ir al inicio" icon="ui-icon-home">
+		</p:button> 
 	</ui:define>
 </ui:composition>
 </html>
