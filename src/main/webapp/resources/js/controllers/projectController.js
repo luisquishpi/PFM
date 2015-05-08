@@ -7,7 +7,7 @@ projectApp.controller("projectController",['$scope', '$isTest', 'bridgeService',
 	  }
 
 	  var start, end;
-	  var schedule = bridgeService.shareData;
+	  $scope.schedule = bridgeService.shareData;
 	  $scope.workDays = 0;
 	  $scope.workHours = 0;
 	  $scope.naturalDays = 0;
@@ -15,9 +15,6 @@ projectApp.controller("projectController",['$scope', '$isTest', 'bridgeService',
 	  function calculateWorkDaysAndHour(){
 		  
 		  var days=0, hours=0;
-		  
-		  console.log(bridgeService.shareData);
-
 		  var re = new RegExp("[0-9]{2}/[0-9]{2}/[0-9]{4}");
 		  var validateStart = ($scope.projectBean.project.startString).match(re);
 		  var validateEnd = ($scope.projectBean.project.endString).match(re); 
@@ -26,7 +23,7 @@ projectApp.controller("projectController",['$scope', '$isTest', 'bridgeService',
 			  end = moment($scope.projectBean.project.endString, "DD/MM/YYYY");
 			  end = end.add(1,"days");
 			  for (var m = moment(start); m.isBefore(end); m.add(1, "days")) {
-				  var workHours = schedule.listHoursEachDay()[m.day()].workHours;
+				  var workHours = $scope.schedule.listHoursEachDay()[m.day()].workHours;
 				  if(workHours>0){
 					  days++;
 				  	  hours+=workHours;
@@ -54,7 +51,9 @@ projectApp.controller("projectController",['$scope', '$isTest', 'bridgeService',
 	  }
 	  
 	  $scope.workMonths = function(){
-		  return $scope.workDays/schedule.workDays;
+		  console.log($scope.schedule);
+		  console.log($scope.schedule.workDays);
+		  return $scope.workDays/$scope.schedule.workDays;
 	  }
 	  	  	  
 	  $scope.costNaturalMonth = function(){

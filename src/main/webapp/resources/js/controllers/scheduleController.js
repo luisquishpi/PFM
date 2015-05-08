@@ -6,7 +6,8 @@ projectApp.controller("scheduleController",['$scope', '$isTest', 'bridgeService'
 	if(!$isTest){
 		  initJSFScope($scope);
 	}
-
+	
+	$scope.workDays = $scope.projectBean.projectSchedule.workDays;
 	$scope.monthsPerYear = 12;
 	$scope.hoursPerDay = function() {
 		return $scope.hoursPerWeek() / 5;
@@ -38,7 +39,6 @@ projectApp.controller("scheduleController",['$scope', '$isTest', 'bridgeService'
 	    				"projectBean.projectSchedule.sundayHours",
 	    				"projectBean.projectSchedule.workDays"
 	                    ], function(newValues, oldValues, scope) {
-		console.log("escribiendo")
 		bridgeService.shareData=scope;
 	  });
 	$scope.listHoursEachDay = function(){

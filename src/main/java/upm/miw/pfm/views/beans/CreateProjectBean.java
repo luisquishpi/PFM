@@ -12,6 +12,7 @@ import org.apache.logging.log4j.LogManager;
 import org.primefaces.event.FlowEvent;
 
 import upm.miw.pfm.controllers.ProjectController;
+import upm.miw.pfm.controllers.SetScheduleController;
 import upm.miw.pfm.models.entities.Project;
 import upm.miw.pfm.models.entities.ProjectSchedule;
 import upm.miw.pfm.utils.Utils;
@@ -29,6 +30,9 @@ public class CreateProjectBean implements Serializable{
 
     @EJB
     private ProjectController projectController;
+    
+    @EJB
+    private SetScheduleController setScheduleController;
 
     public CreateProjectBean() {
         project = new Project();
@@ -69,6 +73,8 @@ public class CreateProjectBean implements Serializable{
 
     public String process() {
         projectController.createProject(project);
+        setScheduleController.setProjectSchedule(projectSchedule);
+        LogManager.getLogger(clazz).debug("Nombre proyecto " + projectSchedule.getProject().getName());
         LogManager.getLogger(clazz).debug("Creación de proyecto " + project);
         
         FacesContext context = FacesContext.getCurrentInstance();

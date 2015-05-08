@@ -15,7 +15,6 @@ projectApp.factory('broadcastService', function($rootScope) {
 
     sharedService.broadcastItem = function() {
         $rootScope.$broadcast('handleBroadcast');
-        console.log("broadcastItem")
     };
 
     return sharedService;
