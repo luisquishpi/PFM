@@ -6,7 +6,7 @@ import upm.miw.pfm.models.entities.Project;
 import upm.miw.pfm.models.entities.ProjectSchedule;
 
 public interface ProjectController {
-    public Project getProyect(Integer id);
+    public Project getProject(Integer id);
 
     public void createProject(Project project);
 
