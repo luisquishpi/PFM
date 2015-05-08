@@ -2,113 +2,117 @@
  * AngularJS theoricalPhaseController
  */
 
-projectApp.controller("theoricalPhaseController", function ($scope, $isTest) {  
+projectApp.controller("theoricalPhaseController", ['$scope', '$controller', function ($scope, $controller, $isTest) {  
 	if(!$isTest){
 		  initJSFScope($scope);
-	  }
+	 }
+	
+	var projectControllerViewModel = $scope.$new();
+	
+	$controller('projectController',{$scope : projectControllerViewModel });                                                                                                                                                                                     
 	
 	$scope.recomendedDays = function(){
 		  return 13.3;
 	}
 	
 	$scope.initTransHours = function(){
-		  return 106.4;
+		  return projectControllerViewModel.workhours/10;
 	}
 	
 	$scope.initTransDays = function(){
-		  return 13.3;
+		  return projectControllerViewModel.workdays/10;
 	}
 	
 	$scope.initTransMonths = function(){
-		  return 0.63;
+		  return projectControllerViewModel.workmonths/10;
 	}
 	
 	$scope.initStartDate = function(){
-		  return "02/03/2015";
+		  return "2/3/2015";
 	}
 	
 	$scope.initEndDate = function(){
-		  return "20/03/2015";
+		  return "20/3/2015";
 	}
 	
 	$scope.iterationAverageHours = function(){
-		  return 106.4;
+		  return projectControllerViewModel.workhours/10;
 	}
 	
 	$scope.iterationAverageDays = function(){
-		  return 13.3;
+		  return projectControllerViewModel.workdays/10;
 	}
 	
 	$scope.iterationAverageMonths = function(){
-		return 0.63;
+		  return projectControllerViewModel.workmonths/10;
 	}
 	
 	$scope.ElabHours = function(){
-		  return 319.2;
+		  return projectControllerViewModel.workhours/30;
 	}
 	
 	$scope.ElabDays = function(){
-		  return 39.9;
+		  return projectControllerViewModel.workdays/30;
 	}
 	
 	$scope.ElabMonths = function(){
-		  return 1.89;
+		  return projectControllerViewModel.workmonths/30;
 	}
 	
 	$scope.ElabStartDate = function(){
-		  return "21/03/2015";
+		  return "21/3/2015";
 	}
 	
 	$scope.ElabEndDate = function(){
-		  return "15/05/2015";
+		  return "15/5/2015";
 	}
 	
 	$scope.ConstrHours = function(){
-		  return 532;
+		  return projectControllerViewModel.workhours/50;
 	}
 	
 	$scope.ConstrDays = function(){
-		  return 66.5;
+		  return projectControllerViewModel.workdays/50;
 	}
 	
 	$scope.ConstrMonths = function(){
-		  return 3.15;
+		  return projectControllerViewModel.workmonths/50;
 	}
 	
 	$scope.ConstrStartDate = function(){
-		  return "16/05/2015";
+		  return "16/5/2015";
 	}
 	
 	$scope.ConstrEndDate = function(){
-		  return "17/05/2015";
+		  return "17/5/2015";
 	}
 	
 	$scope.transStartDate = function(){
-		  return "18/08/2015";
+		  return "18/8/2015";
 	}
 	
 	$scope.transEndDate = function(){
-		  return "05/09/2015";
+		  return "5/9/2015";
 	}
 	
 	$scope.initCost = function(){
-		  return 4250;
+		  return projectControllerViewModel.projectBean.project.cost*0.05;
 	}
 	
 	$scope.initPeopleHour = function(){
-		  return 276.51;
+		  return $scope.initCost()/projectControllerViewModel.costWorkHour();
 	}
 
 	$scope.initPeopleDay = function(){
-		  return 34.57;
+		  return $scope.initCost()/projectControllerViewModel.costWorkDay();
 	}
 	
 	$scope.initPeopleMonth = function(){
-		  return 1.65;
+		  return $scope.initCost()/projectControllerViewModel.costWorkMonth();
 	}
 	
 	$scope.initPeople = function(){
-		  return 2.6;
+		  return $scope.initPeopleHour()/$scope.initTransHours();
 	}
 	
 	$scope.initDistributionIteration = function(){
@@ -128,23 +132,23 @@ projectApp.controller("theoricalPhaseController", function ($scope, $isTest) {
 	}
 	
 	$scope.elabCost = function(){
-		  return 17000;
+		  return projectControllerViewModel.projectBean.project.cost*0.2;
 	}
 	
 	$scope.elabPeopleHour = function(){
-		  return 1106.05;
+		  return $scope.elabCost()/projectControllerViewModel.costWorkHour();
 	}
 	
 	$scope.elabPeopleDay = function(){
-		  return 138.28;
+		  return $scope.elabCost()/projectControllerViewModel.costWorkDay();;
 	}
 	
 	$scope.elabPeopleMonth = function(){
-		  return 6.58;
+		  return $scope.elabCost()/projectControllerViewModel.costWorkMonth();;
 	}
 	
 	$scope.elabPeople = function(){
-		  return 3.47;
+		  return $scope.elabPeopleHour()/$scope.elabHours();
 	}
 	
 	$scope.elabDistributionIteration = function(){
@@ -152,35 +156,35 @@ projectApp.controller("theoricalPhaseController", function ($scope, $isTest) {
 	}
 	
 	$scope.elabPeopleHourIteration = function(){
-		  return 368.68;
+		  return $scope.elabPeopleHour()/3;
 	}
 	
 	$scope.elabPeopleDayIteration = function(){
-		  return 46.09;
+		  return $scope.elabPeopleDay()/3;
 	}
 	
 	$scope.elabPeopleMonthIteration = function(){
-		  return 2.19;
+		  return $scope.elabPeopleMonth()/3;
 	}
 	
 	$scope.constrCost = function(){
-		  return 55250;
+		  return projectControllerViewModel.projectBean.project.cost*0.65;
 	}
 	
 	$scope.constrPeopleHour = function(){
-		  return 3594.66;
+		  return $scope.constrCost()/projectControllerViewModel.costWorkHour();
 	}
 	
 	$scope.constrPeopleDay = function(){
-		  return 449.41;
+		  return $scope.constrCost()/projectControllerViewModel.costWorkDay();
 	}
 	
 	$scope.constrPeopleMonth = function(){
-		  return 21.40;
+		  return $scope.constrCost()/projectControllerViewModel.costWorkMonth();
 	}
 	
 	$scope.constrPeople = function(){
-		  return 6.76;
+		  return $scope.constrPeopleHour()/$scope.constrHours();
 	}
 	
 	$scope.constrDistributionIteration = function(){
@@ -188,35 +192,35 @@ projectApp.controller("theoricalPhaseController", function ($scope, $isTest) {
 	}
 	
 	$scope.constrPeopleHourIteration = function(){
-		  return 718.93;
+		  return $scope.constrPeopleHour()/5;
 	}
 	
 	$scope.constrPeopleDayIteration = function(){
-		  return 89.88;
+		  return $scope.constrPeopleDay()/5;
 	}
 	
 	$scope.constrPeopleMonthIteration = function(){
-		  return 4.28;
+		  return $scope.constrPeopleMonth()/5;
 	}
 	
 	$scope.transCost = function(){
-		  return 8500;
+		  return projectControllerViewModel.projectBean.project.cost*0.1;
 	}
 	
 	$scope.transPeopleHour = function(){
-		  return 553.03;
+		  return $scope.transCost()/projectControllerViewModel.costWorkHour();
 	}
 	
 	$scope.transPeopleDay = function(){
-		  return 69.14;
+		  return $scope.transCost()/projectControllerViewModel.costWorkDay();
 	}
 	
 	$scope.transPeopleMonth = function(){
-		  return 3.29;
+		  return $scope.transCost()/projectControllerViewModel.costWorkMonth();
 	}
 	
 	$scope.transPeople = function(){
-		  return 5.20;
+		  return $scope.transPeopleHour()/$scope.initTransHours();
 	}
 	
 	$scope.transDistributionIteration = function(){
@@ -224,47 +228,47 @@ projectApp.controller("theoricalPhaseController", function ($scope, $isTest) {
 	}
 	
 	$scope.transPeopleHourIteration = function(){
-		  return 553.03;
+		  return $scope.transPeopleHour();
 	}
 	
 	$scope.transPeopleDayIteration = function(){
-		  return 69.14;
+		  return $scope.transPeopleDay();
 	}
 	
 	$scope.transPeopleMonthIteration = function(){
-		  return 3.29;
+		  return $scope.transPeopleMonth();
 	}
 	
-	$scope.proyectPeopleHour = function(){
-		  return 5530.3;
+	$scope.projectPeopleHour = function(){
+		  return projectControllerViewModel.projectBean.project.cost/projectControllerViewModel.costWorkHour();
 	}
 	
-	$scope.proyectPeopleDay = function(){
-		  return 691.39;
+	$scope.projectPeopleDay = function(){
+		  return projectControllerViewModel.projectBean.project.cost/projectControllerViewModel.costWorkDay();;
 	}
 	
-	$scope.proyectPeopleMonth = function(){
-		  return 32.92;
+	$scope.projectPeopleMonth = function(){
+		  return projectControllerViewModel.projectBean.project.cost/projectControllerViewModel.costWorkMonth();;
 	}
 	
-	$scope.proyectPeople = function(){
-		  return 5.20;
+	$scope.projectPeople = function(){
+		  return $scope.projectPeopleHour()/projectControllerViewModel.workhours;
 	}
 	
-	$scope.proyectDistributionIteration = function(){
+	$scope.projectDistributionIteration = function(){
 		  return 10;
 	}
 	
-	$scope.proyectPeopleHourIteration = function(){
-		  return 553.03;
+	$scope.projectPeopleHourIteration = function(){
+		  return $scope.projectPeopleHour()/10;
 	}
 	
-	$scope.proyectPeopleDayIteration = function(){
-		  return 69.14;
+	$scope.projectPeopleDayIteration = function(){
+		  return $scope.projectPeopleDay()/10;
 	}
 	
-	$scope.proyectPeopleMonthIteration = function(){
-		  return 3.29;
+	$scope.projectPeopleMonthIteration = function(){
+		  return $scope.projectPeopleMonth()/10;
 	}
 	
-});
+}]);

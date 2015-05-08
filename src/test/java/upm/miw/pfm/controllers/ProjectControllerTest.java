@@ -45,7 +45,7 @@ public class ProjectControllerTest {
     public void testCreateAndGetProyect() {
         new MockProjectDao(new Project());
         projectController.createProject(project);
-        Project project = projectController.getProyect(10);
+        Project project = projectController.getProject(10);
         assertEquals(project, new Project(10, "Scrum", start, end, 85000.00));
     }
 
@@ -81,7 +81,7 @@ public class ProjectControllerTest {
     	projectController.createProject(project);
     	project.setIterationDays(12.3);
     	projectController.updateProject(project);
-    	Project project2 = projectController.getProyect(project.getId());
+    	Project project2 = projectController.getProject(project.getId());
     	assertEquals(project2, project);
     }
 
