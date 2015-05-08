@@ -6,7 +6,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 
-import upm.miw.pfm.controllers.GetEmployeeController;
+import upm.miw.pfm.controllers.EmployeeController;
 import upm.miw.pfm.models.entities.Employee;
 
 @ManagedBean
@@ -17,7 +17,7 @@ public class GetEmployeeBean {
     private Double totalAnual;
 
     @EJB
-    private GetEmployeeController getEmployeeController;
+    private EmployeeController getEmployeeController;
 
     private Employee employee;
 

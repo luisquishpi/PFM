@@ -10,7 +10,7 @@ import java.util.Set;
 import org.junit.Before;
 import org.junit.Test;
 
-import upm.miw.pfm.controllers.ejbs.ListEmployeesControllerEjb;
+import upm.miw.pfm.controllers.ejbs.EmployeeControllerEjb;
 import upm.miw.pfm.mocks.MockEmployeeDao;
 import upm.miw.pfm.models.entities.Contract;
 import upm.miw.pfm.models.entities.Employee;
@@ -18,7 +18,7 @@ import upm.miw.pfm.utils.RoleType;
 
 public class ListEmployeesControllerTest {
 
-    private ListEmployeesController listEmployeesController;
+    private EmployeeController listEmployeesController;
 
     private Contract contract;
 
@@ -26,7 +26,7 @@ public class ListEmployeesControllerTest {
 
     @Before
     public void before() {
-        listEmployeesController = new ListEmployeesControllerEjb();
+        listEmployeesController = new EmployeeControllerEjb();
     }
 
     @Test
