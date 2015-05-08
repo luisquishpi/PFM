@@ -1,7 +1,6 @@
 /**
  * 
  */
-app.value("test", false);
 var projectApp = angular.module('projectApp', [ "angularfaces" ]);
 
 projectApp.factory('broadcastService', function($rootScope) {
