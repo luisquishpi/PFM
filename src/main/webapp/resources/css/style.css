@@ -36,3 +36,7 @@ puilabel, label {
 .label_combobox {
 	line-height: 30px;
 }
+
+table td {
+	font-family: Verdana, Arial, sans-serif;
+}
