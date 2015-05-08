@@ -18,9 +18,8 @@ public class ProjectControllerEjb implements ProjectController {
     }
 
     @Override
-    public Project createProject(Project project) {
+    public void createProject(Project project) {
         DaoFactory.getFactory().getProjectDao().create(project);
-        return project;
     }
 
     @Override
@@ -32,5 +31,10 @@ public class ProjectControllerEjb implements ProjectController {
     public List<Project> listProjects() {
         return DaoFactory.getFactory().getProjectDao().findAll();
     }
+
+	@Override
+	public void updateProject(Project project) {
+		DaoFactory.getFactory().getProjectDao().update(project);
+	}
 
 }

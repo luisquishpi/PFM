@@ -31,10 +31,10 @@ public class Project {
     private String name;
 
     @Column(name = "iteration_days", nullable = true)
-    private Integer iterationDays;
+    private Double iterationDays;
 
     public Project() {
-        this.iterationDays = 0;
+        this.iterationDays = 0.0;
     }
 
     public Project(String name, Date start, Date end, Double cost) {
@@ -106,11 +106,11 @@ public class Project {
         this.name = name;
     }
 
-    public Integer getIterationDays() {
+    public Double getIterationDays() {
         return iterationDays;
     }
 
-    public void setIterationDays(Integer iterationDays) {
+    public void setIterationDays(Double iterationDays) {
         this.iterationDays = iterationDays;
     }
 

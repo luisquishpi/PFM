@@ -6,27 +6,32 @@ projectApp.controller("projectController", function ($scope, $isTest) {
 		  initJSFScope($scope);
 	  }
 	  var start, end;
-	  	  
+	  
 	  $scope.workDays = 0;
 	  $scope.workHours = 0;
 	  $scope.naturalDays = 0;
 	  
 	  function calculateWorkDaysAndHour(){
 		  var days=0, hours=0;
- 
-		  start = moment($scope.projectBean.project.startString, "DD/MM/YYYY");
-		  end = moment($scope.projectBean.project.endString, "DD/MM/YYYY");
-		  end = end.add(1,"days");
-		  for (var m = moment(start); m.isBefore(end); m.add(1, "days")) {
-			  var workHours = $scope.workingDays[m.day()].workHours;
-			  if(workHours>0){
-				  days++;
-			  	  hours+=workHours;
+		  var re = new RegExp("[0-9]{2}/[0-9]{2}/[0-9]{4}");
+		  var validateStart = ($scope.projectBean.project.startString).match(re);
+		  var validateEnd = ($scope.projectBean.project.endString).match(re);
+		  if(validateStart!=null && validateEnd!=null){
+			  start = moment($scope.projectBean.project.startString, "DD/MM/YYYY");
+			  end = moment($scope.projectBean.project.endString, "DD/MM/YYYY");
+			  end = end.add(1,"days");
+			  for (var m = moment(start); m.isBefore(end); m.add(1, "days")) {
+				  var workHours = $scope.workingDays[m.day()].workHours;
+				  if(workHours>0){
+					  days++;
+				  	  hours+=workHours;
+				  }
 			  }
-			}
+			  $scope.naturalDays= end.diff(start,"days");
+		  }
 		  $scope.workDays = days;
 		  $scope.workHours = hours;
-		  $scope.naturalDays= end.diff(start,"days");
+		  
 	  }
 	  
 	  $scope.initForTest = function(){
