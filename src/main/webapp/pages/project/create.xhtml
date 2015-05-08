@@ -52,9 +52,11 @@
 							<div ng-switch="getCurrentStep()" class="slide-frame">
 								<div ng-switch-when="one" class="wave">	
 									<fieldset ng-controller="scheduleController">
+									<ngsync direction="serverToClient" value="{{projectBean.projectSchedule.getWorkDaysArray()}}"/>
+									
 										<div class="row">
 											<div class="col-lg-3">
-												<p:outputLabel for="workDays" value="Días laborales/mes" />	
+												<p:outputLabel for="workDays" value="Días laborales/mes" />
 											</div>
 											<div class="col-lg-2">
 												<p:inputText id="workDays" value="{{projectBean.projectSchedule.workDays}}" ng-required="true" />
@@ -161,6 +163,7 @@
 										</div>
 									</fieldset>
 								</div>
+								<div> 
 								<div  ng-switch-when="two" class="wave">
 									<fieldset ng-controller="projectController">
 										<div class="row">
@@ -284,6 +287,7 @@
 											</div>
 								  		</div>
 									</fieldset>
+								</div>
 								</div>
 							</div>
 					</div>
