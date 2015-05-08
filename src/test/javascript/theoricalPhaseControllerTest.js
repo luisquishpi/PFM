@@ -254,35 +254,35 @@ describe("Test TheoricalPhaseController", function(){
 		expect(scope.transPeopleMonthIteration()).toBe(3.29);
 	});
 	
-	it("Proyect people-hour should be 5530.3", function(){
-		expect(scope.proyectPeopleHour()).toBe(5530.3);
+	it("Project people-hour should be 5530.3", function(){
+		expect(scope.projectPeopleHour()).toBe(5530.3);
 	});	
 	
-	it("Proyect people-day should be 691.39", function(){
-		expect(scope.proyectPeopleDay()).toBe(691.39);
+	it("Project people-day should be 691.39", function(){
+		expect(scope.projectPeopleDay()).toBe(691.39);
 	});
 	
-	it("Proyect people-month should be 32.92", function(){
-		expect(scope.proyectPeopleMonth()).toBe(32.92);
+	it("Project people-month should be 32.92", function(){
+		expect(scope.projectPeopleMonth()).toBe(32.92);
 	});
 	
-	it("Proyect people should be 5.20", function(){
-		expect(scope.proyectPeople()).toBe(5.20);
+	it("Project people should be 5.20", function(){
+		expect(scope.projectPeople()).toBe(5.20);
 	});
 	
-	it("Proyect distribution-iteration should be 10", function(){
-		expect(scope.proyectDistributionIteration()).toBe(10);
+	it("Project distribution-iteration should be 10", function(){
+		expect(scope.projectDistributionIteration()).toBe(10);
 	});
 	
-	it("Proyect people-hour/iteration should be 553.03", function(){
-		expect(scope.proyectPeopleHourIteration()).toBe(553.03);
+	it("Project people-hour/iteration should be 553.03", function(){
+		expect(scope.projectPeopleHourIteration()).toBe(553.03);
 	});
 	
-	it("Proyect people-day/iteration should be 69.14", function(){
-		expect(scope.proyectPeopleDayIteration()).toBe(69.14);
+	it("Project people-day/iteration should be 69.14", function(){
+		expect(scope.projectPeopleDayIteration()).toBe(69.14);
 	});
 	
-	it("Proyect people-month/iteration should be 3.29", function(){
-		expect(scope.proyectPeopleMonthIteration()).toBe(3.29);
+	it("Project people-month/iteration should be 3.29", function(){
+		expect(scope.projectPeopleMonthIteration()).toBe(3.29);
 	});
 })
