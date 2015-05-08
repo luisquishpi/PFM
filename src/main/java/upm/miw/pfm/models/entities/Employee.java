@@ -15,6 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import upm.miw.pfm.utils.RoleType;
@@ -47,6 +48,9 @@ public class Employee {
     @CollectionTable(name = "employee_roles", joinColumns = @JoinColumn(name = "employee_id"))
     @Column(name = "role")
     private Set<RoleType> roles;
+
+    @OneToMany(cascade = CascadeType.REFRESH, mappedBy="employee")
+    private Set<Vacation> vacations=new HashSet<Vacation>(0);
 
     public Employee() {
         this.roles = new HashSet<RoleType>();
@@ -163,5 +167,13 @@ public class Employee {
                 && annualGrossSalary.doubleValue() == other.annualGrossSalary.doubleValue()
                 && contract.equals(other.contract) && employeeCode.equals(other.employeeCode)
                 && roles.containsAll(other.roles);
+    }
+
+    public Set<Vacation> getVacations() {
+        return vacations;
+    }
+
+    public void setVacations(Set<Vacation> vacations) {
+        this.vacations = vacations;
     }
 }
