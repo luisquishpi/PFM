@@ -9,20 +9,23 @@ describe("Test scheduleController", function(){
 	
 	beforeEach(inject(function($controller, $rootScope){
         scope = $rootScope;
-        scope.scheduleBean = {
+        scope.projectBean = {
   			  /* Valores default de todas las variables inyectadas por el bean */
-  			  mondayHours : 8,
-  			  tuesdayHours : 8,
-  			  wednesdayHours :8,
-  			  thursdayHours : 8,
-  			  fridayHours : 8,
-  			  satrudayHours : 0,
-  			  sundayHours : 0,
-  			  workDays : 21
+        	  projectSchedule : {
+        		  mondayHours : 8,
+	  			  tuesdayHours : 8,
+	  			  wednesdayHours :8,
+	  			  thursdayHours : 8,
+	  			  fridayHours : 8,
+	  			  saturdayHours : 0,
+	  			  sundayHours : 0,
+	  			  workDays : 21
+  			  }
   	  	};
         controller = $controller("scheduleController", {
                 $scope: scope,
-                $isTest: true
+                $isTest: true,
+                bridgeService: { shareData : '' }
         });
 	}));
 	
