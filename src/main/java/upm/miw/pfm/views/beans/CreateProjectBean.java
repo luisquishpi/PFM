@@ -1,11 +1,15 @@
 package upm.miw.pfm.views.beans;
 
+import java.io.Serializable;
+
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import org.apache.logging.log4j.LogManager;
+import org.primefaces.event.FlowEvent;
 
 import upm.miw.pfm.controllers.ProjectController;
 import upm.miw.pfm.models.entities.Project;
@@ -13,9 +17,11 @@ import upm.miw.pfm.models.entities.ProjectSchedule;
 import upm.miw.pfm.utils.Utils;
 
 @ManagedBean
-public class CreateProjectBean {
+@ViewScoped
+public class CreateProjectBean implements Serializable{
+	private static final long serialVersionUID = 1L;
 
-    private Project project;
+	private Project project;
 
     private ProjectSchedule projectSchedule;
 
@@ -70,5 +76,9 @@ public class CreateProjectBean {
         context.getExternalContext().getFlash().setKeepMessages(true);
         
         return "index";
+    }
+    
+    public String onFlowProcess(FlowEvent event) {
+    	return event.getNewStep();
     }
 }

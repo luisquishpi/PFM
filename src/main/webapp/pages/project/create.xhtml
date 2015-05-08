@@ -6,110 +6,295 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ac="http://beyondjava.net/angularFacesCore"
 	xmlns:p="http://primefaces.org/ui">
-<h:body>
+<h:body ng-controller="scheduleController">
 	<ui:composition template="#{root}/WEB-INF/template/commonLayout.xhtml">
 		<ui:define name="header">
             Crear Proyecto
         </ui:define>  
 		<ui:define name="javascript">
 			<script>
-				app.value("$isTest", false);
-				var projectApp = angular.module('projectApp',
-						[ "angularfaces" ]);
+				var projectApp = angular.module('projectApp', [ "angularfaces",'ngAnimate', 'ui.bootstrap' ]);
 			</script>
 			<script src="/PFM/resources/js/libs/moment.js"></script>
+			<script src="/PFM/resources/js/controllers/projectApp.js"></script>
+			<script src="/PFM/resources/js/controllers/scheduleController.js"></script>
 			<script src="/PFM/resources/js/controllers/projectController.js"></script>
+			<script
+				src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.8/angular-animate.min.js"></script>
+			<script
+				src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.0/ui-bootstrap.min.js"></script>
+			<script
+				src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.0/ui-bootstrap-tpls.min.js"></script>
+			<script src="/PFM/resources/js/controllers/wizardController.js"></script>
 		</ui:define>
 		<ui:define name="css">
-			<link href="/PFM/resources/css/bootstrap/css/bootstrap.min.css"
-				rel="stylesheet" />
+			<link href="/PFM/resources/css/wizard.css" rel="stylesheet" />
+			<style>
+				.ng-isolate-scope{
+					
+				}
+			</style>
 		</ui:define>
+		<ui:define name="header">
+            Crear Proyecto
+        </ui:define>
 		<ui:define name="content">
-			<h:form prependId="false" id="angular">
-				<p:messages id="messages" showDetail="false" autoUpdate="true"
-					closable="true" />
-				<div class="main-grid main-body-grid" ng-app="projectApp"
-					ng-controller="projectController">
-					<c:set var="projectBean" scope="request"
-						value="#{createProjectBean}" />
-					<c:set var="workingDays" scope="request"
-						value="#{projectBean.projectSchedule.getWorkDaysArray()}" />
-					<ngsync direction="serverToClient"
-						value="{{projectBean.project.name}}" />
-					<ngsync direction="serverToClient"
-						value="{{projectBean.projectSchedule.workDays}}" /> 
-					<ngsync direction="serverToClient" value="{{workingDays}}" />
-					
-					
-					<div class="ui-grid ui-grid-responsive" style="text-align:center;">
-					    <div class="ui-grid-row">
-					        <div class="ui-grid-col-12">
-					        	<p:inplace id="basic" editor="true">
-									<p:inputText value="{{projectBean.project.name}}"
-												required="true" label="{{projectBean.project.name}}" />
-								</p:inplace>
-					        </div>
-					    </div>
+		<c:set var="projectBean" scope="request" value="#{createProjectBean}" />
+			<h:form ng-app="projectApp">
+				<div novalidate="" ng-controller="wizardController" ng-form="" id="scheduleForm" name="scheduleForm">
+					<div>
+						<div class="btn-group">
+							<button class="btn" onclick="return false;" ng-class="{'btn-primary':isCurrentStep(0)}" >Establecer horario</button>
+							<button class="btn" onclick="return false;" ng-class="{'btn-primary':isCurrentStep(1)}">Establecer variables proyecto</button>
+						</div>
+							<div ng-switch="getCurrentStep()" class="slide-frame">
+								<div ng-switch-when="one" class="wave">	
+									<fieldset ng-controller="scheduleController">
+										<div class="row">
+											<div class="col-lg-3">
+												<p:outputLabel for="workDays" value="Días laborales/mes" />	
+											</div>
+											<div class="col-lg-2">
+												<p:inputText id="workDays" value="{{projectBean.projectSchedule.workDays}}" ng-required="true" />
+											</div>
+											<div class="col-lg-2">
+												<label>Lunes </label>	
+											</div>
+											<div class="col-lg-2">
+												<p:inputText value="{{projectBean.projectSchedule.mondayHours}}" ng-required="true" label=""/>
+											</div>
+											<div class="col-lg-2">
+												<label>Total horas </label>	
+											</div>
+											<div class="col-lg-1">
+												{{hoursPerWeek()}}
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-lg-3"  >
+												<label>Meses laborales/año </label>	
+											</div>
+											<div class="col-lg-2 right-text">
+												{{monthsPerYear}}
+											</div>
+											
+											<div class="col-lg-2">
+												<label>Martes </label>	
+											</div>
+											<div class="col-lg-2">
+												<p:inputText value="{{projectBean.projectSchedule.tuesdayHours}}" ng-required="true" label=""/>
+											</div>
+											
+											<div class="col-lg-2" >
+												<label>Media laboral </label>	
+											</div>
+											<div class="col-lg-1">
+												{{hoursPerDay()}}
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-lg-3" >
+												<label>Horas laborales/día </label>	
+											</div>
+											<div class="col-lg-2 right-text">
+												{{hoursPerDay()}}
+											</div>
+											<div class="col-lg-2">
+												<label>Miercoles </label>	
+											</div>
+											<div class="col-lg-2">
+												<p:inputText value="{{projectBean.projectSchedule.wednesdayHours}}" ng-required="true" label=""/>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-lg-3" >
+												<label>Días/año </label>	
+											</div>
+											<div class="col-lg-2 right-text">
+												{{daysPerYear()}}
+											</div>
+											<div class="col-lg-2">
+												<label>Jueves </label>	
+											</div>
+											<div class="col-lg-2">
+												<p:inputText value="{{projectBean.projectSchedule.thursdayHours}}" ng-required="true" label=""/>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-lg-3">
+												<label>Horas/mes </label>	
+											</div>
+											<div class="col-lg-2 right-text">
+												{{hoursPerMonth()}}
+											</div>
+											<div class="col-lg-2">
+												<label>Viernes </label>	
+											</div>
+											<div class="col-lg-2">
+												<p:inputText value="{{projectBean.projectSchedule.fridayHours}}" ng-required="true" label=""/>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-lg-3">
+												<label>Horas/año </label>	
+											</div>
+											<div class="col-lg-2 right-text">
+												{{hoursPerYear()}}
+											</div>
+											<div class="col-lg-2">
+												<label>Sábado </label>	
+											</div>
+											<div class="col-lg-2">
+												<p:inputText value="{{projectBean.projectSchedule.saturdayHours}}" ng-required="true" label=""/>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-lg-5"></div>
+											<div class="col-lg-2">
+												<label>Domingo </label>	
+											</div>
+											<div class="col-lg-2">
+												<p:inputText value="{{projectBean.projectSchedule.sundayHours}}" ng-required="true" label=""/>
+											</div>
+										</div>
+									</fieldset>
+								</div>
+								<div  ng-switch-when="two" class="wave">
+									<fieldset ng-controller="projectController">
+										<div class="row">
+											<div class="col-lg-2">
+												<label>Fecha de inicio </label>	
+											</div>
+											<div class="col-lg-2">
+												<p:inputMask label=""
+													value="{{projectBean.project.startString}}" mask="99/99/9999"
+													ng-required="true" />
+											</div>
+											<div class="col-lg-2">
+												<label>Meses naturales </label>	
+											</div>
+											<div class="col-lg-1">
+												{{naturalMonths()}}
+											</div>
+											<div class="col-lg-3">
+												<label>Meses laborales </label>	
+											</div>
+											<div class="col-lg-2">
+											</div>
+								  		</div>
+								  		<div class="row">
+											<div class="col-lg-2">
+												<label>Fecha de fin </label>	
+											</div>
+											<div class="col-lg-2">
+												<p:inputMask label=""
+														value="{{projectBean.project.endString}}" mask="99/99/9999"
+														ng-required="true" />
+											</div>
+											<div class="col-lg-2">
+												<label>Días naturales </label>	
+											</div>
+											<div class="col-lg-1">
+												{{naturalDays}}
+											</div>
+											<div class="col-lg-3">
+												<label>Días laborales </label>	
+											</div>
+											<div class="col-lg-2">
+											</div>
+								  		</div>
+								  		<div class="row">
+											<div class="col-lg-2">
+												<label>Presupuesto </label>	
+											</div>
+											<div class="col-lg-2">
+												<p:inputText value="{{projectBean.project.cost}}" ng-required="true" label=""/>
+											</div>
+											<div class="col-lg-3"></div>
+											<div class="col-lg-3">
+												<label>Horas laborales </label>	
+											</div>
+											<div class="col-lg-2">
+											</div>
+								  		</div>
+								  		<div class="row">
+											<div class="col-lg-4"></div>
+											<div class="col-lg-2">
+												<label>Coste/mes natural </label>	
+											</div>
+											<div class="col-lg-1">
+												{{costNaturalMonth()}}
+											</div>
+											<div class="col-lg-3">
+												<label>Coste/mes laboral </label>	
+											</div>
+											<div class="col-lg-2">
+												{{costWorkMonth()}}
+											</div>
+								  		</div>
+								  		<div class="row">
+											<div class="col-lg-4"></div>
+											<div class="col-lg-2">
+												<label>Coste/día natural </label>	
+											</div>
+											<div class="col-lg-1">
+												{{costNaturalDay()}}
+											</div>
+											<div class="col-lg-3">
+												<label>Coste/día laboral </label>	
+											</div>
+											<div class="col-lg-2">
+												{{costWorkDay()}}
+											</div>
+								  		</div>
+								  		<div class="row">
+											<div class="col-lg-7"></div>
+											<div class="col-lg-3">
+												<label>Coste/hora laboral </label>	
+											</div>
+											<div class="col-lg-2">
+												{{costWorkHour()}}
+											</div>
+								  		</div>
+								  		<div class="row">
+											<div class="col-lg-7"></div>
+											<div class="col-lg-3">
+												<label>Personas/mes medio </label>	
+											</div>
+											<div class="col-lg-2">
+												
+											</div>
+								  		</div>
+								  		<div class="row">
+											<div class="col-lg-7"></div>
+											<div class="col-lg-3">
+												<label>Personas/día medio </label>	
+											</div>
+											<div class="col-lg-2">
+											</div>
+								  		</div>
+								  		<div class="row">
+											<div class="col-lg-7"></div>
+											<div class="col-lg-3">
+												<label>Personas/hora medio </label>	
+											</div>
+											<div class="col-lg-2">
+											</div>
+								  		</div>
+									</fieldset>
+								</div>
+							</div>
 					</div>
-					
-					<br/>
-					
-					<div class="ui-grid ui-grid-responsive center">
-					    <div class="ui-grid-row">
-					        <div class="ui-grid-col-6">
-					        	<p>
-									<p:inputMask label="Fecha de inicio: "
-										value="{{projectBean.project.startString}}" mask="99/99/9999"
-										required="true" />
-								</p>
-								<p>
-									<p:inputMask label="Fecha de fin: "
-										value="{{projectBean.project.endString}}" mask="99/99/9999"
-										required="true" />
-								</p>
-					        </div>
-					        <div class="ui-grid-col-6">
-					        	<p>
-									<p:inputText value="{{naturalMonths() | number : 2}}"
-										label="Meses naturales: " />
-								</p>
-								<p>
-									<p:inputText value="{{naturalDays}}" label="Días naturales: " />
-								</p>
-					        </div>
-					    </div>
-					</div>
-					
-					<br/>
-					
-					<div class="ui-grid ui-grid-responsive center">
-					    <div class="ui-grid-row">
-					        <div class="ui-grid-col-6">
-					        	<p>
-									<p:inputText value="{{projectBean.project.cost}}"
-										label="Coste(&euro;): ">
-										<f:validateDoubleRange minimum="1" />
-									</p:inputText>
-								</p>
-					        </div>
-					        <div class="ui-grid-col-6">
-					        	<p>
-									<p:inputText value="{{costNaturalMonth() | number : 2}}"
-										label="Coste mes natural(&euro;): " />
-								</p>
-								<p>
-									<p:inputText value="{{costNaturalDay() | number : 2 }}"
-										label="Coste día natural(&euro;): " />
-								</p>
-					        </div>
-					    </div>
-					</div>
-					<p:commandButton value="Guardar"
-							action="#{createProjectBean.process}" icon="ui-icon-disk" update="growl"
+					<div>
+						<a class="btn btn-default" ng-click="handlePrevious()" ng-show="!isFirstStep()">Back</a>
+						<a class="btn btn-primary" ng-click="handleNext()" ng-show="isFirstStep()">{{getNextLabel()}}</a>
+						<p:commandButton value="Guardar"
+							action="#{createProjectBean.process}" ng-show="!isFirstStep()" icon="ui-icon-disk" update="growl"
 							ajax="false" />
-					<p:button outcome="index.html" value="Volver" icon="ui-icon-arrowreturn-1-w">
-					</p:button>					
+						<p:button outcome="index.html" value="Volver" icon="ui-icon-arrowreturn-1-w"></p:button>
+					</div>
 				</div>
 			</h:form>
 		</ui:define>
