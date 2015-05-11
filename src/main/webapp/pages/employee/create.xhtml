@@ -31,41 +31,39 @@
 		<ui:define name="content">
 			<div class="main-grid main-body-grid">
 				<h:form prependId="false">
-					<p:messages id="messages" showDetail="false" autoUpdate="false"
-						closable="true" />
 					<fieldset>
 						<div class="row">
 							<div class="col-lg-3">
 								<p:outputLabel for="name" value="Nombre: "
-									styleClass="label_combobox" />
+									styleClass="label_height" />
 							</div>
 							<div class="col-lg-2">
 								<p:inputText requiredMessage="El nombre es obligatorio"
 									id="name" value="#{createEmployeeBean.employee.name}"
 									required="true" />
 							</div>
-							<div class="col-lg-3">
+							<div class="col-lg-4">
 								<p:message for="name" />
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-lg-3">
 								<p:outputLabel for="surname" value="Apellidos: "
-									styleClass="label_combobox" />
+									styleClass="label_height" />
 							</div>
 							<div class="col-lg-2">
 								<p:inputText requiredMessage="Los apellidos son obligatorios"
 									id="surname" value="#{createEmployeeBean.employee.surname}"
 									required="true" />
 							</div>
-							<div class="col-lg-3">
+							<div class="col-lg-4">
 								<p:message for="surname" />
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-lg-3">
 								<p:outputLabel for="code" value="Código de empleado: "
-									styleClass="label_combobox" />
+									styleClass="label_height" />
 							</div>
 							<div class="col-lg-2">
 								<p:inputText
@@ -73,14 +71,14 @@
 									id="code" value="#{createEmployeeBean.employee.employeeCode}"
 									required="true" />
 							</div>
-							<div class="col-lg-3">
+							<div class="col-lg-4">
 								<p:message for="code" />
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-lg-3">
 								<p:outputLabel for="bruto" value="Bruto anual: "
-									styleClass="label_combobox" />
+									styleClass="label_height" />
 							</div>
 							<div class="col-lg-2">
 								<p:inputText id="bruto"
@@ -92,14 +90,14 @@
 										for="bruto" />
 								</p:inputText>
 							</div>
-							<div class="col-lg-3">
+							<div class="col-lg-4">
 								<p:message for="bruto" />
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-lg-3">
 								<p:outputLabel for="contract" value="Contrato: "
-									styleClass="label_combobox" />
+									styleClass="label_height" />
 							</div>
 							<div class="col-lg-2">
 								<h:selectOneMenu label="Contrato:" id="contract"
@@ -108,28 +106,27 @@
 									<f:selectItems value="#{createEmployeeBean.items}" />
 								</h:selectOneMenu>
 							</div>
-							<div class="col-lg-3">
+							<div class="col-lg-4">
 								<p:message for="contract" />
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-lg-3">
 								<p:outputLabel for="roles" value="Roles: "
-									styleClass="label_combobox" />
+									styleClass="label_height" />
 							</div>
 							<div class="col-lg-4">
-								<h:selectManyCheckbox styleClass="left" id="roles"
+								<h:selectManyCheckbox styleClass="checkbox_roles" id="roles"
 									value="#{createEmployeeBean.checkedRoles}"
 									layout="pageDirection">
 									<f:selectItems value="#{createEmployeeBean.roles}" var="role"
-										itemLabel="#{role.description}" itemValue="#{role}" />
+										itemLabel="#{role.description}" itemValue="#{role}"  />
 								</h:selectManyCheckbox>
 							</div>
 						</div>
 						<div>
 							<p:commandButton value="Crear" icon="ui-icon-disk"
-								action="#{createEmployeeBean.process}" ajax="false"
-								update="angular" />
+								action="#{createEmployeeBean.process}" ajax="false" />
 							<p:button outcome="index.xhtml" value="Volver"
 								icon="ui-icon-arrowreturn-1-w" ajax="false" />
 						</div>

@@ -7,7 +7,7 @@
 		<display-name>pages/contract/create.xhtml</display-name>
 		<from-view-id>/pages/contract/create.xhtml</from-view-id>
 		<navigation-case>
-			<from-action>#{newContractBean.process}</from-action>
+			<from-action>#{createContractBean.process}</from-action>
 			<from-outcome>index</from-outcome>
 			<to-view-id>/pages/contract/index.xhtml</to-view-id>
 			<redirect />
