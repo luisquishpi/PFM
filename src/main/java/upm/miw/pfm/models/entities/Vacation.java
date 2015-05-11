@@ -18,17 +18,30 @@ public class Vacation {
     @GeneratedValue
     private Integer id;
 
-    @Column(name="start", nullable = false)
+    @Column(name = "start", nullable = false)
     private Date start;
 
-    @Column(name="end", nullable = false)
+    @Column(name = "end", nullable = false)
     private Date end;
 
     @ManyToOne
-    @JoinColumn(name = "employee_id",nullable = false)
+    @JoinColumn(name = "employee_id", nullable = false)
     private Employee employee;
 
     public Vacation() {
+    }
+
+    public Vacation(Date start, Date end) {
+        this.start = start;
+        this.end = end;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Date getStart() {
