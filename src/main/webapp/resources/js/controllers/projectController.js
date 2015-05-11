@@ -16,7 +16,7 @@ projectApp.controller("projectController",['$scope', '$isTest', 'bridgeService',
 		  var days=0, hours=0;		  
 		  start = moment($scope.projectBean.project.startString, "DD/MM/YYYY");
 		  end = moment($scope.projectBean.project.endString, "DD/MM/YYYY");
-		  if(start.isValid() && end.isValid()){
+		  if((start.isValid() && end.isValid()) && start.isBefore(end)){
 			  end = end.add(1,"days");
 			  for (var m = moment(start); m.isBefore(end); m.add(1, "days")) {
 				  var workHours = $scope.schedule.listHoursEachDay()[m.day()].workHours;
@@ -26,6 +26,9 @@ projectApp.controller("projectController",['$scope', '$isTest', 'bridgeService',
 				  }
 			  }
 			  $scope.naturalDays= end.diff(start,"days");
+		  }
+		  else{
+			  $scope.naturalDays = 0;			  
 		  }
 
 		  $scope.workDays = days;
