@@ -7,7 +7,7 @@ import org.junit.runners.Suite.SuiteClasses;
 @RunWith(Suite.class)
 @SuiteClasses({AddEmployeeControllerTest.class, ContractControllerTest.class,
         GetEmployeeControllerTest.class, ListEmployeesControllerTest.class,
-        ProjectControllerTest.class, SetScheduleControllerMockTest.class})
+        ProjectControllerTest.class, SetScheduleControllerMockTest.class,VacationControllerTest.class})
 public class AllTests {
 
 }
