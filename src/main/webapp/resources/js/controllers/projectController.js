@@ -51,8 +51,6 @@ projectApp.controller("projectController",['$scope', '$isTest', 'bridgeService',
 	  }
 	  
 	  $scope.workMonths = function(){
-		  console.log($scope.schedule);
-		  console.log($scope.schedule.workDays);
 		  return $scope.workDays/$scope.schedule.workDays;
 	  }
 	  	  	  
