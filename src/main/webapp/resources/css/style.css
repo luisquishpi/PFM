@@ -40,3 +40,7 @@ puilabel, label {
 table td {
 	font-family: Verdana, Arial, sans-serif;
 }
+
+.ui-state-highlight{
+	text-shadow: none !important;
+}

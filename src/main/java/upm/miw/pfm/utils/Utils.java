@@ -5,8 +5,12 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.application.FacesMessage.Severity;
+import javax.faces.context.FacesContext;
+
 public class Utils {
-    
+
     public static String DD_MM_YYYY_FORMAT = "dd/MM/yyyy";
 
     public static Date buildDate(int year, int month, int day) {
@@ -39,6 +43,12 @@ public class Utils {
         } catch (ParseException e) {
             return null;
         }
+    }
+
+    public static void addMessage(Severity severity, String summary, String detail) {
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(severity, summary, detail));
+
     }
 
 }
