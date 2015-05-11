@@ -1,10 +1,13 @@
 package upm.miw.pfm.controllers.ejbs;
 
+import javax.ejb.Stateless;
+
 import upm.miw.pfm.controllers.SetScheduleController;
 import upm.miw.pfm.models.daos.DaoFactory;
 import upm.miw.pfm.models.entities.Project;
 import upm.miw.pfm.models.entities.ProjectSchedule;
 
+@Stateless
 public class SetScheduleControllerEjb implements SetScheduleController{
     
     public void setProjectSchedule(ProjectSchedule projectSchedule) {

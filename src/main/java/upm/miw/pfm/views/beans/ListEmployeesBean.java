@@ -6,7 +6,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 
-import upm.miw.pfm.controllers.ListEmployeesController;
+import upm.miw.pfm.controllers.EmployeeController;
 import upm.miw.pfm.models.entities.Employee;
 
 @ManagedBean
@@ -15,7 +15,7 @@ public class ListEmployeesBean {
     private List<Employee> employees;
     
     @EJB
-    private ListEmployeesController listEmployeesController;
+    private EmployeeController listEmployeesController;
     
     @PostConstruct
     public void update(){

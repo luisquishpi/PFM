@@ -1,27 +1,29 @@
 /**
  * AngularJS ProjectController
  */
-projectApp.controller("projectController", function ($scope, $isTest) {  
+projectApp.controller("projectController",['$scope', '$isTest', 'bridgeService', function($scope, $isTest, bridgeService) {
 	  if(!$isTest){
 		  initJSFScope($scope);
 	  }
+
 	  var start, end;
-	  
+	  $scope.schedule = bridgeService.shareData;
 	  $scope.workDays = 0;
 	  $scope.workHours = 0;
 	  $scope.naturalDays = 0;
 	  
 	  function calculateWorkDaysAndHour(){
+		  
 		  var days=0, hours=0;
 		  var re = new RegExp("[0-9]{2}/[0-9]{2}/[0-9]{4}");
 		  var validateStart = ($scope.projectBean.project.startString).match(re);
-		  var validateEnd = ($scope.projectBean.project.endString).match(re);
+		  var validateEnd = ($scope.projectBean.project.endString).match(re); 
 		  if(validateStart!=null && validateEnd!=null){
 			  start = moment($scope.projectBean.project.startString, "DD/MM/YYYY");
 			  end = moment($scope.projectBean.project.endString, "DD/MM/YYYY");
 			  end = end.add(1,"days");
 			  for (var m = moment(start); m.isBefore(end); m.add(1, "days")) {
-				  var workHours = $scope.workingDays[m.day()].workHours;
+				  var workHours = $scope.schedule.listHoursEachDay()[m.day()].workHours;
 				  if(workHours>0){
 					  days++;
 				  	  hours+=workHours;
@@ -29,9 +31,9 @@ projectApp.controller("projectController", function ($scope, $isTest) {
 			  }
 			  $scope.naturalDays= end.diff(start,"days");
 		  }
+
 		  $scope.workDays = days;
 		  $scope.workHours = hours;
-		  
 	  }
 	  
 	  $scope.initForTest = function(){
@@ -49,7 +51,7 @@ projectApp.controller("projectController", function ($scope, $isTest) {
 	  }
 	  
 	  $scope.workMonths = function(){
-		  return $scope.workDays/$scope.projectBean.projectSchedule.workDays;
+		  return $scope.workDays/$scope.schedule.workDays;
 	  }
 	  	  	  
 	  $scope.costNaturalMonth = function(){
@@ -70,6 +72,6 @@ projectApp.controller("projectController", function ($scope, $isTest) {
 	  
 	  $scope.costWorkHour = function(){
 		  return $scope.projectBean.project.cost/$scope.workHours;
-	  }
-	  	   
-});
+	  }	
+ 
+}]);

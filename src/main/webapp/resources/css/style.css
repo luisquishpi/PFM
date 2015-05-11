@@ -9,24 +9,34 @@
 	top: 50%;
 }
 
-.ui-datatable thead th, .ui-datatable tbody td, .ui-datatable tfoot td{
-  overflow:visible !important;
+.ui-datatable thead th, .ui-datatable tbody td, .ui-datatable tfoot td {
+	overflow: visible !important;
 }
 
-.padding-table{
-	padding-bottom:20px;
+.padding-table {
+	padding-bottom: 20px;
 }
 
-puilabel, label{
+puilabel, label {
 	display: inline-block;
 }
-.ui-growl{
-   top: 20px !important;
+
+.ui-growl {
+	top: 20px !important;
 }
-.left label{
+
+.left label {
 	text-align: left !important;
 }
 
-.center{
-	text-align:center;
+.center {
+	text-align: center;
+}
+
+.label_combobox {
+	line-height: 30px;
+}
+
+table td {
+	font-family: Verdana, Arial, sans-serif;
 }

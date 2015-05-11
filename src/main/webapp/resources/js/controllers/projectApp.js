@@ -19,3 +19,12 @@ projectApp.factory('broadcastService', function($rootScope) {
 
     return sharedService;
 });
+
+projectApp.service('bridgeService', function(){
+	
+	var svc={};
+	
+	svc.shareData = {};
+	
+	return svc;
+});

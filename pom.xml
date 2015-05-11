@@ -150,6 +150,9 @@
 						<source>${project.basedir}/src/test/resources/app.js</source>
 					</preloadSources>
 					<jsSrcDir>${project.basedir}/src/main/webapp/resources/js/controllers</jsSrcDir>
+					<sourceExcludes>
+					   <exclude>projectApp.js</exclude>
+					</sourceExcludes>
 				</configuration>
 			</plugin>
 		</plugins>

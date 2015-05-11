@@ -8,8 +8,7 @@ import java.util.Set;
 import org.junit.Before;
 import org.junit.Test;
 
-import upm.miw.pfm.controllers.ejbs.AddEmployeeControllerEjb;
-import upm.miw.pfm.controllers.ejbs.GetEmployeeControllerEjb;
+import upm.miw.pfm.controllers.ejbs.EmployeeControllerEjb;
 import upm.miw.pfm.mocks.MockEmployeeDao;
 import upm.miw.pfm.models.entities.Contract;
 import upm.miw.pfm.models.entities.Employee;
@@ -17,7 +16,7 @@ import upm.miw.pfm.utils.RoleType;
 
 public class GetEmployeeControllerTest {
 
-    private GetEmployeeController getEmployeeController;
+    private EmployeeController employeeController;
 
     private Employee employee;
 
@@ -27,8 +26,7 @@ public class GetEmployeeControllerTest {
 
     @Before
     public void before() {
-        getEmployeeController = new GetEmployeeControllerEjb();
-        AddEmployeeController addEmployeeController = new AddEmployeeControllerEjb();
+        employeeController = new EmployeeControllerEjb();
         contract = new Contract("Fijo", 32.5);
         roles = new HashSet<RoleType>();
         roles.add(RoleType.PROJECT_MANAGEMENT);
@@ -36,12 +34,12 @@ public class GetEmployeeControllerTest {
         roles.add(RoleType.ANALYSIS_DESIGN);
         employee = new Employee(1, "Anibal", "Lecter", "A", 40500.00, contract, roles);
         new MockEmployeeDao(employee);
-        addEmployeeController.addEmployee(employee);
+        employeeController.addEmployee(employee);
     }
 
     @Test
     public void getEmployeeTest() {
-        Employee employee2 = getEmployeeController.getEmployee(1);
+        Employee employee2 = employeeController.getEmployee(1);
         assertEquals(new Employee(1, "Anibal", "Lecter", "A", 40500.00, contract, roles), employee2);
     }
 }

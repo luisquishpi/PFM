@@ -18,9 +18,9 @@ describe("Test TheoricalPhaseController", function(){
 				  mediumCostDay: 122.94,
 				  mediumCostHour: 15.37
 		};
-		theoricalPhaseCtrl = $controller("theoricalPhaseController", {
+		sampleCtrl = $controller("theoricalPhaseController", {
 			$scope: scope,
-			$isTest: true
+			test: true
 		});
 	}));
 	
@@ -41,11 +41,11 @@ describe("Test TheoricalPhaseController", function(){
 	});
 	
 	it("Init start date should be 3/2/2015", function(){
-		expect(scope.initStartDate()).toBe("02/03/2015");
+		expect(scope.initStartDate()).toBe("2/3/2015");
 	});
 	
 	it("Init end date should be 20/2/2015", function(){
-		expect(scope.initEndDate()).toBe("20/03/2015");
+		expect(scope.initEndDate()).toBe("20/3/2015");
 	});
 	
 	it("Iteration average hours should be 106.4", function(){
@@ -73,11 +73,11 @@ describe("Test TheoricalPhaseController", function(){
 	});
 	
 	it("Elab start date should be 21/3/2015", function(){
-		expect(scope.ElabStartDate()).toBe("21/03/2015");
+		expect(scope.ElabStartDate()).toBe("21/3/2015");
 	});
 	
 	it("Elab end date should be 15/5/2015", function(){
-		expect(scope.ElabEndDate()).toBe("15/05/2015");
+		expect(scope.ElabEndDate()).toBe("15/5/2015");
 	});
 	
 	it("Constr hours should be 532", function(){
@@ -92,20 +92,20 @@ describe("Test TheoricalPhaseController", function(){
 		expect(scope.ConstrMonths()).toBe(3.15);
 	});
 	
-	it("Constr start date should be 16/05/2015", function(){
-		expect(scope.ConstrStartDate()).toBe("16/05/2015");
+	it("Constr start date should be 16/5/2015", function(){
+		expect(scope.ConstrStartDate()).toBe("16/5/2015");
 	});
 	
 	it("Constr end date should be 17/8/2015", function(){
-		expect(scope.ConstrEndDate()).toBe("17/05/2015");
+		expect(scope.ConstrEndDate()).toBe("17/5/2015");
 	});
 	
 	it("Trans start date should be 18/8/2015", function(){
-		expect(scope.transStartDate()).toBe("18/08/2015");
+		expect(scope.transStartDate()).toBe("18/8/2015");
 	});
 	
 	it("Trans end date should be 5/9/2015", function(){
-		expect(scope.transEndDate()).toBe("05/09/2015");
+		expect(scope.transEndDate()).toBe("5/9/2015");
 	});
 	
 	//Esfuerzo
@@ -254,35 +254,35 @@ describe("Test TheoricalPhaseController", function(){
 		expect(scope.transPeopleMonthIteration()).toBe(3.29);
 	});
 	
-	it("Proyect people-hour should be 5530.3", function(){
-		expect(scope.proyectPeopleHour()).toBe(5530.3);
+	it("Project people-hour should be 5530.3", function(){
+		expect(scope.projectPeopleHour()).toBe(5530.3);
 	});	
 	
-	it("Proyect people-day should be 691.39", function(){
-		expect(scope.proyectPeopleDay()).toBe(691.39);
+	it("Project people-day should be 691.39", function(){
+		expect(scope.projectPeopleDay()).toBe(691.39);
 	});
 	
-	it("Proyect people-month should be 32.92", function(){
-		expect(scope.proyectPeopleMonth()).toBe(32.92);
+	it("Project people-month should be 32.92", function(){
+		expect(scope.projectPeopleMonth()).toBe(32.92);
 	});
 	
-	it("Proyect people should be 5.20", function(){
-		expect(scope.proyectPeople()).toBe(5.20);
+	it("Project people should be 5.20", function(){
+		expect(scope.projectPeople()).toBe(5.20);
 	});
 	
-	it("Proyect distribution-iteration should be 10", function(){
-		expect(scope.proyectDistributionIteration()).toBe(10);
+	it("Project distribution-iteration should be 10", function(){
+		expect(scope.projectDistributionIteration()).toBe(10);
 	});
 	
-	it("Proyect people-hour/iteration should be 553.03", function(){
-		expect(scope.proyectPeopleHourIteration()).toBe(553.03);
+	it("Project people-hour/iteration should be 553.03", function(){
+		expect(scope.projectPeopleHourIteration()).toBe(553.03);
 	});
 	
-	it("Proyect people-day/iteration should be 69.14", function(){
-		expect(scope.proyectPeopleDayIteration()).toBe(69.14);
+	it("Project people-day/iteration should be 69.14", function(){
+		expect(scope.projectPeopleDayIteration()).toBe(69.14);
 	});
 	
-	it("Proyect people-month/iteration should be 3.29", function(){
-		expect(scope.proyectPeopleMonthIteration()).toBe(3.29);
+	it("Project people-month/iteration should be 3.29", function(){
+		expect(scope.projectPeopleMonthIteration()).toBe(3.29);
 	});
 })

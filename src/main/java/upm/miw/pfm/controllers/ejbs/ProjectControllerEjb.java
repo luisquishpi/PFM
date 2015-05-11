@@ -13,7 +13,7 @@ import upm.miw.pfm.models.entities.ProjectSchedule;
 public class ProjectControllerEjb implements ProjectController {
 
     @Override
-    public Project getProyect(Integer id) {
+    public Project getProject(Integer id) {
         return DaoFactory.getFactory().getProjectDao().read(id);
     }
 

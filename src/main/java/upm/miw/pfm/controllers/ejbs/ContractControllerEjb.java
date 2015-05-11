@@ -32,4 +32,9 @@ public class ContractControllerEjb implements ContractController {
     public List<Contract> contractList() {
         return contractDao.findAll();
     }
+
+    @Override
+    public Contract getContract(int selectedContractId) {
+        return DaoFactory.getFactory().getContractDao().read(selectedContractId);
+    }
 }

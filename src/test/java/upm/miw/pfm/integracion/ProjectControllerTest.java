@@ -46,7 +46,7 @@ public class ProjectControllerTest {
 	public void testCreateAndGetProyect() {
 		projectController.createProject(project);
 		int id = project.getId();
-		assertEquals(project, projectController.getProyect(id));
+		assertEquals(project, projectController.getProject(id));
 	}
 	
 	@Test
@@ -81,7 +81,7 @@ public class ProjectControllerTest {
     	projectController.createProject(project);
     	project.setIterationDays(12.3);
     	projectController.updateProject(project);
-    	Project project2 = projectController.getProyect(project.getId());
+    	Project project2 = projectController.getProject(project.getId());
     	assertEquals(project2, project);
     }
     

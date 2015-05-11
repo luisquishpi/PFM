@@ -8,7 +8,7 @@ import java.util.Set;
 import org.junit.Before;
 import org.junit.Test;
 
-import upm.miw.pfm.controllers.ejbs.AddEmployeeControllerEjb;
+import upm.miw.pfm.controllers.ejbs.EmployeeControllerEjb;
 import upm.miw.pfm.mocks.MockEmployeeDao;
 import upm.miw.pfm.models.entities.Contract;
 import upm.miw.pfm.models.entities.Employee;
@@ -16,7 +16,7 @@ import upm.miw.pfm.utils.RoleType;
 
 public class AddEmployeeControllerTest {
 
-    private AddEmployeeController addEmployeeController;
+    private EmployeeController addEmployeeController;
 
     private Employee employee;
 
@@ -26,7 +26,7 @@ public class AddEmployeeControllerTest {
 
     @Before
     public void before() {
-        addEmployeeController = new AddEmployeeControllerEjb();
+        addEmployeeController = new EmployeeControllerEjb();
         contract = new Contract("Fijo", 32.5);
         roles = new HashSet<RoleType>();
         roles.add(RoleType.PROJECT_MANAGEMENT);

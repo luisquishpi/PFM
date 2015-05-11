@@ -4,13 +4,12 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 
-import upm.miw.pfm.controllers.AddEmployeeController;
+import upm.miw.pfm.controllers.EmployeeController;
 import upm.miw.pfm.models.daos.DaoFactory;
-import upm.miw.pfm.models.entities.Contract;
 import upm.miw.pfm.models.entities.Employee;
 
 @Stateless
-public class AddEmployeeControllerEjb implements AddEmployeeController {
+public class EmployeeControllerEjb implements EmployeeController {
 
     @Override
     public void addEmployee(Employee employee) {
@@ -23,13 +22,8 @@ public class AddEmployeeControllerEjb implements AddEmployeeController {
     }
 
     @Override
-    public List<Contract> listContracts() {
-        return DaoFactory.getFactory().getContractDao().findAll();
+    public List<Employee> listEmployees() {
+        return DaoFactory.getFactory().getEmployeeDao().findAll();
     }
-
-	@Override
-	public Contract getContract(int selectedContractId) {
-		return DaoFactory.getFactory().getContractDao().read(selectedContractId);
-	}
 
 }
