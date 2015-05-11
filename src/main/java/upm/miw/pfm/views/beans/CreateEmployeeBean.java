@@ -96,7 +96,7 @@ public class CreateEmployeeBean {
 
         addEmployeeController.addEmployee(employee);
         LogManager.getLogger(clazz).debug("Creación de empleado " + employee);
-        Utils.addMessage(FacesMessage.SEVERITY_INFO, "OK!",
+        Utils.addMessage(FacesMessage.SEVERITY_INFO, "Empleado",
                 "Se ha creado el empleado satisfactoriamente");
         return "index";
     }

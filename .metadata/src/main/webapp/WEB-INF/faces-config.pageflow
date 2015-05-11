@@ -6,7 +6,7 @@
   <nodes xsi:type="pageflow:PFPage" name="pages/project/index.xhtml" id="pf143073061575210" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf14307306157529" path="/pages/project/index.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="pages/employee/create.xhtml" id="pf14309871086650" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf14309871086651" path="/pages/employee/create.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="pages/employee/index.xhtml" id="pf14309871086652" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" inlinks="pf14309871086651" path="/pages/employee/index.xhtml"/>
-  <links id="pf14303829632238" target="pf14303829632239" source="pf14303829632237" outcome="index" redirect="true" fromaction="#{newContractBean.process}"/>
+  <links id="pf14303829632238" target="pf14303829632239" source="pf14303829632237" outcome="index" redirect="true" fromaction="#{createContractBean.process}"/>
   <links id="pf14307306157529" target="pf143073061575210" source="pf14307306157528" outcome="index" redirect="true" fromaction="#{createProjectBean.process}"/>
   <links id="pf14309871086651" target="pf14309871086652" source="pf14309871086650" outcome="index" redirect="true" fromaction="#{createEmployeeBean.process}"/>
 </pageflow:Pageflow>
