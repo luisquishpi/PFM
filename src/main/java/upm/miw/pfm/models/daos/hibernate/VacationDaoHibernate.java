@@ -2,11 +2,8 @@ package upm.miw.pfm.models.daos.hibernate;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import org.hibernate.Hibernate;
+import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.criterion.Restrictions;
-
 import upm.miw.pfm.models.daos.VacationDao;
 import upm.miw.pfm.models.entities.Employee;
 import upm.miw.pfm.models.entities.Vacation;
@@ -26,8 +23,10 @@ public class VacationDaoHibernate extends GenericDaoHibernate<Vacation, Integer>
         List<Vacation> list = new ArrayList<Vacation>();
         try {
             session.beginTransaction();
-            list = session.createCriteria(Vacation.class).add(Restrictions.eq("employee",employee)).list();
-            Hibernate.initialize(list);
+            Query query = session.createQuery("from Vacation WHERE employee = :employee ");
+            query.setParameter("employee", employee);
+            list = query.list();
+            session.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

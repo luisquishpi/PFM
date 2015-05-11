@@ -70,6 +70,13 @@ public class Vacation {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        assert obj != null;
+        Vacation other = (Vacation) obj;
+        return id == other.id && start.equals(other.start)
+                && end.equals(other.end);
+    }
+    @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
