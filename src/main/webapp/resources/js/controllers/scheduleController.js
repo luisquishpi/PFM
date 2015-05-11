@@ -39,6 +39,7 @@ projectApp.controller("scheduleController",['$scope', '$isTest', 'bridgeService'
 	    				"projectBean.projectSchedule.sundayHours",
 	    				"projectBean.projectSchedule.workDays"
 	                    ], function(newValues, oldValues, scope) {
+		alert("Entra controlador");
 		bridgeService.shareData=scope;
 	  });
 	$scope.listHoursEachDay = function(){

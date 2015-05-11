@@ -3,7 +3,7 @@
  */
 projectApp.controller("projectController",['$scope', '$isTest', 'bridgeService', function($scope, $isTest, bridgeService) {
 	  if(!$isTest){
-		  initJSFScope($scope);
+		 initJSFScope($scope);
 	  }
 
 	  var start, end;
@@ -11,6 +11,7 @@ projectApp.controller("projectController",['$scope', '$isTest', 'bridgeService',
 	  $scope.workDays = 0;
 	  $scope.workHours = 0;
 	  $scope.naturalDays = 0;
+	  console.log($scope.schedule);
 	  
 	  function calculateWorkDaysAndHour(){
 		  
@@ -51,8 +52,6 @@ projectApp.controller("projectController",['$scope', '$isTest', 'bridgeService',
 	  }
 	  
 	  $scope.workMonths = function(){
-		  console.log($scope.schedule);
-		  console.log($scope.schedule.workDays);
 		  return $scope.workDays/$scope.schedule.workDays;
 	  }
 	  	  	  
