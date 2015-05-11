@@ -9,7 +9,7 @@ import java.util.Date;
 import org.junit.Before;
 import org.junit.Test;
 
-import upm.miw.pfm.controllers.ejbs.AddEmployeeControllerEjb;
+import upm.miw.pfm.controllers.ejbs.EmployeeControllerEjb;
 import upm.miw.pfm.controllers.ejbs.VacationControllerEjb;
 import upm.miw.pfm.mocks.MockEmployeeDao;
 import upm.miw.pfm.mocks.MockVacationDao;
@@ -21,7 +21,7 @@ import upm.miw.pfm.utils.Utils;
 public class VacationControllerTest {
 
     private VacationController vacationController;
-    private AddEmployeeController employeeController;
+    private EmployeeController employeeController;
 
     private Vacation vacation;
     private Employee employee;
@@ -32,7 +32,7 @@ public class VacationControllerTest {
     @Before
     public void before() {
         vacationController = new VacationControllerEjb();
-        employeeController=new AddEmployeeControllerEjb();
+        employeeController=new EmployeeControllerEjb();
     }
 
     @Test
