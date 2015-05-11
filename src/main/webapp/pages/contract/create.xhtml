@@ -1,36 +1,67 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:p="http://primefaces.org/ui">
-<h:head>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<title>Nuevo Contrato</title>
-</h:head>
 <h:body>
 	<ui:composition template="#{root}/WEB-INF/template/commonLayout.xhtml">
-        <ui:define name="header">
+		<ui:define name="header">
             Crear Contrato
-        </ui:define>	    
+        </ui:define>
+		<ui:define name="css">
+			<link href="/PFM/resources/css/bootstrap/css/bootstrap.min.css"
+				rel="stylesheet" />
+		</ui:define>
 		<ui:define name="content">
-			<h:form>
-			    <p:growl id="growl" sticky="true" />
-				<h:panelGrid id="newContract" columns="2" cellpadding="5">
-					<p:outputLabel for="contractType" value="Tipo:" />
-					<p:inputText requiredMessage="El tipo de contrato es obligatorio" id="contractType" value="#{newContractBean.contract.contractType}" required="true" />
-						
-					<p:spacer />
-					<p:outputLabel for="insurance" value="Seguro(%):" />
-					<p:inputText requiredMessage="El porcentaje de seguro es obligatorio" id="insurance" value="#{newContractBean.contract.insurance}" required="true" />
-					<p:spacer />
-				</h:panelGrid>
-				<p:commandButton value="Crear" icon="ui-icon-disk" action="#{newContractBean.process}"
-						update="growl" />
-				<p:button outcome="index.html" value="Volver" icon="ui-icon-arrowreturn-1-w">
-				</p:button>		
-			</h:form>
+			<div class="main-grid main-body-grid">
+				<h:form prependId="false">
+					<p:messages id="messages" showDetail="false" autoUpdate="false"
+						closable="true" />
+					<fieldset>
+						<div class="row">
+							<div class="col-lg-3">
+								<p:outputLabel for="contractType" value="Tipo:"
+									styleClass="label_height" />
+							</div>
+							<div class="col-lg-2">
+								<p:inputText
+									requiredMessage="El tipo de contrato es obligatorio"
+									id="contractType"
+									value="#{createContractBean.contract.contractType}"
+									required="true" />
+							</div>
+							<div class="col-lg-4">
+								<p:message for="contractType" />
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-3">
+								<p:outputLabel for="insurance" value="Seguro(%):"
+									styleClass="label_height" />
+							</div>
+							<div class="col-lg-2">
+								<p:inputText
+									requiredMessage="El porcentaje de seguro es obligatorio"
+									id="insurance" value="#{createContractBean.contract.insurance}"
+									required="true" />
+							</div>
+							<div class="col-lg-4">
+								<p:message for="insurance" />
+							</div>
+						</div>
+						<div>
+							<p:commandButton value="Crear" icon="ui-icon-disk"
+								action="#{createContractBean.process}" ajax="false" />
+							<p:button outcome="index.html" value="Volver"
+								icon="ui-icon-arrowreturn-1-w" />
+						</div>
+					</fieldset>
+				</h:form>
+			</div>
 		</ui:define>
 	</ui:composition>
 </h:body>
