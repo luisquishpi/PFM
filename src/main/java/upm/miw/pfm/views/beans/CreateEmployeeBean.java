@@ -7,6 +7,7 @@ import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.model.SelectItem;
@@ -18,6 +19,7 @@ import upm.miw.pfm.controllers.EmployeeController;
 import upm.miw.pfm.models.entities.Contract;
 import upm.miw.pfm.models.entities.Employee;
 import upm.miw.pfm.utils.RoleType;
+import upm.miw.pfm.utils.Utils;
 
 @ManagedBean
 @RequestScoped
@@ -94,6 +96,8 @@ public class CreateEmployeeBean {
 
         addEmployeeController.addEmployee(employee);
         LogManager.getLogger(clazz).debug("Creación de empleado " + employee);
+        Utils.addMessage(FacesMessage.SEVERITY_INFO, "Empleado",
+                "Se ha creado el empleado satisfactoriamente");
         return "index";
     }
 

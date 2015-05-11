@@ -2,6 +2,7 @@ package upm.miw.pfm.controllers;
 
 import java.util.List;
 
+import upm.miw.pfm.models.entities.Employee;
 import upm.miw.pfm.models.entities.Vacation;
 
 public interface VacationController {
@@ -12,6 +13,6 @@ public interface VacationController {
 
     public Vacation getVacationById(Integer id);
 
-    public List<Vacation> vacationList();
+    public List<Vacation> vacationList(Employee employee);
 
 }

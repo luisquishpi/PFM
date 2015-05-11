@@ -8,9 +8,9 @@
 <ui:composition template="#{root}/WEB-INF/template/commonLayout.xhtml">
 	<ui:define name="header">
             Contratos
-        </ui:define> 
+        </ui:define>
 	<ui:define name="content">
-	<p:growl id="growlmsg2" showDetail="true" sticky="true" autoUpdate="true"/>
+		<p:growl id="growl" sticky="true" showDetail="true" />
 		<h:form>
 			<p:dataTable var="contract" value="#{listContractBean.contracts}">
 				<p:column headerText="Nombre">
@@ -31,18 +31,21 @@
                             </h:outputLink></li>
 							<li><h:commandLink action="#{listContractBean.delete}">
 									<span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Eliminar       
-										<f:setPropertyActionListener target="#{listContractBean.id}" value="#{contract.id}" />
+										<f:setPropertyActionListener target="#{listContractBean.id}"
+										value="#{contract.id}" />
 								</h:commandLink></li>
 						</ul>
 					</div>
 				</p:column>
 			</p:dataTable>
 		</h:form>
-		<br/>
-		<p:button outcome="create.xhtml" value="Nuevo Contrato" icon="ui-icon-plus">
-					</p:button> 
-        <p:button outcome="/home.xhtml" value="Ir al inicio" icon="ui-icon-home">
-		</p:button> 
+		<br />
+		<p:button outcome="create.xhtml" value="Nuevo Contrato"
+			icon="ui-icon-plus">
+		</p:button>
+		<p:button outcome="/home.xhtml" value="Ir al inicio"
+			icon="ui-icon-home">
+		</p:button>
 	</ui:define>
 </ui:composition>
 </html>

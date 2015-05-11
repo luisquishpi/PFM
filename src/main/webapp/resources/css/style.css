@@ -33,10 +33,14 @@ puilabel, label {
 	text-align: center;
 }
 
-.label_combobox {
+.label_height {
 	line-height: 30px;
 }
 
 table td {
 	font-family: Verdana, Arial, sans-serif;
+}
+
+.ui-state-highlight {
+	text-shadow: none !important;
 }
