@@ -31,9 +31,10 @@ public class Vacation {
     public Vacation() {
     }
 
-    public Vacation(Date start, Date end) {
+    public Vacation(Date start, Date end, Employee employee) {
         this.start = start;
         this.end = end;
+        this.employee=employee;
     }
 
     public Integer getId() {
