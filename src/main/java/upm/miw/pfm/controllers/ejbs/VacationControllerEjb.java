@@ -7,6 +7,7 @@ import javax.ejb.Stateless;
 import upm.miw.pfm.controllers.VacationController;
 import upm.miw.pfm.models.daos.DaoFactory;
 import upm.miw.pfm.models.daos.VacationDao;
+import upm.miw.pfm.models.entities.Employee;
 import upm.miw.pfm.models.entities.Vacation;
 
 @Stateless
@@ -34,8 +35,8 @@ public class VacationControllerEjb implements VacationController {
     }
 
     @Override
-    public List<Vacation> vacationList() {
-        return vacationDao.findAll();
+    public List<Vacation> vacationList(Employee employee) {
+        return vacationDao.findAll(employee);
     }
 
 }

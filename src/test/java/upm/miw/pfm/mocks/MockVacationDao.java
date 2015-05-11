@@ -3,6 +3,7 @@ package upm.miw.pfm.mocks;
 import java.util.List;
 
 import upm.miw.pfm.models.daos.hibernate.VacationDaoHibernate;
+import upm.miw.pfm.models.entities.Employee;
 import upm.miw.pfm.models.entities.Vacation;
 import mockit.Mock;
 import mockit.MockUp;
@@ -25,7 +26,7 @@ public class MockVacationDao extends MockUp<VacationDaoHibernate> {
     }
 
     @Mock
-    public List<Vacation> findAll() {
+    public List<Vacation> findAll(Employee employee) {
         return listVacation;
     }
 
