@@ -18,9 +18,9 @@ describe("Test TheoricalPhaseController", function(){
 				  mediumCostDay: 122.94,
 				  mediumCostHour: 15.37
 		};
-		sampleCtrl = $controller("theoricalPhaseController", {
+		theoricalPhaseCtrl = $controller("theoricalPhaseController", {
 			$scope: scope,
-			test: true
+			$isTest: true
 		});
 	}));
 	
