@@ -5,13 +5,12 @@ projectApp.controller("projectController",['$scope', '$isTest', 'bridgeService',
 	  if(!$isTest){
 		 initJSFScope($scope);
 	  }
-
+	  
 	  var start, end;
 	  $scope.schedule = bridgeService.shareData;
 	  $scope.workDays = 0;
 	  $scope.workHours = 0;
 	  $scope.naturalDays = 0;
-	  console.log($scope.schedule);
 	  
 	  function calculateWorkDaysAndHour(){		  
 		  var days=0, hours=0;		  
