@@ -6,41 +6,66 @@ describe("Test TheoricalPhaseController", function(){
 	
 	beforeEach(inject(function($controller, $rootScope){
 		scope = $rootScope;
-		scope.theoricalPhaseBean = {
-				  cost: 85000,
-				  start: '2015-03-02',
-				  end: '2015-09-04',
-				  workHours: 1064.0,
-				  workDays: 133,
-				  workMonths: 6.3,
-				  naturalDays: 187,
-				  mediumCostMonth: 2581.68,
-				  mediumCostDay: 122.94,
-				  mediumCostHour: 15.37
+		scope.showTheoricalPhasesBean = {
+				  project:{
+					  cost: 85000,
+					  startString: "02/03/2015",
+					  endString: "04/09/2015", 
+				  },
+				  projectSchedule: {
+						  workDays:21
+				  }
 		};
-		sampleCtrl = $controller("theoricalPhaseController", {
+		controller = $controller("theoricalPhaseController", {
 			$scope: scope,
-			test: true
+			$isTest: true,
+			workTimeService:
+			{
+				calculateWorkDaysAndHour: function(){
+					return 0;
+				},
+				workHours: function(){
+					return 999;
+				},
+				workDays: function(){
+					return 135;
+				},
+				workMonths: function(){
+					return 6.428571428571429;
+				},
+				naturalDays: function(){
+					return 187;
+				},
+				costWorkHour: function(){
+					return 15.37;
+				},
+				costWorkDay: function(){
+					return 122.94;
+				},
+				costWorkMonth: function(){
+					return 2581.68;
+				}
+			},
 		});
 	}));
 	
-	it("Recomended days should be 13,3", function(){
-		expect(scope.recomendedDays()).toBe(13.3);
+	it("Recomended days should be 13,5", function(){
+		expect(scope.recomendedDays()).toBe(13.5);
 	});
 	
-	it("Init and Trans hours should be 106.4", function(){
-		expect(scope.initTransHours()).toBe(106.4);
+	it("Init and Trans hours should be 99.9", function(){
+		expect(scope.initTransHours()).toBe(99.9);
 	});
 	
-	it("Init and Trans days should be 13.3", function(){
-		expect(scope.initTransDays()).toBe(13.3);
+	it("Init and Trans days should be 13.5", function(){
+		expect(scope.initTransDays()).toBe(13.5);
 	});
 	
-	it("Init and Trans months should be 0.63", function(){
-		expect(scope.initTransMonths()).toBe(0.63);
+	it("Init and Trans months should be 0.6428571428571429", function(){
+		expect(scope.initTransMonths()).toBe(0.6428571428571429);
 	});
 	
-	it("Init start date should be 3/2/2015", function(){
+	it("Init start date should be 2/3/2015", function(){
 		expect(scope.initStartDate()).toBe("2/3/2015");
 	});
 	
@@ -48,28 +73,28 @@ describe("Test TheoricalPhaseController", function(){
 		expect(scope.initEndDate()).toBe("20/3/2015");
 	});
 	
-	it("Iteration average hours should be 106.4", function(){
-		expect(scope.iterationAverageHours()).toBe(106.4);
+	it("Iteration average hours should be 99.9", function(){
+		expect(scope.iterationAverageHours()).toBe(99.9);
 	});
 	
-	it("Iteration average days should be 13.3", function(){
-		expect(scope.iterationAverageDays()).toBe(13.3);
+	it("Iteration average days should be 13.5", function(){
+		expect(scope.iterationAverageDays()).toBe(13.5);
 	});
 	
-	it("Iteration average months should be 0.63", function(){
-		expect(scope.iterationAverageMonths()).toBe(0.63);
+	it("Iteration average months should be 0.6428571428571429", function(){
+		expect(scope.iterationAverageMonths()).toBe(0.6428571428571429);
 	});
 	
-	it("Elab hours should be 319.2", function(){
-		expect(scope.ElabHours()).toBe(319.2);
+	it("Elab hours should be 299.7", function(){
+		expect(scope.ElabHours()).toBe(299.7);
 	});
 	
-	it("Elab days should be 39.9", function(){
-		expect(scope.ElabDays()).toBe(39.9);
+	it("Elab days should be 40.5", function(){
+		expect(scope.ElabDays()).toBe(40.5);
 	});
 	
-	it("Elab months should be 1.89", function(){
-		expect(scope.ElabMonths()).toBe(1.89);
+	it("Elab months should be 1.9285714285714286", function(){
+		expect(scope.ElabMonths()).toBe(1.9285714285714286);
 	});
 	
 	it("Elab start date should be 21/3/2015", function(){
@@ -80,16 +105,16 @@ describe("Test TheoricalPhaseController", function(){
 		expect(scope.ElabEndDate()).toBe("15/5/2015");
 	});
 	
-	it("Constr hours should be 532", function(){
-		expect(scope.ConstrHours()).toBe(532);
+	it("Constr hours should be 499.5", function(){
+		expect(scope.ConstrHours()).toBe(499.5);
 	});
 	
-	it("Constr days should be 66.5", function(){
-		expect(scope.ConstrDays()).toBe(66.5);
+	it("Constr days should be 67.5", function(){
+		expect(scope.ConstrDays()).toBe(67.5);
 	});
 	
-	it("Constr months should be 3.15", function(){
-		expect(scope.ConstrMonths()).toBe(3.15);
+	it("Constr months should be 3.2142857142857144", function(){
+		expect(scope.ConstrMonths()).toBe(3.2142857142857144);
 	});
 	
 	it("Constr start date should be 16/5/2015", function(){
@@ -115,19 +140,19 @@ describe("Test TheoricalPhaseController", function(){
 	});
 	
 	it("Init people-hour should be 276.51", function(){
-		expect(scope.initPeopleHour()).toBe(276.51);
+		expect(scope.initPeopleHour()).toBe(276.5126870527001);
 	});
 	
 	it("Init people-day should be 34.57", function(){
-		expect(scope.initPeopleDay()).toBe(34.57);
+		expect(scope.initPeopleDay()).toBe(34.56970880104116);
 	});
 	
 	it("Init people-month should be 1.65", function(){
-		expect(scope.initPeopleMonth()).toBe(1.65);
+		expect(scope.initPeopleMonth()).toBe(1.646214867837997);
 	});
 	
-	it("Init people should be 2.6", function(){
-		expect(scope.initPeople()).toBe(2.6);
+	it("Init people should be 2.7678947652922927", function(){
+		expect(scope.initPeople()).toBe(2.7678947652922927);
 	});
 	
 	it("Init distribution-iteration should be 5", function(){
@@ -151,19 +176,19 @@ describe("Test TheoricalPhaseController", function(){
 	});
 	
 	it("Elab people-hour should be 1106.05", function(){
-		expect(scope.elabPeopleHour()).toBe(1106.05);
+		expect(scope.elabPeopleHour()).toBe(1106.0507482108003);
 	});
 	
 	it("Elab people-day should be 138.28", function(){
-		expect(scope.elabPeopleDay()).toBe(138.28);
+		expect(scope.elabPeopleDay()).toBe(138.27883520416464);
 	});
 	
 	it("Elab people-month should be 6.58", function(){
-		expect(scope.elabPeopleMonth()).toBe(6.58);
+		expect(scope.elabPeopleMonth()).toBe(6.584859471351988);
 	});
 	
-	it("Elab people should be 3.47", function(){
-		expect(scope.elabPeople()).toBe(3.47);
+	it("Elab people should be 3.6905263537230577", function(){
+		expect(scope.elabPeople()).toBe(3.6905263537230577);
 	});
 	
 	it("Elab distribution-iteration should be 7", function(){
@@ -171,15 +196,15 @@ describe("Test TheoricalPhaseController", function(){
 	});
 	
 	it("Elab people-hour/iteration should be 368.68", function(){
-		expect(scope.elabPeopleHourIteration()).toBe(368.68);
+		expect(scope.elabPeopleHourIteration()).toBe(368.68358273693343);
 	});
 	
 	it("Elab people-day/iteration should be 46.09", function(){
-		expect(scope.elabPeopleDayIteration()).toBe(46.09);
+		expect(scope.elabPeopleDayIteration()).toBe(46.09294506805488);
 	});
 	
 	it("Elab people-month/iteration should be 2.19", function(){
-		expect(scope.elabPeopleMonthIteration()).toBe(2.19);
+		expect(scope.elabPeopleMonthIteration()).toBe(2.1949531571173293);
 	});
 	
 	it("Constr cost should be 55250", function(){
@@ -187,19 +212,19 @@ describe("Test TheoricalPhaseController", function(){
 	});
 	
 	it("Constr people-hour should be 3594.66", function(){
-		expect(scope.constrPeopleHour()).toBe(3594.66);
+		expect(scope.constrPeopleHour()).toBe(3594.6649316851012);
 	});
 	
 	it("Constr people-day should be 449.41", function(){
-		expect(scope.constrPeopleDay()).toBe(449.41);
+		expect(scope.constrPeopleDay()).toBe(449.40621441353505);
 	});
 	
 	it("Constr people-month should be 21.40", function(){
-		expect(scope.constrPeopleMonth()).toBe(21.40);
+		expect(scope.constrPeopleMonth()).toBe(21.40079328189396 );
 	});
 	
-	it("Constr people should be 6.76", function(){
-		expect(scope.constrPeople()).toBe(6.76);
+	it("Constr people should be 7.1965263897599625", function(){
+		expect(scope.constrPeople()).toBe(7.1965263897599625);
 	});
 	
 	it("Constr distribution-iteration should be 13", function(){
@@ -207,15 +232,15 @@ describe("Test TheoricalPhaseController", function(){
 	});
 	
 	it("Constr people-hour/iteration should be 718.93", function(){
-		expect(scope.constrPeopleHourIteration()).toBe(718.93);
+		expect(scope.constrPeopleHourIteration()).toBe(718.9329863370202);
 	});
 	
 	it("Constr people-day/iteration should be 89.88", function(){
-		expect(scope.constrPeopleDayIteration()).toBe(89.88);
+		expect(scope.constrPeopleDayIteration()).toBe(89.88124288270701);
 	});
 	
 	it("Constr people-month/iteration should be 4.28", function(){
-		expect(scope.constrPeopleMonthIteration()).toBe(4.28);
+		expect(scope.constrPeopleMonthIteration()).toBe(4.280158656378792);
 	});
 	
 	it("Trans cost should be 8500", function(){
@@ -223,19 +248,19 @@ describe("Test TheoricalPhaseController", function(){
 	});
 	
 	it("Trans people-hour should be 553.03", function(){
-		expect(scope.transPeopleHour()).toBe(553.03);
+		expect(scope.transPeopleHour()).toBe(553.0253741054001);
 	});
 	
 	it("Trans people-day should be 69.14", function(){
-		expect(scope.transPeopleDay()).toBe(69.14);
+		expect(scope.transPeopleDay()).toBe(69.13941760208232 );
 	});
 	
 	it("Trans people-month should be 3.29", function(){
-		expect(scope.transPeopleMonth()).toBe(3.29);
+		expect(scope.transPeopleMonth()).toBe(3.292429735675994);
 	});
 	
 	it("Trans people should be 5.20", function(){
-		expect(scope.transPeople()).toBe(5.20);
+		expect(scope.transPeople()).toBe(5.5357895305845854);
 	});
 	
 	it("Trans distribution-iteration should be 10", function(){
@@ -243,31 +268,31 @@ describe("Test TheoricalPhaseController", function(){
 	});
 	
 	it("Trans people-hour/iteration should be 553.03", function(){
-		expect(scope.transPeopleHourIteration()).toBe(553.03);
+		expect(scope.transPeopleHourIteration()).toBe(553.0253741054001);
 	});
 	
 	it("Trans people-day/iteration should be 69.14", function(){
-		expect(scope.transPeopleDayIteration()).toBe(69.14);
+		expect(scope.transPeopleDayIteration()).toBe(69.13941760208232);
 	});
 	
 	it("Trans people-month/iteration should be 3.29", function(){
-		expect(scope.transPeopleMonthIteration()).toBe(3.29);
+		expect(scope.transPeopleMonthIteration()).toBe(3.292429735675994);
 	});
 	
 	it("Project people-hour should be 5530.3", function(){
-		expect(scope.projectPeopleHour()).toBe(5530.3);
+		expect(scope.projectPeopleHour()).toBe(5530.253741054002);
 	});	
 	
 	it("Project people-day should be 691.39", function(){
-		expect(scope.projectPeopleDay()).toBe(691.39);
+		expect(scope.projectPeopleDay()).toBe(691.3941760208231);
 	});
 	
 	it("Project people-month should be 32.92", function(){
-		expect(scope.projectPeopleMonth()).toBe(32.92);
+		expect(scope.projectPeopleMonth()).toBe(32.92429735675994);
 	});
 	
 	it("Project people should be 5.20", function(){
-		expect(scope.projectPeople()).toBe(5.20);
+		expect(scope.projectPeople()).toBe(5.535789530584586);
 	});
 	
 	it("Project distribution-iteration should be 10", function(){
@@ -275,14 +300,14 @@ describe("Test TheoricalPhaseController", function(){
 	});
 	
 	it("Project people-hour/iteration should be 553.03", function(){
-		expect(scope.projectPeopleHourIteration()).toBe(553.03);
+		expect(scope.projectPeopleHourIteration()).toBe(553.0253741054001);
 	});
 	
 	it("Project people-day/iteration should be 69.14", function(){
-		expect(scope.projectPeopleDayIteration()).toBe(69.14);
+		expect(scope.projectPeopleDayIteration()).toBe(69.13941760208232);
 	});
 	
 	it("Project people-month/iteration should be 3.29", function(){
-		expect(scope.projectPeopleMonthIteration()).toBe(3.29);
+		expect(scope.projectPeopleMonthIteration()).toBe(3.292429735675994);
 	});
 })

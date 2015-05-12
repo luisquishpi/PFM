@@ -46,15 +46,13 @@
 								styleClass="label_combobox" />
 						</div>
 						<div class="col-lg-2">
-							<h:selectOneMenu id="project"
-								value="#{showTheoreticalPhasesBean.project.id}"
-								requiredMessage="Debe selecionar el proyecto">
-								<f:selectItem itemLabel="Seleccione el proyecto" itemValue="-1"
-									noSelectionOption="true" />
-								<f:selectItems value="#{showTheoreticalPhasesBean.projectList}"
-									var="project" itemValue="#{project.id}"
-									itemLabel="#{project.name}" />
-							</h:selectOneMenu>
+							<h:form ng-app="projectApp">
+								<h:selectOneMenu id="project"
+									value="#{showTheoreticalPhasesBean.selectedProjectId}"
+									requiredMessage="Debe seleccionar el proyecto">
+									<f:selectItems value="#{showTheoreticalPhasesBean.projectList}"/>
+								</h:selectOneMenu>
+							</h:form>
 						</div>
 					</div>
 					<div class="row">
