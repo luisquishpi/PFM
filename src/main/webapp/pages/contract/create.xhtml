@@ -44,12 +44,15 @@
 									styleClass="label_height" />
 							</div>
 							<div class="col-lg-2">
-								<p:inputText
+								<p:spinner
 									requiredMessage="El porcentaje de seguro es obligatorio"
 									id="insurance" value="#{createContractBean.contract.insurance}"
-									required="true" />
+									required="true" stepFactor="0.01">
+									<f:convertNumber minFractionDigits="2" maxFractionDigits="2"
+										locale="en_US" type="number" />
+								</p:spinner>
 							</div>
-							<div class="col-lg-4">
+							<div class="col-lg-4" style="padding-left: 35px;">
 								<p:message for="insurance" />
 							</div>
 						</div>

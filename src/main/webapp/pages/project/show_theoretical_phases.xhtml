@@ -77,15 +77,17 @@
 								styleClass="label_height" />
 						</div>
 						<div class="col-lg-2">
-							<p:inputText id="dias_iteracion"
+							<p:spinner id="dias_iteracion"
 								value="{{showTheoreticalPhasesBean.project.iterationDays}}"
 								ng-required="true"
-								validatorMessage="Número de días debe ser mayor a 0">
+								validatorMessage="Número de días debe ser mayor a 0"
+								stepFactor="0.5">
+								<f:convertNumber minFractionDigits="2" maxFractionDigits="2" locale="en_US"  />
 								<f:validator
 									validatorId="upm.miw.pfm.utils.GreaterThanZeroValidator" />
-							</p:inputText>
+							</p:spinner>
 						</div>
-						<div class="col-lg-4">
+						<div class="col-lg-4" style="padding-left: 35px;">
 							<p:message for="dias_iteracion" showDetail="true"
 								showSummary="false" />
 						</div>
