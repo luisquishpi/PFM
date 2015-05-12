@@ -77,10 +77,8 @@ public class CreateProjectBean implements Serializable{
         LogManager.getLogger(clazz).debug("Nombre proyecto " + projectSchedule.getProject().getName());
         LogManager.getLogger(clazz).debug("Creación de proyecto " + project);
         
-        FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Proyecto creado", "El proyecto ha sido creado con exito"));
-        context.getExternalContext().getFlash().setKeepMessages(true);
-        
+        Utils.addMessage(FacesMessage.SEVERITY_INFO, "Proyecto", "Se ha creado el proyecto satisfactoriamente");
+               
         return "index";
     }
     
