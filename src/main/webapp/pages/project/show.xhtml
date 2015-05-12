@@ -21,6 +21,11 @@
 			<script src="/PFM/resources/js/controllers/scheduleController.js"></script>
 			<script src="/PFM/resources/js/controllers/projectController.js"></script>
 		</ui:define>
+		<ui:define name="css">
+			<style>
+				label{line-height: 0px !important;}
+			</style>
+		</ui:define>
 		<ui:define name="content">
 			<c:set var="projectBean" scope="request" value="#{consultProjectBean}" />
 			<c:set var="bridgeService" scope="request" value="#{projectBean.projectSchedule}" />
@@ -143,7 +148,7 @@
 										<h:outputText value="{{costWorkHour() | number:2}}" />&euro;
 									</div>
 						  		</div>
-						  		<div class="row">
+						  		<!-- <div class="row">
 									<div class="col-sm-8"></div>
 									<div class="col-sm-2">
 										<p:outputLabel value="Personas/mes:"
@@ -170,7 +175,7 @@
 									</div>
 									<div class="col-sm-2">
 									</div>
-						  		</div>
+						  		</div> -->
 								<p:button outcome="index.html" value="Volver" icon="ui-icon-arrowreturn-1-w">
 								</p:button>	
 							</fieldset>
