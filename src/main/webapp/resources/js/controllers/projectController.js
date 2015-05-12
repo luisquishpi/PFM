@@ -1,6 +1,7 @@
 /**
  * AngularJS ProjectController
  */
+
 projectApp.controller("projectController", [
 		'$scope',
 		'$isTest',

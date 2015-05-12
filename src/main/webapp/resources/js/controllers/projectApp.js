@@ -39,13 +39,10 @@ projectApp.service("workTimeService", function(){
 	
 	this.calculateWorkDaysAndHour = function(startString, endString, listHoursEachDay ){
 		  
-		  var days=0, hours=0;
-		  var re = new RegExp("[0-9]{2}/[0-9]{2}/[0-9]{4}");
-		  var validateStart = (startString).match(re);
-		  var validateEnd = (endString).match(re); 
-		  if(validateStart!=null && validateEnd!=null){
-			  start = moment($scope.projectBean.project.startString, "DD/MM/YYYY");
-			  end = moment($scope.projectBean.project.endString, "DD/MM/YYYY");
+		var days=0, hours=0;		  
+		  start = moment(startString, "DD/MM/YYYY");
+		  end = moment(endString, "DD/MM/YYYY");
+		  if((start.isValid() && end.isValid()) && start.isBefore(end)){
 			  end = end.add(1,"days");
 			  for (var m = moment(start); m.isBefore(end); m.add(1, "days")) {
 				  var workHours = listHoursEachDay()[m.day()].workHours;
@@ -55,6 +52,9 @@ projectApp.service("workTimeService", function(){
 				  }
 			  }
 			  $scope.naturalDays= end.diff(start,"days");
+		  }
+		  else{
+			  $scope.naturalDays = 0;			  
 		  }
 	}
 	

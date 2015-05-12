@@ -11,19 +11,20 @@ public abstract class DaoFactory {
     }
 
     public static DaoFactory getFactory() {
-    	if (factory == null) {
+        if (factory == null) {
             factory = new DaoHibernateFactory();
         }
         return factory;
     }
 
     public abstract ProjectDao getProjectDao();
-    
+
     public abstract ContractDao getContractDao();
-    
+
     public abstract EmployeeDao getEmployeeDao();
 
-	public abstract ProjectScheduleDao getProjectScheduleDao();
-   
-}
+    public abstract ProjectScheduleDao getProjectScheduleDao();
 
+    public abstract VacationDao getVacationDao();
+
+}
