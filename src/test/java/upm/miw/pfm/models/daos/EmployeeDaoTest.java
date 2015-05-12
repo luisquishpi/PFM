@@ -5,18 +5,22 @@ import static org.junit.Assert.assertNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import upm.miw.pfm.models.daos.hibernate.DaoHibernateFactory;
 import upm.miw.pfm.models.entities.Contract;
 import upm.miw.pfm.models.entities.Employee;
+import upm.miw.pfm.models.entities.Vacation;
 import upm.miw.pfm.utils.RoleType;
+import upm.miw.pfm.utils.Utils;
 
 public class EmployeeDaoTest {
 
@@ -24,15 +28,28 @@ public class EmployeeDaoTest {
 
     private ContractDao contractDao;
 
+    private VacationDao vacationDao;
+
     private Contract contract;
 
     private Employee employee;
 
+    private Vacation vacation;
+
+    private Date startDate;
+
+    private Date endDate;
+
+    @BeforeClass
+    public static void beforeClass() {
+        DaoFactory.setFactory(new DaoHibernateFactory());
+    }
+
     @Before
     public void before() {
-        DaoFactory.setFactory(new DaoHibernateFactory());
         employeeDao = DaoFactory.getFactory().getEmployeeDao();
         contractDao = DaoFactory.getFactory().getContractDao();
+        vacationDao = DaoFactory.getFactory().getVacationDao();
         contract = new Contract("Fijo", 32.5);
         contractDao.create(contract);
         Set<RoleType> roles = new HashSet<RoleType>();
@@ -134,11 +151,33 @@ public class EmployeeDaoTest {
         assertEquals(true, employeePostUpdate.getRoles().isEmpty());
     }
 
+    @Test
+    public void testCreateAndReadVacation() {
+        startDate = Utils.buildDate(2015, 10, 1);
+        endDate = Utils.buildDate(2015, 10, 2);
+        vacation = new Vacation(startDate, endDate, employee);
+        vacationDao.create(vacation);
+        assertEquals(vacation, vacationDao.read(vacation.getId()));
+    }
+    @Test
+    public void testListVacationByEmployee(){
+        startDate = Utils.buildDate(2015, 10, 1);
+        endDate = Utils.buildDate(2015, 10, 2);
+        vacation = new Vacation(startDate, endDate, employee);
+        vacationDao.create(vacation);
+        
+        assertEquals(1, vacationDao.findAll(employee).size());
+    }
+
     @After
     public void after() {
         List<Employee> employeeList = employeeDao.findAllWithoutRoles();
         for (Employee tmpEmployee : employeeList) {
             employeeDao.deleteById(tmpEmployee.getId());
+        }
+        List<Vacation> vacationList = vacationDao.findAll();
+        for (Vacation tmpVacation : vacationList) {
+            vacationDao.deleteById(tmpVacation.getId());
         }
         contractDao.query("delete from Contract");
     }

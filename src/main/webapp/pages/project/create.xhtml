@@ -31,11 +31,6 @@
 		</ui:define>
 		<ui:define name="css">
 			<link href="/PFM/resources/css/wizard.css" rel="stylesheet" />
-			<style>
-				.ng-isolate-scope{
-					
-				}
-			</style>
 		</ui:define>
 		<ui:define name="header">
             Crear Proyecto
@@ -55,107 +50,107 @@
 									<ngsync direction="serverToClient" value="{{projectBean.projectSchedule.getWorkDaysArray()}}"/>
 									
 										<div class="row" style="margin-top:10px">
-											<div class="col-lg-3">
+											<div class="col-sm-3">
 												<label> Días laborales/mes </label>
 											</div>
-											<div class="col-lg-2">
+											<div class="col-sm-2">
 												<p:inputText value="{{projectBean.projectSchedule.workDays}}" ng-required="true" label=""/>
 											</div>
-											<div class="col-lg-2">
+											<div class="col-sm-2">
 												<label> Lunes </label>
 											</div>
-											<div class="col-lg-2">
+											<div class="col-sm-2">
 												<p:inputText value="{{projectBean.projectSchedule.mondayHours}}" ng-required="true" label=""/>
 											</div>
-											<div class="col-lg-2">
+											<div class="col-sm-2">
 												<label> Total horas </label>	
 											</div>
-											<div class="col-lg-1">
+											<div class="col-sm-1">
 												{{hoursPerWeek()}}
 											</div>
 										</div>
 										<div class="row">
-											<div class="col-lg-3"> 	
+											<div class="col-sm-3"> 	
 												<label> Meses laborales/año </label>	
 											</div>
-											<div class="col-lg-2 right-text">
+											<div class="col-sm-2 right-text">
 												{{monthsPerYear}}
 											</div>
-											<div class="col-lg-2">
+											<div class="col-sm-2">
 												<label> Martes </label>
 											</div>
-											<div class="col-lg-2">
+											<div class="col-sm-2">
 												<p:inputText value="{{projectBean.projectSchedule.tuesdayHours}}" ng-required="true" label=""/>
 											</div>
-											<div class="col-lg-2" >
+											<div class="col-sm-2" >
 												<label> Media laboral </label>	
 											</div>
-											<div class="col-lg-1">
-												{{hoursPerDay()}}
+											<div class="col-sm-1">
+												{{hoursPerDay() | number:2}}
 											</div>
 										</div>
 										<div class="row">
-											<div class="col-lg-3" >
+											<div class="col-sm-3" >
 												<label> Horas laborales/día </label>	
 											</div>
-											<div class="col-lg-2 right-text">
-												{{hoursPerDay()}}
+											<div class="col-sm-2 right-text">
+												{{hoursPerDay() | number:2}}
 											</div>
-											<div class="col-lg-2">
+											<div class="col-sm-2">
 												<label> Miercoles </label>
 											</div>
-											<div class="col-lg-2">
+											<div class="col-sm-2">
 												<p:inputText value="{{projectBean.projectSchedule.wednesdayHours}}" ng-required="true" label=""/>
 											</div>
 										</div>
 										<div class="row">
-											<div class="col-lg-3" >
+											<div class="col-sm-3" >
 												<label> Días/año </label>	
 											</div>
-											<div class="col-lg-2 right-text">
+											<div class="col-sm-2 right-text">
 												{{daysPerYear()}}
 											</div>
-											<div class="col-lg-2">
+											<div class="col-sm-2">
 												<label> Jueves </label>	
 											</div>
-											<div class="col-lg-2">
+											<div class="col-sm-2">
 												<p:inputText value="{{projectBean.projectSchedule.thursdayHours}}" ng-required="true" label=""/>
 											</div>
 										</div>
 										<div class="row">
-											<div class="col-lg-3">
+											<div class="col-sm-3">
 												<label> Horas/mes </label>	
 											</div>
-											<div class="col-lg-2 right-text">
-												{{hoursPerMonth()}}
+											<div class="col-sm-2 right-text">
+												{{hoursPerMonth() | number:2}}
 											</div>
-											<div class="col-lg-2">
+											<div class="col-sm-2">
 												<label> Viernes </label>	
 											</div>
-											<div class="col-lg-2">
+											<div class="col-sm-2">
 												<p:inputText value="{{projectBean.projectSchedule.fridayHours}}" ng-required="true" label=""/>
 											</div>
 										</div>
 										<div class="row">
-											<div class="col-lg-3">
+											<div class="col-sm-3">
 												<label> Horas/año </label>	
 											</div>
-											<div class="col-lg-2 right-text">
-												{{hoursPerYear()}}
+											<div class="col-sm-2 right-text">
+												{{hoursPerYear() | number:2}}
 											</div>
-											<div class="col-lg-2">
+											<div class="col-sm-2">
 												<label> Sábado </label>	
 											</div>
-											<div class="col-lg-2">
+											<div class="col-sm-2">
 												<p:inputText value="{{projectBean.projectSchedule.saturdayHours}}" ng-required="true" label=""/>
 											</div>
 										</div>
 										<div class="row">
-											<div class="col-lg-5"></div>
-											<div class="col-lg-2">
+											<div class="col-sm-5"></div>
+											<div class="col-sm-2">
 												<label> Domingo </label>	
 											</div>
-											<div class="col-lg-2">
+											<div class="col-sm-2">
 												<p:inputText value="{{projectBean.projectSchedule.sundayHours}}" ng-required="true" label=""/>
 											</div>
 										</div>
@@ -165,131 +160,131 @@
 								<div  ng-switch-when="two" class="wave">
 									<fieldset ng-controller="projectController">
 										<div class="row" style="margin-top:10px">
-											<div class="col-lg-2">
+											<div class="col-sm-3">
 												<label> Nombre proyecto </label>
 											</div>
-											<div class="col-lg-2">
+											<div class="col-sm-2">
 												<p:inputText value="{{projectBean.project.name}}" ng-required="true" label=""/>
 											</div>
-											<div class="col-lg-2">
+											<div class="col-sm-2">
 												<label>Meses naturales </label>	
 											</div>
-											<div class="col-lg-1">
-												{{naturalMonths()}}
+											<div class="col-sm-1">
+												{{naturalMonths() | number:2}}
 											</div>
-											<div class="col-lg-3">
+											<div class="col-sm-2">
 												<label>Meses laborales </label>	
 											</div>
-											<div class="col-lg-2">
-												{{workMonths()}}
+											<div class="col-sm-2">
+												{{workMonths() | number:2}}
 											</div>
 								  		</div>
 								  		<div class="row">
-								  			<div class="col-lg-2">
-												<label>Fecha de inicio </label>	
+								  			<div class="col-sm-3">
+												<label>Fecha de inicio (DD/MM/YYYY)</label>	
 											</div>
-											<div class="col-lg-2">
+											<div class="col-sm-2">
 												<p:inputMask label=""
 													value="{{projectBean.project.startString}}" mask="99/99/9999"
 													ng-required="true" />
 											</div>
-											<div class="col-lg-2">
+											<div class="col-sm-2">
 												<label>Días naturales </label>	
 											</div>
-											<div class="col-lg-1">
+											<div class="col-sm-1">
 												{{naturalDays}}
 											</div>
-											<div class="col-lg-3">
+											<div class="col-sm-2">
 												<label>Días laborales </label>	
 											</div>
-											<div class="col-lg-2">
+											<div class="col-sm-2">
 												{{workDays}}
 											</div>
 								  		</div>
 								  		<div class="row">
-								  			<div class="col-lg-2">
-												<label>Fecha de fin </label>	
+								  			<div class="col-sm-3">
+												<label>Fecha de fin (DD/MM/YYYY)</label>	
 											</div>
-											<div class="col-lg-2">
+											<div class="col-sm-2">
 												<p:inputMask label=""
 														value="{{projectBean.project.endString}}" mask="99/99/9999"
 														ng-required="true" />
 											</div>
-											<div class="col-lg-3"></div>
-											<div class="col-lg-3">
+											<div class="col-sm-3"></div>
+											<div class="col-sm-2">
 												<label>Horas laborales </label>	
 											</div>
-											<div class="col-lg-2">
+											<div class="col-sm-2">
 												{{workHours}}
 											</div>
 								  		</div>
 								  		<div class="row">
-											<div class="col-lg-2">
+											<div class="col-sm-3">
 												<label>Presupuesto </label>	
 											</div>
-											<div class="col-lg-2">
+											<div class="col-sm-2">
 												<p:inputText value="{{projectBean.project.cost}}" ng-required="true" label=""/>
 											</div>
-											<div class="col-lg-2">
+											<div class="col-sm-2">
 												<label>Coste/mes natural </label>	
 											</div>
-											<div class="col-lg-1">
-												{{costNaturalMonth()}}
+											<div class="col-sm-1">
+												{{costNaturalMonth() | number:2}}
 											</div>
-											<div class="col-lg-3">
+											<div class="col-sm-2">
 												<label>Coste/mes laboral </label>	
 											</div>
-											<div class="col-lg-2">
-												{{costWorkMonth()}}
+											<div class="col-sm-2">
+												{{costWorkMonth() | number:2}}
 											</div>
 								  		</div>
 								  		<div class="row">
-											<div class="col-lg-4"></div>
-											<div class="col-lg-2">
+											<div class="col-sm-5"></div>
+											<div class="col-sm-2">
 												<label>Coste/día natural </label>	
 											</div>
-											<div class="col-lg-1">
-												{{costNaturalDay()}}
+											<div class="col-sm-1">
+												{{costNaturalDay() | number:2}}
 											</div>
-											<div class="col-lg-3">
+											<div class="col-sm-2">
 												<label>Coste/día laboral </label>	
 											</div>
-											<div class="col-lg-2">
-												{{costWorkDay()}}
+											<div class="col-sm-2">
+												{{costWorkDay() | number:2}}
 											</div>
 								  		</div>
 								  		<div class="row">
-											<div class="col-lg-7"></div>
-											<div class="col-lg-3">
+											<div class="col-sm-8"></div>
+											<div class="col-sm-2">
 												<label>Coste/hora laboral </label>	
 											</div>
-											<div class="col-lg-2">
-												{{costWorkHour()}}
+											<div class="col-sm-2">
+												{{costWorkHour() | number:2}}
 											</div>
 								  		</div>
 								  		<div class="row">
-											<div class="col-lg-7"></div>
-											<div class="col-lg-3">
-												<label>Personas/mes medio </label>	
+											<div class="col-sm-8"></div>
+											<div class="col-sm-2">
+												<label>Personas/mes </label>	
 											</div>
-											<div class="col-lg-2">
+											<div class="col-sm-2">
 												
 											</div>
 								  		</div>
 								  		<div class="row">
-											<div class="col-lg-7"></div>
-											<div class="col-lg-3">
-												<label>Personas/día medio </label>	
+											<div class="col-sm-8"></div>
+											<div class="col-sm-2">
+												<label>Personas/día </label>	
 											</div>
-											<div class="col-lg-2">
+											<div class="col-sm-2">
 											</div>
 								  		</div>
 								  		<div class="row">
-											<div class="col-lg-7"></div>
-											<div class="col-lg-3">
-												<label>Personas/hora medio </label>	
+											<div class="col-sm-8"></div>
+											<div class="col-sm-2">
+												<label>Personas/hora </label>	
 											</div>
-											<div class="col-lg-2">
+											<div class="col-sm-2">
 											</div>
 								  		</div>
 									</fieldset>
@@ -298,15 +293,12 @@
 							</div>
 					</div>
 					<div>
-						<!-- <p:commandButton value="Atrás" ng-click="handlePrevious()" ng-show="!isFirstStep()" 
-										 icon="ui-icon-arrow-1-w" update="growl" ajax="false" />
+						<p:commandButton value="Atrás" ng-click="handlePrevious()" ng-show="!isFirstStep()" 
+									     icon="ui-icon-arrow-1-w"/>
 						<p:commandButton value="{{getNextLabel()}}" ng-click="handleNext()" ng-show="isFirstStep()" 
-										 icon="ui-icon-arrow-1-e" update="growl" ajax="false" /> -->
-						<a class="btn btn-default" ng-click="handlePrevious()" ng-show="!isFirstStep()">Back</a>
-						<a class="btn btn-primary" ng-click="handleNext()" ng-show="isFirstStep()">{{getNextLabel()}}</a>
-						<p:commandButton value="Guardar"
-							action="#{createProjectBean.process}" ng-show="!isFirstStep()" icon="ui-icon-disk" update="growl"
-							ajax="false" />
+										 icon="ui-icon-arrow-1-e"/>
+						<p:commandButton value="Guardar" action="#{createProjectBean.process}" ng-show="!isFirstStep()" 
+										icon="ui-icon-disk" update="growl" ajax="false" />
 						<p:button outcome="index.html" value="Volver" icon="ui-icon-arrowreturn-1-w"></p:button>
 					</div>
 				</div>

@@ -42,7 +42,7 @@
 									id="name" value="#{createEmployeeBean.employee.name}"
 									required="true" />
 							</div>
-							<div class="col-lg-3">
+							<div class="col-lg-4">
 								<p:message for="name" />
 							</div>
 						</div>
@@ -56,7 +56,7 @@
 									id="surname" value="#{createEmployeeBean.employee.surname}"
 									required="true" />
 							</div>
-							<div class="col-lg-3">
+							<div class="col-lg-4">
 								<p:message for="surname" />
 							</div>
 						</div>
@@ -71,7 +71,7 @@
 									id="code" value="#{createEmployeeBean.employee.employeeCode}"
 									required="true" />
 							</div>
-							<div class="col-lg-3">
+							<div class="col-lg-4">
 								<p:message for="code" />
 							</div>
 						</div>
@@ -90,7 +90,7 @@
 										for="bruto" />
 								</p:inputText>
 							</div>
-							<div class="col-lg-3">
+							<div class="col-lg-4">
 								<p:message for="bruto" />
 							</div>
 						</div>
@@ -106,7 +106,7 @@
 									<f:selectItems value="#{createEmployeeBean.items}" />
 								</h:selectOneMenu>
 							</div>
-							<div class="col-lg-3">
+							<div class="col-lg-4">
 								<p:message for="contract" />
 							</div>
 						</div>
@@ -116,18 +116,17 @@
 									styleClass="label_height" />
 							</div>
 							<div class="col-lg-4">
-								<h:selectManyCheckbox styleClass="left" id="roles"
+								<h:selectManyCheckbox styleClass="checkbox_roles" id="roles"
 									value="#{createEmployeeBean.checkedRoles}"
 									layout="pageDirection">
 									<f:selectItems value="#{createEmployeeBean.roles}" var="role"
-										itemLabel="#{role.description}" itemValue="#{role}" />
+										itemLabel="#{role.description}" itemValue="#{role}"  />
 								</h:selectManyCheckbox>
 							</div>
 						</div>
 						<div>
 							<p:commandButton value="Crear" icon="ui-icon-disk"
-								action="#{createEmployeeBean.process}" ajax="false"
-								update="angular" />
+								action="#{createEmployeeBean.process}" ajax="false" />
 							<p:button outcome="index.xhtml" value="Volver"
 								icon="ui-icon-arrowreturn-1-w" ajax="false" />
 						</div>

@@ -47,3 +47,8 @@ table td {
 .row{
 	margin-bottom:10px;
 }
+.checkbox_roles {
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 90% !important;
+	font-weight: normal;
+}

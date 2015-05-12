@@ -3,9 +3,9 @@
  */
 projectApp.controller("projectController",['$scope', '$isTest', 'bridgeService', function($scope, $isTest, bridgeService) {
 	  if(!$isTest){
-		  initJSFScope($scope);
+		 initJSFScope($scope);
 	  }
-
+	  
 	  var start, end;
 	  $scope.schedule = bridgeService.shareData;
 	  $scope.workDays = 0;
