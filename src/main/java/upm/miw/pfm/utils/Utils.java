@@ -2,8 +2,11 @@ package upm.miw.pfm.utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
@@ -49,6 +52,10 @@ public class Utils {
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(severity, summary, detail));
 
+    }
+    
+    public static <T> List<T> SetToList(Set<T> set){
+        return new ArrayList<T>(set);
     }
 
 }

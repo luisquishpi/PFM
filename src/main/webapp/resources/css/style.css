@@ -44,7 +44,9 @@ table td {
 .ui-state-highlight {
 	text-shadow: none !important;
 }
-
+.row{
+	margin-bottom:10px;
+}
 .checkbox_roles {
 	font-family: Verdana, Arial, sans-serif;
 	font-size: 90% !important;
