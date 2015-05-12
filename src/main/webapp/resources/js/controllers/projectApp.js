@@ -31,10 +31,8 @@ projectApp.service('bridgeService', function(){
 
 projectApp.service("workTimeService", function(){
 
-	
-	
-	var workDays = 0;
-	var workHours = 0;
+	var workingDays = 0;
+	var workingHours = 0;
 	var naturalDays = 0;
 	
 	this.calculateWorkDaysAndHour = function(startString, endString, listHoursEachDay ){
@@ -45,25 +43,27 @@ projectApp.service("workTimeService", function(){
 		  if((start.isValid() && end.isValid()) && start.isBefore(end)){
 			  end = end.add(1,"days");
 			  for (var m = moment(start); m.isBefore(end); m.add(1, "days")) {
-				  var workHours = listHoursEachDay()[m.day()].workHours;
+				  var workHours = listHoursEachDay[m.day()].workHours;
 				  if(workHours>0){
 					  days++;
 				  	  hours+=workHours;
 				  }
 			  }
-			  $scope.naturalDays= end.diff(start,"days");
+			  naturalDays= end.diff(start,"days");
+			  workingDays = days;
+			  workingHours = hours;
 		  }
 		  else{
-			  $scope.naturalDays = 0;			  
+			  naturalDays = 0;			  
 		  }
 	}
 	
 	this.workHours = function(){
-		return workHours;
+		return workingHours;
 	}
 	
 	this.workDays = function(){
-		return workDays;
+		return workingDays;
 	}
 	
 	this.naturalDays = function(){
@@ -71,7 +71,7 @@ projectApp.service("workTimeService", function(){
 	}
 	
 	this.workMonths = function(workDaysMonth){
-		  return workDays/workDaysMonth;
+		  return workingDays/workDaysMonth;
 	}
 	
 });

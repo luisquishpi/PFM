@@ -10,6 +10,7 @@ import javax.faces.model.SelectItem;
 import org.apache.logging.log4j.LogManager;
 
 import upm.miw.pfm.controllers.ProjectController;
+import upm.miw.pfm.models.entities.Employee;
 import upm.miw.pfm.models.entities.Project;
 
 @ManagedBean
@@ -20,6 +21,8 @@ public class ShowTheoreticalPhasesBean {
     private List<SelectItem> projectList;
     
     private int selectedProjectId;
+    
+    private List<Employee> employeeList;
 
     private final static Class<ListProjectsBean> clazz = ListProjectsBean.class;
 
@@ -58,7 +61,15 @@ public class ShowTheoreticalPhasesBean {
         this.projectList = projectList;
     }
 
-    public String defineIterationDays() {
+    public List<Employee> getEmployeeList() {
+		return employeeList;
+	}
+
+	public void setEmployeeList(List<Employee> employeeList) {
+		this.employeeList = employeeList;
+	}
+
+	public String defineIterationDays() {
         if (this.project.getId() != null && this.project.getId()  != -1) {
             Project projectToUpdate = projectController.getProject(this.project.getId());
             projectToUpdate.setIterationDays(this.project.getIterationDays());
