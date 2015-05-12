@@ -45,8 +45,21 @@ table td {
 	text-shadow: none !important;
 }
 
+.row {
+	margin-bottom: 10px;
+}
+
 .checkbox_roles {
 	font-family: Verdana, Arial, sans-serif;
 	font-size: 90% !important;
 	font-weight: normal;
+}
+
+.ui-spinner-input {
+	padding: 4px !important;
+	margin-left: 0 !important;
+}
+
+.right {
+    text-align: right;
 }

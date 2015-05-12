@@ -23,7 +23,7 @@ public class EmployeeControllerEjb implements EmployeeController {
 
     @Override
     public List<Employee> listEmployees() {
-        return DaoFactory.getFactory().getEmployeeDao().findAll();
+        return DaoFactory.getFactory().getEmployeeDao().findAllWithoutRoles();
     }
 
 }

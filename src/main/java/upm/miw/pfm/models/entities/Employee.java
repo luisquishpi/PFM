@@ -22,7 +22,7 @@ import upm.miw.pfm.utils.RoleType;
 
 @Entity
 @Table(name = "employee")
-public class Employee {
+public class Employee implements IGenericEntity{
 
     @Id
     @GeneratedValue
