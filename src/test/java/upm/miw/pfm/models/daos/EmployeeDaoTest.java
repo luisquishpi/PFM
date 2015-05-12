@@ -175,7 +175,7 @@ public class EmployeeDaoTest {
 
     @After
     public void after() {
-        List<Vacation> vacationList = vacationDao.findAll();
+        List<Vacation> vacationList = vacationDao.findAll(employee);
         for (Vacation tmpVacation : vacationList) {
             vacationDao.deleteById(tmpVacation.getId());
         }
