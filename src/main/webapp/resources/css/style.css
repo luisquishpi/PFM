@@ -44,3 +44,6 @@ table td {
 .ui-state-highlight {
 	text-shadow: none !important;
 }
+.row{
+	margin-bottom:10px;
+}

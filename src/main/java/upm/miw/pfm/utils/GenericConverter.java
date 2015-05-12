@@ -8,8 +8,6 @@ import javax.faces.component.UISelectItems;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 
-import org.apache.logging.log4j.LogManager;
-
 import upm.miw.pfm.models.entities.IGenericEntity;
 
 @SuppressWarnings("unchecked")
@@ -17,7 +15,6 @@ public class GenericConverter implements Converter {
 
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
-        LogManager.getLogger(GenericConverter.class).debug(value);
         IGenericEntity ret = null;
         UIComponent src = component;
         if (src != null) {
