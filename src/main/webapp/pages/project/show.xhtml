@@ -25,7 +25,11 @@
 		<ui:define name="css">
 			<style>
 				label{line-height: 0px !important;}
+				.table-bordered label{
+					margin-right:10px;
+				}
 			</style>
+			
 		</ui:define>
 		<ui:define name="content">
 			<c:set var="projectBean" scope="request" value="#{consultProjectBean}" />
