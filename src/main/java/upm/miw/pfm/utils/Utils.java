@@ -11,6 +11,7 @@ import java.util.Set;
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
 import javax.faces.context.FacesContext;
+import javax.validation.ConstraintViolation;
 
 public class Utils {
 
@@ -56,6 +57,15 @@ public class Utils {
     
     public static <T> List<T> SetToList(Set<T> set){
         return new ArrayList<T>(set);
+    }
+    
+    public static <T> Boolean loadErrors(Set<ConstraintViolation<T>> errors){
+        Boolean isValid = true;
+        for(ConstraintViolation<T> error : errors){
+            Utils.addMessage(FacesMessage.SEVERITY_INFO, "Error", error.getMessage());
+            isValid = false;
+        }
+        return isValid;
     }
 
 }
