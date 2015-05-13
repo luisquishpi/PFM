@@ -23,11 +23,14 @@
 		<property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
 
 		<!-- Echo all executed SQL to stdout -->
-		<property name="show_sql">true</property>
+		<property name="show_sql">false</property>
 
 		<!-- Drop and re-create the database schema on startup -->
 		<property name="hbm2ddl.auto">create-drop</property>
 
+		<!-- Automtic validation -->
+		<property name="javax.persistence.validation.mode">none</property>
+		
 		<!-- Mapping files -->
 
 		<mapping class='upm.miw.pfm.models.entities.Project' />

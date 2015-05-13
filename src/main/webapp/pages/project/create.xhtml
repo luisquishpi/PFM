@@ -16,6 +16,7 @@
 		<ui:define name="javascript">
 			<script>
 				var projectApp = angular.module('projectApp', [ "angularfaces",'ngAnimate', 'ui.bootstrap' ]);
+				app.value("$isTest", false);
 			</script>
 			<script src="/PFM/resources/js/libs/moment.js"></script>
 			<script src="/PFM/resources/js/controllers/projectApp.js"></script>
@@ -47,7 +48,7 @@
 		<ui:define name="content">
 		<c:set var="projectBean" scope="request" value="#{createProjectBean}" />
 			<h:form ng-app="projectApp">
-				<div novalidate="" ng-controller="wizardController" ng-form="" id="scheduleForm" name="scheduleForm">
+				<div ng-controller="wizardController" ng-form="" id="scheduleForm" name="scheduleForm">
 					<div>
 						<div class="btn-group">
 							<button class="btn" onclick="return false;" ng-class="{'btn-primary':isCurrentStep(0)}" >Establecer horario</button>
@@ -56,22 +57,22 @@
 							<div ng-switch="getCurrentStep()" class="slide-frame">
 								<div ng-switch-when="one" class="wave">	
 									<fieldset ng-controller="scheduleController">
-									<ngsync direction="serverToClient" value="{{projectBean.projectSchedule.getWorkDaysArray()}}"/>
-									
 										<div class="row" style="margin-top:10px">
 											<div class="col-sm-3">
 												<p:outputLabel for="workDays" value="Días laborales/mes:"
 												styleClass="label_height" />
 											</div>
 											<div class="col-sm-2">
-												<p:inputText id="workDays" value="{{projectBean.projectSchedule.workDays}}" ng-required="true" required="true"/>
+												<p:inputText id="workDays" value="{{projectBean.projectSchedule.workDays}}" 
+												ng-required="true" required="true" ng-min="0" ng_max="31"/>
 											</div>
 											<div class="col-sm-2">
 												<p:outputLabel for="mondayHours" value="Lunes:"
 												styleClass="label_height" />
 											</div>
 											<div class="col-sm-2">
-												<p:inputText id="mondayHours" value="{{projectBean.projectSchedule.mondayHours}}" ng-required="true" required="true"/>
+												<p:inputText id="mondayHours" value="{{projectBean.projectSchedule.mondayHours}}" 
+												ng-required="true" required="true" ng-min="0" ng_max="24"/>
 											</div>
 											<div class="col-sm-2">
 												<p:outputLabel for="hoursPerWeek" value="Total horas:"
@@ -94,7 +95,8 @@
 												styleClass="label_height" />
 											</div>
 											<div class="col-sm-2">
-												<p:inputText id="tuesdayHours" value="{{projectBean.projectSchedule.tuesdayHours}}" ng-required="true" required="true"/>
+												<p:inputText id="tuesdayHours" value="{{projectBean.projectSchedule.tuesdayHours}}" 
+												ng-required="true" required="true" ng-min="0" ng_max="24"/>
 											</div>
 											<div class="col-sm-2" >
 											<p:outputLabel for="hoursPerDay" value="Media laboral:"
@@ -117,7 +119,8 @@
 												styleClass="label_height" />
 											</div>
 											<div class="col-sm-2">
-												<p:inputText id="wednesdayHours" value="{{projectBean.projectSchedule.wednesdayHours}}" ng-required="true" required="true"/>
+												<p:inputText id="wednesdayHours" value="{{projectBean.projectSchedule.wednesdayHours}}" 
+												ng-required="true" required="true" ng-min="0" ng_max="24"/>
 											</div>
 										</div>
 										<div class="row">
@@ -133,7 +136,8 @@
 												styleClass="label_height" />
 											</div>
 											<div class="col-sm-2">
-												<p:inputText id="thursdayHours" value="{{projectBean.projectSchedule.thursdayHours}}" ng-required="true" required="true"/>
+												<p:inputText id="thursdayHours" value="{{projectBean.projectSchedule.thursdayHours}}" 
+												ng-required="true" required="true" ng-min="0" ng_max="24"/>
 											</div>
 										</div>
 										<div class="row">
@@ -149,7 +153,8 @@
 												styleClass="label_height" />	
 											</div>
 											<div class="col-sm-2">
-												<p:inputText id="fridayHours" value="{{projectBean.projectSchedule.fridayHours}}" ng-required="true" required="true"/>
+												<p:inputText id="fridayHours" value="{{projectBean.projectSchedule.fridayHours}}" 
+												ng-required="true" required="true" ng-min="0" ng_max="24"/>
 											</div>
 										</div>
 										<div class="row">
@@ -165,7 +170,8 @@
 												styleClass="label_height" />	
 											</div>
 											<div class="col-sm-2">
-												<p:inputText id="saturdayHours" value="{{projectBean.projectSchedule.saturdayHours}}" ng-required="true" required="true"/>
+												<p:inputText id="saturdayHours" value="{{projectBean.projectSchedule.saturdayHours}}" 
+												ng-required="true" required="true" ng-min="0" ng_max="24"/>
 											</div>
 										</div>
 										<div class="row">
@@ -175,7 +181,8 @@
 												styleClass="label_height" />	
 											</div>
 											<div class="col-sm-2">
-												<p:inputText id="sundayHours" value="{{projectBean.projectSchedule.sundayHours}}" ng-required="true" required="true"/>
+												<p:inputText id="sundayHours" value="{{projectBean.projectSchedule.sundayHours}}" 
+												ng-required="true" required="true" ng-min="0" ng_max="24"/>
 											</div>
 										</div>
 									</fieldset>
@@ -221,7 +228,8 @@
 													styleClass="label_height" />
 												</div>
 												<div class="col-sm-6">
-													<p:inputText id="cost" value="{{projectBean.project.cost}}" ng-required="true" required="true"/>
+													<p:inputText id="cost" value="{{projectBean.project.cost}}" ng-required="true" required="true"
+													ng-min="0"/>
 												</div>
 											</div>	
 										</div>

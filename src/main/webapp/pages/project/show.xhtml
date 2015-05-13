@@ -15,6 +15,7 @@
 		<ui:define name="javascript">
 		  	<script>
 		  	var projectApp = angular.module('projectApp', [ "angularfaces" ]);
+		  	app.value("$isTest", false);
 			</script>
 			<script src="/PFM/resources/js/libs/moment.js"></script>
 			<script src="/PFM/resources/js/controllers/projectApp.js"></script>
@@ -24,7 +25,11 @@
 		<ui:define name="css">
 			<style>
 				label{line-height: 0px !important;}
+				.table-bordered label{
+					margin-right:10px;
+				}
 			</style>
+			
 		</ui:define>
 		<ui:define name="content">
 			<c:set var="projectBean" scope="request" value="#{consultProjectBean}" />
@@ -36,7 +41,7 @@
 							<ngsync direction="serverToClient" value="{{projectBean.project}}"/>
 						<p:panel header="{{projectBean.project.name}}">
 							<div class="row" style="margin-top:10px">
-								<div class="col-sm-5">
+								<div class="col-sm-4">
 									<table class="table table-bordered">
 										<tbody>
 											<tr>
@@ -64,7 +69,7 @@
 										</tbody>
 									</table>
 								</div>
-								<div class="col-sm-7">
+								<div class="col-sm-8">
 									<table class="table table-bordered">
 										<tbody>
 											<tr>
@@ -99,8 +104,8 @@
 								</div>
 							</div>
 							<div class="row" style="margin-top:10px">
-								<div class="col-sm-5"></div>
-								<div class="col-sm-7">
+								<div class="col-sm-4"></div>
+								<div class="col-sm-8">
 									<table class="table table-bordered">
 										<tbody>
 											<tr>
