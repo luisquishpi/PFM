@@ -45,11 +45,11 @@ projectApp.controller("theoricalPhaseController", ['$scope', '$controller', 'wor
 	}
 	
 	$scope.initStartDate = function(){
-		  return "2/3/2015";
+		  return moment($scope.showTheoricalPhasesBean.project.start, 'DD/MM/YYYY').format("DD/MM/YYYY");
 	}
 	
 	$scope.initEndDate = function(){
-		  return "20/3/2015";
+		  return moment($scope.showTheoricalPhasesBean.project.start, 'DD/MM/YYYY').add(workTimeService.naturalDays()*0.1, "days").format("DD/MM/YYYY");;
 	}
 	
 	$scope.iterationAverageHours = function(){
@@ -77,11 +77,11 @@ projectApp.controller("theoricalPhaseController", ['$scope', '$controller', 'wor
 	}
 	
 	$scope.ElabStartDate = function(){
-		  return "21/3/2015";
+		  return moment($scope.initEndDate(), "DD/MM/YYYY").add(1, "days").format("DD/MM/YYYY");
 	}
 	
 	$scope.ElabEndDate = function(){
-		  return "15/5/2015";
+		  return moment($scope.ElabStartDate(), "DD/MM/YYYY").add(workTimeService.naturalDays()*0.3, "days").format("DD/MM/YYYY");
 	}
 	
 	$scope.ConstrHours = function(){
@@ -97,19 +97,19 @@ projectApp.controller("theoricalPhaseController", ['$scope', '$controller', 'wor
 	}
 	
 	$scope.ConstrStartDate = function(){
-		  return "16/5/2015";
+		  return moment($scope.ElabEndDate(), "DD/MM/YYYY").add(1, "days").format("DD/MM/YYYY");
 	}
 	
 	$scope.ConstrEndDate = function(){
-		  return "17/5/2015";
+		  return moment($scope.ConstrStartDate(), "DD/MM/YYYY").add(workTimeService.naturalDays()*0.5, "days").format("DD/MM/YYYY");
 	}
 	
 	$scope.transStartDate = function(){
-		  return "18/8/2015";
+		  return moment($scope.ConstrEndDate(), "DD/MM/YYYY").add(1, "days").format("DD/MM/YYYY");
 	}
 	
 	$scope.transEndDate = function(){
-		  return "5/9/2015";
+		  return moment($scope.transStartDate(), "DD/MM/YYYY").add(workTimeService.naturalDays()*0.1, "days").format("DD/MM/YYYY");
 	}
 	
 	$scope.initCost = function(){
