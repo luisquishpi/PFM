@@ -1,7 +1,6 @@
 package upm.miw.pfm.models.daos;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,6 +8,11 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 
 import org.junit.After;
 import org.junit.Before;
@@ -19,6 +23,8 @@ import upm.miw.pfm.models.daos.hibernate.DaoHibernateFactory;
 import upm.miw.pfm.models.entities.Contract;
 import upm.miw.pfm.models.entities.Employee;
 import upm.miw.pfm.models.entities.Vacation;
+import upm.miw.pfm.utils.CheckDateVacation;
+import upm.miw.pfm.utils.CheckDateVacationValidator;
 import upm.miw.pfm.utils.RoleType;
 import upm.miw.pfm.utils.Utils;
 
@@ -156,7 +162,19 @@ public class EmployeeDaoTest {
         startDate = Utils.buildDate(2015, 10, 1);
         endDate = Utils.buildDate(2015, 10, 2);
         vacation = new Vacation(startDate, endDate, employee);
+
         vacationDao.create(vacation);
+        
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        Validator validator = factory.getValidator();
+        Set<ConstraintViolation<Vacation>> errors = validator.validate(vacation);
+        
+        assertTrue(errors.size()>0);
+
+        assertEquals( 1, errors.size() );
+        assertEquals( "may not be null", errors.iterator().next().getMessage() );
+        
+        
         assertEquals(vacation, vacationDao.read(vacation.getId()));
     }
 
@@ -169,13 +187,14 @@ public class EmployeeDaoTest {
         vacation = new Vacation(Utils.buildDate(2015, 11, 2), Utils.buildDate(2015, 11, 6),
                 employee);
         vacationDao.create(vacation);
-
+        
+        
         assertEquals(2, vacationDao.findAll(employee).size());
     }
 
     @After
     public void after() {
-        List<Vacation> vacationList = vacationDao.findAll();
+        List<Vacation> vacationList = vacationDao.findAll(employee);
         for (Vacation tmpVacation : vacationList) {
             vacationDao.deleteById(tmpVacation.getId());
         }
