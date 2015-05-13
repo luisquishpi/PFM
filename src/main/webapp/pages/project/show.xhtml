@@ -21,6 +21,11 @@
 			<script src="/PFM/resources/js/controllers/scheduleController.js"></script>
 			<script src="/PFM/resources/js/controllers/projectController.js"></script>
 		</ui:define>
+		<ui:define name="css">
+			<style>
+				label{line-height: 0px !important;}
+			</style>
+		</ui:define>
 		<ui:define name="content">
 			<c:set var="projectBean" scope="request" value="#{consultProjectBean}" />
 			<c:set var="bridgeService" scope="request" value="#{projectBean.projectSchedule}" />
@@ -29,222 +34,157 @@
 						<ngsync direction="serverToClient" value="{{projectBean.projectSchedule}}"/>					
 						<div ng-if="runProject" ng-controller="projectController">
 							<ngsync direction="serverToClient" value="{{projectBean.project}}"/>
-								<div class="ui-grid ui-grid-responsive" style="text-align:center;">
-								    <div class="ui-grid-row">
-								        <div class="ui-grid-col-12">
-								        	<h3>
-								        		<h:outputText value="{{projectBean.project.name}}" />
-								        	</h3>	
-								        </div>
-								    </div>
-								</div>
-								<br/>
-								<fieldset>
-									<div class="row" style="margin-top:10px">
-										<div class="col-sm-2">
-											<label>Fecha de inicio</label>	
-										</div>
-										<div class="col-sm-2">
-											<h:outputText value="{{projectBean.project.startString}}" >
-												<f:convertDateTime pattern="d-M-yyyy" />
-											</h:outputText>	
-										</div>
-										<div class="col-sm-2">
-											<label>Meses naturales </label>	
-										</div>
-										<div class="col-sm-1">
-											{{naturalMonths()}}
-										</div>
-										<div class="col-sm-2">
-											<label>Meses laborales </label>	
-										</div>
-										<div class="col-sm-2">
-											<h:outputText value="{{workMonths() | number:2}}" />
-										</div>
-							  		</div>
-							  		<div class="row">
-										<div class="col-sm-2">
-											<label>Fecha de fin</label>	
-										</div>
-										<div class="col-sm-2">
-											<h:outputText value="{{projectBean.project.endString}}" >
-												<f:convertDateTime pattern="d-M-yyyy" />
-											</h:outputText>	
-										</div>
-										<div class="col-sm-2">
-											<label>Días naturales </label>	
-										</div>
-										<div class="col-sm-1">
-											{{naturalDays}}
-										</div>
-										<div class="col-sm-2">
-											<label>Días laborales </label>	
-										</div>
-										<div class="col-sm-2">
-											{{workDays}}
-										</div>
-							  		</div>
-							  		<div class="row">{{projectBean.project.cost}}
-										<div class="col-sm-2">
-											<label>Presupuesto </label>	
-										</div>
-										<div class="col-sm-2">
-											<h:outputText value="{{projectBean.project.cost}}"/> &euro;
-										</div>
-							  			
-										<div class="col-sm-3"></div>
-										<div class="col-sm-2">
-											<label>Horas laborales </label>	
-										</div>
-										<div class="col-sm-2">
-											{{workHours}}
-										</div>
-							  		</div>
-							  		<div class="row">
-										<div class="col-sm-4"></div>
-										<div class="col-sm-2">
-											<label>Coste/mes natural </label>	
-										</div>
-										<div class="col-sm-1">
-											{{costNaturalMonth() | number:2}}
-										</div>
-										<div class="col-sm-2">
-											<label>Coste/mes laboral </label>	
-										</div>
-										<div class="col-sm-2">
-											{{costWorkMonth() | number:2}}
-										</div>
-							  		</div>
-							  		<div class="row">
-										<div class="col-sm-5"></div>
-										<div class="col-sm-2">
-											<label>Coste/día natural </label>	
-										</div>
-										<div class="col-sm-1">
-											{{costNaturalDay() | number:2}}
-										</div>
-										<div class="col-sm-2">
-											<label>Coste/día laboral </label>	
-										</div>
-										<div class="col-sm-2">
-											{{costWorkDay() | number:2}}
-										</div>
-							  		</div>
-							  		<div class="row">
-										<div class="col-sm-8"></div>
-										<div class="col-sm-2">
-											<label>Coste/hora laboral </label>	
-										</div>
-										<div class="col-sm-2">
-											{{costWorkHour() | number:2}}
-										</div>
-							  		</div>
-							  		<div class="row">
-										<div class="col-sm-8"></div>
-										<div class="col-sm-2">
-											<label>Personas/mes </label>	
-										</div>
-										<div class="col-sm-2">
-											
-										</div>
-							  		</div>
-							  		<div class="row">
-										<div class="col-sm-8"></div>
-										<div class="col-sm-2">
-											<label>Personas/día </label>	
-										</div>
-										<div class="col-sm-2">
-										</div>
-							  		</div>
-							  		<div class="row">
-										<div class="col-sm-8"></div>
-										<div class="col-sm-2">
-											<label>Personas/hora </label>	
-										</div>
-										<div class="col-sm-2">
-										</div>
-							  		</div>
-								</fieldset>
-					
-					<!-- 
-					<div class="ui-grid ui-grid-responsive" style="text-align:center;">
-					    <div class="ui-grid-row">
-					        <div class="ui-grid-col-4">
-					        	<p>
-									<strong>Fecha Inicio: </strong> <h:outputText value="{{projectBean.project.startString}}" >
-										<f:convertDateTime pattern="d-M-yyyy" />
-									</h:outputText>	
-								</p>
-								<p>
-									<strong>Fecha Fin: </strong> <h:outputText value="{{projectBean.project.endString}}" >
-										<f:convertDateTime pattern="d-M-yyyy" />
-									</h:outputText>
-								</p>
-					        </div>
-					        <div class="ui-grid-col-4">
-					        	<p>
-									<strong>Meses naturales: </strong> <h:outputText value="{{naturalMonths() | number : 2}}" />
-								</p>
-								<p>
-									<strong>Dias naturales: </strong> <h:outputText value="{{naturalDays}}" />
-								</p>
-					        </div>
-					        <h:panelGroup rendered="#{projectBean.projectSchedule!=null}">
-						        <div class="ui-grid-col-4">	
-						        	<p>
-										<strong>Meses laborales: </strong> <h:outputText value="Meses laborales: {{workMonths()| number : 2}}" />
-									</p>
-									<p>
-										<strong>Dias laborales: </strong> <h:outputText value="{{workDays}}" />
-									</p>
-									<p>
-										<strong>Horas laborales: </strong> <h:outputText value="{{workHours()}}" />
-									</p>
-						        </div>
-					        </h:panelGroup>
-					    </div>
-					</div>
-					<br/>
-					
-					<div class="ui-grid ui-grid-responsive" style="text-align:center;">
-					    <div class="ui-grid-row">
-					        <div class="ui-grid-col-4">
-					        	<p>
-									<strong>Coste: </strong> <h:outputText value="{{projectBean.project.cost}}" />&euro;
-								</p>
-					        </div>
-					        <div class="ui-grid-col-4">
-					        	<p>
-									<strong>Coste/mes natural: </strong> <h:outputText value="{{costNaturalMonth() | number : 2}}" />&euro;
-								</p>
-								<p>
-									<strong>Coste/día natural: </strong> <h:outputText value="{{costNaturalDay() | number : 2}}" />&euro;
-								</p>
-					        </div>
-
-					        <h:panelGroup rendered="#{projectBean.projectSchedule!=null}">
-						        <div class="ui-grid-col-4">	
-						        	<p>
-										<strong>Coste/mes natural: </strong> <h:outputText value="{{costWorkMonth()| number : 2}}" />&euro;
-									</p>
-									<p>
-										<strong>Coste/día natural: </strong> <h:outputText value="{{costWorkDay()| number : 2}}" />&euro;
-									</p>
-									<p>
-										<strong>Coste/hora natural: </strong> <h:outputText value="{{costWorkHour()| number : 2}}" />&euro;
-									</p>
-						        </div>
-					        </h:panelGroup>
-					    </div>
-					</div> -->
-					<p:button outcome="index.html" value="Volver" icon="ui-icon-arrowreturn-1-w">
-					</p:button>	
-				</div>	
+						<p:panel header="{{projectBean.project.name}}">
+							<fieldset>
+								<div class="row" style="margin-top:10px">
+									<div class="col-sm-2">
+										<p:outputLabel value="Fecha inicio:"
+										styleClass="label_height" />	
+									</div>
+									<div class="col-sm-2">
+										<h:outputText value="{{projectBean.project.startString}}" >
+											<f:convertDateTime pattern="d-M-yyyy" />
+										</h:outputText>	
+									</div>
+									<div class="col-sm-2">
+										<p:outputLabel value="Meses naturales:"
+										styleClass="label_height" />
+									</div>
+									<div class="col-sm-2">
+										<h:outputText value="{{naturalMonths() | number:2}}" />
+									</div>
+									<div class="col-sm-2">
+										<p:outputLabel value="Meses laborales:"
+										styleClass="label_height" />	
+									</div>
+									<div class="col-sm-2">
+										<h:outputText value="{{workMonths() | number:2}}" />
+									</div>
+						  		</div>
+						  		<div class="row">
+									<div class="col-sm-2">
+										<p:outputLabel value="Fecha fin:"
+										styleClass="label_height" />
+									</div>
+									<div class="col-sm-2">
+										<h:outputText value="{{projectBean.project.endString}}" >
+											<f:convertDateTime pattern="d-M-yyyy" />
+										</h:outputText>	
+									</div>
+									<div class="col-sm-2">
+										<p:outputLabel value="Días naturales:"
+										styleClass="label_height"/>	
+									</div>
+									<div class="col-sm-2">
+										<h:outputText value="{{naturalDays}}" />
+									</div>
+									<div class="col-sm-2">
+										<p:outputLabel value="Días laborales:"
+										styleClass="label_height" />
+									</div>
+									<div class="col-sm-2">
+										<h:outputText value="{{workDays}}" />
+									</div>
+						  		</div>
+						  		<div class="row">
+									<div class="col-sm-2">
+										<p:outputLabel value="Presupuesto:"
+										styleClass="label_height" />
+									</div>
+									<div class="col-sm-2">
+										<h:outputText value="{{projectBean.project.cost}}"/>&euro;
+									</div>
+						  			
+									<div class="col-sm-4"></div>
+									<div class="col-sm-2">
+										<p:outputLabel value="Horas laborales:"
+										styleClass="label_height" />
+									</div>
+									<div class="col-sm-2">
+										<h:outputText value="{{workHours}}" />
+									</div>
+						  		</div>
+						  		<div class="row">
+									<div class="col-sm-4"></div>
+									<div class="col-sm-2">
+										<p:outputLabel value="Coste/mes natural:"
+										styleClass="label_height" />	
+									</div>
+									<div class="col-sm-2">
+										<h:outputText value="{{costNaturalMonth() | number:2}}" />&euro;
+									</div>
+									<div class="col-sm-2">
+										<p:outputLabel value="Coste/mes laboral:"
+										styleClass="label_height" />
+									</div>
+									<div class="col-sm-2">
+										<h:outputText value="{{costWorkMonth() | number:2}}" />&euro;
+									</div>
+						  		</div>
+						  		<div class="row">
+									<div class="col-sm-4"></div>
+									<div class="col-sm-2">
+										<p:outputLabel value="Coste/día natural:"
+										styleClass="label_height" />
+									</div>
+									<div class="col-sm-2">
+										<h:outputText value="{{costNaturalDay() | number:2}}" />&euro;
+									</div>
+									<div class="col-sm-2">
+										<p:outputLabel value="Coste/día laboral:"
+										styleClass="label_height" />
+									</div>
+									<div class="col-sm-2">
+										<h:outputText value="{{costWorkDay() | number:2}}" />&euro;
+									</div>
+						  		</div>
+						  		<div class="row">
+									<div class="col-sm-8"></div>
+									<div class="col-sm-2">
+										<p:outputLabel value="Coste/hora laboral:"
+										styleClass="label_height" />	
+									</div>
+									<div class="col-sm-2">
+										<h:outputText value="{{costWorkHour() | number:2}}" />&euro;
+									</div>
+						  		</div>
+						  		<!-- <div class="row">
+									<div class="col-sm-8"></div>
+									<div class="col-sm-2">
+										<p:outputLabel value="Personas/mes:"
+										styleClass="label_height" />	
+									</div>
+									<div class="col-sm-2">
+										
+									</div>
+						  		</div>
+						  		<div class="row">
+									<div class="col-sm-8"></div>
+									<div class="col-sm-2">
+										<p:outputLabel value="Personas/día:"
+										styleClass="label_height" />										
+									</div>
+									<div class="col-sm-2">
+									</div>
+						  		</div>
+						  		<div class="row">
+									<div class="col-sm-8"></div>
+									<div class="col-sm-2">
+										<p:outputLabel value="Personas/hora:"
+										styleClass="label_height" />	
+									</div>
+									<div class="col-sm-2">
+									</div>
+						  		</div> -->
+								<p:button outcome="index.html" value="Volver" icon="ui-icon-arrowreturn-1-w">
+								</p:button>	
+							</fieldset>
+						</p:panel>
+					</div>	
 				</div>
 			</h:form>
 		</ui:define>
 	</ui:composition>
-
 </h:body>
 
 </html>

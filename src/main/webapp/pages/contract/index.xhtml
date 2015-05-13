@@ -16,8 +16,11 @@
 				<p:column headerText="Nombre">
 					<h:outputText value="#{contract.contractType}" />
 				</p:column>
-				<p:column headerText="Seguro">
-					<h:outputText value="#{contract.insurance}" />
+				<p:column headerText="Seguro (%)" styleClass="center">
+					<h:outputText value="#{contract.insurance}">
+						<f:convertNumber minFractionDigits="2" maxFractionDigits="2"
+							locale="en_US" type="number" />
+					</h:outputText>
 				</p:column>
 				<p:column style="text-align:center" headerText="">
 					<div class="btn-group" role="group">

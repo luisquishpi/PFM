@@ -14,10 +14,10 @@ public class Contract {
     @GeneratedValue
     private Integer id;
 
-    @Column(name="contract_type", nullable = false)
+    @Column(name = "contract_type", nullable = false)
     private String contractType;
 
-    @Column(name="insurance", nullable = false)
+    @Column(name = "insurance", nullable = false, precision = 10, scale = 2)
     private Double insurance;
 
     public Contract() {
@@ -44,22 +44,22 @@ public class Contract {
         this.id = id;
     }
 
-	public Double getInsurance() {
-		return insurance;
-	}
+    public Double getInsurance() {
+        return insurance;
+    }
 
-	public void setInsurance(Double insurance) {
-		this.insurance = insurance;
-	}
+    public void setInsurance(Double insurance) {
+        this.insurance = insurance;
+    }
 
-	@Override
+    @Override
     public boolean equals(Object obj) {
         assert obj != null;
         Contract other = (Contract) obj;
         return id == other.id && contractType.equals(other.contractType)
                 && insurance.equals(other.insurance);
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;

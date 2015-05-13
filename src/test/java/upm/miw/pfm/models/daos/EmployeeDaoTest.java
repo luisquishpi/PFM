@@ -159,26 +159,31 @@ public class EmployeeDaoTest {
         vacationDao.create(vacation);
         assertEquals(vacation, vacationDao.read(vacation.getId()));
     }
+
     @Test
-    public void testListVacationByEmployee(){
-        startDate = Utils.buildDate(2015, 10, 1);
-        endDate = Utils.buildDate(2015, 10, 2);
-        vacation = new Vacation(startDate, endDate, employee);
-        vacationDao.create(vacation);
+    public void testFindVacationsByEmployee() {
         
-        assertEquals(1, vacationDao.findAll(employee).size());
+        vacation = new Vacation(Utils.buildDate(2015, 10, 1), Utils.buildDate(2015, 10, 2),
+                employee);
+        vacationDao.create(vacation);
+        vacation = new Vacation(Utils.buildDate(2015, 11, 2), Utils.buildDate(2015, 11, 6),
+                employee);
+        vacationDao.create(vacation);
+
+        assertEquals(2, vacationDao.findAll(employee).size());
     }
 
     @After
     public void after() {
+        List<Vacation> vacationList = vacationDao.findAll(employee);
+        for (Vacation tmpVacation : vacationList) {
+            vacationDao.deleteById(tmpVacation.getId());
+        }
         List<Employee> employeeList = employeeDao.findAllWithoutRoles();
         for (Employee tmpEmployee : employeeList) {
             employeeDao.deleteById(tmpEmployee.getId());
         }
-        List<Vacation> vacationList = vacationDao.findAll();
-        for (Vacation tmpVacation : vacationList) {
-            vacationDao.deleteById(tmpVacation.getId());
-        }
+
         contractDao.query("delete from Contract");
     }
 

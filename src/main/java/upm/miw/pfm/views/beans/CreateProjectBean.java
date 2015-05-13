@@ -6,7 +6,6 @@ import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 
 import org.apache.logging.log4j.LogManager;
 import org.primefaces.event.FlowEvent;
@@ -77,10 +76,8 @@ public class CreateProjectBean implements Serializable{
         LogManager.getLogger(clazz).debug("Nombre proyecto " + projectSchedule.getProject().getName());
         LogManager.getLogger(clazz).debug("Creación de proyecto " + project);
         
-        FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Proyecto creado", "El proyecto ha sido creado con exito"));
-        context.getExternalContext().getFlash().setKeepMessages(true);
-        
+        Utils.addMessage(FacesMessage.SEVERITY_INFO, "Proyecto", "Se ha creado el proyecto satisfactoriamente");
+               
         return "index";
     }
     

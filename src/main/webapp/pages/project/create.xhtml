@@ -31,6 +31,15 @@
 		</ui:define>
 		<ui:define name="css">
 			<link href="/PFM/resources/css/wizard.css" rel="stylesheet" />
+			<style>
+				.table-bordered>tbody>tr>td{
+					border:none;
+					border-top:1px solid #ddd;
+				}
+				.table-bordered label{
+					margin-right:10px;
+				}
+			</style>
 		</ui:define>
 		<ui:define name="header">
             Crear Proyecto
@@ -51,246 +60,242 @@
 									
 										<div class="row" style="margin-top:10px">
 											<div class="col-sm-3">
-												<label> Días laborales/mes </label>
+												<p:outputLabel for="workDays" value="Días laborales/mes:"
+												styleClass="label_height" />
 											</div>
 											<div class="col-sm-2">
-												<p:inputText value="{{projectBean.projectSchedule.workDays}}" ng-required="true" label=""/>
+												<p:inputText id="workDays" value="{{projectBean.projectSchedule.workDays}}" ng-required="true" required="true"/>
 											</div>
 											<div class="col-sm-2">
-												<label> Lunes </label>
+												<p:outputLabel for="mondayHours" value="Lunes:"
+												styleClass="label_height" />
 											</div>
 											<div class="col-sm-2">
-												<p:inputText value="{{projectBean.projectSchedule.mondayHours}}" ng-required="true" label=""/>
+												<p:inputText id="mondayHours" value="{{projectBean.projectSchedule.mondayHours}}" ng-required="true" required="true"/>
 											</div>
 											<div class="col-sm-2">
-												<label> Total horas </label>	
+												<p:outputLabel for="hoursPerWeek" value="Total horas:"
+												styleClass="label_height" />
 											</div>
 											<div class="col-sm-1">
-												{{hoursPerWeek()}}
+												<h:outputText id="hoursPerWeek" value="{{hoursPerWeek()}}"/>
 											</div>
 										</div>
 										<div class="row">
 											<div class="col-sm-3"> 	
-												<label> Meses laborales/año </label>	
+												<p:outputLabel for="monthsPerYear" value="Meses laborales/año:"
+												styleClass="label_height" />
 											</div>
 											<div class="col-sm-2 right-text">
-												{{monthsPerYear}}
+												<h:outputText id="monthsPerYear" value="{{monthsPerYear}}"/>
 											</div>
 											<div class="col-sm-2">
-												<label> Martes </label>
+												<p:outputLabel for="tuesdayHours" value="Martes:"
+												styleClass="label_height" />
 											</div>
 											<div class="col-sm-2">
-												<p:inputText value="{{projectBean.projectSchedule.tuesdayHours}}" ng-required="true" label=""/>
+												<p:inputText id="tuesdayHours" value="{{projectBean.projectSchedule.tuesdayHours}}" ng-required="true" required="true"/>
 											</div>
 											<div class="col-sm-2" >
-												<label> Media laboral </label>	
+											<p:outputLabel for="hoursPerDay" value="Media laboral:"
+												styleClass="label_height" />
 											</div>
 											<div class="col-sm-1">
-												{{hoursPerDay() | number:2}}
+												<h:outputText id="hoursPerDay" value="{{hoursPerDay() | number:2}}"/>
 											</div>
 										</div>
 										<div class="row">
 											<div class="col-sm-3" >
-												<label> Horas laborales/día </label>	
+											<p:outputLabel for="hoursPerDay2" value="Horas laborales/día:"
+												styleClass="label_height" />
 											</div>
 											<div class="col-sm-2 right-text">
-												{{hoursPerDay() | number:2}}
+												<h:outputText id="hoursPerDay2" value="{{hoursPerDay() | number:2}}"/>
 											</div>
 											<div class="col-sm-2">
-												<label> Miercoles </label>
+												<p:outputLabel for="wednesdayHours" value="Miercoles:"
+												styleClass="label_height" />
 											</div>
 											<div class="col-sm-2">
-												<p:inputText value="{{projectBean.projectSchedule.wednesdayHours}}" ng-required="true" label=""/>
+												<p:inputText id="wednesdayHours" value="{{projectBean.projectSchedule.wednesdayHours}}" ng-required="true" required="true"/>
 											</div>
 										</div>
 										<div class="row">
 											<div class="col-sm-3" >
-												<label> Días/año </label>	
+												<p:outputLabel for="daysPerYear" value="Días/año:"
+												styleClass="label_height" />
 											</div>
 											<div class="col-sm-2 right-text">
-												{{daysPerYear()}}
+												<h:outputText id="daysPerYear" value="{{daysPerYear()}}"/>
 											</div>
 											<div class="col-sm-2">
-												<label> Jueves </label>	
+												<p:outputLabel for="thursdayHours" value="Jueves:"
+												styleClass="label_height" />
 											</div>
 											<div class="col-sm-2">
-												<p:inputText value="{{projectBean.projectSchedule.thursdayHours}}" ng-required="true" label=""/>
+												<p:inputText id="thursdayHours" value="{{projectBean.projectSchedule.thursdayHours}}" ng-required="true" required="true"/>
 											</div>
 										</div>
 										<div class="row">
 											<div class="col-sm-3">
-												<label> Horas/mes </label>	
+												<p:outputLabel for="hoursPerMonth" value="Horas/mes:"
+												styleClass="label_height" />
 											</div>
 											<div class="col-sm-2 right-text">
-												{{hoursPerMonth() | number:2}}
+												<h:outputText id="hoursPerMonth" value="{{hoursPerMonth() | number:2}}"/>
 											</div>
 											<div class="col-sm-2">
-												<label> Viernes </label>	
+												<p:outputLabel for="fridayHours" value="Viernes:"
+												styleClass="label_height" />	
 											</div>
 											<div class="col-sm-2">
-												<p:inputText value="{{projectBean.projectSchedule.fridayHours}}" ng-required="true" label=""/>
+												<p:inputText id="fridayHours" value="{{projectBean.projectSchedule.fridayHours}}" ng-required="true" required="true"/>
 											</div>
 										</div>
 										<div class="row">
 											<div class="col-sm-3">
-												<label> Horas/año </label>	
+												<p:outputLabel for="hoursPerYear" value="Horas/año:"
+												styleClass="label_height" />
 											</div>
 											<div class="col-sm-2 right-text">
-												{{hoursPerYear() | number:2}}
+												<h:outputText id="hoursPerYear" value="{{hoursPerYear() | number:2}}"/>
 											</div>
 											<div class="col-sm-2">
-												<label> Sábado </label>	
+												<p:outputLabel for="saturdayHours" value="Sábado:"
+												styleClass="label_height" />	
 											</div>
 											<div class="col-sm-2">
-												<p:inputText value="{{projectBean.projectSchedule.saturdayHours}}" ng-required="true" label=""/>
+												<p:inputText id="saturdayHours" value="{{projectBean.projectSchedule.saturdayHours}}" ng-required="true" required="true"/>
 											</div>
 										</div>
 										<div class="row">
 											<div class="col-sm-5"></div>
 											<div class="col-sm-2">
-												<label> Domingo </label>	
+												<p:outputLabel for="sundayHours" value="Domingo:"
+												styleClass="label_height" />	
 											</div>
 											<div class="col-sm-2">
-												<p:inputText value="{{projectBean.projectSchedule.sundayHours}}" ng-required="true" label=""/>
+												<p:inputText id="sundayHours" value="{{projectBean.projectSchedule.sundayHours}}" ng-required="true" required="true"/>
 											</div>
 										</div>
 									</fieldset>
 								</div>
-								<div> 
+								<div>
 								<div  ng-switch-when="two" class="wave">
 									<fieldset ng-controller="projectController">
 										<div class="row" style="margin-top:10px">
-											<div class="col-sm-3">
-												<label> Nombre proyecto </label>
+										<div class="col-sm-5 inputs_projects">
+											<div class="row">
+												<div class="col-sm-5">
+													<p:outputLabel for="name" value="Nombre:"
+													styleClass="label_height" />
+												</div>
+												<div class="col-sm-6">
+													<p:inputText id="name" value="{{projectBean.project.name}}" ng-required="true" required="true"/>
+												</div>
 											</div>
-											<div class="col-sm-2">
-												<p:inputText value="{{projectBean.project.name}}" ng-required="true" label=""/>
+											<div class="row">
+												<div class="col-sm-5">
+									  				<p:outputLabel for="startString" value="Fecha de inicio:"
+													styleClass="label_height" />
+												</div>
+												<div class="col-sm-6">
+													<p:inputMask id="startString" value="{{projectBean.project.startString}}" mask="99/99/9999"
+														ng-required="true" required="true"/>
+												</div>
 											</div>
-											<div class="col-sm-2">
-												<label>Meses naturales </label>	
+											<div class="row">
+												<div class="col-sm-5">
+									  				<p:outputLabel for="endString" value="Fecha de fin:"
+													styleClass="label_height" />
+												</div>
+												<div class="col-sm-6">
+													<p:inputMask id="endString"
+															value="{{projectBean.project.endString}}" mask="99/99/9999"
+															ng-required="true" required="true"/>
+												</div>
 											</div>
-											<div class="col-sm-1">
-												{{naturalMonths() | number:2}}
-											</div>
-											<div class="col-sm-2">
-												<label>Meses laborales </label>	
-											</div>
-											<div class="col-sm-2">
-												{{workMonths() | number:2}}
-											</div>
-								  		</div>
-								  		<div class="row">
-								  			<div class="col-sm-3">
-												<label>Fecha de inicio (DD/MM/YYYY)</label>	
-											</div>
-											<div class="col-sm-2">
-												<p:inputMask label=""
-													value="{{projectBean.project.startString}}" mask="99/99/9999"
-													ng-required="true" />
-											</div>
-											<div class="col-sm-2">
-												<label>Días naturales </label>	
-											</div>
-											<div class="col-sm-1">
-												{{naturalDays}}
-											</div>
-											<div class="col-sm-2">
-												<label>Días laborales </label>	
-											</div>
-											<div class="col-sm-2">
-												{{workDays}}
-											</div>
-								  		</div>
-								  		<div class="row">
-								  			<div class="col-sm-3">
-												<label>Fecha de fin (DD/MM/YYYY)</label>	
-											</div>
-											<div class="col-sm-2">
-												<p:inputMask label=""
-														value="{{projectBean.project.endString}}" mask="99/99/9999"
-														ng-required="true" />
-											</div>
-											<div class="col-sm-3"></div>
-											<div class="col-sm-2">
-												<label>Horas laborales </label>	
-											</div>
-											<div class="col-sm-2">
-												{{workHours}}
-											</div>
-								  		</div>
-								  		<div class="row">
-											<div class="col-sm-3">
-												<label>Presupuesto </label>	
-											</div>
-											<div class="col-sm-2">
-												<p:inputText value="{{projectBean.project.cost}}" ng-required="true" label=""/>
-											</div>
-											<div class="col-sm-2">
-												<label>Coste/mes natural </label>	
-											</div>
-											<div class="col-sm-1">
-												{{costNaturalMonth() | number:2}}
-											</div>
-											<div class="col-sm-2">
-												<label>Coste/mes laboral </label>	
-											</div>
-											<div class="col-sm-2">
-												{{costWorkMonth() | number:2}}
-											</div>
-								  		</div>
-								  		<div class="row">
-											<div class="col-sm-5"></div>
-											<div class="col-sm-2">
-												<label>Coste/día natural </label>	
-											</div>
-											<div class="col-sm-1">
-												{{costNaturalDay() | number:2}}
-											</div>
-											<div class="col-sm-2">
-												<label>Coste/día laboral </label>	
-											</div>
-											<div class="col-sm-2">
-												{{costWorkDay() | number:2}}
-											</div>
-								  		</div>
-								  		<div class="row">
-											<div class="col-sm-8"></div>
-											<div class="col-sm-2">
-												<label>Coste/hora laboral </label>	
-											</div>
-											<div class="col-sm-2">
-												{{costWorkHour() | number:2}}
-											</div>
-								  		</div>
-								  		<div class="row">
-											<div class="col-sm-8"></div>
-											<div class="col-sm-2">
-												<label>Personas/mes </label>	
-											</div>
-											<div class="col-sm-2">
-												
-											</div>
-								  		</div>
-								  		<div class="row">
-											<div class="col-sm-8"></div>
-											<div class="col-sm-2">
-												<label>Personas/día </label>	
-											</div>
-											<div class="col-sm-2">
-											</div>
-								  		</div>
-								  		<div class="row">
-											<div class="col-sm-8"></div>
-											<div class="col-sm-2">
-												<label>Personas/hora </label>	
-											</div>
-											<div class="col-sm-2">
-											</div>
-								  		</div>
+											<div class="row">
+												<div class="col-sm-5">
+													<p:outputLabel for="cost" value="Presupuesto:"
+													styleClass="label_height" />
+												</div>
+												<div class="col-sm-6">
+													<p:inputText id="cost" value="{{projectBean.project.cost}}" ng-required="true" required="true"/>
+												</div>
+											</div>	
+										</div>
+										<div class="col-sm-7">
+											<table class="table table-bordered">
+												<tbody>
+													<tr>
+														<td><p:outputLabel for="naturalMonths" value="Meses naturales:"
+															styleClass="label_height" />
+															<h:outputText id="naturalMonths" value="{{naturalMonths() | number:2}}"/>
+														</td>
+														<td><p:outputLabel for="workMonths" value="Meses laborales:"
+															styleClass="label_height" />
+															<h:outputText id="workMonths" value="{{workMonths() | number:2}}"/>
+														</td>
+													</tr>
+													<tr>
+														<td><p:outputLabel for="naturalDays" value="Días naturales:"
+															styleClass="label_height" />
+															<h:outputText id="naturalDays" value="{{naturalDays}}"/>
+														</td>
+														<td><p:outputLabel for="workDaysProject" value="Días laborales:"
+															styleClass="label_height" />
+															<h:outputText id="workDaysProject" value="{{workDays}}"/>
+														</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td><p:outputLabel for="workHours" value="Horas laborales:"
+															styleClass="label_height" />
+															<h:outputText id="workHours" value="{{workHours}}"/>
+														</td>
+													</tr>
+												</tbody>	
+											</table>		
+											<table class="table table-bordered">	
+												<tbody>	
+													<tr>
+														<td><p:outputLabel for="costNaturalMonth" value="Coste/mes natural:"
+														styleClass="label_height" />
+														<h:outputText class="currency" id="costNaturalMonth" value="{{costNaturalMonth() | number:2}}"/>
+														</td>
+														<td><p:outputLabel for="costWorkMonth" value="Coste/mes laboral:"
+															styleClass="label_height" />
+															<h:outputText class="currency" id="costWorkMonth" value="{{costWorkMonth() | number:2}}"/>
+														</td>
+													</tr>
+													
+													<tr>
+														<td><p:outputLabel for="costNaturalDay" value="Coste/día natural:"
+															styleClass="label_height" />
+															<h:outputText class="currency" id="costNaturalDay" value="{{costNaturalDay() | number:2}}"/>
+														</td>
+														<td><p:outputLabel for="costWorkDay" value="Coste/día laboral:"
+															styleClass="label_height" />
+															<h:outputText class="currency" id="costWorkDay" value="{{costWorkDay() | number:2}}"/>
+														</td>
+													</tr>
+													
+													<tr>
+														<td><p:outputLabel for="costWorkHour" value="Coste/hora laboral:"
+																styleClass="label_height" />
+																<h:outputText class="currency" id="costWorkHour" value="{{costWorkHour() | number:2}}"/>
+														</td>
+														<td></td>
+													</tr>
+												</tbody>
+											</table>	
+										</div>
+									</div>
 									</fieldset>
 								</div>
-								</div>
 							</div>
+						</div>
 					</div>
 					<div>
 						<p:commandButton value="Atrás" ng-click="handlePrevious()" ng-show="!isFirstStep()" 

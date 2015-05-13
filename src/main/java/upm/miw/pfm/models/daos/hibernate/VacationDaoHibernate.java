@@ -39,7 +39,7 @@ public class VacationDaoHibernate extends GenericDaoHibernate<Vacation, Integer>
         }
         return list;
     }
-
+    
     @Override
     public Boolean exists(Employee employee, Date start, Date end) {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();        

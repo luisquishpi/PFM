@@ -15,7 +15,7 @@ import upm.miw.pfm.models.entities.Project;
 import upm.miw.pfm.utils.Utils;
 
 @ManagedBean
-public class ShowTheoreticalPhasesBean {
+public class ShowTheoricalPhasesBean {
 
     private Project project;
 
@@ -26,7 +26,7 @@ public class ShowTheoreticalPhasesBean {
     @EJB
     private ProjectController projectController;
 
-    public ShowTheoreticalPhasesBean() {
+    public ShowTheoricalPhasesBean() {
         this.project = new Project();
     }
 
@@ -55,7 +55,6 @@ public class ShowTheoreticalPhasesBean {
     public void onChangeProject(AjaxBehaviorEvent e) {
         this.project = findSelectedProject();
         LogManager.getLogger(clazz).debug("Proyecto seleccionado " + this.project);
-
     }
 
     public String process() {
@@ -69,9 +68,9 @@ public class ShowTheoreticalPhasesBean {
         }
         return "index";
     }
-    
-    private Project findSelectedProject(){
+
+    private Project findSelectedProject() {
         return projectController.getProject(this.project.getId());
     }
-    
+
 }

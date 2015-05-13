@@ -22,8 +22,9 @@ public class GreaterThanZeroValidator implements Validator {
                 msg.setSeverity(FacesMessage.SEVERITY_ERROR);
                 throw new ValidatorException(msg);
             }
-        } catch (NumberFormatException ex) {
-            FacesMessage msg = new FacesMessage("Error de validación.", "Valor ingresado no es un número");
+        } catch (NumberFormatException | NullPointerException ex) {
+            FacesMessage msg = new FacesMessage("Error de validación.",
+                    "Valor ingresado no es un número");
             msg.setSeverity(FacesMessage.SEVERITY_ERROR);
             throw new ValidatorException(msg);
         }

@@ -1,84 +1,100 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
-<ui:composition template="#{root}/WEB-INF/template/commonLayout.xhtml">
-	<ui:define name="css">
-		<style type="text/css">
-td {
-	padding-left: 10px;
-}
-</style>
-	</ui:define>
-	<ui:define name="header">
+	xmlns:p="http://primefaces.org/ui">
+<h:body>
+	<ui:composition template="#{root}/WEB-INF/template/commonLayout.xhtml">
+		<ui:define name="css">
+			<style type="text/css">
+				td {
+					padding-left: 10px;
+				}
+			</style>		
+		</ui:define>
+		<ui:define name="header">
             Consultar Empleado
         </ui:define>
-	<ui:define name="content">
-		<h:form>
-			<p:panel header="Datos generales">
-				<h:panelGrid columns="2" layout="grid" cellpadding="10">
-					<h:outputText value="Código" />
-					<h:outputText value="#{getEmployeeBean.employee.employeeCode}"
-						style="font-weight: bold" />
-
-					<h:outputText value="Nombre" />
-					<h:outputText
-						value="#{getEmployeeBean.employee.name} #{getEmployeeBean.employee.surname}"
-						style="font-weight: bold" />
-
-					<h:outputText value="Contrato" />
-					<h:outputText
-						value="#{getEmployeeBean.employee.contract.contractType} (#{getEmployeeBean.employee.contract.insurance}%)"
-						style="font-weight: bold" />
-
-					<h:outputText value="Bruto anual" />
-					<h:outputText value="#{getEmployeeBean.employee.annualGrossSalary}"
-						style="font-weight: bold">
-						<f:convertNumber maxFractionDigits="2" />
-					</h:outputText>
-
-					<h:outputText value="Total anual" />
-					<h:outputText value="#{getEmployeeBean.employee.annualNetSalary}"
-						style="font-weight: bold">
-						<f:convertNumber maxFractionDigits="2" />
-					</h:outputText>
-
-					<h:outputText value="Total mensual" />
-					<h:outputText value="#{getEmployeeBean.employee.monthlySalary}"
-						style="font-weight: bold">
-						<f:convertNumber maxFractionDigits="2" />
-					</h:outputText>
-
-					<h:outputText value="Total día" />
-					<h:outputText value="#{getEmployeeBean.daySalary}"
-						style="font-weight: bold">
-						<f:convertNumber maxFractionDigits="2" />
-					</h:outputText>
-
-					<h:outputText value="Total hora" />
-					<h:outputText value="#{getEmployeeBean.hourSalary}"
-						style="font-weight: bold">
-						<f:convertNumber maxFractionDigits="2" />
-					</h:outputText>
-
-				</h:panelGrid>
-			</p:panel>
-			<br />
-			<p:dataList value="#{getEmployeeBean.employee.roles}" var="rol"
-				type="ordered">
-				<f:facet name="header">Roles</f:facet>
+		<ui:define name="content">
+			<div class="main-grid main-body-grid">
+				<h:form>
+					<p:panel header="Datos generales">
+						<fieldset>
+							<div class="row">
+								<div class="col-sm-2">
+									<p:outputLabel value="CÃ³digo:" styleClass="label_height" />
+								</div>
+								<div class="col-sm-2">
+									<h:outputText value="{{getEmployeeBean.employee.employeeCode}}" />
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-2">
+									<p:outputLabel value="Nombre:" styleClass="label_height" />
+								</div>
+								<div class="col-sm-2">
+									<h:outputText
+										value="{{getEmployeeBean.employee.name}} {{getEmployeeBean.employee.surname}}" />
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-2">
+									<p:outputLabel value="Contrato:" styleClass="label_height" />
+								</div>
+								<div class="col-sm-2">
+									<h:outputText
+										value="{{getEmployeeBean.employee.contract.contractType}} ({{getEmployeeBean.employee.contract.insurance}}%)" />
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-2">
+									<p:outputLabel value="Bruto anual:" styleClass="label_height" />
+								</div>
+								<div class="col-sm-2">
+									<h:outputText
+										value="{{getEmployeeBean.employee.annualGrossSalary}}" /> &euro;
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-2">
+									<p:outputLabel value="Total anual:" styleClass="label_height" />
+								</div>
+								<div class="col-sm-2">
+									<h:outputText
+										value="{{getEmployeeBean.employee.annualNetSalary}}" />
+									&euro;
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-2">
+									<p:outputLabel value="Total mensual:" styleClass="label_height" />
+								</div>
+								<div class="col-sm-2">
+									<h:outputText
+										value="{{getEmployeeBean.employee.monthlySalary}}" />
+									&euro;
+								</div>
+							</div>
+						</fieldset>
+					</p:panel>
+					<br />
+					<p:dataList value="{{getEmployeeBean.employee.roles}}" var="rol"
+						type="ordered">
+						<f:facet name="header">Roles</f:facet>
                        #{rol.description}
             </p:dataList>
-			<br />
-			<p:button outcome="index.html" value="Volver"
-				icon="ui-icon-arrowreturn-1-w">
-			</p:button>
+					<br />
+					<p:button outcome="index.html" value="Volver"
+						icon="ui-icon-arrowreturn-1-w">
+					</p:button>
 
-		</h:form>
-	</ui:define>
-</ui:composition>
+				</h:form>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
 </html>
