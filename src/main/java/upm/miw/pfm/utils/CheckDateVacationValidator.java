@@ -21,8 +21,8 @@ public class CheckDateVacationValidator implements ConstraintValidator<CheckDate
         vacations=  DaoFactory.getFactory().getVacationDao().findAll(vacation.getEmployee());
         
         for(Vacation vacationTmp: vacations){
-            System.out.println("::::::::::::::::::::"+vacation.getStart());
-            if(vacation.getStart().after(vacationTmp.getStart()) && vacation.getEnd().before(vacationTmp.getEnd())) return false;
+            if(vacation.getStart().after(vacationTmp.getStart()) && vacation.getStart().before(vacationTmp.getEnd())) return false;
+            if(vacation.getEnd().after(vacationTmp.getStart()) && vacation.getEnd().before(vacationTmp.getEnd())) return false;
         }
         return true;
     }
