@@ -1,8 +1,7 @@
 /**
  * 
  */
-app.value("$isTest", false);
-//var projectApp = angular.module('projectApp', [ "angularfaces" ]);
+var projectApp = angular.module('projectApp', [ "angularfaces" ]);
 projectApp.factory('broadcastService', function($rootScope) {
     var sharedService = {};
     
@@ -35,12 +34,17 @@ projectApp.service("workTimeService", function(){
 	var workingHours = 0;
 	var naturalDays = 0;
 	
+	function validateDateFormat(startString, endString){
+		var re = new RegExp("[0-9]{1,2}/[0-9]{1,2}/[0-9]{4}");		
+		return (startString).match(re) && (endString).match(re)
+	}
+	
 	this.calculateWorkDaysAndHour = function(startString, endString, listHoursEachDay ){
 		  
-		var days=0, hours=0;		  
-		  start = moment(startString, "DD/MM/YYYY");
-		  end = moment(endString, "DD/MM/YYYY");
-		  if((start.isValid() && end.isValid()) && start.isBefore(end)){
+		var days=0, hours=0;	
+		start = moment(startString, "DD/MM/YYYY");
+		end = moment(endString, "DD/MM/YYYY");
+		if(validateDateFormat(startString, endString) && ((start.isValid() && end.isValid()) && start.isBefore(end))){
 			  end = end.add(1,"days");
 			  for (var m = moment(start); m.isBefore(end); m.add(1, "days")) {
 				  var workHours = listHoursEachDay[m.day()].workHours;
