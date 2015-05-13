@@ -1,5 +1,6 @@
 package upm.miw.pfm.utils;
 
+import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -30,6 +31,12 @@ public class HibernateUtil {
 
     public static boolean isInitialized() {
         return sessionFactory != null ? true : false;
+    }
+
+    public static void closeSession() throws HibernateException {
+        if (sessionFactory != null) {
+            sessionFactory.close();
+        }
     }
 
 }
