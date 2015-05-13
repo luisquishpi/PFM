@@ -15,7 +15,7 @@ import upm.miw.pfm.models.entities.Project;
 import upm.miw.pfm.utils.Utils;
 
 @ManagedBean
-public class ShowTheoreticalPhasesBean {
+public class ShowTheoricalPhasesBean {
 
     private Project project;
 
@@ -26,7 +26,7 @@ public class ShowTheoreticalPhasesBean {
     @EJB
     private ProjectController projectController;
 
-    public ShowTheoreticalPhasesBean() {
+    public ShowTheoricalPhasesBean() {
         this.project = new Project();
     }
 
