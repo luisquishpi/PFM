@@ -1,6 +1,7 @@
 package upm.miw.pfm.models.daos;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
@@ -25,8 +26,6 @@ import upm.miw.pfm.models.daos.hibernate.DaoHibernateFactory;
 import upm.miw.pfm.models.entities.Contract;
 import upm.miw.pfm.models.entities.Employee;
 import upm.miw.pfm.models.entities.Vacation;
-import upm.miw.pfm.utils.CheckDateVacation;
-import upm.miw.pfm.utils.CheckDateVacationValidator;
 import upm.miw.pfm.utils.RoleType;
 import upm.miw.pfm.utils.Utils;
 
@@ -160,37 +159,45 @@ public class EmployeeDaoTest {
     }
 
     @Test
-    public void testCreateAndReadVacation() {
-        startDate = Utils.buildDate(2015, 10, 1);
-        endDate = Utils.buildDate(2015, 10, 2);
-        vacation = new Vacation(startDate, endDate, employee);
-
-        vacationDao.create(vacation);
-        
+    public void testValidateVacation() {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         Validator validator = factory.getValidator();
-        Set<ConstraintViolation<Vacation>> errors = validator.validate(vacation);
-        
-        assertTrue(errors.size()>0);
 
-        assertEquals( 1, errors.size() );
-        assertEquals( "may not be null", errors.iterator().next().getMessage() );
+        vacation = new Vacation(Utils.buildDate(2015, 10, 1), Utils.buildDate(2015, 10, 15),
+                employee);
+        vacationDao.create(vacation);
         
-        
+        Vacation vacation2 = new Vacation(Utils.buildDate(2015, 12, 5), Utils.buildDate(2015,
+                13, 10), employee);
+        Vacation vacationInvalid = new Vacation(Utils.buildDate(2015, 10, 5), Utils.buildDate(2015,
+                10, 10), employee);
+
+        Set<ConstraintViolation<Vacation>> errors = validator.validate(vacationInvalid);
+        assertTrue(errors.size() > 0);
+
+        errors = validator.validate(vacation2);
+        assertFalse(errors.size() > 0);
+    }
+
+    @Test
+    public void testCreateAndReadVacation() {
+        startDate = Utils.buildDate(2015, 10, 1);
+        endDate = Utils.buildDate(2015, 10, 15);
+        vacation = new Vacation(startDate, endDate, employee);
+        vacationDao.create(vacation);
         assertEquals(vacation, vacationDao.read(vacation.getId()));
     }
 
     @Test
     public void testFindVacationsByEmployee() {
-        
+
         vacation = new Vacation(Utils.buildDate(2015, 10, 1), Utils.buildDate(2015, 10, 2),
                 employee);
         vacationDao.create(vacation);
         vacation = new Vacation(Utils.buildDate(2015, 11, 2), Utils.buildDate(2015, 11, 6),
                 employee);
         vacationDao.create(vacation);
-        
-        
+
         assertEquals(2, vacationDao.findAll(employee).size());
     }
 

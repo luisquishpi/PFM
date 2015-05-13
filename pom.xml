@@ -38,6 +38,11 @@
 			<version>4.3.9.Final</version>
 		</dependency>
 		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>4.2.0.Final</version>
+		</dependency>
+		<dependency>
 			<groupId>org.jmockit</groupId>
 			<artifactId>jmockit</artifactId>
 			<version>1.16</version>
@@ -151,7 +156,7 @@
 					</preloadSources>
 					<jsSrcDir>${project.basedir}/src/main/webapp/resources/js/controllers</jsSrcDir>
 					<sourceExcludes>
-					   <exclude>projectApp.js</exclude>
+						<exclude>projectApp.js</exclude>
 					</sourceExcludes>
 				</configuration>
 			</plugin>
