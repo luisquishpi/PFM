@@ -2,9 +2,11 @@
  * AngularJS theoricalPhaseController
  */
 
-projectApp.controller("theoricalPhaseController", ['$scope', '$controller', 'workTimeService', function ($scope, $isTest, workTimeService) {  
+projectApp.controller("theoricalPhaseController", ['$scope', '$isTest', 'workTimeService', function ($scope, $isTest, workTimeService) {  
+
 	if(!$isTest){
 		  initJSFScope($scope);
+		  workTimeService.calculateWorkDaysAndHour($scope.showTheoricalPhasesBean.project.startString, $scope.showTheoricalPhasesBean.project.endString)
 	 }
 	
 	$scope.averageMonthCost = function(){

@@ -9,7 +9,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
-import javax.faces.model.SelectItem;
 
 import org.apache.logging.log4j.LogManager;
 
@@ -20,7 +19,6 @@ import upm.miw.pfm.models.entities.Employee;
 import upm.miw.pfm.models.entities.Project;
 import upm.miw.pfm.models.entities.ProjectSchedule;
 import upm.miw.pfm.utils.Utils;
-import upm.miw.pfm.utils.WorkDay;
 
 @ManagedBean
 @ViewScoped
@@ -28,15 +26,11 @@ public class ShowTheoricalPhasesBean {
 
     private Project project;
 
-    private List<SelectItem> projectList;
+    private ProjectSchedule projectSchedule;
 
-    private int selectedProjectId;
+    private List<Project> projectList;
 
     private Employee[] employeeArray;
-
-    private WorkDay[] workDaysArray;
-
-    private Integer workDays;
 
     private final static Class<ListProjectsBean> clazz = ListProjectsBean.class;
 
@@ -51,24 +45,23 @@ public class ShowTheoricalPhasesBean {
 
     public ShowTheoricalPhasesBean() {
         this.project = new Project();
+        this.project.setId(-1);
+        this.project.setCost(0.00);
+        this.project.setStart(Utils.now(Utils.DD_MM_YYYY_FORMAT));
+        this.project.setEnd(Utils.now(Utils.DD_MM_YYYY_FORMAT));
+        this.project.setIterationDays(0.00);
     }
 
     @PostConstruct
     public void init() {
+        projectList = projectController.listProjects();
+        LogManager.getLogger(clazz).info("Se encontraron " + projectList.size() + " proyectos");
+
         List<Employee> employeeList = employeeController.listEmployees();
-        employeeArray = employeeList.toArray(employeeArray);
-        List<Project> projects = projectController.listProjects();
-        if (projects.size() > 0) {
-            project = projects.get(0);
+        LogManager.getLogger(clazz).info("Se encontraron " + employeeList.size() + " empleados");
+        if (employeeList != null) {
+            employeeArray = employeeList.toArray(new Employee[employeeList.size()]);
         }
-        for (Project proj : projects) {
-            projectList.add(new SelectItem(proj.getId(), proj.getName()));
-        }
-        ProjectSchedule projectSchedule = setScheduleController.getProjectSchedule(project.getId());
-        List<WorkDay> listWorkDays = projectSchedule.getWorkDaysArray();
-        workDaysArray = listWorkDays.toArray(workDaysArray);
-        workDays = projectSchedule.getWorkDays();
-        LogManager.getLogger(clazz).info("Se encontraron " + projects.size() + " proyectos");
     }
 
     public Project getProject() {
@@ -79,48 +72,26 @@ public class ShowTheoricalPhasesBean {
         this.project = project;
     }
 
-    public int getSelectedProjectId() {
-        return selectedProjectId;
-    }
-
-    public void setSelectedProjectId(int selectedProjectId) {
-        this.selectedProjectId = selectedProjectId;
-    }
-
-    public List<SelectItem> getProjectList() {
+    public List<Project> getProjectList() {
         return projectList;
     }
 
-    public void setProjectList(List<SelectItem> projectList) {
+    public void setProjectList(List<Project> projectList) {
         this.projectList = projectList;
     }
 
     public void onChangeProject(ValueChangeEvent e) {
-        Integer selectedProject = Integer.parseInt((String) e.getNewValue());
+        Integer selectedProject = (Integer) e.getNewValue();
         LogManager.getLogger(clazz).debug("Id de proyecto seleccionado " + this.project);
         if (selectedProject != -1) {
             this.project.setId(selectedProject);
             this.project = findSelectedProject();
+            this.projectSchedule = setScheduleController.getProjectSchedule(project.getId());
             LogManager.getLogger(clazz).debug("Proyecto cargado " + this.project);
+            LogManager.getLogger(clazz).info("Project schedule asociado " + this.projectSchedule);
         }
 
         FacesContext.getCurrentInstance().renderResponse();
-    }
-
-    public WorkDay[] getWorkDaysArray() {
-        return workDaysArray;
-    }
-
-    public void setWorkDaysArray(WorkDay[] workDaysArray) {
-        this.workDaysArray = workDaysArray;
-    }
-
-    public Integer getWorkDays() {
-        return workDays;
-    }
-
-    public void setWorkDays(Integer workDays) {
-        this.workDays = workDays;
     }
 
     public Employee[] getEmployeeArray() {
