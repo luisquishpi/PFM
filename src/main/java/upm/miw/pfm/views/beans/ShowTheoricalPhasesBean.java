@@ -6,8 +6,8 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.model.SelectItem;
 import javax.faces.event.AjaxBehaviorEvent;
+import javax.faces.model.SelectItem;
 
 import org.apache.logging.log4j.LogManager;
 
@@ -21,9 +21,9 @@ import upm.miw.pfm.utils.Utils;
 import upm.miw.pfm.utils.WorkDay;
 
 @ManagedBean
-public class ShowTheoreticalPhasesBean {
+public class ShowTheoricalPhasesBean {
 
-    private Project project;
+	private Project project;
 
     private List<SelectItem> projectList;
     
@@ -46,7 +46,7 @@ public class ShowTheoreticalPhasesBean {
     @EJB
     private SetScheduleController setScheduleController;
 
-    public ShowTheoreticalPhasesBean() {
+    public ShowTheoricalPhasesBean() {
         this.project = new Project();
     }
 
@@ -147,4 +147,5 @@ public class ShowTheoreticalPhasesBean {
     private Project findSelectedProject(){
         return projectController.getProject(this.project.getId());
     }
+
 }

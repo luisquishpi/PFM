@@ -21,6 +21,11 @@
 			<script src="/PFM/resources/js/controllers/scheduleController.js"></script>
 			<script src="/PFM/resources/js/controllers/projectController.js"></script>
 		</ui:define>
+		<ui:define name="css">
+			<style>
+				label{line-height: 0px !important;}
+			</style>
+		</ui:define>
 		<ui:define name="content">
 			<c:set var="projectBean" scope="request" value="#{consultProjectBean}" />
 			<c:set var="bridgeService" scope="request" value="#{projectBean.projectSchedule}" />
@@ -30,150 +35,135 @@
 						<div ng-if="runProject" ng-controller="projectController">
 							<ngsync direction="serverToClient" value="{{projectBean.project}}"/>
 						<p:panel header="{{projectBean.project.name}}">
-							<fieldset>
-								<div class="row" style="margin-top:10px">
-									<div class="col-sm-2">
-										<p:outputLabel value="Fecha inicio:"
-										styleClass="label_height" />	
-									</div>
-									<div class="col-sm-2">
-										<h:outputText value="{{projectBean.project.startString}}" >
-											<f:convertDateTime pattern="d-M-yyyy" />
-										</h:outputText>	
-									</div>
-									<div class="col-sm-2">
-										<p:outputLabel value="Meses naturales:"
-										styleClass="label_height" />
-									</div>
-									<div class="col-sm-2">
-										<h:outputText value="{{naturalMonths() | number:2}}" />
-									</div>
-									<div class="col-sm-2">
-										<p:outputLabel value="Meses laborales:"
-										styleClass="label_height" />	
-									</div>
-									<div class="col-sm-2">
-										<h:outputText value="{{workMonths() | number:2}}" />
-									</div>
-						  		</div>
-						  		<div class="row">
-									<div class="col-sm-2">
-										<p:outputLabel value="Fecha fin:"
-										styleClass="label_height" />
-									</div>
-									<div class="col-sm-2">
-										<h:outputText value="{{projectBean.project.endString}}" >
-											<f:convertDateTime pattern="d-M-yyyy" />
-										</h:outputText>	
-									</div>
-									<div class="col-sm-2">
-										<p:outputLabel value="Días naturales:"
-										styleClass="label_height"/>	
-									</div>
-									<div class="col-sm-2">
-										<h:outputText value="{{naturalDays}}" />
-									</div>
-									<div class="col-sm-2">
-										<p:outputLabel value="Días laborales:"
-										styleClass="label_height" />
-									</div>
-									<div class="col-sm-2">
-										<h:outputText value="{{workDays}}" />
-									</div>
-						  		</div>
-						  		<div class="row">
-									<div class="col-sm-2">
-										<p:outputLabel value="Presupuesto:"
-										styleClass="label_height" />
-									</div>
-									<div class="col-sm-2">
-										<h:outputText value="{{projectBean.project.cost}}"/>&euro;
-									</div>
-						  			
-									<div class="col-sm-4"></div>
-									<div class="col-sm-2">
-										<p:outputLabel value="Horas laborales:"
-										styleClass="label_height" />
-									</div>
-									<div class="col-sm-2">
-										<h:outputText value="{{workHours}}" />
-									</div>
-						  		</div>
-						  		<div class="row">
-									<div class="col-sm-4"></div>
-									<div class="col-sm-2">
-										<p:outputLabel value="Coste/mes natural:"
-										styleClass="label_height" />	
-									</div>
-									<div class="col-sm-2">
-										<h:outputText value="{{costNaturalMonth() | number:2}}" />&euro;
-									</div>
-									<div class="col-sm-2">
-										<p:outputLabel value="Coste/mes laboral:"
-										styleClass="label_height" />
-									</div>
-									<div class="col-sm-2">
-										<h:outputText value="{{costWorkMonth() | number:2}}" />&euro;
-									</div>
-						  		</div>
-						  		<div class="row">
-									<div class="col-sm-4"></div>
-									<div class="col-sm-2">
-										<p:outputLabel value="Coste/día natural:"
-										styleClass="label_height" />
-									</div>
-									<div class="col-sm-2">
-										<h:outputText value="{{costNaturalDay() | number:2}}" />&euro;
-									</div>
-									<div class="col-sm-2">
-										<p:outputLabel value="Coste/día laboral:"
-										styleClass="label_height" />
-									</div>
-									<div class="col-sm-2">
-										<h:outputText value="{{costWorkDay() | number:2}}" />&euro;
-									</div>
-						  		</div>
-						  		<div class="row">
-									<div class="col-sm-8"></div>
-									<div class="col-sm-2">
-										<p:outputLabel value="Coste/hora laboral:"
-										styleClass="label_height" />	
-									</div>
-									<div class="col-sm-2">
-										<h:outputText value="{{costWorkHour() | number:2}}" />&euro;
-									</div>
-						  		</div>
-						  		<div class="row">
-									<div class="col-sm-8"></div>
-									<div class="col-sm-2">
-										<p:outputLabel value="Personas/mes:"
-										styleClass="label_height" />	
-									</div>
-									<div class="col-sm-2">
-										
-									</div>
-						  		</div>
-						  		<div class="row">
-									<div class="col-sm-8"></div>
-									<div class="col-sm-2">
-										<p:outputLabel value="Personas/día:"
-										styleClass="label_height" />										
-									</div>
-									<div class="col-sm-2">
-									</div>
-						  		</div>
-						  		<div class="row">
-									<div class="col-sm-8"></div>
-									<div class="col-sm-2">
-										<p:outputLabel value="Personas/hora:"
-										styleClass="label_height" />	
-									</div>
-									<div class="col-sm-2">
-									</div>
-						  		</div>
-								<p:button outcome="index.html" value="Volver" icon="ui-icon-arrowreturn-1-w">
-								</p:button>	
-							</fieldset>
+							<div class="row" style="margin-top:10px">
+								<div class="col-sm-5">
+									<table class="table table-bordered">
+										<tbody>
+											<tr>
+												<td>
+													<p:outputLabel value="Fecha inicio:" styleClass="label_height" />
+													<h:outputText value="{{projectBean.project.startString}}" >
+														<f:convertDateTime pattern="d-M-yyyy" />
+													</h:outputText>
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<p:outputLabel value="Fecha fin:" styleClass="label_height" />
+													<h:outputText value="{{projectBean.project.endString}}" >
+														<f:convertDateTime pattern="d-M-yyyy" />
+													</h:outputText>
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<p:outputLabel value="Presupuesto:" styleClass="label_height" />
+													<h:outputText class="currency" value="{{projectBean.project.cost}}"/>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<div class="col-sm-7">
+									<table class="table table-bordered">
+										<tbody>
+											<tr>
+												<td>
+													<p:outputLabel value="Meses naturales:" styleClass="label_height" />
+													<h:outputText value="{{naturalMonths() | number:2}}" />
+												</td>
+												<td>
+													<p:outputLabel value="Meses laborales:" styleClass="label_height" />	
+													<h:outputText value="{{workMonths() | number:2}}" />
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<p:outputLabel value="Días naturales:" styleClass="label_height" />
+													<h:outputText value="{{naturalDays}}" />
+												</td>
+												<td>
+													<p:outputLabel value="Días laborales:" styleClass="label_height" />	
+													<h:outputText value="{{workDays}}" />
+												</td>
+											</tr>
+											<tr>
+												<td></td>
+												<td>
+													<p:outputLabel value="Horas laborales:" styleClass="label_height" />	
+													<h:outputText value="{{workHours}}" />
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="row" style="margin-top:10px">
+								<div class="col-sm-5"></div>
+								<div class="col-sm-7">
+									<table class="table table-bordered">
+										<tbody>
+											<tr>
+												<td>
+													<p:outputLabel value="Coste/mes natural:" styleClass="label_height" />
+													<h:outputText class="currency" value="{{costNaturalMonth() | number:2}}" />
+												</td>
+												<td>
+													<p:outputLabel value="Coste/mes laboral:" styleClass="label_height" />	
+													<h:outputText class="currency" value="{{costWorkMonth() | number:2}}" />
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<p:outputLabel value="Coste/día natural:" styleClass="label_height" />
+													<h:outputText class="currency" value="{{costNaturalDay() | number:2}}" />
+												</td>
+												<td>
+													<p:outputLabel value="Coste/día laboral:" styleClass="label_height" />	
+													<h:outputText class="currency" value="{{costWorkDay() | number:2}}" />
+												</td>
+											</tr>
+											<tr>
+												<td></td>
+												<td>
+													<p:outputLabel value="Coste/hora laboral:" styleClass="label_height" />	
+													<h:outputText class="currency" value="{{costWorkHour() | number:2}}" />
+												</td>
+											</tr>
+										</tbody>
+									</table>
+						  		</div>	
+						  	</div>	
+					  		<!-- <div class="row">
+								<div class="col-sm-8"></div>
+								<div class="col-sm-2">
+									<p:outputLabel value="Personas/mes:"
+									styleClass="label_height" />	
+								</div>
+								<div class="col-sm-2">
+									
+								</div>
+					  		</div>
+					  		<div class="row">
+								<div class="col-sm-8"></div>
+								<div class="col-sm-2">
+									<p:outputLabel value="Personas/día:"
+									styleClass="label_height" />										
+								</div>
+								<div class="col-sm-2">
+								</div>
+					  		</div>
+					  		<div class="row">
+								<div class="col-sm-8"></div>
+								<div class="col-sm-2">
+									<p:outputLabel value="Personas/hora:"
+									styleClass="label_height" />	
+								</div>
+								<div class="col-sm-2">
+								</div>
+					  		</div> -->
+							<p:button outcome="index.html" value="Volver" icon="ui-icon-arrowreturn-1-w">
+							</p:button>	
 						</p:panel>
 					</div>	
 				</div>

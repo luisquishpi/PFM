@@ -31,6 +31,15 @@
 		</ui:define>
 		<ui:define name="css">
 			<link href="/PFM/resources/css/wizard.css" rel="stylesheet" />
+			<style>
+				.table-bordered>tbody>tr>td{
+					border:none;
+					border-top:1px solid #ddd;
+				}
+				.table-bordered label{
+					margin-right:10px;
+				}
+			</style>
 		</ui:define>
 		<ui:define name="header">
             Crear Proyecto
@@ -171,152 +180,118 @@
 										</div>
 									</fieldset>
 								</div>
-								<div> 
+								<div>
 								<div  ng-switch-when="two" class="wave">
 									<fieldset ng-controller="projectController">
 										<div class="row" style="margin-top:10px">
-											<div class="col-sm-2">
-												<p:outputLabel for="name" value="Nombre:"
-												styleClass="label_height" />
+										<div class="col-sm-5 inputs_projects">
+											<div class="row">
+												<div class="col-sm-5">
+													<p:outputLabel for="name" value="Nombre:"
+													styleClass="label_height" />
+												</div>
+												<div class="col-sm-6">
+													<p:inputText id="name" value="{{projectBean.project.name}}" ng-required="true" required="true"/>
+												</div>
 											</div>
-											<div class="col-sm-2">
-												<p:inputText id="name" value="{{projectBean.project.name}}" ng-required="true" required="true"/>
-											</div>
-											<div class="col-sm-2">
-												<p:outputLabel for="naturalMonths" value="Meses naturales:"
-												styleClass="label_height" />
-											</div>
-											<div class="col-sm-1">
-												<h:outputText id="naturalMonths" value="{{naturalMonths() | number:2}}"/>
-											</div>
-											<div class="col-sm-2">
-												<p:outputLabel for="workMonths" value="Meses laborales:"
-												styleClass="label_height" />
-											</div>
-											<div class="col-sm-1">
-												<h:outputText id="workMonths" value="{{workMonths() | number:2}}"/>
-											</div>
-								  		</div>
-								  		<div class="row">
-								  			<div class="col-sm-2">
-								  				<p:outputLabel for="startString" value="Fecha de inicio:"
-												styleClass="label_height" />
-											</div>
-											<div class="col-sm-2">
-												<p:inputMask id="startString" value="{{projectBean.project.startString}}" mask="99/99/9999"
-													ng-required="true" required="true"/>
-											</div>
-											<div class="col-sm-2">
-												<p:outputLabel for="naturalDays" value="Días naturales:"
-												styleClass="label_height" />
-											</div>
-											<div class="col-sm-1">
-												<h:outputText id="naturalDays" value="{{naturalDays}}"/>
-											</div>
-											<div class="col-sm-2">
-												<p:outputLabel value="Días laborales:"
-												styleClass="label_height" />
-											</div>
-											<div class="col-sm-1">
-												<h:outputText value="{{workDays}}"/>
-											</div>
-								  		</div>
-								  		<div class="row">
-								  			<div class="col-sm-2">
-								  				<p:outputLabel for="endString" value="Fecha de fin:"
-												styleClass="label_height" />
-											</div>
-											<div class="col-sm-2">
-												<p:inputMask id="endString"
-														value="{{projectBean.project.endString}}" mask="99/99/9999"
+											<div class="row">
+												<div class="col-sm-5">
+									  				<p:outputLabel for="startString" value="Fecha de inicio:"
+													styleClass="label_height" />
+												</div>
+												<div class="col-sm-6">
+													<p:inputMask id="startString" value="{{projectBean.project.startString}}" mask="99/99/9999"
 														ng-required="true" required="true"/>
+												</div>
 											</div>
-											<div class="col-sm-3"></div>
-											<div class="col-sm-2">
-												<p:outputLabel for="workHours" value="Horas laborales:"
-												styleClass="label_height" />
+											<div class="row">
+												<div class="col-sm-5">
+									  				<p:outputLabel for="endString" value="Fecha de fin:"
+													styleClass="label_height" />
+												</div>
+												<div class="col-sm-6">
+													<p:inputMask id="endString"
+															value="{{projectBean.project.endString}}" mask="99/99/9999"
+															ng-required="true" required="true"/>
+												</div>
 											</div>
-											<div class="col-sm-1">
-												<h:outputText id="workHours" value="{{workHours}}"/>
-											</div>
-								  		</div>
-								  		<div class="row">
-											<div class="col-sm-2">
-												<p:outputLabel for="cost" value="Presupuesto:"
-												styleClass="label_height" />
-											</div>
-											<div class="col-sm-2">
-												<p:inputText id="cost" value="{{projectBean.project.cost}}" ng-required="true" required="true"/>
-											</div>
-											<div class="col-sm-2">
-												<p:outputLabel for="costNaturalMonth" value="Coste/mes natural:"
-												styleClass="label_height" />
-											</div>
-											<div class="col-sm-1">
-												<h:outputText id="costNaturalMonth" value="{{costNaturalMonth() | number:2}}"/>&euro;
-											</div>
-											<div class="col-sm-2">
-												<p:outputLabel for="costWorkMonth" value="Coste/mes laboral:"
-												styleClass="label_height" />
-											</div>
-											<div class="col-sm-1">
-												<h:outputText id="costWorkMonth" value="{{costWorkMonth() | number:2}}"/>&euro;
-											</div>
-								  		</div>
-								  		<div class="row">
-											<div class="col-sm-4"></div>
-											<div class="col-sm-2">
-												<p:outputLabel for="costNaturalDay" value="Coste/día natural:"
-												styleClass="label_height" />
-											</div>
-											<div class="col-sm-1">
-												<h:outputText id="costNaturalDay" value="{{costNaturalDay() | number:2}}"/>&euro;
-											</div>
-											<div class="col-sm-2">
-												<p:outputLabel for="costWorkDay" value="Coste/día laboral:"
-												styleClass="label_height" />											</div>
-											<div class="col-sm-1">
-												<h:outputText id="costWorkDay" value="{{costWorkDay() | number:2}}"/>&euro;
-											</div>
-								  		</div>
-								  		<div class="row">
-											<div class="col-sm-7"></div>
-											<div class="col-sm-2">
-												<p:outputLabel for="costWorkHour" value="Coste/hora laboral:"
-												styleClass="label_height" />	
-											</div>
-											<div class="col-sm-1">
-												<h:outputText id="costWorkHour" value="{{costWorkHour() | number:2}}"/>&euro;
-											</div>
-								  		</div>
-								  		<div class="row">
-											<div class="col-sm-7"></div>
-											<div class="col-sm-2">
-												<p:outputLabel value="Personas/mes:"
-												styleClass="label_height" />
-											</div>
-											<div class="col-sm-1">
-												
-											</div>
-								  		</div>
-								  		<div class="row">
-											<div class="col-sm-7"></div>
-											<div class="col-sm-2">
-												<p:outputLabel value="Personas/día:"
-												styleClass="label_height" />
-											</div>
-											<div class="col-sm-1">
-											</div>
-								  		</div>
-								  		<div class="row">
-											<div class="col-sm-7"></div>
-											<div class="col-sm-2">
-												<p:outputLabel value="Personas/hora:"
-												styleClass="label_height" />
-											</div>
-											<div class="col-sm-1">
-											</div>
-								  		</div>
+											<div class="row">
+												<div class="col-sm-5">
+													<p:outputLabel for="cost" value="Presupuesto:"
+													styleClass="label_height" />
+												</div>
+												<div class="col-sm-6">
+													<p:inputText id="cost" value="{{projectBean.project.cost}}" ng-required="true" required="true"/>
+												</div>
+											</div>	
+										</div>
+										<div class="col-sm-7">
+											<table class="table table-bordered">
+												<tbody>
+													<tr>
+														<td><p:outputLabel for="naturalMonths" value="Meses naturales:"
+															styleClass="label_height" />
+															<h:outputText id="naturalMonths" value="{{naturalMonths() | number:2}}"/>
+														</td>
+														<td><p:outputLabel for="workMonths" value="Meses laborales:"
+															styleClass="label_height" />
+															<h:outputText id="workMonths" value="{{workMonths() | number:2}}"/>
+														</td>
+													</tr>
+													<tr>
+														<td><p:outputLabel for="naturalDays" value="Días naturales:"
+															styleClass="label_height" />
+															<h:outputText id="naturalDays" value="{{naturalDays}}"/>
+														</td>
+														<td><p:outputLabel for="workDaysProject" value="Días laborales:"
+															styleClass="label_height" />
+															<h:outputText id="workDaysProject" value="{{workDays}}"/>
+														</td>
+													</tr>
+													<tr>
+														<td></td>
+														<td><p:outputLabel for="workHours" value="Horas laborales:"
+															styleClass="label_height" />
+															<h:outputText id="workHours" value="{{workHours}}"/>
+														</td>
+													</tr>
+												</tbody>	
+											</table>		
+											<table class="table table-bordered">	
+												<tbody>	
+													<tr>
+														<td><p:outputLabel for="costNaturalMonth" value="Coste/mes natural:"
+														styleClass="label_height" />
+														<h:outputText class="currency" id="costNaturalMonth" value="{{costNaturalMonth() | number:2}}"/>
+														</td>
+														<td><p:outputLabel for="costWorkMonth" value="Coste/mes laboral:"
+															styleClass="label_height" />
+															<h:outputText class="currency" id="costWorkMonth" value="{{costWorkMonth() | number:2}}"/>
+														</td>
+													</tr>
+													
+													<tr>
+														<td><p:outputLabel for="costNaturalDay" value="Coste/día natural:"
+															styleClass="label_height" />
+															<h:outputText class="currency" id="costNaturalDay" value="{{costNaturalDay() | number:2}}"/>
+														</td>
+														<td><p:outputLabel for="costWorkDay" value="Coste/día laboral:"
+															styleClass="label_height" />
+															<h:outputText class="currency" id="costWorkDay" value="{{costWorkDay() | number:2}}"/>
+														</td>
+													</tr>
+													
+													<tr>
+														<td><p:outputLabel for="costWorkHour" value="Coste/hora laboral:"
+																styleClass="label_height" />
+																<h:outputText class="currency" id="costWorkHour" value="{{costWorkHour() | number:2}}"/>
+														</td>
+														<td></td>
+													</tr>
+												</tbody>
+											</table>	
+										</div>
+									</div>
 									</fieldset>
 								</div>
 							</div>
