@@ -14,7 +14,7 @@
 		<div style="margin-bottom: 10px;" class="col-lg-12">
 			<p:growl id="growl" sticky="true" showDetail="true" />
 			<h:form>
-				<p:dataTable var="employee" value="#{listEmployeesBean.employees}">
+				<p:dataTable var="employee" value="#{listEmployeesBean.employees}" >
 					<p:column headerText="Empleado">
 						<h:outputText value="#{employee.getFullName()}" />
 					</p:column>
