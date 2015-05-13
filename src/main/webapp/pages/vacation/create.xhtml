@@ -40,6 +40,11 @@
 	                            <p:inputText size="25" requiredMessage="Seleccione el periodo de vacaciones" id="daterange" value="#{createVacationBean.range}" required="true" label=""/>
 	                        </div>
 	                    </div>
+	                    <div class="row">
+		                    <div class="col-md-12">
+		                        <p:commandButton value="Crear" icon="ui-icon-disk" ajax="true" action="#{createVacationBean.process}" update="growl vacationDetails" />
+		                    </div>
+		                </div>
 	                </div>
 	                <div class="col-md-5">
 	                   <h:panelGroup id="vacationDetails" layout="block" styleClass="panel panel-info">
@@ -47,28 +52,22 @@
 	                           Vacaciones de #{createVacationBean.selectedEmployee.getFullName()}:
 	                       </div>
 	                       <div class="panel-body">
-                                <ul class="list-group">
-                                    <ui:repeat var="vacation" value="#{createVacationBean.selectedEmployeeVacations}">
-                                        <li class="list-group-item">
-                                             <h:outputText value="#{vacation.start}" >
-                                                <f:convertDateTime timeZone="ECT" pattern="d/MM/yyyy" />
-											 </h:outputText> -
-											 <h:outputText value="#{vacation.end}" >
-                                                <f:convertDateTime timeZone="ECT" pattern="d/MM/yyyy" />
-                                             </h:outputText>
-                                        </li>
-									</ui:repeat>
-								</ul>
+	                           <h:outputText rendered="#{empty createVacationBean.selectedEmployeeVacations}" value="No hay periodos registrados"/>
+                               <ul class="list-group">
+                                   <ui:repeat var="vacation" value="#{createVacationBean.selectedEmployeeVacations}">
+                                       <li class="list-group-item">
+                                            <h:outputText value="#{vacation.start}" >
+                                               <f:convertDateTime timeZone="ECT" pattern="d/MM/yyyy" />
+										 </h:outputText> -
+										 <h:outputText value="#{vacation.end}" >
+                                               <f:convertDateTime timeZone="ECT" pattern="d/MM/yyyy" />
+                                            </h:outputText>
+                                       </li>
+								</ui:repeat>
+							</ul>
 	                       </div>
 	                   </h:panelGroup>
 	                </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-		                <p:commandButton value="Crear" icon="ui-icon-disk" action="#{createVacationBean.process}" update="growl vacationDetails" />
-		                <!-- <p:button outcome="index.html" value="Volver" icon="ui-icon-arrowreturn-1-w"> 
-		                </p:button> -->
-                    </div>
                 </div>
             </h:form>
         </ui:define>

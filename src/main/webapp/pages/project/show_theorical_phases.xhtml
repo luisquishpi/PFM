@@ -45,14 +45,14 @@
 						</div>
 						<div class="col-lg-2">
 							<f:ajax render="dias_iteracion"
-								listener="#{showTheoreticalPhasesBean.onChangeProject}">
+								listener="#{showTheoricalPhasesBean.onChangeProject}">
 								<h:selectOneMenu id="project"
-									value="#{showTheoreticalPhasesBean.project.id}" required="true"
+									value="#{showTheoricalPhasesBean.project.id}" required="true"
 									requiredMessage="Debe selecionar el proyecto"
 									validatorMessage="Debe seleccionar el proyecto">
 									<f:selectItem itemLabel="Seleccione el proyecto" itemValue="-1"
 										noSelectionOption="true" />
-									<f:selectItems value="#{showTheoreticalPhasesBean.projectList}"
+									<f:selectItems value="#{showTheoricalPhasesBean.projectList}"
 										var="project" itemValue="#{project.id}"
 										itemLabel="#{project.name}" />
 									<f:validator validatorId="upm.miw.pfm.utils.ComboBoxValidator" />
@@ -78,11 +78,12 @@
 						</div>
 						<div class="col-lg-2">
 							<p:spinner id="dias_iteracion"
-								value="{{showTheoreticalPhasesBean.project.iterationDays}}"
+								value="{{showTheoricalPhasesBean.project.iterationDays}}"
 								ng-required="true"
 								validatorMessage="Número de días debe ser mayor a 0"
 								stepFactor="0.5">
-								<f:convertNumber minFractionDigits="2" maxFractionDigits="2" locale="en_US"  />
+								<f:convertNumber minFractionDigits="2" maxFractionDigits="2"
+									locale="en_US" />
 								<f:validator
 									validatorId="upm.miw.pfm.utils.GreaterThanZeroValidator" />
 							</p:spinner>
@@ -94,7 +95,7 @@
 					</div>
 					<div class="padding-table">
 						<p:commandButton value="Guardar"
-							action="#{showTheoreticalPhasesBean.process}" icon="ui-icon-disk"
+							action="#{showTheoricalPhasesBean.process}" icon="ui-icon-disk"
 							ajax="false" />
 						<p:button outcome="index.html" value="Volver"
 							icon="ui-icon-arrowreturn-1-w"></p:button>
