@@ -38,6 +38,11 @@
 			<version>4.3.9.Final</version>
 		</dependency>
 		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>4.2.0.Final</version>
+		</dependency>
+		<dependency>
 			<groupId>org.jmockit</groupId>
 			<artifactId>jmockit</artifactId>
 			<version>1.16</version>
@@ -148,7 +153,7 @@
 						<source>${project.basedir}/src/main/webapp/resources/js/libs/mockAngularFaces.js</source>
 						<source>${project.basedir}/src/main/webapp/resources/js/libs/moment.js</source>
 					</preloadSources>
-					<jsSrcDir>${project.basedir}/src/main/webapp/resources/js/controllers</jsSrcDir>
+					<jsSrcDir>${project.basedir}/src/main/webapp/resources/js/controllers</jsSrcDir>					
 				</configuration>
 			</plugin>
 		</plugins>

@@ -9,8 +9,8 @@ describe("Test TheoricalPhaseController", function(){
 		scope.showTheoricalPhasesBean = {
 				  project:{
 					  cost: 85000,
-					  startString: "02/03/2015",
-					  endString: "04/09/2015", 
+					  start: "2/3/2015",
+					  end: "4/9/2015", 
 				  },
 				  employeeArray: [
 					 {
@@ -184,11 +184,11 @@ describe("Test TheoricalPhaseController", function(){
 	});
 	
 	it("Init start date should be 2/3/2015", function(){
-		expect(scope.initStartDate()).toBe("2/3/2015");
+		expect(scope.initStartDate()).toBe(moment("2/3/2015", 'DD/MM/YYYY').format("DD/MM/YYYY"));
 	});
 	
 	it("Init end date should be 20/2/2015", function(){
-		expect(scope.initEndDate()).toBe("20/3/2015");
+		expect(scope.initEndDate()).toBe("20/03/2015");
 	});
 	
 	it("Iteration average hours should be 99.9", function(){
@@ -216,11 +216,11 @@ describe("Test TheoricalPhaseController", function(){
 	});
 	
 	it("Elab start date should be 21/3/2015", function(){
-		expect(scope.ElabStartDate()).toBe("21/3/2015");
+		expect(scope.ElabStartDate()).toBe("21/03/2015");
 	});
 	
 	it("Elab end date should be 15/5/2015", function(){
-		expect(scope.ElabEndDate()).toBe("15/5/2015");
+		expect(scope.ElabEndDate()).toBe("16/05/2015");
 	});
 	
 	it("Constr hours should be 499.5", function(){
@@ -235,20 +235,20 @@ describe("Test TheoricalPhaseController", function(){
 		expect(scope.ConstrMonths()).toBe(3.2142857142857144);
 	});
 	
-	it("Constr start date should be 16/5/2015", function(){
-		expect(scope.ConstrStartDate()).toBe("16/5/2015");
+	it("Constr start date should be 17/5/2015", function(){
+		expect(scope.ConstrStartDate()).toBe("17/05/2015");
 	});
 	
-	it("Constr end date should be 17/8/2015", function(){
-		expect(scope.ConstrEndDate()).toBe("17/5/2015");
+	it("Constr end date should be 18/8/2015", function(){
+		expect(scope.ConstrEndDate()).toBe("18/08/2015");
 	});
 	
-	it("Trans start date should be 18/8/2015", function(){
-		expect(scope.transStartDate()).toBe("18/8/2015");
+	it("Trans start date should be 19/8/2015", function(){
+		expect(scope.transStartDate()).toBe("19/08/2015");
 	});
 	
-	it("Trans end date should be 5/9/2015", function(){
-		expect(scope.transEndDate()).toBe("5/9/2015");
+	it("Trans end date should be 6/9/2015", function(){
+		expect(scope.transEndDate()).toBe("06/09/2015");
 	});
 	
 	//Esfuerzo

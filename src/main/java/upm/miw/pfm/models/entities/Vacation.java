@@ -10,10 +10,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import upm.miw.pfm.utils.CheckDateVacation;
 import upm.miw.pfm.utils.CheckUnique;
 
 @Entity
 @Table(name = "employee_vacation")
+@CheckDateVacation
 @CheckUnique
 public class Vacation {
 
@@ -92,5 +94,4 @@ public class Vacation {
     public String toString() {
         return "Vacation [id=" + id + ", Start=" + start + ", End=" + end + "]";
     }
-
 }
