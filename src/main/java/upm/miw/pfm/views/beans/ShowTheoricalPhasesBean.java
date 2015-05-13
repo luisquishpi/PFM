@@ -6,7 +6,9 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.event.AjaxBehaviorEvent;
+import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.faces.event.ValueChangeEvent;
 
 import org.apache.logging.log4j.LogManager;
 
@@ -15,6 +17,7 @@ import upm.miw.pfm.models.entities.Project;
 import upm.miw.pfm.utils.Utils;
 
 @ManagedBean
+@ViewScoped
 public class ShowTheoricalPhasesBean {
 
     private Project project;
@@ -52,9 +55,16 @@ public class ShowTheoricalPhasesBean {
         this.projectList = projectList;
     }
 
-    public void onChangeProject(AjaxBehaviorEvent e) {
-        this.project = findSelectedProject();
-        LogManager.getLogger(clazz).debug("Proyecto seleccionado " + this.project);
+    public void onChangeProject(ValueChangeEvent e) {
+        Integer selectedProject = Integer.parseInt((String) e.getNewValue());
+        LogManager.getLogger(clazz).debug("Id de proyecto seleccionado " + this.project);
+        if (selectedProject != -1) {
+            this.project.setId(selectedProject);
+            this.project = findSelectedProject();
+            LogManager.getLogger(clazz).debug("Proyecto cargado " + this.project);
+        }
+
+        FacesContext.getCurrentInstance().renderResponse();
     }
 
     public String process() {
