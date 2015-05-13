@@ -1,7 +1,9 @@
 package upm.miw.pfm.models.daos;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,6 +11,11 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 
 import org.junit.After;
 import org.junit.Before;
@@ -152,9 +159,30 @@ public class EmployeeDaoTest {
     }
 
     @Test
+    public void testValidateVacation() {
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        Validator validator = factory.getValidator();
+
+        vacation = new Vacation(Utils.buildDate(2015, 10, 1), Utils.buildDate(2015, 10, 15),
+                employee);
+        vacationDao.create(vacation);
+        
+        Vacation vacation2 = new Vacation(Utils.buildDate(2015, 12, 5), Utils.buildDate(2015,
+                13, 10), employee);
+        Vacation vacationInvalid = new Vacation(Utils.buildDate(2015, 10, 5), Utils.buildDate(2015,
+                10, 10), employee);
+
+        Set<ConstraintViolation<Vacation>> errors = validator.validate(vacationInvalid);
+        assertTrue(errors.size() > 0);
+
+        errors = validator.validate(vacation2);
+        assertFalse(errors.size() > 0);
+    }
+
+    @Test
     public void testCreateAndReadVacation() {
         startDate = Utils.buildDate(2015, 10, 1);
-        endDate = Utils.buildDate(2015, 10, 2);
+        endDate = Utils.buildDate(2015, 10, 15);
         vacation = new Vacation(startDate, endDate, employee);
         vacationDao.create(vacation);
         assertEquals(vacation, vacationDao.read(vacation.getId()));
@@ -162,7 +190,7 @@ public class EmployeeDaoTest {
 
     @Test
     public void testFindVacationsByEmployee() {
-        
+
         vacation = new Vacation(Utils.buildDate(2015, 10, 1), Utils.buildDate(2015, 10, 2),
                 employee);
         vacationDao.create(vacation);

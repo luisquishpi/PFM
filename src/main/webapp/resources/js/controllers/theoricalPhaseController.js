@@ -7,6 +7,27 @@ projectApp.controller("theoricalPhaseController", ['$scope', '$controller', 'wor
 		  initJSFScope($scope);
 	 }
 	
+	$scope.averageMonthCost = function(){
+		var cost = 0;
+		for(i = 0; i < $scope.showTheoricalPhasesBean.employeeArray.length; i++){
+			cost += $scope.showTheoricalPhasesBean.employeeArray[i].annualGrossSalary + $scope.showTheoricalPhasesBean.employeeArray[i].annualGrossSalary*$scope.showTheoricalPhasesBean.employeeArray[i].contract.insurance/100;
+		}
+		cost = cost/$scope.showTheoricalPhasesBean.employeeArray.length;
+		return cost/12;
+	}
+	
+	$scope.averageDayCost = function(){
+		return $scope.averageMonthCost()/$scope.showTheoricalPhasesBean.workDays;
+	}
+	
+	$scope.averageHourCost = function(){
+		var days = 0;
+		for (i = 0; i < $scope.showTheoricalPhasesBean.workDaysArray.length; i++){
+			days += $scope.showTheoricalPhasesBean.workDaysArray[i].workHours;
+		}
+		return $scope.averageDayCost()/(days/5);
+	}
+	
 	$scope.recomendedDays = function(){
 		  return 13.5;
 	}
@@ -24,11 +45,11 @@ projectApp.controller("theoricalPhaseController", ['$scope', '$controller', 'wor
 	}
 	
 	$scope.initStartDate = function(){
-		  return "2/3/2015";
+		  return moment($scope.showTheoricalPhasesBean.project.start, 'DD/MM/YYYY').format("DD/MM/YYYY");
 	}
 	
 	$scope.initEndDate = function(){
-		  return "20/3/2015";
+		  return moment($scope.showTheoricalPhasesBean.project.start, 'DD/MM/YYYY').add(workTimeService.naturalDays()*0.1, "days").format("DD/MM/YYYY");;
 	}
 	
 	$scope.iterationAverageHours = function(){
@@ -56,11 +77,11 @@ projectApp.controller("theoricalPhaseController", ['$scope', '$controller', 'wor
 	}
 	
 	$scope.ElabStartDate = function(){
-		  return "21/3/2015";
+		  return moment($scope.initEndDate(), "DD/MM/YYYY").add(1, "days").format("DD/MM/YYYY");
 	}
 	
 	$scope.ElabEndDate = function(){
-		  return "15/5/2015";
+		  return moment($scope.ElabStartDate(), "DD/MM/YYYY").add(workTimeService.naturalDays()*0.3, "days").format("DD/MM/YYYY");
 	}
 	
 	$scope.ConstrHours = function(){
@@ -76,19 +97,19 @@ projectApp.controller("theoricalPhaseController", ['$scope', '$controller', 'wor
 	}
 	
 	$scope.ConstrStartDate = function(){
-		  return "16/5/2015";
+		  return moment($scope.ElabEndDate(), "DD/MM/YYYY").add(1, "days").format("DD/MM/YYYY");
 	}
 	
 	$scope.ConstrEndDate = function(){
-		  return "17/5/2015";
+		  return moment($scope.ConstrStartDate(), "DD/MM/YYYY").add(workTimeService.naturalDays()*0.5, "days").format("DD/MM/YYYY");
 	}
 	
 	$scope.transStartDate = function(){
-		  return "18/8/2015";
+		  return moment($scope.ConstrEndDate(), "DD/MM/YYYY").add(1, "days").format("DD/MM/YYYY");
 	}
 	
 	$scope.transEndDate = function(){
-		  return "5/9/2015";
+		  return moment($scope.transStartDate(), "DD/MM/YYYY").add(workTimeService.naturalDays()*0.1, "days").format("DD/MM/YYYY");
 	}
 	
 	$scope.initCost = function(){
@@ -96,15 +117,15 @@ projectApp.controller("theoricalPhaseController", ['$scope', '$controller', 'wor
 	}
 	
 	$scope.initPeopleHour = function(){
-		  return $scope.initCost()/workTimeService.costWorkHour($scope.showTheoricalPhasesBean.project.cost);
+		  return $scope.initCost()/$scope.averageHourCost();
 	}
 
 	$scope.initPeopleDay = function(){
-		  return $scope.initCost()/workTimeService.costWorkDay($scope.showTheoricalPhasesBean.project.cost);
+		  return $scope.initCost()/$scope.averageDayCost();
 	}
 	
 	$scope.initPeopleMonth = function(){
-		  return $scope.initCost()/workTimeService.costWorkMonth($scope.showTheoricalPhasesBean.project.cost);
+		  return $scope.initCost()/$scope.averageMonthCost();
 	}
 	
 	$scope.initPeople = function(){
@@ -132,15 +153,15 @@ projectApp.controller("theoricalPhaseController", ['$scope', '$controller', 'wor
 	}
 	
 	$scope.elabPeopleHour = function(){
-		  return $scope.elabCost()/workTimeService.costWorkHour($scope.showTheoricalPhasesBean.project.cost);
+		  return $scope.elabCost()/$scope.averageHourCost();
 	}
 	
 	$scope.elabPeopleDay = function(){
-		  return $scope.elabCost()/workTimeService.costWorkDay($scope.showTheoricalPhasesBean.project.cost);
+		  return $scope.elabCost()/$scope.averageDayCost();
 	}
 	
 	$scope.elabPeopleMonth = function(){
-		  return $scope.elabCost()/workTimeService.costWorkMonth($scope.showTheoricalPhasesBean.project.cost);
+		  return $scope.elabCost()/$scope.averageMonthCost();
 	}
 	
 	$scope.elabPeople = function(){
@@ -168,15 +189,15 @@ projectApp.controller("theoricalPhaseController", ['$scope', '$controller', 'wor
 	}
 	
 	$scope.constrPeopleHour = function(){
-		  return $scope.constrCost()/workTimeService.costWorkHour($scope.showTheoricalPhasesBean.project.cost);
+		  return $scope.constrCost()/$scope.averageHourCost();
 	}
 	
 	$scope.constrPeopleDay = function(){
-		  return $scope.constrCost()/workTimeService.costWorkDay($scope.showTheoricalPhasesBean.project.cost);
+		  return $scope.constrCost()/$scope.averageDayCost();
 	}
 	
 	$scope.constrPeopleMonth = function(){
-		  return $scope.constrCost()/workTimeService.costWorkMonth($scope.showTheoricalPhasesBean.project.cost);
+		  return $scope.constrCost()/$scope.averageMonthCost();
 	}
 	
 	$scope.constrPeople = function(){
@@ -204,15 +225,15 @@ projectApp.controller("theoricalPhaseController", ['$scope', '$controller', 'wor
 	}
 	
 	$scope.transPeopleHour = function(){
-		  return $scope.transCost()/workTimeService.costWorkHour($scope.showTheoricalPhasesBean.project.cost);
+		  return $scope.transCost()/$scope.averageHourCost();
 	}
 	
 	$scope.transPeopleDay = function(){
-		  return $scope.transCost()/workTimeService.costWorkDay($scope.showTheoricalPhasesBean.project.cost);
+		  return $scope.transCost()/$scope.averageDayCost();
 	}
 	
 	$scope.transPeopleMonth = function(){
-		  return $scope.transCost()/workTimeService.costWorkMonth($scope.showTheoricalPhasesBean.project.cost);
+		  return $scope.transCost()/$scope.averageMonthCost();
 	}
 	
 	$scope.transPeople = function(){
@@ -236,15 +257,15 @@ projectApp.controller("theoricalPhaseController", ['$scope', '$controller', 'wor
 	}
 	
 	$scope.projectPeopleHour = function(){
-		  return $scope.showTheoricalPhasesBean.project.cost/workTimeService.costWorkHour($scope.showTheoricalPhasesBean.project.cost);
+		  return $scope.showTheoricalPhasesBean.project.cost/$scope.averageHourCost();
 	}
 	
 	$scope.projectPeopleDay = function(){
-		  return $scope.showTheoricalPhasesBean.project.cost/workTimeService.costWorkDay($scope.showTheoricalPhasesBean.project.cost);
+		  return $scope.showTheoricalPhasesBean.project.cost/$scope.averageDayCost();
 	}
 	
 	$scope.projectPeopleMonth = function(){
-		  return $scope.showTheoricalPhasesBean.project.cost/workTimeService.costWorkMonth($scope.showTheoricalPhasesBean.project.cost);
+		  return $scope.showTheoricalPhasesBean.project.cost/$scope.averageMonthCost();
 	}
 	
 	$scope.projectPeople = function(){
