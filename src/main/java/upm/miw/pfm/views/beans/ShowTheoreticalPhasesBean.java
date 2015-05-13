@@ -11,10 +11,14 @@ import javax.faces.event.AjaxBehaviorEvent;
 
 import org.apache.logging.log4j.LogManager;
 
+import upm.miw.pfm.controllers.EmployeeController;
 import upm.miw.pfm.controllers.ProjectController;
+import upm.miw.pfm.controllers.SetScheduleController;
 import upm.miw.pfm.models.entities.Employee;
 import upm.miw.pfm.models.entities.Project;
+import upm.miw.pfm.models.entities.ProjectSchedule;
 import upm.miw.pfm.utils.Utils;
+import upm.miw.pfm.utils.WorkDay;
 
 @ManagedBean
 public class ShowTheoreticalPhasesBean {
@@ -25,12 +29,22 @@ public class ShowTheoreticalPhasesBean {
     
     private int selectedProjectId;
     
-    private List<Employee> employeeList;
+    private Employee[] employeeArray;
+    
+    private WorkDay[] workDaysArray;
+    
+    private Integer workDays;
 
     private final static Class<ListProjectsBean> clazz = ListProjectsBean.class;
 
     @EJB
     private ProjectController projectController;
+    
+    @EJB
+    private EmployeeController employeeController;
+    
+    @EJB
+    private SetScheduleController setScheduleController;
 
     public ShowTheoreticalPhasesBean() {
         this.project = new Project();
@@ -38,6 +52,8 @@ public class ShowTheoreticalPhasesBean {
 
     @PostConstruct
     public void init() {
+    	List<Employee> employeeList = employeeController.listEmployees();
+    	employeeArray = employeeList.toArray(employeeArray);
         List<Project> projects = projectController.listProjects();
         if(projects.size()>0){
         	project = projects.get(0);
@@ -45,6 +61,10 @@ public class ShowTheoreticalPhasesBean {
         for(Project proj: projects){
         	projectList.add(new SelectItem(proj.getId(), proj.getName()));
         }
+        ProjectSchedule projectSchedule = setScheduleController.getProjectSchedule(project.getId());
+        List<WorkDay> listWorkDays = projectSchedule.getWorkDaysArray();
+        workDaysArray = listWorkDays.toArray(workDaysArray);
+        workDays = projectSchedule.getWorkDays();
         LogManager.getLogger(clazz).info("Se encontraron " + projects.size() + " proyectos");
     }
 
@@ -56,20 +76,44 @@ public class ShowTheoreticalPhasesBean {
         this.project = project;
     }
 
-    public List<SelectItem> getProjectList() {
+    public int getSelectedProjectId() {
+		return selectedProjectId;
+	}
+
+	public void setSelectedProjectId(int selectedProjectId) {
+		this.selectedProjectId = selectedProjectId;
+	}
+
+	public List<SelectItem> getProjectList() {
         return projectList;
     }
 
-    public void setProjectList(List<SelectItem> projectList) {
+	public void setProjectList(List<SelectItem> projectList) {
         this.projectList = projectList;
     }
 
-    public List<Employee> getEmployeeList() {
-		return employeeList;
+	public WorkDay[] getWorkDaysArray() {
+		return workDaysArray;
 	}
 
-	public void setEmployeeList(List<Employee> employeeList) {
-		this.employeeList = employeeList;
+	public void setWorkDaysArray(WorkDay[] workDaysArray) {
+		this.workDaysArray = workDaysArray;
+	}
+
+	public Integer getWorkDays() {
+		return workDays;
+	}
+
+	public void setWorkDays(Integer workDays) {
+		this.workDays = workDays;
+	}
+
+	public Employee[] getEmployeeArray() {
+		return employeeArray;
+	}
+
+	public void setEmployeeArray(Employee[] employeeArray) {
+		this.employeeArray = employeeArray;
 	}
 
 	public String defineIterationDays() {
