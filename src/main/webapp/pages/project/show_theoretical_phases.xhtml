@@ -40,7 +40,7 @@
 				<fieldset>
 					<div class="row">
 						<div class="col-lg-2">
-							<p:outputLabel for="project" value="Proyecto:"
+							<p:outputLabel for="project" value="Proyecto: "
 								styleClass="label_height" />
 						</div>
 						<div class="col-lg-2">
@@ -66,21 +66,20 @@
 					<div class="row">
 						<div class="col-lg-2">
 							<p:outputLabel for="dias_recomendados"
-								value="Días recomendados:" styleClass="label_height" />
+								value="Días recomendados: " styleClass="label_height" />
 						</div>
 						<div class="col-lg-1">
 							<h:outputText id="dias_recomendados" value="39.00"
 								styleClass="ui-outputlabel ui-widget label_height" />
 						</div>
 						<div class="col-lg-2">
-							<p:outputLabel for="dias_iteracion" value="Días por iteración:"
+							<p:outputLabel for="dias_iteracion" value="Días por iteración: "
 								styleClass="label_height" />
 						</div>
 						<div class="col-lg-2">
-							<p:spinner id="dias_iteracion" required="true"
+							<p:spinner id="dias_iteracion"
 								value="{{showTheoreticalPhasesBean.project.iterationDays}}"
 								ng-required="true"
-								requiredMessage="Debe ingresar dias de iteración"
 								validatorMessage="Número de días debe ser mayor a 0"
 								stepFactor="0.5">
 								<f:convertNumber minFractionDigits="2" maxFractionDigits="2"

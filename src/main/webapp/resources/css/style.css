@@ -63,3 +63,11 @@ table td {
 .right {
     text-align: right;
 }
+
+.inputs_projects{
+	margin-top:10px;
+}
+
+.currency::after{
+	content: "€"; 
+}

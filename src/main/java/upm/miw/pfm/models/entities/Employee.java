@@ -37,7 +37,7 @@ public class Employee implements IGenericEntity{
     @Column(name = "employee_code", nullable = false)
     private String employeeCode;
 
-    @Column(name = "annual_gross_salary", nullable = false)
+    @Column(name = "annual_gross_salary", nullable = false, precision = 10, scale = 2)
     private Double annualGrossSalary;
 
     @ManyToOne(cascade = CascadeType.REFRESH, optional = false)
