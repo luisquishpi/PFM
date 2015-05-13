@@ -10,8 +10,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import upm.miw.pfm.utils.CheckUnique;
+
 @Entity
 @Table(name = "employee_vacation")
+@CheckUnique
 public class Vacation {
 
     @Id
