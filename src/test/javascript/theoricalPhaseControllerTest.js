@@ -20,7 +20,7 @@ describe("Test TheoricalPhaseController", function(){
 		};
 		sampleCtrl = $controller("theoricalPhaseController", {
 			$scope: scope,
-			test: true
+			$isTest: true
 		});
 	}));
 	
