@@ -26,5 +26,7 @@ public abstract class DaoFactory {
     public abstract ProjectScheduleDao getProjectScheduleDao();
 
     public abstract VacationDao getVacationDao();
+    
+    public abstract HolidayDao getHolidayDao();
 
 }

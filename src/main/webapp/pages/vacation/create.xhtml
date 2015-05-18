@@ -18,17 +18,17 @@
             Registrar Vacaciones
         </ui:define>        
         <ui:define name="content">
-        	<div class="panel-body"> 
+        	<div class="panel-body"> 	     
 	            <h:form>
 	                <p:growl id="growl" sticky="false" life="5000" showDetail="true" />
 	                <div class="row">
 		                <div class="col-md-7">
 		                    <div class="row">
 		                        <div class="col-md-3">
-		                        	<p:outputLabel value="Empleado:" styleClass="label_height" />
-								</div>
+		                           <p:outputLabel value="Empleado:" for="selectEmpleado" styleClass="label_height" />
+		                        </div>
 		                        <div class="col-md-9">
-		                            <h:selectOneMenu label="" styleClass="dropdown" required="true" requiredMessage="Seleccione un empleado" converter="GenericConverter"
+		                            <h:selectOneMenu id="selectEmpleado" styleClass="dropdown" required="true" requiredMessage="Seleccione un empleado" converter="GenericConverter"
 		                                value="#{createVacationBean.selectedEmployee}">
 		                                <f:selectItem itemValue="#{null}" itemLabel="--Seleccione--" />
 		                                <f:selectItems value="#{createVacationBean.employees}" var="employee" 
@@ -39,13 +39,13 @@
 		                    </div>
 		                    <div class="row">
 		                        <div class="col-md-3">
-		                        	<p:outputLabel value="Fecha:" styleClass="label_height" />
+		                           <p:outputLabel value="Fecha:" for="daterange" styleClass="label_height" />
 		                        </div>
 		                        <div class="col-md-9">
-		                            <p:inputText size="25" readonly="true" requiredMessage="Seleccione el periodo de vacaciones" id="daterange" value="#{createVacationBean.range}" required="true" label=""/>
+		                            <p:inputText size="25" readonly="true" requiredMessage="Seleccione el periodo de vacaciones" id="daterange" value="#{createVacationBean.range}" required="true" />
 		                        </div>
-		                    </div>
-		                    <div class="row">
+		                    </div> 
+		                    <div class="row">			                    
 			                    <div class="col-md-12">
 			                        <p:commandButton value="Crear" icon="ui-icon-disk" ajax="true" action="#{createVacationBean.process}" update="growl vacationDetails" />
 			                    </div>
@@ -74,7 +74,7 @@
 		                   </h:panelGroup>
 		                </div>
 	                </div>
-	            </h:form>
+		            </h:form>
 	    	</div>
         </ui:define>
         <ui:define name="javascript">

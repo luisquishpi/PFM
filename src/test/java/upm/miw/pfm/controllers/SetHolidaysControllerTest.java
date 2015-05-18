@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.junit.Before;
@@ -24,10 +23,6 @@ public class SetHolidaysControllerTest {
 
     SimpleDateFormat formatter = new SimpleDateFormat("dd/MMM/yyyy");
 
-    Date startDate;
-
-    Date endDate;
-
     static List<Holiday> mockListHoliday;
 
     @BeforeClass
@@ -40,7 +35,7 @@ public class SetHolidaysControllerTest {
     public void before() {
     	holidayController = new HolidayControllerEjb();
 
-    	holiday = new Holiday(Utils.buildDate(2015, 10, 1), Utils.buildDate(2015, 10, 2));
+    	holiday = new Holiday(Utils.buildDate(2015, 03, 03), Utils.buildDate(2015, 03, 03));
     	
         new MockHolidayDao(holiday);
         holidayController.createHoliday(holiday);
@@ -57,3 +52,4 @@ public class SetHolidaysControllerTest {
         assertEquals(mockListHoliday, holidayController.vacationList());
     }
 }
+

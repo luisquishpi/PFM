@@ -1,6 +1,5 @@
 package upm.miw.pfm.views.beans;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -10,7 +9,6 @@ import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.model.SelectItem;
 
 import org.apache.logging.log4j.LogManager;
 
@@ -29,36 +27,27 @@ public class CreateEmployeeBean {
 
     private Set<String> checkedRoles;
 
-    private List<SelectItem> items;
+    private List<Contract> contractList;
 
-    private int selectedContractId;
+    private Contract contract;
 
     private final static Class<CreateEmployeeBean> clazz = CreateEmployeeBean.class;
 
     @EJB
-    private EmployeeController addEmployeeController;
+    private EmployeeController employeeController;
 
     @EJB
     private ContractController contractController;
 
     public CreateEmployeeBean() {
         employee = new Employee();
+        contract = new Contract();
     }
 
-    public int getSelectedContractId() {
-        return selectedContractId;
-    }
-
-    public void setSelectedContractId(int selectedContractId) {
-        this.selectedContractId = selectedContractId;
-    }
-
-    public List<SelectItem> getItems() {
-        return items;
-    }
-
-    public void setItems(List<SelectItem> items) {
-        this.items = items;
+    @PostConstruct
+    public void init() {
+        contractList = contractController.contractList();
+        LogManager.getLogger(clazz).info("Se encontraron " + contractList.size() + " proyectos");
     }
 
     public Employee getEmployee() {
@@ -69,12 +58,16 @@ public class CreateEmployeeBean {
         this.employee = employee;
     }
 
-    public RoleType[] getRoles() {
-        return RoleType.values();
+    public Contract getContract() {
+        return contract;
     }
 
-    public List<Contract> getContracts() {
-        return contractController.contractList();
+    public void setContract(Contract contract) {
+        this.contract = contract;
+    }
+
+    public RoleType[] getRoles() {
+        return RoleType.values();
     }
 
     public Set<String> getCheckedRoles() {
@@ -85,34 +78,33 @@ public class CreateEmployeeBean {
         this.checkedRoles = checkedValues;
     }
 
+    public List<Contract> getContractList() {
+        return contractList;
+    }
+
+    public void setContractList(List<Contract> contractList) {
+        this.contractList = contractList;
+    }
+
     public String process() {
-        Set<RoleType> roles = new HashSet<RoleType>();
-        for (String role : checkedRoles) {
-            roles.add(RoleType.valueOf(role));
-        }
-        employee.setRoles(roles);
+        employee.setRoles(getSelectedRoles());
 
-        employee.setContract(contractController.getContract(selectedContractId));
+        employee.setContract(contractController.getContract(contract.getId()));
 
-        addEmployeeController.addEmployee(employee);
+        employeeController.addEmployee(employee);
         LogManager.getLogger(clazz).debug("Creación de empleado " + employee);
         Utils.addMessage(FacesMessage.SEVERITY_INFO, "Empleado",
                 "Se ha creado el empleado satisfactoriamente");
         return "index";
     }
 
-    public void setContractItems() {
-        items = new ArrayList<SelectItem>();
-        for (Contract contract : this.getContracts()) {
-            SelectItem item = new SelectItem(contract.getId(), contract.getContractType());
-            items.add(item);
+    private Set<RoleType> getSelectedRoles() {
+        Set<RoleType> roles = new HashSet<RoleType>();
+        for (String role : checkedRoles) {
+            roles.add(RoleType.valueOf(role));
         }
-    }
+        return roles;
 
-    @PostConstruct
-    public void init() {
-        employee = new Employee();
-        this.setContractItems();
     }
 
 }

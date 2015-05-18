@@ -4,6 +4,7 @@ import upm.miw.pfm.models.daos.hibernate.ProjectDaoHibernate;
 import upm.miw.pfm.models.daos.ContractDao;
 import upm.miw.pfm.models.daos.DaoFactory;
 import upm.miw.pfm.models.daos.EmployeeDao;
+import upm.miw.pfm.models.daos.HolidayDao;
 import upm.miw.pfm.models.daos.ProjectDao;
 import upm.miw.pfm.models.daos.ProjectScheduleDao;
 import upm.miw.pfm.models.daos.VacationDao;
@@ -34,5 +35,10 @@ public class DaoHibernateFactory extends DaoFactory {
     public VacationDao getVacationDao() {
         return new VacationDaoHibernate();
     }
+
+	@Override
+	public HolidayDao getHolidayDao() {
+		return new HolidayDaoHibernate();
+	}
 
 }
