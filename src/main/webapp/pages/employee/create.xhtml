@@ -12,23 +12,10 @@
 		<ui:define name="header">
             Crear empleado
         </ui:define>
-		<ui:define name="javascript">
-			<script
-				src="/PFM/resources/css/selectboxit/js/jquery.selectBoxIt.min.js"></script>
-			<script>
-				$(function() {
-					var selectBox = $("#contract").selectBoxIt();
-				});
-			</script>
-		</ui:define>
-		<ui:define name="css">
-			<link
-				href="/PFM/resources/css/selectboxit/css/jquery.selectBoxIt.css"
-				rel="stylesheet" />
-		</ui:define>
 		<ui:define name="content">
 			<div class="main-grid main-body-grid">
 				<h:form prependId="false">
+				    <p:growl id="growl" sticky="false" life="5000" showDetail="false" />
 					<fieldset>
 						<div class="row">
 							<div class="col-sm-3">
@@ -38,10 +25,7 @@
 							<div class="col-sm-2">
 								<p:inputText requiredMessage="El nombre es obligatorio"
 									id="name" value="#{createEmployeeBean.employee.name}"
-									required="true" />
-							</div>
-							<div class="col-sm-4">
-								<p:message for="name" />
+									required="true" label=""/>
 							</div>
 						</div>
 						<div class="row">
@@ -52,10 +36,7 @@
 							<div class="col-sm-2">
 								<p:inputText requiredMessage="Los apellidos son obligatorios"
 									id="surname" value="#{createEmployeeBean.employee.surname}"
-									required="true" />
-							</div>
-							<div class="col-sm-4">
-								<p:message for="surname" />
+									required="true" label="" />
 							</div>
 						</div>
 						<div class="row">
@@ -69,9 +50,6 @@
 									id="code" value="#{createEmployeeBean.employee.employeeCode}"
 									required="true" />
 							</div>
-							<div class="col-sm-4">
-								<p:message for="code" />
-							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-3">
@@ -83,15 +61,12 @@
 									value="#{createEmployeeBean.employee.annualGrossSalary}"
 									required="true" requiredMessage="El bruto anual es obligatorio"
 									validatorMessage="El bruto anual debe ser mayor a 0"
-									stepFactor="1000">
+									stepFactor="1000" label="">
 									<f:convertNumber minFractionDigits="2" maxFractionDigits="2"
 										locale="en_US" />
 									<f:validator
 										validatorId="upm.miw.pfm.utils.GreaterThanZeroValidator" />
 								</p:spinner>
-							</div>
-							<div class="col-sm-4">
-								<p:message for="bruto" />
 							</div>
 						</div>
 						<div class="row">
@@ -100,7 +75,7 @@
 									styleClass="label_height" />
 							</div>
 							<div class="col-sm-2">
-								<h:selectOneMenu label="Contrato:" id="contract"
+								<h:selectOneMenu id="contract" styleClass="dropdown"
 									value="#{createEmployeeBean.contract.id}" required="true"
 									requiredMessage="Debe seleccionar el contrato"
 									hideNoSelectionOption="false">
@@ -111,9 +86,6 @@
 										itemLabel="#{contract.contractType}" />
 									<f:validator validatorId="upm.miw.pfm.utils.ComboBoxValidator" />
 								</h:selectOneMenu>
-							</div>
-							<div class="col-sm-4">
-								<p:message for="contract" />
 							</div>
 						</div>
 						<div class="row">
@@ -129,9 +101,6 @@
 									<f:selectItems value="#{createEmployeeBean.roles}" var="role"
 										itemLabel="#{role.description}" itemValue="#{role}" />
 								</h:selectManyCheckbox>
-							</div>
-							<div class="col-sm-4">
-								<p:message for="roles" />
 							</div>
 						</div>
 						<div>
