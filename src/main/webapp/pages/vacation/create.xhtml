@@ -25,7 +25,7 @@
 	                    <div class="row">
 	                        <div class="col-md-3">Empleado</div>
 	                        <div class="col-md-9">
-	                            <h:selectOneMenu label="" required="true" requiredMessage="Seleccione un empleado" converter="GenericConverter"
+	                            <h:selectOneMenu label="" styleClass="dropdown" required="true" requiredMessage="Seleccione un empleado" converter="GenericConverter"
 	                                value="#{createVacationBean.selectedEmployee}">
 	                                <f:selectItem itemValue="#{null}" itemLabel="--Seleccione--" />
 	                                <f:selectItems value="#{createVacationBean.employees}" var="employee" 

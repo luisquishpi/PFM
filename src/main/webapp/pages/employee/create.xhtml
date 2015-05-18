@@ -12,20 +12,6 @@
 		<ui:define name="header">
             Crear empleado
         </ui:define>
-		<ui:define name="javascript">
-			<script
-				src="/PFM/resources/css/selectboxit/js/jquery.selectBoxIt.min.js"></script>
-			<script>
-				$(function() {
-					var selectBox = $("#contract").selectBoxIt();
-				});
-			</script>
-		</ui:define>
-		<ui:define name="css">
-			<link
-				href="/PFM/resources/css/selectboxit/css/jquery.selectBoxIt.css"
-				rel="stylesheet" />
-		</ui:define>
 		<ui:define name="content">
 			<div class="main-grid main-body-grid">
 				<h:form prependId="false">
@@ -90,7 +76,7 @@
 									styleClass="label_height" />
 							</div>
 							<div class="col-sm-2">
-								<h:selectOneMenu label="Contrato:" id="contract"
+								<h:selectOneMenu label="" id="contract" styleClass="dropdown"
 									value="#{createEmployeeBean.selectedContractId}"
 									required="true" requiredMessage="Debe seleccionar el contrato">
 									<f:selectItems value="#{createEmployeeBean.items}" />
