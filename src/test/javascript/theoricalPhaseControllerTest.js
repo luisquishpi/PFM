@@ -133,25 +133,7 @@ describe("Test TheoricalPhaseController", function(){
 		};
 		controller = $controller("theoricalPhaseController", {
 			$scope: scope,
-			$isTest: true,
-			workTimeService:
-			{
-				calculateWorkDaysAndHour: function(){
-					return 0;
-				},
-				workHours: function(){
-					return 999;
-				},
-				workDays: function(){
-					return 135;
-				},
-				workMonths: function(){
-					return 6.428571428571429;
-				},
-				naturalDays: function(){
-					return 187;
-				},
-			},
+			$isTest: true
 		});
 	}));
 	
