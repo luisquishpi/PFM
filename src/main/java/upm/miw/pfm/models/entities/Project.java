@@ -30,11 +30,10 @@ public class Project {
     @Column(nullable = false)
     private String name;
 
-    @Column(name = "iteration_days", nullable = true)
+    @Column(name = "iteration_days", nullable = true, precision = 10, scale = 2)
     private Double iterationDays;
 
     public Project() {
-        this.iterationDays = 0.0;
     }
 
     public Project(String name, Date start, Date end, Double cost) {
@@ -121,6 +120,7 @@ public class Project {
         result = prime * result + ((cost == null) ? 0 : cost.hashCode());
         result = prime * result + ((end == null) ? 0 : end.hashCode());
         result = prime * result + ((start == null) ? 0 : start.hashCode());
+        result = prime * result + ((iterationDays == null) ? 0 : iterationDays.hashCode());
         return result;
     }
 
@@ -130,13 +130,16 @@ public class Project {
         Project other = (Project) obj;
         return id == other.id && start.compareTo(other.start) == 0 && end.compareTo(other.end) == 0
                 && cost.equals(other.cost) && name.equals(other.name)
-                && iterationDays.intValue() == other.iterationDays.intValue();
+                && (iterationDays == null || iterationDays.intValue() == other.iterationDays.intValue());
     }
+    
+    
 
     @Override
     public String toString() {
-        return "Project [start=" + start + ", end=" + end + ", cost=" + cost + ", name=" + name
-                + ", id=" + id + "]";
-
+        return "Project [id=" + id + ", start=" + start + ", end=" + end + ", cost=" + cost
+                + ", name=" + name + ", iterationDays=" + iterationDays + "]";
     }
+
 }
+

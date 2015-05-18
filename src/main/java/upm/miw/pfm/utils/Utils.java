@@ -2,11 +2,19 @@ package upm.miw.pfm.utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
+
+import javax.faces.application.FacesMessage;
+import javax.faces.application.FacesMessage.Severity;
+import javax.faces.context.FacesContext;
+import javax.validation.ConstraintViolation;
 
 public class Utils {
-    
+
     public static String DD_MM_YYYY_FORMAT = "dd/MM/yyyy";
 
     public static Date buildDate(int year, int month, int day) {
@@ -39,6 +47,25 @@ public class Utils {
         } catch (ParseException e) {
             return null;
         }
+    }
+
+    public static void addMessage(Severity severity, String summary, String detail) {
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(severity, summary, detail));
+
+    }
+    
+    public static <T> List<T> SetToList(Set<T> set){
+        return new ArrayList<T>(set);
+    }
+    
+    public static <T> Boolean loadErrors(Set<ConstraintViolation<T>> errors){
+        Boolean isValid = true;
+        for(ConstraintViolation<T> error : errors){
+            Utils.addMessage(FacesMessage.SEVERITY_INFO, "Error", error.getMessage());
+            isValid = false;
+        }
+        return isValid;
     }
 
 }

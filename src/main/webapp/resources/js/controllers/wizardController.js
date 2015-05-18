@@ -37,16 +37,8 @@
         };
 
         $scope.handleNext = function () {   
-        	//alert($scope.scheduleForm.$valid);
-        	/*
-            if ($scope.isLastStep()) {
-            	//$scope.step = 2;
-            } else {
-            	console.log($("input[id$=workDays]").val() != '');*/
         	if ($scope.scheduleForm.$valid){
                 $scope.step += 1;
-        	}
-            //}
-            
+        	}          
         };
     });

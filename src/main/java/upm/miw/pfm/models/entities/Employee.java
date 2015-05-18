@@ -22,7 +22,7 @@ import upm.miw.pfm.utils.RoleType;
 
 @Entity
 @Table(name = "employee")
-public class Employee {
+public class Employee implements IGenericEntity{
 
     @Id
     @GeneratedValue
@@ -37,7 +37,7 @@ public class Employee {
     @Column(name = "employee_code", nullable = false)
     private String employeeCode;
 
-    @Column(name = "annual_gross_salary", nullable = false)
+    @Column(name = "annual_gross_salary", nullable = false, precision = 10, scale = 2)
     private Double annualGrossSalary;
 
     @ManyToOne(cascade = CascadeType.REFRESH, optional = false)

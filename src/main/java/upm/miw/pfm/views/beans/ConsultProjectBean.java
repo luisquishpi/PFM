@@ -52,7 +52,7 @@ public class ConsultProjectBean {
 
     @PostConstruct
     public void update() {
-        project = projectController.getProyect(id);
+        project = projectController.getProject(id);
         projectSchedule = projectController.getProjectScheduleByProject(project);
     }
 

@@ -3,37 +3,57 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
 	version="2.2">
+	<converter>
+		<display-name>GenericConverter</display-name>
+		<converter-id>GenericConverter</converter-id>
+		<converter-class>upm.miw.pfm.utils.GenericConverter</converter-class>
+	</converter>
 	<navigation-rule>
 		<display-name>pages/contract/create.xhtml</display-name>
 		<from-view-id>/pages/contract/create.xhtml</from-view-id>
 		<navigation-case>
-			<from-action>#{newContractBean.process}</from-action>
+			<from-action>#{createContractBean.process}</from-action>
 			<from-outcome>index</from-outcome>
 			<to-view-id>/pages/contract/index.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
+
+	<navigation-rule>
+		<display-name>pages/project/create.xhtml</display-name>
+		<from-view-id>/pages/project/create.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{createProjectBean.process}</from-action>
+			<from-outcome>index</from-outcome>
+			<to-view-id>/pages/project/index.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
 	
     <navigation-rule>
-        <display-name>pages/project/create.xhtml</display-name>
-        <from-view-id>/pages/project/create.xhtml</from-view-id>
+        <display-name>pages/project/show_theoretical_phases.xhtml</display-name>
+        <from-view-id>/pages/project/show_theoretical_phases.xhtml</from-view-id>
         <navigation-case>
-            <from-action>#{createProjectBean.process}</from-action>
+            <from-action>#{showTheoreticalPhasesBean.process}</from-action>
             <from-outcome>index</from-outcome>
             <to-view-id>/pages/project/index.xhtml</to-view-id>
             <redirect />
         </navigation-case>
     </navigation-rule>	
-    
-    <navigation-rule>
-        <display-name>pages/employee/create.xhtml</display-name>
-        <from-view-id>/pages/employee/create.xhtml</from-view-id>
-        <navigation-case>
-            <from-action>#{createEmployeeBean.process}</from-action>
-            <from-outcome>index</from-outcome>
-            <to-view-id>/pages/employee/index.xhtml</to-view-id>
-            <redirect />
-        </navigation-case>
-    </navigation-rule>	
+
+	<navigation-rule>
+		<display-name>pages/employee/create.xhtml</display-name>
+		<from-view-id>/pages/employee/create.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{createEmployeeBean.process}</from-action>
+			<from-outcome>index</from-outcome>
+			<to-view-id>/pages/employee/index.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
+	<lifecycle>
+		<phase-listener>upm.miw.pfm.utils.MultiPageMessagesSupport</phase-listener>
+	</lifecycle>
 
 </faces-config>

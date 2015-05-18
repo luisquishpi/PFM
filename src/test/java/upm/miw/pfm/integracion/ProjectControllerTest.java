@@ -21,35 +21,36 @@ import upm.miw.pfm.utils.Utils;
 
 public class ProjectControllerTest {
 
-	private ProjectController projectController;
+    private ProjectController projectController;
 
-	private Project project;
-	
-	private Date start;
-	private Date end;
+    private Project project;
 
-	@Before
-	public void before() {
-		projectController = new ProjectControllerEjb();
-		start = new Date();
-		end = new Date();
-		try {
-			start = new SimpleDateFormat("dd-MM-yyyy").parse("02-03-2015");
-			end = new SimpleDateFormat("dd-MM-yyyy").parse("04-09-2015");
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		project = new Project("Scrum", start, end, 85000.0);
-	}
-	
-	@Test
-	public void testCreateAndGetProyect() {
-		projectController.createProject(project);
-		int id = project.getId();
-		assertEquals(project, projectController.getProyect(id));
-	}
-	
-	@Test
+    private Date start;
+
+    private Date end;
+
+    @Before
+    public void before() {
+        projectController = new ProjectControllerEjb();
+        start = new Date();
+        end = new Date();
+        try {
+            start = new SimpleDateFormat("dd-MM-yyyy").parse("02-03-2015");
+            end = new SimpleDateFormat("dd-MM-yyyy").parse("04-09-2015");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        project = new Project("Scrum", start, end, 85000.0);
+    }
+
+    @Test
+    public void testCreateAndGetProyect() {
+        projectController.createProject(project);
+        int id = project.getId();
+        assertEquals(project, projectController.getProject(id));
+    }
+
+    @Test
     public void testListProjects() {
         List<Project> projectList = new ArrayList<Project>();
         Project project1 = new Project("Project1", Utils.buildDate(2015, Calendar.MARCH, 2),
@@ -62,8 +63,8 @@ public class ProjectControllerTest {
         projectController.createProject(project2);
         projectList.add(project2);
 
-        Project project3 = new Project("Project3", Utils.buildDate(2015, Calendar.MAY, 4), Utils.buildDate(
-                2015, Calendar.NOVEMBER, 6), 100000.00);
+        Project project3 = new Project("Project3", Utils.buildDate(2015, Calendar.MAY, 4),
+                Utils.buildDate(2015, Calendar.NOVEMBER, 6), 100000.00);
         projectController.createProject(project3);
         projectList.add(project3);
 
@@ -75,16 +76,16 @@ public class ProjectControllerTest {
         new ArrayList<Project>();
         assertEquals(0, projectController.listProjects().size());
     }
-    
+
     @Test
-    public void testUpdateProyect(){
-    	projectController.createProject(project);
-    	project.setIterationDays(12.3);
-    	projectController.updateProject(project);
-    	Project project2 = projectController.getProyect(project.getId());
-    	assertEquals(project2, project);
+    public void testUpdateProyect() {
+        projectController.createProject(project);
+        project.setIterationDays(12.3);
+        projectController.updateProject(project);
+        Project project2 = projectController.getProject(project.getId());
+        assertEquals(project2, project);
     }
-    
+
     @After
     public void after() {
         DaoFactory.getFactory().getProjectDao().query("delete from Project");

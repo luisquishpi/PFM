@@ -1,8 +1,6 @@
 package upm.miw.pfm.models.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,12 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
-
-import upm.miw.pfm.utils.WorkDay;
 
 @Entity
 @Table(name="project_schedule")
@@ -156,19 +151,6 @@ public class ProjectSchedule implements Serializable {
 
     public void setSundayHours(Double sundayHours) {
         this.sundayHours = sundayHours;
-    }
-
-    @Transient
-    public List<WorkDay> getWorkDaysArray() {
-        List<WorkDay> days = new ArrayList<WorkDay>();
-        days.add(new WorkDay(getSundayHours()));
-        days.add(new WorkDay(getMondayHours()));
-        days.add(new WorkDay(getTuesdayHours()));
-        days.add(new WorkDay(getWednesdayHours()));
-        days.add(new WorkDay(getThursdayHours()));
-        days.add(new WorkDay(getFridayHours()));
-        days.add(new WorkDay(getSaturdayHours()));
-        return days;
     }
 
     @Override

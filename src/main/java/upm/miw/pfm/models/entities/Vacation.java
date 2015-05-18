@@ -10,25 +10,44 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import upm.miw.pfm.utils.CheckDateVacation;
+import upm.miw.pfm.utils.CheckUnique;
+
 @Entity
 @Table(name = "employee_vacation")
+@CheckDateVacation
+@CheckUnique
 public class Vacation {
 
     @Id
     @GeneratedValue
     private Integer id;
 
-    @Column(name="start", nullable = false)
+    @Column(name = "start", nullable = false)
     private Date start;
 
-    @Column(name="end", nullable = false)
+    @Column(name = "end", nullable = false)
     private Date end;
 
     @ManyToOne
-    @JoinColumn(name = "employee_id",nullable = false)
+    @JoinColumn(name = "employee_id", nullable = false)
     private Employee employee;
 
     public Vacation() {
+    }
+
+    public Vacation(Date start, Date end, Employee employee) {
+        this.start = start;
+        this.end = end;
+        this.employee=employee;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Date getStart() {
@@ -56,6 +75,13 @@ public class Vacation {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        assert obj != null;
+        Vacation other = (Vacation) obj;
+        return id == other.id && start.equals(other.start)
+                && end.equals(other.end);
+    }
+    @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
@@ -68,5 +94,4 @@ public class Vacation {
     public String toString() {
         return "Vacation [id=" + id + ", Start=" + start + ", End=" + end + "]";
     }
-
 }

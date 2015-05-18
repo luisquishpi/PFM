@@ -13,119 +13,168 @@
             Consultar Proyecto
         </ui:define>  
 		<ui:define name="javascript">
-			<script>
-				app.value("test", false);
-				var projectApp = angular.module('projectApp',
-						[ "angularfaces" ]);
+		  	<script>
+		  	var projectApp = angular.module('projectApp', [ "angularfaces" ]);
+		  	app.value("$isTest", false);
 			</script>
 			<script src="/PFM/resources/js/libs/moment.js"></script>
+			<script src="/PFM/resources/js/controllers/projectApp.js"></script>
+			<script src="/PFM/resources/js/controllers/scheduleController.js"></script>
 			<script src="/PFM/resources/js/controllers/projectController.js"></script>
 		</ui:define>
 		<ui:define name="css">
-			<link href="/PFM/resources/css/bootstrap/css/bootstrap.min.css"
-				rel="stylesheet" />
+			<style>
+				label{line-height: 0px !important;}
+				.table-bordered label{
+					margin-right:10px;
+				}
+			</style>
+			
 		</ui:define>
 		<ui:define name="content">
-			<h:form prependId="false" id="angular">
-				<div class="main-grid main-body-grid" ng-app="projectApp"
-					ng-controller="projectController">
-                    <c:set var="projectBean" scope="request"
-                        value="#{consultProjectBean}" />					
-					<c:set var="workingDays" scope="request"
-						value="#{projectBean.projectSchedule.getWorkDaysArray()}" />
-					<ngsync direction="serverToClient"
-						value="{{projectBean.project.name}}" />
-					<ngsync direction="serverToClient"
-						value="{{projectBean.projectSchedule.workDays}}" />
-					<ngsync direction="serverToClient" value="{{workingDays}}" />
-					
-					<div class="ui-grid ui-grid-responsive" style="text-align:center;">
-					    <div class="ui-grid-row">
-					        <div class="ui-grid-col-12">
-					        	<h3>
-					        		<h:outputText value="{{projectBean.project.name}}" />
-					        	</h3>	
-					        </div>
-					    </div>
-					</div>
-					<br/>
-					<div class="ui-grid ui-grid-responsive" style="text-align:center;">
-					    <div class="ui-grid-row">
-					        <div class="ui-grid-col-4">
-					        	<p>
-									<strong>Fecha Inicio: </strong> <h:outputText value="{{projectBean.project.startString}}" >
-										<f:convertDateTime pattern="d-M-yyyy" />
-									</h:outputText>	
-								</p>
-								<p>
-									<strong>Fecha Fin: </strong> <h:outputText value="{{projectBean.project.endString}}" >
-										<f:convertDateTime pattern="d-M-yyyy" />
-									</h:outputText>
-								</p>
-					        </div>
-					        <div class="ui-grid-col-4">
-					        	<p>
-									<strong>Meses naturales: </strong> <h:outputText value="{{naturalMonths() | number : 2}}" />
-								</p>
-								<p>
-									<strong>Dias naturales: </strong> <h:outputText value="{{naturalDays}}" />
-								</p>
-					        </div>
-					        <h:panelGroup rendered="#{projectBean.projectSchedule!=null}">
-						        <div class="ui-grid-col-4">	
-						        	<p>
-										<strong>Meses laborales: </strong> <h:outputText value="Meses laborales: {{workMonths()| number : 2}}" />
-									</p>
-									<p>
-										<strong>Dias laborales: </strong> <h:outputText value="{{workDays}}" />
-									</p>
-									<p>
-										<strong>Horas laborales: </strong> <h:outputText value="{{workHours()}}" />
-									</p>
-						        </div>
-					        </h:panelGroup>
-					    </div>
-					</div>
-					<br/>
-					
-					<div class="ui-grid ui-grid-responsive" style="text-align:center;">
-					    <div class="ui-grid-row">
-					        <div class="ui-grid-col-4">
-					        	<p>
-									<strong>Coste: </strong> <h:outputText value="{{projectBean.project.cost}}" />&euro;
-								</p>
-					        </div>
-					        <div class="ui-grid-col-4">
-					        	<p>
-									<strong>Coste/mes natural: </strong> <h:outputText value="{{costNaturalMonth() | number : 2}}" />&euro;
-								</p>
-								<p>
-									<strong>Coste/día natural: </strong> <h:outputText value="{{costNaturalDay() | number : 2}}" />&euro;
-								</p>
-					        </div>
-
-					        <h:panelGroup rendered="#{projectBean.projectSchedule!=null}">
-						        <div class="ui-grid-col-4">	
-						        	<p>
-										<strong>Coste/mes natural: </strong> <h:outputText value="{{costWorkMonth()| number : 2}}" />&euro;
-									</p>
-									<p>
-										<strong>Coste/día natural: </strong> <h:outputText value="{{costWorkDay()| number : 2}}" />&euro;
-									</p>
-									<p>
-										<strong>Coste/hora natural: </strong> <h:outputText value="{{costWorkHour()| number : 2}}" />&euro;
-									</p>
-						        </div>
-					        </h:panelGroup>
-					    </div>
-					</div>
-					<p:button outcome="index.html" value="Volver" icon="ui-icon-arrowreturn-1-w">
-					</p:button>	
+			<c:set var="projectBean" scope="request" value="#{consultProjectBean}" />
+			<c:set var="bridgeService" scope="request" value="#{projectBean.projectSchedule}" />
+				<h:form ng-app="projectApp">
+					<div ng-controller="scheduleController">
+						<ngsync direction="serverToClient" value="{{projectBean.projectSchedule}}"/>					
+						<div ng-if="runProject" ng-controller="projectController">
+							<ngsync direction="serverToClient" value="{{projectBean.project}}"/>
+						<p:panel header="{{projectBean.project.name}}">
+							<div class="row" style="margin-top:10px">
+								<div class="col-sm-4">
+									<table class="table table-bordered">
+										<tbody>
+											<tr>
+												<td>
+													<p:outputLabel value="Fecha inicio:" styleClass="label_height" />
+													<h:outputText value="{{projectBean.project.startString}}" >
+														<f:convertDateTime pattern="d-M-yyyy" />
+													</h:outputText>
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<p:outputLabel value="Fecha fin:" styleClass="label_height" />
+													<h:outputText value="{{projectBean.project.endString}}" >
+														<f:convertDateTime pattern="d-M-yyyy" />
+													</h:outputText>
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<p:outputLabel value="Presupuesto:" styleClass="label_height" />
+													<h:outputText class="currency" value="{{projectBean.project.cost}}"/>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<div class="col-sm-8">
+									<table class="table table-bordered">
+										<tbody>
+											<tr>
+												<td>
+													<p:outputLabel value="Meses naturales:" styleClass="label_height" />
+													<h:outputText value="{{naturalMonths() | number:2}}" />
+												</td>
+												<td>
+													<p:outputLabel value="Meses laborales:" styleClass="label_height" />	
+													<h:outputText value="{{workMonths() | number:2}}" />
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<p:outputLabel value="Días naturales:" styleClass="label_height" />
+													<h:outputText value="{{naturalDays}}" />
+												</td>
+												<td>
+													<p:outputLabel value="Días laborales:" styleClass="label_height" />	
+													<h:outputText value="{{workDays}}" />
+												</td>
+											</tr>
+											<tr>
+												<td></td>
+												<td>
+													<p:outputLabel value="Horas laborales:" styleClass="label_height" />	
+													<h:outputText value="{{workHours}}" />
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="row" style="margin-top:10px">
+								<div class="col-sm-4"></div>
+								<div class="col-sm-8">
+									<table class="table table-bordered">
+										<tbody>
+											<tr>
+												<td>
+													<p:outputLabel value="Coste/mes natural:" styleClass="label_height" />
+													<h:outputText class="currency" value="{{costNaturalMonth() | number:2}}" />
+												</td>
+												<td>
+													<p:outputLabel value="Coste/mes laboral:" styleClass="label_height" />	
+													<h:outputText class="currency" value="{{costWorkMonth() | number:2}}" />
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<p:outputLabel value="Coste/día natural:" styleClass="label_height" />
+													<h:outputText class="currency" value="{{costNaturalDay() | number:2}}" />
+												</td>
+												<td>
+													<p:outputLabel value="Coste/día laboral:" styleClass="label_height" />	
+													<h:outputText class="currency" value="{{costWorkDay() | number:2}}" />
+												</td>
+											</tr>
+											<tr>
+												<td></td>
+												<td>
+													<p:outputLabel value="Coste/hora laboral:" styleClass="label_height" />	
+													<h:outputText class="currency" value="{{costWorkHour() | number:2}}" />
+												</td>
+											</tr>
+										</tbody>
+									</table>
+						  		</div>	
+						  	</div>	
+					  		<!-- <div class="row">
+								<div class="col-sm-8"></div>
+								<div class="col-sm-2">
+									<p:outputLabel value="Personas/mes:"
+									styleClass="label_height" />	
+								</div>
+								<div class="col-sm-2">
+									
+								</div>
+					  		</div>
+					  		<div class="row">
+								<div class="col-sm-8"></div>
+								<div class="col-sm-2">
+									<p:outputLabel value="Personas/día:"
+									styleClass="label_height" />										
+								</div>
+								<div class="col-sm-2">
+								</div>
+					  		</div>
+					  		<div class="row">
+								<div class="col-sm-8"></div>
+								<div class="col-sm-2">
+									<p:outputLabel value="Personas/hora:"
+									styleClass="label_height" />	
+								</div>
+								<div class="col-sm-2">
+								</div>
+					  		</div> -->
+							<p:button outcome="index.html" value="Volver" icon="ui-icon-arrowreturn-1-w">
+							</p:button>	
+						</p:panel>
+					</div>	
 				</div>
 			</h:form>
 		</ui:define>
 	</ui:composition>
-
 </h:body>
 
 </html>
