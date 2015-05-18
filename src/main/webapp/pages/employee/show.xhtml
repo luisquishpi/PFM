@@ -14,80 +14,88 @@
 				td {
 					padding-left: 10px;
 				}
+				.table-bordered label {
+					margin-right: 10px;
+				}
 			</style>		
 		</ui:define>
 		<ui:define name="header">
             Consultar Empleado
         </ui:define>
 		<ui:define name="content">
-			<div class="panel-heading">Panel heading without title</div>
 			<div class="panel-body">
-				<div class="main-grid main-body-grid">
-				
-				<h:form>
-					    <table class="table table-bordered">
-							<tbody>
-								<tr>
-									<td>
-										<p:outputLabel value="Código:" styleClass="label_height" />
-										<h:outputText value="{{getEmployeeBean.employee.employeeCode}}" />
-									</td>
-								</tr>
-								<tr>	
-									<td>
-										<p:outputLabel value="Nombre:" styleClass="label_height" />
-										<h:outputText value="{{getEmployeeBean.employee.name}} {{getEmployeeBean.employee.surname}}" />
-									</td>
-								</tr>
-								<tr>	
-									<td>
-										<p:outputLabel value="Contrato:" styleClass="label_height" />
-										<h:outputText
-										value="{{getEmployeeBean.employee.contract.contractType}} ({{getEmployeeBean.employee.contract.insurance}}%)" />
-									</td>
-								</tr>
-								<tr>	
-									<td>
-										<p:outputLabel value="Bruto anual:" styleClass="label_height" />
-										<h:outputText
-										value="{{getEmployeeBean.employee.annualGrossSalary}}">
-										<f:convertNumber locale="pt-PT" currencySymbol="€" type="currency"/>
-									</h:outputText>
-									</td>
-								</tr>
-								<tr>	
-									<td>
-										<p:outputLabel value="Total anual:" styleClass="label_height" />
-										<h:outputText
-										value="{{getEmployeeBean.employee.annualNetSalary}}">
-										<f:convertNumber locale="pt-PT" currencySymbol="€" type="currency"/>
-									</h:outputText>	
-									</td>
-								</tr>
-								<tr>	
-									<td>
-										<p:outputLabel value="Total mensual:" styleClass="label_height" />
-										<h:outputText
-										value="{{getEmployeeBean.employee.monthlySalary}}">
-										<f:convertNumber locale="pt-PT" currencySymbol="€" type="currency"/>
-									</h:outputText>		
-									</td>
-								</tr>
+				<div class="main-grid main-body-grid">				
+				<h:form>	
+					<div class="row">	
+						<div class="col-sm-6">
+						    <table class="table table-bordered">
+								<tbody>
+									<tr class="active"><th>Datos generales del empleado</th></tr>
+									<tr>
+										<td>
+											<p:outputLabel value="Código:" styleClass="label_height" />
+											<h:outputText value="{{getEmployeeBean.employee.employeeCode}}" />
+										</td>
+									</tr>
+									<tr>	
+										<td>
+											<p:outputLabel value="Nombre:" styleClass="label_height" />
+											<h:outputText value="{{getEmployeeBean.employee.name}} {{getEmployeeBean.employee.surname}}" />
+										</td>
+									</tr>
+									<tr>	
+										<td>
+											<p:outputLabel value="Contrato:" styleClass="label_height" />
+											<h:outputText
+											value="{{getEmployeeBean.employee.contract.contractType}} ({{getEmployeeBean.employee.contract.insurance}}%)" />
+										</td>
+									</tr>
+									<tr>	
+										<td>
+											<p:outputLabel value="Bruto anual:" styleClass="label_height" />
+											<h:outputText
+											value="{{getEmployeeBean.employee.annualGrossSalary}}">
+											<f:convertNumber locale="pt-PT" currencySymbol="€" type="currency"/>
+										</h:outputText>
+										</td>
+									</tr>
+									<tr>	
+										<td>
+											<p:outputLabel value="Total anual:" styleClass="label_height" />
+											<h:outputText
+											value="{{getEmployeeBean.employee.annualNetSalary}}">
+											<f:convertNumber locale="pt-PT" currencySymbol="€" type="currency"/>
+										</h:outputText>	
+										</td>
+									</tr>
+									<tr>	
+										<td>
+											<p:outputLabel value="Total mensual:" styleClass="label_height" />
+											<h:outputText
+											value="{{getEmployeeBean.employee.monthlySalary}}">
+											<f:convertNumber locale="pt-PT" currencySymbol="€" type="currency"/>
+										</h:outputText>		
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="col-sm-6">
+							<table class="table table-bordered">
+							<tbody>									 
+								<tr class="active"><th>Roles del empleado</th></tr>
+								<ui:repeat var="rol" value="#{getEmployeeBean.employee.listRoles}">
+									<tr>
+						            	<td>#{rol.description}</td>
+						            </tr>
+						         </ui:repeat>
 							</tbody>
-						</table>	
-							
-					<br />
-					<p:dataList value="{{getEmployeeBean.employee.roles}}" var="rol"
-						type="ordered">
-						<f:facet name="header">Roles</f:facet>
-                       #{rol.description}
-            </p:dataList>
-					<br />
-					<p:button outcome="index.html" value="Volver"
-						icon="ui-icon-arrowreturn-1-w">
-					</p:button>
-
+						</table>
+						</div>		
+					</div>	
 				</h:form>
+				<p:button outcome="index.html" value="Volver" icon="ui-icon-arrowreturn-1-w">
+				</p:button>
 			</div>
 			</div>
 		</ui:define>

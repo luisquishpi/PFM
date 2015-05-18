@@ -1,6 +1,8 @@
 package upm.miw.pfm.models.entities;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -128,6 +130,10 @@ public class Employee implements IGenericEntity{
 
     public Set<RoleType> getRoles() {
         return roles;
+    }
+    
+    public List<RoleType> getListRoles(){
+    	return new ArrayList<RoleType>(roles);
     }
 
     public void setRoles(Set<RoleType> roles) {
