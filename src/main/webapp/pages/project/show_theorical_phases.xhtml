@@ -16,6 +16,7 @@
 			<script>
 				var projectApp = angular.module('projectApp',
 						[ "angularfaces" ]);
+				app.value("$isTest", false);
 			</script>
 			<script src="/PFM/resources/js/controllers/projectApp.js"></script>
 			<script
@@ -38,91 +39,94 @@
 		</ui:define>
 		<ui:define name="content">
 			<h:form prependId="false" ng-app="projectApp">
-				<div ng-controller="theoricalPhaseController"
-					id="theoricalPhasesDiv" name="theoricalPhasesDiv">
-					<fieldset>
-						<ngsync direction="serverToClient"
-							value="#{showTheoricalPhasesBean.project}" />
-						<div class="row">
-							<div class="col-lg-2">
-								<p:outputLabel for="project" value="Proyecto: "
-									styleClass="label_height" />
+				<div ng-controller="scheduleController">
+					<ngsync direction="serverToClient"
+						value="{{showTheoricalPhasesBean.projectSchedule}}" />
+					<div ng-if="runProject" ng-controller="theoricalPhaseController">
+						<fieldset>
+							<ngsync direction="serverToClient"
+								value="#{showTheoricalPhasesBean.project}" />
+							<div class="row">
+								<div class="col-lg-2">
+									<p:outputLabel for="project" value="Proyecto: "
+										styleClass="label_height" />
+								</div>
+								<div class="col-lg-2">
+									<h:selectOneMenu id="project"
+										value="#{showTheoricalPhasesBean.project.id}" required="true"
+										requiredMessage="Debe selecionar el proyecto"
+										validatorMessage="Debe seleccionar el proyecto"
+										immediate="true" onchange="submit()"
+										valueChangeListener="#{showTheoricalPhasesBean.onChangeProject}">
+										<f:selectItem itemLabel="Seleccione el proyecto"
+											itemValue="-1" noSelectionOption="true" />
+										<f:selectItems value="#{showTheoricalPhasesBean.projectList}"
+											var="project" itemValue="#{project.id}"
+											itemLabel="#{project.name}" />
+										<f:validator validatorId="upm.miw.pfm.utils.ComboBoxValidator" />
+									</h:selectOneMenu>
+								</div>
+								<div class="col-lg-6" style="padding-left: 30px;">
+									<p:message for="project" showDetail="true" showSummary="false" />
+								</div>
 							</div>
-							<div class="col-lg-2">
-								<h:selectOneMenu id="project"
-									value="#{showTheoricalPhasesBean.project.id}" required="true"
-									requiredMessage="Debe selecionar el proyecto"
-									validatorMessage="Debe seleccionar el proyecto"
-									immediate="true" onchange="submit()"
-									valueChangeListener="#{showTheoricalPhasesBean.onChangeProject}">
-									<f:selectItem itemLabel="Seleccione el proyecto" itemValue="-1"
-										noSelectionOption="true" />
-									<f:selectItems value="#{showTheoricalPhasesBean.projectList}"
-										var="project" itemValue="#{project.id}"
-										itemLabel="#{project.name}" />
-									<f:validator validatorId="upm.miw.pfm.utils.ComboBoxValidator" />
-								</h:selectOneMenu>
+							<div class="row">
+								<div class="col-lg-2">
+									<p:outputLabel for="dias_recomendados"
+										value="Días recomendados: " styleClass="label_height" />
+								</div>
+								<div class="col-lg-1">
+									<h:outputText id="dias_recomendados"
+										value="{{recomendedDays()}}"
+										styleClass="ui-outputlabel ui-widget label_height" />
+								</div>
+								<div class="col-lg-2">
+									<p:outputLabel for="dias_iteracion"
+										value="Días por iteración: " styleClass="label_height" />
+								</div>
+								<div class="col-lg-2">
+									<p:spinner id="dias_iteracion"
+										value="{{showTheoricalPhasesBean.project.iterationDays}}"
+										ng-required="true"
+										validatorMessage="Número de días debe ser mayor a 0"
+										stepFactor="0.5">
+										<f:convertNumber minFractionDigits="2" maxFractionDigits="2"
+											locale="en_US" />
+										<f:validator
+											validatorId="upm.miw.pfm.utils.GreaterThanZeroValidator" />
+									</p:spinner>
+								</div>
+								<div class="col-lg-4" style="padding-left: 35px;">
+									<p:message for="dias_iteracion" showDetail="true"
+										showSummary="false" />
+								</div>
 							</div>
-							<div class="col-lg-6" style="padding-left: 30px;">
-								<p:message for="project" showDetail="true" showSummary="false" />
+							<div class="padding-table">
+								<p:commandButton value="Guardar"
+									action="#{showTheoricalPhasesBean.process}" icon="ui-icon-disk"
+									ajax="false" />
+								<p:button outcome="index.html" value="Volver"
+									icon="ui-icon-arrowreturn-1-w"></p:button>
 							</div>
-						</div>
-						<div class="row">
-							<div class="col-lg-2">
-								<p:outputLabel for="dias_recomendados"
-									value="Días recomendados: " styleClass="label_height" />
-							</div>
-							<div class="col-lg-1">
-								<h:outputText id="dias_recomendados"
-									value="{{recomendedDays()}}"
-									styleClass="ui-outputlabel ui-widget label_height" />
-							</div>
-							<div class="col-lg-2">
-								<p:outputLabel for="dias_iteracion" value="Días por iteración: "
-									styleClass="label_height" />
-							</div>
-							<div class="col-lg-2">
-								<p:spinner id="dias_iteracion"
-									value="{{showTheoricalPhasesBean.project.iterationDays}}"
-									ng-required="true"
-									validatorMessage="Número de días debe ser mayor a 0"
-									stepFactor="0.5">
-									<f:convertNumber minFractionDigits="2" maxFractionDigits="2"
-										locale="en_US" />
-									<f:validator
-										validatorId="upm.miw.pfm.utils.GreaterThanZeroValidator" />
-								</p:spinner>
-							</div>
-							<div class="col-lg-4" style="padding-left: 35px;">
-								<p:message for="dias_iteracion" showDetail="true"
-									showSummary="false" />
-							</div>
-						</div>
-						<div class="padding-table">
-							<p:commandButton value="Guardar"
-								action="#{showTheoricalPhasesBean.process}" icon="ui-icon-disk"
-								ajax="false" />
-							<p:button outcome="index.html" value="Volver"
-								icon="ui-icon-arrowreturn-1-w"></p:button>
-						</div>
-					</fieldset>
+						</fieldset>
 
-					<div role="tabpanel">
-						<!-- Nav tabs -->
-						<ul class="nav nav-tabs" role="tablist">
-							<li role="presentation" class="active"><a href="#duration"
-								aria-controls="duration" role="tab" data-toggle="tab">Duración</a></li>
-							<li role="presentation"><a href="#effort"
-								aria-controls="effort" role="tab" data-toggle="tab">Esfuerzo</a></li>
-						</ul>
+						<div role="tabpanel">
+							<!-- Nav tabs -->
+							<ul class="nav nav-tabs" role="tablist">
+								<li role="presentation" class="active"><a href="#duration"
+									aria-controls="duration" role="tab" data-toggle="tab">Duración</a></li>
+								<li role="presentation"><a href="#effort"
+									aria-controls="effort" role="tab" data-toggle="tab">Esfuerzo</a></li>
+							</ul>
 
-						<!-- Tab panes -->
-						<div class="tab-content">
-							<div role="tabpanel" class="tab-pane active" id="duration">
-								<ui:include src="duration_pannel.xhtml" />
-							</div>
-							<div role="tabpanel" class="tab-pane" id="effort">
-								<ui:include src="effort_pannel.xhtml" />
+							<!-- Tab panes -->
+							<div class="tab-content">
+								<div role="tabpanel" class="tab-pane active" id="duration">
+									<ui:include src="duration_pannel.xhtml" />
+								</div>
+								<div role="tabpanel" class="tab-pane" id="effort">
+									<ui:include src="effort_pannel.xhtml" />
+								</div>
 							</div>
 						</div>
 					</div>
