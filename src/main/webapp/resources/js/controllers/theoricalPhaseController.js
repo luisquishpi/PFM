@@ -2,7 +2,7 @@
  * AngularJS theoricalPhaseController
  */
 
-projectApp.controller("theoricalPhaseController", ['$scope', '$controller', 'workTimeService', function ($scope, $isTest, workTimeService) {  
+projectApp.controller("theoricalPhaseController", ['$scope', '$isTest', 'workTimeService', function ($scope, $isTest, workTimeService) {  
 	if(!$isTest){
 		  initJSFScope($scope);
 	 }

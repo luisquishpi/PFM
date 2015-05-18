@@ -20,67 +20,62 @@
             Consultar Empleado
         </ui:define>
 		<ui:define name="content">
-			<div class="main-grid main-body-grid">
+			<div class="panel-heading">Panel heading without title</div>
+			<div class="panel-body">
+				<div class="main-grid main-body-grid">
+				
 				<h:form>
-					<p:panel header="Datos generales">
-						<fieldset>
-							<div class="row">
-								<div class="col-sm-2">
-									<p:outputLabel value="Código:" styleClass="label_height" />
-								</div>
-								<div class="col-sm-2">
-									<h:outputText value="{{getEmployeeBean.employee.employeeCode}}" />
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-sm-2">
-									<p:outputLabel value="Nombre:" styleClass="label_height" />
-								</div>
-								<div class="col-sm-2">
-									<h:outputText
-										value="{{getEmployeeBean.employee.name}} {{getEmployeeBean.employee.surname}}" />
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-sm-2">
-									<p:outputLabel value="Contrato:" styleClass="label_height" />
-								</div>
-								<div class="col-sm-2">
-									<h:outputText
+					    <table class="table table-bordered">
+							<tbody>
+								<tr>
+									<td>
+										<p:outputLabel value="Código:" styleClass="label_height" />
+										<h:outputText value="{{getEmployeeBean.employee.employeeCode}}" />
+									</td>
+								</tr>
+								<tr>	
+									<td>
+										<p:outputLabel value="Nombre:" styleClass="label_height" />
+										<h:outputText value="{{getEmployeeBean.employee.name}} {{getEmployeeBean.employee.surname}}" />
+									</td>
+								</tr>
+								<tr>	
+									<td>
+										<p:outputLabel value="Contrato:" styleClass="label_height" />
+										<h:outputText
 										value="{{getEmployeeBean.employee.contract.contractType}} ({{getEmployeeBean.employee.contract.insurance}}%)" />
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-sm-2">
-									<p:outputLabel value="Bruto anual:" styleClass="label_height" />
-								</div>
-								<div class="col-sm-2">
-									<h:outputText
-										value="{{getEmployeeBean.employee.annualGrossSalary}}" /> &euro;
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-sm-2">
-									<p:outputLabel value="Total anual:" styleClass="label_height" />
-								</div>
-								<div class="col-sm-2">
-									<h:outputText
-										value="{{getEmployeeBean.employee.annualNetSalary}}" />
-									&euro;
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-sm-2">
-									<p:outputLabel value="Total mensual:" styleClass="label_height" />
-								</div>
-								<div class="col-sm-2">
-									<h:outputText
-										value="{{getEmployeeBean.employee.monthlySalary}}" />
-									&euro;
-								</div>
-							</div>
-						</fieldset>
-					</p:panel>
+									</td>
+								</tr>
+								<tr>	
+									<td>
+										<p:outputLabel value="Bruto anual:" styleClass="label_height" />
+										<h:outputText
+										value="{{getEmployeeBean.employee.annualGrossSalary}}">
+										<f:convertNumber locale="pt-PT" currencySymbol="€" type="currency"/>
+									</h:outputText>
+									</td>
+								</tr>
+								<tr>	
+									<td>
+										<p:outputLabel value="Total anual:" styleClass="label_height" />
+										<h:outputText
+										value="{{getEmployeeBean.employee.annualNetSalary}}">
+										<f:convertNumber locale="pt-PT" currencySymbol="€" type="currency"/>
+									</h:outputText>	
+									</td>
+								</tr>
+								<tr>	
+									<td>
+										<p:outputLabel value="Total mensual:" styleClass="label_height" />
+										<h:outputText
+										value="{{getEmployeeBean.employee.monthlySalary}}">
+										<f:convertNumber locale="pt-PT" currencySymbol="€" type="currency"/>
+									</h:outputText>		
+									</td>
+								</tr>
+							</tbody>
+						</table>	
+							
 					<br />
 					<p:dataList value="{{getEmployeeBean.employee.roles}}" var="rol"
 						type="ordered">
@@ -93,6 +88,7 @@
 					</p:button>
 
 				</h:form>
+			</div>
 			</div>
 		</ui:define>
 	</ui:composition>
