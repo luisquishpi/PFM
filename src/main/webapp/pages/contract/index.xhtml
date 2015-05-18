@@ -10,7 +10,7 @@
             Contratos
         </ui:define>
 	<ui:define name="content">
-		<p:growl id="growl" sticky="true" showDetail="true" />
+		<p:growl id="growl" sticky="false" life="5000" showDetail="false" />
 		<h:form>
 			<p:dataTable var="contract" value="#{listContractBean.contracts}">
 				<p:column headerText="Nombre">

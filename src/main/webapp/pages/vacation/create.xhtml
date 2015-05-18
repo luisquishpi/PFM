@@ -19,13 +19,13 @@
         </ui:define>        
         <ui:define name="content">
             <h:form>
-                <p:growl id="growl" sticky="true" showDetail="true" />
+                <p:growl id="growl" sticky="false" life="5000" showDetail="true" />
                 <div class="row">
 	                <div class="col-md-7">
 	                    <div class="row">
 	                        <div class="col-md-3">Empleado</div>
 	                        <div class="col-md-9">
-	                            <h:selectOneMenu label="" required="true" requiredMessage="Seleccione un empleado" converter="GenericConverter"
+	                            <h:selectOneMenu label="" styleClass="dropdown" required="true" requiredMessage="Seleccione un empleado" converter="GenericConverter"
 	                                value="#{createVacationBean.selectedEmployee}">
 	                                <f:selectItem itemValue="#{null}" itemLabel="--Seleccione--" />
 	                                <f:selectItems value="#{createVacationBean.employees}" var="employee" 
@@ -37,7 +37,7 @@
 	                    <div class="row">
 	                        <div class="col-md-3">Fecha</div>
 	                        <div class="col-md-9">
-	                            <p:inputText size="25" requiredMessage="Seleccione el periodo de vacaciones" id="daterange" value="#{createVacationBean.range}" required="true" label=""/>
+	                            <p:inputText size="25" readonly="true" requiredMessage="Seleccione el periodo de vacaciones" id="daterange" value="#{createVacationBean.range}" required="true" label=""/>
 	                        </div>
 	                    </div>
 	                    <div class="row">
