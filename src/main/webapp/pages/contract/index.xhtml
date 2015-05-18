@@ -10,29 +10,31 @@
             Contratos
         </ui:define>
 	<ui:define name="content">
-		<p:growl id="growl" sticky="false" life="5000" showDetail="false" />
-		<h:form>
-			<p:dataTable var="contract" value="#{listContractBean.contracts}">
-				<p:column headerText="Nombre">
-					<h:outputText value="#{contract.contractType}" />
-				</p:column>
-				<p:column headerText="Seguro (%)" styleClass="center">
-					<h:outputText value="#{contract.insurance}">
-						<f:convertNumber minFractionDigits="2" maxFractionDigits="2"
-							locale="en_US" type="number" />
-					</h:outputText>
-				</p:column>
-				<p:column style="text-align:center" headerText="">
-				</p:column>
-			</p:dataTable>
-		</h:form>
-		<br />
-		<p:button outcome="create.xhtml" value="Nuevo Contrato"
-			icon="ui-icon-plus">
-		</p:button>
-		<p:button outcome="/home.xhtml" value="Ir al inicio"
-			icon="ui-icon-home">
-		</p:button>
+        <div class="panel-body"> 		
+			<p:growl id="growl" sticky="false" life="5000" showDetail="false" />
+			<h:form>
+				<p:dataTable var="contract" value="#{listContractBean.contracts}">
+					<p:column headerText="Nombre">
+						<h:outputText value="#{contract.contractType}" />
+					</p:column>
+					<p:column headerText="Seguro (%)" styleClass="center">
+						<h:outputText value="#{contract.insurance}">
+							<f:convertNumber minFractionDigits="2" maxFractionDigits="2"
+								locale="en_US" type="number" />
+						</h:outputText>
+					</p:column>
+					<p:column style="text-align:center" headerText="">
+					</p:column>
+				</p:dataTable>
+			</h:form>
+			<br />
+			<p:button outcome="create.xhtml" value="Nuevo Contrato"
+				icon="ui-icon-plus">
+			</p:button>
+			<p:button outcome="/home.xhtml" value="Ir al inicio"
+				icon="ui-icon-home">
+			</p:button>
+		</div>
 	</ui:define>
 </ui:composition>
 </html>
