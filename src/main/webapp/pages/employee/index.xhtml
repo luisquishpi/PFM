@@ -18,6 +18,7 @@
 		<table class="table table-bordered">
 			<h:form>
 					<tbody>
+						<tr class="active"><th class="text-center">Nombre</th><th class="text-center">Tipo de contrato</th><th class="text-center">Acciones</th></tr>
 						<ui:repeat var="employee" value="#{listEmployeesBean.employees}">
 							<tr class="text-center">
 				            	<td><h:outputText value="#{employee.getFullName()}" /></td>
