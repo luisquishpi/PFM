@@ -81,8 +81,7 @@
 							<div class="col-sm-2">
 								<p:spinner id="bruto"
 									value="#{createEmployeeBean.employee.annualGrossSalary}"
-									required="true"									
-									requiredMessage="El bruto anual es obligatorio"
+									required="true" requiredMessage="El bruto anual es obligatorio"
 									validatorMessage="El bruto anual debe ser mayor a 0"
 									stepFactor="1000">
 									<f:convertNumber minFractionDigits="2" maxFractionDigits="2"
@@ -102,9 +101,15 @@
 							</div>
 							<div class="col-sm-2">
 								<h:selectOneMenu label="Contrato:" id="contract"
-									value="#{createEmployeeBean.selectedContractId}"
-									required="true" requiredMessage="Debe seleccionar el contrato">
-									<f:selectItems value="#{createEmployeeBean.items}" />
+									value="#{createEmployeeBean.contract.id}" required="true"
+									requiredMessage="Debe seleccionar el contrato"
+									hideNoSelectionOption="false">
+									<f:selectItem itemLabel="Seleccione un contrato" itemValue="-1"
+										noSelectionOption="true" />
+									<f:selectItems value="#{createEmployeeBean.contractList}"
+										var="contract" itemValue="#{contract.id}"
+										itemLabel="#{contract.contractType}" />
+									<f:validator validatorId="upm.miw.pfm.utils.ComboBoxValidator" />
 								</h:selectOneMenu>
 							</div>
 							<div class="col-sm-4">
@@ -119,10 +124,14 @@
 							<div class="col-sm-4">
 								<h:selectManyCheckbox styleClass="checkbox_roles" id="roles"
 									value="#{createEmployeeBean.checkedRoles}"
-									layout="pageDirection">
+									layout="pageDirection" required="true"
+									requiredMessage="Debe seleccionar al menos un rol">
 									<f:selectItems value="#{createEmployeeBean.roles}" var="role"
 										itemLabel="#{role.description}" itemValue="#{role}" />
 								</h:selectManyCheckbox>
+							</div>
+							<div class="col-sm-4">
+								<p:message for="roles" />
 							</div>
 						</div>
 						<div>
