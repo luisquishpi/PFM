@@ -13,4 +13,14 @@ public class Holiday {
 		return null;
 	}
 
+	public void setId(Integer id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setEndDate(Date endDate) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

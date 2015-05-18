@@ -40,7 +40,7 @@ public class SetHolidaysControllerTest {
     public void before() {
     	holidayController = new HolidayControllerEjb();
 
-    	holiday = new Holiday(Utils.buildDate(2015, 10, 1), Utils.buildDate(2015, 10, 2));
+    	holiday = new Holiday(Utils.buildDate(2015, 03, 03), Utils.buildDate(2015, 03, 03));
     	
         new MockHolidayDao(holiday);
         holidayController.createHoliday(holiday);
