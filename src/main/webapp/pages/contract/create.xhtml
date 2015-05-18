@@ -19,12 +19,11 @@
 		<ui:define name="content">
 			<div class="main-grid main-body-grid">
 				<h:form prependId="false">
-					<p:messages id="messages" showDetail="false" autoUpdate="false"
-						closable="true" />
+					<p:growl id="growl" sticky="false" life="5000" showDetail="false" />
 					<fieldset>
 						<div class="row">
 							<div class="col-lg-3">
-								<p:outputLabel for="contractType" value="Tipo:"
+								<p:outputLabel value="Tipo:"
 									styleClass="label_height" />
 							</div>
 							<div class="col-lg-2">
@@ -32,15 +31,12 @@
 									requiredMessage="El tipo de contrato es obligatorio"
 									id="contractType"
 									value="#{createContractBean.contract.contractType}"
-									required="true" />
-							</div>
-							<div class="col-lg-4">
-								<p:message for="contractType" />
+									required="true" label=""/>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-lg-3">
-								<p:outputLabel for="insurance" value="Seguro(%):"
+								<p:outputLabel value="Seguro(%):"
 									styleClass="label_height" />
 							</div>
 							<div class="col-lg-2">
@@ -48,15 +44,12 @@
 									requiredMessage="El porcentaje de seguro es obligatorio"
 									id="insurance" value="#{createContractBean.contract.insurance}"
 									validatorMessage="El porcentaje de seguro debe ser mayor que 0"
-									required="true" stepFactor="0.01">
+									required="true" stepFactor="0.01" label="">
 									<f:convertNumber minFractionDigits="2" maxFractionDigits="2"
 										locale="en_US" type="number" />
 									<f:validator
 										validatorId="upm.miw.pfm.utils.GreaterThanZeroValidator" />
 								</p:spinner>
-							</div>
-							<div class="col-lg-4" style="padding-left: 35px;">
-								<p:message for="insurance" />
 							</div>
 						</div>
 						<div>
