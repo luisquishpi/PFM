@@ -17,12 +17,23 @@ public class CheckDateVacationValidator implements ConstraintValidator<CheckDate
 
     @Override
     public boolean isValid(Vacation vacation, ConstraintValidatorContext arg1) {
-        List<Vacation> vacations=new ArrayList<Vacation>();
-        vacations=  DaoFactory.getFactory().getVacationDao().findAll(vacation.getEmployee());
-        
-        for(Vacation vacationTmp: vacations){
-            System.out.println("::::::::::::::::::::"+vacation.getStart());
-            if(vacation.getStart().after(vacationTmp.getStart()) && vacation.getEnd().before(vacationTmp.getEnd())) return false;
+        List<Vacation> vacations = new ArrayList<Vacation>();
+        vacations = DaoFactory.getFactory().getVacationDao().findAll(vacation.getEmployee());
+
+        for (Vacation vacationTmp : vacations) {
+            if (vacation.getStart().equals(vacationTmp.getStart())
+                    || vacation.getEnd().equals(vacationTmp.getEnd()))
+                return false;
+            if (vacation.getStart().after(vacationTmp.getStart())
+                    && vacation.getStart().before(vacationTmp.getEnd()))
+                return false;
+            if (vacation.getEnd().after(vacationTmp.getStart())
+                    && vacation.getEnd().before(vacationTmp.getEnd()))
+                return false;
+            if (vacation.getStart().before(vacationTmp.getStart())
+                    && vacation.getEnd().after(vacationTmp.getEnd()))
+                return false;
+
         }
         return true;
     }

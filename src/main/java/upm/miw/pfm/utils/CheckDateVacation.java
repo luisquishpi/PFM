@@ -13,7 +13,7 @@ import javax.validation.Payload;
 @Retention(RUNTIME)
 @Constraint(validatedBy = CheckDateVacationValidator.class)
 public @interface CheckDateVacation {
-    String message() default "Ya existe Vacaciones con esas fechas";
+    String message() default "Ya existe Vacaciones en ese rango de fechas";
 
     Class<?>[] groups() default {};
 

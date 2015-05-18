@@ -16,12 +16,14 @@
 		<script src="/PFM/resources/css/bootstrap/js/bootstrap.min.js"></script>		
 		<script src="/PFM/resources/css/sb_theme/js/metisMenu.min.js"></script>
 		<script src="/PFM/resources/css/sb_theme/js/sb-admin-2.js"></script>
+		<script src="/PFM/resources/css/selectboxit/js/jquery.selectBoxIt.min.js"></script>
 		<link href="/PFM/resources/css/sb_theme/css/sb-admin-2.css" rel="stylesheet" />
 		<link href="/PFM/resources/css/sb_theme/css/metisMenu.min.css" rel="stylesheet" />
 		<link href="/PFM/resources/css/sb_theme/css/font_awesome/css/font-awesome.min.css" rel="stylesheet" />
 		<link href="/PFM/resources/css/style.css" rel="stylesheet" />
 		<link href="/PFM/resources/css/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />        
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+        <link href="/PFM/resources/css/selectboxit/css/jquery.selectBoxIt.css" rel="stylesheet" />        
 		<ui:insert name="css"></ui:insert>
 		<ui:insert name="javascript"></ui:insert>
 	</h:head>
@@ -128,6 +130,11 @@
 			<!-- /#page-wrapper -->
 		</div>
 		<!-- /#wrapper -->
+		<script>
+			$(function() {
+		        var selectBox = $(".dropdown").selectBoxIt();
+		    });
+		</script>
 	</h:body>
 </f:view>
 </html>

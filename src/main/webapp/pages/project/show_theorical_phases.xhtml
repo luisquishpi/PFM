@@ -14,7 +14,6 @@
         </ui:define>
 		<ui:define name="javascript">
 			<script>
-				app.value("test", false);
 				var projectApp = angular.module('projectApp',
 						[ "angularfaces" ]);
 			</script>
@@ -38,14 +37,12 @@
 				rel="stylesheet" />
 		</ui:define>
 		<ui:define name="content">
-			<h:form prependId="false" id="angular" ng-app="projectApp">
-				<div novalidate="" ng-controller="theoricalPhaseController"
-					ng-form="" id="theoricalPhasesDiv" name="theoricalPhasesDiv">
+			<h:form prependId="false" ng-app="projectApp">
+				<div ng-controller="theoricalPhaseController"
+					id="theoricalPhasesDiv" name="theoricalPhasesDiv">
 					<fieldset>
-
 						<ngsync direction="serverToClient"
-							value="{{showTheoricalPhasesBean.project}}" />
-
+							value="#{showTheoricalPhasesBean.project}" />
 						<div class="row">
 							<div class="col-lg-2">
 								<p:outputLabel for="project" value="Proyecto: "
@@ -56,7 +53,7 @@
 									value="#{showTheoricalPhasesBean.project.id}" required="true"
 									requiredMessage="Debe selecionar el proyecto"
 									validatorMessage="Debe seleccionar el proyecto"
-									onchange="submit()"
+									immediate="true" onchange="submit()"
 									valueChangeListener="#{showTheoricalPhasesBean.onChangeProject}">
 									<f:selectItem itemLabel="Seleccione el proyecto" itemValue="-1"
 										noSelectionOption="true" />

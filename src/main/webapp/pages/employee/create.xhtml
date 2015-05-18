@@ -12,70 +12,48 @@
 		<ui:define name="header">
             Crear empleado
         </ui:define>
-		<ui:define name="javascript">
-			<script
-				src="/PFM/resources/css/selectboxit/js/jquery.selectBoxIt.min.js"></script>
-			<script>
-				$(function() {
-					var selectBox = $("#contract").selectBoxIt();
-				});
-			</script>
-		</ui:define>
-		<ui:define name="css">
-			<link
-				href="/PFM/resources/css/selectboxit/css/jquery.selectBoxIt.css"
-				rel="stylesheet" />
-		</ui:define>
 		<ui:define name="content">
 			<div class="main-grid main-body-grid">
 				<h:form prependId="false">
+				    <p:growl id="growl" sticky="false" life="5000" showDetail="false" />
 					<fieldset>
 						<div class="row">
 							<div class="col-sm-3">
-								<p:outputLabel for="name" value="Nombre: "
+								<p:outputLabel value="Nombre: "
 									styleClass="label_height" />
 							</div>
 							<div class="col-sm-2">
 								<p:inputText requiredMessage="El nombre es obligatorio"
 									id="name" value="#{createEmployeeBean.employee.name}"
-									required="true" />
-							</div>
-							<div class="col-sm-4">
-								<p:message for="name" />
+									required="true" label=""/>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-3">
-								<p:outputLabel for="surname" value="Apellidos: "
+								<p:outputLabel value="Apellidos: "
 									styleClass="label_height" />
 							</div>
 							<div class="col-sm-2">
 								<p:inputText requiredMessage="Los apellidos son obligatorios"
 									id="surname" value="#{createEmployeeBean.employee.surname}"
-									required="true" />
-							</div>
-							<div class="col-sm-4">
-								<p:message for="surname" />
+									required="true" label="" />
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-3">
-								<p:outputLabel for="code" value="Código de empleado: "
+								<p:outputLabel value="Código de empleado: "
 									styleClass="label_height" />
 							</div>
 							<div class="col-sm-2">
 								<p:inputText
 									requiredMessage="El código de empleado es obligatorio"
 									id="code" value="#{createEmployeeBean.employee.employeeCode}"
-									required="true" />
-							</div>
-							<div class="col-sm-4">
-								<p:message for="code" />
+									required="true" label="" />
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-3">
-								<p:outputLabel for="bruto" value="Bruto anual: "
+								<p:outputLabel value="Bruto anual: "
 									styleClass="label_height" />
 							</div>
 							<div class="col-sm-2">
@@ -84,36 +62,30 @@
 									required="true"									
 									requiredMessage="El bruto anual es obligatorio"
 									validatorMessage="El bruto anual debe ser mayor a 0"
-									stepFactor="0.5">
+									stepFactor="1000" label="">
 									<f:convertNumber minFractionDigits="2" maxFractionDigits="2"
 										locale="en_US" />
 									<f:validator
 										validatorId="upm.miw.pfm.utils.GreaterThanZeroValidator" />
 								</p:spinner>
 							</div>
-							<div class="col-sm-4">
-								<p:message for="bruto" />
-							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-3">
-								<p:outputLabel for="contract" value="Contrato: "
+								<p:outputLabel value="Contrato: "
 									styleClass="label_height" />
 							</div>
 							<div class="col-sm-2">
-								<h:selectOneMenu label="Contrato:" id="contract"
+								<h:selectOneMenu label="" id="contract" styleClass="dropdown"
 									value="#{createEmployeeBean.selectedContractId}"
 									required="true" requiredMessage="Debe seleccionar el contrato">
 									<f:selectItems value="#{createEmployeeBean.items}" />
 								</h:selectOneMenu>
 							</div>
-							<div class="col-sm-4">
-								<p:message for="contract" />
-							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-3">
-								<p:outputLabel for="roles" value="Roles: "
+								<p:outputLabel value="Roles: "
 									styleClass="label_height" />
 							</div>
 							<div class="col-sm-4">

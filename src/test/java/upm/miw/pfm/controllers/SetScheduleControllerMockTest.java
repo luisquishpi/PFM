@@ -1,11 +1,9 @@
 package upm.miw.pfm.controllers;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -16,7 +14,6 @@ import upm.miw.pfm.mocks.MockProjectScheduleDao;
 import upm.miw.pfm.models.entities.Project;
 import upm.miw.pfm.models.entities.ProjectSchedule;
 import upm.miw.pfm.utils.Utils;
-import upm.miw.pfm.utils.WorkDay;
 
 public class SetScheduleControllerMockTest {
 
@@ -63,12 +60,5 @@ public class SetScheduleControllerMockTest {
         assertEquals(8, controller.getProjectSchedule(1).getFridayHours(), DELTA);
         assertEquals(0, controller.getProjectSchedule(1).getSaturdayHours(), DELTA);
         assertEquals(0, controller.getProjectSchedule(1).getSundayHours(), DELTA);
-        
-        List<WorkDay> workdays = controller.getProjectSchedule(1).getWorkDaysArray();
-        for(int i=1;i<6;i++){
-        	assertTrue(workdays.get(i).getWorkHours()>0);
-        }
-        assertTrue(workdays.get(0).getWorkHours()==0);
-        assertTrue(workdays.get(6).getWorkHours()==0);
     }
 }
