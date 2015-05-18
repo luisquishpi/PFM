@@ -10,38 +10,36 @@
         <ui:define name="header">
             Proyectos
         </ui:define>        
-        <ui:define name="content">
-        	<div class="panel-body"> 
-		        <p:growl id="growl" sticky="true" showDetail="true" />               
-	            <h:form>
-		            <p:dataTable var="project" value="#{listProjectsBean.projects}">
-					    <p:column width="75%" headerText="Proyectos">
-					        <h:outputText value="#{project.name}" />
-					    </p:column>
-					    <p:column style="text-align:center" headerText="">			        
-		                    <div class="btn-group" role="group">
-		                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-		                          Opciones
-		                          <span class="caret"></span>
-		                        </button>
-		                        <ul class="dropdown-menu" role="menu">
-		                          <li>
-		                            <h:outputLink value="show.xhtml">                     
-					                     <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Detalles
-		                                 <f:param name="id" value="#{project.id}" />
-				                    </h:outputLink>
-		                          </li>
-		                        </ul>
-		                    </div>
-					    </p:column>
-					</p:dataTable>
-				</h:form>
-				<br/>
-	            <p:button outcome="create.xhtml" value="Nuevo Proyecto" icon="ui-icon-plus">
-						</p:button> 
-	            <p:button outcome="/home.xhtml" value="Ir al inicio" icon="ui-icon-home">
-						</p:button>
-			</div>    
+        <ui:define name="content"> 
+        <p:growl id="growl" sticky="false" life="5000" showDetail="true" />               
+            <h:form>
+            <p:dataTable var="project" value="#{listProjectsBean.projects}">
+			    <p:column width="75%" headerText="Proyectos">
+			        <h:outputText value="#{project.name}" />
+			    </p:column>
+			    <p:column style="text-align:center" headerText="">			        
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                          Opciones
+                          <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                          <li>
+                            <h:outputLink value="show.xhtml">                     
+			                     <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Detalles
+                                 <f:param name="id" value="#{project.id}" />
+		                    </h:outputLink>
+                          </li>
+                        </ul>
+                    </div>
+			    </p:column>
+			</p:dataTable>
+			</h:form>
+			<br/>
+            <p:button outcome="create.xhtml" value="Nuevo Proyecto" icon="ui-icon-plus">
+					</p:button> 
+            <p:button outcome="/home.xhtml" value="Ir al inicio" icon="ui-icon-home">
+					</p:button>    
         </ui:define>
     </ui:composition>
 </html>
