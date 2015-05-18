@@ -13,4 +13,9 @@ public class Holiday {
 		return null;
 	}
 
+	public void setEndDate(Date buildDate) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
