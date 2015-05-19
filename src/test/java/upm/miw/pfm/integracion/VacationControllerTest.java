@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -16,6 +17,7 @@ import upm.miw.pfm.controllers.VacationController;
 import upm.miw.pfm.controllers.ejbs.ContractControllerEjb;
 import upm.miw.pfm.controllers.ejbs.EmployeeControllerEjb;
 import upm.miw.pfm.controllers.ejbs.VacationControllerEjb;
+import upm.miw.pfm.models.daos.DaoFactory;
 import upm.miw.pfm.models.entities.Contract;
 import upm.miw.pfm.models.entities.Employee;
 import upm.miw.pfm.models.entities.Vacation;
@@ -68,6 +70,13 @@ public class VacationControllerTest {
         vacationController.createVacation(vacation);
         mockListVacation.add(vacation);
         assertEquals(mockListVacation.size(), vacationController.vacationList(employee).size());
+    }
+    
+    @AfterClass
+    public static void afterClass() {
+    	DaoFactory.getFactory().getVacationDao().query("delete from Vacation");
+        DaoFactory.getFactory().getEmployeeDao().query("delete from Employee");
+        DaoFactory.getFactory().getContractDao().query("delete from Contract");
     }
 
 }
