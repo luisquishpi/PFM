@@ -107,4 +107,8 @@ public class CreateEmployeeBean {
 
     }
 
+    public boolean isCreatedContracts() {
+        return this.contractList.size() > 0;
+    }
+
 }
