@@ -16,6 +16,10 @@ public class MockHolidayDao {
 		this.holidayList = holidayList;
 	}
 
+	public MockHolidayDao(Holiday holiday) {
+		this.holiday = holiday;
+	}
+
 	@Mock
     public List<Holiday> findAll() {
         return holidayList;

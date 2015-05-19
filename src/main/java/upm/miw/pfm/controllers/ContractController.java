@@ -13,4 +13,8 @@ public interface ContractController {
     public List<Contract> contractList();
 
     public Contract getContract(int selectedContractId);
+
+	public void update(Contract contract);
+
+	public void delete(Integer id);
 }

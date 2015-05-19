@@ -8,6 +8,10 @@ public class Holiday {
 		// TODO Auto-generated constructor stub
 	}
 
+	public Holiday() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Integer getId() {
 		// TODO Auto-generated method stub
 		return null;

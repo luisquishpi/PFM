@@ -453,6 +453,36 @@
             this.container.find('.applyBtn').html(this.locale.applyLabel);
             this.container.find('.cancelBtn').html(this.locale.cancelLabel);
         },
+        
+        setMinDate: function(date){
+            if (typeof date === 'string')
+            	this.minDate  = moment(date, this.format).utcOffset(this.timeZone);
+
+            if (typeof date === 'object')
+            	this.minDate  = moment(date);
+            
+            var newStartDate = this.startDate.isBefore(this.minDate) ? this.minDate : this.startDate;
+            this.setCustomDates(newStartDate, this.endDate);
+            
+        	this.updateView();
+            this.updateCalendars();
+            this.updateInputText();
+        },
+        
+        setMaxDate: function(date){
+            if (typeof date === 'string')
+            	this.maxDate  = moment(date, this.format).utcOffset(this.timeZone);
+
+            if (typeof date === 'object')
+            	this.maxDate  = moment(date);
+            
+            var newEndDate = this.endDate.isAfter(this.maxDate) ? this.maxDate : this.endDate;
+            this.setCustomDates(newEndDate, newEndDate);
+            
+        	this.updateView();
+            this.updateCalendars();
+            this.updateInputText();
+        },
 
         setStartDate: function(startDate) {
             if (typeof startDate === 'string')

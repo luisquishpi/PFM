@@ -18,7 +18,7 @@ public class HolidayControllerEjb implements HolidayController {
 	@Override
 	public Holiday getHolidayById(Integer id) {
 		// TODO Auto-generated method stub
-		return null;
+		return new Holiday();
 	}
 
 	@Override

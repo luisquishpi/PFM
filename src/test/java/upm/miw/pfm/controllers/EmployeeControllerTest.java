@@ -2,7 +2,9 @@ package upm.miw.pfm.controllers;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.junit.Before;
@@ -14,7 +16,7 @@ import upm.miw.pfm.models.entities.Contract;
 import upm.miw.pfm.models.entities.Employee;
 import upm.miw.pfm.utils.RoleType;
 
-public class GetEmployeeControllerTest {
+public class EmployeeControllerTest {
 
     private EmployeeController employeeController;
 
@@ -32,14 +34,24 @@ public class GetEmployeeControllerTest {
         roles.add(RoleType.PROJECT_MANAGEMENT);
         roles.add(RoleType.REQUIREMENTS);
         roles.add(RoleType.ANALYSIS_DESIGN);
-        employee = new Employee(1, "Anibal", "Lecter", "A", 40500.00, contract, roles);
-        new MockEmployeeDao(employee);
-        employeeController.addEmployee(employee);
+        employee = new Employee("Anibal", "Lecter", "A", 40500.00, contract, roles);
+        new MockEmployeeDao(new Employee());
     }
 
     @Test
-    public void getEmployeeTest() {
-        Employee employee2 = employeeController.getEmployee(1);
-        assertEquals(new Employee(1, "Anibal", "Lecter", "A", 40500.00, contract, roles), employee2);
+    public void addAndGetEmployeeTest() {
+        employeeController.addEmployee(employee);
+        Employee employee = employeeController.getEmployee(1);
+        assertEquals(new Employee(1, "Anibal", "Lecter", "A", 40500.00, contract, roles), employee);
     }
+    
+    @Test
+    public void listEmployeesTest() {
+        List<Employee> employeeList = new ArrayList<Employee>();
+        employeeList.add(employee);
+        employeeList.add(new Employee(2, "Manuel", "Leunam", "A", 40500.00, contract, roles));
+        new MockEmployeeDao(employeeList);
+        assertEquals(employeeController.listEmployees(), employeeList);
+    }
+
 }

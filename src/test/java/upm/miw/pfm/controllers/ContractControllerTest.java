@@ -20,14 +20,13 @@ public class ContractControllerTest {
     @Before
     public void before() {
         contractController = new ContractControllerEjb();
+        new MockContractDao();
+        contract=new Contract("Becario", 32.5);
+        contractController.saveContract(contract);
     }
 
     @Test
-    public void testNewContract() {
-        new MockContractDao();
-        contract=new Contract("Becario", 32.5);
-        contractController.saveContract(contract);                
-
+    public void testNewContract() {                
         assertTrue(contractController.existContract(contract));
     }
     
@@ -50,5 +49,18 @@ public class ContractControllerTest {
       List<Contract> contractList = new ArrayList<Contract>();
       new MockContractDao(contractList);
       assertEquals(0, contractController.contractList().size()); 
+    }
+    
+    @Test
+    public void updateContractTest(){
+    	contract.setContractType("Nuevo");
+    	contractController.update(contract);
+    	assertEquals(contractController.getContract(contract.getId()), contract);
+    }
+    
+    @Test
+    public void deleteContractTest(){
+    	contractController.delete(contract.getId());
+    	assertNull(contractController.getContract(contract.getId()));
     }
 }

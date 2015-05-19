@@ -37,4 +37,16 @@ public class ContractControllerEjb implements ContractController {
     public Contract getContract(int selectedContractId) {
         return DaoFactory.getFactory().getContractDao().read(selectedContractId);
     }
+
+	@Override
+	public void update(Contract contract) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void delete(Integer id) {
+		// TODO Auto-generated method stub
+		
+	}
 }
