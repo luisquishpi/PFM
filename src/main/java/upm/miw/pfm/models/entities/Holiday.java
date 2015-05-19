@@ -8,6 +8,10 @@ public class Holiday {
 		// TODO Auto-generated constructor stub
 	}
 
+	public Holiday() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Integer getId() {
 		// TODO Auto-generated method stub
 		return null;
@@ -17,5 +21,18 @@ public class Holiday {
 		// TODO Auto-generated method stub
 		
 	}
+
+	public void setId(int i) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	
+	
 
 }

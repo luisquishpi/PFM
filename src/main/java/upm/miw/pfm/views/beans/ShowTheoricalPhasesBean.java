@@ -31,6 +31,8 @@ public class ShowTheoricalPhasesBean {
     private List<Project> projectList;
 
     private Employee[] employeeArray;
+    
+    private boolean emptyProject=true;
 
     private final static Class<ListProjectsBean> clazz = ListProjectsBean.class;
 
@@ -45,6 +47,7 @@ public class ShowTheoricalPhasesBean {
 
     public ShowTheoricalPhasesBean() {
         this.project = new Project();
+        this.projectSchedule = new ProjectSchedule();
         this.project.setId(-1);
         this.project.setCost(0.00);
         this.project.setStart(Utils.now(Utils.DD_MM_YYYY_FORMAT));
@@ -71,6 +74,10 @@ public class ShowTheoricalPhasesBean {
     public void setProject(Project project) {
         this.project = project;
     }
+    
+    public ProjectSchedule getProjectSchedule(){
+    	return projectSchedule;
+    }
 
     public List<Project> getProjectList() {
         return projectList;
@@ -89,8 +96,11 @@ public class ShowTheoricalPhasesBean {
             this.projectSchedule = setScheduleController.getProjectSchedule(project.getId());
             LogManager.getLogger(clazz).debug("Proyecto cargado " + this.project);
             LogManager.getLogger(clazz).info("Project schedule asociado " + this.projectSchedule);
+            this.emptyProject=false;
         }
-
+        else{
+        	this.emptyProject=true;
+        }
         FacesContext.getCurrentInstance().renderResponse();
     }
 
@@ -127,5 +137,9 @@ public class ShowTheoricalPhasesBean {
     private Project findSelectedProject() {
         return projectController.getProject(this.project.getId());
     }
+
+	public boolean isEmptyProject() {
+		return emptyProject;
+	}
 
 }
