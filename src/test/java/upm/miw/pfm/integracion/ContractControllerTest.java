@@ -35,7 +35,7 @@ public class ContractControllerTest {
         
         contractList = contractController.contractList();
 
-        assertEquals(2, contractList.size());
+        assertEquals(contractList.size(), 2);
     }
 
     @Test

@@ -28,7 +28,6 @@ public class SetHolidaysControllerTest {
     @BeforeClass
     public static void beforeClass() {
         mockListHoliday = new ArrayList<Holiday>();
-        new MockHolidayDao(mockListHoliday);
     }
 
     @Before
@@ -37,9 +36,9 @@ public class SetHolidaysControllerTest {
 
     	holiday = new Holiday(Utils.buildDate(2015, 03, 03), Utils.buildDate(2015, 03, 03));
     	
-        new MockHolidayDao(holiday);
+        new MockHolidayDao(holiday, mockListHoliday);
         holidayController.createHoliday(holiday);
-        mockListHoliday.add(holiday);
+        
     }
 
     @Test
@@ -49,6 +48,7 @@ public class SetHolidaysControllerTest {
 
     @Test
     public void listVacationTest() {
+    	mockListHoliday.add(holiday);
         assertEquals(mockListHoliday, holidayController.vacationList());
     }
 }
