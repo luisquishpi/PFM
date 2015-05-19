@@ -16,7 +16,7 @@
 		<ui:define name="javascript">
 			<script>
 				var projectApp = angular.module('projectApp', [ "angularfaces",
-						'ngAnimate', 'ui.bootstrap' ]);
+						'ngAnimate', 'ui.bootstrap']);
 				app.value("$isTest", false);
 			</script>
 			<script src="/PFM/resources/js/libs/moment.js"></script>
@@ -54,6 +54,7 @@
 			<c:set var="projectBean" scope="request" value="#{createProjectBean}" />
 			<div class="panel-body">
 				<h:form ng-app="projectApp" prependId="false">
+					<p:growl id="growl" sticky="false" life="5000" showDetail="false" />
 					<div ng-controller="wizardController" ng-form="" id="scheduleForm"
 						name="scheduleForm">
 						<div>
@@ -74,9 +75,11 @@
 													styleClass="label_height" />
 											</div>
 											<div class="col-sm-2">
-												<p:inputText id="workDays"
+												<p:inputText id="workDays" requiredMessage="Este campo es obligatorio"
 													value="{{projectBean.projectSchedule.workDays}}"
-													ng-required="true" required="true" ng-min="0" ng-max="31" />
+													required="true" type="text" ng-min="0" ng-required="true" ng-max="31">
+													<f:validateLongRange minimum="0" maximum="31"/>
+												</p:inputText>	
 											</div>
 											<div class="col-sm-2">
 												<p:outputLabel for="mondayHours" value="Lunes:"
@@ -387,7 +390,7 @@
 							<p:commandButton value="Atrás" ng-click="handlePrevious()"
 								ng-show="!isFirstStep()" icon="ui-icon-arrow-1-w" />
 							<p:commandButton value="{{getNextLabel()}}"
-								ng-click="handleNext()"							
+								ng-click="handleNext()"	update="growl"				
 								ng-show="isFirstStep()" icon="ui-icon-arrow-1-e" />
 							<p:commandButton value="Guardar"
 								action="#{createProjectBean.process}" ng-show="!isFirstStep()"

@@ -1,7 +1,3 @@
-/**
- * 
- */
-var projectApp = angular.module('projectApp', [ "angularfaces" ]);
 projectApp.factory('broadcastService', function($rootScope) {
     var sharedService = {};
     
