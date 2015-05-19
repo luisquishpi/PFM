@@ -40,13 +40,11 @@ public class ContractControllerEjb implements ContractController {
 
 	@Override
 	public void update(Contract contract) {
-		// TODO Auto-generated method stub
-		
+		contractDao.update(contract);
 	}
 
 	@Override
 	public void delete(Integer id) {
-		// TODO Auto-generated method stub
-		
+		contractDao.deleteById(id);
 	}
 }
