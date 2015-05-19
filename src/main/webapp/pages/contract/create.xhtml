@@ -17,49 +17,49 @@
 				rel="stylesheet" />
 		</ui:define>
 		<ui:define name="content">
-			<div class="main-grid main-body-grid">
-				<h:form prependId="false">
-					<p:growl id="growl" sticky="false" life="5000" showDetail="false" />
-					<fieldset>
-						<div class="row">
-							<div class="col-lg-3">
-								<p:outputLabel value="Tipo:"
-									styleClass="label_height" />
+			<div class="panel-body">
+				<div class="main-grid main-body-grid">
+					<h:form prependId="false">
+						<p:growl id="growl" sticky="false" life="5000" showDetail="false" />
+						<fieldset>
+							<div class="row">
+								<div class="col-lg-3">
+									<p:outputLabel value="Tipo:" styleClass="label_height" />
+								</div>
+								<div class="col-lg-2">
+									<p:inputText
+										requiredMessage="El tipo de contrato es obligatorio"
+										id="contractType"
+										value="#{createContractBean.contract.contractType}"
+										required="true" label="" />
+								</div>
 							</div>
-							<div class="col-lg-2">
-								<p:inputText
-									requiredMessage="El tipo de contrato es obligatorio"
-									id="contractType"
-									value="#{createContractBean.contract.contractType}"
-									required="true" label=""/>
+							<div class="row">
+								<div class="col-lg-3">
+									<p:outputLabel value="Seguro(%):" styleClass="label_height" />
+								</div>
+								<div class="col-lg-2">
+									<p:spinner
+										requiredMessage="El porcentaje de seguro es obligatorio"
+										id="insurance"
+										value="#{createContractBean.contract.insurance}"
+										validatorMessage="El porcentaje de seguro debe ser mayor que 0 y menor a 100"
+										required="true" stepFactor="0.01" label="" maxlength="5">
+										<f:convertNumber minFractionDigits="2" maxFractionDigits="2"
+											locale="en_US" type="number" />
+										<f:validateDoubleRange minimum="0.01" maximum="100" />
+									</p:spinner>
+								</div>
 							</div>
-						</div>
-						<div class="row">
-							<div class="col-lg-3">
-								<p:outputLabel value="Seguro(%):"
-									styleClass="label_height" />
+							<div>
+								<p:commandButton value="Crear" icon="ui-icon-disk"
+									action="#{createContractBean.process}" ajax="false" />
+								<p:button outcome="index.html" value="Volver"
+									icon="ui-icon-arrowreturn-1-w" />
 							</div>
-							<div class="col-lg-2">
-								<p:spinner
-									requiredMessage="El porcentaje de seguro es obligatorio"
-									id="insurance" value="#{createContractBean.contract.insurance}"
-									validatorMessage="El porcentaje de seguro debe ser mayor que 0"
-									required="true" stepFactor="0.01" label="">
-									<f:convertNumber minFractionDigits="2" maxFractionDigits="2"
-										locale="en_US" type="number" />
-									<f:validator
-										validatorId="upm.miw.pfm.utils.GreaterThanZeroValidator" />
-								</p:spinner>
-							</div>
-						</div>
-						<div>
-							<p:commandButton value="Crear" icon="ui-icon-disk"
-								action="#{createContractBean.process}" ajax="false" />
-							<p:button outcome="index.html" value="Volver"
-								icon="ui-icon-arrowreturn-1-w" />
-						</div>
-					</fieldset>
-				</h:form>
+						</fieldset>
+					</h:form>
+				</div>
 			</div>
 		</ui:define>
 	</ui:composition>

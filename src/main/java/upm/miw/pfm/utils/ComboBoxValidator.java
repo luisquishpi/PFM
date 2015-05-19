@@ -15,17 +15,28 @@ public class ComboBoxValidator implements Validator {
             throws ValidatorException {
         try {
             if (new Integer(value.toString()) == -1) {
-                FacesMessage msg = new FacesMessage("Error de validación.",
-                        "Debe seleccionar un elemento");
+                String messageText = "Debe seleccionar un " + getFieldLabel(component);
+                FacesMessage msg = new FacesMessage(messageText, messageText);
                 msg.setSeverity(FacesMessage.SEVERITY_ERROR);
                 throw new ValidatorException(msg);
             }
         } catch (NumberFormatException ex) {
-            FacesMessage msg = new FacesMessage("Error de validación.", "Elemento seleccionado no válido");
+            String messageText = "Ha seleccionado un " + getFieldLabel(component) + " no válido";
+            FacesMessage msg = new FacesMessage(messageText, messageText);
             msg.setSeverity(FacesMessage.SEVERITY_ERROR);
             throw new ValidatorException(msg);
         }
 
+    }
+
+    protected String getFieldLabel(UIComponent uiComponent) {
+        String fieldLabel = (String) uiComponent.getAttributes().get("fieldLabel");
+
+        if (fieldLabel == null) {
+            fieldLabel = "";
+        }
+
+        return fieldLabel;
     }
 
 }

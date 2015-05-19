@@ -13,6 +13,7 @@
             Crear empleado
         </ui:define>
 		<ui:define name="content">
+			<div class="panel-body">
 			<div class="main-grid main-body-grid">
 				<h:form prependId="false">
 				    <p:growl id="growl" sticky="false" life="5000" showDetail="false" />
@@ -85,6 +86,7 @@
 										var="contract" itemValue="#{contract.id}"
 										itemLabel="#{contract.contractType}" />
 									<f:validator validatorId="upm.miw.pfm.utils.ComboBoxValidator" />
+									<f:attribute name="fieldLabel" value="contrato" />
 								</h:selectOneMenu>
 							</div>
 						</div>
@@ -111,6 +113,7 @@
 						</div>
 					</fieldset>
 				</h:form>
+			</div>
 			</div>
 		</ui:define>
 	</ui:composition>

@@ -1,0 +1,15 @@
+table tr:first-child{
+	border-top:none;
+}
+table tr:last-child {
+   border-bottom: 1px solid #ddd;
+}
+.panel>.table-bordered>tbody>tr>td:first-child, .panel>.table-bordered>tbody>tr>th:first-child {
+	border-left:1px solid #ddd;
+}
+.panel>.table-bordered>tbody>tr>td:last-child, .panel>.table-bordered>tbody>tr>th:last-child {
+	border-right:1px solid #ddd;
+}
+.panel{
+	border:0;
+}

@@ -6,33 +6,37 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <ui:composition template="#{root}/WEB-INF/template/commonLayout.xhtml">
-	<ui:define name="header">
+	<ui:define name="css">
+			<link href="/PFM/resources/css/style_index_list.css" rel="stylesheet" />   		
+		</ui:define>
+		<ui:define name="header">
             Contratos
         </ui:define>
 	<ui:define name="content">
 		<p:growl id="growl" sticky="false" life="5000" showDetail="false" />
-		<h:form>
-			<p:dataTable var="contract" value="#{listContractBean.contracts}">
-				<p:column headerText="Nombre">
-					<h:outputText value="#{contract.contractType}" />
-				</p:column>
-				<p:column headerText="Seguro (%)" styleClass="center">
-					<h:outputText value="#{contract.insurance}">
-						<f:convertNumber minFractionDigits="2" maxFractionDigits="2"
-							locale="en_US" type="number" />
-					</h:outputText>
-				</p:column>
-				<p:column style="text-align:center" headerText="">
-				</p:column>
-			</p:dataTable>
-		</h:form>
-		<br />
-		<p:button outcome="create.xhtml" value="Nuevo Contrato"
-			icon="ui-icon-plus">
-		</p:button>
-		<p:button outcome="/home.xhtml" value="Ir al inicio"
-			icon="ui-icon-home">
-		</p:button>
+		<table class="table table-bordered">
+			<h:form>
+					<tbody>
+						<tr class="active"><th class="text-center">Nombre de contrato</th><th class="text-center">% de seguro</th></tr>
+						<ui:repeat var="contract" value="#{listContractBean.contracts}">
+							<tr class="text-center">
+				            	<td><h:outputText value="#{contract.contractType}" /></td>
+				            	<td>
+				            		<h:outputText value="#{contract.insurance}">
+										<f:convertNumber minFractionDigits="2" maxFractionDigits="2"
+											locale="en_US" type="number" />
+									</h:outputText>
+				            	</td>
+				            </tr>
+				         </ui:repeat>
+				    </tbody>
+			</h:form>		    
+				</table> 
+			<br />
+			<p:button outcome="create.xhtml" value="Nuevo Contrato"
+				icon="ui-icon-plus"></p:button>
+			<p:button outcome="/home.xhtml" value="Ir al inicio"
+				icon="ui-icon-home"></p:button>
 	</ui:define>
 </ui:composition>
 </html>

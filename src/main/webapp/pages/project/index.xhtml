@@ -7,39 +7,47 @@
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:p="http://primefaces.org/ui">
     <ui:composition template="#{root}/WEB-INF/template/commonLayout.xhtml">
-        <ui:define name="header">
+    	<ui:define name="css">
+			<link href="/PFM/resources/css/style_index_list.css" rel="stylesheet" />   		
+		</ui:define>
+	    <ui:define name="header">
             Proyectos
-        </ui:define>        
-        <ui:define name="content"> 
-        <p:growl id="growl" sticky="true" showDetail="true" />               
-            <h:form>
-            <p:dataTable var="project" value="#{listProjectsBean.projects}">
-			    <p:column width="75%" headerText="Proyectos">
-			        <h:outputText value="#{project.name}" />
-			    </p:column>
-			    <p:column style="text-align:center" headerText="">			        
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                          Opciones
-                          <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" role="menu">
-                          <li>
-                            <h:outputLink value="show.xhtml">                     
-			                     <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Detalles
-                                 <f:param name="id" value="#{project.id}" />
-		                    </h:outputLink>
-                          </li>
-                        </ul>
-                    </div>
-			    </p:column>
-			</p:dataTable>
-			</h:form>
-			<br/>
-            <p:button outcome="create.xhtml" value="Nuevo Proyecto" icon="ui-icon-plus">
-					</p:button> 
-            <p:button outcome="/home.xhtml" value="Ir al inicio" icon="ui-icon-home">
-					</p:button>    
-        </ui:define>
-    </ui:composition>
+        </ui:define> 
+	<ui:define name="content">
+		<p:growl id="growl" sticky="false" life="5000" showDetail="true" /> 
+		<table class="table table-bordered">
+			<h:form>
+					<tbody>
+						<tr class="active"><th class="text-center">Nombre</th><th class="text-center">Acciones</th></tr>
+						<ui:repeat var="project" value="#{listProjectsBean.projects}">
+							<tr class="text-center">
+				            	<td><h:outputText value="#{project.name}" /></td>
+				            	<td>
+				            		<div class="btn-group" role="group">
+				                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+				                        Opciones
+				                        <span class="caret"></span>
+				                      </button>
+				                      <ul class="dropdown-menu" role="menu">
+				                        <li>
+				                          <h:outputLink value="show.xhtml">                     
+					                     <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Detalles
+				                               <f:param name="id" value="#{project.id}" />
+				                    </h:outputLink>
+				                        </li>
+				                      </ul>
+				                  </div>
+				            	</td>
+				            </tr>
+				         </ui:repeat>
+				    </tbody>
+			</h:form>		    
+		</table> 
+		<br />
+		<p:button outcome="create.xhtml" value="Nuevo Proyecto" icon="ui-icon-plus">
+				</p:button> 
+           <p:button outcome="/home.xhtml" value="Ir al inicio" icon="ui-icon-home">
+				</p:button> 
+	</ui:define>
+	</ui:composition>
 </html>
