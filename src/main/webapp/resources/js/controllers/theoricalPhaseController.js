@@ -2,11 +2,15 @@
  * AngularJS theoricalPhaseController
  */
 
-projectApp.controller("theoricalPhaseController", ['$scope', '$isTest', 'workTimeService', function ($scope, $isTest, workTimeService) {  
+projectApp.controller("theoricalPhaseController", ['$scope', '$isTest', 'bridgeService', 'workTimeService', function ($scope, $isTest, bridgeService, workTimeService) {  
+	
+	$scope.schedule = bridgeService.shareData;
+	
 	if(!$isTest){
 		  initJSFScope($scope);
-		  workTimeService.calculateWorkDaysAndHour($scope.showTheoricalPhasesBean.project.startString, $scope.showTheoricalPhasesBean.project.endString)
-	 }
+		  workTimeService.calculateWorkDaysAndHour($scope.showTheoricalPhasesBean.project.startString, $scope.showTheoricalPhasesBean.project.endString, $scope.schedule.listHoursEachDay());
+		  console.log(workTimeService);
+	}
 	
 	$scope.averageMonthCost = function(){
 		var cost = 0;
@@ -42,15 +46,16 @@ projectApp.controller("theoricalPhaseController", ['$scope', '$isTest', 'workTim
 	}
 	
 	$scope.initTransMonths = function(){
-		  return workTimeService.workMonths()/10;
+		  return workTimeService.workMonths($scope.schedule.workDays)/10;
 	}
 	
 	$scope.initStartDate = function(){
-		  return moment($scope.showTheoricalPhasesBean.project.start, 'DD/MM/YYYY').format("DD/MM/YYYY");
+		  console.log($scope.showTheoricalPhasesBean.project.start);
+		  return moment($scope.showTheoricalPhasesBean.project.startString, 'DD/MM/YYYY').format("DD/MM/YYYY");
 	}
 	
 	$scope.initEndDate = function(){
-		  return moment($scope.showTheoricalPhasesBean.project.start, 'DD/MM/YYYY').add(workTimeService.naturalDays()*0.1, "days").format("DD/MM/YYYY");;
+		  return moment($scope.showTheoricalPhasesBean.project.startString, 'DD/MM/YYYY').add(workTimeService.naturalDays()*0.1, "days").format("DD/MM/YYYY");;
 	}
 	
 	$scope.iterationAverageHours = function(){
@@ -62,7 +67,7 @@ projectApp.controller("theoricalPhaseController", ['$scope', '$isTest', 'workTim
 	}
 	
 	$scope.iterationAverageMonths = function(){
-		return workTimeService.workMonths()/10;
+		return workTimeService.workMonths($scope.schedule.workDays)/10;
 	}
 	
 	$scope.ElabHours = function(){
@@ -74,7 +79,7 @@ projectApp.controller("theoricalPhaseController", ['$scope', '$isTest', 'workTim
 	}
 	
 	$scope.ElabMonths = function(){
-		  return workTimeService.workMonths()*0.3;
+		  return workTimeService.workMonths($scope.schedule.workDays)*0.3;
 	}
 	
 	$scope.ElabStartDate = function(){
@@ -94,7 +99,7 @@ projectApp.controller("theoricalPhaseController", ['$scope', '$isTest', 'workTim
 	}
 	
 	$scope.ConstrMonths = function(){
-		  return workTimeService.workMonths()*0.5;
+		  return workTimeService.workMonths($scope.schedule.workDays)*0.5;
 	}
 	
 	$scope.ConstrStartDate = function(){
@@ -112,6 +117,12 @@ projectApp.controller("theoricalPhaseController", ['$scope', '$isTest', 'workTim
 	$scope.transEndDate = function(){
 		  return moment($scope.transStartDate(), "DD/MM/YYYY").add(workTimeService.naturalDays()*0.1, "days").format("DD/MM/YYYY");
 	}
+	
+	$scope.projectMonths = function(){
+		return workTimeService.workMonths($scope.schedule.workDays);
+	}
+	
+	/*Esfuerzo*/
 	
 	$scope.initCost = function(){
 		  return $scope.showTheoricalPhasesBean.project.cost*0.05;

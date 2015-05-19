@@ -35,14 +35,14 @@
 		<ui:define name="css">
 			<link href="/PFM/resources/css/wizard.css" rel="stylesheet" />
 			<style>
-.table-bordered>tbody>tr>td {
-	border: none;
-	border-top: 1px solid #ddd;
-}
-
-.table-bordered label {
-	margin-right: 10px;
-}
+				.table-bordered>tbody>tr>td {
+					border: none;
+					border-top: 1px solid #ddd;
+				}
+				
+				.table-bordered label {
+					margin-right: 10px;
+				}
 </style>
 		</ui:define>
 		<ui:define name="header">
@@ -51,7 +51,7 @@
 		<ui:define name="content">
 			<c:set var="projectBean" scope="request" value="#{createProjectBean}" />
 			<div class="panel-body">
-				<h:form ng-app="projectApp">
+				<h:form ng-app="projectApp" prependId="false">
 					<div ng-controller="wizardController" ng-form="" id="scheduleForm"
 						name="scheduleForm">
 						<div>
@@ -211,6 +211,7 @@
 								<div>
 									<div ng-switch-when="two" class="wave">
 										<fieldset ng-controller="projectController">
+
 											<div class="row" style="margin-top: 10px">
 												<div class="col-sm-5 inputs_projects">
 													<div class="row">
@@ -230,7 +231,7 @@
 																styleClass="label_height" />
 														</div>
 														<div class="col-sm-6">
-															<p:inputText styleClass="datepicker" size="25" readonly="true" 
+															<p:inputText styleClass="datepicker" size="25" readonly="#{facesContext.renderResponse}"
 																requiredMessage="Seleccione una fecha válida"
 																id="startString" value="{{projectBean.project.startString}}"
 																ng-required="true" required="true" label="" />
@@ -242,7 +243,7 @@
 																styleClass="label_height" />
 														</div>
 														<div class="col-sm-6">
-															<p:inputText styleClass="datepicker" size="25" readonly="true" 
+															<p:inputText styleClass="datepicker" size="25" readonly="#{facesContext.renderResponse}"
 																requiredMessage="Seleccione una fecha válida"
 																id="endString" value="{{projectBean.project.endString}}"
 																ng-required="true" required="true" label="" />
@@ -326,7 +327,7 @@
 											</div>
 										</fieldset>
 										<script type="text/javascript">
-											$(function() {
+											$(function() {												
 												$(".datepicker")
 														.daterangepicker(
 																{
@@ -364,9 +365,10 @@
 																	}
 																});
 												$(".datepicker").on("apply.daterangepicker",function(ev,picker){												
-													angular.element($(this)).triggerHandler("input");												
+													angular.element($(this)).triggerHandler("input");	
 												});
 											});
+											
 											
 										</script>
 									</div>
