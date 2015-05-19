@@ -14,29 +14,36 @@
         </ui:define>
 	<ui:define name="content">
 		<p:growl id="growl" sticky="false" life="5000" showDetail="true" />
-		<table class="table table-bordered">
-			<h:form>
-					<tbody>
-						<tr class="active"><th class="text-center">Nombre de contrato</th><th class="text-center">% de seguro</th></tr>
-						<ui:repeat var="contract" value="#{listContractBean.contracts}">
-							<tr class="text-center">
-				            	<td><h:outputText value="#{contract.contractType}" /></td>
-				            	<td>
-				            		<h:outputText value="#{contract.insurance}">
-										<f:convertNumber minFractionDigits="2" maxFractionDigits="2"
-											locale="en_US" type="number" />
-									</h:outputText>
-				            	</td>
-				            </tr>
-				         </ui:repeat>
-				    </tbody>
-			</h:form>		    
-				</table> 
-			<br />
-			<p:button outcome="create.xhtml" value="Nuevo Contrato"
-				icon="ui-icon-plus"></p:button>
-			<p:button outcome="/home.xhtml" value="Ir al inicio"
-				icon="ui-icon-home"></p:button>
+		<h:panelGroup rendered="#{not empty listContractBean.contracts}">
+			<table class="table table-bordered">
+				<h:form>
+						<tbody>
+							<tr class="active"><th class="text-center">Nombre de contrato</th><th class="text-center">% de seguro</th></tr>
+							<ui:repeat var="contract" value="#{listContractBean.contracts}">
+								<tr class="text-center">
+					            	<td><h:outputText value="#{contract.contractType}" /></td>
+					            	<td>
+					            		<h:outputText value="#{contract.insurance}">
+											<f:convertNumber minFractionDigits="2" maxFractionDigits="2"
+												locale="en_US" type="number" />
+										</h:outputText>
+					            	</td>
+					            </tr>
+					         </ui:repeat>
+					    </tbody>
+				</h:form>		    
+			</table> 
+		</h:panelGroup>	
+		<h:panelGroup rendered="#{empty listContractBean.contracts}">
+		    <blockquote>
+			  <p>La lista de contratos está vacía.</p>
+			</blockquote>
+		</h:panelGroup>	
+		<br />
+		<p:button outcome="create.xhtml" value="Nuevo Contrato"
+			icon="ui-icon-plus"></p:button>
+		<p:button outcome="/home.xhtml" value="Ir al inicio"
+			icon="ui-icon-home"></p:button>
 	</ui:define>
 </ui:composition>
 </html>
