@@ -18,4 +18,17 @@ public class Holiday {
 		
 	}
 
+	public void setId(int i) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	
+	
+
 }
