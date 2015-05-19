@@ -53,9 +53,7 @@
 									</div>
 									<div class="col-lg-2">
 										<h:selectOneMenu id="project"
-											value="#{showTheoricalPhasesBean.project.id}" required="true"
-											requiredMessage="Debe selecionar el proyecto"
-											validatorMessage="Debe seleccionar el proyecto"
+											value="#{showTheoricalPhasesBean.project.id}"
 											immediate="true" onchange="submit()"
 											valueChangeListener="#{showTheoricalPhasesBean.onChangeProject}">
 											<f:selectItem itemLabel="Seleccione el proyecto"
@@ -63,7 +61,6 @@
 											<f:selectItems value="#{showTheoricalPhasesBean.projectList}"
 												var="project" itemValue="#{project.id}"
 												itemLabel="#{project.name}" />
-											<f:validator validatorId="upm.miw.pfm.utils.ComboBoxValidator" />
 										</h:selectOneMenu>
 									</div>
 								</div>
