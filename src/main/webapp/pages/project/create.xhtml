@@ -34,7 +34,8 @@
 		</ui:define>
 		<ui:define name="css">
 			<link href="/PFM/resources/css/wizard.css" rel="stylesheet" />
-			<style>
+			<link href="/PFM/resources/css/daterange/daterangepicker-bs3.css" rel="stylesheet" />
+		<style>
 .table-bordered>tbody>tr>td {
 	border: none;
 	border-top: 1px solid #ddd;
@@ -360,11 +361,18 @@
 																				'Noviembre',
 																				'Deciembre' ],
 																		firstDay : 1,
-																		mindate:'05/13/2015'
+																		mindate: moment(),
 																	}
 																});
 												$(".datepicker").on("apply.daterangepicker",function(ev,picker){												
-													angular.element($(this)).triggerHandler("input");												
+													angular.element($(this)).triggerHandler("input");
+													if(this.id.indexOf("startString") > 0){
+														var start = moment(this.value, "DD/MM/YYYY");
+													    $('input[id$=endString]').data('daterangepicker').setMinDate(start);
+													}else if(this.id.indexOf("endString") > 0){
+														var end = moment(this.value, "DD/MM/YYYY");
+                                                        $('input[id$=startString]').data('daterangepicker').setMaxDate(end);   
+													}
 												});
 											});
 											

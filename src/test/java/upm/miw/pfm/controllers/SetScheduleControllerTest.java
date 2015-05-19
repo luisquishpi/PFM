@@ -15,7 +15,7 @@ import upm.miw.pfm.models.entities.Project;
 import upm.miw.pfm.models.entities.ProjectSchedule;
 import upm.miw.pfm.utils.Utils;
 
-public class SetScheduleControllerMockTest {
+public class SetScheduleControllerTest {
 
     private SetScheduleController controller;
     private Project project;
