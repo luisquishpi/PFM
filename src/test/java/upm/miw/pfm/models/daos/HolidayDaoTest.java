@@ -80,12 +80,10 @@ public class HolidayDaoTest {
         assertEquals(3, holidayDao.findAll().size());
     }
   
-    /*
     @Test
     public void testValidateHoliday() {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         Validator validator = factory.getValidator();
-
         holiday = new Holiday(Utils.buildDate(2015, 10, 1), Utils.buildDate(2015, 10, 15));
         holidayDao.create(holiday);
         
@@ -98,5 +96,5 @@ public class HolidayDaoTest {
         errors = validator.validate(holiday2);
         assertFalse(errors.size() > 0);
     }
-    */
+    
 }
