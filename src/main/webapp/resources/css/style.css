@@ -71,3 +71,6 @@ table td {
 .currency::after{
 	content: "€"; 
 }
+.table-bordered label {
+    margin-right: 10px;
+}

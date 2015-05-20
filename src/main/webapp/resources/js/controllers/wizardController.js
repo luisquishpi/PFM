@@ -36,7 +36,7 @@
             $scope.step -= ($scope.isFirstStep()) ? 0 : 1;
         };
 
-        $scope.handleNext = function () {   
+        $scope.handleNext = function () {
         	if ($scope.scheduleForm.$valid){
                 $scope.step += 1;
         	}          
