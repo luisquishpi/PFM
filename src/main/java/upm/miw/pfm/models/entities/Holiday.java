@@ -2,37 +2,82 @@ package upm.miw.pfm.models.entities;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import upm.miw.pfm.utils.CheckDateHoliday;
+import upm.miw.pfm.utils.CheckUnique;
+
+@Entity
+@Table(name = "holiday")
+@CheckDateHoliday
+@CheckUnique
 public class Holiday {
 
-	public Holiday(Date startDate, Date endDate) {
-		// TODO Auto-generated constructor stub
-	}
+    @Id
+    @GeneratedValue
+    private Integer id;
 
-	public Holiday() {
-		// TODO Auto-generated constructor stub
-	}
+    @Column(name = "start", nullable = false)
+    private Date start;
 
-	public Integer getId() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Column(name = "end", nullable = false)
+    private Date end;
 
-	public void setEndDate(Date buildDate) {
-		// TODO Auto-generated method stub
-		
-	}
+    public Holiday() {
+    }
 
-	public void setId(int i) {
-		// TODO Auto-generated method stub
-		
-	}
+    public Holiday(Date start, Date end) {
+        this.start = start;
+        this.end = end;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
-		return true;
-	}
-	
-	
+    public Integer getId() {
+        return id;
+    }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Date getStart() {
+        return start;
+    }
+
+    public void setStart(Date start) {
+        this.start = start;
+    }
+
+    public Date getEnd() {
+        return end;
+    }
+
+    public void setEnd(Date end) {
+        this.end = end;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        assert obj != null;
+        Holiday other = (Holiday) obj;
+        return id == other.id && start.equals(other.start)
+                && end.equals(other.end);
+    }
+    
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((start == null) ? 0 : start.hashCode());
+        result = prime * result + ((end == null) ? 0 : end.hashCode());
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Holiday [id=" + id + ", Start=" + start + ", End=" + end + "]";
+    }
 }

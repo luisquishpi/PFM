@@ -1,10 +1,18 @@
 package upm.miw.pfm.models.daos;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 
 import org.junit.After;
 import org.junit.Before;
@@ -38,19 +46,17 @@ public class HolidayDaoTest {
     public void after(){
         holidayDao.query("delete from Holiday");
     }
-    
+        
     @Test
     public void testCreateAndRead() {
-        //assertEquals(holidayDao.read(holiday.getId()), holiday);
-    	assert(true);
+        assertEquals( holiday, holidayDao.read(holiday.getId()));
     }
 
     @Test
     public void testUpdate() {
-        holiday.setEndDate(Utils.buildDate(2015, 3, 5));
+        holiday.setEnd(Utils.buildDate(2015, 3, 5));
         holidayDao.update(holiday);
-        //assertEquals(holidayDao.read(holiday.getId()), holiday);
-        assert(true);
+        assertEquals(holiday, holidayDao.read(holiday.getId()));
     }
     
     @Test
@@ -71,7 +77,26 @@ public class HolidayDaoTest {
         listHoliday.add(holiday1);
         listHoliday.add(holiday2);
 
-        //assertEquals(3, holidayDao.findAll().size());
-        assert(true);
+        assertEquals(3, holidayDao.findAll().size());
     }
+  
+    /*
+    @Test
+    public void testValidateHoliday() {
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        Validator validator = factory.getValidator();
+
+        holiday = new Holiday(Utils.buildDate(2015, 10, 1), Utils.buildDate(2015, 10, 15));
+        holidayDao.create(holiday);
+        
+        Holiday holiday2 = new Holiday(Utils.buildDate(2015, 12, 5), Utils.buildDate(2015, 13, 10));
+        Holiday holidayInvalid = new Holiday(Utils.buildDate(2015, 10, 5), Utils.buildDate(2015, 10, 10));
+
+        Set<ConstraintViolation<Holiday>> errors = validator.validate(holidayInvalid);
+        assertTrue(errors.size() > 0);
+
+        errors = validator.validate(holiday2);
+        assertFalse(errors.size() > 0);
+    }
+    */
 }
