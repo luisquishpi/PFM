@@ -41,7 +41,15 @@ describe("Test calendarController", function(){
 				naturalDays: function(){
 					return 187;
 				},
-			}
+			},
+			bridgeService: 
+			{
+				shareData : {
+					listHoursEachDay: function(){ 
+										return [{workHours:0},{workHours:8},{workHours:8},{workHours:8},{workHours:8},{workHours:5},{workHours:0}];
+									  },
+					workDays: 21
+			}}
 		});
 	}));
 	
