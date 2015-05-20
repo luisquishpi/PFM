@@ -2,7 +2,6 @@
  * AngularJS HorarioController
  */
 projectApp.controller("scheduleController",['$scope', '$isTest', 'bridgeService', function($scope, $isTest, bridgeService) {
-
 	if(!$isTest){
 	  initJSFScope($scope);
 	}
@@ -30,7 +29,7 @@ projectApp.controller("scheduleController",['$scope', '$isTest', 'bridgeService'
 	$scope.hoursPerYear = function() {
 		return $scope.hoursPerDay() * $scope.daysPerYear();
 	}
-	
+
 	if(!$isTest){
 	$scope.$watchGroup(["projectBean.projectSchedule.mondayHours",
 	                    "projectBean.projectSchedule.tuesdayHours",

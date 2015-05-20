@@ -1,7 +1,3 @@
-/**
- * 
- */
-var projectApp = angular.module('projectApp', [ "angularfaces" ]);
 projectApp.factory('broadcastService', function($rootScope) {
     var sharedService = {};
     
@@ -40,7 +36,6 @@ projectApp.service("workTimeService", function(){
 	}
 	
 	this.calculateWorkDaysAndHour = function(startString, endString, listHoursEachDay ){
-		  
 		var days=0, hours=0;	
 		start = moment(startString, "DD/MM/YYYY");
 		end = moment(endString, "DD/MM/YYYY");

@@ -257,7 +257,7 @@
 																styleClass="label_height" />
 														</div>
 														<div class="col-sm-6">
-															<p:inputText styleClass="datepicker" size="25" readonly="true" 																
+															<p:inputText styleClass="datepicker" size="25" readonly="#{facesContext.renderResponse}" 																
 																id="startString" value="{{projectBean.project.startString}}"
 																requiredMessage="Ingrese la fecha de inicio del proyecto"
 																required="true" />
@@ -269,7 +269,7 @@
 																styleClass="label_height" />
 														</div>
 														<div class="col-sm-6">
-															<p:inputText styleClass="datepicker" size="25" readonly="true" 
+															<p:inputText styleClass="datepicker" size="25" readonly="#{facesContext.renderResponse}" 
 																id="endString" value="{{projectBean.project.endString}}"
 																requiredMessage="Ingrese la fecha fin del proyecto"
 																required="true" />

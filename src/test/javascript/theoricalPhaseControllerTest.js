@@ -9,8 +9,8 @@ describe("Test TheoricalPhaseController", function(){
 		scope.showTheoricalPhasesBean = {
 				  project:{
 					  cost: 85000,
-					  start: "2/3/2015",
-					  end: "4/9/2015", 
+					  startString: "2/3/2015",
+					  endString: "4/9/2015", 
 				  },
 				  employeeArray: [
 					 {
@@ -128,12 +128,36 @@ describe("Test TheoricalPhaseController", function(){
 						 }
 					 },
 				  ],
-				  workDays:21,
-				  workDaysArray: [{workHours:0},{workHours:8},{workHours:8},{workHours:8},{workHours:8},{workHours:5},{workHours:0}]
 		};
 		controller = $controller("theoricalPhaseController", {
 			$scope: scope,
-			$isTest: true
+			$isTest: true,
+			workTimeService:
+			{
+				calculateWorkDaysAndHour: function(){
+					return 0;
+				},
+				workHours: function(){
+					return 999;
+				},
+				workDays: function(){
+					return 135;
+				},
+				workMonths: function(){
+					return 6.428571428571429;
+				},
+				naturalDays: function(){
+					return 187;
+				},
+			},
+			bridgeService: 
+			{
+				shareData : {
+					listHoursEachDay: function(){ 
+										return [{workHours:0},{workHours:8},{workHours:8},{workHours:8},{workHours:8},{workHours:5},{workHours:0}];
+									  },
+					workDays: 21
+			}}
 		});
 	}));
 	

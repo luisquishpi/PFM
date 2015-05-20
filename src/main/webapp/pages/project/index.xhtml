@@ -15,34 +15,41 @@
         </ui:define> 
 	<ui:define name="content">
 		<p:growl id="growl" sticky="false" life="5000" showDetail="true" /> 
-		<table class="table table-bordered">
-			<h:form>
-					<tbody>
-						<tr class="active"><th class="text-center">Nombre</th><th class="text-center">Acciones</th></tr>
-						<ui:repeat var="project" value="#{listProjectsBean.projects}">
-							<tr class="text-center">
-				            	<td><h:outputText value="#{project.name}" /></td>
-				            	<td>
-				            		<div class="btn-group" role="group">
-				                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-				                        Opciones
-				                        <span class="caret"></span>
-				                      </button>
-				                      <ul class="dropdown-menu" role="menu">
-				                        <li>
-				                          <h:outputLink value="show.xhtml">                     
-					                     <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Detalles
-				                               <f:param name="id" value="#{project.id}" />
-				                    </h:outputLink>
-				                        </li>
-				                      </ul>
-				                  </div>
-				            	</td>
-				            </tr>
-				         </ui:repeat>
-				    </tbody>
-			</h:form>		    
-		</table> 
+		<h:panelGroup rendered="#{not empty listProjectsBean.projects}">
+			<table class="table table-bordered">
+				<h:form>
+						<tbody>
+							<tr class="active"><th class="text-center">Nombre</th><th class="text-center">Acciones</th></tr>
+							<ui:repeat var="project" value="#{listProjectsBean.projects}">
+								<tr class="text-center">
+					            	<td><h:outputText value="#{project.name}" /></td>
+					            	<td>
+					            		<div class="btn-group" role="group">
+					                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+					                        Opciones
+					                        <span class="caret"></span>
+					                      </button>
+					                      <ul class="dropdown-menu" role="menu">
+					                        <li>
+					                          <h:outputLink value="show.xhtml">                     
+						                     <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Detalles
+					                               <f:param name="id" value="#{project.id}" />
+					                    </h:outputLink>
+					                        </li>
+					                      </ul>
+					                  </div>
+					            	</td>
+					            </tr>
+					         </ui:repeat>
+					    </tbody>
+				</h:form>		    
+			</table> 
+		</h:panelGroup>
+		<h:panelGroup rendered="#{empty listProjectsBean.projects}">
+			    <blockquote>
+				  <p>La lista de proyectos está vacía.</p>
+				</blockquote>
+		</h:panelGroup>	
 		<br />
 		<p:button outcome="create.xhtml" value="Nuevo Proyecto" icon="ui-icon-plus">
 				</p:button> 

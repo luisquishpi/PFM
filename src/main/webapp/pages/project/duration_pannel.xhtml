@@ -18,29 +18,29 @@
 		</tr>
 		<tr>
 			<td class="ui-outputlabel ui-widget"><strong>Meses</strong></td>
-			<td class="ui-outputlabel ui-widget">{{initTransMonths()}}</td>
-			<td class="ui-outputlabel ui-widget">1.7</td>
-			<td class="ui-outputlabel ui-widget">2.9</td>
-			<td class="ui-outputlabel ui-widget">0.6</td>
-			<td class="ui-outputlabel ui-widget">5.8</td>
+			<td class="ui-outputlabel ui-widget">{{initTransMonths() | number:2}}</td>
+			<td class="ui-outputlabel ui-widget">{{ElabMonths() | number:2}}</td>
+			<td class="ui-outputlabel ui-widget">{{ConstrMonths() | number:2}}</td>
+			<td class="ui-outputlabel ui-widget">{{initTransMonths() | number:2}}</td>
+			<td class="ui-outputlabel ui-widget">{{projectMonths() | number:2}}</td>
 		</tr>
 		<tr>
 			<td class="ui-outputlabel ui-widget"><strong>Fecha
 					inicio</strong></td>
-			<td class="ui-outputlabel ui-widget">0.6</td>
-			<td class="ui-outputlabel ui-widget">1.7</td>
-			<td class="ui-outputlabel ui-widget">2.9</td>
-			<td class="ui-outputlabel ui-widget">0.6</td>
-			<td class="ui-outputlabel ui-widget">5.8</td>
+			<td class="ui-outputlabel ui-widget">{{initStartDate()}}</td>
+			<td class="ui-outputlabel ui-widget">{{ElabStartDate()}}</td>
+			<td class="ui-outputlabel ui-widget">{{ConstrStartDate()}}</td>
+			<td class="ui-outputlabel ui-widget">{{transStartDate()}}</td>
+			<td class="ui-outputlabel ui-widget">{{showTheoricalPhasesBean.project.startString}}</td>
 		</tr>
 		<tr>
 			<td class="ui-outputlabel ui-widget"><strong>Fecha
 					final</strong></td>
-			<td class="ui-outputlabel ui-widget">0.6</td>
-			<td class="ui-outputlabel ui-widget">1.7</td>
-			<td class="ui-outputlabel ui-widget">2.9</td>
-			<td class="ui-outputlabel ui-widget">0.6</td>
-			<td class="ui-outputlabel ui-widget">5.8</td>
+			<td class="ui-outputlabel ui-widget">{{initEndDate()}}</td>
+			<td class="ui-outputlabel ui-widget">{{ElabEndDate()}}</td>
+			<td class="ui-outputlabel ui-widget">{{ConstrEndDate()}}</td>
+			<td class="ui-outputlabel ui-widget">{{transEndDate()}}</td>
+			<td class="ui-outputlabel ui-widget">{{showTheoricalPhasesBean.project.endString}}</td>
 		</tr>
 		<tr>
 			<td class="ui-outputlabel ui-widget"><strong>Iteraciones</strong></td>
