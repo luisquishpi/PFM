@@ -18,7 +18,7 @@ public class HolidayControllerEjb implements HolidayController {
 	@Override
 	public Holiday getHolidayById(Integer id) {
 		// TODO Auto-generated method stub
-		return new Holiday();
+		return new Holiday(Utils.buildDate(2015, 03, 03), Utils.buildDate(2015, 03, 03));
 	}
 
 	@Override

@@ -38,7 +38,7 @@ public class SetHolidaysControllerTest {
     	
         new MockHolidayDao(holiday, mockListHoliday);
         holidayController.createHoliday(holiday);
-        
+        System.out.println(holiday);
     }
 
     @Test
