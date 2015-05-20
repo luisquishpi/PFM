@@ -22,13 +22,13 @@ projectApp.controller("theoricalPhaseController", ['$scope', '$isTest', 'bridgeS
 	}
 	
 	$scope.averageDayCost = function(){
-		return $scope.averageMonthCost()/$scope.showTheoricalPhasesBean.workDays;
+		return $scope.averageMonthCost()/$scope.schedule.workDays;
 	}
 	
 	$scope.averageHourCost = function(){
 		var days = 0;
-		for (i = 0; i < $scope.showTheoricalPhasesBean.workDaysArray.length; i++){
-			days += $scope.showTheoricalPhasesBean.workDaysArray[i].workHours;
+		for (i = 0; i < $scope.schedule.listHoursEachDay().length; i++){
+			days += $scope.schedule.listHoursEachDay()[i].workHours;
 		}
 		return $scope.averageDayCost()/(days/5);
 	}
