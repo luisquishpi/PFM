@@ -19,5 +19,4 @@ public class CheckUniqueValidator implements ConstraintValidator<CheckUnique, Va
         
         return !DaoFactory.getFactory().getVacationDao().exists(value.getEmployee(), value.getStart(), value.getEnd());
     }
-
 }
