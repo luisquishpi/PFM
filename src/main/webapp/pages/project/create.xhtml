@@ -14,11 +14,7 @@
             Crear Proyecto
         </ui:define>
 		<ui:define name="javascript">
-			<script>
-				var projectApp = angular.module('projectApp', [ "angularfaces",
-						'ngAnimate', 'ui.bootstrap']);
-				app.value("$isTest", false);
-			</script>
+			<script src="/PFM/resources/js/project/project.js"></script>
 			<script src="/PFM/resources/js/libs/moment.js"></script>
 			<script src="/PFM/resources/js/controllers/projectApp.js"></script>
 			<script src="/PFM/resources/js/controllers/scheduleController.js"></script>
@@ -33,19 +29,8 @@
 			<script src="/PFM/resources/js/libs/daterangepicker.js"></script>
 		</ui:define>
 		<ui:define name="css">
-			<link href="/PFM/resources/css/daterange/daterangepicker-bs3.css" rel="stylesheet" />
 			<link href="/PFM/resources/css/wizard.css" rel="stylesheet" />
-			<style>
-				.table-bordered>tbody>tr>td {
-					border: none;
-					border-top: 1px solid #ddd;
-				}
-				
-				.table-bordered label {
-					margin-right: 10px;
-				}
-			
-			</style>
+			<link href="/PFM/resources/css/daterange/daterangepicker-bs3.css" rel="stylesheet" />
 		</ui:define>
 		<ui:define name="header">
             Crear Proyecto
@@ -53,8 +38,8 @@
 		<ui:define name="content">
 			<c:set var="projectBean" scope="request" value="#{createProjectBean}" />
 			<div class="panel-body">
-				<h:form ng-app="projectApp" prependId="false">
-					<p:growl id="growl" sticky="false" life="5000" showDetail="false" />
+				<h:form ng-app="projectApp">
+				    <p:growl id="growl" sticky="false" life="5000" />
 					<div ng-controller="wizardController" ng-form="" id="scheduleForm"
 						name="scheduleForm">
 						<div>
@@ -75,11 +60,12 @@
 													styleClass="label_height" />
 											</div>
 											<div class="col-sm-2">
-												<p:inputText id="workDays" requiredMessage="Este campo es obligatorio"
+												<p:inputText id="workDays"
 													value="{{projectBean.projectSchedule.workDays}}"
-													required="true" type="text" ng-min="0" ng-required="true" ng-max="31">
-													<f:validateLongRange minimum="0" maximum="31"/>
-												</p:inputText>	
+													required="true" requiredMessage="Ingrese los dias laborables por mes"
+													validatorMessage="Los dias laborales deben estar entre 1 y 31">
+												    <f:validateLongRange minimum="1" maximum="31" />	
+												</p:inputText>
 											</div>
 											<div class="col-sm-2">
 												<p:outputLabel for="mondayHours" value="Lunes:"
@@ -88,7 +74,10 @@
 											<div class="col-sm-2">
 												<p:inputText id="mondayHours"
 													value="{{projectBean.projectSchedule.mondayHours}}"
-													ng-required="true" required="true" ng-min="0" ng-max="24" />
+													requiredMessage="Ingrese las horas laborales del dia Lunes" required="true"
+													validatorMessage="Las horas laborales deben estar entre 0 y 24">
+                                                    <f:validateLongRange minimum="0" maximum="24" />    
+                                                </p:inputText>
 											</div>
 											<div class="col-sm-2">
 												<p:outputLabel for="hoursPerWeek" value="Total horas:"
@@ -113,7 +102,10 @@
 											<div class="col-sm-2">
 												<p:inputText id="tuesdayHours"
 													value="{{projectBean.projectSchedule.tuesdayHours}}"
-													ng-required="true" required="true" ng-min="0" ng-max="24" />
+													requiredMessage="Ingrese las horas laborales del dia Martes" required="true"
+													validatorMessage="Las horas laborales deben estar entre 0 y 24">
+                                                    <f:validateLongRange minimum="0" maximum="24" />    
+                                                </p:inputText>
 											</div>
 											<div class="col-sm-2">
 												<p:outputLabel for="hoursPerDay" value="Media laboral:"
@@ -140,7 +132,10 @@
 											<div class="col-sm-2">
 												<p:inputText id="wednesdayHours"
 													value="{{projectBean.projectSchedule.wednesdayHours}}"
-													ng-required="true" required="true" ng-min="0" ng-max="24" />
+													requiredMessage="Ingrese las horas laborales del dia Miércoles" required="true"
+													validatorMessage="Las horas laborales deben estar entre 0 y 24">
+                                                    <f:validateLongRange minimum="0" maximum="24" />    
+                                                </p:inputText>
 											</div>
 										</div>
 										<div class="row">
@@ -158,7 +153,10 @@
 											<div class="col-sm-2">
 												<p:inputText id="thursdayHours"
 													value="{{projectBean.projectSchedule.thursdayHours}}"
-													ng-required="true" required="true" ng-min="0" ng-max="24" />
+													requiredMessage="Ingrese las horas laborales del dia Jueves" required="true"
+													validatorMessage="Las horas laborales deben estar entre 0 y 24">
+                                                    <f:validateLongRange minimum="0" maximum="24" />    
+                                                </p:inputText>
 											</div>
 										</div>
 										<div class="row">
@@ -177,7 +175,10 @@
 											<div class="col-sm-2">
 												<p:inputText id="fridayHours"
 													value="{{projectBean.projectSchedule.fridayHours}}"
-													ng-required="true" required="true" ng-min="0" ng-max="24" />
+													requiredMessage="Ingrese las horas laborales del dia Viernes" required="true"
+													validatorMessage="Las horas laborales deben estar entre 0 y 24">
+                                                    <f:validateLongRange minimum="0" maximum="24" />    
+                                                </p:inputText>
 											</div>
 										</div>
 										<div class="row">
@@ -196,7 +197,10 @@
 											<div class="col-sm-2">
 												<p:inputText id="saturdayHours"
 													value="{{projectBean.projectSchedule.saturdayHours}}"
-													ng-required="true" required="true" ng-min="0" ng-max="24" />
+													requiredMessage="Ingrese las horas laborales del dia Sábado" required="true"
+													validatorMessage="Las horas laborales deben estar entre 0 y 24">
+                                                    <f:validateLongRange minimum="0" maximum="24" />    
+                                                </p:inputText>
 											</div>
 										</div>
 										<div class="row">
@@ -208,7 +212,10 @@
 											<div class="col-sm-2">
 												<p:inputText id="sundayHours"
 													value="{{projectBean.projectSchedule.sundayHours}}"
-													ng-required="true" required="true" ng-min="0" ng-max="24" />
+													requiredMessage="Ingrese las horas laborales del dia Domingo" required="true"
+													validatorMessage="Las horas laborales deben estar entre 0 y 24">
+                                                    <f:validateLongRange minimum="0" maximum="24" />    
+                                                </p:inputText>
 											</div>
 										</div>
 									</fieldset>
@@ -216,7 +223,6 @@
 								<div>
 									<div ng-switch-when="two" class="wave">
 										<fieldset ng-controller="projectController">
-
 											<div class="row" style="margin-top: 10px">
 												<div class="col-sm-5 inputs_projects">
 													<div class="row">
@@ -226,7 +232,8 @@
 														</div>
 														<div class="col-sm-6">
 															<p:inputText id="name"
-																value="{{projectBean.project.name}}" ng-required="true"
+																value="{{projectBean.project.name}}"
+																requiredMessage="Ingrese el nombre del proyecto"
 																required="true" />
 														</div>
 													</div>
@@ -236,10 +243,10 @@
 																styleClass="label_height" />
 														</div>
 														<div class="col-sm-6">
-															<p:inputText styleClass="datepicker" size="25" readonly="#{facesContext.renderResponse}"
-																requiredMessage="Seleccione una fecha válida"
+															<p:inputText styleClass="datepicker" size="25" readonly="#{facesContext.renderResponse}" 																
 																id="startString" value="{{projectBean.project.startString}}"
-																ng-required="true" required="true" label="" />
+																requiredMessage="Ingrese la fecha de inicio del proyecto"
+																required="true" />
 														</div>
 													</div>
 													<div class="row">
@@ -248,10 +255,10 @@
 																styleClass="label_height" />
 														</div>
 														<div class="col-sm-6">
-															<p:inputText styleClass="datepicker" size="25" readonly="#{facesContext.renderResponse}"
-																requiredMessage="Seleccione una fecha válida"
+															<p:inputText styleClass="datepicker" size="25" readonly="#{facesContext.renderResponse}" 
 																id="endString" value="{{projectBean.project.endString}}"
-																ng-required="true" required="true" label="" />
+																requiredMessage="Ingrese la fecha fin del proyecto"
+																required="true" />
 														</div>
 													</div>
 													<div class="row">
@@ -261,8 +268,12 @@
 														</div>
 														<div class="col-sm-6">
 															<p:inputText id="cost"
-																value="{{projectBean.project.cost}}" ng-required="true"
-																required="true" ng-min="0" />
+																value="{{projectBean.project.cost}}"
+																required="true"
+																requiredMessage="Ingrese el presupuesto del proyecto"
+																validatorMessage="El presupuesto debe ser de al menos 0">
+			                                                    <f:validateLongRange minimum="0" />    
+			                                                </p:inputText>
 														</div>
 													</div>
 												</div>
@@ -331,57 +342,6 @@
 												</div>
 											</div>
 										</fieldset>
-										<script type="text/javascript">
-											$(function() {												
-												$(".datepicker")
-														.daterangepicker(
-																{
-																	singleDatePicker : true,
-																	timePicker : false,
-																	format : 'DD/MM/YYYY',
-																	locale : {
-																		applyLabel : 'Aceptar',
-																		cancelLabel : 'Cancelar',
-																		fromLabel : 'Del',
-																		toLabel : 'Al',
-																		daysOfWeek : [
-																				'Do',
-																				'Lu',
-																				'Ma',
-																				'Mi',
-																				'Ju',
-																				'Vi',
-																				'Sa' ],
-																		monthNames : [
-																				'Enero',
-																				'Febrero',
-																				'Marzo',
-																				'Abril',
-																				'Mayo',
-																				'Junio',
-																				'Julio',
-																				'Agosto',
-																				'Septiembre',
-																				'Octubre',
-																				'Noviembre',
-																				'Deciembre' ],
-																		firstDay : 1,
-																		mindate: moment(),
-																	}
-																});
-												$(".datepicker").on("apply.daterangepicker",function(ev,picker){												
-													angular.element($(this)).triggerHandler("input");	
-													angular.element($(this)).triggerHandler("input");
-													if(this.id.indexOf("startString") > 0){
-														var start = moment(this.value, "DD/MM/YYYY");
-													    $('input[id$=endString]').data('daterangepicker').setMinDate(start);
-													}else if(this.id.indexOf("endString") > 0){
-														var end = moment(this.value, "DD/MM/YYYY");
-                                                        $('input[id$=startString]').data('daterangepicker').setMaxDate(end);   
-													}
-												});
-											});
-										</script>
 									</div>
 								</div>
 							</div>
@@ -390,7 +350,8 @@
 							<p:commandButton value="Atrás" ng-click="handlePrevious()"
 								ng-show="!isFirstStep()" icon="ui-icon-arrow-1-w" />
 							<p:commandButton value="{{getNextLabel()}}"
-								ng-click="handleNext()"	update="growl"				
+								update="growl"
+								oncomplete="if (args &amp;&amp; !args.validationFailed) handleNext();"	
 								ng-show="isFirstStep()" icon="ui-icon-arrow-1-e" />
 							<p:commandButton value="Guardar"
 								action="#{createProjectBean.process}" ng-show="!isFirstStep()"

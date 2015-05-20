@@ -38,6 +38,7 @@
 		<mapping class='upm.miw.pfm.models.entities.Contract' />
 		<mapping class='upm.miw.pfm.models.entities.Employee' />
 		<mapping class='upm.miw.pfm.models.entities.Vacation' />
+		<mapping class='upm.miw.pfm.models.entities.Holiday' />
 
 	</session-factory>
 </hibernate-configuration>
