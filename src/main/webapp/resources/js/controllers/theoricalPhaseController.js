@@ -34,7 +34,7 @@ projectApp.controller("theoricalPhaseController", ['$scope', '$isTest', 'bridgeS
 	}
 	
 	$scope.recomendedDays = function(){
-		  return 13.5;
+		  return $scope.initTransDays();
 	}
 	
 	$scope.initTransHours = function(){
