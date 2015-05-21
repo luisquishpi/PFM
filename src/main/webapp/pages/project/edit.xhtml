@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ac="http://beyondjava.net/angularFacesCore"
+	xmlns:p="http://primefaces.org/ui">
+<h:body ng-controller="scheduleController">
+	<ui:composition template="#{root}/WEB-INF/template/commonLayout.xhtml">
+		<ui:define name="header">
+            Crear Proyecto
+        </ui:define>
+		<ui:define name="javascript">
+			<script src="/PFM/resources/js/project/project.js"></script>
+			<script src="/PFM/resources/js/libs/moment.js"></script>
+			<script src="/PFM/resources/js/controllers/projectApp.js"></script>
+			<script src="/PFM/resources/js/controllers/scheduleController.js"></script>
+			<script src="/PFM/resources/js/controllers/projectController.js"></script>
+			<script
+				src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.8/angular-animate.min.js"></script>
+			<script
+				src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.0/ui-bootstrap.min.js"></script>
+			<script
+				src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.0/ui-bootstrap-tpls.min.js"></script>
+			<script src="/PFM/resources/js/controllers/wizardController.js"></script>
+			<script src="/PFM/resources/js/libs/daterangepicker.js"></script>
+		</ui:define>
+		<ui:define name="css">
+			<link href="/PFM/resources/css/wizard.css" rel="stylesheet" />
+			<link href="/PFM/resources/css/daterange/daterangepicker-bs3.css" rel="stylesheet" />
+		</ui:define>
+		<ui:define name="header">
+            Crear Proyecto
+        </ui:define>
+		<ui:define name="content">
+			<c:set var="projectBean" scope="request" value="#{editProjectBean}" />
+			<div class="panel-body">
+				<h:form ng-app="projectApp">
+				    <p:growl id="growl" sticky="false" life="5000" />
+					<div ng-controller="wizardController" ng-form="" id="scheduleForm"
+						name="scheduleForm">
+						<div>
+							<div class="btn-group">
+								<button class="btn" onclick="return false;"
+									ng-class="{'btn-primary':isCurrentStep(0)}">Establecer
+									horario</button>
+								<button class="btn" onclick="return false;"
+									ng-class="{'btn-primary':isCurrentStep(1)}">Establecer
+									variables proyecto</button>
+							</div>
+							<div ng-switch="getCurrentStep()" class="slide-frame">
+								<div ng-switch-when="one" class="wave">
+									<fieldset ng-controller="scheduleController">
+										<div class="row" style="margin-top: 10px">
+											<div class="col-sm-3">
+												<p:outputLabel for="workDays" value="Días laborales/mes:"
+													styleClass="label_height" />
+											</div>
+											<div class="col-sm-2">
+												<p:inputText id="workDays"
+													value="{{projectBean.projectSchedule.workDays}}"
+													required="true" requiredMessage="Ingrese los dias laborables por mes"
+													validatorMessage="Los dias laborales deben estar entre 1 y 31">
+												    <f:validateLongRange minimum="1" maximum="31" />	
+												</p:inputText>
+											</div>
+											<div class="col-sm-2">
+												<p:outputLabel for="mondayHours" value="Lunes:"
+													styleClass="label_height" />
+											</div>
+											<div class="col-sm-2">
+												<p:inputText id="mondayHours"
+													value="{{projectBean.projectSchedule.mondayHours}}"
+													requiredMessage="Ingrese las horas laborales del dia Lunes" required="true"
+													validatorMessage="Las horas laborales deben estar entre 0 y 24">
+                                                    <f:validateLongRange minimum="0" maximum="24" />    
+                                                </p:inputText>
+											</div>
+											<div class="col-sm-2">
+												<p:outputLabel for="hoursPerWeek" value="Total horas:"
+													styleClass="label_height" />
+											</div>
+											<div class="col-sm-1">
+												<h:outputText id="hoursPerWeek" value="{{hoursPerWeek()}}" />
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-3">
+												<p:outputLabel for="monthsPerYear"
+													value="Meses laborales/año:" styleClass="label_height" />
+											</div>
+											<div class="col-sm-2 right-text">
+												<h:outputText id="monthsPerYear" value="{{monthsPerYear}}" />
+											</div>
+											<div class="col-sm-2">
+												<p:outputLabel for="tuesdayHours" value="Martes:"
+													styleClass="label_height" />
+											</div>
+											<div class="col-sm-2">
+												<p:inputText id="tuesdayHours"
+													value="{{projectBean.projectSchedule.tuesdayHours}}"
+													requiredMessage="Ingrese las horas laborales del dia Martes" required="true"
+													validatorMessage="Las horas laborales deben estar entre 0 y 24">
+                                                    <f:validateLongRange minimum="0" maximum="24" />    
+                                                </p:inputText>
+											</div>
+											<div class="col-sm-2">
+												<p:outputLabel for="hoursPerDay" value="Media laboral:"
+													styleClass="label_height" />
+											</div>
+											<div class="col-sm-1">
+												<h:outputText id="hoursPerDay"
+													value="{{hoursPerDay() | number:2}}" />
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-3">
+												<p:outputLabel for="hoursPerDay2"
+													value="Horas laborales/día:" styleClass="label_height" />
+											</div>
+											<div class="col-sm-2 right-text">
+												<h:outputText id="hoursPerDay2"
+													value="{{hoursPerDay() | number:2}}" />
+											</div>
+											<div class="col-sm-2">
+												<p:outputLabel for="wednesdayHours" value="Miercoles:"
+													styleClass="label_height" />
+											</div>
+											<div class="col-sm-2">
+												<p:inputText id="wednesdayHours"
+													value="{{projectBean.projectSchedule.wednesdayHours}}"
+													requiredMessage="Ingrese las horas laborales del dia Miércoles" required="true"
+													validatorMessage="Las horas laborales deben estar entre 0 y 24">
+                                                    <f:validateLongRange minimum="0" maximum="24" />    
+                                                </p:inputText>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-3">
+												<p:outputLabel for="daysPerYear" value="Días/año:"
+													styleClass="label_height" />
+											</div>
+											<div class="col-sm-2 right-text">
+												<h:outputText id="daysPerYear" value="{{daysPerYear()}}" />
+											</div>
+											<div class="col-sm-2">
+												<p:outputLabel for="thursdayHours" value="Jueves:"
+													styleClass="label_height" />
+											</div>
+											<div class="col-sm-2">
+												<p:inputText id="thursdayHours"
+													value="{{projectBean.projectSchedule.thursdayHours}}"
+													requiredMessage="Ingrese las horas laborales del dia Jueves" required="true"
+													validatorMessage="Las horas laborales deben estar entre 0 y 24">
+                                                    <f:validateLongRange minimum="0" maximum="24" />    
+                                                </p:inputText>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-3">
+												<p:outputLabel for="hoursPerMonth" value="Horas/mes:"
+													styleClass="label_height" />
+											</div>
+											<div class="col-sm-2 right-text">
+												<h:outputText id="hoursPerMonth"
+													value="{{hoursPerMonth() | number:2}}" />
+											</div>
+											<div class="col-sm-2">
+												<p:outputLabel for="fridayHours" value="Viernes:"
+													styleClass="label_height" />
+											</div>
+											<div class="col-sm-2">
+												<p:inputText id="fridayHours"
+													value="{{projectBean.projectSchedule.fridayHours}}"
+													requiredMessage="Ingrese las horas laborales del dia Viernes" required="true"
+													validatorMessage="Las horas laborales deben estar entre 0 y 24">
+                                                    <f:validateLongRange minimum="0" maximum="24" />    
+                                                </p:inputText>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-3">
+												<p:outputLabel for="hoursPerYear" value="Horas/año:"
+													styleClass="label_height" />
+											</div>
+											<div class="col-sm-2 right-text">
+												<h:outputText id="hoursPerYear"
+													value="{{hoursPerYear() | number:2}}" />
+											</div>
+											<div class="col-sm-2">
+												<p:outputLabel for="saturdayHours" value="Sábado:"
+													styleClass="label_height" />
+											</div>
+											<div class="col-sm-2">
+												<p:inputText id="saturdayHours"
+													value="{{projectBean.projectSchedule.saturdayHours}}"
+													requiredMessage="Ingrese las horas laborales del dia Sábado" required="true"
+													validatorMessage="Las horas laborales deben estar entre 0 y 24">
+                                                    <f:validateLongRange minimum="0" maximum="24" />    
+                                                </p:inputText>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-5"></div>
+											<div class="col-sm-2">
+												<p:outputLabel for="sundayHours" value="Domingo:"
+													styleClass="label_height" />
+											</div>
+											<div class="col-sm-2">
+												<p:inputText id="sundayHours"
+													value="{{projectBean.projectSchedule.sundayHours}}"
+													requiredMessage="Ingrese las horas laborales del dia Domingo" required="true"
+													validatorMessage="Las horas laborales deben estar entre 0 y 24">
+                                                    <f:validateLongRange minimum="0" maximum="24" />    
+                                                </p:inputText>
+											</div>
+										</div>
+									</fieldset>
+								</div>
+								<div>
+									<div ng-switch-when="two" class="wave">
+										<fieldset ng-controller="projectController">
+											<div class="row" style="margin-top: 10px">
+												<div class="col-sm-5 inputs_projects">
+													<div class="row">
+														<div class="col-sm-5">
+															<p:outputLabel for="name" value="Nombre:"
+																styleClass="label_height" />
+														</div>
+														<div class="col-sm-6">
+															<p:inputText id="name"
+																value="{{projectBean.project.name}}"
+																requiredMessage="Ingrese el nombre del proyecto"
+																required="true" />
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-sm-5">
+															<p:outputLabel for="startString" value="Fecha de inicio:"
+																styleClass="label_height" />
+														</div>
+														<div class="col-sm-6">
+															<p:inputText styleClass="datepicker" size="25" readonly="#{facesContext.renderResponse}" 																
+																id="startString" value="{{projectBean.project.startString}}"
+																requiredMessage="Ingrese la fecha de inicio del proyecto"
+																required="true" />
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-sm-5">
+															<p:outputLabel for="endString" value="Fecha de fin:"
+																styleClass="label_height" />
+														</div>
+														<div class="col-sm-6">
+															<p:inputText styleClass="datepicker" size="25" readonly="#{facesContext.renderResponse}" 
+																id="endString" value="{{projectBean.project.endString}}"
+																requiredMessage="Ingrese la fecha fin del proyecto"
+																required="true" />
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-sm-5">
+															<p:outputLabel for="cost" value="Presupuesto:"
+																styleClass="label_height" />
+														</div>
+														<div class="col-sm-6">
+															<p:inputText id="cost"
+																value="{{projectBean.project.cost}}"
+																required="true"
+																requiredMessage="Ingrese el presupuesto del proyecto"
+																validatorMessage="El presupuesto debe ser de al menos 0">
+			                                                    <f:validateLongRange minimum="0" />    
+			                                                </p:inputText>
+														</div>
+													</div>
+												</div>
+												<div class="col-sm-7">
+													<table class="table table-bordered">
+														<tbody>
+															<tr>
+																<td><p:outputLabel for="naturalMonths"
+																		value="Meses naturales:" styleClass="label_height" />
+																	<h:outputText id="naturalMonths"
+																		value="{{naturalMonths() | number:2}}" /></td>
+																<td><p:outputLabel for="workMonths"
+																		value="Meses laborales:" styleClass="label_height" />
+																	<h:outputText id="workMonths"
+																		value="{{workMonths() | number:2}}" /></td>
+															</tr>
+															<tr>
+																<td><p:outputLabel for="naturalDays"
+																		value="Días naturales:" styleClass="label_height" /> <h:outputText
+																		id="naturalDays" value="{{naturalDays}}" /></td>
+																<td><p:outputLabel for="workDaysProject"
+																		value="Días laborales:" styleClass="label_height" /> <h:outputText
+																		id="workDaysProject" value="{{workDays}}" /></td>
+															</tr>
+															<tr>
+																<td></td>
+																<td><p:outputLabel for="workHours"
+																		value="Horas laborales:" styleClass="label_height" />
+																	<h:outputText id="workHours" value="{{workHours}}" /></td>
+															</tr>
+														</tbody>
+													</table>
+													<table class="table table-bordered">
+														<tbody>
+															<tr>
+																<td><p:outputLabel for="costNaturalMonth"
+																		value="Coste/mes natural:" styleClass="label_height" />
+																	<h:outputText class="currency" id="costNaturalMonth"
+																		value="{{costNaturalMonth() | number:2}}" /></td>
+																<td><p:outputLabel for="costWorkMonth"
+																		value="Coste/mes laboral:" styleClass="label_height" />
+																	<h:outputText class="currency" id="costWorkMonth"
+																		value="{{costWorkMonth() | number:2}}" /></td>
+															</tr>
+	
+															<tr>
+																<td><p:outputLabel for="costNaturalDay"
+																		value="Coste/día natural:" styleClass="label_height" />
+																	<h:outputText class="currency" id="costNaturalDay"
+																		value="{{costNaturalDay() | number:2}}" /></td>
+																<td><p:outputLabel for="costWorkDay"
+																		value="Coste/día laboral:" styleClass="label_height" />
+																	<h:outputText class="currency" id="costWorkDay"
+																		value="{{costWorkDay() | number:2}}" /></td>
+															</tr>
+	
+															<tr>
+																<td><p:outputLabel for="costWorkHour"
+																		value="Coste/hora laboral:" styleClass="label_height" />
+																	<h:outputText class="currency" id="costWorkHour"
+																		value="{{costWorkHour() | number:2}}" /></td>
+																<td></td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</fieldset>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div>
+							<p:commandButton value="Atrás" ng-click="handlePrevious()"
+								ng-show="!isFirstStep()" icon="ui-icon-arrow-1-w" />
+							<p:commandButton value="{{getNextLabel()}}"
+								update="growl"
+								oncomplete="if (args &amp;&amp; !args.validationFailed) handleNext();"	
+								ng-show="isFirstStep()" icon="ui-icon-arrow-1-e" />
+							<p:commandButton value="Editar"
+								action="#{editProjectBean.process}" ng-show="!isFirstStep()"
+								icon="ui-icon-disk" update="growl" ajax="false">
+								<f:param name="id" value="#{editProjectBean.projectSchedule.id}"/>
+							</p:commandButton>
+							<p:button outcome="index.html" value="Volver"
+								icon="ui-icon-arrowreturn-1-w"></p:button>
+						</div>
+					</div>
+				</h:form>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+</html>

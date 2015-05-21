@@ -7,5 +7,7 @@ public interface SetScheduleController {
     public void setProjectSchedule(ProjectSchedule projectSchedule);
 
     public ProjectSchedule getProjectSchedule(int projectId);
+    
+    public void updateProjectSchedule(ProjectSchedule projectSchedule);
 
 }
