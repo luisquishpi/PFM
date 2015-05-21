@@ -26,4 +26,10 @@ public class EmployeeControllerEjb implements EmployeeController {
         return DaoFactory.getFactory().getEmployeeDao().findAllWithoutRoles();
     }
 
+	@Override
+	public void updateEmployee(Employee employee) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
