@@ -23,4 +23,10 @@ public class SetScheduleControllerEjb implements SetScheduleController{
     	}
     }
 
+	@Override
+	public void updateSchedule(ProjectSchedule schedule) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

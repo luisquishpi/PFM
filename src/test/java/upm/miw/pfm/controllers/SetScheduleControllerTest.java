@@ -19,6 +19,7 @@ public class SetScheduleControllerTest {
 
     private SetScheduleController controller;
     private Project project;
+    private ProjectSchedule schedule;
 
     private static final double DELTA = 1e-15;
 
@@ -31,12 +32,7 @@ public class SetScheduleControllerTest {
         controller = new SetScheduleControllerEjb();
         new MockProjectDao(project);
         new MockProjectScheduleDao();
-    }
-
-    @Test
-    public void SetScheduleTest() {
-        ProjectSchedule schedule = new ProjectSchedule();
-
+        schedule = new ProjectSchedule();
         schedule.setWorkDays(21);
         schedule.setMondayHours(8D);
         schedule.setTuesdayHours(8D);
@@ -49,6 +45,12 @@ public class SetScheduleControllerTest {
         schedule.setProject(project);
         
         controller.setProjectSchedule(schedule);
+        
+    }
+
+    @Test
+    public void SetScheduleTest() {
+
         assertEquals(project, controller.getProjectSchedule(1).getProject());
         assertEquals(schedule, controller.getProjectSchedule(1));
         Integer expectedWorkDays = 21;
@@ -60,5 +62,13 @@ public class SetScheduleControllerTest {
         assertEquals(8, controller.getProjectSchedule(1).getFridayHours(), DELTA);
         assertEquals(0, controller.getProjectSchedule(1).getSaturdayHours(), DELTA);
         assertEquals(0, controller.getProjectSchedule(1).getSundayHours(), DELTA);
+    }
+    
+    @Test
+    public void updateScheduleTest(){
+    	schedule.setFridayHours(1D);
+    	schedule.setMondayHours(2D);
+    	controller.updateSchedule(schedule);
+    	assertEquals(controller.getProjectSchedule(schedule.getId()), schedule);
     }
 }

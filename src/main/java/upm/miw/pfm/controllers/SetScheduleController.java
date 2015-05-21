@@ -8,4 +8,6 @@ public interface SetScheduleController {
 
     public ProjectSchedule getProjectSchedule(int projectId);
 
+	public void updateSchedule(ProjectSchedule schedule);
+
 }
