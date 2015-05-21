@@ -14,7 +14,7 @@ public class Contract {
     @GeneratedValue
     private Integer id;
 
-    @Column(name = "contract_type", nullable = false, unique = true)
+    @Column(name = "contract_type", nullable = false)
     private String contractType;
 
     @Column(name = "insurance", nullable = false, precision = 10, scale = 2)

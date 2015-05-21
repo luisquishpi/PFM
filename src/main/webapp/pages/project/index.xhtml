@@ -32,9 +32,15 @@
 					                      <ul class="dropdown-menu" role="menu">
 					                        <li>
 					                          <h:outputLink value="show.xhtml">                     
-						                     <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Detalles
+						                      	  <span class="glyphicon glyphicon-search" aria-hidden="true"/> Detalles
+					                              <f:param name="id" value="#{project.id}" />
+					                          </h:outputLink>
+					                         </li>
+					                        <li>
+					                          <h:outputLink value="edit.xhtml">                     
+						                      <span class="fa fa-pencil-square-o" aria-hidden="true"/> Editar
 					                               <f:param name="id" value="#{project.id}" />
-					                    </h:outputLink>
+					                    		</h:outputLink>
 					                        </li>
 					                      </ul>
 					                  </div>

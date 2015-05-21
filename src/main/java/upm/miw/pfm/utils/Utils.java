@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.faces.application.FacesMessage;
@@ -66,6 +67,12 @@ public class Utils {
             isValid = false;
         }
         return isValid;
+    }
+    
+    public static String getRequestParameter(String parameterName) {
+        Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext()
+                .getRequestParameterMap();
+        return params.get(parameterName);
     }
 
 }

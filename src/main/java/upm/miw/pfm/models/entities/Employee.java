@@ -175,7 +175,12 @@ public class Employee implements IGenericEntity{
                 && roles.containsAll(other.roles);
     }
 
-    public Set<Vacation> getVacations() {
+    @Override
+	public String toString() {
+		return "[Nombre: "+name+", Apellido: "+surname+", Codigo: "+employeeCode+", Salario: "+annualGrossSalary+"]";
+	}
+
+	public Set<Vacation> getVacations() {
         return vacations;
     }
 
