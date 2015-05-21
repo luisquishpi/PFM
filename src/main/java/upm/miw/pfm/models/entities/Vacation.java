@@ -10,14 +10,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import upm.miw.pfm.utils.CheckDateVacation;
+import upm.miw.pfm.utils.CheckDateRange;
 import upm.miw.pfm.utils.CheckUnique;
 
 @Entity
 @Table(name = "employee_vacation")
-@CheckDateVacation
+@CheckDateRange
 @CheckUnique
-public class Vacation {
+public class Vacation implements IGenericDateEntity{
 
     @Id
     @GeneratedValue

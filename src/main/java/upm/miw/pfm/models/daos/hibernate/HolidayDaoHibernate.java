@@ -36,6 +36,4 @@ public class HolidayDaoHibernate extends GenericDaoHibernate<Holiday, Integer> i
         }
         return result;
 	}
-
-
 }

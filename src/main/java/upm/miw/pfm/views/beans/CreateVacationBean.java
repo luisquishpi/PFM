@@ -50,7 +50,7 @@ public class CreateVacationBean implements Serializable {
         Date end = Utils.convertStringToDate(range.split("-")[1].trim(), "dd/MM/yyyy");
         Vacation vacation = new Vacation(start, end, selectedEmployee);
 
-        if (Utils.loadErrors(validator.validate(vacation))) {
+        if (Utils.errors(validator.validate(vacation))) {
             vacationController.createVacation(vacation);
             Utils.addMessage(FacesMessage.SEVERITY_INFO, "Vacaciones", "Las vacaciones de "
                     + selectedEmployee.getName() + " han sido registradas");

@@ -20,6 +20,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import upm.miw.pfm.models.daos.hibernate.DaoHibernateFactory;
+import upm.miw.pfm.models.daos.hibernate.HolidayDaoHibernate;
 import upm.miw.pfm.models.entities.Holiday;
 import upm.miw.pfm.utils.Utils;
 
@@ -82,6 +83,7 @@ public class HolidayDaoTest {
   
     @Test
     public void testValidateHoliday() {
+        DaoFactory.getFactory().setDao(new HolidayDaoHibernate());
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         Validator validator = factory.getValidator();
         holiday = new Holiday(Utils.buildDate(2015, 10, 1), Utils.buildDate(2015, 10, 15));
@@ -89,7 +91,7 @@ public class HolidayDaoTest {
         
         Holiday holiday2 = new Holiday(Utils.buildDate(2015, 12, 5), Utils.buildDate(2015, 13, 10));
         Holiday holidayInvalid = new Holiday(Utils.buildDate(2015, 10, 5), Utils.buildDate(2015, 10, 10));
-
+        
         Set<ConstraintViolation<Holiday>> errors = validator.validate(holidayInvalid);
         assertTrue(errors.size() > 0);
 

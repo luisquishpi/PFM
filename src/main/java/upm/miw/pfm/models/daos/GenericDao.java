@@ -15,6 +15,6 @@ public interface GenericDao<T, ID> {
     public List<T> findAll();
     
     public void query(String hql);
-
+    
 }
 
