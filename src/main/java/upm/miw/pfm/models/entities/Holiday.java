@@ -9,10 +9,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import upm.miw.pfm.utils.CheckDateHoliday;
+import upm.miw.pfm.utils.CheckUniqueHoliday;
 
 @Entity
 @Table(name = "holiday")
 @CheckDateHoliday
+@CheckUniqueHoliday
 public class Holiday {
 
     @Id
