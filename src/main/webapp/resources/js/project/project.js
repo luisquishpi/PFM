@@ -4,7 +4,7 @@
 var projectApp = angular.module('projectApp', [ "angularfaces", 'ngAnimate',
 		'ui.bootstrap' ]);
 app.value("$isTest", false);
-$(function() {
+function initCaledars(){
 	$(".datepicker").daterangepicker(
 			{
 				singleDatePicker : true,
@@ -37,8 +37,9 @@ $(function() {
 							.setMaxDate(end);
 				}
 			});
-});
+};
 function handleNext() {
 	angular.element($('#scheduleForm')).scope().handleNext();
 	angular.element($('#scheduleForm')).scope().$apply();
+	initCaledars();
 }
