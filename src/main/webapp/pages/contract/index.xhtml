@@ -7,9 +7,9 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <ui:composition template="#{root}/WEB-INF/template/commonLayout.xhtml">
 	<ui:define name="css">
-			<link href="/PFM/resources/css/style_index_list.css" rel="stylesheet" />   		
-		</ui:define>
-		<ui:define name="header">
+		<link href="/PFM/resources/css/style_index_list.css" rel="stylesheet" />
+	</ui:define>
+	<ui:define name="header">
             Contratos
         </ui:define>
 	<ui:define name="content">
@@ -17,28 +17,45 @@
 		<h:panelGroup rendered="#{not empty listContractBean.contracts}">
 			<table class="table table-bordered">
 				<h:form>
-						<tbody>
-							<tr class="active"><th class="text-center">Nombre de contrato</th><th class="text-center">% de seguro</th></tr>
-							<ui:repeat var="contract" value="#{listContractBean.contracts}">
-								<tr class="text-center">
-					            	<td><h:outputText value="#{contract.contractType}" /></td>
-					            	<td>
-					            		<h:outputText value="#{contract.insurance}">
-											<f:convertNumber minFractionDigits="2" maxFractionDigits="2"
-												locale="en_US" type="number" />
-										</h:outputText>
-					            	</td>
-					            </tr>
-					         </ui:repeat>
-					    </tbody>
-				</h:form>		    
-			</table> 
-		</h:panelGroup>	
+					<tbody>
+						<tr class="active">
+							<th class="text-center">Nombre de contrato</th>
+							<th class="text-center">% de seguro</th>
+							<th class="text-center">Acciones</th>
+						</tr>
+						<ui:repeat var="contract" value="#{listContractBean.contracts}">
+							<tr class="text-center">
+								<td><h:outputText value="#{contract.contractType}" /></td>
+								<td><h:outputText value="#{contract.insurance}">
+										<f:convertNumber minFractionDigits="2" maxFractionDigits="2"
+											locale="en_US" type="number" />
+									</h:outputText></td>
+								<td>
+									<div class="btn-group" role="group">
+										<button type="button" class="btn btn-default dropdown-toggle"
+											data-toggle="dropdown" aria-expanded="false">
+											Opciones <span class="caret"></span>
+										</button>
+										<ul class="dropdown-menu" role="menu">
+											<li><h:outputLink value="edit.xhtml">
+													<span class="fa fa-pencil-square-o" aria-hidden="true"></span> Editar
+                                                       <f:param
+														name="id" value="#{contract.id}" />
+												</h:outputLink></li>
+										</ul>
+									</div>
+								</td>
+							</tr>
+						</ui:repeat>
+					</tbody>
+				</h:form>
+			</table>
+		</h:panelGroup>
 		<h:panelGroup rendered="#{empty listContractBean.contracts}">
-		    <blockquote>
-			  <p>La lista de contratos está vacía.</p>
+			<blockquote>
+				<p>La lista de contratos está vacía.</p>
 			</blockquote>
-		</h:panelGroup>	
+		</h:panelGroup>
 		<br />
 		<p:button outcome="create.xhtml" value="Nuevo Contrato"
 			icon="ui-icon-plus"></p:button>
