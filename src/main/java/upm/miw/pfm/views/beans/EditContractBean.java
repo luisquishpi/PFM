@@ -1,0 +1,58 @@
+package upm.miw.pfm.views.beans;
+
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+import org.apache.logging.log4j.LogManager;
+import upm.miw.pfm.controllers.ContractController;
+import upm.miw.pfm.models.entities.Contract;
+import upm.miw.pfm.utils.Utils;
+
+@ManagedBean
+@ViewScoped
+public class EditContractBean {
+    private Contract contract;
+    private int id;
+
+    @EJB
+    private ContractController contractController;
+
+    public EditContractBean() {
+
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Contract getContract() {
+        return contract;
+    }
+
+    public void setContract(Contract contract) {
+        this.contract = contract;
+    }
+
+    public String process() {
+        int idContract = Integer.parseInt(Utils.getRequestParameter("id"));
+        contract.setId(idContract);
+        contractController.update(contract);
+        LogManager.getLogger(this).info("Actualizado " + contract);
+        Utils.addMessage(FacesMessage.SEVERITY_INFO, "Contrato",
+                "El contrato ha sido actualizado con exito");
+        return "index";
+    }
+
+    @PostConstruct
+    public void init() {
+        contract = contractController
+                .getContract(Integer.parseInt(Utils.getRequestParameter("id")));
+    }
+
+}
