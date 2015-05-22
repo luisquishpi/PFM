@@ -51,6 +51,8 @@ public class ProjectSchedule implements Serializable {
 
     @Column(name = "sunday_hours", nullable = false)
     private Double sundayHours;
+    
+    private final float DELTA = 0.0001f;
 
     public ProjectSchedule() {
     }
@@ -172,13 +174,13 @@ public class ProjectSchedule implements Serializable {
 	public boolean equals(Object obj) {
 		ProjectSchedule project = (ProjectSchedule) obj;
         return this.project.equals(project.getProject()) && this.workDays == project.getWorkDays()
-                && this.mondayHours.doubleValue() == project.getMondayHours().doubleValue()
-                && this.tuesdayHours.doubleValue() == project.getTuesdayHours().doubleValue()
-                && this.wednesdayHours.doubleValue() == project.getWednesdayHours().doubleValue()
-                && this.thursdayHours.doubleValue() == project.getThursdayHours().doubleValue()
-                && this.fridayHours.doubleValue() == project.getFridayHours().doubleValue()
-                && this.saturdayHours.doubleValue() == project.getSaturdayHours().doubleValue()
-                && this.sundayHours.doubleValue() == project.getSundayHours().doubleValue();
+                && Math.abs(this.mondayHours.doubleValue() - project.getMondayHours().doubleValue()) < DELTA
+                && Math.abs(this.tuesdayHours.doubleValue() - project.getTuesdayHours().doubleValue()) < DELTA
+                && Math.abs(this.wednesdayHours.doubleValue() - project.getWednesdayHours().doubleValue()) < DELTA
+                && Math.abs(this.thursdayHours.doubleValue() - project.getThursdayHours().doubleValue()) < DELTA
+                && Math.abs(this.fridayHours.doubleValue() - project.getFridayHours().doubleValue()) <DELTA
+                && Math.abs(this.saturdayHours.doubleValue() - project.getSaturdayHours().doubleValue()) < DELTA 
+                && Math.abs(this.sundayHours.doubleValue() - project.getSundayHours().doubleValue()) < DELTA;
     }
 
     @Override
