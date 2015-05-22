@@ -60,10 +60,10 @@ public class Utils {
         return new ArrayList<T>(set);
     }
     
-    public static <T> Boolean loadErrors(Set<ConstraintViolation<T>> errors){
+    public static <T> Boolean errors(Set<ConstraintViolation<T>> errors){
         Boolean isValid = true;
         for(ConstraintViolation<T> error : errors){
-            Utils.addMessage(FacesMessage.SEVERITY_INFO, "Error", error.getMessage());
+            Utils.addMessage(FacesMessage.SEVERITY_ERROR, "Error", error.getMessage());
             isValid = false;
         }
         return isValid;

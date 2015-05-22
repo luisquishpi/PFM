@@ -62,5 +62,4 @@ public class VacationDaoHibernate extends GenericDaoHibernate<Vacation, Integer>
         }
         return result;
     }
-
 }

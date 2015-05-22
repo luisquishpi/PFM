@@ -38,7 +38,7 @@ public class CreateHolidayBean implements Serializable {
         Date end = Utils.convertStringToDate(range.split("-")[1].trim(), "dd/MM/yyyy");
         Holiday holiday = new Holiday(start, end);
 
-        if (Utils.loadErrors(validator.validate(holiday))) {
+        if (Utils.errors(validator.validate(holiday))) {
             holidayController.createHoliday(holiday);
             Utils.addMessage(FacesMessage.SEVERITY_INFO, "Feriados", "Los feriados han sido registrados.");
         }

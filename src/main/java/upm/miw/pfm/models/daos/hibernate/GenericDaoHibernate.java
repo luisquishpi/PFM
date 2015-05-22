@@ -130,5 +130,4 @@ public class GenericDaoHibernate<T, ID extends Serializable> implements GenericD
             }
         }
     }
-
 }
