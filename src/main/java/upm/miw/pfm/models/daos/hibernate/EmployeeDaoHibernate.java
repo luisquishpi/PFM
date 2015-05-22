@@ -35,4 +35,9 @@ public class EmployeeDaoHibernate extends GenericDaoHibernate<Employee, Integer>
         }
         return employeeList;
     }
+    
+    @Override
+    public Boolean exists(Employee entity) {
+        throw new RuntimeException("No implementado para esta entidad");
+    }
 }

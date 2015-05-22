@@ -51,6 +51,7 @@ public class EmployeeDaoTest {
     @BeforeClass
     public static void beforeClass() {
         DaoFactory.setFactory(new DaoHibernateFactory());
+        DaoFactory.getFactory().setDao(new VacationDaoHibernate());
     }
 
     @Before
@@ -161,7 +162,6 @@ public class EmployeeDaoTest {
 
     @Test
     public void testValidateVacation() {
-        DaoFactory.getFactory().setDao(new VacationDaoHibernate());
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         Validator validator = factory.getValidator();
 

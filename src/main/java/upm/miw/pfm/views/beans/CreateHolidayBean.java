@@ -4,12 +4,9 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
 
 import upm.miw.pfm.controllers.HolidayController;
 import upm.miw.pfm.models.entities.Holiday;
@@ -25,12 +22,6 @@ public class CreateHolidayBean implements Serializable {
     @EJB
     private HolidayController holidayController;
 
-    @Resource
-    private ValidatorFactory validatorFactory;
-
-    @Resource
-    private Validator validator;
-
     private String range;
 
     public String process() {
@@ -38,7 +29,7 @@ public class CreateHolidayBean implements Serializable {
         Date end = Utils.convertStringToDate(range.split("-")[1].trim(), "dd/MM/yyyy");
         Holiday holiday = new Holiday(start, end);
 
-        if (Utils.errors(validator.validate(holiday))) {
+        if (Utils.errors(holidayController.validate(holiday))) {
             holidayController.createHoliday(holiday);
             Utils.addMessage(FacesMessage.SEVERITY_INFO, "Feriados", "Los feriados han sido registrados.");
         }

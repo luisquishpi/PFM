@@ -12,7 +12,7 @@ import org.hibernate.Session;
 import upm.miw.pfm.models.daos.GenericDao;
 import upm.miw.pfm.utils.HibernateUtil;
 
-public class GenericDaoHibernate<T, ID extends Serializable> implements GenericDao<T, ID> {
+public abstract class GenericDaoHibernate<T, ID extends Serializable> implements GenericDao<T, ID> {
 
     private Class<T> persistentClass;
 

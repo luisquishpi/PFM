@@ -14,6 +14,11 @@ public class ContractDaoHibernate extends GenericDaoHibernate<Contract, Integer>
 	public ContractDaoHibernate() {
 		super(Contract.class);
 	}
+	
+    @Override
+    public Boolean exists(Contract entity) {
+        throw new RuntimeException("No implementado para esta entidad");
+    }
 
 	@SuppressWarnings("unchecked")
 	@Override	

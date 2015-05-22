@@ -11,12 +11,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import upm.miw.pfm.utils.CheckDateRange;
-import upm.miw.pfm.utils.CheckUnique;
 
 @Entity
 @Table(name = "employee_vacation")
-@CheckDateRange
-@CheckUnique
+@CheckDateRange(message="Ya se han registrado vacaciones en este periodo.")
 public class Vacation implements IGenericDateEntity{
 
     @Id
