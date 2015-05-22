@@ -31,8 +31,7 @@ public class EditContractBean {
     }
 
     public String process() {
-        int idContract = id;
-        contract.setId(idContract);
+        contract.setId(id);
         contractController.update(contract);
         LogManager.getLogger(this).info("Actualizado " + contract);
         Utils.addMessage(FacesMessage.SEVERITY_INFO, "Contrato",
