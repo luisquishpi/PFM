@@ -56,5 +56,11 @@ public class ContractDaoTest {
     public void after() {
         DaoFactory.getFactory().getContractDao().query("delete from Contract");
     }
+    
+    @Test
+    public void testDelete(){
+    	contractDao.deleteById(contract.getId());
+    	assertNull(contractDao.read(contract.getId()));
+    }
 
 }

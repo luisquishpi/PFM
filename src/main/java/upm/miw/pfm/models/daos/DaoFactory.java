@@ -1,6 +1,5 @@
 package upm.miw.pfm.models.daos;
 
-import upm.miw.pfm.models.daos.ProjectDao;
 import upm.miw.pfm.models.daos.hibernate.DaoHibernateFactory;
 
 @SuppressWarnings("rawtypes")
