@@ -213,7 +213,6 @@ public class EmployeeDaoTest {
         for (Employee tmpEmployee : employeeList) {
             employeeDao.deleteById(tmpEmployee.getId());
         }
-
         contractDao.query("delete from Contract");
     }
 
