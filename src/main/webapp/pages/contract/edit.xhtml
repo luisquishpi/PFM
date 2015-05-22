@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:p="http://primefaces.org/ui">
+<h:body>
+    <ui:composition template="#{root}/WEB-INF/template/commonLayout.xhtml">
+        <ui:define name="header">
+            Editar Contrato
+        </ui:define>
+        <ui:define name="css">
+            <link href="/PFM/resources/css/bootstrap/css/bootstrap.min.css"
+                rel="stylesheet" />
+        </ui:define>
+        <ui:define name="content">
+            <div class="panel-body">
+                <div class="main-grid main-body-grid">
+                    <h:form prependId="false">
+                        <p:growl id="growl" sticky="false" life="5000" showDetail="false" />
+                        <fieldset>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p:outputLabel for="contractType" value="Tipo:" styleClass="label_height" />
+                                </div>
+                                <div class="col-sm-2">
+                                    <p:inputText
+                                        requiredMessage="El tipo de contrato es obligatorio"
+                                        id="contractType"
+                                        value="#{editContractBean.contract.contractType}"
+                                        required="true" label="" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p:outputLabel for="insurance" value="Seguro(%):" styleClass="label_height" />
+                                </div>
+                                <div class="col-sm-2">
+                                    <p:spinner
+                                        requiredMessage="El porcentaje de seguro es obligatorio"
+                                        id="insurance"
+                                        value="#{editContractBean.contract.insurance}"
+                                        validatorMessage="El porcentaje de seguro debe ser mayor que 0 y menor a 100"
+                                        required="true" stepFactor="0.01" label="" maxlength="5">
+                                        <f:convertNumber minFractionDigits="2" maxFractionDigits="2"
+                                            locale="en_US" type="number" />
+                                        <f:validateDoubleRange minimum="0.01" maximum="100" />
+                                    </p:spinner>
+                                </div>
+                            </div>
+                            <div>
+                                <p:commandButton value="Editar" icon="ui-icon-disk"
+                                    action="#{editContractBean.process}" ajax="false" >
+                                    <f:param name="id" value="#{editContractBean.contract.id}"/>
+                                    </p:commandButton>
+                                <p:button outcome="index.html" value="Volver"
+                                    icon="ui-icon-arrowreturn-1-w" />
+                            </div>
+                        </fieldset>
+                    </h:form>
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>

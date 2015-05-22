@@ -8,12 +8,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import upm.miw.pfm.utils.CheckDateHoliday;
+import upm.miw.pfm.utils.CheckDateRange;
+import upm.miw.pfm.utils.CheckUnique;
 
 @Entity
 @Table(name = "holiday")
-@CheckDateHoliday
-public class Holiday {
+@CheckDateRange
+@CheckUnique
+public class Holiday implements IGenericDateEntity {
 
     @Id
     @GeneratedValue

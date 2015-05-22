@@ -53,5 +53,13 @@ public class EmployeeControllerTest {
         new MockEmployeeDao(employeeList);
         assertEquals(employeeController.listEmployees(), employeeList);
     }
+    
+    @Test
+    public void updateEmployeeTest(){
+    	employeeController.addEmployee(employee);
+    	employee.setName("Josefina");
+    	employeeController.updateEmployee(employee);
+    	assertEquals(employeeController.getEmployee(employee.getId()), employee);
+    }
 
 }

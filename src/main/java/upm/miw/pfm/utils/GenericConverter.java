@@ -8,6 +8,8 @@ import javax.faces.component.UISelectItems;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 
+import org.apache.logging.log4j.LogManager;
+
 import upm.miw.pfm.models.entities.IGenericEntity;
 
 @SuppressWarnings("unchecked")
@@ -34,6 +36,7 @@ public class GenericConverter implements Converter {
                                 break;
                             }
                         } catch (Exception e) {
+                            LogManager.getLogger(this).info("Exception " + e.getMessage());
                         }
                     }
                 }

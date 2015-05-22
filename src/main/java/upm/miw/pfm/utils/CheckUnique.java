@@ -14,7 +14,7 @@ import javax.validation.Payload;
 @Constraint(validatedBy = CheckUniqueValidator.class)
 public @interface CheckUnique {
 
-    String message() default "El periodo ya ha sido registrado.";
+    String message() default "El elemento ya ha sido registrado.";
 
     Class<?>[] groups() default {};
 

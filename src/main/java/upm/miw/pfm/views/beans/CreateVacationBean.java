@@ -5,12 +5,9 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
 
 import upm.miw.pfm.controllers.EmployeeController;
 import upm.miw.pfm.controllers.VacationController;
@@ -29,13 +26,7 @@ public class CreateVacationBean implements Serializable {
     private EmployeeController employeeController;
 
     @EJB
-    private VacationController vacationController;
-
-    @Resource
-    private ValidatorFactory validatorFactory;
-
-    @Resource
-    private Validator validator;
+    private VacationController vacationController;    
 
     private String range;
 
@@ -50,7 +41,7 @@ public class CreateVacationBean implements Serializable {
         Date end = Utils.convertStringToDate(range.split("-")[1].trim(), "dd/MM/yyyy");
         Vacation vacation = new Vacation(start, end, selectedEmployee);
 
-        if (Utils.loadErrors(validator.validate(vacation))) {
+        if (Utils.errors(vacationController.validate(vacation))) {
             vacationController.createVacation(vacation);
             Utils.addMessage(FacesMessage.SEVERITY_INFO, "Vacaciones", "Las vacaciones de "
                     + selectedEmployee.getName() + " han sido registradas");

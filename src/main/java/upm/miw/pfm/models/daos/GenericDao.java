@@ -14,7 +14,9 @@ public interface GenericDao<T, ID> {
 
     public List<T> findAll();
     
+    public Boolean exists(T entity);
+    
     public void query(String hql);
-
+    
 }
 

@@ -23,10 +23,10 @@
 						<p:growl id="growl" sticky="false" life="5000" showDetail="false" />
 						<fieldset>
 							<div class="row">
-								<div class="col-lg-3">
-									<p:outputLabel value="Tipo:" styleClass="label_height" />
+								<div class="col-sm-3">
+									<p:outputLabel for="contractType" value="Tipo:" styleClass="label_height" />
 								</div>
-								<div class="col-lg-2">
+								<div class="col-sm-2">
 									<p:inputText
 										requiredMessage="El tipo de contrato es obligatorio"
 										id="contractType"
@@ -35,10 +35,10 @@
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-lg-3">
-									<p:outputLabel value="Seguro(%):" styleClass="label_height" />
+								<div class="col-sm-3">
+									<p:outputLabel for="insurance" value="Seguro(%):" styleClass="label_height" />
 								</div>
-								<div class="col-lg-2">
+								<div class="col-sm-2">
 									<p:spinner
 										requiredMessage="El porcentaje de seguro es obligatorio"
 										id="insurance"
