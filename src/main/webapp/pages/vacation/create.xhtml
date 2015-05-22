@@ -42,7 +42,7 @@
 		                           <p:outputLabel value="Fecha:" for="daterange" styleClass="label_height" />
 		                        </div>
 		                        <div class="col-md-9">
-		                            <p:inputText size="25" readonly="true" requiredMessage="Seleccione el periodo de vacaciones" id="daterange" value="#{createVacationBean.range}" required="true" />
+		                            <p:inputText size="25" readonly="#{facesContext.renderResponse}" requiredMessage="Seleccione el periodo de vacaciones" id="daterange" value="#{createVacationBean.range}" required="true" />
 		                        </div>
 		                    </div> 
 		                    <div class="row">			                    

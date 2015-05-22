@@ -34,6 +34,7 @@ public class HolidayDaoTest {
 	@BeforeClass
     public static void beforeClass() {
         DaoFactory.setFactory(new DaoHibernateFactory());
+        DaoFactory.getFactory().setDao(new HolidayDaoHibernate());
     }
 
     @Before
