@@ -4,7 +4,8 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 
 import org.apache.logging.log4j.LogManager;
 import org.primefaces.event.FlowEvent;
@@ -16,9 +17,10 @@ import upm.miw.pfm.models.entities.ProjectSchedule;
 import upm.miw.pfm.utils.Utils;
 
 @ManagedBean
-@ViewScoped
+@RequestScoped
 public class EditProjectBean {
 
+	@ManagedProperty("#{param.id}")
 	private int id;
 
 	private Project project;
@@ -59,8 +61,7 @@ public class EditProjectBean {
 	}
 
 	public String process() {
-		int idSchedule = Integer.parseInt(Utils.getRequestParameter("id"));
-		projectSchedule.setId(idSchedule);
+		projectSchedule.setId(id);
 		setScheduleController.updateProjectSchedule(projectSchedule);
 		project.setId(projectSchedule.getProject().getId());
 		projectController.updateProject(project);
@@ -77,8 +78,7 @@ public class EditProjectBean {
 
 	@PostConstruct
 	public void init() {
-		projectSchedule = setScheduleController.getProjectSchedule(Integer
-				.parseInt(Utils.getRequestParameter("id")));
+		projectSchedule = setScheduleController.getProjectSchedule(id);
 		project = projectController.getProject(projectSchedule.getProject()
 				.getId());
 	}
