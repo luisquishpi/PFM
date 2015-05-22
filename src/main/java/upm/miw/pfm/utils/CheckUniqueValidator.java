@@ -4,19 +4,20 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 import upm.miw.pfm.models.daos.DaoFactory;
-import upm.miw.pfm.models.entities.Vacation;
+import upm.miw.pfm.models.entities.IGenericEntity;
 
-public class CheckUniqueValidator implements ConstraintValidator<CheckUnique, Vacation> {
+@SuppressWarnings("unchecked")
+public class CheckUniqueValidator implements ConstraintValidator<CheckUnique, IGenericEntity> {
 
     @Override
     public void initialize(CheckUnique constraintAnnotation) {        
     }
 
     @Override
-    public boolean isValid(Vacation value, ConstraintValidatorContext context) {
+    public boolean isValid(IGenericEntity value, ConstraintValidatorContext context) {
         if (value == null)
             return true;
         
-        return !DaoFactory.getFactory().getVacationDao().exists(value.getEmployee(), value.getStart(), value.getEnd());
+        return !DaoFactory.getFactory().getDao().exists(value);
     }
 }

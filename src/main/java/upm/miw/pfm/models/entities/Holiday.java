@@ -9,12 +9,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import upm.miw.pfm.utils.CheckDateRange;
-import upm.miw.pfm.utils.CheckUniqueHoliday;
+import upm.miw.pfm.utils.CheckUnique;
 
 @Entity
 @Table(name = "holiday")
 @CheckDateRange
-@CheckUniqueHoliday
+@CheckUnique
 public class Holiday implements IGenericDateEntity {
 
     @Id

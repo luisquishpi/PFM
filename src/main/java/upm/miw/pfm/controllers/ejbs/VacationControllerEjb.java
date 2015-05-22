@@ -1,8 +1,13 @@
 package upm.miw.pfm.controllers.ejbs;
 
 import java.util.List;
+import java.util.Set;
 
+import javax.annotation.Resource;
 import javax.ejb.Stateless;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 
 import upm.miw.pfm.controllers.VacationController;
 import upm.miw.pfm.models.daos.DaoFactory;
@@ -14,9 +19,16 @@ import upm.miw.pfm.models.entities.Vacation;
 public class VacationControllerEjb implements VacationController {
 
     private VacationDao vacationDao;
+    
+    @Resource
+    private ValidatorFactory validatorFactory;
+
+    @Resource
+    private Validator validator;
 
     public VacationControllerEjb() {
         vacationDao = DaoFactory.getFactory().getVacationDao();
+        DaoFactory.getFactory().setDao(vacationDao);
     }
 
     @Override
@@ -37,6 +49,10 @@ public class VacationControllerEjb implements VacationController {
     @Override
     public List<Vacation> vacationList(Employee employee) {
         return vacationDao.findAll(employee);
+    }
+    
+    public Set<ConstraintViolation<Vacation>> validate(Vacation vacation){
+        return validator.validate(vacation);
     }
 
 }
