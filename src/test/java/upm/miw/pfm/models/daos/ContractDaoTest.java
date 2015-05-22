@@ -62,5 +62,11 @@ public class ContractDaoTest {
 
         assertEquals(3, contractDao.findAll().size());
     }
+    
+    @Test
+    public void testDelete(){
+    	contractDao.deleteById(contract.getId());
+    	assertNull(contractDao.read(contract.getId()));
+    }
 
 }
