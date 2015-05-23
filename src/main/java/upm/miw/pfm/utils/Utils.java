@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.faces.application.FacesMessage;
@@ -59,13 +60,19 @@ public class Utils {
         return new ArrayList<T>(set);
     }
     
-    public static <T> Boolean loadErrors(Set<ConstraintViolation<T>> errors){
+    public static <T> Boolean errors(Set<ConstraintViolation<T>> errors){
         Boolean isValid = true;
         for(ConstraintViolation<T> error : errors){
-            Utils.addMessage(FacesMessage.SEVERITY_INFO, "Error", error.getMessage());
+            Utils.addMessage(FacesMessage.SEVERITY_ERROR, "Error", error.getMessage());
             isValid = false;
         }
         return isValid;
+    }
+    
+    public static String getRequestParameter(String parameterName) {
+        Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext()
+                .getRequestParameterMap();
+        return params.get(parameterName);
     }
 
 }

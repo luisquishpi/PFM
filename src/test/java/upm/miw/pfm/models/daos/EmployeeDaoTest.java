@@ -23,6 +23,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import upm.miw.pfm.models.daos.hibernate.DaoHibernateFactory;
+import upm.miw.pfm.models.daos.hibernate.VacationDaoHibernate;
 import upm.miw.pfm.models.entities.Contract;
 import upm.miw.pfm.models.entities.Employee;
 import upm.miw.pfm.models.entities.Vacation;
@@ -50,6 +51,7 @@ public class EmployeeDaoTest {
     @BeforeClass
     public static void beforeClass() {
         DaoFactory.setFactory(new DaoHibernateFactory());
+        DaoFactory.getFactory().setDao(new VacationDaoHibernate());
     }
 
     @Before
@@ -211,7 +213,6 @@ public class EmployeeDaoTest {
         for (Employee tmpEmployee : employeeList) {
             employeeDao.deleteById(tmpEmployee.getId());
         }
-
         contractDao.query("delete from Contract");
     }
 

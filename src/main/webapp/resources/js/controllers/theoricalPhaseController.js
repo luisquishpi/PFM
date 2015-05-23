@@ -50,7 +50,6 @@ projectApp.controller("theoricalPhaseController", ['$scope', '$isTest', 'bridgeS
 	}
 	
 	$scope.initStartDate = function(){
-		  console.log($scope.showTheoricalPhasesBean.project.start);
 		  return moment($scope.showTheoricalPhasesBean.project.startString, 'DD/MM/YYYY').format("DD/MM/YYYY");
 	}
 	

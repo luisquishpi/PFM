@@ -23,4 +23,9 @@ public class SetScheduleControllerEjb implements SetScheduleController{
     	}
     }
 
+	@Override
+	public void updateProjectSchedule(ProjectSchedule projectSchedule) {
+		DaoFactory.getFactory().getProjectScheduleDao().update(projectSchedule);
+	}
+
 }

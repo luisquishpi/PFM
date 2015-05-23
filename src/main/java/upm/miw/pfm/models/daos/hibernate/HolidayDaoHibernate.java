@@ -1,7 +1,5 @@
 package upm.miw.pfm.models.daos.hibernate;
 
-import java.util.Date;
-
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -14,16 +12,16 @@ public class HolidayDaoHibernate extends GenericDaoHibernate<Holiday, Integer> i
 	public HolidayDaoHibernate() {
 		super(Holiday.class);
 	}
-
+	
 	@Override
-	public Boolean exists(Date start, Date end) {
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();        
+    public Boolean exists(Holiday entity) {
+	    Session session = HibernateUtil.getSessionFactory().getCurrentSession();        
         Boolean result = false;
         try {
             session.beginTransaction();
             Query query = session.createQuery("from Holiday h WHERE h.start = :start AND h.end = :endDate ");
-            query.setParameter("start", start);
-            query.setParameter("endDate", end);
+            query.setParameter("start", entity.getStart());
+            query.setParameter("endDate", entity.getEnd());
             result = query.list().size() > 0;
             session.getTransaction().commit();
         } catch (Exception e) {
@@ -35,7 +33,5 @@ public class HolidayDaoHibernate extends GenericDaoHibernate<Holiday, Integer> i
             }
         }
         return result;
-	}
-
-
+    }
 }

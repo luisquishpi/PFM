@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import java.util.Calendar;
 import java.util.Date;
 
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,6 +13,7 @@ import upm.miw.pfm.controllers.ProjectController;
 import upm.miw.pfm.controllers.SetScheduleController;
 import upm.miw.pfm.controllers.ejbs.ProjectControllerEjb;
 import upm.miw.pfm.controllers.ejbs.SetScheduleControllerEjb;
+import upm.miw.pfm.models.daos.DaoFactory;
 import upm.miw.pfm.models.entities.Project;
 import upm.miw.pfm.models.entities.ProjectSchedule;
 import upm.miw.pfm.utils.Utils;
@@ -69,5 +71,11 @@ public class SetScheduleControllerTest {
                 .getSaturdayHours(), DELTA);
         assertEquals(0, setScheduleController.getProjectSchedule(project.getId()).getSundayHours(),
                 DELTA);
+    }
+    
+    @AfterClass
+    public static void afterClass() {
+        DaoFactory.getFactory().getProjectScheduleDao().query("delete from ProjectSchedule");
+        DaoFactory.getFactory().getProjectDao().query("delete from Project");
     }
 }
