@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <title>Registrar días festivos</title>
+</h:head>
+<h:body>
+    <ui:composition template="#{root}/WEB-INF/template/commonLayout.xhtml">
+        <ui:define name="css">
+            <link href="/PFM/resources/css/daterange/daterangepicker-bs3.css" rel="stylesheet" />
+        </ui:define>
+        <ui:define name="header">
+            Registrar Días Festivos
+        </ui:define>        
+        <ui:define name="content">
+        	<div class="panel-body"> 	     
+	            <h:form>
+	                <p:growl id="growl" sticky="false" life="5000" showDetail="true" />
+	                <div class="row">
+		                <div class="col-md-8 col-md-offset-2">
+		                        <div class="col-md-12">
+		                        	<div class="col-md-6 col-md-offset-2">
+		                        		<p:outputLabel value="Fecha:" for="daterange" styleClass="label_height" />
+		                            	<p:inputText size="25" readonly="#{facesContext.renderResponse}" requiredMessage="Seleccione el periodo de días" id="daterange" value="#{createHolidayBean.range}" required="true" />
+		                            </div>
+		                            <div class="col-md-4">	
+		                        		<p:commandButton value="Crear" icon="ui-icon-disk" ajax="true" action="#{createHolidayBean.process}" update="growl holidayDetails" />
+		                        	</div>
+		                        </div>
+		                </div>
+		           </div>     
+		                <div class="row">
+			                <div class="col-md-8 col-md-offset-2">
+			                   <h:panelGroup id="holidayDetails" layout="block" styleClass="panel panel-info">
+			                       <div class="panel-heading">
+			                           Días feriados registrados:
+			                       </div>
+			                       <div class="panel-body">
+			                           <h:outputText rendered="#{empty createHolidayBean.registerHolidays}" value="No hay periodos registrados"/>
+		                               <ul class="list-group">
+		                                   <ui:repeat var="holiday" value="#{createHolidayBean.registerHolidays}">
+		                                       <li class="list-group-item">
+		                                            <h:outputText value="#{holiday.start}" >
+		                                               <f:convertDateTime timeZone="ECT" pattern="d/MM/yyyy" />
+												 </h:outputText> -
+												 <h:outputText value="#{holiday.end}" >
+		                                               <f:convertDateTime timeZone="ECT" pattern="d/MM/yyyy" />
+		                                            </h:outputText>
+		                                       </li>
+										</ui:repeat>
+									</ul>
+			                       </div>
+			                   </h:panelGroup>
+			                </div>
+		                </div>
+		            </h:form>
+	    	</div>
+        </ui:define>
+        <ui:define name="javascript">
+            <script src="/PFM/resources/js/libs/moment.js"></script>
+            <script src="/PFM/resources/js/libs/daterangepicker.js"></script>
+            <script type="text/javascript">
+				$(function() {
+				    $('input[name$="daterange"]').daterangepicker({
+				        timePicker: false,
+				        format: 'DD/MM/YYYY',
+				        locale: {
+				            applyLabel: 'Aceptar',
+				            cancelLabel: 'Cancelar',
+				            fromLabel: 'Del',
+				            toLabel: 'Al',
+				            daysOfWeek: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi','Sa'],
+				            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Deciembre'],
+				            firstDay: 1
+				        }
+				    });
+				});
+		    </script>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>

@@ -2,6 +2,7 @@ package upm.miw.pfm.views.beans;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -23,8 +24,11 @@ public class CreateHolidayBean implements Serializable {
     private HolidayController holidayController;
 
     private String range;
+    
+    private List<Holiday> registerHolidays;
 
     public String process() {
+    	System.out.println("Pruebas");
         Date start = Utils.convertStringToDate(range.split("-")[0].trim(), "dd/MM/yyyy");
         Date end = Utils.convertStringToDate(range.split("-")[1].trim(), "dd/MM/yyyy");
         Holiday holiday = new Holiday(start, end);
@@ -33,17 +37,13 @@ public class CreateHolidayBean implements Serializable {
             holidayController.createHoliday(holiday);
             Utils.addMessage(FacesMessage.SEVERITY_INFO, "Feriados", "Los feriados han sido registrados.");
         }
-        updateDetails();
+        update();
         return null;
-    }
-
-    public void updateDetails() {
-
     }
 
     @PostConstruct
     public void update() {
-
+    	this.registerHolidays = holidayController.vacationList();
     }
 
     public String getRange() {
@@ -53,4 +53,8 @@ public class CreateHolidayBean implements Serializable {
     public void setRange(String range) {
         this.range = range;
     }
+
+	public List<Holiday> getRegisterHolidays() {
+		return registerHolidays;
+	}
 }
