@@ -47,7 +47,8 @@ public class MockContractDao extends MockUp<ContractDaoHibernate> {
 	}
 	
 	@Mock
-	public void deleteById(Integer id){
+	public boolean deleteById(Integer id){
 		this.contract = null;
+		return true;
 	}
 }
