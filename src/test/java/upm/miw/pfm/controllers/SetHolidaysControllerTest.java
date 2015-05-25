@@ -48,7 +48,7 @@ public class SetHolidaysControllerTest {
     @Test
     public void listVacationTest() {
     	mockListHoliday.add(holiday);
-        assertEquals(mockListHoliday, holidayController.vacationList());
+        assertEquals(mockListHoliday, holidayController.holidayList());
     }
 }
 

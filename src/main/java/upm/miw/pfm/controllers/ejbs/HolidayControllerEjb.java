@@ -41,7 +41,7 @@ public class HolidayControllerEjb implements HolidayController {
     }
 
     @Override
-    public List<Holiday> vacationList() {
+    public List<Holiday> holidayList() {
         return holidayDao.findAll();
     }
     
