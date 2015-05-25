@@ -43,7 +43,7 @@ public class CreateHolidayBean implements Serializable {
 
     @PostConstruct
     public void update() {
-    	this.registerHolidays = holidayController.vacationList();
+    	this.registerHolidays = holidayController.holidayList();
     }
 
     public String getRange() {

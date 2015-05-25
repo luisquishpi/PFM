@@ -57,7 +57,7 @@ public class HolidayControllerTest {
     	holiday = new Holiday(startDate, endDate);
         holidayController.createHoliday(holiday);
         mockListHoliday.add(holiday);
-        assertEquals(mockListHoliday.size(), holidayController.vacationList().size());
+        assertEquals(mockListHoliday.size(), holidayController.holidayList().size());
     }
     
     @AfterClass
