@@ -63,7 +63,8 @@
 												<p:inputText id="workDays"
 													value="{{projectBean.projectSchedule.workDays}}"
 													required="true" requiredMessage="Ingrese los dias laborables por mes"
-													validatorMessage="Los dias laborales deben estar entre 1 y 31">
+													validatorMessage="Los dias laborales deben estar entre 1 y 31"
+													onkeypress="return isNumberKey(event)">
 												    <f:validateLongRange minimum="1" maximum="31" />	
 												</p:inputText>
 											</div>
@@ -75,7 +76,8 @@
 												<p:inputText id="mondayHours"
 													value="{{projectBean.projectSchedule.mondayHours}}"
 													requiredMessage="Ingrese las horas laborales del dia Lunes" required="true"
-													validatorMessage="Las horas laborales deben estar entre 0 y 24">
+													validatorMessage="Las horas laborales deben estar entre 0 y 24"
+													onkeypress="return isNumberKey(event)">
                                                     <f:validateLongRange minimum="0" maximum="24" />    
                                                 </p:inputText>
 											</div>
@@ -103,7 +105,8 @@
 												<p:inputText id="tuesdayHours"
 													value="{{projectBean.projectSchedule.tuesdayHours}}"
 													requiredMessage="Ingrese las horas laborales del dia Martes" required="true"
-													validatorMessage="Las horas laborales deben estar entre 0 y 24">
+													validatorMessage="Las horas laborales deben estar entre 0 y 24"
+													onkeypress="return isNumberKey(event)">
                                                     <f:validateLongRange minimum="0" maximum="24" />    
                                                 </p:inputText>
 											</div>
@@ -133,7 +136,8 @@
 												<p:inputText id="wednesdayHours"
 													value="{{projectBean.projectSchedule.wednesdayHours}}"
 													requiredMessage="Ingrese las horas laborales del dia Miércoles" required="true"
-													validatorMessage="Las horas laborales deben estar entre 0 y 24">
+													validatorMessage="Las horas laborales deben estar entre 0 y 24"
+													onkeypress="return isNumberKey(event)">
                                                     <f:validateLongRange minimum="0" maximum="24" />    
                                                 </p:inputText>
 											</div>
@@ -154,7 +158,8 @@
 												<p:inputText id="thursdayHours"
 													value="{{projectBean.projectSchedule.thursdayHours}}"
 													requiredMessage="Ingrese las horas laborales del dia Jueves" required="true"
-													validatorMessage="Las horas laborales deben estar entre 0 y 24">
+													validatorMessage="Las horas laborales deben estar entre 0 y 24"
+													onkeypress="return isNumberKey(event)">
                                                     <f:validateLongRange minimum="0" maximum="24" />    
                                                 </p:inputText>
 											</div>
@@ -176,7 +181,8 @@
 												<p:inputText id="fridayHours"
 													value="{{projectBean.projectSchedule.fridayHours}}"
 													requiredMessage="Ingrese las horas laborales del dia Viernes" required="true"
-													validatorMessage="Las horas laborales deben estar entre 0 y 24">
+													validatorMessage="Las horas laborales deben estar entre 0 y 24"
+													onkeypress="return isNumberKey(event)">
                                                     <f:validateLongRange minimum="0" maximum="24" />    
                                                 </p:inputText>
 											</div>
@@ -198,7 +204,8 @@
 												<p:inputText id="saturdayHours"
 													value="{{projectBean.projectSchedule.saturdayHours}}"
 													requiredMessage="Ingrese las horas laborales del dia Sábado" required="true"
-													validatorMessage="Las horas laborales deben estar entre 0 y 24">
+													validatorMessage="Las horas laborales deben estar entre 0 y 24"
+													onkeypress="return isNumberKey(event)">
                                                     <f:validateLongRange minimum="0" maximum="24" />    
                                                 </p:inputText>
 											</div>
@@ -213,7 +220,8 @@
 												<p:inputText id="sundayHours"
 													value="{{projectBean.projectSchedule.sundayHours}}"
 													requiredMessage="Ingrese las horas laborales del dia Domingo" required="true"
-													validatorMessage="Las horas laborales deben estar entre 0 y 24">
+													validatorMessage="Las horas laborales deben estar entre 0 y 24"
+													onkeypress="return isNumberKey(event)">
                                                     <f:validateLongRange minimum="0" maximum="24" />    
                                                 </p:inputText>
 											</div>
@@ -271,7 +279,8 @@
 																value="{{projectBean.project.cost}}"
 																required="true"
 																requiredMessage="Ingrese el presupuesto del proyecto"
-																validatorMessage="El presupuesto debe ser de al menos 0">
+																validatorMessage="El presupuesto debe ser de al menos 0"
+																onkeypress="return isNumberKey(event)">
 			                                                    <f:validateLongRange minimum="0" />    
 			                                                </p:inputText>
 														</div>
