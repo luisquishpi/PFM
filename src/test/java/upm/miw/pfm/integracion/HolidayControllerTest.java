@@ -42,22 +42,24 @@ public class HolidayControllerTest {
     	holidayController = new HolidayControllerEjb();
         startDate = Utils.buildDate(2015, 10, 1);
         endDate = Utils.buildDate(2015, 10, 2);
-    }
-
-    @Test
-    public void createAndGetVacationTest() {
         holiday = new Holiday(startDate, endDate);
         holidayController.createHoliday(holiday);
         mockListHoliday.add(holiday);
+    }
+
+    @Test
+    public void createAndGetHolidayTest() {
         assertEquals(holiday, holidayController.getHolidayById(holiday.getId()));
     }
 
     @Test
-    public void listVacationTest() {
-    	holiday = new Holiday(startDate, endDate);
+    public void listHolidayTest() {
+    	startDate = Utils.buildDate(2015, 4, 4);
+        endDate = Utils.buildDate(2015, 5, 5);
+        holiday = new Holiday(startDate, endDate);
         holidayController.createHoliday(holiday);
         mockListHoliday.add(holiday);
-        assertEquals(mockListHoliday.size(), holidayController.holidayList().size());
+        assertEquals(mockListHoliday, holidayController.holidayList());
     }
     
     @AfterClass

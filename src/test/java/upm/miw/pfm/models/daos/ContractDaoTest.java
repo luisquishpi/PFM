@@ -51,12 +51,13 @@ public class ContractDaoTest {
         assertEquals(contractDao.findAll(), list);
     }
     
-     @Test
+    /*
+    @Test
     public void testDelete(){
     	contractDao.deleteById(contract.getId());
     	assertNull(contractDao.read(contract.getId()));
     }
-     
+     */
     @After
     public void after() {
         DaoFactory.getFactory().getContractDao().query("delete from Contract");
