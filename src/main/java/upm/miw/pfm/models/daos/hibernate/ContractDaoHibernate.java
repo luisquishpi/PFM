@@ -20,7 +20,6 @@ public class ContractDaoHibernate extends GenericDaoHibernate<Contract, Integer>
         throw new RuntimeException("No implementado para esta entidad");
     }
 
-	@SuppressWarnings("unchecked")
 	@Override	
 	public void deleteById(Integer id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
