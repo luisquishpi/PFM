@@ -2,13 +2,14 @@
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14303828977006" configfile="/PFM/src/main/webapp/WEB-INF/faces-config.xml">
   <nodes xsi:type="pageflow:PFPage" name="pages/contract/create.xhtml" id="pf14303829632237" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf14303829632238" path="/pages/contract/create.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="pages/contract/index.xhtml" id="pf14303829632239" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf14303829632238" path="/pages/contract/index.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="pages/project/create.xhtml" id="pf14307306157528" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf14307306157529" path="/pages/project/create.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="pages/project/index.xhtml" id="pf143073061575210" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" inlinks="pf14307306157529 pf14314162445940" path="/pages/project/index.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/project/create.xhtml" id="pf14307306157528" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf14307306157529" path="/pages/project/create.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/project/index.xhtml" id="pf143073061575210" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" inlinks="pf14307306157529" path="/pages/project/index.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="pages/employee/create.xhtml" id="pf14309871086650" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf14309871086651" path="/pages/employee/create.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="pages/employee/index.xhtml" id="pf14309871086652" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" inlinks="pf14309871086651" path="/pages/employee/index.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="pages/project/show_theoretical_phases.xhtml" id="pf14314162445941" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf14314162445940" path="/pages/project/show_theoretical_phases.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/employee/createsdsadsf.xhtml" id="pf143257443284123" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf143257443284124" path="/pages/project/show_theorical_phases.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="home.xhtml" id="pf143257443284125" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" inlinks="pf143257443284124" path="/home.xhtml"/>
   <links id="pf14303829632238" target="pf14303829632239" source="pf14303829632237" outcome="index" redirect="true" fromaction="#{createContractBean.process}"/>
   <links id="pf14307306157529" target="pf143073061575210" source="pf14307306157528" outcome="index" redirect="true" fromaction="#{createProjectBean.process}"/>
   <links id="pf14309871086651" target="pf14309871086652" source="pf14309871086650" outcome="index" redirect="true" fromaction="#{createEmployeeBean.process}"/>
-  <links id="pf14314162445940" target="pf143073061575210" source="pf14314162445941" outcome="index" redirect="true" fromaction="#{showTheoreticalPhasesBean.process}"/>
+  <links id="pf143257443284124" target="pf143257443284125" source="pf143257443284123" outcome="index" redirect="true" fromaction="#{showTheoricalPhasesBean.process}"/>
 </pageflow:Pageflow>
