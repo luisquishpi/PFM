@@ -16,5 +16,5 @@ public interface ContractController {
 
 	public void update(Contract contract);
 
-	public void delete(Integer id);
+	public boolean delete(Integer id);
 }

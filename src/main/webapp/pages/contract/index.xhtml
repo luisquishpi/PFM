@@ -37,11 +37,18 @@
 											Opciones <span class="caret"></span>
 										</button>
 										<ul class="dropdown-menu" role="menu">
-											<li><h:outputLink value="edit.xhtml">
+											<li>
+												<h:outputLink value="edit.xhtml">
 													<span class="fa fa-pencil-square-o" aria-hidden="true"></span> Editar
-                                                       <f:param
-														name="id" value="#{contract.id}" />
-												</h:outputLink></li>
+                                                       <f:param name="id" value="#{contract.id}" />
+												</h:outputLink>
+											</li>
+											<li>
+												<h:commandLink action="#{listContractBean.delete}" >
+													<span class="fa fa-trash-o" aria-hidden="true"></span> Eliminar
+                                                       <f:param name="id" value="#{contract.id}"/>
+												</h:commandLink>
+											</li>
 										</ul>
 									</div>
 								</td>
