@@ -80,23 +80,7 @@
         <ui:define name="javascript">
             <script src="/PFM/resources/js/libs/moment.js"></script>
             <script src="/PFM/resources/js/libs/daterangepicker.js"></script>
-            <script type="text/javascript">
-				$(function() {
-				    $('input[name$="daterange"]').daterangepicker({
-				        timePicker: false,
-				        format: 'DD/MM/YYYY',
-				        locale: {
-				            applyLabel: 'Aceptar',
-				            cancelLabel: 'Cancelar',
-				            fromLabel: 'Del',
-				            toLabel: 'Al',
-				            daysOfWeek: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi','Sa'],
-				            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Deciembre'],
-				            firstDay: 1
-				        }
-				    });
-				});
-		    </script>
+            <script src="/PFM/resources/js/utils/init_date_picker.js"></script>
         </ui:define>
     </ui:composition>
 </h:body>
