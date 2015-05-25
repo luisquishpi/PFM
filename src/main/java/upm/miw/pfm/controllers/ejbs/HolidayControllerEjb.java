@@ -49,4 +49,9 @@ public class HolidayControllerEjb implements HolidayController {
         return validator.validate(holiday);
     }
 
+	@Override
+	public void deleteHoliday(Integer selectedHolidayId) {
+		holidayDao.deleteById(selectedHolidayId);
+	}
+
 }

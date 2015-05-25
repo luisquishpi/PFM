@@ -17,4 +17,6 @@ public interface HolidayController {
 	
 	public Set<ConstraintViolation<Holiday>> validate(Holiday holiday);
 
+	public void deleteHoliday(Integer selectedHolidayId);
+
 }

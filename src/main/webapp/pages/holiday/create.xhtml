@@ -19,24 +19,26 @@
         </ui:define>        
         <ui:define name="content">
         	<div class="panel-body"> 	     
-	            <h:form>
-	                <p:growl id="growl" sticky="false" life="5000" showDetail="true" />
+	            <h:form id="form1">
+	            	<p:growl id="growl" sticky="false" life="5000" showDetail="true" />
 	                <div class="row">
 		                <div class="col-md-8 col-md-offset-2">
-		                        <div class="col-md-12">
-		                        	<div class="col-md-6 col-md-offset-2">
-		                        		<p:outputLabel value="Fecha:" for="daterange" styleClass="label_height" />
-		                            	<p:inputText size="25" readonly="#{facesContext.renderResponse}" requiredMessage="Seleccione el periodo de días" id="daterange" value="#{createHolidayBean.range}" required="true" />
-		                            </div>
-		                            <div class="col-md-4">	
-		                        		<p:commandButton value="Crear" icon="ui-icon-disk" ajax="true" action="#{createHolidayBean.process}" update="growl holidayDetails" />
-		                        	</div>
+		                	<div class="col-md-12">
+		                    	<div class="col-md-6 col-md-offset-2">
+		                        	<p:outputLabel value="Fecha:" for="daterange" styleClass="label_height" />
+		                            <p:inputText size="25" readonly="#{facesContext.renderResponse}" requiredMessage="Seleccione el periodo de días" id="daterange" value="#{createHolidayBean.range}" required="true" />
 		                        </div>
+		                        <div class="col-md-4">	
+		                        	<p:commandButton value="Crear" icon="ui-icon-disk" ajax="true" action="#{createHolidayBean.process}" update="growl :form2:holidayDetails" />
+		                       	</div>
+		                    </div>
 		                </div>
-		           </div>     
-		                <div class="row">
+		           </div>
+		      </h:form>  
+		      <h:form id="form2">  
+			  		<div class="row">
 			                <div class="col-md-8 col-md-offset-2">
-			                   <h:panelGroup id="holidayDetails" layout="block" styleClass="panel panel-info">
+			                	<h:panelGroup id="holidayDetails" layout="block" styleClass="panel panel-info">
 			                       <div class="panel-heading">
 			                           Días feriados registrados:
 			                       </div>
@@ -50,16 +52,29 @@
 												 </h:outputText> -
 												 <h:outputText value="#{holiday.end}" >
 		                                               <f:convertDateTime timeZone="ECT" pattern="d/MM/yyyy" />
-		                                            </h:outputText>
-		                                       </li>
+		                                         </h:outputText>
+		                                       	 <p:commandLink oncomplete="PF('deleteDlg').show();">
+		                                       	 	<span class="fa fa-trash-o" aria-hidden="true"></span>
+											   		<f:setPropertyActionListener target="#{createHolidayBean.selectedHoliday}" value="#{holiday}" />
+											  	 </p:commandLink>
+		                                       </li>		                                       
 										</ui:repeat>
-									</ul>
-			                       </div>
+									</ul>										
+									</div>
 			                   </h:panelGroup>
 			                </div>
 		                </div>
-		            </h:form>
-	    	</div>
+		      </h:form>          
+		            <p:confirmDialog widgetVar="deleteDlg" id="deleteDlg" header="Delete" message="¿Está seguro de eliminar el rango seleccionado?"
+							                     width="400" showEffect="bounce" modal="true" closable="false" severity="alert">   
+				        <h:form>         
+					        <h:panelGroup layout="block" style="text-align: right">
+					            <p:commandButton value="Si" ajax="true" action="#{createHolidayBean.delete}" oncomplete="PF('deleteDlg').hide();" update=":form1:growl :form2:holidayDetails" />
+					            <p:commandButton value="No" oncomplete="PF('deleteDlg').hide();" />
+					        </h:panelGroup>
+				        </h:form>
+				    </p:confirmDialog>
+		    </div>
         </ui:define>
         <ui:define name="javascript">
             <script src="/PFM/resources/js/libs/moment.js"></script>
