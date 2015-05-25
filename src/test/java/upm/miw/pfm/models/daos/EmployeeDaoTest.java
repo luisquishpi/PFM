@@ -107,9 +107,10 @@ public class EmployeeDaoTest {
     public void testAddRole() {
         Employee employeePreUpdate = employeeDao.read(employee.getId());
         assertEquals(false, employeePreUpdate.getRoles().add(RoleType.ANALYSIS_DESIGN));
+        employeePreUpdate.getRoles().add(RoleType.DEPLOY);
         employeeDao.update(employeePreUpdate);
         Employee employeePostUpdate = employeeDao.read(employee.getId());
-        assertEquals(2, employeePostUpdate.getRoles().size());
+        assertEquals(employeePreUpdate.getRoles(), employeePostUpdate.getRoles());
         assertEquals(true, employeePreUpdate.getRoles().containsAll(employeePostUpdate.getRoles()));
     }
 

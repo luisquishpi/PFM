@@ -2,6 +2,9 @@ package upm.miw.pfm.models.daos;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,47 +23,43 @@ public class ContractDaoTest {
     @Before
     public void before() {
         contractDao = DaoFactory.getFactory().getContractDao();
+        contract = new Contract(CONSULTOR, 33.0);
+        contractDao.create(contract);
     }
 
     @Test
     public void testCreateAndRead() {
-        contract = new Contract(CONSULTOR, 33.0);
-        contractDao.create(contract);
         assertEquals(contractDao.read(contract.getId()), contract);
     }
 
     @Test
     public void testUpdate() {
-        contract = new Contract(FIJO, 32.5);
-        contractDao.create(contract);
-        
-        Contract contractClone = new Contract(contract.getContractType(), contract.getInsurance());
-        contractClone.setId(contract.getId());
         contract.setContractType(BECARIO);
         contract.setInsurance(30.0);
         contractDao.update(contract);
-        assertNotEquals(contractClone, contractDao.read(contract.getId()));
+        assertEquals(contract, contractDao.read(contract.getId()));
     }
 
     @Test
     public void testList() {
-        Contract contract1 = new Contract(FIJO, 32.5);
-        contractDao.create(contract1);
-        Contract contract2 = new Contract(BECARIO, 30.0);
+    	List<Contract> list = new ArrayList<Contract>();
+        list.add(contract);
+        Contract contract2 = new Contract(FIJO, 30.0);
         contractDao.create(contract2);
+        list.add(contract2);
 
-        assertEquals(2, contractDao.findAll().size());
+        assertEquals(contractDao.findAll(), list);
     }
     
-    @After
-    public void after() {
-        DaoFactory.getFactory().getContractDao().query("delete from Contract");
-    }
-    
+    /*
     @Test
     public void testDelete(){
     	contractDao.deleteById(contract.getId());
     	assertNull(contractDao.read(contract.getId()));
     }
-
+     */
+    @After
+    public void after() {
+        DaoFactory.getFactory().getContractDao().query("delete from Contract");
+    }
 }
