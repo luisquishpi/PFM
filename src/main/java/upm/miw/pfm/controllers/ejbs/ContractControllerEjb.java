@@ -44,7 +44,7 @@ public class ContractControllerEjb implements ContractController {
 	}
 
 	@Override
-	public void delete(Integer id) {
-		contractDao.deleteById(id);
+	public boolean delete(Integer id) {
+		return contractDao.deleteById(id);
 	}
 }

@@ -22,14 +22,16 @@ public class ContractDaoHibernate extends GenericDaoHibernate<Contract, Integer>
 
 	@SuppressWarnings("unchecked")
 	@Override	
-	public void deleteById(Integer id) {
+	public boolean deleteById(Integer id) {
+		boolean deleted = false;
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
             session.beginTransaction();
             Query query = session.createQuery("from Employee E WHERE E.contract.id = :id");
             query.setParameter("id", id);
             if(query.list().isEmpty()){
-                super.deleteById(id);	
+                super.deleteById(id);
+                deleted = true;
             }
             session.getTransaction().commit();
         } catch (HibernateException e) {
@@ -41,5 +43,6 @@ public class ContractDaoHibernate extends GenericDaoHibernate<Contract, Integer>
                 session.close();
             }
         }
+		return deleted;
 	}
 }

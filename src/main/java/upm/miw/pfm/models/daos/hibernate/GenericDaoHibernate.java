@@ -77,13 +77,15 @@ public abstract class GenericDaoHibernate<T, ID extends Serializable> implements
 
     @SuppressWarnings("unchecked")
     @Override
-    public void deleteById(ID id) {
+    public boolean deleteById(ID id) {
+    	boolean deleted = false;
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         try {
             session.beginTransaction();
             T entity = (T) session.load(persistentClass, id);
             session.delete(entity);
             session.getTransaction().commit();
+            deleted = true;
         } catch (HibernateException e) {
             if (session.getTransaction() != null)
                 session.getTransaction().rollback();
@@ -93,6 +95,7 @@ public abstract class GenericDaoHibernate<T, ID extends Serializable> implements
                 session.close();
             }
         }
+		return deleted;
     }
 
     @SuppressWarnings("unchecked")
