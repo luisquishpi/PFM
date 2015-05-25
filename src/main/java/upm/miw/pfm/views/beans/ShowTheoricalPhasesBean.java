@@ -1,5 +1,6 @@
 package upm.miw.pfm.views.beans;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -30,9 +31,13 @@ public class ShowTheoricalPhasesBean {
 
     private List<Project> projectList;
 
-    private Employee[] employeeArray;
-    
-    private boolean emptyProject=true;
+    private List<Employee> employeeList;
+
+    private List<Double> annualGrossSalaryList;
+
+    private List<Double> insuranceList;
+
+    private boolean emptyProject;
 
     private final static Class<ListProjectsBean> clazz = ListProjectsBean.class;
 
@@ -53,6 +58,9 @@ public class ShowTheoricalPhasesBean {
         this.project.setStart(Utils.now(Utils.DD_MM_YYYY_FORMAT));
         this.project.setEnd(Utils.now(Utils.DD_MM_YYYY_FORMAT));
         this.project.setIterationDays(0.00);
+        this.emptyProject = true;
+        this.annualGrossSalaryList = new ArrayList<Double>();
+        this.insuranceList = new ArrayList<Double>();
     }
 
     @PostConstruct
@@ -60,11 +68,22 @@ public class ShowTheoricalPhasesBean {
         projectList = projectController.listProjects();
         LogManager.getLogger(clazz).info("Se encontraron " + projectList.size() + " proyectos");
 
-        List<Employee> employeeList = employeeController.listEmployees();
+        employeeList = employeeController.listEmployees();
         LogManager.getLogger(clazz).info("Se encontraron " + employeeList.size() + " empleados");
-        if (employeeList != null) {
-            employeeArray = employeeList.toArray(new Employee[employeeList.size()]);
+
+        fillSalaryList();
+    }
+
+    private void fillSalaryList() {
+        for (Employee employee : employeeList) {
+            this.annualGrossSalaryList.add(employee.getAnnualGrossSalary());
+            this.insuranceList.add(employee.getContract().getInsurance());
         }
+        LogManager.getLogger(clazz).debug(
+                "# elementos salario " + annualGrossSalaryList.size() + " # elementos contratos "
+                        + this.insuranceList.size());
+
+        assert this.annualGrossSalaryList.size() == this.employeeList.size() : " lista de salarios y de contratos no tienen el mismo tamaño";
     }
 
     public Project getProject() {
@@ -74,42 +93,37 @@ public class ShowTheoricalPhasesBean {
     public void setProject(Project project) {
         this.project = project;
     }
-    
-    public ProjectSchedule getProjectSchedule(){
-    	return projectSchedule;
+
+    public ProjectSchedule getProjectSchedule() {
+        return projectSchedule;
     }
 
     public List<Project> getProjectList() {
         return projectList;
     }
 
-    public void setProjectList(List<Project> projectList) {
-        this.projectList = projectList;
+    public List<Double> getAnnualGrossSalaryList() {
+        return annualGrossSalaryList;
+    }
+
+    public List<Double> getInsuranceList() {
+        return insuranceList;
     }
 
     public void onChangeProject(ValueChangeEvent e) {
         Integer selectedProject = (Integer) e.getNewValue();
-        LogManager.getLogger(clazz).debug("Id de proyecto seleccionado " + this.project);
+        LogManager.getLogger(clazz).debug("Id de proyecto seleccionado " + selectedProject);
         if (selectedProject != -1) {
             this.project.setId(selectedProject);
             this.project = findSelectedProject();
             this.projectSchedule = setScheduleController.getProjectSchedule(project.getId());
             LogManager.getLogger(clazz).debug("Proyecto cargado " + this.project);
             LogManager.getLogger(clazz).info("Project schedule asociado " + this.projectSchedule);
-            this.emptyProject=false;
-        }
-        else{
-        	this.emptyProject=true;
+            this.emptyProject = false;
+        } else {
+            this.emptyProject = true;
         }
         FacesContext.getCurrentInstance().renderResponse();
-    }
-
-    public Employee[] getEmployeeArray() {
-        return employeeArray;
-    }
-
-    public void setEmployeeArray(Employee[] employeeArray) {
-        this.employeeArray = employeeArray;
     }
 
     public String defineIterationDays() {
@@ -138,8 +152,8 @@ public class ShowTheoricalPhasesBean {
         return projectController.getProject(this.project.getId());
     }
 
-	public boolean isEmptyProject() {
-		return emptyProject;
-	}
+    public boolean isEmptyProject() {
+        return emptyProject;
+    }
 
 }

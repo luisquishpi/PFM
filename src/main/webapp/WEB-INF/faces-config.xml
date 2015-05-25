@@ -29,17 +29,16 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
-	
-    <navigation-rule>
-        <display-name>pages/project/show_theoretical_phases.xhtml</display-name>
-        <from-view-id>/pages/project/show_theoretical_phases.xhtml</from-view-id>
-        <navigation-case>
-            <from-action>#{showTheoreticalPhasesBean.process}</from-action>
-            <from-outcome>index</from-outcome>
-            <to-view-id>/pages/project/index.xhtml</to-view-id>
-            <redirect />
-        </navigation-case>
-    </navigation-rule>	
+
+	<navigation-rule>
+		<from-view-id>/pages/project/show_theorical_phases.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{showTheoricalPhasesBean.process}</from-action>
+			<from-outcome>index</from-outcome>
+			<to-view-id>/home.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
 
 	<navigation-rule>
 		<display-name>pages/employee/create.xhtml</display-name>
