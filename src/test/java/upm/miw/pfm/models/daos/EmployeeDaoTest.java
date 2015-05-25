@@ -105,58 +105,52 @@ public class EmployeeDaoTest {
 
     @Test
     public void testAddRole() {
-        Employee employeePreUpdate = employeeDao.read(employee.getId());
-        assertEquals(false, employeePreUpdate.getRoles().add(RoleType.ANALYSIS_DESIGN));
-        employeePreUpdate.getRoles().add(RoleType.DEPLOY);
-        employeeDao.update(employeePreUpdate);
+        employee.getRoles().add(RoleType.DEPLOY);
+        employeeDao.update(employee);
         Employee employeePostUpdate = employeeDao.read(employee.getId());
-        assertEquals(employeePreUpdate.getRoles(), employeePostUpdate.getRoles());
-        assertEquals(true, employeePreUpdate.getRoles().containsAll(employeePostUpdate.getRoles()));
+        assertEquals(employee.getRoles(), employeePostUpdate.getRoles());
+        assertEquals(true, employee.getRoles().containsAll(employeePostUpdate.getRoles()));
     }
 
     @Test
     public void testAddRoles() {
-        Employee employeePreUpdate = employeeDao.read(employee.getId());
         assertEquals(
                 true,
-                employeePreUpdate.getRoles().addAll(
+                employee.getRoles().addAll(
                         new ArrayList<RoleType>(Arrays.asList(RoleType.ANALYSIS_DESIGN,
                                 RoleType.DEPLOY, RoleType.IMPLEMENTATION, RoleType.TESTS))));
-        employeeDao.update(employeePreUpdate);
+        employeeDao.update(employee);
         Employee employeePostUpdate = employeeDao.read(employee.getId());
         assertEquals(5, employeePostUpdate.getRoles().size());
-        assertEquals(true, employeePreUpdate.getRoles().containsAll(employeePostUpdate.getRoles()));
+        assertEquals(true, employee.getRoles().containsAll(employeePostUpdate.getRoles()));
     }
 
     @Test
     public void testRemoveRole() {
-        Employee employeePreUpdate = employeeDao.read(employee.getId());
-        assertEquals(true, employeePreUpdate.getRoles().remove(RoleType.ANALYSIS_DESIGN));
-        employeeDao.update(employeePreUpdate);
+        assertEquals(true, employee.getRoles().remove(RoleType.ANALYSIS_DESIGN));
+        employeeDao.update(employee);
         Employee employeePostUpdate = employeeDao.read(employee.getId());
         assertEquals(1, employeePostUpdate.getRoles().size());
-        assertEquals(true, employeePreUpdate.getRoles().containsAll(employeePostUpdate.getRoles()));
+        assertEquals(true, employee.getRoles().containsAll(employeePostUpdate.getRoles()));
     }
 
     @Test
     public void testRemoveRoles() {
-        Employee employeePreUpdate = employeeDao.read(employee.getId());
         assertEquals(
                 true,
-                employeePreUpdate.getRoles().removeAll(
+                employee.getRoles().removeAll(
                         new ArrayList<RoleType>(Arrays.asList(RoleType.ANALYSIS_DESIGN,
                                 RoleType.REQUIREMENTS, RoleType.IMPLEMENTATION))));
-        employeeDao.update(employeePreUpdate);
+        employeeDao.update(employee);
         Employee employeePostUpdate = employeeDao.read(employee.getId());
         assertEquals(true, employeePostUpdate.getRoles().isEmpty());
     }
 
     @Test
     public void testRemoveAllRoles() {
-        Employee employeePreUpdate = employeeDao.read(employee.getId());
-        assertEquals(2, employeePreUpdate.getRoles().size());
-        employeePreUpdate.getRoles().clear();
-        employeeDao.update(employeePreUpdate);
+        assertEquals(2, employee.getRoles().size());
+        employee.getRoles().clear();
+        employeeDao.update(employee);
         Employee employeePostUpdate = employeeDao.read(employee.getId());
         assertEquals(true, employeePostUpdate.getRoles().isEmpty());
     }

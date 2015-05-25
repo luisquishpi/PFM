@@ -16,84 +16,108 @@
 			<th class="ui-outputlabel ui-widget">Transición</th>
 			<th class="ui-outputlabel ui-widget">Proyecto</th>
 		</tr>
+        <tr>
+            <td class="ui-outputlabel ui-widget"><strong>Distribución</strong></td>
+            <td class="ui-outputlabel ui-widget">{{inicioPercentaje()}}%</td>
+            <td class="ui-outputlabel ui-widget">{{elaboracionPercentaje()}}%</td>
+            <td class="ui-outputlabel ui-widget">{{construccionPercentaje()}}%</td>
+            <td class="ui-outputlabel ui-widget">{{transicionPercentaje()}}%</td>
+            <td class="ui-outputlabel ui-widget">{{proyectoPercentaje()}}%</td>
+        </tr>
+        <tr>
+            <td class="ui-outputlabel ui-widget"><strong>Horas</strong></td>
+            <td class="ui-outputlabel ui-widget">{{inicioHours() | number:2}}</td>
+            <td class="ui-outputlabel ui-widget">{{elaboracionHours() | number:2}}</td>
+            <td class="ui-outputlabel ui-widget">{{construccionHours() | number:2}}</td>
+            <td class="ui-outputlabel ui-widget">{{transicionHours() | number:2}}</td>
+            <td class="ui-outputlabel ui-widget">{{proyectoHours() | number:2}}</td>
+        </tr>  
+        <tr>
+            <td class="ui-outputlabel ui-widget"><strong>Días</strong></td>
+            <td class="ui-outputlabel ui-widget">{{inicioDays() | number:2}}</td>
+            <td class="ui-outputlabel ui-widget">{{elaboracionDays() | number:2}}</td>
+            <td class="ui-outputlabel ui-widget">{{construccionDays() | number:2}}</td>
+            <td class="ui-outputlabel ui-widget">{{transicionDays() | number:2}}</td>
+            <td class="ui-outputlabel ui-widget">{{proyectoDays() | number:2}}</td>
+        </tr>              
 		<tr>
 			<td class="ui-outputlabel ui-widget"><strong>Meses</strong></td>
-			<td class="ui-outputlabel ui-widget">{{initTransMonths() | number:2}}</td>
-			<td class="ui-outputlabel ui-widget">{{ElabMonths() | number:2}}</td>
-			<td class="ui-outputlabel ui-widget">{{ConstrMonths() | number:2}}</td>
-			<td class="ui-outputlabel ui-widget">{{initTransMonths() | number:2}}</td>
-			<td class="ui-outputlabel ui-widget">{{projectMonths() | number:2}}</td>
+            <td class="ui-outputlabel ui-widget">{{inicioMonths() | number:2}}</td>
+            <td class="ui-outputlabel ui-widget">{{elaboracionMonths() | number:2}}</td>
+            <td class="ui-outputlabel ui-widget">{{construccionMonths() | number:2}}</td>
+            <td class="ui-outputlabel ui-widget">{{transicionMonths() | number:2}}</td>
+            <td class="ui-outputlabel ui-widget">{{proyectoMonths() | number:2}}</td>
 		</tr>
 		<tr>
 			<td class="ui-outputlabel ui-widget"><strong>Fecha
 					inicio</strong></td>
-			<td class="ui-outputlabel ui-widget">{{initStartDate()}}</td>
-			<td class="ui-outputlabel ui-widget">{{ElabStartDate()}}</td>
-			<td class="ui-outputlabel ui-widget">{{ConstrStartDate()}}</td>
-			<td class="ui-outputlabel ui-widget">{{transStartDate()}}</td>
-			<td class="ui-outputlabel ui-widget">{{showTheoricalPhasesBean.project.startString}}</td>
+			<td class="ui-outputlabel ui-widget">{{inicioStartDate()}}</td>
+			<td class="ui-outputlabel ui-widget">{{elaboracionStartDate()}}</td>
+			<td class="ui-outputlabel ui-widget">{{construccionStartDate()}}</td>
+			<td class="ui-outputlabel ui-widget">{{transicionStartDate()}}</td>
+			<td class="ui-outputlabel ui-widget">{{proyectoStartDate()}}</td>
 		</tr>
 		<tr>
 			<td class="ui-outputlabel ui-widget"><strong>Fecha
 					final</strong></td>
-			<td class="ui-outputlabel ui-widget">{{initEndDate()}}</td>
-			<td class="ui-outputlabel ui-widget">{{ElabEndDate()}}</td>
-			<td class="ui-outputlabel ui-widget">{{ConstrEndDate()}}</td>
-			<td class="ui-outputlabel ui-widget">{{transEndDate()}}</td>
-			<td class="ui-outputlabel ui-widget">{{showTheoricalPhasesBean.project.endString}}</td>
+            <td class="ui-outputlabel ui-widget">{{inicioEndDate()}}</td>
+            <td class="ui-outputlabel ui-widget">{{elaboracionEndDate()}}</td>
+            <td class="ui-outputlabel ui-widget">{{construccionEndDate()}}</td>
+            <td class="ui-outputlabel ui-widget">{{transicionEndDate()}}</td>
+            <td class="ui-outputlabel ui-widget">{{proyectoEndDate()}}</td>
 		</tr>
 		<tr>
 			<td class="ui-outputlabel ui-widget"><strong>Iteraciones</strong></td>
-			<td class="ui-outputlabel ui-widget">0.6</td>
-			<td class="ui-outputlabel ui-widget">1.7</td>
-			<td class="ui-outputlabel ui-widget">2.9</td>
-			<td class="ui-outputlabel ui-widget">0.6</td>
-			<td class="ui-outputlabel ui-widget">5.8</td>
+            <td class="ui-outputlabel ui-widget">{{inicioIteration() | number:2}}</td>
+            <td class="ui-outputlabel ui-widget">{{elaboracionIteration() | number:2}}</td>
+            <td class="ui-outputlabel ui-widget">{{construccionIteration() | number:2}}</td>
+            <td class="ui-outputlabel ui-widget">{{transicionIteration() | number:2}}</td>
+            <td class="ui-outputlabel ui-widget">{{proyectoIteration() | number:2}}</td>
 		</tr>
 		<tr>
 			<td class="ui-outputlabel ui-widget"><strong>Inicio
 					iteración</strong></td>
-			<td class="ui-outputlabel ui-widget">0.6</td>
-			<td class="ui-outputlabel ui-widget">1.7</td>
-			<td class="ui-outputlabel ui-widget">2.9</td>
-			<td class="ui-outputlabel ui-widget">0.6</td>
-			<td class="ui-outputlabel ui-widget">5.8</td>
+            <td class="ui-outputlabel ui-widget">{{inicioStartIteration() | number:2}}</td>
+            <td class="ui-outputlabel ui-widget">{{elaboracionStartIteration() | number:2}}</td>
+            <td class="ui-outputlabel ui-widget">{{construccionStartIteration() | number:2}}</td>
+            <td class="ui-outputlabel ui-widget">{{transicionStartIteration() | number:2}}</td>
+            <td class="ui-outputlabel ui-widget">{{proyectoStartIteration() | number:2}}</td>
 		</tr>
 		<tr>
 			<td class="ui-outputlabel ui-widget"><strong>Fin
 					iteración</strong></td>
-			<td class="ui-outputlabel ui-widget">0.6</td>
-			<td class="ui-outputlabel ui-widget">1.7</td>
-			<td class="ui-outputlabel ui-widget">2.9</td>
-			<td class="ui-outputlabel ui-widget">0.6</td>
-			<td class="ui-outputlabel ui-widget">5.8</td>
+            <td class="ui-outputlabel ui-widget">{{inicioEndIteration() | number:2}}</td>
+            <td class="ui-outputlabel ui-widget">{{elaboracionEndIteration() | number:2}}</td>
+            <td class="ui-outputlabel ui-widget">{{construccionEndIteration() | number:2}}</td>
+            <td class="ui-outputlabel ui-widget">{{transicionEndIteration() | number:2}}</td>
+            <td class="ui-outputlabel ui-widget">{{proyectoEndIteration() | number:2}}</td>
 		</tr>
 		<tr>
 			<td class="ui-outputlabel ui-widget"><strong>Media/horas
 					iteración</strong></td>
-			<td class="ui-outputlabel ui-widget">0.6</td>
-			<td class="ui-outputlabel ui-widget">1.7</td>
-			<td class="ui-outputlabel ui-widget">2.9</td>
-			<td class="ui-outputlabel ui-widget">0.6</td>
-			<td class="ui-outputlabel ui-widget">5.8</td>
+            <td class="ui-outputlabel ui-widget">{{inicioAverageHours() | number:2}}</td>
+            <td class="ui-outputlabel ui-widget">{{elaboracionAverageHours() | number:2}}</td>
+            <td class="ui-outputlabel ui-widget">{{construccionAverageHours() | number:2}}</td>
+            <td class="ui-outputlabel ui-widget">{{transicionAverageHours() | number:2}}</td>
+            <td class="ui-outputlabel ui-widget">{{proyectoAverageHours() | number:2}}</td>
 		</tr>
 		<tr>
 			<td class="ui-outputlabel ui-widget"><strong>Media/días
 					iteración</strong></td>
-			<td class="ui-outputlabel ui-widget">0.6</td>
-			<td class="ui-outputlabel ui-widget">1.7</td>
-			<td class="ui-outputlabel ui-widget">2.9</td>
-			<td class="ui-outputlabel ui-widget">0.6</td>
-			<td class="ui-outputlabel ui-widget">5.8</td>
+            <td class="ui-outputlabel ui-widget">{{inicioAverageDays() | number:2}}</td>
+            <td class="ui-outputlabel ui-widget">{{elaboracionAverageDays() | number:2}}</td>
+            <td class="ui-outputlabel ui-widget">{{construccionAverageDays() | number:2}}</td>
+            <td class="ui-outputlabel ui-widget">{{transicionAverageDays() | number:2}}</td>
+            <td class="ui-outputlabel ui-widget">{{proyectoAverageDays() | number:2}}</td>
 		</tr>
 		<tr>
 			<td class="ui-outputlabel ui-widget"><strong>Media/meses
 					iteración</strong></td>
-			<td class="ui-outputlabel ui-widget">0.6</td>
-			<td class="ui-outputlabel ui-widget">1.7</td>
-			<td class="ui-outputlabel ui-widget">2.9</td>
-			<td class="ui-outputlabel ui-widget">0.6</td>
-			<td class="ui-outputlabel ui-widget">5.8</td>
+            <td class="ui-outputlabel ui-widget">{{inicioAverageMonths() | number:2}}</td>
+            <td class="ui-outputlabel ui-widget">{{elaboracionAverageMonths() | number:2}}</td>
+            <td class="ui-outputlabel ui-widget">{{construccionAverageMonths() | number:2}}</td>
+            <td class="ui-outputlabel ui-widget">{{transicionAverageMonths() | number:2}}</td>
+            <td class="ui-outputlabel ui-widget">{{proyectoAverageMonths() | number:2}}</td>
 		</tr>
 	</table>
 </ui:composition>
