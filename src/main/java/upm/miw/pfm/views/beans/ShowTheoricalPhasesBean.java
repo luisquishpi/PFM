@@ -126,16 +126,6 @@ public class ShowTheoricalPhasesBean {
         FacesContext.getCurrentInstance().renderResponse();
     }
 
-    public String defineIterationDays() {
-        if (this.project.getId() != null && this.project.getId() != -1) {
-            Project projectToUpdate = projectController.getProject(this.project.getId());
-            projectToUpdate.setIterationDays(this.project.getIterationDays());
-            projectController.updateProject(projectToUpdate);
-            LogManager.getLogger(clazz).debug("Proyecto a actualizar " + projectToUpdate);
-        }
-        return null;
-    }
-
     public String process() {
         if (this.project.getId() != null && this.project.getId() != -1) {
             Project projectToUpdate = findSelectedProject();
