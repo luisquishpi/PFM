@@ -2,12 +2,10 @@ package upm.miw.pfm.controllers;
 
 import static org.junit.Assert.*;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import upm.miw.pfm.controllers.ejbs.HolidayControllerEjb;
@@ -21,22 +19,13 @@ public class SetHolidaysControllerTest {
 
     private Holiday holiday;
 
-    SimpleDateFormat formatter = new SimpleDateFormat("dd/MMM/yyyy");
-
-    static List<Holiday> mockListHoliday;
-
-    @BeforeClass
-    public static void beforeClass() {
-        mockListHoliday = new ArrayList<Holiday>();
-    }
-
     @Before
     public void before() {
+    	new MockHolidayDao();
     	holidayController = new HolidayControllerEjb();
 
     	holiday = new Holiday(Utils.buildDate(2015, 3, 3), Utils.buildDate(2015, 3, 3));
     	
-        new MockHolidayDao(holiday, mockListHoliday);
         holidayController.createHoliday(holiday);
     }
 
@@ -47,8 +36,10 @@ public class SetHolidaysControllerTest {
 
     @Test
     public void listHolidayTest() {
-    	mockListHoliday.add(holiday);
-        assertEquals(mockListHoliday, holidayController.holidayList());
+    	List<Holiday> listHoliday = new ArrayList<Holiday>();
+    	listHoliday.add(holiday);
+    	new MockHolidayDao(listHoliday);
+        assertEquals(listHoliday, holidayController.holidayList());
     }
 }
 
