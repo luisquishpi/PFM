@@ -1,21 +1,16 @@
 package upm.miw.pfm.views.beans;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
-import javax.management.relation.Role;
-
 import org.apache.logging.log4j.LogManager;
-
 import upm.miw.pfm.controllers.ContractController;
 import upm.miw.pfm.controllers.EmployeeController;
 import upm.miw.pfm.models.entities.Contract;
@@ -83,6 +78,7 @@ public class EditEmployeeBean {
         LogManager.getLogger(this).info("Se encontraron " + contractList.size() + " contratos");
 
     }
+
     private Set<String> getSelectedRolesString() {
         Set<String> roles = new HashSet<String>();
         for (RoleType role : employee.getRoles()) {

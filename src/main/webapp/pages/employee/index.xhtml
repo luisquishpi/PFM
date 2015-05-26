@@ -8,8 +8,8 @@
 	xmlns:p="http://primefaces.org/ui">
 <ui:composition template="#{root}/WEB-INF/template/commonLayout.xhtml">
 	<ui:define name="css">
-			<link href="/PFM/resources/css/style_index_list.css" rel="stylesheet" />   		
-		</ui:define>
+		<link href="/PFM/resources/css/style_index_list.css" rel="stylesheet" />
+	</ui:define>
 	<ui:define name="header">
             Empleados
         </ui:define>
@@ -18,48 +18,53 @@
 		<h:panelGroup rendered="#{not empty listEmployeesBean.employees}">
 			<table class="table table-bordered">
 				<h:form>
-						<tbody>
-							<tr class="active"><th class="text-center">Nombre</th><th class="text-center">Tipo de contrato</th><th class="text-center">Acciones</th></tr>
-							<ui:repeat var="employee" value="#{listEmployeesBean.employees}">
-								<tr class="text-center">
-					            	<td><h:outputText value="#{employee.getFullName()}" /></td>
-					            	<td><h:outputText value="#{employee.getContract().getContractType()}" /></td>
-					            	<td>
-					            		<div class="btn-group" role="group">
-											<button type="button" class="btn btn-default dropdown-toggle"
-												data-toggle="dropdown" aria-expanded="false">
-												Opciones <span class="caret"></span>
-											</button>
-											<ul class="dropdown-menu" role="menu">
-												<li><h:outputLink value="show.xhtml">
-														<span class="glyphicon glyphicon-search" aria-hidden="true"></span> Detalles
+					<tbody>
+						<tr class="active">
+							<th class="text-center">Nombre</th>
+							<th class="text-center">Tipo de contrato</th>
+							<th class="text-center">Acciones</th>
+						</tr>
+						<ui:repeat var="employee" value="#{listEmployeesBean.employees}">
+							<tr class="text-center">
+								<td><h:outputText value="#{employee.getFullName()}" /></td>
+								<td><h:outputText
+										value="#{employee.getContract().getContractType()}" /></td>
+								<td>
+									<div class="btn-group" role="group">
+										<button type="button" class="btn btn-default dropdown-toggle"
+											data-toggle="dropdown" aria-expanded="false">
+											Opciones <span class="caret"></span>
+										</button>
+										<ul class="dropdown-menu" role="menu">
+											<li><h:outputLink value="show.xhtml">
+													<span class="glyphicon glyphicon-search" aria-hidden="true"></span> Detalles
 						                               <f:param name="id"
-															value="#{employee.id}" />
+														value="#{employee.id}" />
 												</h:outputLink></li>
-												<li><h:outputLink value="edit.xhtml">
-                                                    <span class="fa fa-pencil-square-o" aria-hidden="true"></span> Editar
+											<li><h:outputLink value="edit.xhtml">
+													<span class="fa fa-pencil-square-o" aria-hidden="true"></span> Editar
                                                        <f:param
-                                                        name="id" value="#{employee.id}" />
-                                                </h:outputLink></li>
-											</ul>
-										</div>
-					            	</td>
-					            </tr>
-					         </ui:repeat>
-					    </tbody>
-					</h:form>		    
-				</table> 
-			</h:panelGroup>
-			<h:panelGroup rendered="#{empty listEmployeesBean.employees}">
-			    <blockquote>
-				  <p>La lista de empleados está vacía.</p>
-				</blockquote>
-			</h:panelGroup>		
-			<br />
-			<p:button outcome="create.xhtml" value="Nuevo Empleado"
-				icon="ui-icon-plus"></p:button>
-			<p:button outcome="/home.xhtml" value="Ir al inicio"
-				icon="ui-icon-home"></p:button>
+														name="id" value="#{employee.id}" />
+												</h:outputLink></li>
+										</ul>
+									</div>
+								</td>
+							</tr>
+						</ui:repeat>
+					</tbody>
+				</h:form>
+			</table>
+		</h:panelGroup>
+		<h:panelGroup rendered="#{empty listEmployeesBean.employees}">
+			<blockquote>
+				<p>La lista de empleados está vacía.</p>
+			</blockquote>
+		</h:panelGroup>
+		<br />
+		<p:button outcome="create.xhtml" value="Nuevo Empleado"
+			icon="ui-icon-plus"></p:button>
+		<p:button outcome="/home.xhtml" value="Ir al inicio"
+			icon="ui-icon-home"></p:button>
 	</ui:define>
 </ui:composition>
 </html>
