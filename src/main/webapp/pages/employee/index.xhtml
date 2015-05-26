@@ -14,7 +14,7 @@
             Empleados
         </ui:define>
 	<ui:define name="content">
-		<p:growl id="growl" sticky="false" life="5000" showDetail="false" />
+		<p:growl id="growl" sticky="false" life="5000" showDetail="true" />
 		<h:panelGroup rendered="#{not empty listEmployeesBean.employees}">
 			<table class="table table-bordered">
 				<h:form>
@@ -36,6 +36,11 @@
 						                               <f:param name="id"
 															value="#{employee.id}" />
 												</h:outputLink></li>
+												<li><h:outputLink value="edit.xhtml">
+                                                    <span class="fa fa-pencil-square-o" aria-hidden="true"></span> Editar
+                                                       <f:param
+                                                        name="id" value="#{employee.id}" />
+                                                </h:outputLink></li>
 											</ul>
 										</div>
 					            	</td>

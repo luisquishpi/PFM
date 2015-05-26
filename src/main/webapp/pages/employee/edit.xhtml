@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:body>
+	<ui:composition template="#{root}/WEB-INF/template/commonLayout.xhtml">
+		<ui:define name="header">
+            Editar empleado
+        </ui:define>
+		<ui:define name="content">
+			<div class="panel-body">
+				<div class="main-grid main-body-grid">
+					<h:form prependId="false">
+						<p:growl id="growl" sticky="false" life="5000" showDetail="false" />
+						<fieldset>
+							<div class="row">
+								<div class="col-sm-3">
+									<p:outputLabel for="name" value="Nombre: "
+										styleClass="label_height" />
+								</div>
+								<div class="col-sm-2">
+									<p:inputText requiredMessage="El nombre es obligatorio"
+										id="name" value="#{editEmployeeBean.employee.name}"
+										required="true" label="" />
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-3">
+									<p:outputLabel for="surname" value="Apellidos: "
+										styleClass="label_height" />
+								</div>
+								<div class="col-sm-2">
+									<p:inputText requiredMessage="Los apellidos son obligatorios"
+										id="surname" value="#{editEmployeeBean.employee.surname}"
+										required="true" label="" />
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-3">
+									<p:outputLabel for="code" value="Código de empleado: "
+										styleClass="label_height" />
+								</div>
+								<div class="col-sm-2">
+									<p:inputText
+										requiredMessage="El código de empleado es obligatorio"
+										id="code" value="#{editEmployeeBean.employee.employeeCode}"
+										required="true" />
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-3">
+									<p:outputLabel for="bruto" value="Bruto anual: "
+										styleClass="label_height" />
+								</div>
+								<div class="col-sm-2">
+									<p:spinner id="bruto"
+										value="#{editEmployeeBean.employee.annualGrossSalary}"
+										required="true"
+										requiredMessage="El bruto anual es obligatorio"
+										validatorMessage="El bruto anual debe ser mayor a 0"
+										stepFactor="1000" label="">
+										<f:convertNumber minFractionDigits="2" maxFractionDigits="2"
+											locale="en_US" />
+										<f:validator
+											validatorId="upm.miw.pfm.utils.GreaterThanZeroValidator" />
+									</p:spinner>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-3">
+									<p:outputLabel for="contract" value="Contrato: "
+										styleClass="label_height" />
+								</div>
+								<div class="col-sm-2">
+									<h:selectOneMenu id="contract" styleClass="dropdown"
+										value="#{editEmployeeBean.employee.contract}" required="true"
+										requiredMessage="Debe seleccionar el contrato"
+										hideNoSelectionOption="false" converter="GenericConverter">
+										<f:selectItems value="#{editEmployeeBean.contractList}"
+											var="contract" itemLabel="#{contract.contractType}"
+											itemValue="#{contract}"  />
+										<f:attribute name="fieldLabel" value="contrato" />
+									</h:selectOneMenu>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-3">
+									<p:outputLabel for="roles" value="Roles: "
+										styleClass="label_height" />
+								</div>
+								<div class="col-sm-4">
+									<h:selectManyCheckbox styleClass="checkbox_roles" id="roles"
+										value="#{editEmployeeBean.checkedRoles}"
+										layout="pageDirection" required="true"
+										requiredMessage="Debe seleccionar al menos un rol">
+										<f:selectItems value="#{editEmployeeBean.roles}" var="role"
+											itemLabel="#{role.description}" itemValue="#{role}" />
+										<f:attribute name="collectionType" value="java.util.ArrayList" />
+									</h:selectManyCheckbox>
+								</div>
+							</div>
+							<div>
+								<p:commandButton value="Editar" icon="ui-icon-disk"
+									action="#{editEmployeeBean.process}" ajax="false">
+									<f:param name="id" value="#{editEmployeeBean.employee.id}" />
+								</p:commandButton>
+								<p:button outcome="index.xhtml" value="Volver"
+									icon="ui-icon-arrowreturn-1-w" ajax="false" />
+							</div>
+						</fieldset>
+					</h:form>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
