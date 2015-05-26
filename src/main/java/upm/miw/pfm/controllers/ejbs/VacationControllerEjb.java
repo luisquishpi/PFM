@@ -54,5 +54,4 @@ public class VacationControllerEjb implements VacationController {
     public Set<ConstraintViolation<Vacation>> validate(Vacation vacation){
         return validator.validate(vacation);
     }
-
 }

@@ -54,9 +54,8 @@
 		                                               <f:convertDateTime timeZone="ECT" pattern="d/MM/yyyy" />
 		                                         </h:outputText>
 		                                       	 <p:commandLink update=":form3:deleteDlgId" oncomplete="PF('deleteDlg').show();">
-		                                       	 	<span class="fa fa-trash-o" aria-hidden="true"></span>
-											   		<f:setPropertyActionListener target="#{createHolidayBean.selectedHoliday}" value="#{holiday}" />
-											   		
+		                                       	 	<span class="fa fa-trash-o delete_button" aria-hidden="true"></span>
+											   		<f:setPropertyActionListener target="#{createHolidayBean.selectedHoliday}" value="#{holiday}" />											   		
 											  	 </p:commandLink>
 		                                       </li>		                                       
 										</ui:repeat>
@@ -67,7 +66,7 @@
 		                </div>
 		      </h:form> 
 		      <h:form id="form3">         
-		            <p:confirmDialog widgetVar="deleteDlg" id="deleteDlgId" header="Delete"
+		            <p:confirmDialog widgetVar="deleteDlg" id="deleteDlgId" header="Eliminar"
 							                     width="400" showEffect="bounce" modal="true" closable="false">          
 				        	<f:facet name="message">
 			                    <h:outputText value='#{createHolidayBean.messageDialog}'/>

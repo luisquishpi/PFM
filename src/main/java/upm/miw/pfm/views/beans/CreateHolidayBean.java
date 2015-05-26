@@ -76,9 +76,9 @@ public class CreateHolidayBean implements Serializable {
 
 	public void setSelectedHoliday(Holiday selectedHoliday) {
 		this.selectedHoliday = selectedHoliday;	
-		this.messageDialog = "¿Esta seguro de eliminar el rango "+ 
+		this.messageDialog = "¿Quiere eliminar "+ 
 				Utils.convertDateToString(this.selectedHoliday.getStart(), "dd/MM/yyyy")+" - "+
-				Utils.convertDateToString(this.selectedHoliday.getEnd(), "dd/MM/yyyy");
+				Utils.convertDateToString(this.selectedHoliday.getEnd(), "dd/MM/yyyy")+"?";
 	}
 
 	public String getMessageDialog() {
