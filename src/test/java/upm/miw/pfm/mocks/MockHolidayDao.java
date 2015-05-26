@@ -3,21 +3,26 @@ package upm.miw.pfm.mocks;
 import java.util.List;
 
 import mockit.Mock;
+import mockit.MockUp;
+import upm.miw.pfm.models.daos.hibernate.HolidayDaoHibernate;
 import upm.miw.pfm.models.entities.Holiday;
 
-public class MockHolidayDao {
+public class MockHolidayDao extends MockUp<HolidayDaoHibernate>{
 	
 	private Holiday holiday;
 	
 	private List<Holiday> holidayList;
 
-	public MockHolidayDao(Holiday holiday, List<Holiday> holidayList) {
+	public MockHolidayDao(Holiday holiday) {
 		this.holiday = holiday;
+	}
+
+	public MockHolidayDao(List<Holiday> holidayList) {
 		this.holidayList = holidayList;
 	}
 
-	public MockHolidayDao(Holiday holiday) {
-		this.holiday = holiday;
+	public MockHolidayDao() {
+		// TODO Auto-generated constructor stub
 	}
 
 	@Mock

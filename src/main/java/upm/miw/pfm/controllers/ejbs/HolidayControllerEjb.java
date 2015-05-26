@@ -41,12 +41,17 @@ public class HolidayControllerEjb implements HolidayController {
     }
 
     @Override
-    public List<Holiday> vacationList() {
+    public List<Holiday> holidayList() {
         return holidayDao.findAll();
     }
     
     public Set<ConstraintViolation<Holiday>> validate(Holiday holiday){
         return validator.validate(holiday);
     }
+
+	@Override
+	public void deleteHoliday(Integer selectedHolidayId) {
+		holidayDao.deleteById(selectedHolidayId);
+	}
 
 }

@@ -23,7 +23,9 @@
 		<link href="/PFM/resources/css/style.css" rel="stylesheet" />
 		<link href="/PFM/resources/css/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
-        <link href="/PFM/resources/css/selectboxit/css/jquery.selectBoxIt.css" rel="stylesheet" />        
+        <link href="/PFM/resources/css/selectboxit/css/jquery.selectBoxIt.css" rel="stylesheet" />    
+        <link rel="shortcut icon" href="/PFM/resources/css/favicon.ico" type="image/x-icon"/>
+		<link rel="icon" href="/PFM/resources/css/favicon.ico" type="image/x-icon"/>    
 		<ui:insert name="css"></ui:insert>
 		<ui:insert name="javascript"></ui:insert>
 	</h:head>
@@ -92,6 +94,9 @@
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#{request.contextPath}/pages/holiday/create.xhtml"><i class="fa fa-star fa-fw"></i> Días feriados</a>
                         </li>
                     </ul>
                 </div>

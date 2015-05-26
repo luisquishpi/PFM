@@ -54,6 +54,8 @@ public class Employee implements IGenericEntity{
     @OneToMany(cascade = CascadeType.REFRESH, mappedBy="employee")
     private Set<Vacation> vacations=new HashSet<Vacation>(0);
 
+    private final float DELTA = 0.001f;
+    
     public Employee() {
         this.roles = new HashSet<RoleType>();
     }
@@ -170,7 +172,7 @@ public class Employee implements IGenericEntity{
         assert obj != null;
         Employee other = (Employee) obj;
         return id == other.id && name.equals(other.name) && surname.equals(other.surname)
-                && annualGrossSalary.doubleValue() == other.annualGrossSalary.doubleValue()
+                && Math.abs(annualGrossSalary.doubleValue() - other.annualGrossSalary.doubleValue()) < DELTA
                 && contract.equals(other.contract) && employeeCode.equals(other.employeeCode)
                 && roles.containsAll(other.roles);
     }

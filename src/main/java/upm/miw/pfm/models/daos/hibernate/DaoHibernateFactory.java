@@ -1,6 +1,5 @@
 package upm.miw.pfm.models.daos.hibernate;
 
-import upm.miw.pfm.models.daos.hibernate.ProjectDaoHibernate;
 import upm.miw.pfm.models.daos.ContractDao;
 import upm.miw.pfm.models.daos.DaoFactory;
 import upm.miw.pfm.models.daos.EmployeeDao;

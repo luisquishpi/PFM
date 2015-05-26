@@ -5,298 +5,543 @@
 projectApp.controller("theoricalPhaseController", ['$scope', '$isTest', 'bridgeService', 'workTimeService', function ($scope, $isTest, bridgeService, workTimeService) {  
 	
 	$scope.schedule = bridgeService.shareData;
-	
+
 	if(!$isTest){
 		  initJSFScope($scope);
 		  workTimeService.calculateWorkDaysAndHour($scope.showTheoricalPhasesBean.project.startString, $scope.showTheoricalPhasesBean.project.endString, $scope.schedule.listHoursEachDay());
-		  console.log(workTimeService);
 	}
+	
+	//Constantes
+	var DATE_FORMAT = "DD/MM/YYYY";
+	var INICIO_DISTRIBUTION_DURATION = 10;
+	var ELABORACION_DISTRIBUTION_DURATION = 30;
+	var CONSTRUCCION_DISTRIBUTION_DURATION = 50;
+	var TRANSICION_DISTRIBUTION_DURATION = 10;
+	
+	var INICIO_DISTRIBUTION_EFFORT = 5;
+	var ELABORACION_DISTRIBUTION_EFFORT = 20;
+	var CONSTRUCCION_DISTRIBUTION_EFFORT = 65;
+	var TRANSICION_DISTRIBUTION_EFFORT = 10;	
+	
+	var ITERATION_INITIAL_VALUE = 1;
+	var NEXT_DAY_VALUE = 1;
+	
+	var NUMBER_OF_MONTHS = 12;
+	var NUMBER_OF_WORK_DAYS_PER_WEEK = 5;
+	
+	/********************************/
+	addDaysToDate = function(date, numberOfDays){
+		return moment(date, DATE_FORMAT).add(numberOfDays, "days").format(DATE_FORMAT);
+	}
+	
+	$scope.recomendedDays = function(){
+		  return $scope.inicioDays();
+	}
+	
+	$scope.initStartDate = function(){
+		return moment($scope.showTheoricalPhasesBean.project.startString, DATE_FORMAT).format(DATE_FORMAT);
+	}
+	
+	$scope.initEndDate = function(){
+		return addDaysToDate($scope.showTheoricalPhasesBean.project.startString, $scope.naturalDays*($scope.inicioPercentaje()/100));
+	}	
+	
+	$scope.ElabStartDate = function(){
+		return addDaysToDate($scope.initEndDate(), NEXT_DAY_VALUE);
+	}
+	
+	$scope.ElabEndDate = function(){
+		return addDaysToDate($scope.ElabStartDate(), $scope.naturalDays*($scope.elaboracionPercentaje()/100));
+	}	
+	
+	$scope.ConstrStartDate = function(){
+		return addDaysToDate($scope.ElabEndDate(), NEXT_DAY_VALUE);
+	}
+	
+	$scope.ConstrEndDate = function(){
+		return addDaysToDate($scope.ConstrStartDate(), $scope.naturalDays*($scope.construccionPercentaje()/100));
+	}
+	
+	$scope.transStartDate = function(){
+		return addDaysToDate($scope.ConstrEndDate(), NEXT_DAY_VALUE);
+	}
+	
+	$scope.transEndDate = function(){
+		  return addDaysToDate($scope.transStartDate(), $scope.naturalDays*($scope.transicionPercentaje()/100));
+	}	
 	
 	$scope.averageMonthCost = function(){
 		var cost = 0;
-		for(i = 0; i < $scope.showTheoricalPhasesBean.employeeArray.length; i++){
-			cost += $scope.showTheoricalPhasesBean.employeeArray[i].annualGrossSalary + $scope.showTheoricalPhasesBean.employeeArray[i].annualGrossSalary*$scope.showTheoricalPhasesBean.employeeArray[i].contract.insurance/100;
+		for(i = 0; i < $scope.showTheoricalPhasesBean.annualGrossSalaryList.length; i++){
+			cost += $scope.showTheoricalPhasesBean.annualGrossSalaryList[i] + $scope.showTheoricalPhasesBean.annualGrossSalaryList[i]*$scope.showTheoricalPhasesBean.insuranceList[i]/100;
 		}
-		cost = cost/$scope.showTheoricalPhasesBean.employeeArray.length;
-		return cost/12;
-	}
+		return (cost/$scope.showTheoricalPhasesBean.annualGrossSalaryList.length)/NUMBER_OF_MONTHS;		
+	}	
 	
 	$scope.averageDayCost = function(){
 		return $scope.averageMonthCost()/$scope.schedule.workDays;
-	}
+	}	
 	
 	$scope.averageHourCost = function(){
 		var days = 0;
 		for (i = 0; i < $scope.schedule.listHoursEachDay().length; i++){
 			days += $scope.schedule.listHoursEachDay()[i].workHours;
 		}
-		return $scope.averageDayCost()/(days/5);
+		return $scope.averageDayCost()/(days/NUMBER_OF_WORK_DAYS_PER_WEEK);
+	}	
+	
+	/********************************/	
+	
+	$scope.avgMonthCost = $scope.averageMonthCost();
+	$scope.avgDayCost = $scope.averageDayCost();
+	$scope.avgHourCost = $scope.averageHourCost();
+	$scope.workHours = workTimeService.workHours();
+	$scope.workDays = workTimeService.workDays();
+	$scope.workMonths = workTimeService.workMonths($scope.schedule.workDays);
+	$scope.naturalDays = workTimeService.naturalDays();
+	
+	/************** Duración ********************/
+	//Fila de Distribucion
+	$scope.inicioPercentaje = function() {
+		return INICIO_DISTRIBUTION_DURATION;
 	}
 	
-	$scope.recomendedDays = function(){
-		  return $scope.initTransDays();
-	}
+	$scope.elaboracionPercentaje = function() {
+		return ELABORACION_DISTRIBUTION_DURATION;
+	}	
 	
-	$scope.initTransHours = function(){
-		  return workTimeService.workHours()/10;
-	}
+	$scope.construccionPercentaje = function() {
+		return CONSTRUCCION_DISTRIBUTION_DURATION;
+	}	
 	
-	$scope.initTransDays = function(){
-		  return workTimeService.workDays()/10;
-	}
+	$scope.transicionPercentaje = function() {
+		return TRANSICION_DISTRIBUTION_DURATION;
+	}	
 	
-	$scope.initTransMonths = function(){
-		  return workTimeService.workMonths($scope.schedule.workDays)/10;
+	$scope.proyectoPercentaje = function() {
+		return $scope.inicioPercentaje() + $scope.elaboracionPercentaje() + $scope.construccionPercentaje() + $scope.transicionPercentaje();
 	}
+	//Fin de Fila de Distribucion
 	
-	$scope.initStartDate = function(){
-		  return moment($scope.showTheoricalPhasesBean.project.startString, 'DD/MM/YYYY').format("DD/MM/YYYY");
+	//Fila de Horas
+	$scope.inicioHours = function() {
+		return $scope.workHours*($scope.inicioPercentaje()/100);
 	}
-	
-	$scope.initEndDate = function(){
-		  return moment($scope.showTheoricalPhasesBean.project.startString, 'DD/MM/YYYY').add(workTimeService.naturalDays()*0.1, "days").format("DD/MM/YYYY");;
+	$scope.elaboracionHours = function() {
+		return $scope.workHours*($scope.elaboracionPercentaje()/100);
 	}
-	
-	$scope.iterationAverageHours = function(){
-		  return workTimeService.workHours()/10;
+	$scope.construccionHours = function() {
+		return $scope.workHours*($scope.construccionPercentaje()/100);
 	}
+	$scope.transicionHours = function() {
+		return $scope.workHours*($scope.transicionPercentaje()/100);
+	}	
+	$scope.proyectoHours = function() {
+		return $scope.inicioHours() + $scope.elaboracionHours() + $scope.construccionHours() + $scope.transicionHours();
+	}		
+	//Fin de Fila de Horas
 	
-	$scope.iterationAverageDays = function(){
-		  return workTimeService.workDays()/10;
+	//Fila de Dias
+	$scope.inicioDays = function() {
+		return $scope.workDays*($scope.inicioPercentaje()/100);
 	}
-	
-	$scope.iterationAverageMonths = function(){
-		return workTimeService.workMonths($scope.schedule.workDays)/10;
+	$scope.elaboracionDays = function() {
+		return $scope.workDays*($scope.elaboracionPercentaje()/100);
 	}
-	
-	$scope.ElabHours = function(){
-		  return workTimeService.workHours()*0.3;
+	$scope.construccionDays = function() {
+		return $scope.workDays*($scope.construccionPercentaje()/100);
 	}
+	$scope.transicionDays = function() {
+		return $scope.workDays*($scope.transicionPercentaje()/100);
+	}	
+	$scope.proyectoDays = function() {
+		return $scope.inicioDays() + $scope.elaboracionDays() + $scope.construccionDays() + $scope.transicionDays();
+	}		
+	//Fin de Fila de Dias	
 	
-	$scope.ElabDays = function(){
-		  return workTimeService.workDays()*0.3;
+	//Fila de Meses
+	$scope.inicioMonths = function() {
+		return $scope.workMonths*($scope.inicioPercentaje()/100);
 	}
-	
-	$scope.ElabMonths = function(){
-		  return workTimeService.workMonths($scope.schedule.workDays)*0.3;
+	$scope.elaboracionMonths = function() {
+		return $scope.workMonths*($scope.elaboracionPercentaje()/100);
 	}
-	
-	$scope.ElabStartDate = function(){
-		  return moment($scope.initEndDate(), "DD/MM/YYYY").add(1, "days").format("DD/MM/YYYY");
+	$scope.construccionMonths = function() {
+		return $scope.workMonths*($scope.construccionPercentaje()/100);
 	}
+	$scope.transicionMonths = function() {
+		return $scope.workMonths*($scope.transicionPercentaje()/100);
+	}	
+	$scope.proyectoMonths = function() {
+		return $scope.inicioMonths() + $scope.elaboracionMonths() + $scope.construccionMonths() + $scope.transicionMonths();
+	}		
+	//Fin de Fila de Meses
 	
-	$scope.ElabEndDate = function(){
-		  return moment($scope.ElabStartDate(), "DD/MM/YYYY").add(workTimeService.naturalDays()*0.3, "days").format("DD/MM/YYYY");
+	//Fila de Fecha inicio
+	$scope.inicioStartDate = function() {
+		return $scope.initStartDate();
 	}
-	
-	$scope.ConstrHours = function(){
-		  return workTimeService.workHours()*0.5;
+	$scope.elaboracionStartDate = function() {
+		return $scope.ElabStartDate();
 	}
-	
-	$scope.ConstrDays = function(){
-		  return workTimeService.workDays()*0.5;
+	$scope.construccionStartDate = function() {
+		return $scope.ConstrStartDate();
 	}
+	$scope.transicionStartDate = function() {
+		return $scope.transStartDate();
+	}	
+	$scope.proyectoStartDate = function() {
+		return $scope.initStartDate();
+	}		
+	//Fin de Fila Fecha de inicio
 	
-	$scope.ConstrMonths = function(){
-		  return workTimeService.workMonths($scope.schedule.workDays)*0.5;
+	//Fila de Fecha fin
+	$scope.inicioEndDate = function() {
+		return $scope.initEndDate();
 	}
-	
-	$scope.ConstrStartDate = function(){
-		  return moment($scope.ElabEndDate(), "DD/MM/YYYY").add(1, "days").format("DD/MM/YYYY");
+	$scope.elaboracionEndDate = function() {
+		return $scope.ElabEndDate();
 	}
-	
-	$scope.ConstrEndDate = function(){
-		  return moment($scope.ConstrStartDate(), "DD/MM/YYYY").add(workTimeService.naturalDays()*0.5, "days").format("DD/MM/YYYY");
+	$scope.construccionEndDate = function() {
+		return $scope.ConstrEndDate();
 	}
+	$scope.transicionEndDate = function() {
+		return $scope.transEndDate();
+	}	
+	$scope.proyectoEndDate = function() {
+		return $scope.transicionEndDate();
+	}		
+	//Fin de Fila Fecha de fin	
 	
-	$scope.transStartDate = function(){
-		  return moment($scope.ConstrEndDate(), "DD/MM/YYYY").add(1, "days").format("DD/MM/YYYY");
+	//Fila de Iteraciones
+	$scope.inicioIteration = function() {
+		return $scope.inicioDays()/$scope.recomendedDays();
 	}
-	
-	$scope.transEndDate = function(){
-		  return moment($scope.transStartDate(), "DD/MM/YYYY").add(workTimeService.naturalDays()*0.1, "days").format("DD/MM/YYYY");
+	$scope.elaboracionIteration = function() {
+		return $scope.elaboracionDays()/$scope.recomendedDays();
 	}
-	
-	$scope.projectMonths = function(){
-		return workTimeService.workMonths($scope.schedule.workDays);
+	$scope.construccionIteration = function() {
+		return $scope.construccionDays()/$scope.recomendedDays();
 	}
+	$scope.transicionIteration = function() {
+		return $scope.transicionDays()/$scope.recomendedDays();
+	}	
+	$scope.proyectoIteration = function() {
+		return $scope.inicioIteration() + $scope.elaboracionIteration() + $scope.construccionIteration() + $scope.transicionIteration();
+	}		
+	//Fin de Fila de Iteraciones
 	
-	/*Esfuerzo*/
-	
-	$scope.initCost = function(){
-		  return $scope.showTheoricalPhasesBean.project.cost*0.05;
+	//Fila de Inicio Iteracion
+	$scope.inicioStartIteration = function() {
+		return ITERATION_INITIAL_VALUE;
 	}
-	
-	$scope.initPeopleHour = function(){
-		  return $scope.initCost()/$scope.averageHourCost();
+	$scope.elaboracionStartIteration = function() {
+		return $scope.inicioIteration()+$scope.inicioStartIteration();
 	}
+	$scope.construccionStartIteration = function() {
+		return $scope.elaboracionIteration()+$scope.elaboracionStartIteration();
+	}
+	$scope.transicionStartIteration = function() {
+		return $scope.construccionIteration()+$scope.construccionStartIteration();
+	}	
+	$scope.proyectoStartIteration = function() {
+		return $scope.inicioStartIteration();
+	}		
+	//Fin de Fila Inicio Iteracion	
+	
 
-	$scope.initPeopleDay = function(){
-		  return $scope.initCost()/$scope.averageDayCost();
+	//Fila de Fin Iteracion
+	$scope.inicioEndIteration = function() {
+		return $scope.inicioIteration()+$scope.inicioStartIteration()-1;
+	}
+	$scope.elaboracionEndIteration = function() {
+		return $scope.elaboracionIteration()+$scope.elaboracionStartIteration()-1;
+	}
+	$scope.construccionEndIteration = function() {
+		return $scope.construccionIteration()+$scope.construccionStartIteration()-1;
+	}
+	$scope.transicionEndIteration = function() {
+		return $scope.transicionIteration()+$scope.transicionStartIteration()-1;;
+	}	
+	$scope.proyectoEndIteration = function() {
+		return $scope.transicionEndIteration();
+	}		
+	//Fin de Fila Fin Iteracion	
+	
+	//Fila de Media/horas iteración
+	$scope.inicioAverageHours = function() {
+		return $scope.inicioHours()/$scope.inicioIteration();
+	}
+	$scope.elaboracionAverageHours = function() {
+		return $scope.elaboracionHours()/$scope.elaboracionIteration();
+	}
+	$scope.construccionAverageHours = function() {
+		return $scope.construccionHours()/$scope.construccionIteration();
+	}
+	$scope.transicionAverageHours = function() {
+		return $scope.transicionHours()/$scope.transicionIteration();
+	}	
+	$scope.proyectoAverageHours = function() {
+		return $scope.proyectoHours()/$scope.proyectoIteration();
+	}	
+	//Fin de Fila de Media/horas iteración
+	
+	//Fila de Media/dias iteración
+	$scope.inicioAverageDays = function() {
+		return $scope.inicioDays()/$scope.inicioIteration();
+	}
+	$scope.elaboracionAverageDays = function() {
+		return $scope.elaboracionDays()/$scope.elaboracionIteration();
+	}
+	$scope.construccionAverageDays = function() {
+		return $scope.construccionDays()/$scope.construccionIteration();
+	}
+	$scope.transicionAverageDays = function() {
+		return $scope.transicionDays()/$scope.transicionIteration();
+	}	
+	$scope.proyectoAverageDays = function() {
+		return $scope.proyectoDays()/$scope.proyectoIteration();
+	}	
+	//Fin de Fila de Media/dias iteración	
+	
+	//Fila de Media/mes iteración
+	$scope.inicioAverageMonths = function() {
+		return $scope.inicioMonths()/$scope.inicioIteration();
+	}
+	$scope.elaboracionAverageMonths = function() {
+		return $scope.elaboracionMonths()/$scope.elaboracionIteration();
+	}
+	$scope.construccionAverageMonths = function() {
+		return $scope.construccionMonths()/$scope.construccionIteration();
+	}
+	$scope.transicionAverageMonths = function() {
+		return $scope.transicionMonths()/$scope.transicionIteration();
+	}	
+	$scope.proyectoAverageMonths = function() {
+		return $scope.proyectoMonths()/$scope.proyectoIteration();
+	}	
+	//Fin de Fila de Media/mes iteración	
+	/************** Fin Duración ********************/
+	
+	/************** Esfuerzo ********************/
+	//Fila de Distribucion
+	$scope.inicioPercentajeEffort = function() {
+		return INICIO_DISTRIBUTION_EFFORT;
 	}
 	
-	$scope.initPeopleMonth = function(){
-		  return $scope.initCost()/$scope.averageMonthCost();
+	$scope.elaboracionPercentajeEffort = function() {
+		return ELABORACION_DISTRIBUTION_EFFORT;
+	}	
+	
+	$scope.construccionPercentajeEffort = function() {
+		return CONSTRUCCION_DISTRIBUTION_EFFORT;
+	}	
+	
+	$scope.transicionPercentajeEffort = function() {
+		return TRANSICION_DISTRIBUTION_EFFORT;
+	}	
+	
+	$scope.proyectoPercentajeEffort = function() {
+		return $scope.inicioPercentajeEffort() + $scope.elaboracionPercentajeEffort() + $scope.construccionPercentajeEffort() + $scope.transicionPercentajeEffort();
+	}
+	//Fin de Fila de Distribucion	
+	
+	//Fila de Coste
+	$scope.inicioCosteEffort = function() {
+		return $scope.showTheoricalPhasesBean.project.cost*($scope.inicioPercentajeEffort()/100);
 	}
 	
-	$scope.initPeople = function(){
-		  return $scope.initPeopleHour()/$scope.initTransHours();
+	$scope.elaboracionCosteEffort = function() {
+		return $scope.showTheoricalPhasesBean.project.cost*($scope.elaboracionPercentajeEffort()/100);
+	}	
+	
+	$scope.construccionCosteEffort = function() {
+		return $scope.showTheoricalPhasesBean.project.cost*($scope.construccionPercentajeEffort()/100);
+	}	
+	
+	$scope.transicionCosteEffort = function() {
+		return $scope.showTheoricalPhasesBean.project.cost*($scope.transicionPercentajeEffort()/100);
+	}	
+	
+	$scope.proyectoCosteEffort = function() {
+		return $scope.showTheoricalPhasesBean.project.cost*($scope.proyectoPercentajeEffort()/100);
+	}
+	//Fin de Fila de Coste		
+	
+	//Fila de Personas-hora
+	$scope.inicioPeopleHour = function() {
+		return $scope.inicioCosteEffort()/$scope.avgHourCost;
 	}
 	
-	$scope.initDistributionIteration = function(){
-		  return 5;
+	$scope.elaboracionPeopleHour = function() {
+		return $scope.elaboracionCosteEffort()/$scope.avgHourCost;
+	}	
+	
+	$scope.construccionPeopleHour = function() {
+		return $scope.construccionCosteEffort()/$scope.avgHourCost;
+	}	
+	
+	$scope.transicionPeopleHour = function() {
+		return $scope.transicionCosteEffort()/$scope.avgHourCost;
+	}	
+	
+	$scope.proyectoPeopleHour = function() {
+		return $scope.proyectoCosteEffort()/$scope.avgHourCost;
+	}
+	//Fin de Fila de Personas-hora			
+	
+	//Fila de Personas-dia
+	$scope.inicioPeopleDay = function() {
+		return $scope.inicioCosteEffort()/$scope.avgDayCost;
 	}
 	
-	$scope.initPeopleHourIteration = function(){
-		  return 276.51;
+	$scope.elaboracionPeopleDay = function() {
+		return $scope.elaboracionCosteEffort()/$scope.avgDayCost;
+	}	
+	
+	$scope.construccionPeopleDay = function() {
+		return $scope.construccionCosteEffort()/$scope.avgDayCost;
+	}	
+	
+	$scope.transicionPeopleDay = function() {
+		return $scope.transicionCosteEffort()/$scope.avgDayCost;
+	}	
+	
+	$scope.proyectoPeopleDay = function() {
+		return $scope.proyectoCosteEffort()/$scope.avgDayCost;
+	}
+	//Fin de Fila de Personas-dia		
+	
+	//Fila de Personas-mes
+	$scope.inicioPeopleMonth = function() {
+		return $scope.inicioCosteEffort()/$scope.avgMonthCost;
 	}
 	
-	$scope.initPeopleDayIteration = function(){
-		  return 34.57;
+	$scope.elaboracionPeopleMonth = function() {
+		return $scope.elaboracionCosteEffort()/$scope.avgMonthCost;
+	}	
+	
+	$scope.construccionPeopleMonth = function() {
+		return $scope.construccionCosteEffort()/$scope.avgMonthCost;
+	}	
+	
+	$scope.transicionPeopleMonth = function() {
+		return $scope.transicionCosteEffort()/$scope.avgMonthCost;
+	}	
+	
+	$scope.proyectoPeopleMonth = function() {
+		return $scope.proyectoCosteEffort()/$scope.avgMonthCost;
+	}
+	//Fin de Fila de Personas-dia		
+	
+	//Fila de personas
+	$scope.inicioPeople = function() {
+		return $scope.inicioPeopleHour()/$scope.inicioHours();
 	}
 	
-	$scope.initPeopleMonthIteration = function(){
-		  return 1.65;
+	$scope.elaboracionPeople = function() {
+		return $scope.elaboracionPeopleHour()/$scope.elaboracionHours();
+	}	
+	
+	$scope.construccionPeople = function() {
+		return $scope.construccionPeopleHour()/$scope.construccionHours();
+	}	
+	
+	$scope.transicionPeople = function() {
+		return $scope.transicionPeopleHour()/$scope.transicionHours();
+	}	
+	
+	$scope.proyectoPeople = function() {
+		return $scope.proyectoPeopleHour()/$scope.proyectoHours();
+	} 
+	//Fin de Fila de personas
+	
+	//Inicio fila distribucion-iteracion
+	$scope.inicioDistribucionIteration = function() {
+		return $scope.inicioPercentajeEffort()/$scope.inicioIteration();
 	}
 	
-	$scope.elabCost = function(){
-		  return $scope.showTheoricalPhasesBean.project.cost*0.2;
+	$scope.elaboracionDistribucionIteration = function() {
+		return $scope.elaboracionPercentajeEffort()/$scope.elaboracionIteration();
+	}	
+	
+	$scope.construccionDistribucionIteration = function() {
+		return $scope.construccionPercentajeEffort()/$scope.construccionIteration();
+	}	
+	
+	$scope.transicionDistribucionIteration = function() {
+		return $scope.transicionPercentajeEffort()/$scope.transicionIteration();
+	}	
+	
+	$scope.proyectoDistribucionIteration = function() {
+		return $scope.proyectoPercentajeEffort()/$scope.proyectoIteration();
+	} 	
+	//Fin fila distribucion-iteracion
+	
+	//Inicio fila persona-hora-iteracion
+	$scope.inicioPersonHourIteration = function() {
+		return $scope.inicioPeopleHour()/$scope.inicioIteration();
 	}
 	
-	$scope.elabPeopleHour = function(){
-		  return $scope.elabCost()/$scope.averageHourCost();
+	$scope.elaboracionPersonHourIteration = function() {
+		return $scope.elaboracionPeopleHour()/$scope.elaboracionIteration();
+	}	
+	
+	$scope.construccionPersonHourIteration = function() {
+		return $scope.construccionPeopleHour()/$scope.construccionIteration();
+	}	
+	
+	$scope.transicionPersonHourIteration = function() {
+		return $scope.transicionPeopleHour()/$scope.transicionIteration();
+	}	
+	
+	$scope.proyectoPersonHourIteration = function() {
+		return $scope.proyectoPeopleHour()/$scope.proyectoIteration();
+	} 	
+	//Fin fila persona-hora-iteracion	
+	
+	//Inicio fila persona-dia-iteracion
+	$scope.inicioPersonDayIteration = function() {
+		return $scope.inicioPeopleDay()/$scope.inicioIteration();
 	}
 	
-	$scope.elabPeopleDay = function(){
-		  return $scope.elabCost()/$scope.averageDayCost();
+	$scope.elaboracionPersonDayIteration = function() {
+		return $scope.elaboracionPeopleDay()/$scope.elaboracionIteration();
+	}	
+	
+	$scope.construccionPersonDayIteration = function() {
+		return $scope.construccionPeopleDay()/$scope.construccionIteration();
+	}	
+	
+	$scope.transicionPersonDayIteration = function() {
+		return $scope.transicionPeopleDay()/$scope.transicionIteration();
+	}	
+	
+	$scope.proyectoPersonDayIteration = function() {
+		return $scope.proyectoPeopleDay()/$scope.proyectoIteration();
+	} 	
+	//Fin fila persona-dia-iteracion	
+	
+	//Inicio fila persona-mes-iteracion
+	$scope.inicioPersonMonthIteration = function() {
+		return $scope.inicioPeople();
 	}
 	
-	$scope.elabPeopleMonth = function(){
-		  return $scope.elabCost()/$scope.averageMonthCost();
-	}
+	$scope.elaboracionPersonMonthIteration = function() {
+		return $scope.elaboracionPeople();
+	}	
 	
-	$scope.elabPeople = function(){
-		  return $scope.elabPeopleHour()/$scope.ElabHours();
-	}
+	$scope.construccionPersonMonthIteration = function() {
+		return $scope.construccionPeople();
+	}	
 	
-	$scope.elabDistributionIteration = function(){
-		  return 7;
-	}
+	$scope.transicionPersonMonthIteration = function() {
+		return $scope.transicionPeople();
+	}	
 	
-	$scope.elabPeopleHourIteration = function(){
-		  return $scope.elabPeopleHour()/3;
-	}
-	
-	$scope.elabPeopleDayIteration = function(){
-		  return $scope.elabPeopleDay()/3;
-	}
-	
-	$scope.elabPeopleMonthIteration = function(){
-		  return $scope.elabPeopleMonth()/3;
-	}
-	
-	$scope.constrCost = function(){
-		  return $scope.showTheoricalPhasesBean.project.cost*0.65;
-	}
-	
-	$scope.constrPeopleHour = function(){
-		  return $scope.constrCost()/$scope.averageHourCost();
-	}
-	
-	$scope.constrPeopleDay = function(){
-		  return $scope.constrCost()/$scope.averageDayCost();
-	}
-	
-	$scope.constrPeopleMonth = function(){
-		  return $scope.constrCost()/$scope.averageMonthCost();
-	}
-	
-	$scope.constrPeople = function(){
-		  return $scope.constrPeopleHour()/$scope.ConstrHours();
-	}
-	
-	$scope.constrDistributionIteration = function(){
-		  return 13;
-	}
-	
-	$scope.constrPeopleHourIteration = function(){
-		  return $scope.constrPeopleHour()/5;
-	}
-	
-	$scope.constrPeopleDayIteration = function(){
-		  return $scope.constrPeopleDay()/5;
-	}
-	
-	$scope.constrPeopleMonthIteration = function(){
-		  return $scope.constrPeopleMonth()/5;
-	}
-	
-	$scope.transCost = function(){
-		  return $scope.showTheoricalPhasesBean.project.cost*0.1;
-	}
-	
-	$scope.transPeopleHour = function(){
-		  return $scope.transCost()/$scope.averageHourCost();
-	}
-	
-	$scope.transPeopleDay = function(){
-		  return $scope.transCost()/$scope.averageDayCost();
-	}
-	
-	$scope.transPeopleMonth = function(){
-		  return $scope.transCost()/$scope.averageMonthCost();
-	}
-	
-	$scope.transPeople = function(){
-		  return $scope.transPeopleHour()/$scope.initTransHours();
-	}
-	
-	$scope.transDistributionIteration = function(){
-		  return 10;
-	}
-	
-	$scope.transPeopleHourIteration = function(){
-		  return $scope.transPeopleHour();
-	}
-	
-	$scope.transPeopleDayIteration = function(){
-		  return $scope.transPeopleDay();
-	}
-	
-	$scope.transPeopleMonthIteration = function(){
-		  return $scope.transPeopleMonth();
-	}
-	
-	$scope.projectPeopleHour = function(){
-		  return $scope.showTheoricalPhasesBean.project.cost/$scope.averageHourCost();
-	}
-	
-	$scope.projectPeopleDay = function(){
-		  return $scope.showTheoricalPhasesBean.project.cost/$scope.averageDayCost();
-	}
-	
-	$scope.projectPeopleMonth = function(){
-		  return $scope.showTheoricalPhasesBean.project.cost/$scope.averageMonthCost();
-	}
-	
-	$scope.projectPeople = function(){
-		  return $scope.projectPeopleHour()/workTimeService.workHours();
-	}
-	
-	$scope.projectDistributionIteration = function(){
-		  return 10;
-	}
-	
-	$scope.projectPeopleHourIteration = function(){
-		  return $scope.projectPeopleHour()/10;
-	}
-	
-	$scope.projectPeopleDayIteration = function(){
-		  return $scope.projectPeopleDay()/10;
-	}
-	
-	$scope.projectPeopleMonthIteration = function(){
-		  return $scope.projectPeopleMonth()/10;
-	}
-	
+	$scope.proyectoPersonMonthIteration = function() {
+		return $scope.proyectoPeopleMonth()/$scope.proyectoIteration();
+	} 	
+	//Fin fila persona-mes-iteracion	
+	/************** Fin Esfuerzo ********************/
 }]);

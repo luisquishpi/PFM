@@ -13,8 +13,10 @@ public interface HolidayController {
 
 	public Holiday getHolidayById(Integer id);
 
-	public List<Holiday> vacationList();
+	public List<Holiday> holidayList();
 	
 	public Set<ConstraintViolation<Holiday>> validate(Holiday holiday);
+
+	public void deleteHoliday(Integer selectedHolidayId);
 
 }

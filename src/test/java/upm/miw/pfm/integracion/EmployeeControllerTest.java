@@ -63,7 +63,10 @@ public class EmployeeControllerTest {
     
     @After
     public void afterClass(){
-        DaoFactory.getFactory().getEmployeeDao().query("delete from Employee");
+        List<Employee> employeeList = DaoFactory.getFactory().getEmployeeDao().findAllWithoutRoles();
+        for (Employee tmpEmployee : employeeList) {
+        	DaoFactory.getFactory().getEmployeeDao().deleteById(tmpEmployee.getId());
+        }   
         DaoFactory.getFactory().getContractDao().query("delete from Contract");
     }
 }
