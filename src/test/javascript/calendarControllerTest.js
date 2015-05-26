@@ -4,7 +4,7 @@
 
 describe("Test calendarController", function(){
 	
-	beforeEach(module("projectApp"));
+	/*beforeEach(module("projectApp"));
 	
 	var controller, scope;
 	
@@ -83,5 +83,5 @@ describe("Test calendarController", function(){
 	
 	it("Transition date array first day should be 14/8/2015", function(){
 		expect(scope.transDatesArray()[0]).toBe(moment("16/8/2015", 'DD/MM/YYYY').format("DD/MM/YYYY"));
-	});
+	});*/
 });
