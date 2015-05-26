@@ -49,7 +49,7 @@
 												</h:outputLink>
 											</li>
 											<li>
-												<p:commandLink class="clink" oncomplete="PF('deleteDlg').show();" >
+												<p:commandLink update=":formDialog:deleteDlg" class="clink" oncomplete="PF('deleteDlg').show();" >
 													<span class="fa fa-trash-o" style="padding-right:3px;" aria-hidden="true"></span> Eliminar
                                                     <f:setPropertyActionListener target="#{listContractBean.id}" value="#{contract.id}" />
                                                     <f:setPropertyActionListener target="#{listContractBean.contractType}" value="#{contract.contractType}" />
@@ -68,14 +68,15 @@
 		</h:panelGroup>
 		</h:form>
 		<h:form id="formDialog">
-					<p:confirmDialog widgetVar="deleteDlg" id="deleteDlg" header="Delete" message="¿Quieres borrar?"
-	                    width="400" showEffect="bounce" modal="true" closable="false" severity="alert">   
-	                    	<h:form> 
+					<p:confirmDialog widgetVar="deleteDlg" id="deleteDlg" header="Delete"
+	                    width="400" showEffect="bounce" modal="true" closable="false" severity="alert"> 
+	                    <f:facet name="message">
+			                    <h:outputText value='#{listContractBean.messageDialog}'/>
+			            </f:facet>  
 	  				        	<h:panelGroup layout="block" style="text-align: right">
 					       	    	<p:commandButton value="Si" action="#{listContractBean.delete}" oncomplete="PF('deleteDlg').hide();" update=":form:growl :form:contractList"/>
 					       	    	<p:commandButton value="No" oncomplete="PF('deleteDlg').hide();" />
 					      		</h:panelGroup>
-				      		</h:form>
 	 				</p:confirmDialog>
  				</h:form>
 		<h:panelGroup rendered="#{empty listContractBean.contracts}">
