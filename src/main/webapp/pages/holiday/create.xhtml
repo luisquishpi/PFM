@@ -53,9 +53,10 @@
 												 <h:outputText value="#{holiday.end}" >
 		                                               <f:convertDateTime timeZone="ECT" pattern="d/MM/yyyy" />
 		                                         </h:outputText>
-		                                       	 <p:commandLink oncomplete="PF('deleteDlg').show();">
+		                                       	 <p:commandLink update=":form3:deleteDlgId" oncomplete="PF('deleteDlg').show();">
 		                                       	 	<span class="fa fa-trash-o" aria-hidden="true"></span>
 											   		<f:setPropertyActionListener target="#{createHolidayBean.selectedHoliday}" value="#{holiday}" />
+											   		
 											  	 </p:commandLink>
 		                                       </li>		                                       
 										</ui:repeat>
@@ -64,16 +65,19 @@
 			                   </h:panelGroup>
 			                </div>
 		                </div>
-		      </h:form>          
-		            <p:confirmDialog widgetVar="deleteDlg" id="deleteDlg" header="Delete" message="¿Está seguro de eliminar el rango seleccionado?"
-							                     width="400" showEffect="bounce" modal="true" closable="false" severity="alert">   
-				        <h:form>         
+		      </h:form> 
+		      <h:form id="form3">         
+		            <p:confirmDialog widgetVar="deleteDlg" id="deleteDlgId" header="Delete"
+							                     width="400" showEffect="bounce" modal="true" closable="false" severity="alert">          
+				        	<f:facet name="message">
+			                    <h:outputText value='#{createHolidayBean.messageDialog}'/>
+			                </f:facet>
 					        <h:panelGroup layout="block" style="text-align: right">
 					            <p:commandButton value="Si" ajax="true" action="#{createHolidayBean.delete}" oncomplete="PF('deleteDlg').hide();" update=":form1:growl :form2:holidayDetails" />
 					            <p:commandButton value="No" oncomplete="PF('deleteDlg').hide();" />
 					        </h:panelGroup>
-				        </h:form>
 				    </p:confirmDialog>
+			  </h:form>	    
 		    </div>
         </ui:define>
         <ui:define name="javascript">

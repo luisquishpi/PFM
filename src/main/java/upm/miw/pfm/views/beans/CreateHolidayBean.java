@@ -30,6 +30,8 @@ public class CreateHolidayBean implements Serializable {
     private List<Holiday> registerHolidays;
     
     private Holiday selectedHoliday;
+    
+    private String messageDialog;
 
     public String process() {
         Date start = Utils.convertStringToDate(range.split("-")[0].trim(), "dd/MM/yyyy");
@@ -73,7 +75,18 @@ public class CreateHolidayBean implements Serializable {
 	}
 
 	public void setSelectedHoliday(Holiday selectedHoliday) {
-		this.selectedHoliday = selectedHoliday;		
+		this.selectedHoliday = selectedHoliday;	
+		this.messageDialog = "¿Esta seguro de eliminar el rango "+ 
+				Utils.convertDateToString(this.selectedHoliday.getStart(), "dd/MM/yyyy")+" - "+
+				Utils.convertDateToString(this.selectedHoliday.getEnd(), "dd/MM/yyyy");
+	}
+
+	public String getMessageDialog() {
+		return messageDialog;
+	}
+
+	public void setMessageDialog(String messageDialog) {
+		this.messageDialog = messageDialog;
 	}
 	
 	
