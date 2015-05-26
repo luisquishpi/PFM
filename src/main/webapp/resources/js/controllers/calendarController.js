@@ -7,24 +7,14 @@ projectApp.controller("calendarController",['$scope', '$isTest', 'bridgeService'
 	  initJSFScope($scope);
 	}
 	
-	$scope.initDatesArray = function() {
-		var array = new Array(13);
-		array[0] = moment("2/3/2015", 'DD/MM/YYYY').format("DD/MM/YYYY");
-		return array;
+	$scope.startDate = "2/2/2015";
+	$scope.endDate = "5/5/2015";
+	
+	
+	$scope.getEvents = function(startDate, endDate){
+		for (var m = moment(startDate); m.isBefore(endDate); m.add(1, "days")){
+			
+		}
 	}
 	
-	$scope.elabDatesArray = function() {
-		var array = new Array(39);
-		array[0] = moment("23/3/2015", 'DD/MM/YYYY').format("DD/MM/YYYY");
-		return array;	}
-	
-	$scope.constrDatesArray = function() {
-		var array = new Array(65);
-		array[0] = moment("15/5/2015", 'DD/MM/YYYY').format("DD/MM/YYYY");
-		return array;	}
-	
-	$scope.transDatesArray = function() {
-		var array = new Array(11);
-		array[0] = moment("16/8/2015", 'DD/MM/YYYY').format("DD/MM/YYYY");
-		return array;	}
 }]);
