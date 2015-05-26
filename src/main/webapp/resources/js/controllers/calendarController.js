@@ -41,7 +41,7 @@ projectApp.controller("calendarController",['$scope', '$isTest', 'bridgeService'
 	$scope.getProjectDay = function(date){
 		var days = 0;
 		for (var m = moment($scope.startDate); m.isBefore(date); m.add(1, "days")){
-			if($scope.workHours[m.isoWeekDay - 1] > 0){
+			if($scope.workHours[m.day()] > 0){
 				var isHoliday = false;
 				for (var i = 0; i < $scope.holidays.length; i++){
 					if(m.isBetween($scope.holidays[i].startDate, $scope.holidays[i].endtDate)){
