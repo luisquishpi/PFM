@@ -6,7 +6,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.ViewScoped;
 
 import org.apache.logging.log4j.LogManager;
 
@@ -15,19 +15,22 @@ import upm.miw.pfm.models.entities.Contract;
 import upm.miw.pfm.utils.Utils;
 
 @ManagedBean
+@ViewScoped
 public class ListContractBean {
 	
     private List<Contract> contracts;
     
-    @ManagedProperty("#{param.id}")
     private int id;
-
+    
+    private String contractType;
 
     @EJB
     private ContractController listContractsController;
     
     @EJB
     private ContractController contractController;
+    
+    private String messageDialog;
 
     public List<Contract> getContracts() {
         return contracts;
@@ -43,6 +46,7 @@ public class ListContractBean {
 
 	public void setId(int id) {
 		this.id = id;
+		System.out.println(this.getId());
 	}
 
     @PostConstruct
@@ -52,6 +56,7 @@ public class ListContractBean {
     }
 
     public String delete() {
+    	System.out.println("Delete");
     	if (listContractsController.delete(id)){
     		LogManager.getLogger(this).info("Eliminado " + id);
             Utils.addMessage(FacesMessage.SEVERITY_INFO, "Contrato", "El contrato ha sido eliminado con exito");
@@ -59,10 +64,26 @@ public class ListContractBean {
     	}else{
     		LogManager.getLogger(this).info("Contrato está siendo utilizado " + id);
             Utils.addMessage(FacesMessage.SEVERITY_ERROR, "Contrato", "El contrato está siendo utilizado actualmente");
-            update();
     	};
-    	
         return "";
     }
+
+	public String getMessageDialog() {
+		return messageDialog;
+	}
+
+	public void setMessageDialog(String messageDialog) {
+		this.messageDialog = messageDialog;
+	}
+
+	public String getContractType() {
+		return contractType;
+	}
+
+	public void setContractType(String contractType) {
+		this.contractType = contractType;
+		this.messageDialog= "¿ Esta seguro de querer eliminar el contrato "+this.getContractType()+"?";
+		System.out.println(this.getContractType());
+	}
 
 }
