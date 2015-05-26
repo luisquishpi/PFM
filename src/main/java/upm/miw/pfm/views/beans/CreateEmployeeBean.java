@@ -31,8 +31,6 @@ public class CreateEmployeeBean {
 
     private Contract contract;
 
-    private final static Class<CreateEmployeeBean> clazz = CreateEmployeeBean.class;
-
     @EJB
     private EmployeeController employeeController;
 
@@ -47,7 +45,7 @@ public class CreateEmployeeBean {
     @PostConstruct
     public void init() {
         contractList = contractController.contractList();
-        LogManager.getLogger(clazz).info("Se encontraron " + contractList.size() + " proyectos");
+        LogManager.getLogger(this).info("Se encontraron " + contractList.size() + " contratos");
     }
 
     public Employee getEmployee() {
@@ -92,7 +90,7 @@ public class CreateEmployeeBean {
         employee.setContract(contractController.getContract(contract.getId()));
 
         employeeController.addEmployee(employee);
-        LogManager.getLogger(clazz).debug("Creación de empleado " + employee);
+        LogManager.getLogger(this).debug("Creación de empleado " + employee);
         Utils.addMessage(FacesMessage.SEVERITY_INFO, "Empleado",
                 "Se ha creado el empleado satisfactoriamente");
         return "index";

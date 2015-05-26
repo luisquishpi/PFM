@@ -8,7 +8,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "contract")
-public class Contract {
+public class Contract implements IGenericEntity{
 
     @Id
     @GeneratedValue

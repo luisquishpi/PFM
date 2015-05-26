@@ -28,7 +28,7 @@ public class EmployeeControllerEjb implements EmployeeController {
 
 	@Override
 	public void updateEmployee(Employee employee) {
-		// TODO Auto-generated method stub
+		DaoFactory.getFactory().getEmployeeDao().update(employee);
 		
 	}
 
