@@ -8,21 +8,26 @@
 <ui:composition template="#{root}/WEB-INF/template/commonLayout.xhtml">
 	<ui:define name="css">
 		<link href="/PFM/resources/css/style_index_list.css" rel="stylesheet" />
+		<style>
+			.clink{padding: 3px 20px; font-family: Verdana, Arial, sans-serif; font-size: 100% !important;} 
+		</style>
 	</ui:define>
 	<ui:define name="header">
             Contratos
         </ui:define>
 	<ui:define name="content">
-		<p:growl id="growl" sticky="false" life="5000" showDetail="true" />
-		<h:panelGroup rendered="#{not empty listContractBean.contracts}">
-			<table class="table table-bordered">
-				<h:form>
+	<h:form id="form">
+		<h:panelGroup id="contractList" rendered="#{not empty listContractBean.contracts}">
+			
+			<p:growl id="growl" sticky="false" life="5000" showDetail="true" />
+			<table  class="table table-bordered">				
 					<tbody>
 						<tr class="active">
 							<th class="text-center">Nombre de contrato</th>
 							<th class="text-center">% de seguro</th>
 							<th class="text-center">Acciones</th>
 						</tr>
+						<h:panelGroup>
 						<ui:repeat var="contract" value="#{listContractBean.contracts}">
 							<tr class="text-center">
 								<td><h:outputText value="#{contract.contractType}" /></td>
@@ -44,20 +49,36 @@
 												</h:outputLink>
 											</li>
 											<li>
-												<h:commandLink action="#{listContractBean.delete}" >
-													<span class="fa fa-trash-o" aria-hidden="true"></span> Eliminar
-                                                       <f:param name="id" value="#{contract.id}"/>
-												</h:commandLink>
+												<p:commandLink update=":formDialog:deleteDlg" class="clink" oncomplete="PF('deleteDlg').show();" >
+													<span class="fa fa-trash-o" style="padding-right:3px;" aria-hidden="true"></span> Eliminar
+                                                    <f:setPropertyActionListener target="#{listContractBean.id}" value="#{contract.id}" />
+                                                    <f:setPropertyActionListener target="#{listContractBean.contractType}" value="#{contract.contractType}" />
+												</p:commandLink>
 											</li>
+										    
 										</ul>
 									</div>
 								</td>
 							</tr>
 						</ui:repeat>
+						</h:panelGroup>
 					</tbody>
-				</h:form>
 			</table>
+			
 		</h:panelGroup>
+		</h:form>
+		<h:form id="formDialog">
+					<p:confirmDialog widgetVar="deleteDlg" id="deleteDlg" header="Eliminar"
+	                    width="400" showEffect="bounce" modal="true" closable="false" severity="alert"> 
+	                    <f:facet name="message">
+			                    <h:outputText value='#{listContractBean.messageDialog}'/>
+			            </f:facet>  
+	  				        	<h:panelGroup layout="block" style="text-align: right">
+					       	    	<p:commandButton value="Si" action="#{listContractBean.delete}" oncomplete="PF('deleteDlg').hide();" update=":form:growl :form:contractList"/>
+					       	    	<p:commandButton value="No" oncomplete="PF('deleteDlg').hide();" />
+					      		</h:panelGroup>
+	 				</p:confirmDialog>
+ 				</h:form>
 		<h:panelGroup rendered="#{empty listContractBean.contracts}">
 			<blockquote>
 				<p>La lista de contratos está vacía.</p>

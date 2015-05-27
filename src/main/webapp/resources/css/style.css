@@ -74,3 +74,8 @@ table td {
 .table-bordered label {
     margin-right: 10px;
 }
+
+.delete_button{
+	float: right;
+    font-size: 17px;
+}

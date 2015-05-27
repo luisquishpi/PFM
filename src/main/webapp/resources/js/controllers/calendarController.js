@@ -69,7 +69,6 @@ projectApp.controller("calendarController",['$scope', '$isTest', 'bridgeService'
 					}
 				}
 			}
-			
 		}
 		return days;
 	}

@@ -8,6 +8,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
 import upm.miw.pfm.controllers.EmployeeController;
 import upm.miw.pfm.controllers.VacationController;
@@ -16,6 +17,7 @@ import upm.miw.pfm.models.entities.Vacation;
 import upm.miw.pfm.utils.Utils;
 
 @ManagedBean
+@ViewScoped
 public class CreateVacationBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -35,6 +37,10 @@ public class CreateVacationBean implements Serializable {
     private List<Vacation> selectedEmployeeVacations;
 
     private List<Employee> employees;
+    
+    private Vacation selectedVacation;
+    
+    private String messageDialog;
 
     public String process() {
         Date start = Utils.convertStringToDate(range.split("-")[0].trim(), "dd/MM/yyyy");
@@ -52,6 +58,13 @@ public class CreateVacationBean implements Serializable {
 
     public void updateDetails() {
         setSelectedEmployeeVacations(vacationController.vacationList(selectedEmployee));
+    }
+    
+    public String delete(){
+    	vacationController.removeVacationById(selectedVacation.getId());
+    	Utils.addMessage(FacesMessage.SEVERITY_INFO, "Vacaciones", "El rango seleccionado ha sido eliminado.");
+    	this.updateDetails();
+    	return null;
     }
 
     public List<Employee> getEmployees() {
@@ -86,5 +99,25 @@ public class CreateVacationBean implements Serializable {
     private void setSelectedEmployeeVacations(List<Vacation> selectedEmployeeVacations) {
         this.selectedEmployeeVacations = selectedEmployeeVacations;
     }
+
+	public Vacation getSelectedVacation() {
+		return selectedVacation;
+	}
+
+	public void setSelectedVacation(Vacation selectedVacation) {
+		this.selectedVacation = selectedVacation;
+		this.messageDialog = "¿Quiere eliminar "+ 
+				Utils.convertDateToString(this.selectedVacation.getStart(), "dd/MM/yyyy")+" - "+
+				Utils.convertDateToString(this.selectedVacation.getEnd(), "dd/MM/yyyy")+"?";
+		System.out.println(this.getMessageDialog());
+	}
+
+	public String getMessageDialog() {
+		return messageDialog;
+	}
+
+	public void setMessageDialog(String messageDialog) {
+		this.messageDialog = messageDialog;
+	}
 
 }
