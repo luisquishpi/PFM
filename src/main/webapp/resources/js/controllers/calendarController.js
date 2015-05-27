@@ -7,11 +7,11 @@ projectApp.controller("calendarController",['$scope', '$isTest', 'DateUtils', fu
 	  initJSFScope($scope);
 	}
 	
-	$scope.startDate = null; //momment
-	$scope.endDate = null; //momment
-	$scope.iterationLength = null;
-	$scope.holidays = [];
-	$scope.workHours = {}
+	$scope.startDate; //momment
+	$scope.endDate; //momment
+	$scope.iterationLength;
+	$scope.holidays;
+	$scope.workHours;
 	
 	$scope.phases = ["I", "E", "E", "E", "C", "C", "C", "C", "C", "P"];
 	
@@ -56,7 +56,7 @@ projectApp.controller("calendarController",['$scope', '$isTest', 'DateUtils', fu
 			}
 			if(!isHoliday){
 				if(previousDay == null){
-					for (var m = moment($scope.startDate) ; m.isBefore(date); m.add(1, "days")){
+					for (var m = moment($scope.startDate) ; m.isBefore(date) || m.diff(date, 'days')==0; m.add(1, "days")){
 						isHoliday = false;
 						if($scope.workHours[m.day()] != 0){
 							for (var i = 0; i < $scope.holidays.length; i++){
