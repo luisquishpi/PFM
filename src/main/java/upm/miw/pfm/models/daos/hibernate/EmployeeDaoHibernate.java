@@ -40,4 +40,12 @@ public class EmployeeDaoHibernate extends GenericDaoHibernate<Employee, Integer>
     public Boolean exists(Employee entity) {
         throw new RuntimeException("No implementado para esta entidad");
     }
+
+    @Override
+    public void deleteAll() {
+        List<Employee> employeeList = findAllWithoutRoles();
+        for (Employee tmpEmployee : employeeList) {
+            deleteById(tmpEmployee.getId());
+        }   
+    }
 }

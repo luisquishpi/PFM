@@ -77,7 +77,7 @@ public class ProjectDaoTest {
 
     @After
     public void after() {
-        projectDao.query("delete from Project");
+        projectDao.deleteAll();
     }
 
 }

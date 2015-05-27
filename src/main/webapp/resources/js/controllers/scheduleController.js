@@ -9,8 +9,34 @@ projectApp.controller("scheduleController",['$scope', '$isTest', 'bridgeService'
 	$scope.runProject = false;
 	$scope.workDays = $scope.projectBean.projectSchedule.workDays;
 	$scope.monthsPerYear = 12;
+	$scope.daysPerWeek = function(){
+		var days = 0;
+		if($scope.projectBean.projectSchedule.mondayHours > 0){
+			days = days +1;
+		}
+		if($scope.projectBean.projectSchedule.tuesdayHours > 0){
+			days = days +1;
+		}
+		if($scope.projectBean.projectSchedule.wednesdayHours > 0){
+			days = days +1;
+		}
+		if($scope.projectBean.projectSchedule.thursdayHours > 0){
+			days = days +1;
+		}
+		if($scope.projectBean.projectSchedule.fridayHours > 0){
+			days = days +1;
+		}
+		if($scope.projectBean.projectSchedule.saturdayHours > 0){
+			days = days +1;
+		}
+		if($scope.projectBean.projectSchedule.sundayHours > 0){
+			days = days +1;
+		}
+		return days;
+	}	
+	
 	$scope.hoursPerDay = function() {
-		return $scope.hoursPerWeek() / 5;
+		return $scope.hoursPerWeek() / $scope.daysPerWeek();
 	}
 	$scope.hoursPerWeek = function() {
 		return $scope.projectBean.projectSchedule.mondayHours

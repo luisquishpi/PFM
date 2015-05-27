@@ -94,15 +94,10 @@ public class ContractControllerTest {
 
 		assertNotNull(contractController.getContract(contract2.getId()));
 	}
-
-	@After
-	public void after() {
-		List<Employee> employeeList = DaoFactory.getFactory().getEmployeeDao()
-				.findAllWithoutRoles();
-		for (Employee tmpEmployee : employeeList) {
-			DaoFactory.getFactory().getEmployeeDao()
-					.deleteById(tmpEmployee.getId());
-		}
-		DaoFactory.getFactory().getContractDao().query("delete from Contract");
-	}
+    
+    @After
+    public void after() {
+        DaoFactory.getFactory().getEmployeeDao().deleteAll();
+        DaoFactory.getFactory().getContractDao().deleteAll();
+    }
 }

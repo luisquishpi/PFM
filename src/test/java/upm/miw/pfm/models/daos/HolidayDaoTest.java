@@ -46,7 +46,7 @@ public class HolidayDaoTest {
     
     @After
     public void after(){
-        holidayDao.query("delete from Holiday");
+        holidayDao.deleteAll();
     }
         
     @Test

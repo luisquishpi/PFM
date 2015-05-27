@@ -75,7 +75,7 @@ public class SetScheduleControllerTest {
     
     @AfterClass
     public static void afterClass() {
-        DaoFactory.getFactory().getProjectScheduleDao().query("delete from ProjectSchedule");
-        DaoFactory.getFactory().getProjectDao().query("delete from Project");
+        DaoFactory.getFactory().getProjectScheduleDao().deleteAll();
+        DaoFactory.getFactory().getProjectDao().deleteAll();
     }
 }

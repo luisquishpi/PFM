@@ -18,5 +18,7 @@ public interface GenericDao<T, ID> {
     
     public void query(String hql);
     
+    public void deleteAll();
+    
 }
 

@@ -10,29 +10,22 @@ describe("Test calendarController", function() {
 
 	beforeEach(inject(function($controller, $rootScope) {
 		scope = $rootScope;
-		scope.calendarBean = {
-			project : {
-				cost : 85000,
-				startString : "02/03/2015",
-				endString : "04/09/2015"
-			},
-			holiday : {
-				startString : "03/03/2015",
-				endString : "04/03/2015"
-			}
-		}, scope.startDate = "2/3/2015", scope.endDate = "4/9/2015",
-				scope.iterationLength = 13, scope.holidays = [ {
-					startDate : "3/3/2015",
-					endDate : "4/3/2015"
-				} ], scope.workHours = {
-					workHours : 8, // LUN
-					workHours : 8, // LUN
-					workHours : 8,
-					workHours : 8,
-					workHours : 8,
-					workHours : 0,
-					workHours : 0,
-				};
+		scope.startDate = moment("2/3/2015", "DD/MM/YYYY"), 
+		scope.endDate = moment("4/9/2015", "DD/MM/YYYY"),
+		scope.iterationLength = 13, 
+		scope.holidays = [ {
+					start : moment("3/3/2015", "DD/MM/YYYY"),
+					end : moment("4/3/2015", "DD/MM/YYYY")
+				} ], 
+		scope.workHours = [
+					0, // LUN
+					8, // LUN
+					8,
+					8,
+					8,
+					8,
+					0
+		];
 		controller = $controller("calendarController", {
 			$scope : scope,
 			$isTest : true
@@ -40,7 +33,7 @@ describe("Test calendarController", function() {
 	}));
 
 	it("Project day should be 8", function() {
-		expect(scope.getProjectDay(moment("13/3/2015", "DD/MM/YYYY"))).toBe(8);
+		expect(scope.getProjectDay(moment("13/3/2015", "DD/MM/YYYY")), null).toBe(8);
 	});
 
 	it("Iteration should be I-1", function() {
