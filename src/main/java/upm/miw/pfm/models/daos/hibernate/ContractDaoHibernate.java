@@ -44,4 +44,9 @@ public class ContractDaoHibernate extends GenericDaoHibernate<Contract, Integer>
         }
 		return deleted;
 	}
+
+    @Override
+    public void deleteAll() {
+        query("delete from Contract");
+    }
 }

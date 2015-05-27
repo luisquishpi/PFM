@@ -60,6 +60,6 @@ public class ContractDaoTest {
      
     @After
     public void after() {
-        DaoFactory.getFactory().getContractDao().query("delete from Contract");
+        DaoFactory.getFactory().getContractDao().deleteAll();
     }
 }

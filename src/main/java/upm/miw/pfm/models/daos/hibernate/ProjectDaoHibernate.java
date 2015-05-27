@@ -9,9 +9,14 @@ public class ProjectDaoHibernate extends GenericDaoHibernate<Project, Integer> i
     public ProjectDaoHibernate() {
         super(Project.class);
     }
-    
+
     @Override
     public Boolean exists(Project entity) {
         throw new RuntimeException("No implementado para esta entidad");
+    }
+
+    @Override
+    public void deleteAll() {
+        query("delete from Project");
     }
 }

@@ -7,19 +7,21 @@ import upm.miw.pfm.models.daos.HolidayDao;
 import upm.miw.pfm.models.entities.Holiday;
 import upm.miw.pfm.utils.HibernateUtil;
 
-public class HolidayDaoHibernate extends GenericDaoHibernate<Holiday, Integer> implements HolidayDao {
+public class HolidayDaoHibernate extends GenericDaoHibernate<Holiday, Integer> implements
+        HolidayDao {
 
-	public HolidayDaoHibernate() {
-		super(Holiday.class);
-	}
-	
-	@Override
+    public HolidayDaoHibernate() {
+        super(Holiday.class);
+    }
+
+    @Override
     public Boolean exists(Holiday entity) {
-	    Session session = HibernateUtil.getSessionFactory().getCurrentSession();        
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         Boolean result = false;
         try {
             session.beginTransaction();
-            Query query = session.createQuery("from Holiday h WHERE h.start = :start AND h.end = :endDate ");
+            Query query = session
+                    .createQuery("from Holiday h WHERE h.start = :start AND h.end = :endDate ");
             query.setParameter("start", entity.getStart());
             query.setParameter("endDate", entity.getEnd());
             result = query.list().size() > 0;
@@ -33,5 +35,10 @@ public class HolidayDaoHibernate extends GenericDaoHibernate<Holiday, Integer> i
             }
         }
         return result;
+    }
+
+    @Override
+    public void deleteAll() {
+        query("delete from Holiday");
     }
 }

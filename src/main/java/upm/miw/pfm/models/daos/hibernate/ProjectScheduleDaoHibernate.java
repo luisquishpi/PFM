@@ -41,4 +41,10 @@ public class ProjectScheduleDaoHibernate extends GenericDaoHibernate<ProjectSche
     public Boolean exists(ProjectSchedule entity) {
         throw new RuntimeException("No implementado para esta entidad");
     }
+
+    @Override
+    public void deleteAll() {
+        query("delete from ProjectSchedule");
+        
+    }
 }

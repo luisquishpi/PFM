@@ -64,7 +64,7 @@ public class HolidayControllerTest {
     
     @AfterClass
     public static void afterClass() {
-    	DaoFactory.getFactory().getVacationDao().query("delete from Holiday");
+    	DaoFactory.getFactory().getVacationDao().deleteAll();
     }
 
 }
