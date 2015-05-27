@@ -1,5 +1,6 @@
 package upm.miw.pfm.models.entities;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -12,7 +13,9 @@ import upm.miw.pfm.utils.Utils;
 
 @Entity
 @Table(name = "project")
-public class Project {
+public class Project implements IGenericEntity, Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue

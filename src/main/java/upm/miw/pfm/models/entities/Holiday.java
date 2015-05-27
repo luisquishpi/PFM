@@ -1,5 +1,6 @@
 package upm.miw.pfm.models.entities;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -15,7 +16,9 @@ import upm.miw.pfm.utils.CheckUnique;
 @Table(name = "holiday")
 @CheckDateRange
 @CheckUnique
-public class Holiday implements IGenericDateEntity {
+public class Holiday implements IGenericDateEntity, Serializable{
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue

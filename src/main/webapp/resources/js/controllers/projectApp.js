@@ -72,5 +72,31 @@ projectApp.service("workTimeService", function(){
 	this.workMonths = function(workDaysMonth){
 		  return workingDays/workDaysMonth;
 	}
+});
+projectApp.service("DateUtils", function(){
+	
+	this.setZeroTime = function(date){
+		var validate = moment.invalid(date);
+		if(validate.isValid()){
+			date.utc();
+			date.set('hour', 0);
+	    	date.set('minute', 0);
+	    	date.set('second', 0);
+	    	date.set('millisecond', 0);
+		}
+	},
+	
+	this.isBetween = function(test, start, end) {
+    	var result = false;
+    	start = moment(start);
+    	end = moment(end);
+    	
+    	this.setZeroTime(test);
+    	this.setZeroTime(start);
+    	this.setZeroTime(end);
+
+    	result = test.isAfter(start) && test.isBefore(end) || test.isSame(start) || test.isSame(end);
+    	return result;
+    }
 	
 });

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Calendario</title>
+</h:head>
+<h:body>
+	<ui:composition template="#{root}/WEB-INF/template/commonLayout.xhtml">
+		<ui:define name="header">
+            Calendario
+        </ui:define>
+        <ui:define name="css">
+            <link href="/PFM/resources/css/calendar/fullcalendar.min.css" rel="stylesheet" />
+        </ui:define>
+        <ui:define name="javascript">
+            <script src="/PFM/resources/js/libs/moment.js"></script>
+            <script src="/PFM/resources/js/libs/calendar_lang_es.js"></script>
+            <script src="/PFM/resources/js/libs/fullcalendar.min.js"></script>
+            <script src="/PFM/resources/js/calendar/calendar.js"></script>
+            <script src="/PFM/resources/js/controllers/projectApp.js"></script>
+            <script src="/PFM/resources/js/controllers/calendarController.js"></script>
+        </ui:define>
+		<ui:define name="content">
+		    <c:set var="projectBean" scope="request" value="#{calendarBean}" />
+		    <h:form>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+				    <div class="row">
+					    <div class="col-lg-2">
+	                        <p:outputLabel for="ddlProject" value="Proyecto: "
+	                            styleClass="label_height" />
+	                    </div>
+	                    <div class="col-lg-2">
+	                        <h:selectOneMenu id="ddlProject" converter="GenericConverter" styleClass="dropdown"
+	                            value="#{calendarBean.project}">
+	                            <f:selectItem itemValue="#{null}" itemLabel="--Seleccione--" />
+	                            <f:selectItems value="#{calendarBean.projectList}" var="project" 
+	                               itemLabel="#{project.name}" itemValue="#{project}" />
+	                            <p:ajax listener="#{calendarBean.onSelectProject}" oncomplete="updateModel(xhr, status, args);"/>
+	                        </h:selectOneMenu>
+	                    </div> 
+                    </div>
+				</div>
+                <div class="panel-body" id="angularContainer" ng-app="projectApp" ng-controller="calendarController">
+		           <div id='calendar'></div>
+				</div>
+			</div>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
