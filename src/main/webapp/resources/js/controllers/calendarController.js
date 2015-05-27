@@ -2,7 +2,7 @@
  * Calendar controller
  */
 
-projectApp.controller("calendarController",['$scope', '$isTest', 'bridgeService', 'DateUtils', function($scope, $isTest, bridgeService, DateUtils) {
+projectApp.controller("calendarController",['$scope', '$isTest', 'DateUtils', function($scope, $isTest, DateUtils) {
 	if(!$isTest){
 	  initJSFScope($scope);
 	}
@@ -17,9 +17,11 @@ projectApp.controller("calendarController",['$scope', '$isTest', 'bridgeService'
 	
 	$scope.getEvents = function(startDate, endDate){
 		var events = [];
+		var projectDay = null;
 		for (var m = moment(startDate); m.isBefore(endDate); m.add(1, "days")){
-			var projectDay = $scope.getProjectDay(m);
-			if( projectDay > 0){
+			var validDay = $scope.getProjectDay(m, projectDay);
+			if( validDay > 0){
+				projectDay = validDay;
 				var hours = $scope.workHours[m.day()];
 				
 				events.push({
@@ -42,7 +44,7 @@ projectApp.controller("calendarController",['$scope', '$isTest', 'bridgeService'
 		return events;
 	}
 	
-	$scope.getProjectDay = function(date){
+	$scope.getProjectDay = function(date, previousDay){
 		var days = 0;
 		var isHoliday = false;
 		if($scope.workHours[date.day()] != 0 && DateUtils.isBetween(date, $scope.startDate, $scope.endDate) ){
@@ -54,19 +56,23 @@ projectApp.controller("calendarController",['$scope', '$isTest', 'bridgeService'
 				} 
 			}
 			if(!isHoliday){
-				for (var m = moment($scope.startDate) ; m.isBefore(date); m.add(1, "days")){
-					isHoliday = false;
-					if($scope.workHours[m.day()] != 0){
-						for (var i = 0; i < $scope.holidays.length; i++){
-							if(DateUtils.isBetween(m,$scope.holidays[i].start,$scope.holidays[i].end)){
-								isHoliday = true;
-								break;
-							} 
-						}
-						if(!isHoliday){
-							days++;
+				if(previousDay == null){
+					for (var m = moment($scope.startDate) ; m.isBefore(date); m.add(1, "days")){
+						isHoliday = false;
+						if($scope.workHours[m.day()] != 0){
+							for (var i = 0; i < $scope.holidays.length; i++){
+								if(DateUtils.isBetween(m,$scope.holidays[i].start,$scope.holidays[i].end)){
+									isHoliday = true;
+									break;
+								} 
+							}
+							if(!isHoliday){
+								days++;
+							}
 						}
 					}
+				}else{
+					days = previousDay + 1;
 				}
 			}
 		}
