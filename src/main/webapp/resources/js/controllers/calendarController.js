@@ -59,7 +59,8 @@ projectApp.controller("calendarController",['$scope', '$isTest', 'DateUtils', fu
 			}
 			if(!isHoliday){
 				if(previousDay == null){
-					for (var m = moment($scope.startDate) ; m.isBefore(date); m.add(1, "days")){
+					var m = moment.utc($scope.startDate);
+					do{
 						isHoliday = false;
 						if($scope.workHours[m.day()] != 0){
 							for (var i = 0; i < $scope.holidays.length; i++){
@@ -72,10 +73,8 @@ projectApp.controller("calendarController",['$scope', '$isTest', 'DateUtils', fu
 								days++;
 							}
 						}
-						console.log("Fecha: " + m.format() + " -Dia Semana:" + m.day() + " -Horas:" + $scope.workHours[m.day()]);
-					}
-					console.log(date.format());
-					console.log(days + "-" + previousDay);
+						m.add(1, "days");
+					}while( m.isBefore(date) || m.isSame(date) );
 				}else{
 					days = previousDay + 1;
 				}
