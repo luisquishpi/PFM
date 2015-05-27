@@ -49,4 +49,8 @@ describe("Test scheduleController", function(){
         expect(scope.hoursPerYear()).toBe(2016);        
 	});
 	
+	it('daysPerWeek : should be 5', function(){
+		expect(scope.daysPerWeek()).toBe(5);
+	});	
+	
 })
