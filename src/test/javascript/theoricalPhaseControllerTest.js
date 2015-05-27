@@ -38,7 +38,7 @@ describe("Test TheoricalPhaseController", function(){
 				},
 				naturalDays: function(){
 					return 187;
-				},
+				}
 			},
 			bridgeService: 
 			{
@@ -46,7 +46,9 @@ describe("Test TheoricalPhaseController", function(){
 					listHoursEachDay: function(){ 
 										return [{workHours:0},{workHours:8},{workHours:8},{workHours:8},{workHours:8},{workHours:8},{workHours:0}];
 									  },
-					workDays: 21
+					workDays: 21,
+					daysPerWeek: 5
+					}					
 			}}
 		});
 	}));

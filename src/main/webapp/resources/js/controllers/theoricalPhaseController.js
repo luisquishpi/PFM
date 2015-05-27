@@ -26,9 +26,6 @@ projectApp.controller("theoricalPhaseController", ['$scope', '$isTest', 'bridgeS
 	var ITERATION_INITIAL_VALUE = 1;
 	var NEXT_DAY_VALUE = 1;
 	
-	var NUMBER_OF_MONTHS = 12;
-	var NUMBER_OF_WORK_DAYS_PER_WEEK = 5;
-	
 	/********************************/
 	addDaysToDate = function(date, numberOfDays){
 		return moment(date, DATE_FORMAT).add(numberOfDays, "days").format(DATE_FORMAT);
@@ -75,7 +72,7 @@ projectApp.controller("theoricalPhaseController", ['$scope', '$isTest', 'bridgeS
 		for(i = 0; i < $scope.showTheoricalPhasesBean.annualGrossSalaryList.length; i++){
 			cost += $scope.showTheoricalPhasesBean.annualGrossSalaryList[i] + $scope.showTheoricalPhasesBean.annualGrossSalaryList[i]*$scope.showTheoricalPhasesBean.insuranceList[i]/100;
 		}
-		return (cost/$scope.showTheoricalPhasesBean.annualGrossSalaryList.length)/NUMBER_OF_MONTHS;		
+		return (cost/$scope.showTheoricalPhasesBean.annualGrossSalaryList.length)/$scope.schedule.monthsPerYear;		
 	}	
 	
 	$scope.averageDayCost = function(){
@@ -87,7 +84,7 @@ projectApp.controller("theoricalPhaseController", ['$scope', '$isTest', 'bridgeS
 		for (i = 0; i < $scope.schedule.listHoursEachDay().length; i++){
 			days += $scope.schedule.listHoursEachDay()[i].workHours;
 		}
-		return $scope.averageDayCost()/(days/NUMBER_OF_WORK_DAYS_PER_WEEK);
+		return $scope.averageDayCost()/(days/$scope.schedule.daysPerWeek());
 	}	
 	
 	/********************************/	

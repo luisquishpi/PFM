@@ -7,8 +7,8 @@ projectApp.controller("calendarController",['$scope', '$isTest', 'DateUtils', fu
 	  initJSFScope($scope);
 	}
 	
-	$scope.startDate; //momment
-	$scope.endDate; //momment
+	$scope.startDate;
+	$scope.endDate;
 	$scope.iterationLength;
 	$scope.holidays;
 	$scope.workHours;
@@ -16,6 +16,9 @@ projectApp.controller("calendarController",['$scope', '$isTest', 'DateUtils', fu
 	$scope.phases = ["I", "E", "E", "E", "C", "C", "C", "C", "C", "P"];
 	
 	$scope.getEvents = function(startDate, endDate){
+		if($scope.workHours === undefined){
+			return [];
+		}
 		var events = [];
 		var projectDay = null;
 		for (var m = moment(startDate); m.isBefore(endDate); m.add(1, "days")){
