@@ -48,12 +48,11 @@ projectApp.controller("calendarController",['$scope', '$isTest', 'DateUtils', fu
 		var days = 0;
 		var isHoliday = false;
 		if($scope.workHours[date.day()] != 0 && DateUtils.isBetween(date, $scope.startDate, $scope.endDate) ){
-			
 			for (var i = 0; i < $scope.holidays.length; i++){
 				if(DateUtils.isBetween(date,$scope.holidays[i].start,$scope.holidays[i].end)){
 					isHoliday = true;
 					break;
-				} 
+				}
 			}
 			if(!isHoliday){
 				if(previousDay == null){

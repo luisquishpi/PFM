@@ -76,26 +76,26 @@ projectApp.service("workTimeService", function(){
 projectApp.service("DateUtils", function(){
 	
 	this.setZeroTime = function(date){
-		var validate = moment.invalid(date);
+		/*var validate = moment.invalid(date);
 		if(validate.isValid()){
-			date.utc();
-			date.set('hour', 0);
+			date.set('hour', 10);
 	    	date.set('minute', 0);
 	    	date.set('second', 0);
 	    	date.set('millisecond', 0);
-		}
+		}*/
 	},
 	
 	this.isBetween = function(test, start, end) {
     	var result = false;
-    	start = moment(start);
-    	end = moment(end);
+    	start = moment(start).set('hour', 10);
+    	end = moment(end).set('hour', 10);
+    	test = moment(test).set('hour', 10);
     	
     	this.setZeroTime(test);
     	this.setZeroTime(start);
     	this.setZeroTime(end);
-
-    	result = test.isAfter(start) && test.isBefore(end) || test.isSame(start) || test.isSame(end);
+    	
+    	result = (test.isAfter(start) && test.isBefore(end)) || test.isSame(start, 'day') || test.isSame(end, 'day');
     	return result;
     }
 	
