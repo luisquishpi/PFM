@@ -6,6 +6,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
 import org.apache.logging.log4j.LogManager;
 import org.primefaces.event.FlowEvent;
@@ -17,11 +18,10 @@ import upm.miw.pfm.models.entities.ProjectSchedule;
 import upm.miw.pfm.utils.Utils;
 
 @ManagedBean
-@RequestScoped
+@ViewScoped
 public class EditProjectBean {
 
-	@ManagedProperty("#{param.id}")
-	private int id;
+	private Integer id;
 
 	private Project project;
 
@@ -36,11 +36,11 @@ public class EditProjectBean {
 	public EditProjectBean() {
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -61,11 +61,17 @@ public class EditProjectBean {
 	}
 
 	public String process() {
-		projectSchedule.setId(id);
-		setScheduleController.updateProjectSchedule(projectSchedule);
+		System.out.println(projectSchedule);
+		projectSchedule.setId(Integer.parseInt(Utils.getRequestParameter("id")));
+		System.out.println(projectSchedule);
 		project.setId(projectSchedule.getProject().getId());
-		projectController.updateProject(project);
+		projectSchedule.setProject(project);
+		setScheduleController.updateProjectSchedule(projectSchedule);
+
+		// projectController.updateProject(project);
+
 		LogManager.getLogger(this).info("Actualizado " + project);
+		LogManager.getLogger(this).info("Actualizado " + projectSchedule);
 		Utils.addMessage(FacesMessage.SEVERITY_INFO, "Proyecto",
 				"Se ha modificado el proyecto satisfactoriamente");
 
@@ -78,7 +84,13 @@ public class EditProjectBean {
 
 	@PostConstruct
 	public void init() {
-		projectSchedule = setScheduleController.getProjectSchedule(id);
+		System.out.println("PostConstruct");
+
+		if(projectSchedule==null){
+			System.out.println("Es null");
+			projectSchedule = setScheduleController.getProjectSchedule(Integer.parseInt(Utils.getRequestParameter("id")));
+		}
+		System.out.println(projectSchedule);
 		project = projectController.getProject(projectSchedule.getProject()
 				.getId());
 	}
