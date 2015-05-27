@@ -74,9 +74,9 @@ public class VacationControllerTest {
     
     @AfterClass
     public static void afterClass() {
-    	DaoFactory.getFactory().getVacationDao().query("delete from Vacation");
-        DaoFactory.getFactory().getEmployeeDao().query("delete from Employee");
-        DaoFactory.getFactory().getContractDao().query("delete from Contract");
+    	DaoFactory.getFactory().getVacationDao().deleteAll();
+        DaoFactory.getFactory().getEmployeeDao().deleteAll();
+        DaoFactory.getFactory().getContractDao().deleteAll();
     }
 
 }

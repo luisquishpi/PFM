@@ -38,14 +38,15 @@ public class VacationDaoHibernate extends GenericDaoHibernate<Vacation, Integer>
         }
         return list;
     }
-    
+
     @Override
     public Boolean exists(Vacation vacation) {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();        
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         Boolean result = false;
         try {
             session.beginTransaction();
-            Query query = session.createQuery("from Vacation v WHERE v.employee = :employee AND v.start = :start AND v.end = :endDate ");
+            Query query = session
+                    .createQuery("from Vacation v WHERE v.employee = :employee AND v.start = :start AND v.end = :endDate ");
             query.setParameter("employee", vacation.getEmployee());
             query.setParameter("start", vacation.getStart());
             query.setParameter("endDate", vacation.getEnd());
@@ -60,5 +61,18 @@ public class VacationDaoHibernate extends GenericDaoHibernate<Vacation, Integer>
             }
         }
         return result;
+    }
+
+    @Override
+    public void deleteAll() {
+        query("delete from Vacation");
+    }
+
+    @Override
+    public void deleteAll(Employee employee) {
+        List<Vacation> vacationList = findAll(employee);
+        for (Vacation tmpVacation : vacationList) {
+            deleteById(tmpVacation.getId());
+        }
     }
 }

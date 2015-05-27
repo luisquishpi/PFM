@@ -95,10 +95,7 @@ public class ContractControllerTest {
     
     @After
     public void after() {
-        List<Employee> employeeList = DaoFactory.getFactory().getEmployeeDao().findAllWithoutRoles();
-        for (Employee tmpEmployee : employeeList) {
-        	DaoFactory.getFactory().getEmployeeDao().deleteById(tmpEmployee.getId());
-        }        
-        DaoFactory.getFactory().getContractDao().query("delete from Contract");
+        DaoFactory.getFactory().getEmployeeDao().deleteAll();
+        DaoFactory.getFactory().getContractDao().deleteAll();
     }
 }

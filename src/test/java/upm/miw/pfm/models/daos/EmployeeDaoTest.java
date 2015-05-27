@@ -163,9 +163,9 @@ public class EmployeeDaoTest {
         vacation = new Vacation(Utils.buildDate(2015, 10, 1), Utils.buildDate(2015, 10, 15),
                 employee);
         vacationDao.create(vacation);
-        
-        Vacation vacation2 = new Vacation(Utils.buildDate(2015, 12, 5), Utils.buildDate(2015,
-                13, 10), employee);
+
+        Vacation vacation2 = new Vacation(Utils.buildDate(2015, 12, 5), Utils.buildDate(2015, 13,
+                10), employee);
         Vacation vacationInvalid = new Vacation(Utils.buildDate(2015, 10, 5), Utils.buildDate(2015,
                 10, 10), employee);
 
@@ -200,15 +200,9 @@ public class EmployeeDaoTest {
 
     @After
     public void after() {
-        List<Vacation> vacationList = vacationDao.findAll(employee);
-        for (Vacation tmpVacation : vacationList) {
-            vacationDao.deleteById(tmpVacation.getId());
-        }
-        List<Employee> employeeList = employeeDao.findAllWithoutRoles();
-        for (Employee tmpEmployee : employeeList) {
-            employeeDao.deleteById(tmpEmployee.getId());
-        }
-        contractDao.query("delete from Contract");
+        vacationDao.deleteAll(employee);
+        employeeDao.deleteAll();
+        contractDao.deleteAll();
     }
 
 }
