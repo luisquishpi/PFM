@@ -63,8 +63,7 @@
 												<p:inputText id="workDays"
 													value="{{projectBean.projectSchedule.workDays}}"
 													required="true" requiredMessage="Ingrese los dias laborables por mes"
-													validatorMessage="Los dias laborales deben estar entre 1 y 31"
-													onkeypress="return isNumberKey(event)">
+													validatorMessage="Los dias laborales deben estar entre 1 y 31">
 												    <f:validateLongRange minimum="1" maximum="31" />	
 												</p:inputText>
 											</div>
@@ -357,15 +356,19 @@
 						</div>
 						<div>
 							<p:commandButton value="Atrás" ng-click="handlePrevious()"
-								ng-show="!isFirstStep()" icon="ui-icon-arrow-1-w" />
+								ng-show="!isFirstStep()" icon="ui-icon-arrow-1-w">
+								<f:param name="id" value="#{projectBean.projectSchedule.id}"/>
+							</p:commandButton>	
 							<p:commandButton value="{{getNextLabel()}}"
 								update="growl"
 								oncomplete="if (args &amp;&amp; !args.validationFailed) handleNext();"	
-								ng-show="isFirstStep()" icon="ui-icon-arrow-1-e" />
+								ng-show="isFirstStep()" icon="ui-icon-arrow-1-e">
+								<f:param name="id" value="#{projectBean.projectSchedule.id}"/>
+							</p:commandButton>	
 							<p:commandButton value="Editar"
 								action="#{editProjectBean.process}" ng-show="!isFirstStep()"
 								icon="ui-icon-disk" update="growl" ajax="false">
-								<f:param name="id" value="#{editProjectBean.projectSchedule.id}"/>
+								<f:param name="id" value="#{projectBean.projectSchedule.id}"/>
 							</p:commandButton>
 							<p:button outcome="index.html" value="Volver"
 								icon="ui-icon-arrowreturn-1-w"></p:button>
