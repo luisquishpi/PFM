@@ -47,9 +47,10 @@ describe("Test TheoricalPhaseController", function(){
 										return [{workHours:0},{workHours:8},{workHours:8},{workHours:8},{workHours:8},{workHours:8},{workHours:0}];
 									  },
 					workDays: 21,
-					daysPerWeek: 5
+					monthsPerYear: 12,
+					daysPerWeek: function(){return 5;},
 					}					
-			}}
+			}
 		});
 	}));
 	
