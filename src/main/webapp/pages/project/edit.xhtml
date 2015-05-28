@@ -63,7 +63,8 @@
 												<p:inputText id="workDays"
 													value="{{projectBean.projectSchedule.workDays}}"
 													required="true" requiredMessage="Ingrese los dias laborables por mes"
-													validatorMessage="Los dias laborales deben estar entre 1 y 31">
+													validatorMessage="Los dias laborales deben estar entre 1 y 31"
+													onkeypress="return isNumberKey(event)">
 												    <f:validateLongRange minimum="1" maximum="31" />	
 												</p:inputText>
 											</div>
