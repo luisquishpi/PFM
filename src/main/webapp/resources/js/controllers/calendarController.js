@@ -37,10 +37,10 @@ projectApp.controller("calendarController",['$scope', '$isTest', 'DateUtils', fu
 				var hours = $scope.workHours[m.day()];
 				var iteration = $scope.getIteration(projectDay);
 				events.push({
-					title: projectDay + "-" + iteration.label + "\n Dia:" + projectDay + "\n Horas:" + hours,
+					title: iteration.label + "\n Dia:" + projectDay + "\n Horas:" + hours,
 					start: moment(m),
 					allDay: true,
-					backgroundColor : iteration,
+					backgroundColor : iteration.color,
 				});
 			}
 		}
