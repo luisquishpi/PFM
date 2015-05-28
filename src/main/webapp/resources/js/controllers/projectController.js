@@ -14,7 +14,6 @@ projectApp.controller("projectController", [
 
 			var start, end;
 			$scope.schedule = bridgeService.shareData;
-			console.log(bridgeService.shareData.projectBean);
 			$scope.workDays = 0;
 			$scope.workHours = 0;
 			$scope.naturalDays = 0;
