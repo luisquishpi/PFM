@@ -75,28 +75,17 @@ projectApp.service("workTimeService", function(){
 });
 projectApp.service("DateUtils", function(){
 	
-	this.setZeroTime = function(date){
-		/*var validate = moment.invalid(date);
-		if(validate.isValid()){
-			date.set('hour', 10);
-	    	date.set('minute', 0);
-	    	date.set('second', 0);
-	    	date.set('millisecond', 0);
-		}*/
-	},
-	
 	this.isBetween = function(test, start, end) {
-    	var result = false;
-    	start = moment(start).set('hour', 10);
-    	end = moment(end).set('hour', 10);
-    	test = moment(test).set('hour', 10);
     	
-    	this.setZeroTime(test);
-    	this.setZeroTime(start);
-    	this.setZeroTime(end);
+    	start = moment(start).set('hour',10);
+    	end = moment(end).set('hour',10);
+    	test = moment.utc(test).set('hour', 10);
     	
-    	result = (test.isAfter(start) && test.isBefore(end)) || test.isSame(start, 'day') || test.isSame(end, 'day');
-    	return result;
+    	var between = test.isAfter(start, 'day') && test.isBefore(end, 'day');
+    	var sameStart = test.isSame(start, 'day');
+    	var sameEnd = test.isSame(end, 'day');
+    	
+    	return between || sameStart  || sameEnd;
     }
 	
 });

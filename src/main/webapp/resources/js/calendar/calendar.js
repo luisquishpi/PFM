@@ -15,7 +15,7 @@ $(document).ready(function() {
     	},
     	events: function(start, end, timezone, callback) {
     		var scope = angular.element($('div[id$=angularContainer]')).scope();
-    		var events = scope.getEvents(start, end); 
+    		var events = scope.getEvents(moment.utc(start,"DD/MM/YYYY"), moment.utc(end,"DD/MM/YYYY")); 
             callback(events);
         }
     })
@@ -29,8 +29,8 @@ function updateModel(xhr, status, args){
 		var DATE_FORMAT = "DD/MM/YYYY";
 		var scope = angular.element($('div[id$=angularContainer]')).scope();
 		
-        scope.startDate = moment(project.startString, DATE_FORMAT);
-    	scope.endDate = moment(project.endString, DATE_FORMAT)
+        scope.startDate = moment.utc(project.startString, DATE_FORMAT);
+    	scope.endDate = moment.utc(project.endString, DATE_FORMAT)
     	scope.iterationLength = project.iterationDays;
     	scope.holidays = JSON.parse(holidays);
     	scope.workHours = [
