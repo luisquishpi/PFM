@@ -49,7 +49,7 @@ describe("Test TheoricalPhaseController", function(){
 					workDays: 21,
 					daysPerWeek: 5
 					}					
-			}}
+			}
 		});
 	}));
 	
