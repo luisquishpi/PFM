@@ -37,7 +37,7 @@ describe("Test calendarController", function() {
 	});
 
 	it("Iteration should be I-1", function() {
-		expect(scope.getIteration(8)).toBe("I-1");
+		expect(scope.getIteration(8).label).toBe("I-1");
 	});
 	/*
 	it("getEvents should be 3[ 2 project days and 1 holiday ]", function() {
