@@ -12,6 +12,9 @@
 		<ui:define name="header">
             Crear empleado
         </ui:define>
+        <ui:define name="javascript">
+            <script src="/PFM/resources/js/project/project.js"></script>
+        </ui:define>
 		<ui:define name="content">
 			<div class="panel-body">
 				<div class="main-grid main-body-grid">
@@ -63,7 +66,8 @@
 										required="true"
 										requiredMessage="El bruto anual es obligatorio"
 										validatorMessage="El bruto anual debe ser mayor a 0"
-										stepFactor="1000" label="">
+										stepFactor="1000" label=""
+										onkeypress="return isNumberKey(event)">
 										<f:convertNumber minFractionDigits="2" maxFractionDigits="2"
 											locale="en_US" />
 										<f:validator

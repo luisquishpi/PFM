@@ -12,6 +12,9 @@
         <ui:define name="header">
             Editar Contrato
         </ui:define>
+        <ui:define name="javascript">
+            <script src="/PFM/resources/js/project/project.js"></script>
+        </ui:define>
         <ui:define name="css">
             <link href="/PFM/resources/css/bootstrap/css/bootstrap.min.css"
                 rel="stylesheet" />
@@ -44,7 +47,8 @@
                                         id="insurance"
                                         value="#{editContractBean.contract.insurance}"
                                         validatorMessage="El porcentaje de seguro debe ser mayor que 0 y menor a 100"
-                                        required="true" stepFactor="0.01" label="" maxlength="5">
+                                        required="true" stepFactor="0.01" label="" maxlength="5"
+                                        onkeypress="return isNumberKey(event)">
                                         <f:convertNumber minFractionDigits="2" maxFractionDigits="2"
                                             locale="en_US" type="number" />
                                         <f:validateDoubleRange minimum="0.00" maximum="100" />
