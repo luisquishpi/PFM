@@ -40,7 +40,7 @@ public class CreateHolidayBean implements Serializable {
 
         if (Utils.errors(holidayController.validate(holiday))) {
             holidayController.createHoliday(holiday);
-            Utils.addMessage(FacesMessage.SEVERITY_INFO, "Feriados", "Los feriados han sido registrados.");
+            Utils.addMessage(FacesMessage.SEVERITY_INFO, "Festivos", "Los días festivos han sido registrados.");
         }
         update();
         return null;
@@ -53,7 +53,7 @@ public class CreateHolidayBean implements Serializable {
     
     public String delete(){
     	holidayController.deleteHoliday(selectedHoliday.getId());
-    	Utils.addMessage(FacesMessage.SEVERITY_INFO, "Feriados", "El rango seleccionado ha sido eliminado.");
+    	Utils.addMessage(FacesMessage.SEVERITY_INFO, "Festivos", "El rango seleccionado ha sido eliminado.");
     	this.update();
     	return null;
     }
