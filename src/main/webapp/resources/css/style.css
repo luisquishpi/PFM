@@ -79,3 +79,7 @@ table td {
 	float: right;
     font-size: 17px;
 }
+
+[ng\:cloak], [ng-cloak], .ng-cloak {
+  display: none !important;
+}

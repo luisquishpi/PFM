@@ -39,6 +39,7 @@
 			<c:set var="projectBean" scope="request" value="#{editProjectBean}" />
 			<div class="panel-body">
 				<h:form ng-app="projectApp">
+					<div ng-cloak=""> 
 				    <p:growl id="growl" sticky="false" life="5000" />
 					<div ng-controller="wizardController" ng-form="" id="scheduleForm"
 						name="scheduleForm">
@@ -374,6 +375,7 @@
 							<p:button outcome="index.html" value="Volver"
 								icon="ui-icon-arrowreturn-1-w"></p:button>
 						</div>
+					</div>
 					</div>
 				</h:form>
 			</div>

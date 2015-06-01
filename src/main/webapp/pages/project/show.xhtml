@@ -37,6 +37,7 @@
 			<div class="panel-heading">#{projectBean.project.name}</div>							
 			<div class="panel-body">
 				<h:form ng-app="projectApp">
+					<div ng-cloak="">
 					<div ng-controller="scheduleController">
 						<ngsync direction="serverToClient" value="{{projectBean.projectSchedule}}"/>					
 						<div ng-if="runProject" ng-controller="projectController">
@@ -172,6 +173,7 @@
 								</p:button>	
 							</div>
 						</div>	
+						</div>
 				</h:form>
 			</div>
 		</ui:define>
