@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+	<table class="table table-condensed">
+		<tr>
+			<th>&nbsp;</th>
+			<th class="ui-outputlabel ui-widget">Inicio</th>
+			<th class="ui-outputlabel ui-widget">Elaboración</th>
+			<th class="ui-outputlabel ui-widget">Construcción</th>
+			<th class="ui-outputlabel ui-widget">Transición</th>
+			<th class="ui-outputlabel ui-widget">Proyecto</th>
+		</tr>
+		<tr>
+			<td class="ui-outputlabel ui-widget"><strong>Distribución</strong></td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td class="ui-outputlabel ui-widget"><strong>Gestión del proyecto</strong></td>
+            <td class="ui-outputlabel ui-widget">{{initialPercentajeProjectManagment()}}%</td>
+            <td class="ui-outputlabel ui-widget">{{elaborationPercentajeProjectManagment()}}%</td>
+            <td class="ui-outputlabel ui-widget">{{constructionPercentajeProjectManagment()}}%</td>
+            <td class="ui-outputlabel ui-widget">{{transitionPercentajeProjectManagment()}}%</td>
+            <td class="ui-outputlabel ui-widget">{{proyectPercentajeProjectManagment()}}%</td>
+		</tr>
+		<tr>
+			<td class="ui-outputlabel ui-widget"><strong>Requisitos</strong></td>
+            <td class="ui-outputlabel ui-widget">{{initialPercentajeRequirements()}}%</td>
+            <td class="ui-outputlabel ui-widget">{{elaborationPercentajeRequirements()}}%</td>
+            <td class="ui-outputlabel ui-widget">{{constructionPercentajeRequirements()}}%</td>
+            <td class="ui-outputlabel ui-widget">{{transitionPercentajeRequirements()}}%</td>
+            <td class="ui-outputlabel ui-widget">{{proyectPercentajeRequirements()}}%</td>
+		</tr>
+		<tr>
+			<td class="ui-outputlabel ui-widget"><strong>Análisis y diseño</strong></td>
+            <td class="ui-outputlabel ui-widget">{{initialPercentajeAnalysis()}}%</td>
+            <td class="ui-outputlabel ui-widget">{{elaborationPercentajeAnalysis()}}%</td>
+            <td class="ui-outputlabel ui-widget">{{constructionPercentajeAnalysis()}}%</td>
+            <td class="ui-outputlabel ui-widget">{{transitionPercentajeAnalysis()}}%</td>
+            <td class="ui-outputlabel ui-widget">{{proyectPercentajeAnalysis()}}%</td>
+		</tr>
+		<tr>
+			<td class="ui-outputlabel ui-widget"><strong>Implementación</strong></td>
+            <td class="ui-outputlabel ui-widget">{{initialPercentajeImplementation()}}%</td>
+            <td class="ui-outputlabel ui-widget">{{elaborationPercentajeImplementation()}}%</td>
+            <td class="ui-outputlabel ui-widget">{{constructionPercentajeImplementation()}}%</td>
+            <td class="ui-outputlabel ui-widget">{{transitionPercentajeImplementation()}}%</td>
+            <td class="ui-outputlabel ui-widget">{{proyectPercentajeImplementation()}}%</td>
+		</tr>
+		<tr>
+			<td class="ui-outputlabel ui-widget"><strong>Pruebas</strong></td>
+            <td class="ui-outputlabel ui-widget">{{initialPercentajeTests()}}%</td>
+            <td class="ui-outputlabel ui-widget">{{elaborationPercentajeTests()}}%</td>
+            <td class="ui-outputlabel ui-widget">{{constructionPercentajeTests()}}%</td>
+            <td class="ui-outputlabel ui-widget">{{transitionPercentajeTests()}}%</td>
+            <td class="ui-outputlabel ui-widget">{{proyectPercentajeTests()}}%</td>
+		</tr>
+		<tr>
+			<td class="ui-outputlabel ui-widget"><strong>Despliegue</strong></td>
+            <td class="ui-outputlabel ui-widget">{{initialPercentajeDeployment()}}%</td>
+            <td class="ui-outputlabel ui-widget">{{elaborationPercentajeDeployment()}}%</td>
+            <td class="ui-outputlabel ui-widget">{{constructionPercentajeDeployment()}}%</td>
+            <td class="ui-outputlabel ui-widget">{{transitionPercentajeDeployment()}}%</td>
+            <td class="ui-outputlabel ui-widget">{{proyectPercentajeDeployment()}}%</td>
+		</tr>
+		<tr>
+			<td class="ui-outputlabel ui-widget"><strong>Entorno y control de versiones</strong></td>
+            <td class="ui-outputlabel ui-widget">{{initialPercentajeVersion()}}%</td>
+            <td class="ui-outputlabel ui-widget">{{elaborationPercentajeVersion()}}%</td>
+            <td class="ui-outputlabel ui-widget">{{constructionPercentajeVersion()}}%</td>
+            <td class="ui-outputlabel ui-widget">{{transitionPercentajeVersion()}}%</td>
+            <td class="ui-outputlabel ui-widget">{{proyectPercentajeVersion()}}%</td>
+		</tr>
+		<tr>
+			<td class="ui-outputlabel ui-widget"><strong>TOTAL</strong></td>
+            <td class="ui-outputlabel ui-widget">{{totalInitialPercentaje}}%</td>
+            <td class="ui-outputlabel ui-widget">{{totalElaborationPercentaje}}%</td>
+            <td class="ui-outputlabel ui-widget">{{totalConstructionPercentaje}}%</td>
+            <td class="ui-outputlabel ui-widget">{{totalTransitionPercentaje}}%</td>
+            <td class="ui-outputlabel ui-widget">{{totalProyectPercentaje}}%</td>
+		</tr>
+		<tr>
+			<td class="ui-outputlabel ui-widget"><strong>Personas-hora</strong></td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td class="ui-outputlabel ui-widget"><strong>Gestión del proyecto</strong></td>
+            <td class="ui-outputlabel ui-widget">{{initialProjectManagmentHour()}}</td>
+            <td class="ui-outputlabel ui-widget">{{elaborationProjectManagmentHour()}}</td>
+            <td class="ui-outputlabel ui-widget">{{constructionProjectManagmentHour()}}</td>
+            <td class="ui-outputlabel ui-widget">{{transitionProjectManagmentHour()}}</td>
+            <td class="ui-outputlabel ui-widget">{{proyectProjectManagmentHour()}}</td>
+		</tr>
+		<tr>
+			<td class="ui-outputlabel ui-widget"><strong>Requisitos</strong></td>
+            <td class="ui-outputlabel ui-widget">{{initialRequirementsHour()}}</td>
+            <td class="ui-outputlabel ui-widget">{{elaborationRequirementsHour()}}</td>
+            <td class="ui-outputlabel ui-widget">{{constructionRequirementsHour()}}</td>
+            <td class="ui-outputlabel ui-widget">{{transitionRequirementsHour()}}</td>
+            <td class="ui-outputlabel ui-widget">{{proyectRequirementsHour()}}</td>
+		</tr>
+		<tr>
+			<td class="ui-outputlabel ui-widget"><strong>Análisis y diseño</strong></td>
+            <td class="ui-outputlabel ui-widget">{{initialAnalysisHour()}}</td>
+            <td class="ui-outputlabel ui-widget">{{elaborationAnalysisHour()}}</td>
+            <td class="ui-outputlabel ui-widget">{{constructionAnalysisHour()}}</td>
+            <td class="ui-outputlabel ui-widget">{{transitionAnalysisHour()}}</td>
+            <td class="ui-outputlabel ui-widget">{{proyectAnalysisHour()}}</td>
+		</tr>
+		<tr>
+			<td class="ui-outputlabel ui-widget"><strong>Implementación</strong></td>
+            <td class="ui-outputlabel ui-widget">{{initialImplementationHour()}}</td>
+            <td class="ui-outputlabel ui-widget">{{elaborationImplementationHour()}}</td>
+            <td class="ui-outputlabel ui-widget">{{constructionImplementationHour()}}</td>
+            <td class="ui-outputlabel ui-widget">{{transitionImplementationHour()}}</td>
+            <td class="ui-outputlabel ui-widget">{{proyectImplementationHour()}}</td>
+		</tr>
+		<tr>
+			<td class="ui-outputlabel ui-widget"><strong>Pruebas</strong></td>
+            <td class="ui-outputlabel ui-widget">{{initialTestsHour()}}</td>
+            <td class="ui-outputlabel ui-widget">{{elaborationTestsHour()}}</td>
+            <td class="ui-outputlabel ui-widget">{{constructionTestsHour()}}</td>
+            <td class="ui-outputlabel ui-widget">{{transitionTestsHour()}}</td>
+            <td class="ui-outputlabel ui-widget">{{proyectTestsHour()}}</td>
+		</tr>
+		<tr>
+			<td class="ui-outputlabel ui-widget"><strong>Despliegue</strong></td>
+            <td class="ui-outputlabel ui-widget">{{initialDeploymentHour()}}</td>
+            <td class="ui-outputlabel ui-widget">{{elaborationDeploymentHour()}}</td>
+            <td class="ui-outputlabel ui-widget">{{constructionDeploymentHour()}}</td>
+            <td class="ui-outputlabel ui-widget">{{transitionDeploymentHour()}}</td>
+            <td class="ui-outputlabel ui-widget">{{proyectDeploymentHour()}}</td>
+		</tr>
+		<tr>
+			<td class="ui-outputlabel ui-widget"><strong>Entorno y control de versiones</strong></td>
+            <td class="ui-outputlabel ui-widget">{{initialVersionHour()}}</td>
+            <td class="ui-outputlabel ui-widget">{{elaborationVersionHour()}}</td>
+            <td class="ui-outputlabel ui-widget">{{constructionVersionHour()}}</td>
+            <td class="ui-outputlabel ui-widget">{{transitionVersionHour()}}</td>
+            <td class="ui-outputlabel ui-widget">{{proyectVersionHour()}}</td>
+		</tr>
+		<tr>
+			<td class="ui-outputlabel ui-widget"><strong>TOTAL</strong></td>
+            <td class="ui-outputlabel ui-widget">{{totalInitialHour}}</td>
+            <td class="ui-outputlabel ui-widget">{{totalElaborationHour}}</td>
+            <td class="ui-outputlabel ui-widget">{{totalConstructionHour}}</td>
+            <td class="ui-outputlabel ui-widget">{{totalTransitionHour}}</td>
+            <td class="ui-outputlabel ui-widget">{{totalProyectHour}}</td>
+		</tr>
+		<tr>
+			<td class="ui-outputlabel ui-widget"><strong>Personas-día</strong></td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td class="ui-outputlabel ui-widget"><strong>Gestión del proyecto</strong></td>
+            <td class="ui-outputlabel ui-widget">{{initialProjectManagmentDay()}}</td>
+            <td class="ui-outputlabel ui-widget">{{elaborationProjectManagmentDay()}}</td>
+            <td class="ui-outputlabel ui-widget">{{constructionProjectManagmentDay()}}</td>
+            <td class="ui-outputlabel ui-widget">{{transitionProjectManagmentDay()}}</td>
+            <td class="ui-outputlabel ui-widget">{{proyectProjectManagmentDay()}}</td>
+		</tr>
+		<tr>
+			<td class="ui-outputlabel ui-widget"><strong>Requisitos</strong></td>
+            <td class="ui-outputlabel ui-widget">{{initialRequirementsDay()}}</td>
+            <td class="ui-outputlabel ui-widget">{{elaborationRequirementsDay()}}</td>
+            <td class="ui-outputlabel ui-widget">{{constructionRequirementsDay()}}</td>
+            <td class="ui-outputlabel ui-widget">{{transitionRequirementsDay()}}</td>
+            <td class="ui-outputlabel ui-widget">{{proyectRequirementsDay()}}</td>
+		</tr>
+		<tr>
+			<td class="ui-outputlabel ui-widget"><strong>Análisis y diseño</strong></td>
+            <td class="ui-outputlabel ui-widget">{{initialAnalysisDay()}}</td>
+            <td class="ui-outputlabel ui-widget">{{elaborationAnalysisDay()}}</td>
+            <td class="ui-outputlabel ui-widget">{{constructionAnalysisDay()}}</td>
+            <td class="ui-outputlabel ui-widget">{{transitionAnalysisDay()}}</td>
+            <td class="ui-outputlabel ui-widget">{{proyectAnalysisDay()}}</td>
+		</tr>
+		<tr>
+			<td class="ui-outputlabel ui-widget"><strong>Implementación</strong></td>
+            <td class="ui-outputlabel ui-widget">{{initialImplementationDay()}}</td>
+            <td class="ui-outputlabel ui-widget">{{elaborationImplementationDay()}}</td>
+            <td class="ui-outputlabel ui-widget">{{constructionImplementationDay()}}</td>
+            <td class="ui-outputlabel ui-widget">{{transitionImplementationDay()}}</td>
+            <td class="ui-outputlabel ui-widget">{{proyectImplementationDay()}}</td>
+		</tr>
+		<tr>
+			<td class="ui-outputlabel ui-widget"><strong>Pruebas</strong></td>
+            <td class="ui-outputlabel ui-widget">{{initialTestsDay()}}</td>
+            <td class="ui-outputlabel ui-widget">{{elaborationTestsDay()}}</td>
+            <td class="ui-outputlabel ui-widget">{{constructionTestsDay()}}</td>
+            <td class="ui-outputlabel ui-widget">{{transitionTestsDay()}}</td>
+            <td class="ui-outputlabel ui-widget">{{proyectTestsDay()}}</td>
+		</tr>
+		<tr>
+			<td class="ui-outputlabel ui-widget"><strong>Despliegue</strong></td>
+            <td class="ui-outputlabel ui-widget">{{initialDeploymentDay()}}</td>
+            <td class="ui-outputlabel ui-widget">{{elaborationDeploymentDay()}}</td>
+            <td class="ui-outputlabel ui-widget">{{constructionDeploymentDay()}}</td>
+            <td class="ui-outputlabel ui-widget">{{transitionDeploymentDay()}}</td>
+            <td class="ui-outputlabel ui-widget">{{proyectDeploymentDay()}}</td>
+		</tr>
+		<tr>
+			<td class="ui-outputlabel ui-widget"><strong>Entorno y control de versiones</strong></td>
+            <td class="ui-outputlabel ui-widget">{{initialVersionDay()}}</td>
+            <td class="ui-outputlabel ui-widget">{{elaborationVersionDay()}}</td>
+            <td class="ui-outputlabel ui-widget">{{constructionVersionDay()}}</td>
+            <td class="ui-outputlabel ui-widget">{{transitionVersionDay()}}</td>
+            <td class="ui-outputlabel ui-widget">{{proyectVersionDay()}}</td>
+		</tr>
+		<tr>
+			<td class="ui-outputlabel ui-widget"><strong>TOTAL</strong></td>
+            <td class="ui-outputlabel ui-widget">{{totalInitialDay}}</td>
+            <td class="ui-outputlabel ui-widget">{{totalElaborationDay}}</td>
+            <td class="ui-outputlabel ui-widget">{{totalConstructionDay}}</td>
+            <td class="ui-outputlabel ui-widget">{{totalTransitionDay}}</td>
+            <td class="ui-outputlabel ui-widget">{{totalProyectDay}}</td>
+		</tr>
+		<tr>
+			<td class="ui-outputlabel ui-widget"><strong>Personas-mes</strong></td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td class="ui-outputlabel ui-widget"><strong>Gestión del proyecto</strong></td>
+            <td class="ui-outputlabel ui-widget">{{initialProjectManagmentMonth()}}</td>
+            <td class="ui-outputlabel ui-widget">{{elaborationProjectManagmentMonth()}}</td>
+            <td class="ui-outputlabel ui-widget">{{constructionProjectManagmentMonth()}}</td>
+            <td class="ui-outputlabel ui-widget">{{transitionProjectManagmentMonth()}}</td>
+            <td class="ui-outputlabel ui-widget">{{proyectProjectManagmentMonth()}}</td>
+		</tr>
+		<tr>
+			<td class="ui-outputlabel ui-widget"><strong>Requisitos</strong></td>
+            <td class="ui-outputlabel ui-widget">{{initialRequirementsMonth()}}</td>
+            <td class="ui-outputlabel ui-widget">{{elaborationRequirementsMonth()}}</td>
+            <td class="ui-outputlabel ui-widget">{{constructionRequirementsMonth()}}</td>
+            <td class="ui-outputlabel ui-widget">{{transitionRequirementsMonth()}}</td>
+            <td class="ui-outputlabel ui-widget">{{proyectRequirementsMonth()}}</td>
+		</tr>
+		<tr>
+			<td class="ui-outputlabel ui-widget"><strong>Análisis y diseño</strong></td>
+            <td class="ui-outputlabel ui-widget">{{initialAnalysisMonth()}}</td>
+            <td class="ui-outputlabel ui-widget">{{elaborationAnalysisMonth()}}</td>
+            <td class="ui-outputlabel ui-widget">{{constructionAnalysisMonth()}}</td>
+            <td class="ui-outputlabel ui-widget">{{transitionAnalysisMonth()}}</td>
+            <td class="ui-outputlabel ui-widget">{{proyectAnalysisMonth()}}</td>
+		</tr>
+		<tr>
+			<td class="ui-outputlabel ui-widget"><strong>Implementación</strong></td>
+            <td class="ui-outputlabel ui-widget">{{initialImplementationMonth()}}</td>
+            <td class="ui-outputlabel ui-widget">{{elaborationImplementationMonth()}}</td>
+            <td class="ui-outputlabel ui-widget">{{constructionImplementationMonth()}}</td>
+            <td class="ui-outputlabel ui-widget">{{transitionImplementationMonth()}}</td>
+            <td class="ui-outputlabel ui-widget">{{proyectImplementationMonth()}}</td>
+		</tr>
+		<tr>
+			<td class="ui-outputlabel ui-widget"><strong>Pruebas</strong></td>
+            <td class="ui-outputlabel ui-widget">{{initialTestsMonth()}}</td>
+            <td class="ui-outputlabel ui-widget">{{elaborationTestsMonth()}}</td>
+            <td class="ui-outputlabel ui-widget">{{constructionTestsMonth()}}</td>
+            <td class="ui-outputlabel ui-widget">{{transitionTestsMonth()}}</td>
+            <td class="ui-outputlabel ui-widget">{{proyectTestsMonth()}}</td>
+		</tr>
+		<tr>
+			<td class="ui-outputlabel ui-widget"><strong>Despliegue</strong></td>
+            <td class="ui-outputlabel ui-widget">{{initialDeploymentMonth()}}</td>
+            <td class="ui-outputlabel ui-widget">{{elaborationDeploymentMonth()}}</td>
+            <td class="ui-outputlabel ui-widget">{{constructionDeploymentMonth()}}</td>
+            <td class="ui-outputlabel ui-widget">{{transitionDeploymentMonth()}}</td>
+            <td class="ui-outputlabel ui-widget">{{proyectDeploymentMonth()}}</td>
+		</tr>
+		<tr>
+			<td class="ui-outputlabel ui-widget"><strong>Entorno y control de versiones</strong></td>
+            <td class="ui-outputlabel ui-widget">{{initialVersionMonth()}}</td>
+            <td class="ui-outputlabel ui-widget">{{elaborationVersionMonth()}}</td>
+            <td class="ui-outputlabel ui-widget">{{constructionVersionMonth()}}</td>
+            <td class="ui-outputlabel ui-widget">{{transitionVersionMonth()}}</td>
+            <td class="ui-outputlabel ui-widget">{{proyectVersionMonth()}}</td>
+		</tr>
+		<tr>
+			<td class="ui-outputlabel ui-widget"><strong>TOTAL</strong></td>
+            <td class="ui-outputlabel ui-widget">{{totalInitialMonth}}</td>
+            <td class="ui-outputlabel ui-widget">{{totalElaborationMonth}}</td>
+            <td class="ui-outputlabel ui-widget">{{totalConstructionMonth}}</td>
+            <td class="ui-outputlabel ui-widget">{{totalTransitionMonth}}</td>
+            <td class="ui-outputlabel ui-widget">{{totalProyectMonth}}</td>
+		</tr>
+		
+	</table>
+</ui:composition>
