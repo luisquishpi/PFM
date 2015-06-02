@@ -69,6 +69,7 @@ projectApp.controller("projectController", [
 			}
 
 			$scope.costWorkHour = function(cost) {
-				return $scope.projectBean.project.cost / $scope.workHours;			}
-
+				return $scope.projectBean.project.cost / $scope.workHours;			
+			}
+			
 		} ]);
