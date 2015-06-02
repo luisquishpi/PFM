@@ -2,7 +2,6 @@ package upm.miw.pfm.views.beans;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -10,9 +9,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
-
 import org.apache.logging.log4j.LogManager;
-
 import upm.miw.pfm.controllers.EmployeeController;
 import upm.miw.pfm.controllers.ProjectController;
 import upm.miw.pfm.controllers.SetScheduleController;
@@ -116,6 +113,8 @@ public class ShowTheoricalPhasesBean {
             LogManager.getLogger(clazz).debug("Proyecto cargado " + this.project);
             LogManager.getLogger(clazz).info("Project schedule asociado " + this.projectSchedule);
             this.emptyProject = false;
+            int iterationDays = (int) (this.project.getIterationDays() / 1);
+            this.project.setIterationDays((double) iterationDays);
         } else {
             this.emptyProject = true;
         }
@@ -131,7 +130,7 @@ public class ShowTheoricalPhasesBean {
             Utils.addMessage(FacesMessage.SEVERITY_INFO, "Proyecto",
                     "Se actualizó las fases teóricas satisfactoriamente");
         }
-        return "index";
+        return "show_theorical_phases";
     }
 
     private Project findSelectedProject() {

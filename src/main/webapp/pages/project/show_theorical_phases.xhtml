@@ -25,6 +25,7 @@
 			<script src="/PFM/resources/js/libs/moment.js"></script>
 			<script
 				src="/PFM/resources/js/controllers/theoricalPhaseController.js"></script>
+			<script src="/PFM/resources/js/utils/on_key_press.js"></script>
 			<script>
 				$(function() {
 					var selectBox = $("#project").selectBoxIt();
@@ -41,8 +42,7 @@
 		<ui:define name="content">
 			<div class="panel-body">
 				<h:form prependId="false" ng-app="projectApp">
-					<div ng-cloak="">
-					<p:growl id="growl" sticky="false" life="5000" showDetail="false" />
+					<p:growl id="growl" sticky="false" life="5000" showDetail="true" />
 					<div ng-controller="scheduleController">
 						<c:set var="projectBean" scope="request"
 							value="#{showTheoricalPhasesBean}" />
@@ -78,7 +78,6 @@
 								</div>
 							</div>
 						</h:panelGroup>
-					</div>
 					</div>
 				</h:form>
 			</div>
