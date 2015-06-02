@@ -1,6 +1,6 @@
 .slide-frame {
   position:relative;
-  height:345px;
+  min-height:345px;
   overflow:hidden;
 }
 
