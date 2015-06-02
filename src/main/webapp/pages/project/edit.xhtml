@@ -44,6 +44,7 @@
 				    <p:growl id="growl" sticky="false" life="5000" />
 					<div ng-controller="wizardController" ng-form="" id="scheduleForm"
 						name="scheduleForm">
+						<ngsync direction="serverToClient" value="{{facesContext.validationFailed}}"/>
 						<div>
 							<div class="btn-group">
 								<button class="btn" onclick="return false;"
