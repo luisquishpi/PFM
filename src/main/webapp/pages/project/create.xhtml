@@ -38,11 +38,12 @@
 		<ui:define name="content">
 			<c:set var="projectBean" scope="request" value="#{createProjectBean}" />
 			<div class="panel-body">
-				<h:form ng-app="projectApp">
+				<h:form ng-app="projectApp" prependId="false">
 					<div ng-cloak=""> 
 				    <p:growl id="growl" sticky="false" life="5000" />
 					<div ng-controller="wizardController" ng-form="" id="scheduleForm"
 						name="scheduleForm">
+						<ngsync direction="serverToClient" value="{{facesContext.validationFailed}}"/>
 						<div>
 							<div class="btn-group">
 								<button class="btn" onclick="return false;"
@@ -245,6 +246,9 @@
 																requiredMessage="Ingrese el nombre del proyecto"
 																required="true" />
 														</div>
+														<div ng-if="{{prohectBean.project.name}}==''">
+															<p>Viene vacío</p>
+														</div>
 													</div>
 													<div class="row">
 														<div class="col-sm-5">
@@ -356,6 +360,9 @@
 								</div>
 							</div>
 						</div>
+						<c:if test="#{facesContext.validationFailed}">
+							
+						</c:if>
 						<div>
 							<p:commandButton value="Atrás" ng-click="handlePrevious()"
 								ng-show="!isFirstStep()" icon="ui-icon-arrow-1-w" />

@@ -1,12 +1,15 @@
  	projectApp
 	.controller('wizardController', function ($scope) {
-		
 		initJSFScope($scope);
 		
         $scope.steps = ['one', 'two'];
         $scope.step = 0;
         $scope.wizard = {tacos: 2};
         $scope.generalForm={};
+        
+        if($scope.facesContext.validationFailed){
+        	$scope.step=1;
+        }
 
         $scope.isFirstStep = function () {
             return $scope.step === 0;
