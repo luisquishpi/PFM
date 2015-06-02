@@ -13,7 +13,7 @@
             Crear Contrato
         </ui:define>
         <ui:define name="javascript">
-            <script src="/PFM/resources/js/project/project.js"></script>
+            <script src="/PFM/resources/js/utils/on_key_press.js"></script>
         </ui:define>
 		<ui:define name="css">
 			<link href="/PFM/resources/css/bootstrap/css/bootstrap.min.css"
@@ -48,7 +48,7 @@
 										value="#{createContractBean.contract.insurance}"
 										validatorMessage="El porcentaje de seguro debe ser mayor que 0 y menor a 100"
 										required="true" stepFactor="0.01" label="" maxlength="5"
-										onkeypress="return isNumberKey(event)">
+										onkeypress="return isDecimalNumberKey(event)">
 										<f:convertNumber minFractionDigits="2" maxFractionDigits="2"
 											locale="en_US" type="number" />
 										<f:validateDoubleRange minimum="0.00" maximum="100" />

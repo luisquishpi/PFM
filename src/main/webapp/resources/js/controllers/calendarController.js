@@ -13,16 +13,17 @@ projectApp.controller("calendarController",['$scope', '$isTest', 'DateUtils', fu
 	$scope.holidays;
 	$scope.workHours;
 	
-	$scope.phases = [{label:"I", color: "#FFFF99"}, 
-	                 {label:"E", color: "#99FF99"}, 
-	                 {label:"E", color: "#99FF99"}, 
-	                 {label:"E", color: "#99FF99"}, 
-	                 {label:"C", color: "#99CCFF"},
-	                 {label:"C", color: "#99CCFF"}, 
-	                 {label:"C", color: "#99CCFF"}, 
-	                 {label:"C", color: "#99CCFF"}, 
-	                 {label:"C", color: "#99CCFF"}, 
-	                 {label:"P", color: "#FF99FF"}];
+	$scope.phases = [{label:"I", color: "#FFFF99", textColor: "#000000"}, 
+	                 {label:"E", color: "#D1BEF8", textColor: "#000000"}, 
+	                 {label:"E", color: "#D1BEF8", textColor: "#000000"}, 
+	                 {label:"E", color: "#D1BEF8", textColor: "#000000"}, 
+	                 {label:"C", color: "#99CCFF", textColor: "#000000"},
+	                 {label:"C", color: "#99CCFF", textColor: "#000000"}, 
+	                 {label:"C", color: "#99CCFF", textColor: "#000000"}, 
+	                 {label:"C", color: "#99CCFF", textColor: "#000000"}, 
+	                 {label:"C", color: "#99CCFF", textColor: "#000000"}, 
+	                 {label:"P", color: "#99FF99", textColor: "#000000"}];
+	
 	
 	$scope.getEvents = function(startDate, endDate){
 		if($scope.workHours === undefined){
@@ -37,16 +38,17 @@ projectApp.controller("calendarController",['$scope', '$isTest', 'DateUtils', fu
 				var hours = $scope.workHours[m.day()];
 				var iteration = $scope.getIteration(projectDay);
 				events.push({
-					title: iteration.label + "\n Dia:" + projectDay + "\n Horas:" + hours,
+					title: iteration.label + "\n Día:" + projectDay + "\n Horas:" + hours,
 					start: moment(m),
 					allDay: true,
 					backgroundColor : iteration.color,
+					textColor: iteration.textColor
 				});
 			}
 		}
 		for (var i = 0; i < $scope.holidays.length; i++){
 			events.push({
-				title: 'F E R I A D O',
+				title: 'F E S T I V O',
 				start: moment($scope.holidays[i].start),
 				end: moment($scope.holidays[i].end).add(1,'days'),
 				allDay: true,
@@ -94,9 +96,8 @@ projectApp.controller("calendarController",['$scope', '$isTest', 'DateUtils', fu
 	}
 	
 	$scope.getIteration = function(days){
-		var it = parseInt(days / $scope.iterationLength);
+		var it = parseInt((days-1) / $scope.iterationLength);
 		var phaseId = it > 9 ? 9 : it;
-		return { label: $scope.phases[phaseId].label + "-" + (it + 1), color : $scope.phases[phaseId].color };
+		return { label: $scope.phases[phaseId].label + "-" + (it + 1), color : $scope.phases[phaseId].color, textColor : $scope.phases[phaseId].textColor};
 	}
-	
 }]);

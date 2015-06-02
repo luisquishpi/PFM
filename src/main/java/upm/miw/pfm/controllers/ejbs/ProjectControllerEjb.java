@@ -4,8 +4,11 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 
+import org.hibernate.cfg.NotYetImplementedException;
+
 import upm.miw.pfm.controllers.ProjectController;
 import upm.miw.pfm.models.daos.DaoFactory;
+import upm.miw.pfm.models.entities.Employee;
 import upm.miw.pfm.models.entities.Project;
 import upm.miw.pfm.models.entities.ProjectSchedule;
 
@@ -36,5 +39,10 @@ public class ProjectControllerEjb implements ProjectController {
 	public void updateProject(Project project) {
 		DaoFactory.getFactory().getProjectDao().update(project);
 	}
+
+    @Override
+    public void assignEmployeesToProject(Project project, List<Employee> employeeList) {
+        throw new NotYetImplementedException();
+    }
 
 }

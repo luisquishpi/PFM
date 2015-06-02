@@ -2,6 +2,7 @@ package upm.miw.pfm.controllers;
 
 import java.util.List;
 
+import upm.miw.pfm.models.entities.Employee;
 import upm.miw.pfm.models.entities.Project;
 import upm.miw.pfm.models.entities.ProjectSchedule;
 
@@ -15,5 +16,7 @@ public interface ProjectController {
     public List<Project> listProjects();
 
 	public void updateProject(Project project);
+	
+	public void assignEmployeesToProject(Project project, List<Employee> list);
 
 }
