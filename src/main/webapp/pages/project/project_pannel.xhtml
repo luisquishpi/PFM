@@ -48,8 +48,9 @@
 							value="{{showTheoricalPhasesBean.project.iterationDays}}"
 							ng-required="true"
 							validatorMessage="Número de días debe ser mayor a 0"
-							stepFactor="0.5">
-							<f:convertNumber minFractionDigits="2" maxFractionDigits="2"
+							stepFactor="1"
+							onkeypress="return isNumberKey(event)">
+							<f:convertNumber minFractionDigits="0" maxFractionDigits="0"
 								locale="en_US" />
 							<f:validator
 								validatorId="upm.miw.pfm.utils.GreaterThanZeroValidator" />
