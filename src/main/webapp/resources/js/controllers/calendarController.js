@@ -96,7 +96,7 @@ projectApp.controller("calendarController",['$scope', '$isTest', 'DateUtils', fu
 	}
 	
 	$scope.getIteration = function(days){
-		var it = parseInt(days / $scope.iterationLength);
+		var it = parseInt((days-1) / $scope.iterationLength);
 		var phaseId = it > 9 ? 9 : it;
 		return { label: $scope.phases[phaseId].label + "-" + (it + 1), color : $scope.phases[phaseId].color, textColor : $scope.phases[phaseId].textColor};
 	}
