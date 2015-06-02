@@ -17,6 +17,6 @@ public interface ProjectController {
 
 	public void updateProject(Project project);
 	
-	public void assignEmployees(List<Employee> list);
+	public void assignEmployeesToProject(Project project, List<Employee> list);
 
 }

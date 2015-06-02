@@ -35,13 +35,13 @@ public class ProjectControllerEjb implements ProjectController {
         return DaoFactory.getFactory().getProjectDao().findAll();
     }
 
-    @Override
-    public void updateProject(Project project) {
-        DaoFactory.getFactory().getProjectDao().update(project);
-    }
+	@Override
+	public void updateProject(Project project) {
+		DaoFactory.getFactory().getProjectDao().update(project);
+	}
 
     @Override
-    public void assignEmployees(List<Employee> list) {
+    public void assignEmployeesToProject(Project project, List<Employee> employeeList) {
         throw new NotYetImplementedException();
     }
 
