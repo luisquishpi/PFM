@@ -26,17 +26,10 @@
                         <p:growl id="growl" sticky="false" life="5000" showDetail="false" />
                         <fieldset>
                             <div class="row">
-                               primera parte 
+                               <ui:include src="resources_list_employee.xhtml" /> 
                             </div>
                             <div class="row">
                                 segunda parte: tabs
-                                
-                            </div>
-                            <div>
-                                <p:commandButton value="Crear" icon="ui-icon-disk"
-                                    action="#{createContractBean.process}" ajax="false" />
-                                <p:button outcome="index.html" value="Volver"
-                                    icon="ui-icon-arrowreturn-1-w" />
                             </div>
                         </fieldset>
                     </h:form>
