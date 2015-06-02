@@ -37,7 +37,7 @@ projectApp.controller("calendarController",['$scope', '$isTest', 'DateUtils', fu
 				var hours = $scope.workHours[m.day()];
 				var iteration = $scope.getIteration(projectDay);
 				events.push({
-					title: iteration.label + "\n Dia:" + projectDay + "\n Horas:" + hours,
+					title: iteration.label + "\n Día:" + projectDay + "\n Horas:" + hours,
 					start: moment(m),
 					allDay: true,
 					backgroundColor : iteration.color,
@@ -46,7 +46,7 @@ projectApp.controller("calendarController",['$scope', '$isTest', 'DateUtils', fu
 		}
 		for (var i = 0; i < $scope.holidays.length; i++){
 			events.push({
-				title: 'F E R I A D O',
+				title: 'F E S T I V O',
 				start: moment($scope.holidays[i].start),
 				end: moment($scope.holidays[i].end).add(1,'days'),
 				allDay: true,

@@ -11,7 +11,7 @@ $(document).ready(function() {
     	    today:    'Hoy',
     	    month:    'Mes',
     	    week:     'Semana',
-    	    day:      'Dia'
+    	    day:      'Día'
     	},
     	events: function(start, end, timezone, callback) {
     		var scope = angular.element($('div[id$=angularContainer]')).scope();
