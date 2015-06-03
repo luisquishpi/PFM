@@ -6,12 +6,12 @@ describe("Test TheoricalDisciplineController", function(){
 	
 	beforeEach(module("projectApp"));
 	
-	var theoricalPhaseCtrl, scope;
+	var scope;
 	
 	beforeEach(inject(function($controller, $rootScope){
 		scope = $rootScope;
 		
-		controller = $controller("theoricalPhaseController", {
+		controller = $controller("theoricalDisciplineController", {
 			$scope: scope,
 			$isTest: true,
 			PeolpeTimeService: 
@@ -78,7 +78,7 @@ describe("Test TheoricalDisciplineController", function(){
 	});
 	
 	it("Elaboration hours for requirements should be 199.1", function(){
-		expect(scope.elaborationProjectManagmentHour()).toBe(199.1);
+		expect(scope.elaborationRequirementsHour()).toBe(199.1);
 	});
 	
 	it("Elaboration hours for analysis should be 398.3", function(){
@@ -535,7 +535,7 @@ describe("Test TheoricalDisciplineController", function(){
 	});
 	
 	it("Project total Months should be 32.9", function(){
-		expect(scope.totalprojectMonth()).toBe(32.9);
+		expect(scope.totalProjectMonth()).toBe(32.9);
 	});
 	
 });
