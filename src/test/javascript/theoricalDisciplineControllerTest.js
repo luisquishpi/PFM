@@ -14,27 +14,25 @@ describe("Test TheoricalDisciplineController", function(){
 		controller = $controller("theoricalPhaseController", {
 			$scope: scope,
 			$isTest: true,
-			bridgeService: 
+			PeolpeTimeService: 
 			{
-				shareData : {
-					inicioPeopleHour: function(){return 276.56;},
-					elaboracionPeopleHour: function(){return 1106.26;},
-					construccionPeopleHour: function(){return 3595.34;},
-					transicionPeopleHour: function(){return 553.13;},
-					proyectoPeopleHour: function(){return 5531.29;},
-					
-					inicioPeopleDay: function(){return 34.57;},
-					elaboracionPeopleDay: function(){return 138.28;},
-					construccionPeopleDay: function(){return 449.42;},
-					transicionPeopleDay: function(){return 69.14;},
-					proyectoPeopleDay: function(){return 691.41;},
-					
-					inicioPeopleMonth: function(){return 1.65;},
-					elaboracionPeopleMonth: function(){return 6.58;},
-					construccionPeopleMonth: function(){return 21.40;},
-					transicionPeopleMonth: function(){return 3.29;},
-					proyectoPeopleMonth: function(){return 32.92;},
-					}					
+				inicioPeopleHour: function(){return 276.56;},
+				elaboracionPeopleHour: function(){return 1106.26;},
+				construccionPeopleHour: function(){return 3595.34;},
+				transicionPeopleHour: function(){return 553.13;},
+				proyectoPeopleHour: function(){return 5531.29;},
+				
+				inicioPeopleDay: function(){return 34.57;},
+				elaboracionPeopleDay: function(){return 138.28;},
+				construccionPeopleDay: function(){return 449.42;},
+				transicionPeopleDay: function(){return 69.14;},
+				proyectoPeopleDay: function(){return 691.41;},
+				
+				inicioPeopleMonth: function(){return 1.65;},
+				elaboracionPeopleMonth: function(){return 6.58;},
+				construccionPeopleMonth: function(){return 21.40;},
+				transicionPeopleMonth: function(){return 3.29;},
+				proyectoPeopleMonth: function(){return 32.92;},
 			}
 		});
 	}));
@@ -175,35 +173,35 @@ describe("Test TheoricalDisciplineController", function(){
 	
 	//Totales de proyecto
 	it("Project hours for project management should be 608.4", function(){
-		expect(scope.ProjectManagmentHour()).toBe(608.4);
+		expect(scope.projectManagmentHour()).toBe(608.4);
 	});
 	
 	it("Project hours for requirements should be 614", function(){
-		expect(scope.proyectRequirementsHour()).toBe(614);
+		expect(scope.projectRequirementsHour()).toBe(614);
 	});
 	
 	it("Project hours for analysis should be 1048.2", function(){
-		expect(scope.proyectAnalysisHour()).toBe(1048.2);
+		expect(scope.projectAnalysisHour()).toBe(1048.2);
 	});
 
 	it("Project hours for implementation should be 1493.4", function(){
-		expect(scope.proyectImplementationHour()).toBe(1493.4);
+		expect(scope.projectImplementationHour()).toBe(1493.4);
 	});
 	
 	it("Project hours for test should be 1128.4", function(){
-		expect(scope.proyectTestsHour()).toBe(1128.4);
+		expect(scope.projectTestsHour()).toBe(1128.4);
 	});
 	
 	it("Project hours for deployment should be 315.3", function(){
-		expect(scope.proyectDeploymentHour()).toBe(315.3);
+		expect(scope.projectDeploymentHour()).toBe(315.3);
 	});
 	
 	it("Project hours for environment should be 323.6", function(){
-		expect(scope.proyectVersionHour()).toBe(323.6);
+		expect(scope.projectVersionHour()).toBe(323.6);
 	});
 	
 	it("Project total hours should be 5531.3", function(){
-		expect(scope.totalProyectHour()).toBe(5531.3);
+		expect(scope.totalprojectHour()).toBe(5531.3);
 	});
 	
 	/************************Personas-dia******************************/
@@ -342,35 +340,35 @@ describe("Test TheoricalDisciplineController", function(){
 	
 	//Totales de proyecto
 	it("Project Days for project management should be 76.1", function(){
-		expect(scope.proyectProjectManagmentDay()).toBe(76.1);
+		expect(scope.projectProjectManagmentDay()).toBe(76.1);
 	});
 	
 	it("Project Days for requirements should be 76.7", function(){
-		expect(scope.proyectRequirementsDay()).toBe(76.7);
+		expect(scope.projectRequirementsDay()).toBe(76.7);
 	});
 	
 	it("Project Days for analysis should be 131", function(){
-		expect(scope.proyectAnalysisDay()).toBe(131);
+		expect(scope.projectAnalysisDay()).toBe(131);
 	});
 
 	it("Project Days for implementation should be 186.7", function(){
-		expect(scope.proyectImplementationDay()).toBe(186.7);
+		expect(scope.projectImplementationDay()).toBe(186.7);
 	});
 	
 	it("Project Days for test should be 141", function(){
-		expect(scope.proyectTestsDay()).toBe(141);
+		expect(scope.projectTestsDay()).toBe(141);
 	});
 	
 	it("Project Days for deployment should be 39.4", function(){
-		expect(scope.proyectDeploymentDay()).toBe(39.4);
+		expect(scope.projectDeploymentDay()).toBe(39.4);
 	});
 	
 	it("Project Days for environment should be 40.4", function(){
-		expect(scope.proyectVersionDay()).toBe(40.4);
+		expect(scope.projectVersionDay()).toBe(40.4);
 	});
 	
 	it("Project total Days should be 691.4", function(){
-		expect(scope.totalProyectDay()).toBe(691.4);
+		expect(scope.totalprojectDay()).toBe(691.4);
 	});
 	
 	/************************Personas-mes******************************/
@@ -509,35 +507,35 @@ describe("Test TheoricalDisciplineController", function(){
 	
 	//Totales de proyecto
 	it("Project Months for project management should be 3.62", function(){
-		expect(scope.proyectProjectManagmentMonth()).toBe(3.62);
+		expect(scope.projectProjectManagmentMonth()).toBe(3.62);
 	});
 	
 	it("Project Months for requirements should be 3.65", function(){
-		expect(scope.proyectRequirementsMonth()).toBe(3.65);
+		expect(scope.projectRequirementsMonth()).toBe(3.65);
 	});
 	
 	it("Project Months for analysis should be 6.24", function(){
-		expect(scope.proyectAnalysisMonth()).toBe(6.24);
+		expect(scope.projectAnalysisMonth()).toBe(6.24);
 	});
 
 	it("Project Months for implementation should be 8.89", function(){
-		expect(scope.proyectImplementationMonth()).toBe(8.89);
+		expect(scope.projectImplementationMonth()).toBe(8.89);
 	});
 	
 	it("Project Months for test should be 6.72", function(){
-		expect(scope.proyectTestsMonth()).toBe(6.72);
+		expect(scope.projectTestsMonth()).toBe(6.72);
 	});
 	
 	it("Project Months for deployment should be 1.88", function(){
-		expect(scope.proyectDeploymentMonth()).toBe(1.88);
+		expect(scope.projectDeploymentMonth()).toBe(1.88);
 	});
 	
 	it("Project Months for environment should be 1.93", function(){
-		expect(scope.proyectVersionMonth()).toBe(1.93);
+		expect(scope.projectVersionMonth()).toBe(1.93);
 	});
 	
 	it("Project total Months should be 32.9", function(){
-		expect(scope.totalProyectMonth()).toBe(32.9);
+		expect(scope.totalprojectMonth()).toBe(32.9);
 	});
 	
 });

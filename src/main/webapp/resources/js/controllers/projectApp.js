@@ -89,3 +89,69 @@ projectApp.service("DateUtils", function(){
     }
 	
 });
+
+projectApp.service("PeopleTimeService", function(){
+	//Personas-hora
+	this.inicioPeoleHour = function(costEffort, avgHourCost){
+		return costEffort/avgHourCost;
+	}
+	
+	this.elaboracionPeoleHour = function(costEffort, avgHourCost){
+		return costEffort/avgHourCost;
+	}
+	
+	this.construccionPeoleHour = function(costEffort, avgHourCost){
+		return costEffort/avgHourCost;
+	}
+	
+	this.transicionPeoleHour = function(costEffort, avgHourCost){
+		return costEffort/avgHourCost;
+	}
+	
+	this.proyectoPeoleHour = function(costEffort, avgHourCost){
+		return costEffort/avgHourCost;
+	}
+	
+	//Personas-dia
+	this.inicioPeoleDay = function(costEffort, avgDayCost){
+		return costEffort/avgDayCost;
+	}
+	
+	this.elaboracionPeoleDay = function(costEffort, avgDayCost){
+		return costEffort/avgDayCost;
+	}
+	
+	this.construccionPeoleDay = function(costEffort, avgDayCost){
+		return costEffort/avgDayCost;
+	}
+	
+	this.transicionPeoleDay = function(costEffort, avgDayCost){
+		return costEffort/avgDayCost;
+	}
+	
+	this.proyectoPeoleDay = function(costEffort, avgDayCost){
+		return costEffort/avgDayCost;
+	}
+	
+	//Personas-mes
+	this.inicioPeoleMonth = function(costEffort, avgMonthCost){
+		return costEffort/avgMonthCost;
+	}
+	
+	this.elaboracionPeoleMonth = function(costEffort, avgMonthCost){
+		return costEffort/avgMonthCost;
+	}
+	
+	this.construccionPeoleMonth = function(costEffort, avgMonthCost){
+		return costEffort/avgMonthCost;
+	}
+	
+	this.transicionPeoleMonth = function(costEffort, avgMonthCost){
+		return costEffort/avgMonthCost;
+	}
+	
+	this.proyectoPeoleMonth = function(costEffort, avgMonthCost){
+		return costEffort/avgMonthCost;
+	}
+	
+});

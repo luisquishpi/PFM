@@ -111,8 +111,276 @@ projectApp.controller("theoricalDisciplineController", ['$scope', '$isTest', 'Pe
 		return 33.2;
 	}
 	
-	$scope. = function(){
-		return
+	$scope.elaborationVersionHour = function(){
+		return 88.5;
+	}
+	
+	$scope.totalElaborationHour = function(){
+		return 1106.3;
+	}
+	
+	//Fase Construccion
+	$scope.constructionProjectManagmentHour = function(){
+		return 359.5;
+	}
+	
+	$scope.constructionRequirementsHour = function(){
+		return 286.6;
+	}
+	$scope.constructionAnalysisHour = function(){
+		return 575.3;
+	}
+	
+	$scope.constructionImplementationHour = function(){
+		return 1222.4;
+	}
+	
+	$scope.constructionTestsHour = function(){
+		return 862.9;
+	}
+	
+	$scope.constructionDeploymentHour = function(){
+		return 107.9;
+	}
+	
+	$scope.constructionVersionHour = function(){
+		return 179.8;
+	}
+	
+	$scope.totalConstructionHour = function(){
+		return 3595.3;
+	}
+	
+	//Fase Transicion
+	$scope.transitionProjectManagmentHour = function(){
+		return 77.4;
+	}
+	
+	$scope.transitionRequirementsHour = function(){
+		return 22.1;
+	}
+	
+	$scope.transitionAnalysisHour = function(){
+		return 22.1;
+	}
+	
+	$scope.transitionImplementationHour = function(){
+		return 105.1;
+	}
+	
+	$scope.transitionTestsHour = function(){
+		return 132.8;
+	}
+	
+	$scope.transitionDeploymentHour = function(){
+		return 165.9;
+	}
+	
+	$scope.transitionVersionHour = function(){
+		return 27.7;
+	}
+	
+	$scope.totalTransitionHour = function(){
+		return 553.1
+	}
+	
+	//Totales proyecto
+	$scope.projectManagmentHour = function(){
+		return 608.4;
+	}
+	
+	$scope.projectRequirementsHour = function(){
+		return 614;
+	}
+	
+	$scope.projectAnalysisHour = function(){
+		return 1048.2;
+	}
+	
+	$scope.projectImplementationHour = function(){
+		return 1493.4;
+	}
+	
+	$scope.projectTestsHour = function(){
+		return 1128.4;
+	}
+	
+	$scope.projectDeploymentHour = function(){
+		return 315.3;
+	}
+	
+	$scope.projectVersionHour = function(){
+		return 323.6;
+	}
+	
+	$scope.totalprojectHour = function(){
+		return 5531.3;
+	}
+	
+	/*****************************Personas-dia*******************************/
+	//Fase inicio
+	$scope.initialProjectManagmentDay = function(){
+		return 4.8;
+	}
+	
+	$scope.initialRequirementsDay = function(){
+		return 13.1;
+	}
+	
+	$scope.initialAnalysisDay = function(){
+		return 6.6;
+	}
+	
+	$scope.initialImplementationDay = function(){
+		return 2.8;
+	}
+	
+	$scope.initialTestsDay = function(){
+		return 2.8;
+	}
+	
+	$scope.initialDeploymentDay = function(){
+		return 1;
+	}
+	
+	$scope.initialVersionDay = function(){
+		return 3.5;
+	}
+	
+	$scope.totalInitialDay = function(){
+		return 34.6;
+	}
+	
+	//Fase Elaboracion
+	$scope.elaborationProjectManagmentDay = function(){
+		return 16.6;
+	}
+	
+	$scope.elaborationRequirementsDay = function(){
+		return 24.9;
+	}
+	
+	$scope.elaborationAnalysisDay = function(){
+		return 49.8;
+	}
+	
+	$scope.elaborationImplementationDay = function(){
+		return 18;
+	}
+	
+	$scope.elaborationTestsDay = function(){
+		return 13.8;
+	}
+	
+	$scope.elaborationDeploymentDay = function(){
+		return 4.1;
+	}
+	
+	$scope.elaborationVersionDay = function(){
+		return 11.1;
+	}
+	
+	$scope.totalElaborationDay = function(){
+		return 138.3;
+	}
+	
+	//Fase construccion
+	$scope.constructionProjectManagmentDay = function(){
+		return 44.9;
+	}
+	
+	$scope.constructionRequirementsDay = function(){
+		return 36;
+	}
+	
+	$scope.constructionAnalysisDay = function(){
+		return 71.9;
+	}
+	
+	$scope.constructionImplementationDay = function(){
+		return 152.8;
+	}
+	
+	$scope.constructionTestsDay = function(){
+		return 13.5;
+	}
+	
+	$scope.constructionDeploymentDay = function(){
+		return 13.5;
+	}
+	
+	$scope.constructionVersionDay = function(){
+		return 22.5;
+	}
+	
+	$scope.totalConstructionDay = function(){
+		return 449.4;
+	}
+	
+	//Fase Transicion
+	$scope.transitionProjectManagmentDay = function(){
+		return 9.7
+	}
+	
+	$scope.transitionRequirementsDay = function(){
+		return 2.8;
+	}
+	
+	$scope.transitionAnalysisDay = function(){
+		return 2.8;
+	}
+	
+	$scope.transitionImplementationDay = function(){
+		return 13.1;
+	}
+	
+	$scope.transitionTestsDay = function(){
+		return 16.6;
+	}
+	
+	$scope.transitionDeploymentDay = function(){
+		return 20.7;
+	}
+	
+	$scope.transitionVersionDay = function(){
+		return 3.5;
+	}
+	
+	$scope.totalTransitionDay = function(){
+		return 69.1;
+	}
+	
+	//Totales de proyecto
+	$scope.projectProjectManagmentDay = function(){
+		return 76.1;
+	}
+	
+	$scope.projectRequirementsDay = function(){
+		return 76.7;
+	}
+	
+	$scope.projectAnalysisDay = function(){
+		return 131;
+	}
+	
+	$scope.projectImplementationDay = function(){
+		return 186.7
+	}
+	
+	$scope.projectTestsDay = function(){
+		return 141;
+	}
+	
+	$scope.projectDeploymentDay = function(){
+		return 39.4;
+	}
+	
+	$scope.projectVersionDay = function(){
+		return 40.4;
+	}
+	
+	$scope.totalprojectDay = function(){
+		return 691.4;
 	}
 	
 	
