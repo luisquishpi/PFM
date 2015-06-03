@@ -2,7 +2,7 @@
  * AngularJS theoricalPhaseController
  */
 
-projectApp.controller("theoricalPhaseController", ['$scope', '$isTest', 'bridgeService', 'workTimeService', function ($scope, $isTest, bridgeService, workTimeService) {  
+projectApp.controller("theoricalPhaseController", ['$scope', '$isTest', 'bridgeService', 'workTimeService', 'peopleTimeService', function ($scope, $isTest, bridgeService, workTimeService, peopleTimeService) {  
 	
 	$scope.schedule = bridgeService.shareData;
 
@@ -367,67 +367,67 @@ projectApp.controller("theoricalPhaseController", ['$scope', '$isTest', 'bridgeS
 	
 	//Fila de Personas-hora
 	$scope.inicioPeopleHour = function() {
-		return $scope.inicioCosteEffort()/$scope.avgHourCost;
+		return peopleTimeService.inicioPeopleHour($scope.inicioCosteEffort(), $scope.avgHourCost);
 	}
 	
 	$scope.elaboracionPeopleHour = function() {
-		return $scope.elaboracionCosteEffort()/$scope.avgHourCost;
+		return peopleTimeService.elaboracionPeopleHour(elaboracionCosteEffort(), $scope.avgHourCost);
 	}	
 	
 	$scope.construccionPeopleHour = function() {
-		return $scope.construccionCosteEffort()/$scope.avgHourCost;
+		return peopleTimeService.construccionPeopleHour(construccionCosteEffort(), $scope.avgHourCost);
 	}	
 	
 	$scope.transicionPeopleHour = function() {
-		return $scope.transicionCosteEffort()/$scope.avgHourCost;
+		return peopleTimeService.transicionPeopleHour(transicionCosteEffort(), $scope.avgHourCost);
 	}	
 	
 	$scope.proyectoPeopleHour = function() {
-		return $scope.proyectoCosteEffort()/$scope.avgHourCost;
+		return peopleTimeService.proyectoPeopleHour(proyectoCosteEffort(), $scope.avgHourCost);
 	}
 	//Fin de Fila de Personas-hora			
 	
 	//Fila de Personas-dia
 	$scope.inicioPeopleDay = function() {
-		return $scope.inicioCosteEffort()/$scope.avgDayCost;
+		return peopleTimeService.inicioPeopleDay(inicioCosteEffort(), $scope.avgDayCost);
 	}
 	
 	$scope.elaboracionPeopleDay = function() {
-		return $scope.elaboracionCosteEffort()/$scope.avgDayCost;
+		return peopleTimeService.elaboracionPeopleDay(elaboracionCosteEffort(), $scope.avgDayCost)
 	}	
 	
 	$scope.construccionPeopleDay = function() {
-		return $scope.construccionCosteEffort()/$scope.avgDayCost;
+		return peopleTimeService.construccionPeopleDay(construccionCosteEffort(), $scope.avgDayCost);
 	}	
 	
 	$scope.transicionPeopleDay = function() {
-		return $scope.transicionCosteEffort()/$scope.avgDayCost;
+		return peopleTimeService.transicionPeopleDay(transicionCosteEffort(), $scope.avgDayCost);
 	}	
 	
 	$scope.proyectoPeopleDay = function() {
-		return $scope.proyectoCosteEffort()/$scope.avgDayCost;
+		return peopleTimeService.proyectoPeopleDay(proyectoCosteEffort(), $scope.avgDayCost);
 	}
 	//Fin de Fila de Personas-dia		
 	
 	//Fila de Personas-mes
 	$scope.inicioPeopleMonth = function() {
-		return $scope.inicioCosteEffort()/$scope.avgMonthCost;
+		return peopleTimeService.inicioPeopleMonth(inicioCosteEffort(), $scope.avgMonthCost);
 	}
 	
 	$scope.elaboracionPeopleMonth = function() {
-		return $scope.elaboracionCosteEffort()/$scope.avgMonthCost;
+		return peopleTimeService.elaboracionPeopleMonth(elaboracionCosteEffort(), $scope.avgMonthCost);
 	}	
 	
 	$scope.construccionPeopleMonth = function() {
-		return $scope.construccionCosteEffort()/$scope.avgMonthCost;
+		return peopleTimeService.construccionPeopleMonth(construccionCosteEffort(), $scope.avgMonthCost);
 	}	
 	
 	$scope.transicionPeopleMonth = function() {
-		return $scope.transicionCosteEffort()/$scope.avgMonthCost;
+		return peopleTimeService.transicionPeopleMonth(transicionCosteEffort(), $scope.avgMonthCost);
 	}	
 	
 	$scope.proyectoPeopleMonth = function() {
-		return $scope.proyectoCosteEffort()/$scope.avgMonthCost;
+		return peopleTimeService.proyectoPeopleMonth(proyectoCosteEffort(), $scope.avgMonthCost);
 	}
 	//Fin de Fila de Personas-dia		
 	
