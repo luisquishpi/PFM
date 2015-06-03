@@ -1,11 +1,12 @@
 /**
  * 
  */
-projectApp.controller("theoricalDisciplineController", ['$scope', '$isTest', function ($scope, $isTest) {  
+projectApp.controller("theoricalDisciplineController", ['$scope', '$isTest', 'bridgeService', function ($scope, $isTest, bridgeService) {  
 	
 	if(!$isTest){
 		  initJSFScope($scope);
 	}
+	$scope.phases = bridgeService.shareData;
 	
 	var DISTRIBUCION_GESTION_INICIO = 14;
 	var DISTRIBUCION_REQUISITOS_INICIO = 38;
@@ -51,6 +52,8 @@ projectApp.controller("theoricalDisciplineController", ['$scope', '$isTest', fun
 	var DISTRIBUCION_DESPLIEGUE_PROYECTO = 6;
 	var DISTRIBUCION_ENTORNO_PROYECTO = 6;
 	var DISTRIBUCION_TOTAL_PROYECTO = 100;
+	
+	
 
 	/***********************Personas-hora*************************/
 	//Fase Inicio

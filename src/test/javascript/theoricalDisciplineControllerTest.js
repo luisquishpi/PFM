@@ -14,25 +14,27 @@ describe("Test TheoricalDisciplineController", function(){
 		controller = $controller("theoricalDisciplineController", {
 			$scope: scope,
 			$isTest: true,
-			PeolpeTimeService: 
+			bridgeService: 
 			{
-				inicioPeopleHour: function(){return 276.56;},
-				elaboracionPeopleHour: function(){return 1106.26;},
-				construccionPeopleHour: function(){return 3595.34;},
-				transicionPeopleHour: function(){return 553.13;},
-				proyectoPeopleHour: function(){return 5531.29;},
-				
-				inicioPeopleDay: function(){return 34.57;},
-				elaboracionPeopleDay: function(){return 138.28;},
-				construccionPeopleDay: function(){return 449.42;},
-				transicionPeopleDay: function(){return 69.14;},
-				proyectoPeopleDay: function(){return 691.41;},
-				
-				inicioPeopleMonth: function(){return 1.65;},
-				elaboracionPeopleMonth: function(){return 6.58;},
-				construccionPeopleMonth: function(){return 21.40;},
-				transicionPeopleMonth: function(){return 3.29;},
-				proyectoPeopleMonth: function(){return 32.92;},
+				shareData : {
+					inicioPeopleHour: function(){return 276.56;},
+					elaboracionPeopleHour: function(){return 1106.26;},
+					construccionPeopleHour: function(){return 3595.34;},
+					transicionPeopleHour: function(){return 553.13;},
+					proyectoPeopleHour: function(){return 5531.29;},
+					
+					inicioPeopleDay: function(){return 34.57;},
+					elaboracionPeopleDay: function(){return 138.28;},
+					construccionPeopleDay: function(){return 449.42;},
+					transicionPeopleDay: function(){return 69.14;},
+					proyectoPeopleDay: function(){return 691.41;},
+					
+					inicioPeopleMonth: function(){return 1.65;},
+					elaboracionPeopleMonth: function(){return 6.58;},
+					construccionPeopleMonth: function(){return 21.40;},
+					transicionPeopleMonth: function(){return 3.29;},
+					proyectoPeopleMonth: function(){return 32.92;},
+				}
 			}
 		});
 	}));
