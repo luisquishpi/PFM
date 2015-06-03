@@ -1,7 +1,7 @@
 /**
  * 
  */
-projectApp.controller("theoricalDisciplineController", ['$scope', '$isTest', 'PeopleTimeService', function ($scope, $isTest, PeopleTimeService) {  
+projectApp.controller("theoricalDisciplineController", ['$scope', '$isTest', function ($scope, $isTest) {  
 	
 	if(!$isTest){
 		  initJSFScope($scope);
@@ -51,7 +51,7 @@ projectApp.controller("theoricalDisciplineController", ['$scope', '$isTest', 'Pe
 	var DISTRIBUCION_DESPLIEGUE_PROYECTO = 6;
 	var DISTRIBUCION_ENTORNO_PROYECTO = 6;
 	var DISTRIBUCION_TOTAL_PROYECTO = 100;
-	
+
 	/***********************Personas-hora*************************/
 	//Fase Inicio
 	$scope.initialProjectManagmentHour = function(){
@@ -125,7 +125,7 @@ projectApp.controller("theoricalDisciplineController", ['$scope', '$isTest', 'Pe
 	}
 	
 	$scope.constructionRequirementsHour = function(){
-		return 286.6;
+		return 287.6;
 	}
 	$scope.constructionAnalysisHour = function(){
 		return 575.3;
@@ -302,7 +302,7 @@ projectApp.controller("theoricalDisciplineController", ['$scope', '$isTest', 'Pe
 	}
 	
 	$scope.constructionTestsDay = function(){
-		return 13.5;
+		return 107.9;
 	}
 	
 	$scope.constructionDeploymentDay = function(){
@@ -551,4 +551,5 @@ projectApp.controller("theoricalDisciplineController", ['$scope', '$isTest', 'Pe
 	$scope.totalProjectMonth = function(){
 		return 32.9;
 	}
+	
 }]);
