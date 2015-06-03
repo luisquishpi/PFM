@@ -24,7 +24,7 @@
 				src="/PFM/resources/css/selectboxit/js/jquery.selectBoxIt.min.js"></script>
 			<script src="/PFM/resources/js/libs/moment.js"></script>
 			<script
-				src="/PFM/resources/js/controllers/theoricalDisciplinesController.js"></script>
+				src="/PFM/resources/js/controllers/theoricalDisciplineController.js"></script>
 			<script>
 				$(function() {
 					var selectBox = $("#project").selectBoxIt();
@@ -72,9 +72,8 @@
 							</fieldset>
 							<h:panelGroup
 								rendered="#{not projectBean.emptyProject}">
-								<div ng-if="runProject" ng-controller="theoricalDisciplinesController">
-									<ngsync direction="serverToClient"
-										value="{{projectBean.project}}" />                                                                             								
+								<div ng-if="runProject" ng-controller="theoricalDisciplineController">
+									<ngsync direction="serverToClient" value="{{projectBean.project}}" />                                                                             								
 									<div role="tabpanel">
 										<ul class="nav nav-tabs" role="tablist">
 											<li role="presentation" class="active"><a
