@@ -91,7 +91,7 @@ projectApp.controller("theoricalDisciplineController", ['$scope', '$isTest', 'Pe
 		return 132.8;
 	}
 	
-	$scope.elaborationProjectManagmentHour = function(){
+	$scope.elaborationRequirementsHour = function(){
 		return 199.1;
 	}
 	
@@ -185,7 +185,7 @@ projectApp.controller("theoricalDisciplineController", ['$scope', '$isTest', 'Pe
 	}
 	
 	//Totales proyecto
-	$scope.projectManagmentHour = function(){
+	$scope.projectProjectManagmentHour = function(){
 		return 608.4;
 	}
 	
@@ -213,7 +213,7 @@ projectApp.controller("theoricalDisciplineController", ['$scope', '$isTest', 'Pe
 		return 323.6;
 	}
 	
-	$scope.totalprojectHour = function(){
+	$scope.totalProjectHour = function(){
 		return 5531.3;
 	}
 	
@@ -379,7 +379,7 @@ projectApp.controller("theoricalDisciplineController", ['$scope', '$isTest', 'Pe
 		return 40.4;
 	}
 	
-	$scope.totalprojectDay = function(){
+	$scope.totalProjectDay = function(){
 		return 691.4;
 	}
 	
