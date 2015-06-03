@@ -90,67 +90,67 @@ projectApp.service("DateUtils", function(){
 	
 });
 
-projectApp.service("PeopleTimeService", function(){
+projectApp.service("peopleTimeService", function(){
 	//Personas-hora
-	this.inicioPeoleHour = function(costEffort, avgHourCost){
+	this.inicioPeopleHour = function(costEffort, avgHourCost){
 		return costEffort/avgHourCost;
 	}
 	
-	this.elaboracionPeoleHour = function(costEffort, avgHourCost){
+	this.elaboracionPeopleHour = function(costEffort, avgHourCost){
 		return costEffort/avgHourCost;
 	}
 	
-	this.construccionPeoleHour = function(costEffort, avgHourCost){
+	this.construccionPeopleHour = function(costEffort, avgHourCost){
 		return costEffort/avgHourCost;
 	}
 	
-	this.transicionPeoleHour = function(costEffort, avgHourCost){
+	this.transicionPeopleHour = function(costEffort, avgHourCost){
 		return costEffort/avgHourCost;
 	}
 	
-	this.proyectoPeoleHour = function(costEffort, avgHourCost){
+	this.proyectoPeopleHour = function(costEffort, avgHourCost){
 		return costEffort/avgHourCost;
 	}
 	
 	//Personas-dia
-	this.inicioPeoleDay = function(costEffort, avgDayCost){
+	this.inicioPeopleDay = function(costEffort, avgDayCost){
 		return costEffort/avgDayCost;
 	}
 	
-	this.elaboracionPeoleDay = function(costEffort, avgDayCost){
+	this.elaboracionPeopleDay = function(costEffort, avgDayCost){
 		return costEffort/avgDayCost;
 	}
 	
-	this.construccionPeoleDay = function(costEffort, avgDayCost){
+	this.construccionPeopleDay = function(costEffort, avgDayCost){
 		return costEffort/avgDayCost;
 	}
 	
-	this.transicionPeoleDay = function(costEffort, avgDayCost){
+	this.transicionPeopleDay = function(costEffort, avgDayCost){
 		return costEffort/avgDayCost;
 	}
 	
-	this.proyectoPeoleDay = function(costEffort, avgDayCost){
+	this.proyectoPeopleDay = function(costEffort, avgDayCost){
 		return costEffort/avgDayCost;
 	}
 	
 	//Personas-mes
-	this.inicioPeoleMonth = function(costEffort, avgMonthCost){
+	this.inicioPeopleMonth = function(costEffort, avgMonthCost){
 		return costEffort/avgMonthCost;
 	}
 	
-	this.elaboracionPeoleMonth = function(costEffort, avgMonthCost){
+	this.elaboracionPeopleMonth = function(costEffort, avgMonthCost){
 		return costEffort/avgMonthCost;
 	}
 	
-	this.construccionPeoleMonth = function(costEffort, avgMonthCost){
+	this.construccionPeopleMonth = function(costEffort, avgMonthCost){
 		return costEffort/avgMonthCost;
 	}
 	
-	this.transicionPeoleMonth = function(costEffort, avgMonthCost){
+	this.transicionPeopleMonth = function(costEffort, avgMonthCost){
 		return costEffort/avgMonthCost;
 	}
 	
-	this.proyectoPeoleMonth = function(costEffort, avgMonthCost){
+	this.proyectoPeopleMonth = function(costEffort, avgMonthCost){
 		return costEffort/avgMonthCost;
 	}
 	
