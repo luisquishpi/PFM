@@ -80,7 +80,7 @@ public class ProjectControllerTest {
     @Test
     public void testUpdateProyect() {
         projectController.createProject(project);
-        project.setIterationDays(12.3);
+        project.setIterationDays(12);
         projectController.updateProject(project);
         Project project2 = projectController.getProject(project.getId());
         assertEquals(project2, project);
