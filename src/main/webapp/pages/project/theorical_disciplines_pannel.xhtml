@@ -81,11 +81,11 @@
 		</tr>
 		<tr>
 			<td class="ui-outputlabel ui-widget">TOTAL</td>
-            <td class="ui-outputlabel ui-widget">{{totalInitialPercentaje}}%</td>
-            <td class="ui-outputlabel ui-widget">{{totalElaborationPercentaje}}%</td>
-            <td class="ui-outputlabel ui-widget">{{totalConstructionPercentaje}}%</td>
-            <td class="ui-outputlabel ui-widget">{{totalTransitionPercentaje}}%</td>
-            <td class="ui-outputlabel ui-widget">{{totalprojectPercentaje}}%</td>
+            <td class="ui-outputlabel ui-widget">{{totalInitialPercentaje()}}%</td>
+            <td class="ui-outputlabel ui-widget">{{totalElaborationPercentaje()}}%</td>
+            <td class="ui-outputlabel ui-widget">{{totalConstructionPercentaje()}}%</td>
+            <td class="ui-outputlabel ui-widget">{{totalTransitionPercentaje()}}%</td>
+            <td class="ui-outputlabel ui-widget">{{totalProjectPercentaje()}}%</td>
 		</tr>
 		<tr>
 			<td class="ui-outputlabel ui-widget"><strong>PERSONAS-HORA</strong></td>
@@ -300,6 +300,5 @@
             <td class="ui-outputlabel ui-widget">{{totalTransitionMonth()}}</td>
             <td class="ui-outputlabel ui-widget">{{totalProjectMonth()}}</td>
 		</tr>
-		
 	</table>
 </ui:composition>
