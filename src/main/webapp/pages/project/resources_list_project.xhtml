@@ -13,12 +13,12 @@
     </div>
     <div class="col-lg-2">
         <h:selectOneMenu id="project"
-            value="#{showTheoricalPhasesBean.project.id}" immediate="true"
+            value="#{resourcesBean.project.id}" immediate="true"
             onchange="submit()"
-            valueChangeListener="#{showTheoricalPhasesBean.onChangeProject}">
+            valueChangeListener="#{resourcesBean.onChangeProject}">
             <f:selectItem itemLabel="Seleccione el proyecto" itemValue="-1"
                 noSelectionOption="true" />
-            <f:selectItems value="#{showTheoricalPhasesBean.projectList}"
+            <f:selectItems value="#{resourcesBean.projectList}"
                 var="project" itemValue="#{project.id}" itemLabel="#{project.name}" />
         </h:selectOneMenu>
     </div>

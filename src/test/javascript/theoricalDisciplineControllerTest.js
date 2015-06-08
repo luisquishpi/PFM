@@ -242,135 +242,135 @@ describe("Test TheoricalDisciplineController", function(){
 	
 	//Fase de elaboracion
 	
-	it("Elaboration Days for project management should be 16.6", function(){
-		expect(scope.elaborationProjectManagmentDay()).toBe(16.6);
+	it("Elaboration Days for project management should be 16.5936", function(){
+		expect(scope.elaborationProjectManagmentDay()).toBe(16.5936);
 	});
 	
-	it("Elaboration Days for requirements should be 24.9", function(){
-		expect(scope.elaborationRequirementsDay()).toBe(24.9);
+	it("Elaboration Days for requirements should be 24.8904", function(){
+		expect(scope.elaborationRequirementsDay()).toBe(24.8904);
 	});
 	
-	it("Elaboration Days for analysis should be 49.8", function(){
-		expect(scope.elaborationAnalysisDay()).toBe(49.8);
+	it("Elaboration Days for analysis should be 49.7808", function(){
+		expect(scope.elaborationAnalysisDay()).toBe(49.7808);
 	});
 
-	it("Elaboration Days for implementation should be 18", function(){
-		expect(scope.elaborationImplementationDay()).toBe(18);
+	it("Elaboration Days for implementation should be 17.9764", function(){
+		expect(scope.elaborationImplementationDay()).toBe(17.9764);
 	});
 	
 	it("Elaboration Days for test should be 13.8", function(){
-		expect(scope.elaborationTestsDay()).toBe(13.8);
+		expect(scope.elaborationTestsDay()).toBe(13.828000000000001);
 	});
 	
-	it("Elaboration Days for deployment should be 4.1", function(){
-		expect(scope.elaborationDeploymentDay()).toBe(4.1);
+	it("Elaboration Days for deployment should be 4.1484", function(){
+		expect(scope.elaborationDeploymentDay()).toBe(4.1484);
 	});
 	
-	it("Elaboration Days for environment should be 11.1", function(){
-		expect(scope.elaborationVersionDay()).toBe(11.1);
+	it("Elaboration Days for environment should be 11.0624", function(){
+		expect(scope.elaborationVersionDay()).toBe(11.0624);
 	});
 	
-	it("Elaboration total Days should be 138.3", function(){
-		expect(scope.totalElaborationDay()).toBe(138.3);
+	it("Elaboration total Days should be 138.28", function(){
+		expect(scope.totalElaborationDay()).toBe(138.28);
 	});
 	
 	//Fase de construccion
-	it("Construction Days for project management should be 44.9", function(){
-		expect(scope.constructionProjectManagmentDay()).toBe(44.9);
+	it("Construction Days for project management should be 44.94200000000001", function(){
+		expect(scope.constructionProjectManagmentDay()).toBe(44.94200000000001);
 	});
 	
-	it("Construction Days for requirements should be 36", function(){
-		expect(scope.constructionRequirementsDay()).toBe(36);
+	it("Construction Days for requirements should be 35.9536", function(){
+		expect(scope.constructionRequirementsDay()).toBe(35.9536);
 	});
 	
-	it("Construction Days for analysis should be 71.9", function(){
-		expect(scope.constructionAnalysisDay()).toBe(71.9);
+	it("Construction Days for analysis should be 71.9072", function(){
+		expect(scope.constructionAnalysisDay()).toBe(71.9072);
 	});
 
-	it("Construction Days for implementation should be 152.8", function(){
-		expect(scope.constructionImplementationDay()).toBe(152.8);
+	it("Construction Days for implementation should be 152.80280000000002", function(){
+		expect(scope.constructionImplementationDay()).toBe(152.80280000000002);
 	});
 	
-	it("Construction Days for test should be 107.9", function(){
-		expect(scope.constructionTestsDay()).toBe(107.9);
+	it("Construction Days for test should be 107.8608", function(){
+		expect(scope.constructionTestsDay()).toBe(107.8608);
 	});
 	
-	it("Construction Days for deployment should be 13.5", function(){
-		expect(scope.constructionDeploymentDay()).toBe(13.5);
+	it("Construction Days for deployment should be 13.4826", function(){
+		expect(scope.constructionDeploymentDay()).toBe(13.4826);
 	});
 	
-	it("Construction Days for environment should be 22.5", function(){
-		expect(scope.constructionVersionDay()).toBe(22.5);
+	it("Construction Days for environment should be 22.471000000000004", function(){
+		expect(scope.constructionVersionDay()).toBe(22.471000000000004);
 	});
 	
-	it("Construction total Days should be 449.4", function(){
-		expect(scope.totalConstructionDay()).toBe(449.4);
+	it("Construction total Days should be 449.42", function(){
+		expect(scope.totalConstructionDay()).toBe(449.42);
 	});
 	
 	//Fase de transicion
-	it("Transition Days for project management should be 9.7", function(){
-		expect(scope.transitionProjectManagmentDay()).toBe(9.7);
+	it("Transition Days for project management should be 9.6796", function(){
+		expect(scope.transitionProjectManagmentDay()).toBe(9.6796);
 	});
 	
-	it("Transition Days for requirements should be 2.8", function(){
-		expect(scope.transitionRequirementsDay()).toBe(2.8);
+	it("Transition Days for requirements should be 2.7656", function(){
+		expect(scope.transitionRequirementsDay()).toBe(2.7656);
 	});
 	
-	it("Transition Days for analysis should be 2.8", function(){
-		expect(scope.transitionAnalysisDay()).toBe(2.8);
+	it("Transition Days for analysis should be 2.7656", function(){
+		expect(scope.transitionAnalysisDay()).toBe(2.7656);
 	});
 
-	it("Transition Days for implementation should be 13.1", function(){
-		expect(scope.transitionImplementationDay()).toBe(13.1);
+	it("Transition Days for implementation should be 13.1366", function(){
+		expect(scope.transitionImplementationDay()).toBe(13.1366);
 	});
 	
-	it("Transition Days for test should be 16.6", function(){
-		expect(scope.transitionTestsDay()).toBe(16.6);
+	it("Transition Days for test should be 16.5936", function(){
+		expect(scope.transitionTestsDay()).toBe(16.5936);
 	});
 	
-	it("Transition Days for deployment should be 20.7", function(){
-		expect(scope.transitionDeploymentDay()).toBe(20.7);
+	it("Transition Days for deployment should be 20.742", function(){
+		expect(scope.transitionDeploymentDay()).toBe(20.742);
 	});
 	
-	it("Transition Days for environment should be 3.5", function(){
-		expect(scope.transitionVersionDay()).toBe(3.5);
+	it("Transition Days for environment should be 3.4570000000000003", function(){
+		expect(scope.transitionVersionDay()).toBe(3.4570000000000003);
 	});
 	
-	it("Transition total Days should be 69.1", function(){
-		expect(scope.totalTransitionDay()).toBe(69.1);
+	it("Transition total Days should be 69.14", function(){
+		expect(scope.totalTransitionDay()).toBe(69.14);
 	});
 	
 	//Totales de proyecto
-	it("Project Days for project management should be 76.1", function(){
-		expect(scope.projectProjectManagmentDay()).toBe(76.1);
+	it("Project Days for project management should be 76.0551", function(){
+		expect(scope.projectProjectManagmentDay()).toBe(76.0551);
 	});
 	
-	it("Project Days for requirements should be 76.7", function(){
-		expect(scope.projectRequirementsDay()).toBe(76.7);
+	it("Project Days for requirements should be 76.0551", function(){
+		expect(scope.projectRequirementsDay()).toBe(76.0551);
 	});
 	
-	it("Project Days for analysis should be 131", function(){
-		expect(scope.projectAnalysisDay()).toBe(131);
+	it("Project Days for analysis should be 131.3679", function(){
+		expect(scope.projectAnalysisDay()).toBe(131.3679);
 	});
 
-	it("Project Days for implementation should be 186.7", function(){
-		expect(scope.projectImplementationDay()).toBe(186.7);
+	it("Project Days for implementation should be 186.6807", function(){
+		expect(scope.projectImplementationDay()).toBe(186.6807);
 	});
 	
-	it("Project Days for test should be 141", function(){
-		expect(scope.projectTestsDay()).toBe(141);
+	it("Project Days for test should be 138.282", function(){
+		expect(scope.projectTestsDay()).toBe(138.282);
 	});
 	
-	it("Project Days for deployment should be 39.4", function(){
-		expect(scope.projectDeploymentDay()).toBe(39.4);
+	it("Project Days for deployment should be 41.48459999999999", function(){
+		expect(scope.projectDeploymentDay()).toBe(41.48459999999999);
 	});
 	
-	it("Project Days for environment should be 40.4", function(){
-		expect(scope.projectVersionDay()).toBe(40.4);
+	it("Project Days for environment should be 41.48459999999999", function(){
+		expect(scope.projectVersionDay()).toBe(41.48459999999999);
 	});
 	
-	it("Project total Days should be 691.4", function(){
-		expect(scope.totalProjectDay()).toBe(691.4);
+	it("Project total Days should be 691.41", function(){
+		expect(scope.totalProjectDay()).toBe(691.41);
 	});
 	
 	/************************Personas-mes******************************/
