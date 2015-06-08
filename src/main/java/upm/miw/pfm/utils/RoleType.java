@@ -1,6 +1,8 @@
 package upm.miw.pfm.utils;
 
-public enum RoleType {
+import java.io.Serializable;
+
+public enum RoleType implements Serializable {
     PROJECT_MANAGEMENT("Gestión de proyectos"), REQUIREMENTS("Requisitos"), ANALYSIS_DESIGN(
             "Análisis y diseño"), IMPLEMENTATION("Implementación"), TESTS("Pruebas"), DEPLOY(
             "Despliegue"), ENVIROMENT_REVISION_CONTROL("Entorno y control de versiones");

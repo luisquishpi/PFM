@@ -32,4 +32,9 @@ public class EmployeeControllerEjb implements EmployeeController {
 		
 	}
 
+	@Override
+	public List<Employee> listEmployeesWithVacations() {
+		return DaoFactory.getFactory().getEmployeeDao().findAllWithVacatons();
+	}
+
 }

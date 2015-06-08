@@ -35,7 +35,7 @@ public class Project implements IGenericEntity, Serializable {
 
     @Column(name = "iteration_days", nullable = true, precision = 10, scale = 2)
     private Double iterationDays;
-
+    
     public Project() {
     }
 
