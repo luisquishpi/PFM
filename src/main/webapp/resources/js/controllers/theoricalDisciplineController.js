@@ -215,7 +215,7 @@ projectApp.controller("theoricalDisciplineController", ['$scope', '$isTest', 'br
 		return DISTRIBUCION_ENTORNO_PROYECTO;
 	}
 	
-	$scope.totalProject Percentaje = function(){
+	$scope.totalProjectPercentaje = function(){
 		return DISTRIBUCION_TOTAL_PROYECTO;
 	}
 

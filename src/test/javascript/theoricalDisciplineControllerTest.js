@@ -375,70 +375,70 @@ describe("Test TheoricalDisciplineController", function(){
 	
 	/************************Personas-mes******************************/
 	//Fase de Inicio
-	it("Inital Months for project management should be 0.23", function(){
-		expect(scope.initialProjectManagmentMonth()).toBe(0.23);
+	it("Inital Months for project management should be 0.231", function(){
+		expect(scope.initialProjectManagmentMonth()).toBe(0.231);
 	});
 	
-	it("Inital hours for requirements should be 0.63", function(){
-		expect(scope.initialRequirementsMonth()).toBe(0.63);
+	it("Inital hours for requirements should be 0.627", function(){
+		expect(scope.initialRequirementsMonth()).toBe(0.627);
 	});
 	
-	it("Inital Months for analysis should be 0.31", function(){
-		expect(scope.initialAnalysisMonth()).toBe(0.31);
+	it("Inital Months for analysis should be 0.3135", function(){
+		expect(scope.initialAnalysisMonth()).toBe(0.3135);
 	});
 
-	it("Inital Months for implementation should be 0.13", function(){
-		expect(scope.initialImplementationMonth()).toBe(0.13);
+	it("Inital Months for implementation should be 0.132", function(){
+		expect(scope.initialImplementationMonth()).toBe(0.132);
 	});
 	
-	it("Inital Months for test should be 0.13", function(){
-		expect(scope.initialTestsMonth()).toBe(0.13);
+	it("Inital Months for test should be 0.132", function(){
+		expect(scope.initialTestsMonth()).toBe(0.132);
 	});
 	
-	it("Inital Months for deployment should be 0.05", function(){
-		expect(scope.initialDeploymentMonth()).toBe(0.05);
+	it("Inital Months for deployment should be 0.049499999999999995", function(){
+		expect(scope.initialDeploymentMonth()).toBe(0.049499999999999995);
 	});
 	
-	it("Inital Months for environment should be 0.16", function(){
-		expect(scope.initialVersionMonth()).toBe(0.16);
+	it("Inital Months for environment should be 0.165", function(){
+		expect(scope.initialVersionMonth()).toBe(0.165);
 	});
 	
-	it("Inital total Months should be 1.6", function(){
-		expect(scope.totalInitialMonth()).toBe(1.6);
+	it("Inital total Months should be 1.65", function(){
+		expect(scope.totalInitialMonth()).toBe(1.65);
 	});
 	
 	//Fase de elaboracion
 	
-	it("Elaboration Months for project management should be 0.79", function(){
-		expect(scope.elaborationProjectManagmentMonth()).toBe(0.79);
+	it("Elaboration Months for project management should be 0.7896", function(){
+		expect(scope.elaborationProjectManagmentMonth()).toBe(0.7896);
 	});
 	
-	it("Elaboration Months for requirements should be 1.19", function(){
-		expect(scope.elaborationRequirementsMonth()).toBe(1.19);
+	it("Elaboration Months for requirements should be 1.1844", function(){
+		expect(scope.elaborationRequirementsMonth()).toBe(1.1844);
 	});
 	
-	it("Elaboration Months for analysis should be 2.37", function(){
-		expect(scope.elaborationAnalysisMonth()).toBe(2.37);
+	it("Elaboration Months for analysis should be 2.3688", function(){
+		expect(scope.elaborationAnalysisMonth()).toBe(2.3688);
 	});
 
-	it("Elaboration Months for implementation should be 0.86", function(){
-		expect(scope.elaborationImplementationMonth()).toBe(0.86);
+	it("Elaboration Months for implementation should be 0.8554", function(){
+		expect(scope.elaborationImplementationMonth()).toBe(0.8554);
 	});
 	
-	it("Elaboration Months for test should be 0.66", function(){
-		expect(scope.elaborationTestsMonth()).toBe(0.66);
+	it("Elaboration Months for test should be 0.658", function(){
+		expect(scope.elaborationTestsMonth()).toBe(0.658);
 	});
 	
-	it("Elaboration Months for deployment should be 0.2", function(){
-		expect(scope.elaborationDeploymentMonth()).toBe(0.2);
+	it("Elaboration Months for deployment should be 0.1974", function(){
+		expect(scope.elaborationDeploymentMonth()).toBe(0.1974);
 	});
 	
-	it("Elaboration Months for environment should be 0.53", function(){
-		expect(scope.elaborationVersionMonth()).toBe(0.53);
+	it("Elaboration Months for environment should be 0.5264", function(){
+		expect(scope.elaborationVersionMonth()).toBe(0.5264);
 	});
 	
-	it("Elaboration total Months should be 6.6", function(){
-		expect(scope.totalElaborationMonth()).toBe(6.6);
+	it("Elaboration total Months should be 6.58", function(){
+		expect(scope.totalElaborationMonth()).toBe(6.58);
 	});
 	
 	//Fase de construccion
@@ -446,24 +446,24 @@ describe("Test TheoricalDisciplineController", function(){
 		expect(scope.constructionProjectManagmentMonth()).toBe(2.14);
 	});
 	
-	it("Construction Months for requirements should be 1.71", function(){
-		expect(scope.constructionRequirementsMonth()).toBe(1.71);
+	it("Construction Months for requirements should be 1.712", function(){
+		expect(scope.constructionRequirementsMonth()).toBe(1.712);
 	});
 	
-	it("Construction Months for analysis should be 3.42", function(){
-		expect(scope.constructionAnalysisMonth()).toBe(3.42);
+	it("Construction Months for analysis should be 3.424", function(){
+		expect(scope.constructionAnalysisMonth()).toBe(3.424);
 	});
 
-	it("Construction Months for implementation should be 7.28", function(){
-		expect(scope.constructionImplementationMonth()).toBe(7.28);
+	it("Construction Months for implementation should be 7.276", function(){
+		expect(scope.constructionImplementationMonth()).toBe(7.276);
 	});
 	
-	it("Construction Months for test should be 5.14", function(){
-		expect(scope.constructionTestsMonth()).toBe(5.14);
+	it("Construction Months for test should be 5.135999999999999", function(){
+		expect(scope.constructionTestsMonth()).toBe(5.135999999999999);
 	});
 	
-	it("Construction Months for deployment should be 0.64", function(){
-		expect(scope.constructionDeploymentMonth()).toBe(0.64);
+	it("Construction Months for deployment should be 0.6419999999999999", function(){
+		expect(scope.constructionDeploymentMonth()).toBe(0.6419999999999999);
 	});
 	
 	it("Construction Months for environment should be 1.07", function(){
@@ -475,69 +475,69 @@ describe("Test TheoricalDisciplineController", function(){
 	});
 	
 	//Fase de transicion
-	it("Transition Months for project management should be 0.46", function(){
-		expect(scope.transitionProjectManagmentMonth()).toBe(0.46);
+	it("Transition Months for project management should be 0.46060000000000006", function(){
+		expect(scope.transitionProjectManagmentMonth()).toBe(0.46060000000000006);
 	});
 	
-	it("Transition Months for requirements should be 0.13", function(){
-		expect(scope.transitionRequirementsMonth()).toBe(0.13);
+	it("Transition Months for requirements should be 0.1316", function(){
+		expect(scope.transitionRequirementsMonth()).toBe(0.1316);
 	});
 	
-	it("Transition Months for analysis should be 0.13", function(){
-		expect(scope.transitionAnalysisMonth()).toBe(0.13);
+	it("Transition Months for analysis should be 0.1316", function(){
+		expect(scope.transitionAnalysisMonth()).toBe(0.1316);
 	});
 
-	it("Transition Months for implementation should be 0.63", function(){
-		expect(scope.transitionImplementationMonth()).toBe(0.63);
+	it("Transition Months for implementation should be 0.6251", function(){
+		expect(scope.transitionImplementationMonth()).toBe(0.6251);
 	});
 	
-	it("Transition Months for test should be 0.79", function(){
-		expect(scope.transitionTestsMonth()).toBe(0.79);
+	it("Transition Months for test should be 0.7896", function(){
+		expect(scope.transitionTestsMonth()).toBe(0.7896);
 	});
 	
-	it("Transition Months for deployment should be 0.99", function(){
-		expect(scope.transitionDeploymentMonth()).toBe(0.99);
+	it("Transition Months for deployment should be 0.987", function(){
+		expect(scope.transitionDeploymentMonth()).toBe(0.987);
 	});
 	
-	it("Transition Months for environment should be 0.16", function(){
-		expect(scope.transitionVersionMonth()).toBe(0.16);
+	it("Transition Months for environment should be 0.1645", function(){
+		expect(scope.transitionVersionMonth()).toBe(0.1645);
 	});
 	
-	it("Transition total Months should be 3.3", function(){
-		expect(scope.totalTransitionMonth()).toBe(3.3);
+	it("Transition total Months should be 3.29", function(){
+		expect(scope.totalTransitionMonth()).toBe(3.29);
 	});
 	
 	//Totales de proyecto
-	it("Project Months for project management should be 3.62", function(){
-		expect(scope.projectProjectManagmentMonth()).toBe(3.62);
+	it("Project Months for project management should be 3.6212000000000004", function(){
+		expect(scope.projectProjectManagmentMonth()).toBe(3.6212000000000004);
 	});
 	
-	it("Project Months for requirements should be 3.65", function(){
-		expect(scope.projectRequirementsMonth()).toBe(3.65);
+	it("Project Months for requirements should be 3.6212000000000004", function(){
+		expect(scope.projectRequirementsMonth()).toBe(3.6212000000000004);
 	});
 	
-	it("Project Months for analysis should be 6.24", function(){
-		expect(scope.projectAnalysisMonth()).toBe(6.24);
+	it("Project Months for analysis should be 6.2548", function(){
+		expect(scope.projectAnalysisMonth()).toBe(6.2548);
 	});
 
-	it("Project Months for implementation should be 8.89", function(){
-		expect(scope.projectImplementationMonth()).toBe(8.89);
+	it("Project Months for implementation should be 8.8884", function(){
+		expect(scope.projectImplementationMonth()).toBe(8.8884);
 	});
 	
-	it("Project Months for test should be 6.72", function(){
-		expect(scope.projectTestsMonth()).toBe(6.72);
+	it("Project Months for test should be 6.5840000000000005", function(){
+		expect(scope.projectTestsMonth()).toBe(6.5840000000000005);
 	});
 	
-	it("Project Months for deployment should be 1.88", function(){
-		expect(scope.projectDeploymentMonth()).toBe(1.88);
+	it("Project Months for deployment should be 1.9752", function(){
+		expect(scope.projectDeploymentMonth()).toBe(1.9752);
 	});
 	
-	it("Project Months for environment should be 1.93", function(){
-		expect(scope.projectVersionMonth()).toBe(1.93);
+	it("Project Months for environment should be 1.9752", function(){
+		expect(scope.projectVersionMonth()).toBe(1.9752);
 	});
 	
-	it("Project total Months should be 32.9", function(){
-		expect(scope.totalProjectMonth()).toBe(32.9);
+	it("Project total Months should be 32.92", function(){
+		expect(scope.totalProjectMonth()).toBe(32.92);
 	});
 
 });
