@@ -539,5 +539,5 @@ describe("Test TheoricalDisciplineController", function(){
 	it("Project total Months should be 32.9", function(){
 		expect(scope.totalProjectMonth()).toBe(32.9);
 	});
-	
+
 });

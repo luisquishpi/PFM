@@ -4,8 +4,6 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 
 import org.apache.logging.log4j.LogManager;
@@ -61,20 +59,14 @@ public class EditProjectBean {
 	}
 
 	public String process() {
-		System.out.println(projectSchedule);
 		projectSchedule.setId(Integer.parseInt(Utils.getRequestParameter("id")));
-		System.out.println(projectSchedule);
 		project.setId(projectSchedule.getProject().getId());
 		projectSchedule.setProject(project);
 		setScheduleController.updateProjectSchedule(projectSchedule);
-
-		// projectController.updateProject(project);
-
 		LogManager.getLogger(this).info("Actualizado " + project);
 		LogManager.getLogger(this).info("Actualizado " + projectSchedule);
 		Utils.addMessage(FacesMessage.SEVERITY_INFO, "Proyecto",
 				"Se ha modificado el proyecto satisfactoriamente");
-
 		return "index";
 	}
 
@@ -84,13 +76,9 @@ public class EditProjectBean {
 
 	@PostConstruct
 	public void init() {
-		System.out.println("PostConstruct");
-
 		if(projectSchedule==null){
-			System.out.println("Es null");
 			projectSchedule = setScheduleController.getProjectSchedule(Integer.parseInt(Utils.getRequestParameter("id")));
 		}
-		System.out.println(projectSchedule);
 		project = projectController.getProject(projectSchedule.getProject()
 				.getId());
 	}

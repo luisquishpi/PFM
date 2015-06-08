@@ -8,4 +8,6 @@ public interface EmployeeDao extends GenericDao<Employee, Integer>{
 
     public List<Employee> findAllWithoutRoles();
 
+	public List<Employee> findAllWithVacatons();
+
 }

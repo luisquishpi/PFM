@@ -322,7 +322,7 @@ projectApp.controller("theoricalDisciplineController", ['$scope', '$isTest', 'br
 	
 	//Fase Transicion
 	$scope.transitionProjectManagmentDay = function(){
-		return 9.7
+		return 9.7;
 	}
 	
 	$scope.transitionRequirementsDay = function(){
@@ -367,7 +367,7 @@ projectApp.controller("theoricalDisciplineController", ['$scope', '$isTest', 'br
 	}
 	
 	$scope.projectImplementationDay = function(){
-		return 186.7
+		return 186.7;
 	}
 	
 	$scope.projectTestsDay = function(){
@@ -554,5 +554,4 @@ projectApp.controller("theoricalDisciplineController", ['$scope', '$isTest', 'br
 	$scope.totalProjectMonth = function(){
 		return 32.9;
 	}
-	
 }]);

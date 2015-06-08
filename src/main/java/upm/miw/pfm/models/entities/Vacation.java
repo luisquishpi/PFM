@@ -1,5 +1,6 @@
 package upm.miw.pfm.models.entities;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -15,9 +16,14 @@ import upm.miw.pfm.utils.CheckDateRange;
 @Entity
 @Table(name = "employee_vacation")
 @CheckDateRange(message="Ya se han registrado vacaciones en este periodo.")
-public class Vacation implements IGenericDateEntity{
+public class Vacation implements IGenericDateEntity, Serializable{
 
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
     @GeneratedValue
     private Integer id;
 
@@ -32,6 +38,9 @@ public class Vacation implements IGenericDateEntity{
     private Employee employee;
 
     public Vacation() {
+    	this.start = new Date();
+    	this.end = new Date();
+    	this.employee = new Employee();
     }
 
     public Vacation(Date start, Date end, Employee employee) {
@@ -71,6 +80,7 @@ public class Vacation implements IGenericDateEntity{
     public void setEmployee(Employee employee) {
         this.employee = employee;
     }
+
 
     @Override
     public boolean equals(Object obj) {
