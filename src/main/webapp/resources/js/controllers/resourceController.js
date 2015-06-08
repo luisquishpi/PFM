@@ -10,7 +10,7 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 
 	if(!$isTest){
 		  initJSFScope($scope);
-		  workTimeService.calculateWorkDaysAndHour($scope.showTheoricalPhasesBean.project.startString, $scope.showTheoricalPhasesBean.project.endString, $scope.schedule.listHoursEachDay());
+		  workTimeService.calculateWorkDaysAndHour($scope.resourcesBean.project.startString, $scope.resourcesBean.project.endString, $scope.schedule.listHoursEachDay());
 	}
 	
 	//Constantes
