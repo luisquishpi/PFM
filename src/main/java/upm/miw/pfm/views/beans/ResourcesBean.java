@@ -26,6 +26,11 @@ public class ResourcesBean {
 
     private boolean emptyProject;
 
+    public ResourcesBean(){
+        this.emptyProject = true;
+        this.project = new Project();
+        this.project.setId(-1);
+    }
     public Project getProject() {
         return project;
     }
