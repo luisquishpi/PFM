@@ -11,6 +11,8 @@ public interface EmployeeController {
     public Employee getEmployee(Integer id);
     
     public List<Employee> listEmployees();
+    
+    public List<Employee> listEmployeesWithVacations();
 
 	public void updateEmployee(Employee employee);
 

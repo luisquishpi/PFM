@@ -10,7 +10,7 @@ import javax.persistence.Table;
 @Table(name = "contract")
 public class Contract implements IGenericEntity{
 
-    @Id
+	@Id
     @GeneratedValue
     private Integer id;
 
