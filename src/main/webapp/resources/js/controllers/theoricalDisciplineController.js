@@ -58,200 +58,200 @@ projectApp.controller("theoricalDisciplineController", ['$scope', '$isTest', 'br
 	/***********************Personas-hora*************************/
 	//Fase Inicio
 	$scope.initialProjectManagmentHour = function(){
-		return 38.7;
+		return DISTRIBUCION_GESTION_INICIO/100*$scope.phases.inicioPeopleHour();
 	}
 	
 	$scope.initialRequirementsHour = function(){
-		return 105.1;
+		return DISTRIBUCION_REQUISITOS_INICIO/100*$scope.phases.inicioPeopleHour();
 	}
 	
 	$scope.initialAnalysisHour = function(){
-		return 52.5;
+		return DISTRIBUCION_ANALISIS_INICIO/100*$scope.phases.inicioPeopleHour();
 	}
 	
 	$scope.initialImplementationHour = function(){
-		return 22.1;
+		return DISTRIBUCION_IMPLEMENTACION_INICIO/100*$scope.phases.inicioPeopleHour();
 	}
 	
 	$scope.initialTestsHour = function(){
-		return 22.1;
+		return DISTRIBUCION_PRUEBAS_INICIO/100*$scope.phases.inicioPeopleHour();
 	}
 	
 	$scope.initialDeploymentHour = function(){
-		return 8.3;
+		return DISTRIBUCION_DESPLIEGUE_INICIO/100*$scope.phases.inicioPeopleHour();
 	}
 	
 	$scope.initialVersionHour = function(){
-		return 27.7;
+		return DISTRIBUCION_ENTORNO_INICIO/100*$scope.phases.inicioPeopleHour();
 	}
 	
 	$scope.totalInitialHour = function(){
-		return 276.6;
+		return DISTRIBUCION_TOTAL_INICIO/100*$scope.phases.inicioPeopleHour();
 	}
 	
 	//Fase Elaboracion
 	$scope.elaborationProjectManagmentHour = function(){
-		return 132.8;
+		return DISTRIBUCION_GESTION_ELABORACION/100*$scope.phases.elaboracionPeopleHour();
 	}
 	
 	$scope.elaborationRequirementsHour = function(){
-		return 199.1;
+		return DISTRIBUCION_REQUISITOS_ELABORACION/100*$scope.phases.elaboracionPeopleHour();
 	}
 	
 	$scope.elaborationAnalysisHour = function(){
-		return 398.3;
+		return DISTRIBUCION_ANALISIS_ELABORACION/100*$scope.phases.elaboracionPeopleHour();
 	}
 	
 	$scope.elaborationImplementationHour = function(){
-		return 143.8;
+		return DISTRIBUCION_IMPLEMENTACION_ELABORACION/100*$scope.phases.elaboracionPeopleHour();
 	}
 	
 	$scope.elaborationTestsHour = function(){
-		return 110.6;
+		return DISTRIBUCION_PRUEBAS_ELABORACION/100*$scope.phases.elaboracionPeopleHour();
 	}
 	
 	$scope.elaborationDeploymentHour = function(){
-		return 33.2;
+		return DISTRIBUCION_DESPLIEGUE_ELABORACION/100*$scope.phases.elaboracionPeopleHour();
 	}
 	
 	$scope.elaborationVersionHour = function(){
-		return 88.5;
+		return DISTRIBUCION_ENTORNO_ELABORACION/100*$scope.phases.elaboracionPeopleHour();
 	}
 	
 	$scope.totalElaborationHour = function(){
-		return 1106.3;
+		return DISTRIBUCION_TOTAL_ELABORACION/100*$scope.phases.elaboracionPeopleHour();
 	}
 	
 	//Fase Construccion
 	$scope.constructionProjectManagmentHour = function(){
-		return 359.5;
+		return DISTRIBUCION_GESTION_CONSTRUCCION/100*$scope.phases.construccionPeopleHour();
 	}
 	
 	$scope.constructionRequirementsHour = function(){
-		return 287.6;
+		return DISTRIBUCION_REQUISITOS_CONSTRUCCION/100*$scope.phases.construccionPeopleHour();
 	}
 	$scope.constructionAnalysisHour = function(){
-		return 575.3;
+		return DISTRIBUCION_ANALISIS_CONSTRUCCION/100*$scope.phases.construccionPeopleHour();
 	}
 	
 	$scope.constructionImplementationHour = function(){
-		return 1222.4;
+		return DISTRIBUCION_IMPLEMENTACION_CONSTRUCCION/100*$scope.phases.construccionPeopleHour();
 	}
 	
 	$scope.constructionTestsHour = function(){
-		return 862.9;
+		return DISTRIBUCION_PRUEBAS_CONSTRUCCION/100*$scope.phases.construccionPeopleHour();
 	}
 	
 	$scope.constructionDeploymentHour = function(){
-		return 107.9;
+		return DISTRIBUCION_DESPLIEGUE_CONSTRUCCION/100*$scope.phases.construccionPeopleHour();
 	}
 	
 	$scope.constructionVersionHour = function(){
-		return 179.8;
+		return DISTRIBUCION_ENTORNO_CONSTRUCCION/100*$scope.phases.construccionPeopleHour();
 	}
 	
 	$scope.totalConstructionHour = function(){
-		return 3595.3;
+		return DISTRIBUCION_TOTAL_CONSTRUCCION/100*$scope.phases.construccionPeopleHour();
 	}
 	
 	//Fase Transicion
 	$scope.transitionProjectManagmentHour = function(){
-		return 77.4;
+		return DISTRIBUCION_GESTION_TRANSICION/100*$scope.phases.transicionPeopleHour();
 	}
 	
 	$scope.transitionRequirementsHour = function(){
-		return 22.1;
+		return DISTRIBUCION_REQUISITOS_TRANSICION/100*$scope.phases.transicionPeopleHour();
 	}
 	
 	$scope.transitionAnalysisHour = function(){
-		return 22.1;
+		return DISTRIBUCION_ANALISIS_TRANSICION/100*$scope.phases.transicionPeopleHour();
 	}
 	
 	$scope.transitionImplementationHour = function(){
-		return 105.1;
+		return DISTRIBUCION_IMPLEMENTACION_TRANSICION/100*$scope.phases.transicionPeopleHour();
 	}
 	
 	$scope.transitionTestsHour = function(){
-		return 132.8;
+		return DISTRIBUCION_PRUEBAS_TRANSICION/100*$scope.phases.transicionPeopleHour();
 	}
 	
 	$scope.transitionDeploymentHour = function(){
-		return 165.9;
+		return DISTRIBUCION_DESPLIEGUE_TRANSICION/100*$scope.phases.transicionPeopleHour();
 	}
 	
 	$scope.transitionVersionHour = function(){
-		return 27.7;
+		return DISTRIBUCION_ENTORNO_TRANSICION/100*$scope.phases.transicionPeopleHour();
 	}
 	
 	$scope.totalTransitionHour = function(){
-		return 553.1
+		return DISTRIBUCION_TOTAL_TRANSICION/100*$scope.phases.transicionPeopleHour();
 	}
 	
 	//Totales proyecto
 	$scope.projectProjectManagmentHour = function(){
-		return 608.4;
+		return DISTRIBUCION_GESTION_PROYECTO/100*$scope.phases.proyectoPeopleHour();
 	}
 	
 	$scope.projectRequirementsHour = function(){
-		return 614;
+		return DISTRIBUCION_REQUISITOS_PROYECTO/100*$scope.phases.proyectoPeopleHour();
 	}
 	
 	$scope.projectAnalysisHour = function(){
-		return 1048.2;
+		return DISTRIBUCION_ANALISIS_PROYECTO/100*$scope.phases.proyectoPeopleHour();
 	}
 	
 	$scope.projectImplementationHour = function(){
-		return 1493.4;
+		return DISTRIBUCION_IMPLEMENTACION_PROYECTO/100*$scope.phases.proyectoPeopleHour();
 	}
 	
 	$scope.projectTestsHour = function(){
-		return 1128.4;
+		return DISTRIBUCION_PRUEBAS_PROYECTO/100*$scope.phases.proyectoPeopleHour();
 	}
 	
 	$scope.projectDeploymentHour = function(){
-		return 315.3;
+		return DISTRIBUCION_DESPLIEGUE_PROYECTO/100*$scope.phases.proyectoPeopleHour();
 	}
 	
 	$scope.projectVersionHour = function(){
-		return 323.6;
+		return DISTRIBUCION_ENTORNO_PROYECTO/100*$scope.phases.proyectoPeopleHour();
 	}
 	
 	$scope.totalProjectHour = function(){
-		return 5531.3;
+		return DISTRIBUCION_TOTAL_PROYECTO/100*$scope.phases.proyectoPeopleHour();
 	}
 	
 	/*****************************Personas-dia*******************************/
 	//Fase inicio
 	$scope.initialProjectManagmentDay = function(){
-		return 4.8;
+		return DISTRIBUCION_GESTION_INICIO/100*$scope.phases.inicioPeopleDay();
 	}
 	
 	$scope.initialRequirementsDay = function(){
-		return 13.1;
+		return DISTRIBUCION_REQUISITOS_INICIO/100*$scope.phases.inicioPeopleDay();
 	}
 	
 	$scope.initialAnalysisDay = function(){
-		return 6.6;
+		return DISTRIBUCION_ANALISIS_INICIO/100*$scope.phases.inicioPeopleDay();
 	}
 	
 	$scope.initialImplementationDay = function(){
-		return 2.8;
+		return DISTRIBUCION_IMPLEMENTACION_INICIO/100*$scope.phases.inicioPeopleDay();
 	}
 	
 	$scope.initialTestsDay = function(){
-		return 2.8;
+		return DISTRIBUCION_PRUEBAS_INICIO/100*$scope.phases.inicioPeopleDay();
 	}
 	
 	$scope.initialDeploymentDay = function(){
-		return 1;
+		return DISTRIBUCION_DESPLIEGUE_INICIO/100*$scope.phases.inicioPeopleDay();
 	}
 	
 	$scope.initialVersionDay = function(){
-		return 3.5;
+		return DISTRIBUCION_ENTORNO_INICIO/100*$scope.phases.inicioPeopleDay();
 	}
 	
 	$scope.totalInitialDay = function(){
-		return 34.6;
+		return DISTRIBUCION_TOTAL_INICIO/100*$scope.phases.inicioPeopleDay();
 	}
 	
 	//Fase Elaboracion

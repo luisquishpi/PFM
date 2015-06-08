@@ -41,203 +41,203 @@ describe("Test TheoricalDisciplineController", function(){
 	
 	/************************Personas-hora******************************/
 	//Fase de Inicio
-	it("Inital hours for project management should be 38.7", function(){
-		expect(scope.initialProjectManagmentHour()).toBe(38.7);
+	it("Inital hours for project management should be 38.7184", function(){
+		expect(scope.initialProjectManagmentHour()).toBe(38.7184);
 	});
 	
-	it("Inital hours for requirements should be 105.1", function(){
-		expect(scope.initialRequirementsHour()).toBe(105.1);
+	it("Inital hours for requirements should be 105.0928", function(){
+		expect(scope.initialRequirementsHour()).toBe(105.0928);
 	});
 	
-	it("Inital hours for analysis should be 52.5", function(){
-		expect(scope.initialAnalysisHour()).toBe(52.5);
+	it("Inital hours for analysis should be 52.5464", function(){
+		expect(scope.initialAnalysisHour()).toBe(52.5464);
 	});
 
-	it("Inital hours for implementation should be 22.1", function(){
-		expect(scope.initialImplementationHour()).toBe(22.1);
+	it("Inital hours for implementation should be 22.1248", function(){
+		expect(scope.initialImplementationHour()).toBe(22.1248);
 	});
 	
-	it("Inital hours for test should be 22.1", function(){
-		expect(scope.initialTestsHour()).toBe(22.1);
+	it("Inital hours for test should be 22.1248", function(){
+		expect(scope.initialTestsHour()).toBe(22.1248);
 	});
 	
-	it("Inital hours for deployment should be 8.3", function(){
-		expect(scope.initialDeploymentHour()).toBe(8.3);
+	it("Inital hours for deployment should be 8.2968", function(){
+		expect(scope.initialDeploymentHour()).toBe(8.2968);
 	});
 	
-	it("Inital hours for environment should be 27.7", function(){
-		expect(scope.initialVersionHour()).toBe(27.7);
+	it("Inital hours for environment should be 27.656000000000002", function(){
+		expect(scope.initialVersionHour()).toBe(27.656000000000002);
 	});
 	
-	it("Inital total hours should be 276.6", function(){
-		expect(scope.totalInitialHour()).toBe(276.6);
+	it("Inital total hours should be 276.56", function(){
+		expect(scope.totalInitialHour()).toBe(276.56);
 	});
 	
 	//Fase de elaboracion
 	
-	it("Elaboration hours for project management should be 132.8", function(){
-		expect(scope.elaborationProjectManagmentHour()).toBe(132.8);
+	it("Elaboration hours for project management should be 132.75119999999998", function(){
+		expect(scope.elaborationProjectManagmentHour()).toBe(132.75119999999998);
 	});
 	
-	it("Elaboration hours for requirements should be 199.1", function(){
-		expect(scope.elaborationRequirementsHour()).toBe(199.1);
+	it("Elaboration hours for requirements should be 199.1268", function(){
+		expect(scope.elaborationRequirementsHour()).toBe(199.1268);
 	});
 	
-	it("Elaboration hours for analysis should be 398.3", function(){
-		expect(scope.elaborationAnalysisHour()).toBe(398.3);
+	it("Elaboration hours for analysis should be 398.2536", function(){
+		expect(scope.elaborationAnalysisHour()).toBe(398.2536);
 	});
 
-	it("Elaboration hours for implementation should be 143.8", function(){
-		expect(scope.elaborationImplementationHour()).toBe(143.8);
+	it("Elaboration hours for implementation should be 143.81380000000001", function(){
+		expect(scope.elaborationImplementationHour()).toBe(143.81380000000001);
 	});
 	
-	it("Elaboration hours for test should be 110.6", function(){
-		expect(scope.elaborationTestsHour()).toBe(110.6);
+	it("Elaboration hours for test should be 110.626", function(){
+		expect(scope.elaborationTestsHour()).toBe(110.626);
 	});
 	
-	it("Elaboration hours for deployment should be 33.2", function(){
-		expect(scope.elaborationDeploymentHour()).toBe(33.2);
+	it("Elaboration hours for deployment should be 33.187799999999996", function(){
+		expect(scope.elaborationDeploymentHour()).toBe(33.187799999999996);
 	});
 	
-	it("Elaboration hours for environment should be 88.5", function(){
-		expect(scope.elaborationVersionHour()).toBe(88.5);
+	it("Elaboration hours for environment should be 88.5008", function(){
+		expect(scope.elaborationVersionHour()).toBe(88.5008);
 	});
 	
-	it("Elaboration total hours should be 1106.3", function(){
-		expect(scope.totalElaborationHour()).toBe(1106.3);
+	it("Elaboration total hours should be 1106.26", function(){
+		expect(scope.totalElaborationHour()).toBe(1106.26);
 	});
 	
 	//Fase de construccion
-	it("Construction hours for project management should be 359.5", function(){
-		expect(scope.constructionProjectManagmentHour()).toBe(359.5);
+	it("Construction hours for project management should be 359.53400000000005", function(){
+		expect(scope.constructionProjectManagmentHour()).toBe(359.53400000000005);
 	});
 	
-	it("Construction hours for requirements should be 287.6", function(){
-		expect(scope.constructionRequirementsHour()).toBe(287.6);
+	it("Construction hours for requirements should be 287.6272", function(){
+		expect(scope.constructionRequirementsHour()).toBe(287.6272);
 	});
 	
-	it("Construction hours for analysis should be 575.3", function(){
-		expect(scope.constructionAnalysisHour()).toBe(575.3);
+	it("Construction hours for analysis should be 575.2544", function(){
+		expect(scope.constructionAnalysisHour()).toBe(575.2544);
 	});
 
-	it("Construction hours for implementation should be 1222.4", function(){
-		expect(scope.constructionImplementationHour()).toBe(1222.4);
+	it("Construction hours for implementation should be 1222.4156", function(){
+		expect(scope.constructionImplementationHour()).toBe(1222.4156);
 	});
 	
-	it("Construction hours for test should be 862.9", function(){
-		expect(scope.constructionTestsHour()).toBe(862.9);
+	it("Construction hours for test should be 862.8816", function(){
+		expect(scope.constructionTestsHour()).toBe(862.8816);
 	});
 	
-	it("Construction hours for deployment should be 107.9", function(){
-		expect(scope.constructionDeploymentHour()).toBe(107.9);
+	it("Construction hours for deployment should be 107.8602", function(){
+		expect(scope.constructionDeploymentHour()).toBe(107.8602);
 	});
 	
-	it("Construction hours for environment should be 179.8", function(){
-		expect(scope.constructionVersionHour()).toBe(179.8);
+	it("Construction hours for environment should be 179.76700000000002", function(){
+		expect(scope.constructionVersionHour()).toBe(179.76700000000002);
 	});
 	
-	it("Construction total hours should be 3595.3", function(){
-		expect(scope.totalConstructionHour()).toBe(3595.3);
+	it("Construction total hours should be 3595.34", function(){
+		expect(scope.totalConstructionHour()).toBe(3595.34);
 	});
 	
 	//Fase de transicion
-	it("Transition hours for project management should be 77.4", function(){
-		expect(scope.transitionProjectManagmentHour()).toBe(77.4);
+	it("Transition hours for project management should be 77.43820000000001", function(){
+		expect(scope.transitionProjectManagmentHour()).toBe(77.43820000000001);
 	});
 	
-	it("Transition hours for requirements should be 22.1", function(){
-		expect(scope.transitionRequirementsHour()).toBe(22.1);
+	it("Transition hours for requirements should be 22.1252", function(){
+		expect(scope.transitionRequirementsHour()).toBe(22.1252);
 	});
 	
-	it("Transition hours for analysis should be 22.1", function(){
-		expect(scope.transitionAnalysisHour()).toBe(22.1);
+	it("Transition hours for analysis should be 22.1252", function(){
+		expect(scope.transitionAnalysisHour()).toBe(22.1252);
 	});
 
-	it("Transition hours for implementation should be 105.1", function(){
-		expect(scope.transitionImplementationHour()).toBe(105.1);
+	it("Transition hours for implementation should be 105.0947", function(){
+		expect(scope.transitionImplementationHour()).toBe(105.0947);
 	});
 	
-	it("Transition hours for test should be 132.8", function(){
-		expect(scope.transitionTestsHour()).toBe(132.8);
+	it("Transition hours for test should be 132.75119999999998", function(){
+		expect(scope.transitionTestsHour()).toBe(132.75119999999998);
 	});
 	
-	it("Transition hours for deployment should be 165.9", function(){
-		expect(scope.transitionDeploymentHour()).toBe(165.9);
+	it("Transition hours for deployment should be 165.939", function(){
+		expect(scope.transitionDeploymentHour()).toBe(165.939);
 	});
 	
-	it("Transition hours for environment should be 27.7", function(){
-		expect(scope.transitionVersionHour()).toBe(27.7);
+	it("Transition hours for environment should be 27.6565", function(){
+		expect(scope.transitionVersionHour()).toBe(27.6565);
 	});
 	
-	it("Transition total hours should be 553.1", function(){
-		expect(scope.totalTransitionHour()).toBe(553.1);
+	it("Transition total hours should be 553.13", function(){
+		expect(scope.totalTransitionHour()).toBe(553.13);
 	});
 	
 	//Totales de proyecto
-	it("Project hours for project management should be 608.4", function(){
-		expect(scope.projectManagmentHour()).toBe(608.4);
+	it("Project hours for project management should be 608.4419", function(){
+		expect(scope.projectProjectManagmentHour()).toBe(608.4419);
 	});
 	
-	it("Project hours for requirements should be 614", function(){
-		expect(scope.projectRequirementsHour()).toBe(614);
+	it("Project hours for requirements should be 608.4419", function(){
+		expect(scope.projectRequirementsHour()).toBe(608.4419);
 	});
 	
-	it("Project hours for analysis should be 1048.2", function(){
-		expect(scope.projectAnalysisHour()).toBe(1048.2);
+	it("Project hours for analysis should be 1050.9451", function(){
+		expect(scope.projectAnalysisHour()).toBe(1050.9451);
 	});
 
-	it("Project hours for implementation should be 1493.4", function(){
-		expect(scope.projectImplementationHour()).toBe(1493.4);
+	it("Project hours for implementation should be 1493.4483", function(){
+		expect(scope.projectImplementationHour()).toBe(1493.4483);
 	});
 	
-	it("Project hours for test should be 1128.4", function(){
-		expect(scope.projectTestsHour()).toBe(1128.4);
+	it("Project hours for test should be 1106.258", function(){
+		expect(scope.projectTestsHour()).toBe(1106.258);
 	});
 	
-	it("Project hours for deployment should be 315.3", function(){
-		expect(scope.projectDeploymentHour()).toBe(315.3);
+	it("Project hours for deployment should be 331.87739999999997", function(){
+		expect(scope.projectDeploymentHour()).toBe(331.87739999999997);
 	});
 	
-	it("Project hours for environment should be 323.6", function(){
-		expect(scope.projectVersionHour()).toBe(323.6);
+	it("Project hours for environment should be 331.87739999999997", function(){
+		expect(scope.projectVersionHour()).toBe(331.87739999999997);
 	});
 	
-	it("Project total hours should be 5531.3", function(){
-		expect(scope.totalprojectHour()).toBe(5531.3);
+	it("Project total hours should be 5531.29", function(){
+		expect(scope.totalProjectHour()).toBe(5531.29);
 	});
 	
 	/************************Personas-dia******************************/
 	//Fase de Inicio
-	it("Inital days for project management should be 4.8", function(){
-		expect(scope.initialProjectManagmentDay()).toBe(4.8);
+	it("Inital days for project management should be 4.8398", function(){
+		expect(scope.initialProjectManagmentDay()).toBe(4.8398);
 	});
 	
-	it("Inital hours for requirements should be 13.1", function(){
-		expect(scope.initialRequirementsDay()).toBe(13.1);
+	it("Inital hours for requirements should be 13.1366", function(){
+		expect(scope.initialRequirementsDay()).toBe(13.1366);
 	});
 	
-	it("Inital days for analysis should be 6.6", function(){
-		expect(scope.initialAnalysisDay()).toBe(6.6);
+	it("Inital days for analysis should be 6.5683", function(){
+		expect(scope.initialAnalysisDay()).toBe(6.5683);
 	});
 
-	it("Inital days for implementation should be 2.8", function(){
-		expect(scope.initialImplementationDay()).toBe(2.8);
+	it("Inital days for implementation should be 2.7656", function(){
+		expect(scope.initialImplementationDay()).toBe(2.7656);
 	});
 	
-	it("Inital days for test should be 2.8", function(){
-		expect(scope.initialTestsDay()).toBe(2.8);
+	it("Inital days for test should be 2.7656", function(){
+		expect(scope.initialTestsDay()).toBe(2.7656);
 	});
 	
-	it("Inital Days for deployment should be 1", function(){
-		expect(scope.initialDeploymentDay()).toBe(1);
+	it("Inital Days for deployment should be 1.0371", function(){
+		expect(scope.initialDeploymentDay()).toBe(1.0371);
 	});
 	
-	it("Inital Days for environment should be 3.5", function(){
-		expect(scope.initialVersionDay()).toBe(3.5);
+	it("Inital Days for environment should be 3.4570000000000003", function(){
+		expect(scope.initialVersionDay()).toBe(3.4570000000000003);
 	});
 	
-	it("Inital total Days should be 34.6", function(){
-		expect(scope.totalInitialDay()).toBe(34.6);
+	it("Inital total Days should be 34.57", function(){
+		expect(scope.totalInitialDay()).toBe(34.57);
 	});
 	
 	//Fase de elaboracion
@@ -370,7 +370,7 @@ describe("Test TheoricalDisciplineController", function(){
 	});
 	
 	it("Project total Days should be 691.4", function(){
-		expect(scope.totalprojectDay()).toBe(691.4);
+		expect(scope.totalProjectDay()).toBe(691.4);
 	});
 	
 	/************************Personas-mes******************************/
