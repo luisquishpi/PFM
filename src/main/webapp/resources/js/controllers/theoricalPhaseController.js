@@ -4,8 +4,8 @@
 
 projectApp.controller("theoricalPhaseController", ['$scope', '$isTest', 'bridgeService', 'workTimeService', function ($scope, $isTest, bridgeService, workTimeService) {  
 	
+	$scope.phasesFinished = false;
 	$scope.schedule = bridgeService.shareData;
-
 	if(!$isTest){
 		  initJSFScope($scope);
 		  workTimeService.calculateWorkDaysAndHour($scope.showTheoricalPhasesBean.project.startString, $scope.showTheoricalPhasesBean.project.endString, $scope.schedule.listHoursEachDay());
@@ -543,9 +543,8 @@ projectApp.controller("theoricalPhaseController", ['$scope', '$isTest', 'bridgeS
 	/************** Fin Esfuerzo ********************/
 	
 	if(!$isTest){
-		$scope.$watchGroup([], function(newValues, oldValues, scope) {
-			bridgeService.shareData=scope;
-			$scope.runProject = true;
-		  });
-		}
+		$scope.phasesFinished = true;
+		bridgeService.shareData= $scope;
+	}
+	
 }]);
