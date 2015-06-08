@@ -17,8 +17,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import upm.miw.pfm.utils.RoleType;
 
@@ -26,7 +26,7 @@ import upm.miw.pfm.utils.RoleType;
 @Table(name = "employee")
 public class Employee implements IGenericEntity{
 
-    @Id
+	@Id
     @GeneratedValue
     private Integer id;
 
@@ -42,6 +42,7 @@ public class Employee implements IGenericEntity{
     @Column(name = "annual_gross_salary", nullable = false, precision = 10, scale = 2)
     private Double annualGrossSalary;
 
+
     @ManyToOne(cascade = CascadeType.REFRESH, optional = false)
     private Contract contract;
 
@@ -50,16 +51,18 @@ public class Employee implements IGenericEntity{
     @CollectionTable(name = "employee_roles", joinColumns = @JoinColumn(name = "employee_id"))
     @Column(name = "role")
     private Set<RoleType> roles;
-
-    @OneToMany(cascade = CascadeType.REFRESH, mappedBy="employee")
-    private Set<Vacation> vacations=new HashSet<Vacation>(0);
-
+    
+    @Transient
     private final float DELTA = 0.001f;
+    
+    @Transient
+    private List<Vacation> vacations;
     
     public Employee() {
         this.roles = new HashSet<RoleType>();
+        this.vacations = new ArrayList<Vacation>();
     }
-
+    
     public Employee(String name, String surname, String employeeCode, Double annualGrossSalary,
             Contract contract) {
         this();
@@ -145,8 +148,17 @@ public class Employee implements IGenericEntity{
     public String getFullName() {
         return this.getName() + " " + this.getSurname();
     }
+    
 
-    public Double getAnnualNetSalary() {
+    public List<Vacation> getVacations() {
+		return vacations;
+	}
+
+	public void setVacations(List<Vacation> vacations) {
+		this.vacations = vacations;
+	}
+
+	public Double getAnnualNetSalary() {
         return this.getAnnualGrossSalary()
                 + (this.getAnnualGrossSalary() * (this.getContract().getInsurance() / 100));
     }
@@ -179,14 +191,9 @@ public class Employee implements IGenericEntity{
 
     @Override
 	public String toString() {
-		return "[Nombre: "+name+", Apellido: "+surname+", Codigo: "+employeeCode+", Salario: "+annualGrossSalary+"]";
+		return "Employee [id=" + id + ", name=" + name + ", surname=" + surname
+				+ ", employeeCode=" + employeeCode + ", annualGrossSalary="
+				+ annualGrossSalary + ", contract=" + contract + ", roles="
+				+ roles + ", DELTA=" + DELTA + ", vacations=" + vacations + "]";
 	}
-
-	public Set<Vacation> getVacations() {
-        return vacations;
-    }
-
-    public void setVacations(Set<Vacation> vacations) {
-        this.vacations = vacations;
-    }
 }
