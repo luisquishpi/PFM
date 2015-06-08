@@ -545,10 +545,6 @@ projectApp.controller("theoricalPhaseController", ['$scope', '$isTest', 'bridgeS
 	if(!$isTest){
 		$scope.$watchGroup([], function(newValues, oldValues, scope) {
 			bridgeService.shareData=scope;
-			console.log("Escribe en servicio");
-			console.log(bridgeService.shareData.projectBean);
-			console.log($scope.projectBean.projectSchedule.workDays);
-			console.log($scope.workDays);
 			$scope.runProject = true;
 		  });
 		}
