@@ -33,8 +33,8 @@ public class Project implements IGenericEntity, Serializable {
     @Column(nullable = false)
     private String name;
 
-    @Column(name = "iteration_days", nullable = true, precision = 10, scale = 2)
-    private Double iterationDays;
+    @Column(name = "iteration_days", nullable = true)
+    private Integer iterationDays;
     
     public Project() {
     }
@@ -108,11 +108,11 @@ public class Project implements IGenericEntity, Serializable {
         this.name = name;
     }
 
-    public Double getIterationDays() {
+    public Integer getIterationDays() {
         return iterationDays;
     }
 
-    public void setIterationDays(Double iterationDays) {
+    public void setIterationDays(Integer iterationDays) {
         this.iterationDays = iterationDays;
     }
 
@@ -136,8 +136,6 @@ public class Project implements IGenericEntity, Serializable {
                 && (iterationDays == null || iterationDays.intValue() == other.iterationDays.intValue());
     }
     
-    
-
     @Override
     public String toString() {
         return "Project [id=" + id + ", start=" + start + ", end=" + end + ", cost=" + cost

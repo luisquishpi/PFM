@@ -5,8 +5,7 @@ projectApp.controller("theoricalDisciplineController", ['$scope', '$isTest', 'br
 	
 	if(!$isTest){
 		  initJSFScope($scope);
-	}
-	
+	}	
 	$scope.phases = bridgeService.shareData;
 	
 	var DISTRIBUCION_GESTION_INICIO = 14;
