@@ -2,7 +2,7 @@
  * AngularJS resourceController
  */
 
-projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService', 'workTimeService', function ($scope, $isTest, bridgeService, workTimeService) {  
+projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService', 'workTimeService', 'EmployeeUtils', function ($scope, $isTest, bridgeService, workTimeService, EmployeeUtils) {  
 	
 	$scope.schedule = bridgeService.shareData;
 	
@@ -30,72 +30,54 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	var INICIO_DEPLOY_THEORICAL_ABSOLUTE = 8.3;
 	var INICIO_ENVIROMENT_THEORICAL_ABSOLUTE = 27.7;
 	
-	$scope.numberOfEmployees = function(){
-		return $scope.assignResourcesBean.employeeList.length;
-	}
-	
-	Array.prototype.contains = function(obj) {
-	    var i = this.length;
-	    while (i--) {
-	        if (this[i] === obj) {
-	            return true;
-	        }
-	    }
-	    return false;
+	//calcula el salario por hora de un empleado
+	$scope.employeeSalaryHour = function(employee){
+		var annualSalary = EmployeeUtils.totalAnnualSalary(employee);
+		var monthlySalary = annualSalary/$scope.schedule.monthsPerYear;
+		var dailySalary = monthlySalary/$scope.schedule.workDays;
+		return dailySalary/$scope.schedule.hoursPerDay;
 	}	
 	
-	countNumberOfRoles = function(role){
-		var result = 0;
-		var numberOfRoles = 1;
-		for(i=0; i<$scope.numberOfEmployees(); i++){
-			if($scope.hasRole($scope.assignResourcesBean.employeeList[i],role)){
-				result++;
-			}
-		}
-		return result;
-	}
-	
-	$scope.hasRole = function(employee, role){
-		var result = false;
-		if(employee.roles.contains(role)){
-			result = true;
-		}
-		return result;
-	}
-	
+	//cuenta el numero de empleados con rol project management
 	$scope.numberOfProjectManagement = function(){
 		var POSITION_OF_ROLE = 0;
-		return countNumberOfRoles(arrayRoles[POSITION_OF_ROLE]);
+		return EmployeeUtils.countNumberOfRoles($scope.assignResourcesBean.employeeList,arrayRoles[POSITION_OF_ROLE]);
 	}
-	
+
+	//cuenta el numero de empleados con rol requirements
 	$scope.numberOfRequirements = function(){
 		var POSITION_OF_ROLE = 1;
-		return countNumberOfRoles(arrayRoles[POSITION_OF_ROLE]);
+		return EmployeeUtils.countNumberOfRoles($scope.assignResourcesBean.employeeList, arrayRoles[POSITION_OF_ROLE]);
 	}	
 	
+	//cuenta el numero de empleados con rol analysis
 	$scope.numberOfAnalysisDesign = function(){
 		var POSITION_OF_ROLE = 2;
-		return countNumberOfRoles(arrayRoles[POSITION_OF_ROLE]);
+		return EmployeeUtils.countNumberOfRoles($scope.assignResourcesBean.employeeList, arrayRoles[POSITION_OF_ROLE]);
 	}	
 	
+	//cuenta el numero de empleados con rol implementation
 	$scope.numberOfImplementation = function(){
 		var POSITION_OF_ROLE = 3;
-		return countNumberOfRoles(arrayRoles[POSITION_OF_ROLE]);
+		return EmployeeUtils.countNumberOfRoles($scope.assignResourcesBean.employeeList, arrayRoles[POSITION_OF_ROLE]);
 	}	
 	
+	//cuenta el numero de empleados con rol test
 	$scope.numberOfTests = function(){
 		var POSITION_OF_ROLE = 4;
-		return countNumberOfRoles(arrayRoles[POSITION_OF_ROLE]);
+		return EmployeeUtils.countNumberOfRoles($scope.assignResourcesBean.employeeList, arrayRoles[POSITION_OF_ROLE]);
 	}	
 	
+	//cuenta el numero de empleados con rol deploy
 	$scope.numberOfDeploy = function(){
 		var POSITION_OF_ROLE = 5;
-		return countNumberOfRoles(arrayRoles[POSITION_OF_ROLE]);
+		return EmployeeUtils.countNumberOfRoles($scope.assignResourcesBean.employeeList, arrayRoles[POSITION_OF_ROLE]);
 	}		
 	
+	//cuenta el numero de empleados con rol enviroment
 	$scope.numberOfEnviroment = function(){
 		var POSITION_OF_ROLE = 6;
-		return countNumberOfRoles(arrayRoles[POSITION_OF_ROLE]);
+		return EmployeeUtils.countNumberOfRoles($scope.assignResourcesBean.employeeList, arrayRoles[POSITION_OF_ROLE]);
 	}	
 	
 	//Fase de inicio - teorico relativo

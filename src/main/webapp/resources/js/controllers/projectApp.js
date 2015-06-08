@@ -155,3 +155,44 @@ projectApp.service("peopleTimeService", function(){
 	}
 	
 });
+
+projectApp.service("EmployeeUtils", function(){
+	
+	Array.prototype.contains = function(obj) {
+	    var i = this.length;
+	    while (i--) {
+	        if (this[i] === obj) {
+	            return true;
+	        }
+	    }
+	    return false;
+	}
+	
+	this.totalAnnualSalary = function(employee){
+		return employee.annualGrossSalary+(employee.annualGrossSalary*(employee.contract.insurance/100));
+	}
+	
+	this.numberOfEmployees = function(employeeList){
+		return employeeList.length;
+	}	
+	
+	this.countNumberOfRoles = function(employeeList, role){
+		var result = 0;
+		var numberOfRoles = 1;
+		for(i=0; i<this.numberOfEmployees(employeeList); i++){
+			if(this.hasRole(employeeList[i],role)){
+				result++;
+			}
+		}
+		return result;
+	}
+	
+	this.hasRole = function(employee, role){
+		var result = false;
+		if(employee.roles.contains(role)){
+			result = true;
+		}
+		return result;
+	}	
+	
+});

@@ -14,49 +14,66 @@ describe("Test ResourceController", function(){
 				  },
 				  employeeList:[
 				  {"id":1, "name":"Anibal", "surname":"Pacheco", "employeeCode":"001", "annualGrossSalary":40500.00, 
-					      "roles":["PROJECT_MANAGEMENT", "REQUIREMENTS", "ANALYSIS_DESIGN", "IMPLEMENTATION", "TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL" ]},
+					      "roles":["PROJECT_MANAGEMENT", "REQUIREMENTS", "ANALYSIS_DESIGN", "IMPLEMENTATION", "TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL" ],
+					      "contract":{insurance: 32.5}},
 				  {"id":2, "name":"Beatriz", "surname":"Jimenez", "employeeCode":"002", "annualGrossSalary":38000.00, 
-						  "roles":["PROJECT_MANAGEMENT", "REQUIREMENTS", "ANALYSIS_DESIGN", "IMPLEMENTATION", "TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL" ]},
+						  "roles":["PROJECT_MANAGEMENT", "REQUIREMENTS", "ANALYSIS_DESIGN", "IMPLEMENTATION", "TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL" ],
+						  "contract":{insurance: 32.5}},
 				  {"id":3, "name":"Carlos", "surname":"Palacios", "employeeCode":"003", "annualGrossSalary":30000.00, 
-						  "roles":["PROJECT_MANAGEMENT", "REQUIREMENTS"]},					  
+						  "roles":["PROJECT_MANAGEMENT", "REQUIREMENTS"],
+						  "contract":{insurance: 32.5}},					  
 				  {"id":4, "name":"Daniela", "surname":"Rodriguez", "employeeCode":"004", "annualGrossSalary":28500.00, 
-						  "roles":["PROJECT_MANAGEMENT", "REQUIREMENTS"]},		
+						  "roles":["PROJECT_MANAGEMENT", "REQUIREMENTS"],
+						  "contract":{insurance: 32.5}},		
 				  {"id":5, "name":"Ernesto", "surname":"Guerra", "employeeCode":"005", "annualGrossSalary":40000.00, 
-						  "roles":["REQUIREMENTS", "ANALYSIS_DESIGN", "IMPLEMENTATION"]},		
+						  "roles":["REQUIREMENTS", "ANALYSIS_DESIGN", "IMPLEMENTATION"],
+						  "contract":{insurance: 0.00}},		
 				  {"id":6, "name":"Flor", "surname":"Palomeque", "employeeCode":"006", "annualGrossSalary":25000.00, 
-						  "roles":["REQUIREMENTS", "ANALYSIS_DESIGN", "IMPLEMENTATION"]},	
+						  "roles":["REQUIREMENTS", "ANALYSIS_DESIGN", "IMPLEMENTATION"],
+						  "contract":{insurance: 32.5}},	
 				  {"id":7, "name":"Gabriel", "surname":"Heinze", "employeeCode":"007", "annualGrossSalary":23000.00, 
-					  "roles":["REQUIREMENTS", "ANALYSIS_DESIGN", "IMPLEMENTATION"]},	
+					  "roles":["REQUIREMENTS", "ANALYSIS_DESIGN", "IMPLEMENTATION"],
+					  "contract":{insurance: 32.5}},	
 				  {"id":8, "name":"Henar", "surname":"Carrasco", "employeeCode":"008", "annualGrossSalary":24500.00, 
-						  "roles":["REQUIREMENTS", "ANALYSIS_DESIGN", "IMPLEMENTATION"]},						  
+						  "roles":["REQUIREMENTS", "ANALYSIS_DESIGN", "IMPLEMENTATION"],
+						  "contract":{insurance: 32.5}},						  
 				  {"id":9, "name":"Ismael", "surname":"Miranda", "employeeCode":"009", "annualGrossSalary":24000.00, 
-						  "roles":["ANALYSIS_DESIGN", "IMPLEMENTATION", "TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL" ]},
+						  "roles":["ANALYSIS_DESIGN", "IMPLEMENTATION", "TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL" ],
+						  "contract":{insurance: 32.5}},
 				  {"id":10, "name":"Julia", "surname":"Fuentes", "employeeCode":"010", "annualGrossSalary":24000.00, 
-						  "roles":["ANALYSIS_DESIGN", "IMPLEMENTATION", "TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL" ]},	
+						  "roles":["ANALYSIS_DESIGN", "IMPLEMENTATION", "TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL" ],
+						  "contract":{insurance: 32.5}},	
 				  {"id":11, "name":"Kiko", "surname":"Leon", "employeeCode":"011", "annualGrossSalary":18000.00, 
-					  "roles":["ANALYSIS_DESIGN", "IMPLEMENTATION", "TESTS"]},		
+					  "roles":["ANALYSIS_DESIGN", "IMPLEMENTATION", "TESTS"],
+					  "contract":{insurance: 2.0}},		
 				  {"id":12, "name":"Lourdes", "surname":"Hernadez", "employeeCode":"012", "annualGrossSalary":18000.00, 
-					  "roles":["ANALYSIS_DESIGN", "IMPLEMENTATION", "TESTS"]},	
+					  "roles":["ANALYSIS_DESIGN", "IMPLEMENTATION", "TESTS"],
+					  "contract":{insurance: 2.0}},	
 				  {"id":13, "name":"Manuel", "surname":"Vega", "employeeCode":"013", "annualGrossSalary":18000.00, 
-					  "roles":["IMPLEMENTATION", "TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL"]},	
+					  "roles":["IMPLEMENTATION", "TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL"],
+					  "contract":{insurance: 2.0}},	
 				  {"id":14, "name":"Noelia", "surname":"Navas", "employeeCode":"014", "annualGrossSalary":18000.00, 
-					  "roles":["IMPLEMENTATION", "TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL"]},		
+					  "roles":["IMPLEMENTATION", "TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL"],
+					  "contract":{insurance: 2.0}},		
 				  {"id":15, "name":"Osvaldo", "surname":"Uribe", "employeeCode":"015", "annualGrossSalary":22000.00, 
-					  "roles":["IMPLEMENTATION", "TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL"]},		
+					  "roles":["IMPLEMENTATION", "TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL"],
+					  "contract":{insurance: 32.5}},		
 				  {"id":16, "name":"Paloma", "surname":"Fiuza", "employeeCode":"016", "annualGrossSalary":21000.00, 
-					  "roles":["IMPLEMENTATION", "TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL"]},		
+					  "roles":["IMPLEMENTATION", "TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL"],
+					  "contract":{insurance: 32.5}},		
 				  {"id":17, "name":"Ramón", "surname":"Valdez", "employeeCode":"017", "annualGrossSalary":20000.00, 
-					  "roles":["TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL"]},		
+					  "roles":["TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL"],
+					  "contract":{insurance: 32.5}},		
 				  {"id":18, "name":"Sara", "surname":"Gavilanez", "employeeCode":"018", "annualGrossSalary":25000.00, 
-					  "roles":["TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL"]},	
+					  "roles":["TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL"],
+					  "contract":{insurance: 0.0}},	
 				  {"id":19, "name":"Tomas", "surname":"Zambrano", "employeeCode":"019", "annualGrossSalary":30000.00, 
-					  "roles":["TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL"]},	
+					  "roles":["TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL"],
+					  "contract":{insurance: 0.0}},	
 				  {"id":20, "name":"Ursula", "surname":"del Mar", "employeeCode":"020", "annualGrossSalary":30000.00, 
-					  "roles":["TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL"]},						  
+					  "roles":["TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL"],
+					  "contract":{insurance: 32.5}},						  
 				  ]
-					  
-				  
-
 		};
 		
 		controller = $controller("resourceController", {
@@ -88,27 +105,13 @@ describe("Test ResourceController", function(){
 									  },
 					workDays: 21,
 					monthsPerYear: 12,
+					hoursPerDay: 8,
 					daysPerWeek: function(){return 5;},
 					}					
 			}
 		});			
 	}));
 	
-	it("Employee with id 1 has role PROJECT_MANAGEMENT", function(){
-		var employee = scope.assignResourcesBean.employeeList[0];
-		expect(scope.hasRole(employee, "PROJECT_MANAGEMENT")).toBe(true);
-	});	
-	
-	it("Employee with id 4 has role PROJECT_MANAGEMENT", function(){
-		var employee = scope.assignResourcesBean.employeeList[4];
-		expect(scope.hasRole(employee, "PROJECT_MANAGEMENT")).toBe(false);
-	});		
-
-	
-	it("Number of Employees should be 20", function(){
-		expect(scope.numberOfEmployees()).toBe(20);
-	});
-
 	it("Number of Project Management roles should be 4", function(){
 		expect(scope.numberOfProjectManagement()).toBe(4);
 	});
@@ -136,6 +139,19 @@ describe("Test ResourceController", function(){
 	it("Number of Enviroment and Revision Control roles should be 12", function(){
 		expect(scope.numberOfEnviroment()).toBe(12);
 	});	
+	
+	//salarios
+	it("Annibal Daily Salary should be 26.62 ", function(){
+		expect(scope.employeeSalaryHour(scope.assignResourcesBean.employeeList[0])).toBeCloseTo(26.62,1);
+	});
+	
+	it("Ernesto Daily Salary should be 19.84 ", function(){
+		expect(scope.employeeSalaryHour(scope.assignResourcesBean.employeeList[4])).toBeCloseTo(19.84,1);
+	});	
+	
+	it("Kiko Daily Salary should be 9.11", function(){
+		expect(scope.employeeSalaryHour(scope.assignResourcesBean.employeeList[10])).toBeCloseTo(9.11,1);
+	});		
 	
 	//Fase de inicio - teorico relativo
 	it("Inicio Project Management relative theorical percentaje should be 14", function(){
