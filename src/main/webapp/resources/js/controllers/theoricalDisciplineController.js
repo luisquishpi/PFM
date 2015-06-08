@@ -55,7 +55,7 @@ projectApp.controller("theoricalDisciplineController", ['$scope', '$isTest', 'br
 	
 	/************************Disciplinas**************************/
 	//Fase Inicio
-	$scope.initialPercentajeProjectManagment = function(){
+	$scope.initialPercentajeProjectManagment = function(){		
 		return DISTRIBUCION_GESTION_INICIO;
 	}
 	
@@ -221,7 +221,8 @@ projectApp.controller("theoricalDisciplineController", ['$scope', '$isTest', 'br
 
 	/***********************Personas-hora*************************/
 	//Fase Inicio
-	$scope.initialProjectManagmentHour = function(){		
+	$scope.initialProjectManagmentHour = function(){	
+		
 		return DISTRIBUCION_GESTION_INICIO/100*$scope.phases.inicioPeopleHour();
 	}
 	

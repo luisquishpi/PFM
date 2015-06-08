@@ -48,7 +48,7 @@
 							value="#{showTheoricalPhasesBean}" />
 						<ngsync direction="serverToClient"
 							value="{{projectBean.projectSchedule}}" />
-						<ui:include src="project_pannel.xhtml" />
+						<ui:include src="../project_pannel.xhtml" />
 						<h:panelGroup
 							rendered="#{not showTheoricalPhasesBean.emptyProject}">
 							<div ng-if="scheduleFinished" ng-controller="theoricalPhaseController">
