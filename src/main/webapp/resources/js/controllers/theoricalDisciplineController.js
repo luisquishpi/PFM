@@ -53,7 +53,171 @@ projectApp.controller("theoricalDisciplineController", ['$scope', '$isTest', 'br
 	var DISTRIBUCION_ENTORNO_PROYECTO = 6;
 	var DISTRIBUCION_TOTAL_PROYECTO = 100;
 	
+	/************************Disciplinas**************************/
+	//Fase Inicio
+	$scope.initialPercentajeProjectManagment = function(){
+		return DISTRIBUCION_GESTION_INICIO;
+	}
 	
+	$scope.initialPercentajeRequirements = function(){
+		return DISTRIBUCION_REQUISITOS_INICIO;
+	}
+	
+	$scope.initialPercentajeAnalysis = function(){
+		return DISTRIBUCION_ANALISIS_INICIO;
+	}
+	
+	$scope.initialPercentajeImplementation = function(){
+		return DISTRIBUCION_IMPLEMENTACION_INICIO;
+	}
+	
+	$scope.initialPercentajeTests = function(){
+		return DISTRIBUCION_PRUEBAS_INICIO;
+	}
+	
+	$scope.initialPercentajeDeployment = function(){
+		return DISTRIBUCION_DESPLIEGUE_INICIO;
+	}
+	
+	$scope.initialPercentajeVersion = function(){
+		return DISTRIBUCION_ENTORNO_INICIO;
+	}
+	
+	$scope.totalInitialPercentaje = function(){
+		return DISTRIBUCION_TOTAL_INICIO;
+	}
+	
+	//Fase Elaboración
+	$scope.elaborationPercentajeProjectManagment = function(){
+		return DISTRIBUCION_GESTION_ELABORACION;
+	}
+	
+	$scope.elaborationPercentajeRequirements = function(){
+		return DISTRIBUCION_REQUISITOS_ELABORACION;
+	}
+	
+	$scope.elaborationPercentajeAnalysis = function(){
+		return DISTRIBUCION_ANALISIS_ELABORACION;
+	}
+	
+	$scope.elaborationPercentajeImplementation = function(){
+		return DISTRIBUCION_IMPLEMENTACION_ELABORACION;
+	}
+	
+	$scope.elaborationPercentajeTests = function(){
+		return DISTRIBUCION_PRUEBAS_ELABORACION;
+	}
+	
+	$scope.elaborationPercentajeDeployment = function(){
+		return DISTRIBUCION_DESPLIEGUE_ELABORACION;
+	}
+	
+	$scope.elaborationPercentajeVersion = function(){
+		return DISTRIBUCION_ENTORNO_ELABORACION;
+	}
+	
+	$scope.totalElaborationPercentaje = function(){
+		return DISTRIBUCION_TOTAL_ELABORACION;
+	}
+	
+	//Fase Construcción
+	$scope.constructionPercentajeProjectManagment = function(){
+		return DISTRIBUCION_GESTION_CONSTRUCCION;
+	}
+	
+	$scope.constructionPercentajeRequirements = function(){
+		return DISTRIBUCION_REQUISITOS_CONSTRUCCION;
+	}
+	
+	$scope.constructionPercentajeAnalysis = function(){
+		return DISTRIBUCION_ANALISIS_CONSTRUCCION;
+	}
+	
+	$scope.constructionPercentajeImplementation = function(){
+		return DISTRIBUCION_IMPLEMENTACION_CONSTRUCCION;
+	}
+	
+	$scope.constructionPercentajeTests = function(){
+		return DISTRIBUCION_PRUEBAS_CONSTRUCCION;
+	}
+	
+	$scope.constructionPercentajeDeployment = function(){
+		return DISTRIBUCION_DESPLIEGUE_CONSTRUCCION;
+	}
+	
+	$scope.constructionPercentajeVersion = function(){
+		return DISTRIBUCION_ENTORNO_CONSTRUCCION;
+	}
+	
+	$scope.totalConstructionPercentaje = function(){
+		return DISTRIBUCION_TOTAL_CONSTRUCCION;
+	}
+	
+	//Fase Transición
+	$scope.transitionPercentajeProjectManagment = function(){
+		return DISTRIBUCION_GESTION_TRANSICION;
+	}
+	
+	$scope.transitionPercentajeRequirements = function(){
+		return DISTRIBUCION_REQUISITOS_TRANSICION;
+	}
+	
+	$scope.transitionPercentajeAnalysis = function(){
+		return DISTRIBUCION_ANALISIS_TRANSICION;
+	}
+	
+	$scope.transitionPercentajeImplementation = function(){
+		return DISTRIBUCION_IMPLEMENTACION_TRANSICION;
+	}
+	
+	$scope.transitionPercentajeTests = function(){
+		return DISTRIBUCION_PRUEBAS_TRANSICION;
+	}
+	
+	$scope.transitionPercentajeDeployment = function(){
+		return DISTRIBUCION_DESPLIEGUE_TRANSICION;
+	}
+	
+	$scope.transitionPercentajeVersion = function(){
+		return DISTRIBUCION_ENTORNO_TRANSICION;
+	}
+	
+	$scope.totalTransitionPercentaje = function(){
+		return DISTRIBUCION_TOTAL_TRANSICION;
+	}
+	
+	//Fase Proyecto
+	$scope.projectPercentajeProjectManagment = function(){
+		return DISTRIBUCION_GESTION_PROYECTO;
+	}
+	
+	$scope.projectPercentajeRequirements = function(){
+		return DISTRIBUCION_REQUISITOS_PROYECTO;
+	}
+	
+	$scope.projectPercentajeAnalysis = function(){
+		return DISTRIBUCION_ANALISIS_PROYECTO;
+	}
+	
+	$scope.projectPercentajeImplementation = function(){
+		return DISTRIBUCION_IMPLEMENTACION_PROYECTO;
+	}
+	
+	$scope.projectPercentajeTests = function(){
+		return DISTRIBUCION_PRUEBAS_PROYECTO;
+	}
+	
+	$scope.projectPercentajeDeployment = function(){
+		return DISTRIBUCION_DESPLIEGUE_PROYECTO;
+	}
+	
+	$scope.projectPercentajeVersion = function(){
+		return DISTRIBUCION_ENTORNO_PROYECTO;
+	}
+	
+	$scope.totalProject Percentaje = function(){
+		return DISTRIBUCION_TOTAL_PROYECTO;
+	}
 
 	/***********************Personas-hora*************************/
 	//Fase Inicio
@@ -184,7 +348,7 @@ projectApp.controller("theoricalDisciplineController", ['$scope', '$isTest', 'br
 	}
 	
 	$scope.totalTransitionHour = function(){
-		return 553.1
+		return 553.1;
 	}
 	
 	//Totales proyecto
@@ -322,7 +486,7 @@ projectApp.controller("theoricalDisciplineController", ['$scope', '$isTest', 'br
 	
 	//Fase Transicion
 	$scope.transitionProjectManagmentDay = function(){
-		return 9.7
+		return 9.7;
 	}
 	
 	$scope.transitionRequirementsDay = function(){
@@ -367,7 +531,7 @@ projectApp.controller("theoricalDisciplineController", ['$scope', '$isTest', 'br
 	}
 	
 	$scope.projectImplementationDay = function(){
-		return 186.7
+		return 186.7;
 	}
 	
 	$scope.projectTestsDay = function(){
@@ -392,7 +556,7 @@ projectApp.controller("theoricalDisciplineController", ['$scope', '$isTest', 'br
 	/***********************Personas-mes*************************/
 	//Fase Inicio
 	$scope.initialProjectManagmentMonth = function(){
-		return 0.23;
+		return $scope.initialPercentajeProjectManagment() * $scope.inicioPercentaje();
 	}
 	
 	$scope.initialRequirementsMonth = function(){
