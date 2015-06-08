@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:body>
+	<ui:composition template="#{root}/WEB-INF/template/commonLayout.xhtml">
+		<ui:define name="header">
+            Consulta de disciplinas
+        </ui:define>
+		<ui:define name="javascript">
+			<script>
+				var projectApp = angular.module('projectApp',
+						[ "angularfaces" ]);
+				app.value("$isTest", false);
+			</script>
+			<script src="/PFM/resources/js/controllers/projectApp.js"></script>
+			<script src="/PFM/resources/js/controllers/scheduleController.js"></script>
+			<script
+				src="/PFM/resources/css/selectboxit/js/jquery.selectBoxIt.min.js"></script>
+			<script src="/PFM/resources/js/libs/moment.js"></script>
+			<script
+				src="/PFM/resources/js/controllers/theoricalDisciplineController.js"></script>
+			<script>
+				$(function() {
+					var selectBox = $("#project").selectBoxIt();
+				});
+			</script>
+		</ui:define>
+		<ui:define name="css">
+			<link href="/PFM/resources/css/bootstrap/css/bootstrap.min.css"
+				rel="stylesheet" />
+			<link
+				href="/PFM/resources/css/selectboxit/css/jquery.selectBoxIt.css"
+				rel="stylesheet" />
+		</ui:define>
+		<ui:define name="content">
+			<div class="panel-body">
+				<h:form prependId="false" ng-app="projectApp">
+					<div ng-cloak="">
+					<p:growl id="growl" sticky="false" life="5000" showDetail="false" />
+						<div ng-controller="scheduleController">
+							<c:set var="projectBean" scope="request"
+								value="#{showTheoricalDisciplinesBean}" />
+							<ngsync direction="serverToClient"
+								value="{{projectBean.projectSchedule}}" />
+							<fieldset>
+									<ngsync direction="serverToClient"
+										value="#{projectBean.project}" />
+									<div class="row">
+										<div class="col-lg-2">
+											<p:outputLabel for="project" value="Proyecto: "
+												styleClass="label_height" />
+										</div>
+										<div class="col-lg-2">
+											<h:selectOneMenu id="project"
+												value="#{projectBean.project.id}" immediate="true"
+												onchange="submit()"
+												valueChangeListener="#{projectBean.onChangeProject}">
+												<f:selectItem itemLabel="Seleccione el proyecto" itemValue="-1"
+													noSelectionOption="true" />
+												<f:selectItems value="#{projectBean.projectList}"
+													var="project" itemValue="#{project.id}"
+													itemLabel="#{project.name}" />
+											</h:selectOneMenu>
+										</div>
+									</div>
+							</fieldset>
+							<h:panelGroup
+								rendered="#{not projectBean.emptyProject}">
+								<div ng-if="runProject" ng-controller="theoricalDisciplineController">
+									<ngsync direction="serverToClient" value="{{projectBean.project}}" />                                                                             								
+									<div role="tabpanel">
+										<ul class="nav nav-tabs" role="tablist">
+											<li role="presentation" class="active"><a
+												href="#theorical" aria-controls="theorical" role="tab"
+												data-toggle="tab">Disciplinas teóricas</a></li>
+										</ul>	
+										<div class="tab-content">
+											<div role="tabpanel" class="tab-pane active" id="theorical">
+												<ui:include src="theorical_disciplines_pannel.xhtml" />
+											</div>
+										</div>
+									</div>
+								</div>
+							</h:panelGroup>
+						</div>
+					</div>
+				</h:form>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+</html>

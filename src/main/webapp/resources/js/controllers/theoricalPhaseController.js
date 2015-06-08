@@ -97,7 +97,7 @@ projectApp.controller("theoricalPhaseController", ['$scope', '$isTest', 'bridgeS
 	$scope.workMonths = workTimeService.workMonths($scope.schedule.workDays);
 	$scope.naturalDays = workTimeService.naturalDays();
 	
-	/************** Duración ********************/
+	/************** DuraciÃ³n ********************/
 	//Fila de Distribucion
 	$scope.inicioPercentaje = function() {
 		return INICIO_DISTRIBUTION_DURATION;
@@ -265,7 +265,7 @@ projectApp.controller("theoricalPhaseController", ['$scope', '$isTest', 'bridgeS
 	}		
 	//Fin de Fila Fin Iteracion	
 	
-	//Fila de Media/horas iteración
+	//Fila de Media/horas iteraciÃ³n
 	$scope.inicioAverageHours = function() {
 		return $scope.inicioHours()/$scope.inicioIteration();
 	}
@@ -281,9 +281,9 @@ projectApp.controller("theoricalPhaseController", ['$scope', '$isTest', 'bridgeS
 	$scope.proyectoAverageHours = function() {
 		return $scope.proyectoHours()/$scope.proyectoIteration();
 	}	
-	//Fin de Fila de Media/horas iteración
+	//Fin de Fila de Media/horas iteraciÃ³n
 	
-	//Fila de Media/dias iteración
+	//Fila de Media/dias iteraciÃ³n
 	$scope.inicioAverageDays = function() {
 		return $scope.inicioDays()/$scope.inicioIteration();
 	}
@@ -299,9 +299,9 @@ projectApp.controller("theoricalPhaseController", ['$scope', '$isTest', 'bridgeS
 	$scope.proyectoAverageDays = function() {
 		return $scope.proyectoDays()/$scope.proyectoIteration();
 	}	
-	//Fin de Fila de Media/dias iteración	
+	//Fin de Fila de Media/dias iteraciÃ³n	
 	
-	//Fila de Media/mes iteración
+	//Fila de Media/mes iteraciÃ³n
 	$scope.inicioAverageMonths = function() {
 		return $scope.inicioMonths()/$scope.inicioIteration();
 	}
@@ -317,8 +317,8 @@ projectApp.controller("theoricalPhaseController", ['$scope', '$isTest', 'bridgeS
 	$scope.proyectoAverageMonths = function() {
 		return $scope.proyectoMonths()/$scope.proyectoIteration();
 	}	
-	//Fin de Fila de Media/mes iteración	
-	/************** Fin Duración ********************/
+	//Fin de Fila de Media/mes iteraciÃ³n	
+	/************** Fin DuraciÃ³n ********************/
 	
 	/************** Esfuerzo ********************/
 	//Fila de Distribucion
@@ -541,4 +541,15 @@ projectApp.controller("theoricalPhaseController", ['$scope', '$isTest', 'bridgeS
 	} 	
 	//Fin fila persona-mes-iteracion	
 	/************** Fin Esfuerzo ********************/
+	
+	if(!$isTest){
+		$scope.$watchGroup([], function(newValues, oldValues, scope) {
+			bridgeService.shareData=scope;
+			console.log("Escribe en servicio");
+			console.log(bridgeService.shareData.projectBean);
+			console.log($scope.projectBean.projectSchedule.workDays);
+			console.log($scope.workDays);
+			$scope.runProject = true;
+		  });
+		}
 }]);
