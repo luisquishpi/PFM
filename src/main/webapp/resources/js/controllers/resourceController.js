@@ -36,7 +36,12 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 		var monthlySalary = annualSalary/$scope.schedule.monthsPerYear;
 		var dailySalary = monthlySalary/$scope.schedule.workDays;
 		return dailySalary/$scope.schedule.hoursPerDay;
-	}	
+	}
+	
+	//verifica si un empleado tiene un rol
+	$scope.employeeHasRole = function(employee, role){
+		return EmployeeUtils.hasRole(employee, role);
+	}
 	
 	//cuenta el numero de empleados con rol project management
 	$scope.numberOfProjectManagement = function(){

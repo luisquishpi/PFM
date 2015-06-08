@@ -151,7 +151,16 @@ describe("Test ResourceController", function(){
 	
 	it("Kiko Daily Salary should be 9.11", function(){
 		expect(scope.employeeSalaryHour(scope.assignResourcesBean.employeeList[10])).toBeCloseTo(9.11,1);
-	});		
+	});	
+	
+	//roles
+	it("Anibal should has PROJECT_MANAGEMENT role", function(){
+		expect(scope.employeeHasRole(scope.assignResourcesBean.employeeList[0],"PROJECT_MANAGEMENT")).toBe(true);
+	});
+	
+	it("Ursula should not has PROJECT_MANAGEMENT role", function(){
+		expect(scope.employeeHasRole(scope.assignResourcesBean.employeeList[19],"PROJECT_MANAGEMENT")).toBe(false);
+	});	
 	
 	//Fase de inicio - teorico relativo
 	it("Inicio Project Management relative theorical percentaje should be 14", function(){
