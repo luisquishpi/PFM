@@ -67,7 +67,7 @@ public class ProjectDaoTest {
 
     @Test
     public void testSetIterationDays() {
-        project.setIterationDays(15.0);
+        project.setIterationDays(15);
         projectDao.update(project);
         Project postUpdateProject = projectDao.read(project.getId());
         assertEquals(postUpdateProject.getIterationDays().intValue(), project.getIterationDays()

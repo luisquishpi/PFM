@@ -54,7 +54,7 @@ public class ShowTheoricalPhasesBean {
         this.project.setCost(0.00);
         this.project.setStart(Utils.now(Utils.DD_MM_YYYY_FORMAT));
         this.project.setEnd(Utils.now(Utils.DD_MM_YYYY_FORMAT));
-        this.project.setIterationDays(0.00);
+        this.project.setIterationDays(0);
         this.emptyProject = true;
         this.annualGrossSalaryList = new ArrayList<Double>();
         this.insuranceList = new ArrayList<Double>();
@@ -113,8 +113,6 @@ public class ShowTheoricalPhasesBean {
             LogManager.getLogger(clazz).debug("Proyecto cargado " + this.project);
             LogManager.getLogger(clazz).info("Project schedule asociado " + this.projectSchedule);
             this.emptyProject = false;
-            int iterationDays = (int) (this.project.getIterationDays() / 1);
-            this.project.setIterationDays((double) iterationDays);
         } else {
             this.emptyProject = true;
         }

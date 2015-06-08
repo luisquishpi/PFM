@@ -43,7 +43,7 @@ public class ShowTheoricalDisciplinesBean {
         this.project.setCost(0.00);
         this.project.setStart(Utils.now(Utils.DD_MM_YYYY_FORMAT));
         this.project.setEnd(Utils.now(Utils.DD_MM_YYYY_FORMAT));
-        this.project.setIterationDays(0.00);
+        this.project.setIterationDays(0);
         this.emptyProject = true;
     }
 
