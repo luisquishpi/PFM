@@ -136,8 +136,6 @@ public class Project implements IGenericEntity, Serializable {
                 && (iterationDays == null || iterationDays.intValue() == other.iterationDays.intValue());
     }
     
-    
-
     @Override
     public String toString() {
         return "Project [id=" + id + ", start=" + start + ", end=" + end + ", cost=" + cost

@@ -219,5 +219,4 @@ describe("Test ResourceController", function(){
 	it("Inicio Enviroment theorical absolute percentaje should be 27.7", function(){
 		expect(scope.inicioEnviromentTheoricalAbsolute()).toBe(27.7);
 	});	
-	
 })
