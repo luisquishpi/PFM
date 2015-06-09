@@ -5,7 +5,7 @@ projectApp.controller("theoricalDisciplineController", ['$scope', '$isTest', 'br
 	
 	if(!$isTest){
 		  initJSFScope($scope);
-	}
+	}	
 	$scope.phases = bridgeService.shareData;
 	
 	var DISTRIBUCION_GESTION_INICIO = 14;
@@ -55,7 +55,7 @@ projectApp.controller("theoricalDisciplineController", ['$scope', '$isTest', 'br
 	
 	/************************Disciplinas**************************/
 	//Fase Inicio
-	$scope.initialPercentajeProjectManagment = function(){
+	$scope.initialPercentajeProjectManagment = function(){		
 		return DISTRIBUCION_GESTION_INICIO;
 	}
 	
@@ -221,7 +221,8 @@ projectApp.controller("theoricalDisciplineController", ['$scope', '$isTest', 'br
 
 	/***********************Personas-hora*************************/
 	//Fase Inicio
-	$scope.initialProjectManagmentHour = function(){
+	$scope.initialProjectManagmentHour = function(){	
+		
 		return DISTRIBUCION_GESTION_INICIO/100*$scope.phases.inicioPeopleHour();
 	}
 	
@@ -715,5 +716,10 @@ projectApp.controller("theoricalDisciplineController", ['$scope', '$isTest', 'br
 	
 	$scope.totalProjectMonth = function(){
 		return DISTRIBUCION_TOTAL_PROYECTO/100*$scope.phases.proyectoPeopleMonth();
+	}
+	
+	if(!$isTest){
+		bridgeService.shareData= $scope;
+		$scope.disciplinesFinished = true;
 	}
 }]);

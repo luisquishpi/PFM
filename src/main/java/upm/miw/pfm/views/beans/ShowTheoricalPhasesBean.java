@@ -1,7 +1,7 @@
 package upm.miw.pfm.views.beans;
 
-import java.util.ArrayList;
 import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -9,7 +9,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
+
 import org.apache.logging.log4j.LogManager;
+
 import upm.miw.pfm.controllers.EmployeeController;
 import upm.miw.pfm.controllers.ProjectController;
 import upm.miw.pfm.controllers.SetScheduleController;
@@ -29,10 +31,6 @@ public class ShowTheoricalPhasesBean {
     private List<Project> projectList;
 
     private List<Employee> employeeList;
-
-    private List<Double> annualGrossSalaryList;
-
-    private List<Double> insuranceList;
 
     private boolean emptyProject;
 
@@ -56,8 +54,6 @@ public class ShowTheoricalPhasesBean {
         this.project.setEnd(Utils.now(Utils.DD_MM_YYYY_FORMAT));
         this.project.setIterationDays(0);
         this.emptyProject = true;
-        this.annualGrossSalaryList = new ArrayList<Double>();
-        this.insuranceList = new ArrayList<Double>();
     }
 
     @PostConstruct
@@ -67,20 +63,6 @@ public class ShowTheoricalPhasesBean {
 
         employeeList = employeeController.listEmployees();
         LogManager.getLogger(clazz).info("Se encontraron " + employeeList.size() + " empleados");
-
-        fillSalaryList();
-    }
-
-    private void fillSalaryList() {
-        for (Employee employee : employeeList) {
-            this.annualGrossSalaryList.add(employee.getAnnualGrossSalary());
-            this.insuranceList.add(employee.getContract().getInsurance());
-        }
-        LogManager.getLogger(clazz).debug(
-                "# elementos salario " + annualGrossSalaryList.size() + " # elementos contratos "
-                        + this.insuranceList.size());
-
-        assert this.annualGrossSalaryList.size() == this.employeeList.size() : " lista de salarios y de contratos no tienen el mismo tamaño";
     }
 
     public Project getProject() {
@@ -95,12 +77,12 @@ public class ShowTheoricalPhasesBean {
         return projectList;
     }
 
-    public List<Double> getAnnualGrossSalaryList() {
-        return annualGrossSalaryList;
+    public List<Employee> getEmployeeList() {
+        return employeeList;
     }
 
-    public List<Double> getInsuranceList() {
-        return insuranceList;
+    public void setEmployeeList(List<Employee> employeeList) {
+        this.employeeList = employeeList;
     }
 
     public void onChangeProject(ValueChangeEvent e) {

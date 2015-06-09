@@ -25,7 +25,10 @@
 			<script src="/PFM/resources/js/libs/moment.js"></script>
 			<script
 				src="/PFM/resources/js/controllers/theoricalDisciplineController.js"></script>
+			<script
+				src="/PFM/resources/js/controllers/theoricalPhaseController.js"></script>
 			<script>
+			
 				$(function() {
 					var selectBox = $("#project").selectBoxIt();
 				});
@@ -70,24 +73,31 @@
 										</div>
 									</div>
 							</fieldset>
-							<h:panelGroup
-								rendered="#{not projectBean.emptyProject}">
-								<div ng-if="runProject" ng-controller="theoricalDisciplineController">
-									<ngsync direction="serverToClient" value="{{projectBean.project}}" />                                                                             								
-									<div role="tabpanel">
-										<ul class="nav nav-tabs" role="tablist">
-											<li role="presentation" class="active"><a
-												href="#theorical" aria-controls="theorical" role="tab"
-												data-toggle="tab">Disciplinas teóricas</a></li>
-										</ul>	
-										<div class="tab-content">
-											<div role="tabpanel" class="tab-pane active" id="theorical">
-												<ui:include src="theorical_disciplines_pannel.xhtml" />
+							<div ng-if="scheduleFinished" ng-controller="theoricalPhaseController">
+							    <c:set var="showTheoricalPhasesBean" scope="request"
+                                value="#{showTheoricalDisciplinesBean}" />
+								<ngsync direction="serverToClient" value="{{showTheoricalPhasesBean.project}}" />
+								<ngsync direction="serverToClient" 
+                                    value="{{showTheoricalPhasesBean.employeeList}}" />   	
+								<h:panelGroup
+									rendered="#{not projectBean.emptyProject}">
+									<div ng-if="phasesFinished" ng-controller="theoricalDisciplineController">
+										<ngsync direction="serverToClient" value="{{projectBean.project}}" />
+										<div role="tabpanel">
+											<ul class="nav nav-tabs" role="tablist">
+												<li role="presentation" class="active"><a
+													href="#theorical" aria-controls="theorical" role="tab"
+													data-toggle="tab">Disciplinas teóricas</a></li>
+											</ul>	
+											<div class="tab-content">
+												<div role="tabpanel" class="tab-pane active" id="theorical">
+													<ui:include src="theorical_disciplines_pannel.xhtml" />
+												</div>
 											</div>
 										</div>
 									</div>
-								</div>
-							</h:panelGroup>
+								</h:panelGroup>
+							</div>
 						</div>
 					</div>
 				</h:form>

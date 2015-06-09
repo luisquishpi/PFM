@@ -2,158 +2,212 @@
  * AngularJS resourceController
  */
 
-projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService', 'workTimeService', function ($scope, $isTest, bridgeService, workTimeService) {  
+projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService', 'workTimeService', 'EmployeeUtils', function ($scope, $isTest, bridgeService, workTimeService, EmployeeUtils) {  
 	
-	$scope.schedule = bridgeService.shareData;
+	$scope.discipline = bridgeService.shareData;
 	
 	var arrayRoles = ["PROJECT_MANAGEMENT", "REQUIREMENTS", "ANALYSIS_DESIGN", "IMPLEMENTATION", "TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL"];
 
 	if(!$isTest){
 		  initJSFScope($scope);
-		  workTimeService.calculateWorkDaysAndHour($scope.showTheoricalPhasesBean.project.startString, $scope.showTheoricalPhasesBean.project.endString, $scope.schedule.listHoursEachDay());
+		  workTimeService.calculateWorkDaysAndHour($scope.resourcesBean.project.startString, 
+				  $scope.resourcesBean.project.endString, $scope.discipline.phases.schedule.listHoursEachDay());
 	}
 	
-	//Constantes
-	var INICIO_PROJECT_MANAGEMENT_THEORICAL_RELATIVE = 14;
-	var INICIO_REQUIREMENTS_THEORICAL_RELATIVE = 38;
-	var INICIO_ANALYSIS_DESIGN_THEORICAL_RELATIVE = 19;
-	var INICIO_IMPLEMENTATION_THEORICAL_RELATIVE = 8;
-	var INICIO_TESTS_THEORICAL_RELATIVE = 8;
-	var INICIO_DEPLOY_THEORICAL_RELATIVE = 3;
-	var INICIO_ENVIROMENT_THEORICAL_RELATIVE = 10;
-	
-	var INICIO_PROJECT_MANAGEMENT_THEORICAL_ABSOLUTE = 38.7;
-	var INICIO_REQUIREMENTS_THEORICAL_ABSOLUTE = 105.1;
-	var INICIO_ANALYSIS_DESIGN_THEORICAL_ABSOLUTE = 52.5;
-	var INICIO_IMPLEMENTATION_THEORICAL_ABSOLUTE = 22.1;
-	var INICIO_TESTS_THEORICAL_ABSOLUTE = 22.1;
-	var INICIO_DEPLOY_THEORICAL_ABSOLUTE = 8.3;
-	var INICIO_ENVIROMENT_THEORICAL_ABSOLUTE = 27.7;
-	
-	$scope.numberOfEmployees = function(){
-		return $scope.assignResourcesBean.employeeList.length;
+	//calcula el salario por hora de un empleado
+	$scope.employeeSalaryHour = function(employee){
+		var annualSalary = EmployeeUtils.totalAnnualSalary(employee);
+		var monthlySalary = annualSalary/$scope.discipline.phases.schedule.monthsPerYear;
+		var dailySalary = monthlySalary/$scope.discipline.phases.schedule.workDays;
+		return dailySalary/$scope.discipline.phases.schedule.hoursPerDay;
 	}
 	
-	Array.prototype.contains = function(obj) {
-	    var i = this.length;
-	    while (i--) {
-	        if (this[i] === obj) {
-	            return true;
-	        }
-	    }
-	    return false;
-	}	
-	
-	countNumberOfRoles = function(role){
-		var result = 0;
-		var numberOfRoles = 1;
-		for(i=0; i<$scope.numberOfEmployees(); i++){
-			if($scope.hasRole($scope.assignResourcesBean.employeeList[i],role)){
-				result++;
-			}
-		}
-		return result;
+	//verifica si un empleado tiene un rol
+	$scope.employeeHasRole = function(employee, role){
+		return EmployeeUtils.hasRole(employee, role);
 	}
 	
-	$scope.hasRole = function(employee, role){
-		var result = false;
-		if(employee.roles.contains(role)){
-			result = true;
-		}
-		return result;
-	}
-	
+	//cuenta el numero de empleados con rol project management
 	$scope.numberOfProjectManagement = function(){
 		var POSITION_OF_ROLE = 0;
-		return countNumberOfRoles(arrayRoles[POSITION_OF_ROLE]);
+		return EmployeeUtils.countNumberOfRoles($scope.assignResourcesBean.employeeList,arrayRoles[POSITION_OF_ROLE]);
 	}
-	
+
+	//cuenta el numero de empleados con rol requirements
 	$scope.numberOfRequirements = function(){
 		var POSITION_OF_ROLE = 1;
-		return countNumberOfRoles(arrayRoles[POSITION_OF_ROLE]);
+		return EmployeeUtils.countNumberOfRoles($scope.assignResourcesBean.employeeList, arrayRoles[POSITION_OF_ROLE]);
 	}	
 	
+	//cuenta el numero de empleados con rol analysis
 	$scope.numberOfAnalysisDesign = function(){
 		var POSITION_OF_ROLE = 2;
-		return countNumberOfRoles(arrayRoles[POSITION_OF_ROLE]);
+		return EmployeeUtils.countNumberOfRoles($scope.assignResourcesBean.employeeList, arrayRoles[POSITION_OF_ROLE]);
 	}	
 	
+	//cuenta el numero de empleados con rol implementation
 	$scope.numberOfImplementation = function(){
 		var POSITION_OF_ROLE = 3;
-		return countNumberOfRoles(arrayRoles[POSITION_OF_ROLE]);
+		return EmployeeUtils.countNumberOfRoles($scope.assignResourcesBean.employeeList, arrayRoles[POSITION_OF_ROLE]);
 	}	
 	
+	//cuenta el numero de empleados con rol test
 	$scope.numberOfTests = function(){
 		var POSITION_OF_ROLE = 4;
-		return countNumberOfRoles(arrayRoles[POSITION_OF_ROLE]);
+		return EmployeeUtils.countNumberOfRoles($scope.assignResourcesBean.employeeList, arrayRoles[POSITION_OF_ROLE]);
 	}	
 	
+	//cuenta el numero de empleados con rol deploy
 	$scope.numberOfDeploy = function(){
 		var POSITION_OF_ROLE = 5;
-		return countNumberOfRoles(arrayRoles[POSITION_OF_ROLE]);
+		return EmployeeUtils.countNumberOfRoles($scope.assignResourcesBean.employeeList, arrayRoles[POSITION_OF_ROLE]);
 	}		
 	
+	//cuenta el numero de empleados con rol enviroment
 	$scope.numberOfEnviroment = function(){
 		var POSITION_OF_ROLE = 6;
-		return countNumberOfRoles(arrayRoles[POSITION_OF_ROLE]);
+		return EmployeeUtils.countNumberOfRoles($scope.assignResourcesBean.employeeList, arrayRoles[POSITION_OF_ROLE]);
 	}	
 	
 	//Fase de inicio - teorico relativo
 	$scope.inicioProjectManagementTheoricalRelative = function(){
-		return INICIO_PROJECT_MANAGEMENT_THEORICAL_RELATIVE;
+		return $scope.discipline.initialPercentajeProjectManagment();
 	}	
 	
 	$scope.inicioRequirementsTheoricalRelative = function(){
-		return INICIO_REQUIREMENTS_THEORICAL_RELATIVE;
+		return $scope.discipline.initialPercentajeRequirements();
 	}	
 	
 	$scope.inicioAnalysisDesignTheoricalRelative = function(){
-		return INICIO_ANALYSIS_DESIGN_THEORICAL_RELATIVE;
+		return $scope.discipline.initialPercentajeAnalysis();
 	}
 	
 	$scope.inicioImplementationTheoricalRelative = function(){
-		return INICIO_IMPLEMENTATION_THEORICAL_RELATIVE;
+		return $scope.discipline.initialPercentajeImplementation();
 	}	
 	
 	$scope.inicioTestsTheoricalRelative = function(){
-		return INICIO_TESTS_THEORICAL_RELATIVE;
+		return $scope.discipline.initialPercentajeTests();
 	}	
 	
 	$scope.inicioDeployTheoricalRelative = function(){
-		return INICIO_DEPLOY_THEORICAL_RELATIVE;
+		return $scope.discipline.initialPercentajeDeployment();
 	}	
 	
 	$scope.inicioEnviromentTheoricalRelative = function(){
-		return INICIO_ENVIROMENT_THEORICAL_RELATIVE;
+		return $scope.discipline.initialPercentajeVersion();
+	}
+	
+	$scope.inicioTotalTheoricalRelative = function(){
+		return $scope.inicioProjectManagementTheoricalRelative() + $scope.inicioRequirementsTheoricalRelative() + 
+			$scope.inicioAnalysisDesignTheoricalRelative() + $scope.inicioImplementationTheoricalRelative() + 
+			$scope.inicioTestsTheoricalRelative() + $scope.inicioDeployTheoricalRelative() +
+			$scope.inicioEnviromentTheoricalRelative();
 	}
 	
 	//Fase de inicio - teorico absoluto
 	$scope.inicioProjectManagementTheoricalAbsolute = function(){
-		return INICIO_PROJECT_MANAGEMENT_THEORICAL_ABSOLUTE;
+		return $scope.discipline.initialProjectManagmentHour();
 	}	
 	
 	$scope.inicioRequirementsTheoricalAbsolute = function(){
-		return INICIO_REQUIREMENTS_THEORICAL_ABSOLUTE;
+		return $scope.discipline.initialRequirementsHour();
 	}	
 	
 	$scope.inicioAnalysisDesignTheoricalAbsolute = function(){
-		return INICIO_ANALYSIS_DESIGN_THEORICAL_ABSOLUTE;
+		return $scope.discipline.initialAnalysisHour();
 	}
 	
 	$scope.inicioImplementationTheoricalAbsolute = function(){
-		return INICIO_IMPLEMENTATION_THEORICAL_ABSOLUTE;
+		return $scope.discipline.initialImplementationHour();
 	}	
 	
 	$scope.inicioTestsTheoricalAbsolute = function(){
-		return INICIO_TESTS_THEORICAL_ABSOLUTE;
+		return $scope.discipline.initialTestsHour();
 	}	
 	
 	$scope.inicioDeployTheoricalAbsolute = function(){
-		return INICIO_DEPLOY_THEORICAL_ABSOLUTE;
+		return $scope.discipline.initialDeploymentHour();
 	}	
 	
 	$scope.inicioEnviromentTheoricalAbsolute = function(){
-		return INICIO_ENVIROMENT_THEORICAL_ABSOLUTE;
+		return $scope.discipline.initialVersionHour();
+	}
+	
+	$scope.inicioTotalTheoricalAbsolute = function(){
+		return $scope.inicioProjectManagementTheoricalAbsolute() + $scope.inicioRequirementsTheoricalAbsolute() + 
+			$scope.inicioAnalysisDesignTheoricalAbsolute() + $scope.inicioImplementationTheoricalAbsolute() + 
+			$scope.inicioTestsTheoricalAbsolute() + $scope.inicioDeployTheoricalAbsolute() +
+			$scope.inicioEnviromentTheoricalAbsolute();
 	}	
+	
+	//Fase de inicio - diferencia absoluta
+	$scope.inicioProjectManagementAbsoluteDifference = function(){
+		return -2.3;
+	}	
+	
+	$scope.inicioRequirementsAbsoluteDifference = function(){
+		return -6.3;
+	}	
+	
+	$scope.inicioAnalysisDesignAbsoluteDifference = function(){
+		return -3.1;
+	}
+	
+	$scope.inicioImplementationAbsoluteDifference = function(){
+		return -1.3;
+	}	
+	
+	$scope.inicioTestsAbsoluteDifference = function(){
+		return -1.3;
+	}	
+	
+	$scope.inicioDeployAbsoluteDifference = function(){
+		return -0.5;
+	}	
+	
+	$scope.inicioEnviromentAbsoluteDifference = function(){
+		return -1.7;
+	}
+	
+	$scope.inicioTotalAbsoluteDifference = function(){
+		return $scope.inicioProjectManagementAbsoluteDifference() + $scope.inicioRequirementsAbsoluteDifference() + 
+			$scope.inicioAnalysisDesignAbsoluteDifference() + $scope.inicioImplementationAbsoluteDifference() + 
+			$scope.inicioTestsAbsoluteDifference() + $scope.inicioDeployAbsoluteDifference() +
+			$scope.inicioEnviromentAbsoluteDifference();
+	}
+	
+	//Fase de inicio - diferencia relativa
+	$scope.inicioProjectManagementRelativeDifference = function(){
+		return 94;
+	}	
+	
+	$scope.inicioRequirementsRelativeDifference = function(){
+		return 94;
+	}	
+	
+	$scope.inicioAnalysisDesignRelativeDifference = function(){
+		return 94;
+	}
+	
+	$scope.inicioImplementationRelativeDifference = function(){
+		return 94;
+	}	
+	
+	$scope.inicioTestsRelativeDifference = function(){
+		return 94;
+	}	
+	
+	$scope.inicioDeployRelativeDifference = function(){
+		return 94;
+	}	
+	
+	$scope.inicioEnviromentRelativeDifference = function(){
+		return 94;
+	}
+	
+	$scope.inicioTotalRelativeDifference = function(){
+		return 94;
+	}
 	
 }]);
