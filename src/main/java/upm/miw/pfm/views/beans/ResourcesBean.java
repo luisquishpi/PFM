@@ -11,7 +11,9 @@ import javax.faces.event.ValueChangeEvent;
 
 import org.apache.logging.log4j.LogManager;
 
+import upm.miw.pfm.controllers.EmployeeController;
 import upm.miw.pfm.controllers.ProjectController;
+import upm.miw.pfm.models.entities.Employee;
 import upm.miw.pfm.models.entities.Project;
 
 @ManagedBean
@@ -20,9 +22,12 @@ public class ResourcesBean {
     private Project project;
 
     private List<Project> projectList;
-
+    private List<Employee> employeeList;
+    
     @EJB
     private ProjectController projectController;
+    @EJB
+    private EmployeeController employeeController;
 
     private boolean emptyProject;
 
@@ -74,6 +79,14 @@ public class ResourcesBean {
     public void init() {
         projectList = projectController.listProjects();
         LogManager.getLogger(this).info("Se encontraron " + projectList.size() + " proyectos");
+        employeeList=employeeController.listEmployees();
+        LogManager.getLogger(this).info("Se encontraron " + employeeList.size() + " empleados");
+    }
+    public List<Employee> getEmployeeList() {
+        return employeeList;
+    }
+    public void setEmployeeList(List<Employee> employeeList) {
+        this.employeeList = employeeList;
     }
 
 }
