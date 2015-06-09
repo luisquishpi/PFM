@@ -69,29 +69,33 @@ projectApp.controller("theoricalPhaseController", ['$scope', '$isTest', 'bridgeS
 	
 	$scope.averageMonthCost = function(){
 		var cost = 0;
-		for(i = 0; i < $scope.showTheoricalPhasesBean.annualGrossSalaryList.length; i++){
-			cost += $scope.showTheoricalPhasesBean.annualGrossSalaryList[i] + $scope.showTheoricalPhasesBean.annualGrossSalaryList[i]*$scope.showTheoricalPhasesBean.insuranceList[i]/100;
+		for(i = 0; i < $scope.showTheoricalPhasesBean.employeeList.length; i++){
+			cost += $scope.showTheoricalPhasesBean.employeeList[i].annualGrossSalary + 
+				$scope.showTheoricalPhasesBean.employeeList[i].annualGrossSalary*$scope.showTheoricalPhasesBean.employeeList[i].contract.insurance/100;
 		}
-		return (cost/$scope.showTheoricalPhasesBean.annualGrossSalaryList.length)/$scope.schedule.monthsPerYear;		
-	}	
+		return (cost/$scope.showTheoricalPhasesBean.employeeList.length)/$scope.schedule.monthsPerYear;		
+	}
+	
+	$scope.avgMonthCost = $scope.averageMonthCost();
 	
 	$scope.averageDayCost = function(){
-		return $scope.averageMonthCost()/$scope.schedule.workDays;
+		return $scope.avgMonthCost/$scope.schedule.workDays;
 	}	
+	
+	$scope.avgDayCost = $scope.averageDayCost();
 	
 	$scope.averageHourCost = function(){
 		var days = 0;
 		for (i = 0; i < $scope.schedule.listHoursEachDay().length; i++){
 			days += $scope.schedule.listHoursEachDay()[i].workHours;
 		}
-		return $scope.averageDayCost()/(days/$scope.schedule.daysPerWeek());
+		return $scope.avgDayCost/(days/$scope.schedule.daysPerWeek());
 	}	
 	
-	/********************************/	
-	
-	$scope.avgMonthCost = $scope.averageMonthCost();
-	$scope.avgDayCost = $scope.averageDayCost();
 	$scope.avgHourCost = $scope.averageHourCost();
+	
+	/********************************/	
+
 	$scope.workHours = workTimeService.workHours();
 	$scope.workDays = workTimeService.workDays();
 	$scope.workMonths = workTimeService.workMonths($scope.schedule.workDays);
