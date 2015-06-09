@@ -100,32 +100,31 @@ describe("Test ResourceController", function(){
 			bridgeService: 
 			{
 				shareData : {
+					initialPercentajeProjectManagment: function(){return 14;},
+					initialPercentajeRequirements: function(){return 38;},
+					initialPercentajeAnalysis: function(){return 19;},
+					initialPercentajeImplementation: function(){return 8;},
+					initialPercentajeTests: function(){return 8;},
+					initialPercentajeDeployment: function(){return 3;},
+					initialPercentajeVersion: function(){return 10;},
+					
+					initialProjectManagmentHour: function(){return 38.7;},
+					initialRequirementsHour: function(){return 105.1;},
+					initialAnalysisHour: function(){return 52.5;},
+					initialImplementationHour: function(){return 22.1;},
+					initialTestsHour: function(){return 22.1;},
+					initialDeploymentHour: function(){return 8.3;},
+					initialVersionHour: function(){return 27.7;},					
 					phases:{
-						initialPercentajeProjectManagment: function(){return 14;},
-						initialPercentajeRequirements: function(){return 38;},
-						initialPercentajeAnalysis: function(){return 19;},
-						initialPercentajeImplementation: function(){return 8;},
-						initialPercentajeTests: function(){return 8;},
-						initialPercentajeDeployment: function(){return 3;},
-						initialPercentajeVersion: function(){return 10;},
-						
-						initialProjectManagmentHour: function(){return 38.7;},
-						initialRequirementsHour: function(){return 105.1;},
-						initialAnalysisHour: function(){return 52.5;},
-						initialImplementationHour: function(){return 22.1;},
-						initialTestsHour: function(){return 22.1;},
-						initialDeploymentHour: function(){return 8.3;},
-						initialVersionHour: function(){return 27.7;},
-						
-					schedule:{
-						listHoursEachDay: function(){ 
-							return [{workHours:0},{workHours:8},{workHours:8},{workHours:8},{workHours:8},{workHours:8},{workHours:0}];
-						  },
-						workDays: 21,
-						monthsPerYear: 12,
-						hoursPerDay: 8,
-						daysPerWeek: function(){return 5;},
-					}
+						schedule:{
+							listHoursEachDay: function(){ 
+								return [{workHours:0},{workHours:8},{workHours:8},{workHours:8},{workHours:8},{workHours:8},{workHours:0}];
+							  },
+							workDays: 21,
+							monthsPerYear: 12,
+							hoursPerDay: 8,
+							daysPerWeek: function(){return 5;},
+						}
 					},
 				}					
 			}
@@ -277,7 +276,42 @@ describe("Test ResourceController", function(){
 		expect(scope.inicioEnviromentAbsoluteDifference()).toBe(-1.7);
 	});	
 	
-	it("Inicio Total absolute theorical percentaje should be -16.5", function(){
+	it("Inicio Total absolute percentaje should be -16.5", function(){
 		expect(scope.inicioTotalAbsoluteDifference()).toBe(-16.5);
 	});		
+	
+	//Fase de inicio - diferencia relativas
+	it("Inicio Project Management relative difference should be 94", function(){
+		expect(scope.inicioProjectManagementRelativeDifference()).toBe(94);
+	});		
+	
+	it("Inicio Requirements relative difference should be 94", function(){
+		expect(scope.inicioRequirementsRelativeDifference()).toBe(94);
+	});
+	
+	it("Inicio Analysis Design relative difference should be 94", function(){
+		expect(scope.inicioAnalysisDesignRelativeDifference()).toBe(94);
+	});
+	
+	it("Inicio Implementation relative difference should be 94", function(){
+		expect(scope.inicioImplementationRelativeDifference()).toBe(94);
+	});
+	
+	it("Inicio Tests relative difference should be 94", function(){
+		expect(scope.inicioTestsRelativeDifference()).toBe(94);
+	});
+	
+	it("Inicio Deploy relative difference should be 94", function(){
+		expect(scope.inicioDeployRelativeDifference()).toBe(94);
+	});
+	
+	it("Inicio Enviroment relative difference should be 94", function(){
+		expect(scope.inicioEnviromentRelativeDifference()).toBe(94);
+	});	
+	
+	it("Inicio Total absolute theorical percentaje should be 94", function(){
+		expect(scope.inicioTotalRelativeDifference()).toBe(94);
+	});		
+	
+	
 })
