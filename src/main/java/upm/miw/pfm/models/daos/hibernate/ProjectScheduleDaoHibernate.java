@@ -1,5 +1,7 @@
 package upm.miw.pfm.models.daos.hibernate;
 
+import java.util.List;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -44,7 +46,29 @@ public class ProjectScheduleDaoHibernate extends GenericDaoHibernate<ProjectSche
 
     @Override
     public void deleteAll() {
-        query("delete from ProjectSchedule");
-        
+    	List<ProjectSchedule> scheduleList = findAllWithoutHours();
+        for (ProjectSchedule tmpSchedule : scheduleList) {
+            deleteById(tmpSchedule.getId());
+        }         
     }
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<ProjectSchedule> findAllWithoutHours() {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        List<ProjectSchedule> scheduleList = null;
+        try {
+            session.beginTransaction();
+            Query query = session.createQuery("from ProjectSchedule");
+            scheduleList = query.list();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+        return scheduleList;
+	}
 }
