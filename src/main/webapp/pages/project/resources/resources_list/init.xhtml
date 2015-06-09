@@ -35,6 +35,28 @@
 				<th class="ui-outputlabel ui-widget">Diferencia Propuesta</th>
 				<th class="ui-outputlabel ui-widget">Asignado</th>
 			</tr>
+			<div ng-controller="scheduleController">
+				<c:set var="projectBean" scope="request"
+					value="#{resourcesBean}" />
+				<ngsync direction="serverToClient"
+					value="{{projectBean.projectSchedule}}" />
+				<ngsync direction="serverToClient"
+					value="#{projectBean.project}" />
+				<div ng-if="scheduleFinished" ng-controller="theoricalPhaseController">
+				    <c:set var="showTheoricalPhasesBean" scope="request"
+                             value="#{#{resourcesBean}}" />
+					<ngsync direction="serverToClient" value="{{showTheoricalPhasesBean.project}}" />
+					<ngsync direction="serverToClient" 
+                                 value="{{showTheoricalPhasesBean.employeeList}}" /> 
+                    <div ng-if="phasesFinished" ng-controller="theoricalDisciplineController">
+						<ngsync direction="serverToClient" value="{{projectBean.project}}" />	
+						<div ng-if="disciplinesFinished" ng-controller="resourceController">
+							<ngsync direction="serverToClient" value="{{resourcesBean.project}}" />	
+							{{inicioProjectManagementTheoricalRelative()}}
+						</div>
+					</div>
+				</div>
+			</div>				
 			<tr>
 				<td>Gestión Proyecto</td>
 				<td>14%</td>
@@ -116,6 +138,40 @@
 				<td>0.0</td>
 			</tr>
 			
+		</table>
+		</fieldset>	
+		<fieldset>
+		<table class="table table-condensed">
+			<tr>
+				<th class="ui-outputlabel ui-widget">Nombre</th>
+				<th class="ui-outputlabel ui-widget">Gestion Proyecto</th>
+				<th class="ui-outputlabel ui-widget">Requisitos</th>
+				<th class="ui-outputlabel ui-widget">Analisis/Diseño</th>
+				<th class="ui-outputlabel ui-widget">Implementación</th>
+				<th class="ui-outputlabel ui-widget">Pruebas</th>
+				<th class="ui-outputlabel ui-widget">Despliegue</th>
+				<th class="ui-outputlabel ui-widget">Control de versiones</th>
+			</tr>
+			<tr>
+				<td>Carlos Palacios</td>
+				<td>47.0</td>
+				<td>0.0</td>
+				<td>0.0</td>
+				<td>0.0</td>
+				<td>26.9</td>
+				<td>0.0</td>
+				<td>0.0</td>
+			</tr>
+			<tr>
+				<td>Luis Quishpi</td>
+				<td>0.0</td>
+				<td>127.0</td>
+				<td>0.0</td>
+				<td>0.0</td>
+				<td>0.0</td>
+				<td>0.0</td>
+				<td>0.0</td>
+			</tr>
 		</table>
 		</fieldset>		
 </ui:composition>	

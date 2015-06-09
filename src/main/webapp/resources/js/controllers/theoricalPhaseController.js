@@ -549,8 +549,8 @@ projectApp.controller("theoricalPhaseController", ['$scope', '$isTest', 'bridgeS
 	/************** Fin Esfuerzo ********************/
 	
 	if(!$isTest){
-		$scope.phasesFinished = true;
 		bridgeService.shareData= $scope;
+		$scope.phasesFinished = true;
 	}
 	
 }]);
