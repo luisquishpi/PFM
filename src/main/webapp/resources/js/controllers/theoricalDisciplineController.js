@@ -717,4 +717,9 @@ projectApp.controller("theoricalDisciplineController", ['$scope', '$isTest', 'br
 	$scope.totalProjectMonth = function(){
 		return DISTRIBUCION_TOTAL_PROYECTO/100*$scope.phases.proyectoPeopleMonth();
 	}
+	
+	if(!$isTest){
+		bridgeService.shareData= $scope;
+		$scope.disciplinesFinished = true;
+	}
 }]);
