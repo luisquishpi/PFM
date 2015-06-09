@@ -10,7 +10,7 @@ projectApp.controller("theoricalPhaseController", ['$scope', '$isTest', 'bridgeS
 		  initJSFScope($scope);
 		  workTimeService.calculateWorkDaysAndHour($scope.showTheoricalPhasesBean.project.startString, $scope.showTheoricalPhasesBean.project.endString, $scope.schedule.listHoursEachDay());
 	}
-	
+
 	//Constantes
 	var DATE_FORMAT = "DD/MM/YYYY";
 	var INICIO_DISTRIBUTION_DURATION = 10;

@@ -74,11 +74,11 @@
 									</div>
 							</fieldset>
 							<div ng-if="scheduleFinished" ng-controller="theoricalPhaseController">
+							    <c:set var="showTheoricalPhasesBean" scope="request"
+                                value="#{showTheoricalDisciplinesBean}" />
 								<ngsync direction="serverToClient" value="{{showTheoricalPhasesBean.project}}" />
 								<ngsync direction="serverToClient" 
-                                    value="{{showTheoricalPhasesBean.annualGrossSalaryList}}" />      
-                                <ngsync direction="serverToClient" 
-                                    value="{{showTheoricalPhasesBean.insuranceList}}" /> 	
+                                    value="{{showTheoricalPhasesBean.employeeList}}" />   	
 								<h:panelGroup
 									rendered="#{not projectBean.emptyProject}">
 									<div ng-if="phasesFinished" ng-controller="theoricalDisciplineController">

@@ -11,8 +11,10 @@ import javax.faces.event.ValueChangeEvent;
 
 import org.apache.logging.log4j.LogManager;
 
+import upm.miw.pfm.controllers.EmployeeController;
 import upm.miw.pfm.controllers.ProjectController;
 import upm.miw.pfm.controllers.SetScheduleController;
+import upm.miw.pfm.models.entities.Employee;
 import upm.miw.pfm.models.entities.Project;
 import upm.miw.pfm.models.entities.ProjectSchedule;
 import upm.miw.pfm.utils.Utils;
@@ -20,12 +22,14 @@ import upm.miw.pfm.utils.Utils;
 @ManagedBean
 @ViewScoped
 public class ShowTheoricalDisciplinesBean {
-	private Project project;
+    private Project project;
 
     private List<Project> projectList;
 
+    private List<Employee> employeeList;
+
     private boolean emptyProject;
-    
+
     private ProjectSchedule projectSchedule;
 
     private final static Class<ListProjectsBean> clazz = ListProjectsBean.class;
@@ -33,6 +37,9 @@ public class ShowTheoricalDisciplinesBean {
     @EJB
     private ProjectController projectController;
     
+    @EJB
+    private EmployeeController employeeController;
+
     @EJB
     private SetScheduleController setScheduleController;
 
@@ -51,8 +58,10 @@ public class ShowTheoricalDisciplinesBean {
     public void init() {
         projectList = projectController.listProjects();
         LogManager.getLogger(clazz).info("Se encontraron " + projectList.size() + " proyectos");
+        
+        employeeList = employeeController.listEmployees();
+        LogManager.getLogger(clazz).info("Se encontraron " + employeeList.size() + " empleados");
     }
-
 
     public Project getProject() {
         return project;
@@ -61,9 +70,17 @@ public class ShowTheoricalDisciplinesBean {
     public List<Project> getProjectList() {
         return projectList;
     }
-    
+
     public ProjectSchedule getProjectSchedule() {
         return projectSchedule;
+    }
+
+    public List<Employee> getEmployeeList() {
+        return employeeList;
+    }
+
+    public void setEmployeeList(List<Employee> employeeList) {
+        this.employeeList = employeeList;
     }
 
     public void onChangeProject(ValueChangeEvent e) {
