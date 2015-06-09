@@ -70,7 +70,7 @@ describe("Test ResourceController", function(){
 				  {"id":19, "name":"Tomas", "surname":"Zambrano", "employeeCode":"019", "annualGrossSalary":30000.00, 
 					  "roles":["TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL"],
 					  "contract":{insurance: 0.0}},	
-				  {"id":20, "name":"Ursula", "surname":"del Mar", "employeeCode":"020", "annualGrossSalary":30000.00, 
+				  {"id":20, "name":"Ursula", "surname":"del Mar", "employeeCode":"020", "annualGrossSalary":20000.00, 
 					  "roles":["TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL"],
 					  "contract":{insurance: 32.5}},						  
 				  ]
@@ -100,14 +100,34 @@ describe("Test ResourceController", function(){
 			bridgeService: 
 			{
 				shareData : {
-					listHoursEachDay: function(){ 
-										return [{workHours:0},{workHours:8},{workHours:8},{workHours:8},{workHours:8},{workHours:8},{workHours:0}];
-									  },
-					workDays: 21,
-					monthsPerYear: 12,
-					hoursPerDay: 8,
-					daysPerWeek: function(){return 5;},
-					}					
+					phases:{
+						initialPercentajeProjectManagment: function(){return 14;},
+						initialPercentajeRequirements: function(){return 38;},
+						initialPercentajeAnalysis: function(){return 19;},
+						initialPercentajeImplementation: function(){return 8;},
+						initialPercentajeTests: function(){return 8;},
+						initialPercentajeDeployment: function(){return 3;},
+						initialPercentajeVersion: function(){return 10;},
+						
+						initialProjectManagmentHour: function(){return 38.7;},
+						initialRequirementsHour: function(){return 105.1;},
+						initialAnalysisHour: function(){return 52.5;},
+						initialImplementationHour: function(){return 22.1;},
+						initialTestsHour: function(){return 22.1;},
+						initialDeploymentHour: function(){return 8.3;},
+						initialVersionHour: function(){return 27.7;},
+						
+					schedule:{
+						listHoursEachDay: function(){ 
+							return [{workHours:0},{workHours:8},{workHours:8},{workHours:8},{workHours:8},{workHours:8},{workHours:0}];
+						  },
+						workDays: 21,
+						monthsPerYear: 12,
+						hoursPerDay: 8,
+						daysPerWeek: function(){return 5;},
+					}
+					},
+				}					
 			}
 		});			
 	}));
@@ -191,24 +211,28 @@ describe("Test ResourceController", function(){
 		expect(scope.inicioEnviromentTheoricalRelative()).toBe(10);
 	});
 	
+	it("Inicio Total relative theorical percentaje should be 100", function(){
+		expect(scope.inicioTotalTheoricalRelative()).toBe(100);
+	});
+	
 	//Fase de inicio - teorico absoluto
 	it("Inicio Project Management theorical absolute percentaje should be 38.7", function(){
 		expect(scope.inicioProjectManagementTheoricalAbsolute()).toBe(38.7);
 	});		
 	
-	it("Inicio Requirements relative theorical absolute should be 105.1", function(){
+	it("Inicio Requirements theorical absolute should be 105.1", function(){
 		expect(scope.inicioRequirementsTheoricalAbsolute()).toBe(105.1);
 	});
 	
-	it("Inicio Analysis Design relative theorical absolute should be 52.5", function(){
+	it("Inicio Analysis Design theorical absolute should be 52.5", function(){
 		expect(scope.inicioAnalysisDesignTheoricalAbsolute()).toBe(52.5);
 	});
 	
-	it("Inicio Implementation relative theorical absolute should be 22.1", function(){
+	it("Inicio Implementation theorical absolute should be 22.1", function(){
 		expect(scope.inicioImplementationTheoricalAbsolute()).toBe(22.1);
 	});
 	
-	it("Inicio Tests relative theorical absolute should be 22.1", function(){
+	it("Inicio Tests theorical absolute should be 22.1", function(){
 		expect(scope.inicioTestsTheoricalAbsolute()).toBe(22.1);
 	});
 	
@@ -219,4 +243,41 @@ describe("Test ResourceController", function(){
 	it("Inicio Enviroment theorical absolute percentaje should be 27.7", function(){
 		expect(scope.inicioEnviromentTheoricalAbsolute()).toBe(27.7);
 	});	
+	
+	it("Inicio Total absolute theorical percentaje should be 276.5", function(){
+		expect(scope.inicioTotalTheoricalAbsolute()).toBeCloseTo(276.5,1);
+	});
+	
+	//Fase de inicio - diferencia absoluta
+	it("Inicio Project Management absolute difference should be -2.3", function(){
+		expect(scope.inicioProjectManagementAbsoluteDifference()).toBe(-2.3);
+	});		
+	
+	it("Inicio Requirements absolute difference should be -6.3", function(){
+		expect(scope.inicioRequirementsAbsoluteDifference()).toBe(-6.3);
+	});
+	
+	it("Inicio Analysis Design absolute difference should be -3.1", function(){
+		expect(scope.inicioAnalysisDesignAbsoluteDifference()).toBe(-3.1);
+	});
+	
+	it("Inicio Implementation absolute difference should be -1.3", function(){
+		expect(scope.inicioImplementationAbsoluteDifference()).toBe(-1.3);
+	});
+	
+	it("Inicio Tests absolute difference should be -1.3", function(){
+		expect(scope.inicioTestsAbsoluteDifference()).toBe(-1.3);
+	});
+	
+	it("Inicio Deploy absolute difference should be -0.5", function(){
+		expect(scope.inicioDeployAbsoluteDifference()).toBe(-0.5);
+	});
+	
+	it("Inicio Enviroment absolute difference should be -1.7", function(){
+		expect(scope.inicioEnviromentAbsoluteDifference()).toBe(-1.7);
+	});	
+	
+	it("Inicio Total absolute theorical percentaje should be -16.5", function(){
+		expect(scope.inicioTotalAbsoluteDifference()).toBe(-16.5);
+	});		
 })
