@@ -6,7 +6,7 @@ projectApp.controller("scheduleController",['$scope', '$isTest', 'bridgeService'
 	if(!$isTest){
 	  initJSFScope($scope);
 	}
-	$scope.runProject = false;
+	$scope.scheduleFinished = false;
 	$scope.workDays = $scope.projectBean.projectSchedule.workDays;
 	$scope.monthsPerYear = 12;
 	$scope.daysPerWeek = function(){
@@ -68,7 +68,7 @@ projectApp.controller("scheduleController",['$scope', '$isTest', 'bridgeService'
 	    				"projectBean.projectSchedule.workDays"
 	                    ], function(newValues, oldValues, scope) {
 		bridgeService.shareData=scope;
-		$scope.runProject = true;
+		$scope.scheduleFinished = true;
 	  });
 	}
 	

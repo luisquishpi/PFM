@@ -29,7 +29,7 @@
 			</div>
 		</div>
 		<h:panelGroup rendered="#{not showTheoricalPhasesBean.emptyProject}">
-			<div ng-if="runProject" ng-controller="theoricalPhaseController">
+			<div ng-if="scheduleFinished" ng-controller="theoricalPhaseController">
 				<div class="row">
 					<div class="col-lg-2">
 						<p:outputLabel for="dias_recomendados" value="Días recomendados: "
