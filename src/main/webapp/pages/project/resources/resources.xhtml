@@ -17,7 +17,22 @@
 				$(function() {
 					var selectBox = $("#project").selectBoxIt();
 				});
-			</script>
+				var projectApp = angular.module('projectApp',
+						[ "angularfaces" ]);
+				app.value("$isTest", false);
+				</script>	
+				<script src="/PFM/resources/js/controllers/projectApp.js"></script>
+				<script src="/PFM/resources/js/controllers/scheduleController.js"></script>
+				<script
+					src="/PFM/resources/css/selectboxit/js/jquery.selectBoxIt.min.js"></script>
+				<script src="/PFM/resources/js/libs/moment.js"></script>
+				<script
+					src="/PFM/resources/js/controllers/theoricalDisciplineController.js"></script>
+				<script
+					src="/PFM/resources/js/controllers/theoricalPhaseController.js"></script>
+				<script
+					src="/PFM/resources/js/controllers/resourceController.js"></script>
+			
 		</ui:define>
 		<ui:define name="css">
 			<link href="/PFM/resources/css/bootstrap/css/bootstrap.min.css"

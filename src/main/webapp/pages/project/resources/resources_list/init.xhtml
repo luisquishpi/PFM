@@ -38,13 +38,14 @@
 			<div ng-controller="scheduleController">
 				<c:set var="projectBean" scope="request"
 					value="#{resourcesBean}" />
+					#{projectBean.projectSchedule}
 				<ngsync direction="serverToClient"
 					value="{{projectBean.projectSchedule}}" />
 				<ngsync direction="serverToClient"
 					value="#{projectBean.project}" />
 				<div ng-if="scheduleFinished" ng-controller="theoricalPhaseController">
 				    <c:set var="showTheoricalPhasesBean" scope="request"
-                             value="#{#{resourcesBean}}" />
+                             value="#{resourcesBean}" />
 					<ngsync direction="serverToClient" value="{{showTheoricalPhasesBean.project}}" />
 					<ngsync direction="serverToClient" 
                                  value="{{showTheoricalPhasesBean.employeeList}}" /> 

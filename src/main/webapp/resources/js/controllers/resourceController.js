@@ -6,6 +6,7 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	
 	console.log(bridgeService.shareData);
 	$scope.discipline = bridgeService.shareData;
+	console.log($scope.discipline.phases);
 	
 	var arrayRoles = ["PROJECT_MANAGEMENT", "REQUIREMENTS", "ANALYSIS_DESIGN", "IMPLEMENTATION", "TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL"];
 
