@@ -50,7 +50,7 @@ public class SetScheduleControllerTest {
         schedule.setSundayHours(0D);
         schedule.setProject(project);
         setScheduleController.setProjectSchedule(schedule);
-
+        
         assertEquals(project, setScheduleController.getProjectSchedule(project.getId())
                 .getProject());
         assertEquals(schedule, setScheduleController.getProjectSchedule(project.getId()));
