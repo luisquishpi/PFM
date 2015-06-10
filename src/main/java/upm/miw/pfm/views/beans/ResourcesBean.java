@@ -13,8 +13,10 @@ import org.apache.logging.log4j.LogManager;
 
 import upm.miw.pfm.controllers.EmployeeController;
 import upm.miw.pfm.controllers.ProjectController;
+import upm.miw.pfm.controllers.SetScheduleController;
 import upm.miw.pfm.models.entities.Employee;
 import upm.miw.pfm.models.entities.Project;
+import upm.miw.pfm.models.entities.ProjectSchedule;
 
 @ManagedBean
 @ViewScoped
@@ -31,14 +33,20 @@ public class ResourcesBean {
     @EJB
     private EmployeeController employeeController;
     
+    @EJB
+    private SetScheduleController setScheduleController;
+    
     private final static Class<ListProjectsBean> clazz = ListProjectsBean.class;
 
     private boolean emptyProject;
+    
+    private ProjectSchedule projectSchedule;
 
     public ResourcesBean(){
         this.emptyProject = true;
         this.project = new Project();
         this.project.setId(-1);
+        this.projectSchedule = new ProjectSchedule();
     }
     public Project getProject() {
         return project;
@@ -72,6 +80,7 @@ public class ResourcesBean {
         if (selectedProject != -1) {
             this.project.setId(selectedProject);
             this.project = findSelectedProject();
+            this.projectSchedule = setScheduleController.getProjectSchedule(project.getId());
             LogManager.getLogger(this).debug("Proyecto cargado " + this.project);
             this.emptyProject = false;
         } else {
@@ -92,6 +101,12 @@ public class ResourcesBean {
         
         employeeList=employeeController.listEmployees();
         LogManager.getLogger(clazz).info("Se encontraron " + employeeList.size() + " empleados");
-    }    
-
+    }
+	
+    public ProjectSchedule getProjectSchedule() {
+		return projectSchedule;
+	}
+	public void setProjectSchedule(ProjectSchedule projectSchedule) {
+		this.projectSchedule = projectSchedule;
+	}
 }

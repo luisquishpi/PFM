@@ -246,6 +246,4 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 		return 94;
 	}
 	
-	
-	
 }]);

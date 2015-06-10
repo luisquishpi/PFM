@@ -342,9 +342,9 @@ describe("Test ResourceController", function(){
 		expect(scope.inicioEnviromentAssigned()).toBe(26);
 	});	
 	
-	it("Inicio Total absolute theorical percentaje should be 260", function(){
+	it("Inicio Total asigned percentaje should be 260", function(){
 		expect(scope.inicioTotalAssigned()).toBe(260);
 	});		
 	
-	
+
 })

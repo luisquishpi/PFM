@@ -34,29 +34,7 @@
 				<th class="ui-outputlabel ui-widget">Propuesta</th>
 				<th class="ui-outputlabel ui-widget">Diferencia Propuesta</th>
 				<th class="ui-outputlabel ui-widget">Asignado</th>
-			</tr>
-			<div ng-controller="scheduleController">
-				<c:set var="projectBean" scope="request"
-					value="#{resourcesBean}" />
-				<ngsync direction="serverToClient"
-					value="{{projectBean.projectSchedule}}" />
-				<ngsync direction="serverToClient"
-					value="#{projectBean.project}" />
-				<div ng-if="scheduleFinished" ng-controller="theoricalPhaseController">
-				    <c:set var="showTheoricalPhasesBean" scope="request"
-                             value="#{#{resourcesBean}}" />
-					<ngsync direction="serverToClient" value="{{showTheoricalPhasesBean.project}}" />
-					<ngsync direction="serverToClient" 
-                                 value="{{showTheoricalPhasesBean.employeeList}}" /> 
-                    <div ng-if="phasesFinished" ng-controller="theoricalDisciplineController">
-						<ngsync direction="serverToClient" value="{{projectBean.project}}" />	
-						<div ng-if="disciplinesFinished" ng-controller="resourceController">
-							<ngsync direction="serverToClient" value="{{resourcesBean.project}}" />	
-							{{inicioProjectManagementTheoricalRelative()}}
-						</div>
-					</div>
-				</div>
-			</div>				
+			</tr>				
 			<tr>
 				<td>Gestión Proyecto</td>
 				<td>14%</td>
