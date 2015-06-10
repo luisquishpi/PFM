@@ -14,6 +14,9 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 				  $scope.resourcesBean.project.endString, $scope.discipline.phases.schedule.listHoursEachDay());
 	}
 	
+	//constantes
+	var NUMBER_OF_ASIGNED_PEOPLE = 2.5;
+	
 	//calcula el salario por hora de un empleado
 	$scope.employeeSalaryHour = function(employee){
 		var annualSalary = EmployeeUtils.totalAnnualSalary(employee);
@@ -68,6 +71,11 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 		var POSITION_OF_ROLE = 6;
 		return EmployeeUtils.countNumberOfRoles($scope.assignResourcesBean.employeeList, arrayRoles[POSITION_OF_ROLE]);
 	}	
+	
+	//calcula el numero de personas propuestas
+	$scope.numberOfProposalsPeople = function(){
+		return 2.7;
+	}
 	
 	//Fase de inicio - teorico relativo
 	$scope.inicioProjectManagementTheoricalRelative = function(){
@@ -215,35 +223,70 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	
 	//Fase de inicio - diferencia relativa
 	$scope.inicioProjectManagementRelativeDifference = function(){
-		return 94;
+		return ($scope.inicioProjectManagementAssigned()/$scope.inicioProjectManagementTheoricalAbsolute())*100;
 	}	
 	
 	$scope.inicioRequirementsRelativeDifference = function(){
-		return 94;
+		return ($scope.inicioRequirementsAssigned()/$scope.inicioRequirementsTheoricalAbsolute())*100;;
 	}	
 	
 	$scope.inicioAnalysisDesignRelativeDifference = function(){
-		return 94;
+		return ($scope.inicioAnalysisDesignAssigned()/$scope.inicioAnalysisDesignTheoricalAbsolute())*100;;
 	}
 	
 	$scope.inicioImplementationRelativeDifference = function(){
-		return 94;
+		return ($scope.inicioImplementationAssigned()/$scope.inicioImplementationTheoricalAbsolute())*100;;
 	}	
 	
 	$scope.inicioTestsRelativeDifference = function(){
-		return 94;
+		return ($scope.inicioTestsAssigned()/$scope.inicioTestsTheoricalAbsolute())*100;;
 	}	
 	
 	$scope.inicioDeployRelativeDifference = function(){
-		return 94;
+		return ($scope.inicioDeployAssigned()/$scope.inicioDeployTheoricalAbsolute())*100;;
 	}	
 	
 	$scope.inicioEnviromentRelativeDifference = function(){
-		return 94;
+		return ($scope.inicioEnviromentAssigned()/$scope.inicioEnviromentTheoricalAbsolute())*100;;
 	}
 	
 	$scope.inicioTotalRelativeDifference = function(){
-		return 94;
+		return ($scope.inicioTotalAssigned()/$scope.inicioTotalTheoricalAbsolute())*100;;
 	}
+	
+	//Fase de inicio - propuesta
+	$scope.inicioProjectManagementProposal = function(){
+		return ($scope.inicioProjectManagementTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*NUMBER_OF_ASIGNED_PEOPLE)/($scope.numberOfProposalsPeople()*100);
+	}	
+	
+	$scope.inicioRequirementsProposal = function(){
+		return ($scope.inicioRequirementsTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*NUMBER_OF_ASIGNED_PEOPLE)/($scope.numberOfProposalsPeople()*100);
+	}	
+	
+	$scope.inicioAnalysisDesignProposal = function(){
+		return ($scope.inicioAnalysisDesignTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*NUMBER_OF_ASIGNED_PEOPLE)/($scope.numberOfProposalsPeople()*100);
+	}
+	
+	$scope.inicioImplementationProposal = function(){
+		return ($scope.inicioImplementationTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*NUMBER_OF_ASIGNED_PEOPLE)/($scope.numberOfProposalsPeople()*100);
+	}	
+	
+	$scope.inicioTestsProposal = function(){
+		return ($scope.inicioTestsTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*NUMBER_OF_ASIGNED_PEOPLE)/($scope.numberOfProposalsPeople()*100);
+	}	
+	
+	$scope.inicioDeployProposal = function(){
+		return ($scope.inicioDeployTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*NUMBER_OF_ASIGNED_PEOPLE)/($scope.numberOfProposalsPeople()*100);
+	}	
+	
+	$scope.inicioEnviromentProposal = function(){
+		return ($scope.inicioEnviromentTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*NUMBER_OF_ASIGNED_PEOPLE)/($scope.numberOfProposalsPeople()*100);
+	}
+	
+	$scope.inicioTotalProposal = function(){
+		return $scope.inicioProjectManagementProposal()+$scope.inicioRequirementsProposal()+
+		$scope.inicioAnalysisDesignProposal()+$scope.inicioImplementationProposal()+
+		$scope.inicioTestsProposal()+$scope.inicioDeployProposal()+$scope.inicioEnviromentProposal();
+	}	
 	
 }]);
