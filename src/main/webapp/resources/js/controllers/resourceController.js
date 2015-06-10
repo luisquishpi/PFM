@@ -14,9 +14,6 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 				  $scope.resourcesBean.project.endString, $scope.discipline.phases.schedule.listHoursEachDay());
 	}
 	
-	//constantes
-	var NUMBER_OF_ASIGNED_PEOPLE = 2.5;
-	
 	//calcula el salario por hora de un empleado
 	$scope.employeeSalaryHour = function(employee){
 		var annualSalary = EmployeeUtils.totalAnnualSalary(employee);
@@ -253,6 +250,8 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	$scope.inicioTotalRelativeDifference = function(){
 		return ($scope.inicioTotalAssigned()/$scope.inicioTotalTheoricalAbsolute())*100;;
 	}
+	
+	var NUMBER_OF_ASIGNED_PEOPLE = 2.5;
 	
 	//Fase de inicio - propuesta
 	$scope.inicioProjectManagementProposal = function(){
