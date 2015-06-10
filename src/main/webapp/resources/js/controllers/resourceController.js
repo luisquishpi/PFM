@@ -177,6 +177,42 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 			$scope.inicioEnviromentAbsoluteDifference();
 	}
 	
+	//Fase de inicio - asignado
+	$scope.inicioProjectManagementAssigned = function(){
+		return 36.4;
+	}	
+	
+	$scope.inicioRequirementsAssigned = function(){
+		return 98.8;
+	}	
+	
+	$scope.inicioAnalysisDesignAssigned = function(){
+		return 49.4;
+	}
+	
+	$scope.inicioImplementationAssigned = function(){
+		return 20.8;
+	}	
+	
+	$scope.inicioTestsAssigned = function(){
+		return 20.8;
+	}	
+	
+	$scope.inicioDeployAssigned = function(){
+		return 7.8;
+	}	
+	
+	$scope.inicioEnviromentAssigned = function(){
+		return 26;
+	}
+	
+	$scope.inicioTotalAssigned = function(){
+		return $scope.inicioProjectManagementAssigned() + $scope.inicioRequirementsAssigned() + 
+		$scope.inicioAnalysisDesignAssigned() + $scope.inicioImplementationAssigned() + 
+		$scope.inicioTestsAssigned() + $scope.inicioDeployAssigned() +
+		$scope.inicioEnviromentAssigned();
+	}
+	
 	//Fase de inicio - diferencia relativa
 	$scope.inicioProjectManagementRelativeDifference = function(){
 		return 94;
@@ -209,4 +245,5 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	$scope.inicioTotalRelativeDifference = function(){
 		return 94;
 	}
+	
 }]);

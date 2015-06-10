@@ -40,7 +40,7 @@
 					<div ng-cloak="">
 					<div ng-controller="scheduleController">
 						<ngsync direction="serverToClient" value="{{projectBean.projectSchedule}}"/>					
-						<div ng-if="runProject" ng-controller="projectController">
+						<div ng-if="scheduleFinished" ng-controller="projectController">
 							<ngsync direction="serverToClient" value="{{projectBean.project}}"/>
 								<div class="row" style="margin-top:10px">
 									<div class="col-sm-4">
