@@ -107,6 +107,8 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	
 	//Fase de inicio - teorico absoluto
 	$scope.inicioProjectManagementTheoricalAbsolute = function(){
+		console.log($scope.discipline);
+		console.log($scope.discipline.initialProjectManagmentHour());
 		return $scope.discipline.initialProjectManagmentHour();
 	}	
 	
