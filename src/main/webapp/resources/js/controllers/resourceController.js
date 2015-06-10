@@ -305,7 +305,6 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	$scope.availableEmployeeHours = function(employee){
 		for(i=0; i< employee.vacations.length; i++){
 			var numberOfVacationDays = DateUtils.dateDiffInDays(employee.vacations[i].start, employee.vacations[i].end);
-			console.log(numberOfVacationDays);
 		}
 		return 0;
 	}
