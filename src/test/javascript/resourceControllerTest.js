@@ -185,8 +185,12 @@ describe("Test ResourceController", function(){
 	});	
 	
 	//horas disponibles
-	it("Anibal should has 88 available hours", function(){
-		expect(scope.availableEmployeeHours(scope.resourcesBean.employeeList[0])).toBe(88);
+	it("Average available hours should has 104", function(){
+		expect(scope.averageEmployeeHours()).toBe(104);
+	});
+	
+	it("Anibal should has 104 available hours", function(){
+		expect(scope.availableEmployeeHours(scope.resourcesBean.employeeList[0])).toBe(104);
 	});
 	
 	//Fase de inicio - teorico relativo

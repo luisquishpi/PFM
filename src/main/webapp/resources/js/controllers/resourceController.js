@@ -297,22 +297,28 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	
 	//calcula el numero de personas propuestas
 	$scope.averageEmployeeHours = function(){
-		var averageHoursPerDay = $scope.discipline.phases.schedule.averageHoursPerDay();
-		var iterationDays = $scope.resourcesBean.project.iterationDays;
-		return averageHoursPerDay*iterationDays;
+		var totalEmployeeHours = 0;
+		for(i=0; i < $scope.resourcesBean.employeeList.length; i++){
+			totalEmployeeHours += $scope.availableEmployeeHours($scope.resourcesBean.employeeList[i]);
+		}
+		return totalEmployeeHours/($scope.resourcesBean.employeeList.length-1);
 	}
 	
 	$scope.normalEmployeeHours = function(){
 		var averageHoursPerDay = $scope.discipline.phases.schedule.averageHoursPerDay();
 		var iterationDays = $scope.resourcesBean.project.iterationDays;
-		return averageHoursPerWeek*iterationDays;
+		return averageHoursPerDay*iterationDays;
 	}	
 	
 	$scope.availableEmployeeHours = function(employee){
-		for(i=0; i< employee.vacations.length; i++){
-			var numberOfVacationDays = DateUtils.dateDiffInDays(employee.vacations[i].start, employee.vacations[i].end);
+		var numberOfVacationDays = 0;
+		if(typeof employee.vacations!== 'undefined'){
+			for(i=0; i< employee.vacations.length; i++){
+				numberOfVacationDays = DateUtils.dateDiffInDays(employee.vacations[i].start, employee.vacations[i].end);
+			}
 		}
-		return 88;
+		numberOfVacationDays = 0;
+		return $scope.normalEmployeeHours();
 	}
 	
 	$scope.numberOfProposalsPeople = function(){
