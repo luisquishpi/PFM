@@ -3,9 +3,82 @@
  */
 
 projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService', 'workTimeService', 'EmployeeUtils', 'DateUtils', function ($scope, $isTest, bridgeService, workTimeService, EmployeeUtils, DateUtils) {  
+		
+	function EmployeeResource(employee){
+		this.employee = employee;
+		this.projectManagementHours=0;
+		this.requirementsHours=0;
+		this.analysisDesignHours=0;
+		this.implementationHours=0;
+		this.testsHours=0;
+		this.deployHours=0;
+		this.environmentHours=0;
+	}
 	
 	$scope.discipline = bridgeService.shareData;
+	$scope.employeeListSelected=[];
+	$scope.initEmployee=[];
 	
+	//funcion que agrega empleado al array
+	
+	$scope.copyEmployeeToList = function(employee, index){
+		if(employee.selected){
+			$scope.employeeListSelected.push(employee);
+		}
+		else{
+			var index = $scope.employeeListSelected.indexOf(employee);
+			$scope.employeeListSelected.splice(index,1);
+		}
+	}
+	
+	$scope.sum = function(items, prop){
+	    return items.reduce( function(a, b){
+	        return a + parseFloat(b[prop]);
+	    }, 0);
+	};
+	
+	//Gestion en Init
+	$scope.addEmployeeInit = function(){
+		var seen = false;
+		for(var p=0;p<$scope.employeeListSelected.length;p++){
+			for(var i=0;i<$scope.initEmployee.length;i++){
+				if($scope.employeeListSelected[p].id == $scope.initEmployee[i].employee.id)
+					seen = true;
+			}
+			if(!seen)
+				$scope.initEmployee.push(new EmployeeResource($scope.employeeListSelected[p]));
+			seen = false;
+		}
+	}
+	
+	$scope.deleteEmployeeInit = function(item){
+		var index = $scope.initEmployee.indexOf(item);
+		$scope.initEmployee.splice(index, 1); 
+	}
+		
+	$scope.initProjectManagementHoursTotal = function(){
+		return parseFloat($scope.sum($scope.initEmployee, 'projectManagementHours'));
+	}
+	$scope.initRequirementsHoursTotal = function(){
+		return parseFloat($scope.sum($scope.initEmployee, 'requirementsHours'));
+	}
+	$scope.initAnalysisDesignHoursTotal = function(){
+		return parseFloat($scope.sum($scope.initEmployee, 'analysisDesignHours'));
+	}
+	$scope.initImplementationHoursTotal = function(){
+		return parseFloat($scope.sum($scope.initEmployee, 'implementationHours'));
+	}
+	$scope.initTestsHoursTotal = function(){
+		return parseFloat($scope.sum($scope.initEmployee, 'testsHours'));
+	}
+	$scope.initDeployHoursTotal = function(){
+		return parseFloat($scope.sum($scope.initEmployee, 'deployHours'));
+	}
+	$scope.initEnvironmentHoursTotal = function(){
+		return parseFloat($scope.sum($scope.initEmployee, 'environmentHours'));
+	}
+	//
+		
 	var arrayRoles = ["PROJECT_MANAGEMENT", "REQUIREMENTS", "ANALYSIS_DESIGN", "IMPLEMENTATION", "TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL"];
 	
 	if(!$isTest){
@@ -281,18 +354,6 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 		return $scope.inicioProjectManagementProposal()+$scope.inicioRequirementsProposal()+
 		$scope.inicioAnalysisDesignProposal()+$scope.inicioImplementationProposal()+
 		$scope.inicioTestsProposal()+$scope.inicioDeployProposal()+$scope.inicioEnviromentProposal();
-	}
-	
-	//funcion que agrega empleado al array
-	$scope.employeeListSelected=[];
-	$scope.copyEmployeeToList = function(employee, index){
-		if(employee.selected){
-			$scope.employeeListSelected.push(employee);
-		}
-		else{
-			var index = $scope.employeeListSelected.indexOf(employee);
-			$scope.employeeListSelected.splice(index,1);
-		}
 	}
 	
 	//calcula el numero de personas propuestas

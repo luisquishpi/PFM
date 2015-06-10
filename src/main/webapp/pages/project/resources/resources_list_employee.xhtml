@@ -9,31 +9,45 @@
 	xmlns:p="http://primefaces.org/ui">
 
 	<fieldset>
-			<table class="table table-striped">
+		<table class="table table-striped">
 			<tr>
-                    <th class="ui-outputlabel ui-widget">Empleado</th>
-                    <th class="ui-outputlabel ui-widget">€/Hora</th>
-                    <th class="ui-outputlabel ui-widget">Gestión Proyectos</th>
-                    <th class="ui-outputlabel ui-widget">Requisitos</th>
-                    <th class="ui-outputlabel ui-widget">Análisis Diseño</th>
-                    <th class="ui-outputlabel ui-widget">Implementación</th>
-                    <th class="ui-outputlabel ui-widget">Pruebas</th>
-                    <th class="ui-outputlabel ui-widget">Despliegue</th>
-                    <th class="ui-outputlabel ui-widget">Control Versiones</th>
-                    <th class="ui-outputlabel ui-widget">Acciones</th>
-                </tr>
-				<tr ng-repeat="employee in resourcesBean.employeeList">
-					<td><strong>{{employee.fullName}}</strong></td>
-					<td>20.02</td>
-					<td class="text-center">{{employeeHasRole(employee,"PROJECT_MANAGEMENT")===true?"X":""}}</td>
-					<td class="text-center">{{employeeHasRole(employee,"REQUIREMENTS")===true?"X":""}}</td>
-					<td class="text-center">{{employeeHasRole(employee,"ANALYSIS_DESIGN")===true?"X":""}}</td>
-					<td class="text-center">{{employeeHasRole(employee,"IMPLEMENTATION")===true?"X":""}}</td>
-					<td class="text-center">{{employeeHasRole(employee,"TESTS")===true?"X":""}}</td>
-					<td class="text-center">{{employeeHasRole(employee,"DEPLOY")===true?"X":""}}</td>
-					<td class="text-center">{{employeeHasRole(employee,"ENVIROMENT_REVISION_CONTROL")===true?"X":""}}</td>
-					<td>&nbsp;</td>
-				</tr>
-			</table>
+				<th class="ui-outputlabel ui-widget">Empleado</th>
+				<th class="ui-outputlabel ui-widget">€/Hora</th>
+				<th class="ui-outputlabel ui-widget">Gestión Proyectos</th>
+				<th class="ui-outputlabel ui-widget">Requisitos</th>
+				<th class="ui-outputlabel ui-widget">Análisis Diseño</th>
+				<th class="ui-outputlabel ui-widget">Implementación</th>
+				<th class="ui-outputlabel ui-widget">Pruebas</th>
+				<th class="ui-outputlabel ui-widget">Despliegue</th>
+				<th class="ui-outputlabel ui-widget">Control Versiones</th>
+				<th class="ui-outputlabel ui-widget">Acciones</th>
+			</tr>
+			<tr ng-repeat="employee in resourcesBean.employeeList">
+				<td class="text-center"><strong>{{employee.fullName}}</strong></td>
+				<td class="text-center">{{employeeSalaryHour(employee)}}</td>
+				<td class="text-center">{{employeeHasRole(employee,"PROJECT_MANAGEMENT")===true?"X":""}}</td>
+				<td class="text-center">{{employeeHasRole(employee,"REQUIREMENTS")===true?"X":""}}</td>
+				<td class="text-center">{{employeeHasRole(employee,"ANALYSIS_DESIGN")===true?"X":""}}</td>
+				<td class="text-center">{{employeeHasRole(employee,"IMPLEMENTATION")===true?"X":""}}</td>
+				<td class="text-center">{{employeeHasRole(employee,"TESTS")===true?"X":""}}</td>
+				<td class="text-center">{{employeeHasRole(employee,"DEPLOY")===true?"X":""}}</td>
+				<td class="text-center">{{employeeHasRole(employee,"ENVIROMENT_REVISION_CONTROL")===true?"X":""}}</td>
+				<td class="text-center"><h:selectBooleanCheckbox value="{{$index}}"
+						ng-model="employee.selected"
+						ng-change="copyEmployeeToList(employee,$index)" /></td>
+			</tr>
+			<tr>
+				<td><strong>Totales</strong></td>
+				<td></td>
+				<td class="text-center">{{numberOfProjectManagement}}</td>
+				<td class="text-center">{{numberOfRequirements}}</td>
+				<td class="text-center">{{numberOfAnalysisDesign}}</td>
+				<td class="text-center">{{numberOfImplementation}}</td>
+				<td class="text-center">{{numberOfTests}}</td>
+				<td class="text-center">{{numberOfDeploy}}</td>
+				<td class="text-center">{{numberOfEnviroment}}</td>
+				<td>&nbsp;</td>
+			</tr>
+		</table>
 	</fieldset>
 </ui:composition>
