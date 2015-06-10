@@ -222,7 +222,6 @@ projectApp.controller("theoricalDisciplineController", ['$scope', '$isTest', 'br
 	/***********************Personas-hora*************************/
 	//Fase Inicio
 	$scope.initialProjectManagmentHour = function(){	
-		
 		return DISTRIBUCION_GESTION_INICIO/100*$scope.phases.inicioPeopleHour();
 	}
 	

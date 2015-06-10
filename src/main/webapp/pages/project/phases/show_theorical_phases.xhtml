@@ -42,6 +42,7 @@
 		<ui:define name="content">
 			<div class="panel-body">
 				<h:form prependId="false" ng-app="projectApp">
+					<div ng-cloak=""> 
 					<p:growl id="growl" sticky="false" life="5000" showDetail="true" />
 					<div ng-controller="scheduleController">
 						<c:set var="projectBean" scope="request"
@@ -76,6 +77,7 @@
 								</div>
 							</div>
 						</h:panelGroup>
+					</div>
 					</div>
 				</h:form>
 			</div>

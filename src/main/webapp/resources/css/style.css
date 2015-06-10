@@ -73,7 +73,7 @@ table td {
 }
 
 .percentaje::after{
-	content: "€"; 
+	content: "%"; 
 }
 .table-bordered label {
     margin-right: 10px;
