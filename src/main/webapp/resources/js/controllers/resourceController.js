@@ -2,12 +2,12 @@
  * AngularJS resourceController
  */
 
-projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService', 'workTimeService', 'EmployeeUtils', function ($scope, $isTest, bridgeService, workTimeService, EmployeeUtils) {  
+projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService', 'workTimeService', 'EmployeeUtils', 'DateUtils', function ($scope, $isTest, bridgeService, workTimeService, EmployeeUtils, DateUtils) {  
 	
 	$scope.discipline = bridgeService.shareData;
 	
 	var arrayRoles = ["PROJECT_MANAGEMENT", "REQUIREMENTS", "ANALYSIS_DESIGN", "IMPLEMENTATION", "TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL"];
-
+	
 	if(!$isTest){
 		  initJSFScope($scope);
 		  workTimeService.calculateWorkDaysAndHour($scope.resourcesBean.project.startString, 
@@ -30,49 +30,44 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	//cuenta el numero de empleados con rol project management
 	$scope.numberOfProjectManagement = function(){
 		var POSITION_OF_ROLE = 0;
-		return EmployeeUtils.countNumberOfRoles($scope.assignResourcesBean.employeeList,arrayRoles[POSITION_OF_ROLE]);
+		return EmployeeUtils.countNumberOfRoles($scope.resourcesBean.employeeList,arrayRoles[POSITION_OF_ROLE]);
 	}
 
 	//cuenta el numero de empleados con rol requirements
 	$scope.numberOfRequirements = function(){
 		var POSITION_OF_ROLE = 1;
-		return EmployeeUtils.countNumberOfRoles($scope.assignResourcesBean.employeeList, arrayRoles[POSITION_OF_ROLE]);
+		return EmployeeUtils.countNumberOfRoles($scope.resourcesBean.employeeList, arrayRoles[POSITION_OF_ROLE]);
 	}	
 	
 	//cuenta el numero de empleados con rol analysis
 	$scope.numberOfAnalysisDesign = function(){
 		var POSITION_OF_ROLE = 2;
-		return EmployeeUtils.countNumberOfRoles($scope.assignResourcesBean.employeeList, arrayRoles[POSITION_OF_ROLE]);
+		return EmployeeUtils.countNumberOfRoles($scope.resourcesBean.employeeList, arrayRoles[POSITION_OF_ROLE]);
 	}	
 	
 	//cuenta el numero de empleados con rol implementation
 	$scope.numberOfImplementation = function(){
 		var POSITION_OF_ROLE = 3;
-		return EmployeeUtils.countNumberOfRoles($scope.assignResourcesBean.employeeList, arrayRoles[POSITION_OF_ROLE]);
+		return EmployeeUtils.countNumberOfRoles($scope.resourcesBean.employeeList, arrayRoles[POSITION_OF_ROLE]);
 	}	
 	
 	//cuenta el numero de empleados con rol test
 	$scope.numberOfTests = function(){
 		var POSITION_OF_ROLE = 4;
-		return EmployeeUtils.countNumberOfRoles($scope.assignResourcesBean.employeeList, arrayRoles[POSITION_OF_ROLE]);
+		return EmployeeUtils.countNumberOfRoles($scope.resourcesBean.employeeList, arrayRoles[POSITION_OF_ROLE]);
 	}	
 	
 	//cuenta el numero de empleados con rol deploy
 	$scope.numberOfDeploy = function(){
 		var POSITION_OF_ROLE = 5;
-		return EmployeeUtils.countNumberOfRoles($scope.assignResourcesBean.employeeList, arrayRoles[POSITION_OF_ROLE]);
+		return EmployeeUtils.countNumberOfRoles($scope.resourcesBean.employeeList, arrayRoles[POSITION_OF_ROLE]);
 	}		
 	
 	//cuenta el numero de empleados con rol enviroment
 	$scope.numberOfEnviroment = function(){
 		var POSITION_OF_ROLE = 6;
-		return EmployeeUtils.countNumberOfRoles($scope.assignResourcesBean.employeeList, arrayRoles[POSITION_OF_ROLE]);
+		return EmployeeUtils.countNumberOfRoles($scope.resourcesBean.employeeList, arrayRoles[POSITION_OF_ROLE]);
 	}	
-	
-	//calcula el numero de personas propuestas
-	$scope.numberOfProposalsPeople = function(){
-		return 2.7;
-	}
 	
 	//Fase de inicio - teorico relativo
 	$scope.inicioProjectManagementTheoricalRelative = function(){
@@ -213,9 +208,9 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	
 	$scope.inicioTotalAssigned = function(){
 		return $scope.inicioProjectManagementAssigned() + $scope.inicioRequirementsAssigned() + 
-		$scope.inicioAnalysisDesignAssigned() + $scope.inicioImplementationAssigned() + 
-		$scope.inicioTestsAssigned() + $scope.inicioDeployAssigned() +
-		$scope.inicioEnviromentAssigned();
+			$scope.inicioAnalysisDesignAssigned() + $scope.inicioImplementationAssigned() + 
+			$scope.inicioTestsAssigned() + $scope.inicioDeployAssigned() +
+			$scope.inicioEnviromentAssigned();
 	}
 	
 	//Fase de inicio - diferencia relativa
@@ -255,36 +250,69 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	
 	//Fase de inicio - propuesta
 	$scope.inicioProjectManagementProposal = function(){
-		return ($scope.inicioProjectManagementTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*NUMBER_OF_ASIGNED_PEOPLE)/($scope.numberOfProposalsPeople()*100);
+		return ($scope.inicioProjectManagementTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*NUMBER_OF_ASIGNED_PEOPLE)/($scope.numOfProposalPeople*100);
 	}	
 	
 	$scope.inicioRequirementsProposal = function(){
-		return ($scope.inicioRequirementsTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*NUMBER_OF_ASIGNED_PEOPLE)/($scope.numberOfProposalsPeople()*100);
+		return ($scope.inicioRequirementsTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*NUMBER_OF_ASIGNED_PEOPLE)/($scope.numOfProposalPeople*100);
 	}	
 	
 	$scope.inicioAnalysisDesignProposal = function(){
-		return ($scope.inicioAnalysisDesignTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*NUMBER_OF_ASIGNED_PEOPLE)/($scope.numberOfProposalsPeople()*100);
+		return ($scope.inicioAnalysisDesignTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*NUMBER_OF_ASIGNED_PEOPLE)/($scope.numOfProposalPeople*100);
 	}
 	
 	$scope.inicioImplementationProposal = function(){
-		return ($scope.inicioImplementationTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*NUMBER_OF_ASIGNED_PEOPLE)/($scope.numberOfProposalsPeople()*100);
+		return ($scope.inicioImplementationTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*NUMBER_OF_ASIGNED_PEOPLE)/($scope.numOfProposalPeople*100);
 	}	
 	
 	$scope.inicioTestsProposal = function(){
-		return ($scope.inicioTestsTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*NUMBER_OF_ASIGNED_PEOPLE)/($scope.numberOfProposalsPeople()*100);
+		return ($scope.inicioTestsTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*NUMBER_OF_ASIGNED_PEOPLE)/($scope.numOfProposalPeople*100);
 	}	
 	
 	$scope.inicioDeployProposal = function(){
-		return ($scope.inicioDeployTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*NUMBER_OF_ASIGNED_PEOPLE)/($scope.numberOfProposalsPeople()*100);
+		return ($scope.inicioDeployTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*NUMBER_OF_ASIGNED_PEOPLE)/($scope.numOfProposalPeople*100);
 	}	
 	
 	$scope.inicioEnviromentProposal = function(){
-		return ($scope.inicioEnviromentTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*NUMBER_OF_ASIGNED_PEOPLE)/($scope.numberOfProposalsPeople()*100);
+		return ($scope.inicioEnviromentTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*NUMBER_OF_ASIGNED_PEOPLE)/($scope.numOfProposalPeople*100);
 	}
 	
 	$scope.inicioTotalProposal = function(){
 		return $scope.inicioProjectManagementProposal()+$scope.inicioRequirementsProposal()+
 		$scope.inicioAnalysisDesignProposal()+$scope.inicioImplementationProposal()+
 		$scope.inicioTestsProposal()+$scope.inicioDeployProposal()+$scope.inicioEnviromentProposal();
-	}	
+	}
+	
+	//funcion que agrega empleado al array
+	$scope.employeeListSelected=[];
+	$scope.copyEmployeeToList = function(employee, index){
+		if(employee.selected){
+			$scope.employeeListSelected.push(employee);
+		}
+		else{
+			var index = $scope.employeeListSelected.indexOf(employee);
+			$scope.employeeListSelected.splice(index,1);
+		}
+	}
+	
+	//calcula el numero de personas propuestas
+	$scope.averageEmployeeHours = function(){
+		var averageHoursPerWeek = $scope.discipline.phases.schedule.averageHoursPerWeek();
+		var iterationDays = $scope.resourcesBean.project.iterationDays;
+		return averageHoursPerWeek*iterationDays;
+	}
+	
+	$scope.availableEmployeeHours = function(employee){
+		for(i=0; i< employee.vacations.length; i++){
+			var numberOfVacationDays = DateUtils.dateDiffInDays(employee.vacations[i].start, employee.vacations[i].end);
+			console.log(numberOfVacationDays);
+		}
+		return 0;
+	}
+	
+	$scope.numberOfProposalsPeople = function(){
+		return $scope.inicioTotalTheoricalAbsolute()/$scope.averageEmployeeHours();
+	}
+	
+	$scope.numOfProposalPeople = $scope.numberOfProposalsPeople();	
 }]);
