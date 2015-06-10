@@ -23,29 +23,29 @@
 				<th class="ui-outputlabel ui-widget">Acciones</th>
 			</tr>
 			<tr ng-repeat="employee in resourcesBean.employeeList">
-				<td><strong>{{employee.fullName}}</strong></td>
-				<td>{{employeeSalaryHour(employee)}}</td>
-				<td>{{employeeHasRole(employee,"PROJECT_MANAGEMENT")===true?"X":""}}</td>
-				<td>{{employeeHasRole(employee,"REQUIREMENTS")===true?"X":""}}</td>
-				<td>{{employeeHasRole(employee,"ANALYSIS_DESIGN")===true?"X":""}}</td>
-				<td>{{employeeHasRole(employee,"IMPLEMENTATION")===true?"X":""}}</td>
-				<td>{{employeeHasRole(employee,"TESTS")===true?"X":""}}</td>
-				<td>{{employeeHasRole(employee,"DEPLOY")===true?"X":""}}</td>
-				<td>{{employeeHasRole(employee,"ENVIROMENT_REVISION_CONTROL")===true?"X":""}}</td>
-				<td><h:selectBooleanCheckbox value="{{$index}}"
+				<td class="text-center"><strong>{{employee.fullName}}</strong></td>
+				<td class="text-center">{{employeeSalaryHour(employee)}}</td>
+				<td class="text-center">{{employeeHasRole(employee,"PROJECT_MANAGEMENT")===true?"X":""}}</td>
+				<td class="text-center">{{employeeHasRole(employee,"REQUIREMENTS")===true?"X":""}}</td>
+				<td class="text-center">{{employeeHasRole(employee,"ANALYSIS_DESIGN")===true?"X":""}}</td>
+				<td class="text-center">{{employeeHasRole(employee,"IMPLEMENTATION")===true?"X":""}}</td>
+				<td class="text-center">{{employeeHasRole(employee,"TESTS")===true?"X":""}}</td>
+				<td class="text-center">{{employeeHasRole(employee,"DEPLOY")===true?"X":""}}</td>
+				<td class="text-center">{{employeeHasRole(employee,"ENVIROMENT_REVISION_CONTROL")===true?"X":""}}</td>
+				<td class="text-center"><h:selectBooleanCheckbox value="{{$index}}"
 						ng-model="employee.selected"
 						ng-change="copyEmployeeToList(employee,$index)" /></td>
 			</tr>
 			<tr>
 				<td><strong>Totales</strong></td>
 				<td></td>
-				<td>{{numberOfProjectManagement}}</td>
-				<td>{{numberOfRequirements}}</td>
-				<td>{{numberOfAnalysisDesign}}</td>
-				<td>{{numberOfImplementation}}</td>
-				<td>{{numberOfTests}}</td>
-				<td>{{numberOfDeploy}}</td>
-				<td>{{numberOfEnviroment}}</td>
+				<td class="text-center">{{numberOfProjectManagement}}</td>
+				<td class="text-center">{{numberOfRequirements}}</td>
+				<td class="text-center">{{numberOfAnalysisDesign}}</td>
+				<td class="text-center">{{numberOfImplementation}}</td>
+				<td class="text-center">{{numberOfTests}}</td>
+				<td class="text-center">{{numberOfDeploy}}</td>
+				<td class="text-center">{{numberOfEnviroment}}</td>
 				<td>&nbsp;</td>
 			</tr>
 		</table>
