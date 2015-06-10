@@ -4,9 +4,7 @@
 
 projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService', 'workTimeService', 'EmployeeUtils', function ($scope, $isTest, bridgeService, workTimeService, EmployeeUtils) {  
 	
-	console.log(bridgeService.shareData);
 	$scope.discipline = bridgeService.shareData;
-	console.log($scope.discipline.phases);
 	
 	var arrayRoles = ["PROJECT_MANAGEMENT", "REQUIREMENTS", "ANALYSIS_DESIGN", "IMPLEMENTATION", "TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL"];
 
@@ -73,31 +71,31 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	
 	//Fase de inicio - teorico relativo
 	$scope.inicioProjectManagementTheoricalRelative = function(){
-		return $scope.discipline.phases.initialPercentajeProjectManagment();
+		return $scope.discipline.initialPercentajeProjectManagment();
 	}	
 	
 	$scope.inicioRequirementsTheoricalRelative = function(){
-		return $scope.discipline.phases.initialPercentajeRequirements();
+		return $scope.discipline.initialPercentajeRequirements();
 	}	
 	
 	$scope.inicioAnalysisDesignTheoricalRelative = function(){
-		return $scope.discipline.phases.initialPercentajeAnalysis();
+		return $scope.discipline.initialPercentajeAnalysis();
 	}
 	
 	$scope.inicioImplementationTheoricalRelative = function(){
-		return $scope.discipline.phases.initialPercentajeImplementation();
+		return $scope.discipline.initialPercentajeImplementation();
 	}	
 	
 	$scope.inicioTestsTheoricalRelative = function(){
-		return $scope.discipline.phases.initialPercentajeTests();
+		return $scope.discipline.initialPercentajeTests();
 	}	
 	
 	$scope.inicioDeployTheoricalRelative = function(){
-		return $scope.discipline.phases.initialPercentajeDeployment();
+		return $scope.discipline.initialPercentajeDeployment();
 	}	
 	
 	$scope.inicioEnviromentTheoricalRelative = function(){
-		return $scope.discipline.phases.initialPercentajeVersion();
+		return $scope.discipline.initialPercentajeVersion();
 	}
 	
 	$scope.inicioTotalTheoricalRelative = function(){
@@ -109,31 +107,31 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	
 	//Fase de inicio - teorico absoluto
 	$scope.inicioProjectManagementTheoricalAbsolute = function(){
-		return $scope.discipline.phases.initialProjectManagmentHour();
+		return $scope.discipline.initialProjectManagmentHour();
 	}	
 	
 	$scope.inicioRequirementsTheoricalAbsolute = function(){
-		return $scope.discipline.phases.initialRequirementsHour();
+		return $scope.discipline.initialRequirementsHour();
 	}	
 	
 	$scope.inicioAnalysisDesignTheoricalAbsolute = function(){
-		return $scope.discipline.phases.initialAnalysisHour();
+		return $scope.discipline.initialAnalysisHour();
 	}
 	
 	$scope.inicioImplementationTheoricalAbsolute = function(){
-		return $scope.discipline.phases.initialImplementationHour();
+		return $scope.discipline.initialImplementationHour();
 	}	
 	
 	$scope.inicioTestsTheoricalAbsolute = function(){
-		return $scope.discipline.phases.initialTestsHour();
+		return $scope.discipline.initialTestsHour();
 	}	
 	
 	$scope.inicioDeployTheoricalAbsolute = function(){
-		return $scope.discipline.phases.initialDeploymentHour();
+		return $scope.discipline.initialDeploymentHour();
 	}	
 	
 	$scope.inicioEnviromentTheoricalAbsolute = function(){
-		return $scope.discipline.phases.initialVersionHour();
+		return $scope.discipline.initialVersionHour();
 	}
 	
 	$scope.inicioTotalTheoricalAbsolute = function(){
@@ -179,6 +177,36 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 			$scope.inicioEnviromentAbsoluteDifference();
 	}
 	
+	//Fase de inicio - diferencia relativa
+	$scope.inicioProjectManagementRelativeDifference = function(){
+		return 94;
+	}	
 	
+	$scope.inicioRequirementsRelativeDifference = function(){
+		return 94;
+	}	
 	
+	$scope.inicioAnalysisDesignRelativeDifference = function(){
+		return 94;
+	}
+	
+	$scope.inicioImplementationRelativeDifference = function(){
+		return 94;
+	}	
+	
+	$scope.inicioTestsRelativeDifference = function(){
+		return 94;
+	}	
+	
+	$scope.inicioDeployRelativeDifference = function(){
+		return 94;
+	}	
+	
+	$scope.inicioEnviromentRelativeDifference = function(){
+		return 94;
+	}
+	
+	$scope.inicioTotalRelativeDifference = function(){
+		return 94;
+	}
 }]);
