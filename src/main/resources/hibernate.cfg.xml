@@ -37,6 +37,8 @@
 		<mapping class='upm.miw.pfm.models.entities.Employee' />
 		<mapping class='upm.miw.pfm.models.entities.Vacation' />
 		<mapping class='upm.miw.pfm.models.entities.Holiday' />
+		<mapping class='upm.miw.pfm.models.entities.HoursRolePhase' />
+		
 
 	</session-factory>
 </hibernate-configuration>
