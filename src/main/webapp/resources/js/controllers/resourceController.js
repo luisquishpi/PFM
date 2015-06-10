@@ -277,4 +277,73 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 		return 94;
 	}
 	
+	var NUMBER_OF_ASIGNED_PEOPLE = 2.5;
+	
+	//Fase de inicio - propuesta
+	$scope.inicioProjectManagementProposal = function(){
+		return ($scope.inicioProjectManagementTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*NUMBER_OF_ASIGNED_PEOPLE)/($scope.numOfProposalPeople*100);
+	}	
+	
+	$scope.inicioRequirementsProposal = function(){
+		return ($scope.inicioRequirementsTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*NUMBER_OF_ASIGNED_PEOPLE)/($scope.numOfProposalPeople*100);
+	}	
+	
+	$scope.inicioAnalysisDesignProposal = function(){
+		return ($scope.inicioAnalysisDesignTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*NUMBER_OF_ASIGNED_PEOPLE)/($scope.numOfProposalPeople*100);
+	}
+	
+	$scope.inicioImplementationProposal = function(){
+		return ($scope.inicioImplementationTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*NUMBER_OF_ASIGNED_PEOPLE)/($scope.numOfProposalPeople*100);
+	}	
+	
+	$scope.inicioTestsProposal = function(){
+		return ($scope.inicioTestsTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*NUMBER_OF_ASIGNED_PEOPLE)/($scope.numOfProposalPeople*100);
+	}	
+	
+	$scope.inicioDeployProposal = function(){
+		return ($scope.inicioDeployTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*NUMBER_OF_ASIGNED_PEOPLE)/($scope.numOfProposalPeople*100);
+	}	
+	
+	$scope.inicioEnviromentProposal = function(){
+		return ($scope.inicioEnviromentTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*NUMBER_OF_ASIGNED_PEOPLE)/($scope.numOfProposalPeople*100);
+	}
+	
+	$scope.inicioTotalProposal = function(){
+		return $scope.inicioProjectManagementProposal()+$scope.inicioRequirementsProposal()+
+		$scope.inicioAnalysisDesignProposal()+$scope.inicioImplementationProposal()+
+		$scope.inicioTestsProposal()+$scope.inicioDeployProposal()+$scope.inicioEnviromentProposal();
+	}
+	
+	//funcion que agrega empleado al array
+	$scope.employeeListSelected=[];
+	$scope.copyEmployeeToList = function(employee, index){
+		if(employee.selected){
+			$scope.employeeListSelected.push(employee);
+		}
+		else{
+			var index = $scope.employeeListSelected.indexOf(employee);
+			$scope.employeeListSelected.splice(index,1);
+		}
+	}
+	
+	//calcula el numero de personas propuestas
+	$scope.averageEmployeeHours = function(){
+		var averageHoursPerWeek = $scope.discipline.phases.schedule.averageHoursPerWeek();
+		var iterationDays = $scope.resourcesBean.project.iterationDays;
+		return averageHoursPerWeek*iterationDays;
+	}
+	
+	$scope.availableEmployeeHours = function(employee){
+		for(i=0; i< employee.vacations.length; i++){
+			var numberOfVacationDays = DateUtils.dateDiffInDays(employee.vacations[i].start, employee.vacations[i].end);
+		}
+		return 0;
+	}
+	
+	$scope.numberOfProposalsPeople = function(){
+		return $scope.inicioTotalTheoricalAbsolute()/$scope.averageEmployeeHours();
+	}
+	
+	$scope.numOfProposalPeople = $scope.numberOfProposalsPeople();	
+	
 }]);

@@ -38,5 +38,6 @@ public abstract class DaoFactory {
     public GenericDao getDao() {
         return this.concreteDao;
     }
-    
+
+	public abstract HoursRolePhaseDao getHoursRolePhaseDao();     
 }

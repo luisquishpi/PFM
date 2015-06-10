@@ -282,35 +282,35 @@ describe("Test ResourceController", function(){
 	
 	//Fase de inicio - diferencia relativas
 	it("Inicio Project Management relative difference should be 94", function(){
-		expect(scope.inicioProjectManagementRelativeDifference()).toBe(94);
+		expect(Math.round(scope.inicioProjectManagementRelativeDifference())).toBe(94);
 	});		
 	
 	it("Inicio Requirements relative difference should be 94", function(){
-		expect(scope.inicioRequirementsRelativeDifference()).toBe(94);
+		expect(Math.round(scope.inicioRequirementsRelativeDifference())).toBe(94);
 	});
 	
 	it("Inicio Analysis Design relative difference should be 94", function(){
-		expect(scope.inicioAnalysisDesignRelativeDifference()).toBe(94);
+		expect(Math.round(scope.inicioAnalysisDesignRelativeDifference())).toBe(94);
 	});
 	
 	it("Inicio Implementation relative difference should be 94", function(){
-		expect(scope.inicioImplementationRelativeDifference()).toBe(94);
+		expect(Math.round(scope.inicioImplementationRelativeDifference())).toBe(94);
 	});
 	
 	it("Inicio Tests relative difference should be 94", function(){
-		expect(scope.inicioTestsRelativeDifference()).toBe(94);
+		expect(Math.round(scope.inicioTestsRelativeDifference())).toBe(94);
 	});
 	
 	it("Inicio Deploy relative difference should be 94", function(){
-		expect(scope.inicioDeployRelativeDifference()).toBe(94);
+		expect(Math.round(scope.inicioDeployRelativeDifference())).toBe(94);
 	});
 	
 	it("Inicio Enviroment relative difference should be 94", function(){
-		expect(scope.inicioEnviromentRelativeDifference()).toBe(94);
+		expect(Math.round(scope.inicioEnviromentRelativeDifference())).toBe(94);
 	});	
 	
 	it("Inicio Total absolute theorical percentaje should be 94", function(){
-		expect(scope.inicioTotalRelativeDifference()).toBe(94);
+		expect(Math.round(scope.inicioTotalRelativeDifference())).toBe(94);
 	});		
 	
 	//Fase de inicio - assigned
@@ -344,6 +344,39 @@ describe("Test ResourceController", function(){
 	
 	it("Inicio Total asigned percentaje should be 260", function(){
 		expect(scope.inicioTotalAssigned()).toBe(260);
+	});		
+	
+	//Fase de inicio - proposal
+	it("Inicio Project Management proposal should be 35.84", function(){
+		expect(scope.inicioProjectManagementProposal()).toBeCloseTo(35.84,1);
+	});		
+	
+	it("Inicio Requirements proposal should be 97.28", function(){
+		expect(scope.inicioRequirementsProposal()).toBeCloseTo(97.28,1);
+	});
+	
+	it("Inicio Analysis Design proposal should be 48.64", function(){
+		expect(scope.inicioAnalysisDesignProposal()).toBeCloseTo(48.64,1);
+	});
+	
+	it("Inicio Implementation proposal should be 20.48", function(){
+		expect(scope.inicioImplementationProposal()).toBeCloseTo(20.48,1);
+	});
+	
+	it("Inicio Tests proposal should be 20.48", function(){
+		expect(scope.inicioTestsProposal()).toBeCloseTo(20.48,1);
+	});
+	
+	it("Inicio Deploy proposal should be 7.68", function(){
+		expect(scope.inicioDeployProposal()).toBeCloseTo(7.68,1);
+	});
+	
+	it("Inicio Enviroment proposal should be 25.6", function(){
+		expect(scope.inicioEnviromentProposal()).toBeCloseTo(25.6,1);
+	});	
+	
+	it("Inicio Total asigned percentaje should be 256.01", function(){
+		expect(scope.inicioTotalProposal()).toBeCloseTo(256.01,1);
 	});		
 	
 
