@@ -14,6 +14,12 @@
         </ui:define>
 		<ui:define name="javascript">
 			<script>
+				var projectApp = angular.module('projectApp', [ "angularfaces" ]);
+				app.value("$isTest", false);
+			</script>
+			<script src="/PFM/resources/js/controllers/projectApp.js"></script>
+			<script src="/PFM/resources/js/controllers/resourceController.js"></script>
+			<script>
 				$(function() {
 					var selectBox = $("#project").selectBoxIt();
 				});
@@ -25,22 +31,20 @@
 		</ui:define>
 		<ui:define name="content">
 			<div class="panel-body">
-				<h:form prependId="false">
+				<h:form prependId="false" ng-app="projectApp">
 					<p:growl id="growl" sticky="false" life="5000" showDetail="false" />
 					<div class="row">
 						<ui:include src="resources_list_project.xhtml" />
 					</div>
-					<h:panelGroup
-						rendered="#{not resourcesBean.emptyProject}">
+					<h:panelGroup rendered="#{not resourcesBean.emptyProject}">
 						<div class="row">
 							<ui:include src="resources_list_employee.xhtml" />
 						</div>
-						
+
 						<!-- Segunda parte -->
 						<div class="row">
 							<ui:include src="resources_list.xhtml" />
 						</div>
-						
 					</h:panelGroup>
 				</h:form>
 			</div>
