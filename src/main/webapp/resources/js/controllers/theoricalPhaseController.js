@@ -349,7 +349,6 @@ projectApp.controller("theoricalPhaseController", ['$scope', '$isTest', 'bridgeS
 	
 	//Fila de Coste
 	$scope.inicioCosteEffort = function() {
-		console.log($scope.showTheoricalPhasesBean);
 		return $scope.showTheoricalPhasesBean.project.cost*($scope.inicioPercentajeEffort()/100);
 	}
 	
@@ -372,7 +371,6 @@ projectApp.controller("theoricalPhaseController", ['$scope', '$isTest', 'bridgeS
 	
 	//Fila de Personas-hora
 	$scope.inicioPeopleHour = function() {
-		console.log($scope.inicioCosteEffort());
 		return $scope.inicioCosteEffort()/$scope.avgHourCost;
 	}
 	

@@ -70,10 +70,11 @@
 									<ngsync direction="serverToClient" value="{{projectBean.project}}" />	
 									<div ng-if="disciplinesFinished" ng-controller="resourceController">
 										<ngsync direction="serverToClient" value="{{resourcesBean.project}}" />	
+										<ngsync direction="serverToClient"
+												value="#{resourcesBean.employeeList}" />
 										<div class="row">
 											<ui:include src="resources_list_employee.xhtml" />
-										</div>
-										
+										</div>										
 										<!-- Segunda parte -->
 										<div class="row">
 											<ui:include src="resources_list.xhtml" />
