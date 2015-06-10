@@ -177,37 +177,73 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 			$scope.inicioEnviromentAbsoluteDifference();
 	}
 	
-	//Fase de inicio - diferencia relativa
-	$scope.inicioProjectManagementRelativeDifference = function(){
-		return 94;
+	//Fase de inicio - asignado
+	$scope.inicioProjectManagementAssigned = function(){
+		return 36.4;
 	}	
 	
-	$scope.inicioRequirementsRelativeDifference = function(){
-		return 94;
+	$scope.inicioRequirementsAssigned = function(){
+		return 98.8;
 	}	
 	
-	$scope.inicioAnalysisDesignRelativeDifference = function(){
-		return 94;
+	$scope.inicioAnalysisDesignAssigned = function(){
+		return 49.4;
 	}
 	
-	$scope.inicioImplementationRelativeDifference = function(){
-		return 94;
+	$scope.inicioImplementationAssigned = function(){
+		return 20.8;
 	}	
 	
-	$scope.inicioTestsRelativeDifference = function(){
-		return 94;
+	$scope.inicioTestsAssigned = function(){
+		return 20.8;
 	}	
 	
-	$scope.inicioDeployRelativeDifference = function(){
-		return 94;
+	$scope.inicioDeployAssigned = function(){
+		return 7.8;
 	}	
 	
-	$scope.inicioEnviromentRelativeDifference = function(){
-		return 94;
+	$scope.inicioEnviromentAssigned = function(){
+		return 26;
 	}
 	
-	$scope.inicioTotalRelativeDifference = function(){
-		return 94;
+	$scope.inicioTotalAssigned = function(){
+		return $scope.inicioProjectManagementAssigned() + $scope.inicioRequirementsAssigned() + 
+		$scope.inicioAnalysisDesignAssigned() + $scope.inicioImplementationAssigned() + 
+		$scope.inicioTestsAssigned() + $scope.inicioDeployAssigned() +
+		$scope.inicioEnviromentAssigned();
 	}
+	
+	//Fase de inicio - assigned
+	it("Inicio Project Management assigned should be 36.4", function(){
+		expect(scope.inicioProjectManagementAssigned()).toBe(36.4);
+	});		
+	
+	it("Inicio Requirements assigned should be 98.8", function(){
+		expect(scope.inicioRequirementsAssigned()).toBe(98.8);
+	});
+	
+	it("Inicio Analysis Design assigned should be 49.4", function(){
+		expect(scope.inicioAnalysisDesignAssigned()).toBe(49.4);
+	});
+	
+	it("Inicio Implementation assigned should be 20.8", function(){
+		expect(scope.inicioImplementationAssigned()).toBe(20.8);
+	});
+	
+	it("Inicio Tests assigned should be 20.8", function(){
+		expect(scope.inicioTestsAssigned()).toBe(20.8);
+	});
+	
+	it("Inicio Deploy assigned should be 7.8", function(){
+		expect(scope.inicioDeployAssigned()).toBe(7.8);
+	});
+	
+	it("Inicio Enviroment assigned should be 26", function(){
+		expect(scope.inicioEnviromentAssigned()).toBe(26);
+	});	
+	
+	it("Inicio Total absolute theorical percentaje should be 260", function(){
+		expect(scope.inicioTotalAssigned()).toBe(260);
+	});	
 	
 }]);
