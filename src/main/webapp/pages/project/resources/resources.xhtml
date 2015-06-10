@@ -23,7 +23,22 @@
 				$(function() {
 					var selectBox = $("#project").selectBoxIt();
 				});
-			</script>
+				var projectApp = angular.module('projectApp',
+						[ "angularfaces" ]);
+				app.value("$isTest", false);
+				</script>	
+				<script src="/PFM/resources/js/controllers/projectApp.js"></script>
+				<script src="/PFM/resources/js/controllers/scheduleController.js"></script>
+				<script
+					src="/PFM/resources/css/selectboxit/js/jquery.selectBoxIt.min.js"></script>
+				<script src="/PFM/resources/js/libs/moment.js"></script>
+				<script
+					src="/PFM/resources/js/controllers/theoricalDisciplineController.js"></script>
+				<script
+					src="/PFM/resources/js/controllers/theoricalPhaseController.js"></script>
+				<script
+					src="/PFM/resources/js/controllers/resourceController.js"></script>
+			
 		</ui:define>
 		<ui:define name="css">
 			<link href="/PFM/resources/css/bootstrap/css/bootstrap.min.css"
@@ -36,16 +51,38 @@
 					<div class="row">
 						<ui:include src="resources_list_project.xhtml" />
 					</div>
-					<h:panelGroup rendered="#{not resourcesBean.emptyProject}">
-						<div class="row">
-							<ui:include src="resources_list_employee.xhtml" />
-						</div>
-
-						<!-- Segunda parte -->
-						<div class="row">
-							<ui:include src="resources_list.xhtml" />
-						</div>
-					</h:panelGroup>
+					<h:panelGroup
+						rendered="#{not resourcesBean.emptyProject}">
+						<div ng-controller="scheduleController">
+							<c:set var="projectBean" scope="request"
+								value="#{resourcesBean}" />
+							<ngsync direction="serverToClient"
+								value="{{projectBean.projectSchedule}}" />
+							<ngsync direction="serverToClient"
+								value="#{projectBean.project}" />
+							<div ng-if="scheduleFinished" ng-controller="theoricalPhaseController">
+							    <c:set var="showTheoricalPhasesBean" scope="request"
+			                             value="#{resourcesBean}" />
+								<ngsync direction="serverToClient" value="{{showTheoricalPhasesBean.project}}" />
+								<ngsync direction="serverToClient" 
+			                                 value="{{showTheoricalPhasesBean.employeeList}}" /> 
+			                    <div ng-if="phasesFinished" ng-controller="theoricalDisciplineController">
+									<ngsync direction="serverToClient" value="{{projectBean.project}}" />	
+									<div ng-if="disciplinesFinished" ng-controller="resourceController">
+										<ngsync direction="serverToClient" value="{{resourcesBean.project}}" />	
+										<div class="row">
+											<ui:include src="resources_list_employee.xhtml" />
+										</div>
+										
+										<!-- Segunda parte -->
+										<div class="row">
+											<ui:include src="resources_list.xhtml" />
+										</div>
+									</div>
+								</div>
+							</div>	
+						</div>		
+					</h:panelGroup>					
 				</h:form>
 			</div>
 		</ui:define>

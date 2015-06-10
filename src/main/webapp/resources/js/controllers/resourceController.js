@@ -209,5 +209,4 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	$scope.inicioTotalRelativeDifference = function(){
 		return 94;
 	}
-	
 }]);
