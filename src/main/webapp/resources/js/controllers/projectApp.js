@@ -87,6 +87,14 @@ projectApp.service("DateUtils", function(){
     	
     	return between || sameStart  || sameEnd;
     }
+	
+	this.dateDiffInDays = function(start, end) {
+		start = moment(start,"DD/MM/YYYY HH:mm:ss");
+		end = moment(end,"DD/MM/YYYY HH:mm:ss");
+		var ms = moment.utc(end).diff(start);
+		var d = moment.duration(ms);
+		return Math.floor(d.asDays());
+	}
 
 });
 

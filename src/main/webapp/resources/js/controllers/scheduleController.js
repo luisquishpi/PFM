@@ -84,4 +84,8 @@ projectApp.controller("scheduleController",['$scope', '$isTest', 'bridgeService'
 		lista.push({workHours:$scope.projectBean.projectSchedule.saturdayHours});
 		return lista;
 	}
+	
+	$scope.averageHoursPerWeek = function(){
+		return $scope.hoursPerWeek()/$scope.daysPerWeek();
+	}
 }]);

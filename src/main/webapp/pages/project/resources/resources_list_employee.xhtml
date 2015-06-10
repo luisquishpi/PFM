@@ -25,13 +25,13 @@
 				<tr ng-repeat="employee in resourcesBean.employeeList">
 					<td><strong>{{employee.fullName}}</strong></td>
 					<td>20.02</td>
-					<td>{{employeeHasRole(employee,"PROJECT_MANAGEMENT")===true?"X":""}}</td>
-					<td>{{employeeHasRole(employee,"REQUIREMENTS")===true?"X":""}}</td>
-					<td>{{employeeHasRole(employee,"ANALYSIS_DESIGN")===true?"X":""}}</td>
-					<td>{{employeeHasRole(employee,"IMPLEMENTATION")===true?"X":""}}</td>
-					<td>{{employeeHasRole(employee,"TESTS")===true?"X":""}}</td>
-					<td>{{employeeHasRole(employee,"DEPLOY")===true?"X":""}}</td>
-					<td>{{employeeHasRole(employee,"ENVIROMENT_REVISION_CONTROL")===true?"X":""}}</td>
+					<td class="text-center">{{employeeHasRole(employee,"PROJECT_MANAGEMENT")===true?"X":""}}</td>
+					<td class="text-center">{{employeeHasRole(employee,"REQUIREMENTS")===true?"X":""}}</td>
+					<td class="text-center">{{employeeHasRole(employee,"ANALYSIS_DESIGN")===true?"X":""}}</td>
+					<td class="text-center">{{employeeHasRole(employee,"IMPLEMENTATION")===true?"X":""}}</td>
+					<td class="text-center">{{employeeHasRole(employee,"TESTS")===true?"X":""}}</td>
+					<td class="text-center">{{employeeHasRole(employee,"DEPLOY")===true?"X":""}}</td>
+					<td class="text-center">{{employeeHasRole(employee,"ENVIROMENT_REVISION_CONTROL")===true?"X":""}}</td>
 					<td>&nbsp;</td>
 				</tr>
 			</table>

@@ -20,7 +20,7 @@
 				required="true" />
 		</div>
 		<div class="col-sm-offset-2 col-sm-4">
-			<button type="button" class="btn btn-primary add_employee">Agregar empleado seleccionado</button>
+			<button ng-click="addEmployeeInit()" type="button" class="btn btn-primary add_employee">Agregar empleado seleccionado</button>
 		</div>
     </div>
 		<fieldset>
@@ -119,7 +119,7 @@
 		</table>
 		</fieldset>	
 		<fieldset>
-		<table class="table table-condensed">
+		<table class="table table-condensed" ng-if="initEmployee.length > 0">
 			<tr>
 				<th class="ui-outputlabel ui-widget">Nombre</th>
 				<th class="ui-outputlabel ui-widget">Gestion Proyecto</th>
@@ -130,26 +130,78 @@
 				<th class="ui-outputlabel ui-widget">Despliegue</th>
 				<th class="ui-outputlabel ui-widget">Control de versiones</th>
 			</tr>
-			<tr>
-				<td>Carlos Palacios</td>
-				<td>47.0</td>
-				<td>0.0</td>
-				<td>0.0</td>
-				<td>0.0</td>
-				<td>26.9</td>
-				<td>0.0</td>
-				<td>0.0</td>
-			</tr>
-			<tr>
-				<td>Luis Quishpi</td>
-				<td>0.0</td>
-				<td>127.0</td>
-				<td>0.0</td>
-				<td>0.0</td>
-				<td>0.0</td>
-				<td>0.0</td>
-				<td>0.0</td>
-			</tr>
+			<tr ng-repeat="employeeResource in initEmployee">
+				
+				<td>
+					<div class="col-xs-12">
+						{{employeeResource.employee.name}}
+					</div>	
+				</td>
+					<td>
+						<div class="col-xs-12">
+						<p:outputLabel for="obj1" value=""/>
+						<p:inputText style="width:100%;" required="false" id="obj1" 
+							value="{{employeeResource.projectManagementHours}}"
+							 />
+						</div>	 
+					</td>
+				
+					<td>
+						<div class="col-xs-12">
+						<p:outputLabel for="obj2" value=""/>
+						<p:inputText style="width:100%;" required="false" id="obj2" 
+							value="{{employeeResource.projectManagementHours}}"
+							 />
+						</div>	 
+					</td>
+					<td>
+						<div class="col-xs-12">
+							<p:outputLabel for="obj3" value=""/>
+							<p:inputText style="width:100%;" required="false" id="obj3" 
+								value="{{employeeResource.projectManagementHours}}"
+								 />
+						</div>	 
+					</td>
+					<td>
+						<div class="col-xs-12">
+							<p:outputLabel for="obj4" value=""/>
+							<p:inputText style="width:100%;" required="false" id="obj4" 
+								value="{{employeeResource.projectManagementHours}}"
+								 />
+						</div>	 
+					</td>
+				
+					<td>
+						<div class="col-xs-12">
+							<p:outputLabel for="obj5" value=""/>
+							<p:inputText style="width:100%;" required="false" id="obj5" 
+								value="{{employeeResource.projectManagementHours}}"
+								 />
+						</div>
+					</td>
+					<td>
+						<div class="col-xs-12">
+							<p:outputLabel for="obj6" value=""/>
+							<p:inputText style="width:100%;" required="false" id="obj6" 
+								value="{{employeeResource.projectManagementHours}}"
+								 />
+						</div>	 
+					</td>
+				
+					<td>
+						<div class="col-xs-12">
+							<p:outputLabel for="obj7" value=""/>
+							<p:inputText style="width:100%;" required="false" id="obj7" 
+								value="{{employeeResource.projectManagementHours}}"
+								 />
+						</div>	 
+					</td>	
+					<td>
+						<div class="col-xs-12">
+							<span ng-click="deleteEmployeeInit(employeeResource)" class="glyphicon glyphicon-remove" aria-hidden="true"/>
+						</div>	 
+					</td>		
+			</tr>	
 		</table>
 		</fieldset>		
 </ui:composition>	
