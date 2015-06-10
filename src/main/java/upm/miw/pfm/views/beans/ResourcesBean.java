@@ -11,8 +11,12 @@ import javax.faces.event.ValueChangeEvent;
 
 import org.apache.logging.log4j.LogManager;
 
+import upm.miw.pfm.controllers.EmployeeController;
 import upm.miw.pfm.controllers.ProjectController;
+import upm.miw.pfm.controllers.SetScheduleController;
+import upm.miw.pfm.models.entities.Employee;
 import upm.miw.pfm.models.entities.Project;
+import upm.miw.pfm.models.entities.ProjectSchedule;
 
 @ManagedBean
 @ViewScoped
@@ -20,16 +24,29 @@ public class ResourcesBean {
     private Project project;
 
     private List<Project> projectList;
-
+    
+    private List<Employee> employeeList;
+    
     @EJB
     private ProjectController projectController;
+    
+    @EJB
+    private EmployeeController employeeController;
+    
+    @EJB
+    private SetScheduleController setScheduleController;
+    
+    private final static Class<ListProjectsBean> clazz = ListProjectsBean.class;
 
     private boolean emptyProject;
+    
+    private ProjectSchedule projectSchedule;
 
     public ResourcesBean(){
         this.emptyProject = true;
         this.project = new Project();
         this.project.setId(-1);
+        this.projectSchedule = new ProjectSchedule();
     }
     public Project getProject() {
         return project;
@@ -47,6 +64,12 @@ public class ResourcesBean {
         this.projectList = projectList;
     }
 
+	public List<Employee> getEmployeeList() {
+		return employeeList;
+	}
+	public void setEmployeeList(List<Employee> employeeList) {
+		this.employeeList = employeeList;
+	}
     private Project findSelectedProject() {
         return projectController.getProject(this.project.getId());
     }
@@ -57,6 +80,7 @@ public class ResourcesBean {
         if (selectedProject != -1) {
             this.project.setId(selectedProject);
             this.project = findSelectedProject();
+            this.projectSchedule = setScheduleController.getProjectSchedule(project.getId());
             LogManager.getLogger(this).debug("Proyecto cargado " + this.project);
             this.emptyProject = false;
         } else {
@@ -73,7 +97,16 @@ public class ResourcesBean {
     @PostConstruct
     public void init() {
         projectList = projectController.listProjects();
-        LogManager.getLogger(this).info("Se encontraron " + projectList.size() + " proyectos");
+        LogManager.getLogger(clazz).info("Se encontraron " + projectList.size() + " proyectos");
+        
+        employeeList=employeeController.listEmployees();
+        LogManager.getLogger(clazz).info("Se encontraron " + employeeList.size() + " empleados");
     }
-
+	
+    public ProjectSchedule getProjectSchedule() {
+		return projectSchedule;
+	}
+	public void setProjectSchedule(ProjectSchedule projectSchedule) {
+		this.projectSchedule = projectSchedule;
+	}
 }
