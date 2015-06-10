@@ -47,7 +47,8 @@ public class ContractDaoTest {
         Contract contract2 = new Contract(FIJO, 30.0);
         contractDao.create(contract2);
         list.add(contract2);
-
+        System.out.println(list);
+        System.out.println(contractDao.findAll());
         assertEquals(contractDao.findAll(), list);
     }
     

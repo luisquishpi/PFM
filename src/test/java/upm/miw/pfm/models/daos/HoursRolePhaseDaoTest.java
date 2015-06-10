@@ -110,5 +110,6 @@ public class HoursRolePhaseDaoTest {
     	hoursRolePhaseDao.deleteAll();
     	employeeDao.deleteAll();
         projectDao.deleteAll();
+        contractDao.deleteAll();
     }
 }
