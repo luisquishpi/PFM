@@ -4,7 +4,38 @@
 
 projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService', 'workTimeService', 'EmployeeUtils', function ($scope, $isTest, bridgeService, workTimeService, EmployeeUtils) {  
 	
+	$scope.idEmployee=1;
+	
+	function Employee(){
+		this.id=$scope.idEmployee;
+		this.name="Anibal";
+		this.surname="Pacheco";
+		$scope.idEmployee++;
+	}
+	
+	function EmployeeResource(employee){
+		this.employee = employee;
+		this.projectManagementHours=0;
+		this.requirementsHours=0;
+		this.AnalysisDesignHours=0;
+		this.ImplementationHours=0;
+		this.TestsHours=0;
+		this.DeployHours=0;
+		this.EnvironmentHours=0;
+	}
+	
 	$scope.discipline = bridgeService.shareData;
+	
+	$scope.initEmployee=[];
+	
+	$scope.addEmployeeInit = function(){
+		$scope.initEmployee.push(new EmployeeResource(new Employee));
+	}
+	
+	$scope.deleteEmployeeInit = function(item){
+		var index = $scope.initEmployee.indexOf(item);
+		$scope.initEmployee.splice(index, 1); 
+	}
 	
 	var arrayRoles = ["PROJECT_MANAGEMENT", "REQUIREMENTS", "ANALYSIS_DESIGN", "IMPLEMENTATION", "TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL"];
 
