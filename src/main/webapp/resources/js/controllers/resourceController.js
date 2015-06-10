@@ -288,5 +288,4 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 		$scope.inicioAnalysisDesignProposal()+$scope.inicioImplementationProposal()+
 		$scope.inicioTestsProposal()+$scope.inicioDeployProposal()+$scope.inicioEnviromentProposal();
 	}	
-	
 }]);

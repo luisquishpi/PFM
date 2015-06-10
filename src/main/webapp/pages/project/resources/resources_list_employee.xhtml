@@ -9,10 +9,6 @@
 	xmlns:p="http://primefaces.org/ui">
 
 	<fieldset>
-		<div ng-controller="resourceController">
-			<c:set var="resourcesBean" scope="request" value="#{resourcesBean}" />
-			<ngsync direction="serverToClient"
-				value="#{resourcesBean.employeeList}" />
 			<table class="table table-striped">
 			<tr>
                     <th class="ui-outputlabel ui-widget">Empleado</th>
@@ -39,7 +35,5 @@
 					<td>&nbsp;</td>
 				</tr>
 			</table>
-			
-		</div>
 	</fieldset>
 </ui:composition>

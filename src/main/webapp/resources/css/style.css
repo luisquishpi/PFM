@@ -71,6 +71,10 @@ table td {
 .currency::after{
 	content: "€"; 
 }
+
+.percentaje::after{
+	content: "%"; 
+}
 .table-bordered label {
     margin-right: 10px;
 }
