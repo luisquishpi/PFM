@@ -35,8 +35,8 @@ public class CreateProjectBean implements Serializable{
 
     public CreateProjectBean() {
         project = new Project();
-        project.setName("New project");
-        project.setCost(0.00);
+        project.setName("Nuevo Proyecto");
+        project.setCost(1.00);
         project.setStart(Utils.now("dd-MM-yyyy"));
         project.setEnd(Utils.addDaysToNow(1, "dd-MM-yyyy"));
 
