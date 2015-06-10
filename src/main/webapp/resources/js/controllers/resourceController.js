@@ -3,25 +3,16 @@
  */
 
 projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService', 'workTimeService', 'EmployeeUtils', 'DateUtils', function ($scope, $isTest, bridgeService, workTimeService, EmployeeUtils, DateUtils) {  
-	
-	$scope.idEmployee=1;
-	
-	function Employee(){
-		this.id=$scope.idEmployee;
-		this.name="Anibal";
-		this.surname="Pacheco";
-		$scope.idEmployee++;
-	}
-	
+		
 	function EmployeeResource(employee){
 		this.employee = employee;
 		this.projectManagementHours=0;
 		this.requirementsHours=0;
-		this.AnalysisDesignHours=0;
-		this.ImplementationHours=0;
-		this.TestsHours=0;
-		this.DeployHours=0;
-		this.EnvironmentHours=0;
+		this.analysisDesignHours=0;
+		this.implementationHours=0;
+		this.testsHours=0;
+		this.deployHours=0;
+		this.environmentHours=0;
 	}
 	
 	$scope.discipline = bridgeService.shareData;
@@ -40,6 +31,13 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 		}
 	}
 	
+	$scope.sum = function(items, prop){
+	    return items.reduce( function(a, b){
+	        return a + parseFloat(b[prop]);
+	    }, 0);
+	};
+	
+	//Gestion en Init
 	$scope.addEmployeeInit = function(){
 		var seen = false;
 		for(var p=0;p<$scope.employeeListSelected.length;p++){
@@ -57,7 +55,30 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 		var index = $scope.initEmployee.indexOf(item);
 		$scope.initEmployee.splice(index, 1); 
 	}
-	
+		
+	$scope.initProjectManagementHoursTotal = function(){
+		return parseFloat($scope.sum($scope.initEmployee, 'projectManagementHours'));
+	}
+	$scope.initRequirementsHoursTotal = function(){
+		return parseFloat($scope.sum($scope.initEmployee, 'requirementsHours'));
+	}
+	$scope.initAnalysisDesignHoursTotal = function(){
+		return parseFloat($scope.sum($scope.initEmployee, 'analysisDesignHours'));
+	}
+	$scope.initImplementationHoursTotal = function(){
+		return parseFloat($scope.sum($scope.initEmployee, 'implementationHours'));
+	}
+	$scope.initTestsHoursTotal = function(){
+		return parseFloat($scope.sum($scope.initEmployee, 'testsHours'));
+	}
+	$scope.initDeployHoursTotal = function(){
+		return parseFloat($scope.sum($scope.initEmployee, 'deployHours'));
+	}
+	$scope.initEnvironmentHoursTotal = function(){
+		return parseFloat($scope.sum($scope.initEmployee, 'environmentHours'));
+	}
+	//
+		
 	var arrayRoles = ["PROJECT_MANAGEMENT", "REQUIREMENTS", "ANALYSIS_DESIGN", "IMPLEMENTATION", "TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL"];
 	
 	if(!$isTest){
