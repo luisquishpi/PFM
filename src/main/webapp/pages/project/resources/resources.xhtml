@@ -14,6 +14,12 @@
         </ui:define>
 		<ui:define name="javascript">
 			<script>
+				var projectApp = angular.module('projectApp', [ "angularfaces" ]);
+				app.value("$isTest", false);
+			</script>
+			<script src="/PFM/resources/js/controllers/projectApp.js"></script>
+			<script src="/PFM/resources/js/controllers/resourceController.js"></script>
+			<script>
 				$(function() {
 					var selectBox = $("#project").selectBoxIt();
 				});
@@ -75,8 +81,8 @@
 									</div>
 								</div>
 							</div>	
-						</div>						
-					</h:panelGroup>
+						</div>		
+					</h:panelGroup>					
 				</h:form>
 			</div>
 		</ui:define>
