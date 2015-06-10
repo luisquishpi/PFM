@@ -4,7 +4,59 @@
 
 projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService', 'workTimeService', 'EmployeeUtils', 'DateUtils', function ($scope, $isTest, bridgeService, workTimeService, EmployeeUtils, DateUtils) {  
 	
+	$scope.idEmployee=1;
+	
+	function Employee(){
+		this.id=$scope.idEmployee;
+		this.name="Anibal";
+		this.surname="Pacheco";
+		$scope.idEmployee++;
+	}
+	
+	function EmployeeResource(employee){
+		this.employee = employee;
+		this.projectManagementHours=0;
+		this.requirementsHours=0;
+		this.AnalysisDesignHours=0;
+		this.ImplementationHours=0;
+		this.TestsHours=0;
+		this.DeployHours=0;
+		this.EnvironmentHours=0;
+	}
+	
 	$scope.discipline = bridgeService.shareData;
+	$scope.employeeListSelected=[];
+	$scope.initEmployee=[];
+	
+	//funcion que agrega empleado al array
+	
+	$scope.copyEmployeeToList = function(employee, index){
+		if(employee.selected){
+			$scope.employeeListSelected.push(employee);
+		}
+		else{
+			var index = $scope.employeeListSelected.indexOf(employee);
+			$scope.employeeListSelected.splice(index,1);
+		}
+	}
+	
+	$scope.addEmployeeInit = function(){
+		var seen = false;
+		for(var p=0;p<$scope.employeeListSelected.length;p++){
+			for(var i=0;i<$scope.initEmployee.length;i++){
+				if($scope.employeeListSelected[p].id == $scope.initEmployee[i].employee.id)
+					seen = true;
+			}
+			if(!seen)
+				$scope.initEmployee.push(new EmployeeResource($scope.employeeListSelected[p]));
+			seen = false;
+		}
+	}
+	
+	$scope.deleteEmployeeInit = function(item){
+		var index = $scope.initEmployee.indexOf(item);
+		$scope.initEmployee.splice(index, 1); 
+	}
 	
 	var arrayRoles = ["PROJECT_MANAGEMENT", "REQUIREMENTS", "ANALYSIS_DESIGN", "IMPLEMENTATION", "TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL"];
 	
@@ -281,18 +333,6 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 		return $scope.inicioProjectManagementProposal()+$scope.inicioRequirementsProposal()+
 		$scope.inicioAnalysisDesignProposal()+$scope.inicioImplementationProposal()+
 		$scope.inicioTestsProposal()+$scope.inicioDeployProposal()+$scope.inicioEnviromentProposal();
-	}
-	
-	//funcion que agrega empleado al array
-	$scope.employeeListSelected=[];
-	$scope.copyEmployeeToList = function(employee, index){
-		if(employee.selected){
-			$scope.employeeListSelected.push(employee);
-		}
-		else{
-			var index = $scope.employeeListSelected.indexOf(employee);
-			$scope.employeeListSelected.splice(index,1);
-		}
 	}
 	
 	//calcula el numero de personas propuestas
