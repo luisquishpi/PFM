@@ -313,5 +313,38 @@ describe("Test ResourceController", function(){
 		expect(scope.inicioTotalRelativeDifference()).toBe(94);
 	});		
 	
+	//Fase de inicio - assigned
+	it("Inicio Project Management assigned should be 36.4", function(){
+		expect(scope.inicioProjectManagementAssigned()).toBe(36.4);
+	});		
+	
+	it("Inicio Requirements assigned should be 98.8", function(){
+		expect(scope.inicioRequirementsAssigned()).toBe(98.8);
+	});
+	
+	it("Inicio Analysis Design assigned should be 49.4", function(){
+		expect(scope.inicioAnalysisDesignAssigned()).toBe(49.4);
+	});
+	
+	it("Inicio Implementation assigned should be 20.8", function(){
+		expect(scope.inicioImplementationAssigned()).toBe(20.8);
+	});
+	
+	it("Inicio Tests assigned should be 20.8", function(){
+		expect(scope.inicioTestsAssigned()).toBe(20.8);
+	});
+	
+	it("Inicio Deploy assigned should be 7.8", function(){
+		expect(scope.inicioDeployAssigned()).toBe(7.8);
+	});
+	
+	it("Inicio Enviroment assigned should be 26", function(){
+		expect(scope.inicioEnviromentAssigned()).toBe(26);
+	});	
+	
+	it("Inicio Total absolute theorical percentaje should be 260", function(){
+		expect(scope.inicioTotalAssigned()).toBe(260);
+	});		
+	
 	
 })

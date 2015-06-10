@@ -14,6 +14,12 @@
         </ui:define>
 		<ui:define name="javascript">
 			<script>
+				var projectApp = angular.module('projectApp', [ "angularfaces" ]);
+				app.value("$isTest", false);
+			</script>
+			<script src="/PFM/resources/js/controllers/projectApp.js"></script>
+			<script src="/PFM/resources/js/controllers/resourceController.js"></script>
+			<script>
 				$(function() {
 					var selectBox = $("#project").selectBoxIt();
 				});
@@ -30,17 +36,15 @@
 					<div class="row">
 						<ui:include src="resources_list_project.xhtml" />
 					</div>
-					<h:panelGroup
-						rendered="#{not resourcesBean.emptyProject}">
+					<h:panelGroup rendered="#{not resourcesBean.emptyProject}">
 						<div class="row">
 							<ui:include src="resources_list_employee.xhtml" />
 						</div>
-						
+
 						<!-- Segunda parte -->
 						<div class="row">
 							<ui:include src="resources_list.xhtml" />
 						</div>
-						
 					</h:panelGroup>
 				</h:form>
 			</div>

@@ -24,7 +24,7 @@ public class ResourcesBean {
     private List<Project> projectList;
     
     private List<Employee> employeeList;
-
+    
     @EJB
     private ProjectController projectController;
     
@@ -55,14 +55,14 @@ public class ResourcesBean {
     public void setProjectList(List<Project> projectList) {
         this.projectList = projectList;
     }
-    
-    public List<Employee> getEmployeeList() {
+
+	public List<Employee> getEmployeeList() {
 		return employeeList;
 	}
 	public void setEmployeeList(List<Employee> employeeList) {
 		this.employeeList = employeeList;
 	}
-	private Project findSelectedProject() {
+    private Project findSelectedProject() {
         return projectController.getProject(this.project.getId());
     }
 
@@ -90,8 +90,8 @@ public class ResourcesBean {
         projectList = projectController.listProjects();
         LogManager.getLogger(clazz).info("Se encontraron " + projectList.size() + " proyectos");
         
-        employeeList = employeeController.listEmployees();
+        employeeList=employeeController.listEmployees();
         LogManager.getLogger(clazz).info("Se encontraron " + employeeList.size() + " empleados");
-    }
+    }    
 
 }
