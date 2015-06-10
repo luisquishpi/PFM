@@ -17,6 +17,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
@@ -42,6 +44,7 @@ public class ProjectSchedule implements Serializable {
     @MapKeyColumn (name="day")
     @CollectionTable(name="week_hours", joinColumns=@javax.persistence.JoinColumn(name="schedule_id"))
     @Column(name="hours")
+    @Fetch (FetchMode.SELECT)
     private Map<String,Double> weekHours;
     
     @Transient
@@ -183,6 +186,6 @@ public class ProjectSchedule implements Serializable {
         return "ProjectSchedule [id=" + id + ", project=" + project + ", workDays=" + workDays
                 + ", mondayHours=" + this.getMondayHours() + ", tuesdayHours=" + this.getTuesdayHours()
                 + ", wednesdayHours=" + this.getWednesdayHours() + ", thursdayHours=" + this.getThursdayHours()
-                + ", fridayHours=" + this.getFridayHours() + ", saturdayHours=" + this.getSaturdayHours()                + ", sundayHours=" + this.getSundayHours() + "]";
+                + ", fridayHours=" + this.getFridayHours() + ", saturdayHours=" + this.getSaturdayHours()   + ", sundayHours=" + this.getSundayHours() + "]";
     }
 }
