@@ -43,10 +43,13 @@
 		<ui:define name="css">
 			<link href="/PFM/resources/css/bootstrap/css/bootstrap.min.css"
 				rel="stylesheet" />
+			<link href="/PFM/resources/css/style.css"
+				rel="stylesheet" />
 		</ui:define>
 		<ui:define name="content">
 			<div class="panel-body">
 				<h:form prependId="false" ng-app="projectApp">
+					<div ng-cloak="">
 					<p:growl id="growl" sticky="false" life="5000" showDetail="false" />
 					<div class="row">
 						<ui:include src="resources_list_project.xhtml" />
@@ -83,7 +86,8 @@
 								</div>
 							</div>	
 						</div>		
-					</h:panelGroup>					
+					</h:panelGroup>	
+					</div>				
 				</h:form>
 			</div>
 		</ui:define>
