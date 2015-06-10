@@ -22,8 +22,6 @@ import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
-import upm.miw.pfm.utils.WeekDays;
-
 @Entity
 @Table(name="project_schedule")
 public class ProjectSchedule implements Serializable {
@@ -47,33 +45,33 @@ public class ProjectSchedule implements Serializable {
     @CollectionTable(name="week_hours", joinColumns=@javax.persistence.JoinColumn(name="schedule_id"))
     @Column(name="hours")
     @Fetch (FetchMode.SELECT)
-    private Map<WeekDays,Double> weekHours;
+    private Map<String,Double> weekHours;
     
     @Transient
     private final float DELTA = 0.0001f;
 
     public ProjectSchedule() {
-    	this.weekHours = new HashMap<WeekDays, Double>();
-    	this.weekHours.put(WeekDays.MONDAY_HOURS, 0D);
-        this.weekHours.put(WeekDays.TUESDAY_HOURS, 0D);
-        this.weekHours.put(WeekDays.WEDNESDAY_HOURS, 0D);
-        this.weekHours.put(WeekDays.THURSDAY_HOURS, 0D);
-        this.weekHours.put(WeekDays.FRIDAY_HOURS, 0D);
-        this.weekHours.put(WeekDays.SATURDAY_HOURS, 0D);
-        this.weekHours.put(WeekDays.SUNDAY_HOURS, 0D);
+    	this.weekHours = new HashMap<String, Double>();
+        this.weekHours.put("mondayHours", 0D);
+        this.weekHours.put("tuesdayHours", 0D);
+        this.weekHours.put("wednesdayHours", 0D);
+        this.weekHours.put("thursdayHours", 0D);
+        this.weekHours.put("fridayHours", 0D);
+        this.weekHours.put("saturdayHours", 0D);
+        this.weekHours.put("sundayHours", 0D);
     }
 
     public ProjectSchedule(int workdays, Double monday, Double tuesday, Double wednesday,
             Double thursday, Double friday, Double saturday, Double sunday) {
         this.workDays = workdays;
-        this.weekHours = new HashMap<WeekDays, Double>();
-        this.weekHours.put(WeekDays.MONDAY_HOURS, monday);
-        this.weekHours.put(WeekDays.TUESDAY_HOURS, tuesday);
-        this.weekHours.put(WeekDays.WEDNESDAY_HOURS, wednesday);
-        this.weekHours.put(WeekDays.THURSDAY_HOURS, thursday);
-        this.weekHours.put(WeekDays.FRIDAY_HOURS, friday);
-        this.weekHours.put(WeekDays.SATURDAY_HOURS, saturday);
-        this.weekHours.put(WeekDays.SUNDAY_HOURS, sunday);
+        this.weekHours = new HashMap<String, Double>();
+        this.weekHours.put("mondayHours", monday);
+        this.weekHours.put("tuesdayHours", tuesday);
+        this.weekHours.put("wednesdayHours", wednesday);
+        this.weekHours.put("thursdayHours", thursday);
+        this.weekHours.put("fridayHours", friday);
+        this.weekHours.put("saturdayHours", saturday);
+        this.weekHours.put("sundayHours", sunday);
     }
 
     public ProjectSchedule(Project project, int workdays, Double monday, Double tuesday,
@@ -107,59 +105,59 @@ public class ProjectSchedule implements Serializable {
     }
 
     public Double getMondayHours() {
-        return weekHours.get(WeekDays.MONDAY_HOURS);
+        return weekHours.get("mondayHours");
     }
 
     public void setMondayHours(Double mondayHours) {
-        this.weekHours.put(WeekDays.MONDAY_HOURS, mondayHours);
+        this.weekHours.put("mondayHours", mondayHours);
     }
 
     public Double getTuesdayHours() {
-        return weekHours.get(WeekDays.TUESDAY_HOURS);
+        return weekHours.get("tuesdayHours");
     }
 
     public void setTuesdayHours(Double tuesdayHours) {
-        this.weekHours.put(WeekDays.TUESDAY_HOURS, tuesdayHours);
+        this.weekHours.put("tuesdayHours", tuesdayHours);
     }
 
     public Double getWednesdayHours() {
-        return weekHours.get(WeekDays.WEDNESDAY_HOURS);
+        return weekHours.get("wednesdayHours");
     }
 
     public void setWednesdayHours(Double wednesdayHours) {
-    	this.weekHours.put(WeekDays.WEDNESDAY_HOURS, wednesdayHours);
+    	this.weekHours.put("wednesdayHours", wednesdayHours);
     }
 
     public Double getThursdayHours() {
-        return weekHours.get(WeekDays.THURSDAY_HOURS);
+        return weekHours.get("thursdayHours");
     }
 
     public void setThursdayHours(Double thursdayHours) {
-    	this.weekHours.put(WeekDays.THURSDAY_HOURS, thursdayHours);
+    	this.weekHours.put("thursdayHours", thursdayHours);
     }
 
     public Double getFridayHours() {
-        return weekHours.get(WeekDays.FRIDAY_HOURS);
+        return weekHours.get("fridayHours");
     }
 
     public void setFridayHours(Double fridayHours) {
-    	this.weekHours.put(WeekDays.FRIDAY_HOURS, fridayHours);
+    	this.weekHours.put("fridayHours", fridayHours);
     }
 
     public Double getSaturdayHours() {
-        return weekHours.get(WeekDays.SATURDAY_HOURS);
+        return weekHours.get("saturdayHours");
     }
 
     public void setSaturdayHours(Double saturdayHours) {
-    	this.weekHours.put(WeekDays.SATURDAY_HOURS, saturdayHours);
+    	this.weekHours.put("saturdayHours", saturdayHours);
     }
 
     public Double getSundayHours() {
-        return weekHours.get(WeekDays.SUNDAY_HOURS);
+        return weekHours.get("sundayHours");
     }
 
     public void setSundayHours(Double sundayHours) {
-    	this.weekHours.put(WeekDays.SUNDAY_HOURS, sundayHours);
+    	this.weekHours.put("sundayHours", sundayHours);
     }
 
     @Override
@@ -174,13 +172,13 @@ public class ProjectSchedule implements Serializable {
 	public boolean equals(Object obj) {
 		ProjectSchedule project = (ProjectSchedule) obj;
         return this.project.equals(project.getProject()) && this.workDays == project.getWorkDays()
-                && Math.abs(this.weekHours.get(WeekDays.MONDAY_HOURS).doubleValue() - project.getMondayHours().doubleValue()) < DELTA
-                && Math.abs(this.weekHours.get(WeekDays.TUESDAY_HOURS).doubleValue() - project.getTuesdayHours().doubleValue()) < DELTA
-                && Math.abs(this.weekHours.get(WeekDays.WEDNESDAY_HOURS).doubleValue() - project.getWednesdayHours().doubleValue()) < DELTA
-                && Math.abs(this.weekHours.get(WeekDays.THURSDAY_HOURS).doubleValue() - project.getThursdayHours().doubleValue()) < DELTA
-                && Math.abs(this.weekHours.get(WeekDays.FRIDAY_HOURS).doubleValue() - project.getFridayHours().doubleValue()) <DELTA
-                && Math.abs(this.weekHours.get(WeekDays.SATURDAY_HOURS).doubleValue() - project.getSaturdayHours().doubleValue()) < DELTA 
-                && Math.abs(this.weekHours.get(WeekDays.SUNDAY_HOURS).doubleValue() - project.getSundayHours().doubleValue()) < DELTA;
+                && Math.abs(this.weekHours.get("mondayHours").doubleValue() - project.getMondayHours().doubleValue()) < DELTA
+                && Math.abs(this.weekHours.get("tuesdayHours").doubleValue() - project.getTuesdayHours().doubleValue()) < DELTA
+                && Math.abs(this.weekHours.get("wednesdayHours").doubleValue() - project.getWednesdayHours().doubleValue()) < DELTA
+                && Math.abs(this.weekHours.get("thursdayHours").doubleValue() - project.getThursdayHours().doubleValue()) < DELTA
+                && Math.abs(this.weekHours.get("fridayHours").doubleValue() - project.getFridayHours().doubleValue()) <DELTA
+                && Math.abs(this.weekHours.get("saturdayHours").doubleValue() - project.getSaturdayHours().doubleValue()) < DELTA 
+                && Math.abs(this.weekHours.get("sundayHours").doubleValue() - project.getSundayHours().doubleValue()) < DELTA;
     }
 
     @Override

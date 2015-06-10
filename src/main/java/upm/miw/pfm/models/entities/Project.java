@@ -19,7 +19,6 @@ import javax.persistence.Transient;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
-import upm.miw.pfm.utils.Phases;
 import upm.miw.pfm.utils.Utils;
 
 @Entity
@@ -52,17 +51,17 @@ public class Project implements IGenericEntity, Serializable {
 	@CollectionTable(name = "phases_people", joinColumns = @javax.persistence.JoinColumn(name = "project_id"))
 	@Column(name = "hours")
 	@Fetch (FetchMode.SELECT)
-	private Map<Phases, Double> phasesPeople;
+	private Map<String, Double> phasesPeople;
 
 	@Transient
 	private final float DELTA = 0.0001f;
 
 	public Project() {
-		phasesPeople = new HashMap<Phases, Double>();
-		phasesPeople.put(Phases.INICIO, 0D);
-		phasesPeople.put(Phases.ELABORACION, 0D);
-		phasesPeople.put(Phases.CONSTRUCCION, 0D);
-		phasesPeople.put(Phases.TRANSICION, 0D);
+		phasesPeople = new HashMap<String, Double>();
+		phasesPeople.put("Inicio", 0D);
+		phasesPeople.put("Elaboracion", 0D);
+		phasesPeople.put("Construccion", 0D);
+		phasesPeople.put("Transicion", 0D);
 	}
 
 	public Project(String name, Date start, Date end, Double cost) {
@@ -71,11 +70,11 @@ public class Project implements IGenericEntity, Serializable {
 		this.end = end;
 		this.cost = cost;
 		this.name = name;
-		phasesPeople = new HashMap<Phases, Double>();
-		phasesPeople.put(Phases.INICIO, 0D);
-		phasesPeople.put(Phases.ELABORACION, 0D);
-		phasesPeople.put(Phases.CONSTRUCCION, 0D);
-		phasesPeople.put(Phases.TRANSICION, 0D);
+		phasesPeople = new HashMap<String, Double>();
+		phasesPeople.put("Inicio", 0D);
+		phasesPeople.put("Elaboracion", 0D);
+		phasesPeople.put("Construccion", 0D);
+		phasesPeople.put("Transicion", 0D);
 	}
 
 	public Project(int id, String name, Date start, Date end, Double cost) {
@@ -150,35 +149,35 @@ public class Project implements IGenericEntity, Serializable {
 	}
 
 	public Double getPeopleInicio() {
-		return this.phasesPeople.get(Phases.INICIO);
+		return this.phasesPeople.get("Inicio");
 	}
 
 	public Double getPeopleElaboracion() {
-		return this.phasesPeople.get(Phases.ELABORACION);
+		return this.phasesPeople.get("Elaboracion");
 	}
 
 	public Double getPeopleConstruccion() {
-		return this.phasesPeople.get(Phases.CONSTRUCCION);
+		return this.phasesPeople.get("Construccion");
 	}
 
 	public Double getPeopleTransicion() {
-		return this.phasesPeople.get(Phases.TRANSICION);
+		return this.phasesPeople.get("Transicion");
 	}
 
 	public void setPeopleInicio(Double days) {
-		this.phasesPeople.put(Phases.INICIO, days);
+		this.phasesPeople.put("Inicio", days);
 	}
 
 	public void setPeopleElaboracion(Double days) {
-		this.phasesPeople.put(Phases.ELABORACION, days);
+		this.phasesPeople.put("Elaboracion", days);
 	}
 
 	public void setPeopleConstruccion(Double days) {
-		this.phasesPeople.put(Phases.CONSTRUCCION, days);
+		this.phasesPeople.put("Construccion", days);
 	}
 
 	public void setPeopleTransicion(Double days) {
-		this.phasesPeople.put(Phases.TRANSICION, days);
+		this.phasesPeople.put("Transicion", days);
 	}
 
 	@Override
