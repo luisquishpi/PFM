@@ -357,11 +357,11 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	
 	//Fase de inicio - asignado
 	$scope.inicioProjectManagementAssigned = function(){
-		return 36.4;
+		return $scope.initProjectManagementHoursTotal();
 	}	
 	
 	$scope.inicioRequirementsAssigned = function(){
-		return 98.8;
+		return $scope.initRequirementsHoursTotal();
 	}	
 	
 	$scope.inicioAnalysisDesignAssigned = function(){
@@ -369,19 +369,19 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	}
 	
 	$scope.inicioImplementationAssigned = function(){
-		return 20.8;
+		return $scope.initAnalysisDesignHoursTotal();
 	}	
 	
 	$scope.inicioTestsAssigned = function(){
-		return 20.8;
+		return $scope.initImplementationHoursTotal();
 	}	
 	
 	$scope.inicioDeployAssigned = function(){
-		return 7.8;
+		return $scope.initTestsHoursTotal();
 	}	
 	
 	$scope.inicioEnviromentAssigned = function(){
-		return 26;
+		return $scope.initDeployHoursTotal();
 	}
 	
 	$scope.inicioTotalAssigned = function(){
@@ -405,7 +405,7 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 		if(typeof employee.vacations!== 'undefined'){
 			if(employee.vacations.length>0){
 				for(i=0; i<employee.vacations.length; i++){
-					//todo: calcular las vacaciones
+					//todo: calcular las vacaciones!
 					numberOfVacationDays = DateUtils.dateDiffInDays(employee.vacations[i].start, employee.vacations[i].end);
 				}
 			}
