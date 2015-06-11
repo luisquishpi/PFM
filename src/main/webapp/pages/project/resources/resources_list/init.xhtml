@@ -33,7 +33,6 @@
 				<th class="ui-outputlabel ui-widget">Diferencia Relativa</th>
 				<th class="ui-outputlabel ui-widget">Propuesta</th>
 				<th class="ui-outputlabel ui-widget">Diferencia Propuesta</th>
-				<th class="ui-outputlabel ui-widget">Asignado</th>
 			</tr>				
 			<tr>
 				<td>Gestión Proyecto</td>
@@ -43,7 +42,6 @@
 				<td><span class="percentaje">{{inicioProjectManagementRelativeDifference()|number:2}}</span></td>
 				<td>¿?</td>
 				<td>¿?</td>
-				<td>{{initProjectManagementHoursTotal()}}</td>
 			</tr>
 			<tr>
 				<td>Requisitos</td>
@@ -53,7 +51,6 @@
 				<td><span class="percentaje">{{inicioRequirementsRelativeDifference()|number:2}}</span></td>
 				<td>¿?</td>
 				<td>¿?</td>
-				<td>{{initRequirementsHoursTotal()}}</td>
 			</tr>
 			<tr>
 				<td>Analisis/Diseño</td>
@@ -63,7 +60,6 @@
 				<td><span class="percentaje">{{inicioAnalysisDesignRelativeDifference()|number:2}}</span></td>
 				<td>¿?</td>
 				<td>¿?</td>
-				<td>{{initAnalysisDesignHoursTotal()}}</td>
 			</tr>
 			<tr>
 				<td>Implementación</td>
@@ -73,7 +69,6 @@
 				<td><span class="percentaje">{{inicioImplementationRelativeDifference()|number:2}}</span></td>
 				<td>¿?</td>
 				<td>¿?</td>
-				<td>{{initImplementationHoursTotal()}}</td>
 			</tr>
 			<tr>
 				<td>Pruebas</td>
@@ -83,7 +78,6 @@
 				<td><span class="percentaje">{{inicioTestsRelativeDifference()|number:2}}</span></td>
 				<td>¿?</td>
 				<td>¿?</td>
-				<td>{{initTestsHoursTotal()}}</td>
 			</tr>
 			<tr>
 				<td>Despliegues</td>
@@ -93,7 +87,6 @@
 				<td><span class="percentaje">{{inicioDeployRelativeDifference()|number:2}}</span></td>
 				<td>¿?</td>
 				<td>¿?</td>
-				<td>{{initDeployHoursTotal()}}</td>
 			</tr>
 			<tr>
 				<td>Control de Versiones</td>
@@ -103,7 +96,6 @@
 				<td><span class="percentaje">{{inicioEnviromentRelativeDifference()|number:2}}</span></td>
 				<td>¿?</td>
 				<td>¿?</td>
-				<td>{{initEnvironmentHoursTotal()}}</td>
 			</tr>
 			<tr>
 				<td>Totales</td>
@@ -113,7 +105,6 @@
 				<td><span class="percentaje">{{inicioTotalRelativeDifference()|number:2}}</span></td>
 				<td>¿?</td>
 				<td>¿?</td>
-				<td>¿?</td>
 			</tr>
 			
 		</table>
@@ -121,15 +112,15 @@
 		<fieldset>
 		<table class="table table-condensed" ng-if="initEmployee.length > 0">
 			<tr>
-				<th class="ui-outputlabel ui-widget">Nombre</th>
-				<th class="ui-outputlabel ui-widget">Gestion Proyecto</th>
-				<th class="ui-outputlabel ui-widget">Requisitos</th>
-				<th class="ui-outputlabel ui-widget">Analisis/Diseño</th>
-				<th class="ui-outputlabel ui-widget">Implementación</th>
-				<th class="ui-outputlabel ui-widget">Pruebas</th>
-				<th class="ui-outputlabel ui-widget">Despliegue</th>
-				<th class="ui-outputlabel ui-widget">Control de versiones</th>
-				<th class="ui-outputlabel ui-widget">Acciones</th>
+				<th class="ui-outputlabel ui-widget text-center">Nombre</th>
+				<th class="ui-outputlabel ui-widget text-center">Gestion Proyecto</th>
+				<th class="ui-outputlabel ui-widget text-center">Requisitos</th>
+				<th class="ui-outputlabel ui-widget text-center">Analisis/Diseño</th>
+				<th class="ui-outputlabel ui-widget text-center">Implementación</th>
+				<th class="ui-outputlabel ui-widget text-center">Pruebas</th>
+				<th class="ui-outputlabel ui-widget text-center">Despliegue</th>
+				<th class="ui-outputlabel ui-widget text-center">Control de versiones</th>
+				<th class="ui-outputlabel ui-widget text-center">Acciones</th>
 			</tr>
 			<tr ng-repeat="employeeResource in initEmployee">
 				
@@ -203,6 +194,16 @@
 						</div>	 
 					</td>		
 			</tr>	
+			<tr>
+				<td class="text-center">Totales</td>
+				<td class="text-center">{{initProjectManagementHoursTotal()}}</td>
+				<td class="text-center">{{initRequirementsHoursTotal()}}</td>
+				<td class="text-center">{{initAnalysisDesignHoursTotal()}}</td>
+				<td class="text-center">{{initImplementationHoursTotal()}}</td>
+				<td class="text-center">{{initTestsHoursTotal()}}</td>
+				<td class="text-center">{{initDeployHoursTotal()}}</td>
+				<td class="text-center">{{initEnvironmentHoursTotal()}}</td>
+			</tr>
 		</table>
 		</fieldset>		
 </ui:composition>	

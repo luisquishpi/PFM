@@ -52,8 +52,7 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	}
 	
 	$scope.deleteEmployeeInit = function(item){
-		var index = $scope.initEmployee.indexOf(item);
-		$scope.initEmployee.splice(index, 1); 
+		$scope.initEmployee.splice($scope.initEmployee.indexOf(item), 1); 
 	}
 		
 	$scope.initProjectManagementHoursTotal = function(){
