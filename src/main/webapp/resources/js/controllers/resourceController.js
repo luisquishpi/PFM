@@ -22,7 +22,9 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	
 	$scope.discipline = bridgeService.shareData;
 	$scope.employeeListSelected=[];
-	$scope.initEmployee=[];
+	if(!$isTest){
+		$scope.initEmployee=[];
+	}
 	
 	//funcion que agrega empleado al array
 	
@@ -57,7 +59,6 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 			}
 			if(!seen){
 				$scope.employeeListSelected[p].availableEmployeeHours = $scope.availableEmployeeHours($scope.employeeListSelected[p]);
-				console.log($scope.employeeListSelected[p]);
 				$scope.initEmployee.push(new EmployeeResource($scope.employeeListSelected[p]));
 			}
 			seen = false;
@@ -228,31 +229,31 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	
 	//Fase de inicio - diferencia absoluta
 	$scope.inicioProjectManagementAbsoluteDifference = function(){
-		return -2.3;
+		return $scope.inicioProjectManagementAssigned()-$scope.inicioProjectManagementTheoricalAbsolute();
 	}	
 	
 	$scope.inicioRequirementsAbsoluteDifference = function(){
-		return -6.3;
+		return $scope.inicioRequirementsAssigned()-$scope.inicioRequirementsTheoricalAbsolute();
 	}	
 	
 	$scope.inicioAnalysisDesignAbsoluteDifference = function(){
-		return -3.1;
+		return $scope.inicioAnalysisDesignAssigned()-$scope.inicioAnalysisDesignTheoricalAbsolute();
 	}
 	
 	$scope.inicioImplementationAbsoluteDifference = function(){
-		return -1.3;
+		return $scope.inicioImplementationAssigned()-$scope.inicioImplementationTheoricalAbsolute();
 	}	
 	
 	$scope.inicioTestsAbsoluteDifference = function(){
-		return -1.3;
+		return $scope.initTestsHoursTotal()-$scope.inicioTestsTheoricalAbsolute();
 	}	
 	
 	$scope.inicioDeployAbsoluteDifference = function(){
-		return -0.5;
+		return $scope.initDeployHoursTotal()-$scope.inicioDeployTheoricalAbsolute();
 	}	
 	
 	$scope.inicioEnviromentAbsoluteDifference = function(){
-		return -1.7;
+		return $scope.initEnvironmentHoursTotal()-$scope.inicioEnviromentTheoricalAbsolute();
 	}
 	
 	$scope.inicioTotalAbsoluteDifference = function(){
@@ -299,31 +300,31 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	
 	//Fase de inicio - propuesta
 	$scope.inicioProjectManagementProposal = function(){
-		return ($scope.inicioProjectManagementTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*NUMBER_OF_ASIGNED_PEOPLE)/($scope.numOfProposalPeople*100);
+		return ($scope.inicioProjectManagementTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*NUMBER_OF_ASIGNED_PEOPLE)/($scope.inicioNumOfProposalPeople*100);
 	}	
 	
 	$scope.inicioRequirementsProposal = function(){
-		return ($scope.inicioRequirementsTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*NUMBER_OF_ASIGNED_PEOPLE)/($scope.numOfProposalPeople*100);
+		return ($scope.inicioRequirementsTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*NUMBER_OF_ASIGNED_PEOPLE)/($scope.inicioNumOfProposalPeople*100);
 	}	
 	
 	$scope.inicioAnalysisDesignProposal = function(){
-		return ($scope.inicioAnalysisDesignTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*NUMBER_OF_ASIGNED_PEOPLE)/($scope.numOfProposalPeople*100);
+		return ($scope.inicioAnalysisDesignTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*NUMBER_OF_ASIGNED_PEOPLE)/($scope.inicioNumOfProposalPeople*100);
 	}
 	
 	$scope.inicioImplementationProposal = function(){
-		return ($scope.inicioImplementationTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*NUMBER_OF_ASIGNED_PEOPLE)/($scope.numOfProposalPeople*100);
+		return ($scope.inicioImplementationTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*NUMBER_OF_ASIGNED_PEOPLE)/($scope.inicioNumOfProposalPeople*100);
 	}	
 	
 	$scope.inicioTestsProposal = function(){
-		return ($scope.inicioTestsTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*NUMBER_OF_ASIGNED_PEOPLE)/($scope.numOfProposalPeople*100);
+		return ($scope.inicioTestsTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*NUMBER_OF_ASIGNED_PEOPLE)/($scope.inicioNumOfProposalPeople*100);
 	}	
 	
 	$scope.inicioDeployProposal = function(){
-		return ($scope.inicioDeployTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*NUMBER_OF_ASIGNED_PEOPLE)/($scope.numOfProposalPeople*100);
+		return ($scope.inicioDeployTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*NUMBER_OF_ASIGNED_PEOPLE)/($scope.inicioNumOfProposalPeople*100);
 	}	
 	
 	$scope.inicioEnviromentProposal = function(){
-		return ($scope.inicioEnviromentTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*NUMBER_OF_ASIGNED_PEOPLE)/($scope.numOfProposalPeople*100);
+		return ($scope.inicioEnviromentTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*NUMBER_OF_ASIGNED_PEOPLE)/($scope.inicioNumOfProposalPeople*100);
 	}
 	
 	$scope.inicioTotalProposal = function(){
@@ -378,23 +379,23 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	}	
 	
 	$scope.inicioAnalysisDesignAssigned = function(){
-		return 49.4;
+		return $scope.initAnalysisDesignHoursTotal();
 	}
 	
 	$scope.inicioImplementationAssigned = function(){
-		return $scope.initAnalysisDesignHoursTotal();
-	}	
-	
-	$scope.inicioTestsAssigned = function(){
 		return $scope.initImplementationHoursTotal();
 	}	
 	
-	$scope.inicioDeployAssigned = function(){
+	$scope.inicioTestsAssigned = function(){
 		return $scope.initTestsHoursTotal();
 	}	
 	
-	$scope.inicioEnviromentAssigned = function(){
+	$scope.inicioDeployAssigned = function(){
 		return $scope.initDeployHoursTotal();
+	}	
+	
+	$scope.inicioEnviromentAssigned = function(){
+		return $scope.initEnvironmentHoursTotal();
 	}
 	
 	$scope.inicioTotalAssigned = function(){
@@ -404,16 +405,16 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 			$scope.inicioEnviromentAssigned();
 	}
 	
-	//calcula el numero de personas propuestas
-	$scope.normalEmployeeHours = function(){
+	//Fase de inicio alcula el numero de personas propuestas
+	$scope.inicioNormalEmployeeHours = function(){
 		var averageHoursPerDay = $scope.discipline.phases.schedule.averageHoursPerDay();
 		var iterationDays = $scope.resourcesBean.project.iterationDays;
 		return averageHoursPerDay*iterationDays;
 	}	
 	
-	$scope.nmlEmployeeHours = $scope.normalEmployeeHours();
+	$scope.inicioNmlEmployeeHours = $scope.inicioNormalEmployeeHours();
 	
-	$scope.availableEmployeeHours = function(employee){
+	$scope.inicioAvailableEmployeeHours = function(employee){
 		var numberOfVacationDays = 0;
 		if(typeof employee.vacations!== 'undefined'){
 			if(employee.vacations.length>0){
@@ -424,22 +425,22 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 			}
 		}
 		numberOfVacationDays = 0;
-		return $scope.nmlEmployeeHours;
+		return $scope.inicioNmlEmployeeHours;
 	}
 	
-	$scope.averageEmployeeHours = function(){
+	$scope.inicioAverageEmployeeHours = function(){
 		var totalEmployeeHours = 0;
 		for(i=0; i < $scope.resourcesBean.employeeList.length; i++){
-			totalEmployeeHours += $scope.availableEmployeeHours($scope.resourcesBean.employeeList[i]);
+			totalEmployeeHours += $scope.inicioAvailableEmployeeHours($scope.resourcesBean.employeeList[i]);
 		}
 		return totalEmployeeHours/($scope.resourcesBean.employeeList.length-1);
 	}
 	
-	$scope.avgEmployeeHours = $scope.averageEmployeeHours();
+	$scope.inicioAvgEmployeeHours = $scope.inicioAverageEmployeeHours();
 	
-	$scope.numberOfProposalsPeople = function(){
-		return $scope.inicioTotalTheoricalAbsolute()/$scope.avgEmployeeHours;
+	$scope.inicioNumberOfProposalsPeople = function(){
+		return $scope.inicioTotalTheoricalAbsolute()/$scope.inicioAvgEmployeeHours;
 	}
 	
-	$scope.numOfProposalPeople = $scope.numberOfProposalsPeople();	
+	$scope.inicioNumOfProposalPeople = $scope.inicioNumberOfProposalsPeople();	
 }]);

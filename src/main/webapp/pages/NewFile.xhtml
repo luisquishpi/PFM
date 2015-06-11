@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<script>
+		var empleado = {id:1, nombre:Jose, apellido:Pacheco, codigoEmp:343f, totalGrossSalary:30000, [1,2,3]};
+		var proyecto = {id:1, name: SCRUM, cost: 85000, start:'2/3/2015', end:'4/9/2015'};
+		var array = [{empleado:empleado, proyecto:proyecto, hours:36, phase: 0, role:0}];
+		
+		$.ajax({
+			  method: "POST",
+			  url: "/PFM/rest/Employee/Save",
+			  data: array
+			})
+		
+	</script>
+
+</body>
+</html>
