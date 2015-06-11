@@ -392,6 +392,28 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	}
 	
 	//calcula el numero de personas propuestas
+	$scope.normalEmployeeHours = function(){
+		var averageHoursPerDay = $scope.discipline.phases.schedule.averageHoursPerDay();
+		var iterationDays = $scope.resourcesBean.project.iterationDays;
+		return averageHoursPerDay*iterationDays;
+	}	
+	
+	$scope.nmlEmployeeHours = $scope.normalEmployeeHours();
+	
+	$scope.availableEmployeeHours = function(employee){
+		var numberOfVacationDays = 0;
+		if(typeof employee.vacations!== 'undefined'){
+			if(employee.vacations.length>0){
+				for(i=0; i<employee.vacations.length; i++){
+					//todo: calcular las vacaciones
+					numberOfVacationDays = DateUtils.dateDiffInDays(employee.vacations[i].start, employee.vacations[i].end);
+				}
+			}
+		}
+		numberOfVacationDays = 0;
+		return $scope.nmlEmployeeHours;
+	}
+	
 	$scope.averageEmployeeHours = function(){
 		var totalEmployeeHours = 0;
 		for(i=0; i < $scope.resourcesBean.employeeList.length; i++){
@@ -400,26 +422,10 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 		return totalEmployeeHours/($scope.resourcesBean.employeeList.length-1);
 	}
 	
-	$scope.normalEmployeeHours = function(){
-		var averageHoursPerDay = $scope.discipline.phases.schedule.averageHoursPerDay();
-		var iterationDays = $scope.resourcesBean.project.iterationDays;
-		return averageHoursPerDay*iterationDays;
-	}	
-	
-	$scope.availableEmployeeHours = function(employee){
-		var numberOfVacationDays = 0;
-		if(typeof employee.vacations!== 'undefined'){
-			for(i=0; i< employee.vacations.length; i++){
-				//todo: calcular las vacaciones
-				numberOfVacationDays = DateUtils.dateDiffInDays(employee.vacations[i].start, employee.vacations[i].end);
-			}
-		}
-		numberOfVacationDays = 0;
-		return $scope.normalEmployeeHours();
-	}
+	$scope.avgEmployeeHours = $scope.averageEmployeeHours();
 	
 	$scope.numberOfProposalsPeople = function(){
-		return $scope.inicioTotalTheoricalAbsolute()/$scope.averageEmployeeHours();
+		return $scope.inicioTotalTheoricalAbsolute()/$scope.avgEmployeeHours;
 	}
 	
 	$scope.numOfProposalPeople = $scope.numberOfProposalsPeople();	
