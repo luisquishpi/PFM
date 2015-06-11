@@ -26,6 +26,8 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 		$scope.initEmployee=[];
 	}
 	
+	$scope.inicioNumberOfAssignedPeople=0;
+	
 	//funcion que agrega empleado al array
 	
 	$scope.copyEmployeeToList = function(employee, index){
@@ -45,8 +47,8 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	};
 	
 	$scope.validateInitprojectManagementHours=function(employeeResource){
-			if(employeeResource.employee.availableEmployeeHours<employeeResource.projectManagementHours)
-				employeeResource.projectManagementHours = 0;
+			if(employeeResource.employee.inicioAvailableEmployeeHours(employeeResource.projectManagementHours))
+					employeeResource.projectManagementHours = 0;
 	}
 	
 	//Gestion en Init
@@ -58,7 +60,7 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 					seen = true;
 			}
 			if(!seen){
-				$scope.employeeListSelected[p].availableEmployeeHours = $scope.availableEmployeeHours($scope.employeeListSelected[p]);
+				$scope.employeeListSelected[p].availableEmployeeHours = $scope.inicioAvailableEmployeeHours($scope.employeeListSelected[p]);
 				$scope.initEmployee.push(new EmployeeResource($scope.employeeListSelected[p]));
 			}
 			seen = false;
@@ -295,36 +297,35 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	$scope.inicioTotalRelativeDifference = function(){
 		return ($scope.inicioTotalAssigned()/$scope.inicioTotalTheoricalAbsolute())*100;;
 	}
-	
-	var NUMBER_OF_ASIGNED_PEOPLE = 2.5;
-	
+		
 	//Fase de inicio - propuesta
 	$scope.inicioProjectManagementProposal = function(){
-		return ($scope.inicioProjectManagementTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*NUMBER_OF_ASIGNED_PEOPLE)/($scope.inicioNumOfProposalPeople*100);
+		console.log($scope.inicioNumberOfAssignedPeople);
+		return ($scope.inicioProjectManagementTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*$scope.inicioNumberOfAssignedPeople)/($scope.inicioNumOfProposalPeople*100);
 	}	
 	
 	$scope.inicioRequirementsProposal = function(){
-		return ($scope.inicioRequirementsTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*NUMBER_OF_ASIGNED_PEOPLE)/($scope.inicioNumOfProposalPeople*100);
+		return ($scope.inicioRequirementsTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*$scope.inicioNumberOfAssignedPeople)/($scope.inicioNumOfProposalPeople*100);
 	}	
 	
 	$scope.inicioAnalysisDesignProposal = function(){
-		return ($scope.inicioAnalysisDesignTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*NUMBER_OF_ASIGNED_PEOPLE)/($scope.inicioNumOfProposalPeople*100);
+		return ($scope.inicioAnalysisDesignTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*$scope.inicioNumberOfAssignedPeople)/($scope.inicioNumOfProposalPeople*100);
 	}
 	
 	$scope.inicioImplementationProposal = function(){
-		return ($scope.inicioImplementationTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*NUMBER_OF_ASIGNED_PEOPLE)/($scope.inicioNumOfProposalPeople*100);
+		return ($scope.inicioImplementationTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*$scope.inicioNumberOfAssignedPeople)/($scope.inicioNumOfProposalPeople*100);
 	}	
 	
 	$scope.inicioTestsProposal = function(){
-		return ($scope.inicioTestsTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*NUMBER_OF_ASIGNED_PEOPLE)/($scope.inicioNumOfProposalPeople*100);
+		return ($scope.inicioTestsTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*$scope.inicioNumberOfAssignedPeople)/($scope.inicioNumOfProposalPeople*100);
 	}	
 	
 	$scope.inicioDeployProposal = function(){
-		return ($scope.inicioDeployTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*NUMBER_OF_ASIGNED_PEOPLE)/($scope.inicioNumOfProposalPeople*100);
+		return ($scope.inicioDeployTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*$scope.inicioNumberOfAssignedPeople)/($scope.inicioNumOfProposalPeople*100);
 	}	
 	
 	$scope.inicioEnviromentProposal = function(){
-		return ($scope.inicioEnviromentTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*NUMBER_OF_ASIGNED_PEOPLE)/($scope.inicioNumOfProposalPeople*100);
+		return ($scope.inicioEnviromentTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*$scope.inicioNumberOfAssignedPeople)/($scope.inicioNumOfProposalPeople*100);
 	}
 	
 	$scope.inicioTotalProposal = function(){

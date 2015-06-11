@@ -14,7 +14,7 @@ import upm.miw.pfm.models.entities.HoursRolePhase;
 
 @Path(EmployeeURI.PATH_EMPLOYEES)
 public class EmployeeRest {
-	
+/*	
 	@Path(EmployeeURI.PATH_SAVE)
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -29,5 +29,5 @@ public class EmployeeRest {
 		}
 		
 	}
-
+*/
 }
