@@ -1,5 +1,7 @@
 package upm.miw.pfm.models.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -16,9 +19,12 @@ import upm.miw.pfm.utils.RoleType;
 
 @Entity
 @Table(name = "hours_role_phase")
-public class HoursRolePhase {
+@XmlRootElement
+public class HoursRolePhase implements Serializable {
 
-	@Id
+    private static final long serialVersionUID = 1L;
+
+    @Id
     @GeneratedValue
     private Integer id;
 	
@@ -103,7 +109,7 @@ public class HoursRolePhase {
 		this.role = role;
 	}
 
-	@Override
+	/*@Override
 	public boolean equals(Object obj) {
 		HoursRolePhase hoursRolePhase = (HoursRolePhase) obj;
 		return this.employee.equals(hoursRolePhase.getEmployee())
@@ -112,13 +118,13 @@ public class HoursRolePhase {
 				&& this.role.equals(hoursRolePhase.getRole())
 				&& Math.abs(this.workHours.doubleValue()
 						- hoursRolePhase.getWorkHours().doubleValue()) < 0.0001f;
-	}
+	}*/
 
-	@Override
+	/*@Override
 	public String toString() {
 		return "[Employee= " + this.employee.getName() + ", Project= "
 				+ this.project.getName() + ", Work hours= " + this.workHours
 				+ ", Phase= " + this.phase + ", Role= " + this.role + "]";
-	}
+	}*/
 
 }
