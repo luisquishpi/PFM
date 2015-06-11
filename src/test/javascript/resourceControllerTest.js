@@ -75,7 +75,7 @@ describe("Test ResourceController", function(){
 				  {"id":20, "name":"Ursula", "surname":"del Mar", "employeeCode":"020", "annualGrossSalary":20000.00, 
 					  "roles":["TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL"],
 					  "contract":{insurance: 32.5}},						  
-				  ]
+				  ],
 		};
 		
 		controller = $controller("resourceController", {
@@ -124,14 +124,219 @@ describe("Test ResourceController", function(){
 							  },
 							workDays: 21,
 							monthsPerYear: 12,
-							hoursPerDay: 8,
+							hoursPerDay: function(){return 8;},
 							daysPerWeek: function(){return 5;},
 							averageHoursPerDay: function(){return 8;},
 						}
 					},
 				}					
 			}
-		});			
+		});
+		scope.inicioNumberOfAssignedPeople=2.5;
+		scope.initEmployee=[
+					  {"employee":{"id":1, "name":"Anibal", "surname":"Pacheco", "employeeCode":"001", "annualGrossSalary":40500.00, 
+						      "roles":["PROJECT_MANAGEMENT", "REQUIREMENTS", "ANALYSIS_DESIGN", "IMPLEMENTATION", "TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL" ],
+						      "contract":{insurance: 32.5},
+						      "vacations":[{"start": "3/3/2015", "end":"5/3/2015"}]}, 
+						      "projectManagementHours":"0",
+						      "requirementsHours":0,
+						      "analysisDesignHours":0,
+						      "implementationHours":0,
+						      "testsHours":0,
+						      "deployHours":0,
+						      "environmentHours":0,},
+				      {"employee":{"id":2, "name":"Beatriz", "surname":"Jimenez", "employeeCode":"002", "annualGrossSalary":38000.00, 
+						  "roles":["PROJECT_MANAGEMENT", "REQUIREMENTS", "ANALYSIS_DESIGN", "IMPLEMENTATION", "TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL" ],
+						  "contract":{insurance: 32.5}}, 
+					      "projectManagementHours":"0",
+					      "requirementsHours":0,
+					      "analysisDesignHours":0,
+					      "implementationHours":0,
+					      "testsHours":0,
+					      "deployHours":0,
+					      "environmentHours":0,},
+				      {"employee":{"id":3, "name":"Carlos", "surname":"Palacios", "employeeCode":"003", "annualGrossSalary":30000.00, 
+						  "roles":["PROJECT_MANAGEMENT", "REQUIREMENTS"],
+						  "contract":{insurance: 32.5}}, 
+					      "projectManagementHours":36.4,
+					      "requirementsHours":67.6,
+					      "analysisDesignHours":0,
+					      "implementationHours":0,
+					      "testsHours":0,
+					      "deployHours":0,
+					      "environmentHours":0,},
+				      {"employee":{"id":4, "name":"Daniela", "surname":"Rodriguez", "employeeCode":"004", "annualGrossSalary":28500.00, 
+						  "roles":["PROJECT_MANAGEMENT", "REQUIREMENTS"],
+						  "contract":{insurance: 32.5}}, 
+					      "projectManagementHours":"0",
+					      "requirementsHours":0,
+					      "analysisDesignHours":0,
+					      "implementationHours":0,
+					      "testsHours":0,
+					      "deployHours":0,
+					      "environmentHours":0,},	
+				      {"employee":{"id":5, "name":"Ernesto", "surname":"Guerra", "employeeCode":"005", "annualGrossSalary":40000.00, 
+						  "roles":["REQUIREMENTS", "ANALYSIS_DESIGN", "IMPLEMENTATION"],
+						  "contract":{insurance: 0.00}}, 
+					      "projectManagementHours":"0",
+					      "requirementsHours":0,
+					      "analysisDesignHours":0,
+					      "implementationHours":0,
+					      "testsHours":0,
+					      "deployHours":0,
+					      "environmentHours":0,},
+				      {"employee":{"id":6, "name":"Flor", "surname":"Palomeque", "employeeCode":"006", "annualGrossSalary":25000.00, 
+						  "roles":["REQUIREMENTS", "ANALYSIS_DESIGN", "IMPLEMENTATION"],
+						  "contract":{insurance: 32.5}}, 
+					      "projectManagementHours":"0",
+					      "requirementsHours":0,
+					      "analysisDesignHours":0,
+					      "implementationHours":0,
+					      "testsHours":0,
+					      "deployHours":0,
+					      "environmentHours":0,},
+				      {"employee":{"id":7, "name":"Gabriel", "surname":"Heinze", "employeeCode":"007", "annualGrossSalary":23000.00, 
+						  "roles":["REQUIREMENTS", "ANALYSIS_DESIGN", "IMPLEMENTATION"],
+						  "contract":{insurance: 32.5}}, 
+					      "projectManagementHours":"0",
+					      "requirementsHours":0,
+					      "analysisDesignHours":0,
+					      "implementationHours":0,
+					      "testsHours":0,
+					      "deployHours":0,
+					      "environmentHours":0,},		
+				      {"employee":{"id":8, "name":"Henar", "surname":"Carrasco", "employeeCode":"008", "annualGrossSalary":24500.00, 
+						  "roles":["REQUIREMENTS", "ANALYSIS_DESIGN", "IMPLEMENTATION"],
+						  "contract":{insurance: 32.5}}, 
+					      "projectManagementHours":"0",
+					      "requirementsHours":31.2,
+					      "analysisDesignHours":49.4,
+					      "implementationHours":20.8,
+					      "testsHours":2.6,
+					      "deployHours":0,
+					      "environmentHours":0,},	
+				      {"employee":{"id":9, "name":"Ismael", "surname":"Miranda", "employeeCode":"009", "annualGrossSalary":24000.00, 
+						  "roles":["ANALYSIS_DESIGN", "IMPLEMENTATION", "TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL" ],
+						  "contract":{insurance: 32.5}}, 
+					      "projectManagementHours":"0",
+					      "requirementsHours":0,
+					      "analysisDesignHours":0,
+					      "implementationHours":0,
+					      "testsHours":18.2,
+					      "deployHours":7.8,
+					      "environmentHours":26,},	
+				      {"employee":{"id":10, "name":"Julia", "surname":"Fuentes", "employeeCode":"010", "annualGrossSalary":24000.00, 
+						  "roles":["ANALYSIS_DESIGN", "IMPLEMENTATION", "TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL" ],
+						  "contract":{insurance: 32.5}}, 
+					      "projectManagementHours":"0",
+					      "requirementsHours":0,
+					      "analysisDesignHours":0,
+					      "implementationHours":0,
+					      "testsHours":0,
+					      "deployHours":0,
+					      "environmentHours":0,},
+				      {"employee":{"id":11, "name":"Kiko", "surname":"Leon", "employeeCode":"011", "annualGrossSalary":18000.00, 
+						  "roles":["ANALYSIS_DESIGN", "IMPLEMENTATION", "TESTS"],
+						  "contract":{insurance: 2.0}}, 
+					      "projectManagementHours":"0",
+					      "requirementsHours":0,
+					      "analysisDesignHours":0,
+					      "implementationHours":0,
+					      "testsHours":0,
+					      "deployHours":0,
+					      "environmentHours":0,},
+				      {"employee":{"id":12, "name":"Lourdes", "surname":"Hernadez", "employeeCode":"012", "annualGrossSalary":18000.00, 
+						  "roles":["ANALYSIS_DESIGN", "IMPLEMENTATION", "TESTS"],
+						  "contract":{insurance: 2.0}}, 
+					      "projectManagementHours":"0",
+					      "requirementsHours":0,
+					      "analysisDesignHours":0,
+					      "implementationHours":0,
+					      "testsHours":0,
+					      "deployHours":0,
+					      "environmentHours":0,},
+				      {"employee":{"id":13, "name":"Manuel", "surname":"Vega", "employeeCode":"013", "annualGrossSalary":18000.00, 
+						  "roles":["IMPLEMENTATION", "TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL"],
+						  "contract":{insurance: 2.0}}, 
+					      "projectManagementHours":"0",
+					      "requirementsHours":0,
+					      "analysisDesignHours":0,
+					      "implementationHours":0,
+					      "testsHours":0,
+					      "deployHours":0,
+					      "environmentHours":0,},	
+				      {"employee":{"id":14, "name":"Noelia", "surname":"Navas", "employeeCode":"014", "annualGrossSalary":18000.00, 
+						  "roles":["IMPLEMENTATION", "TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL"],
+						  "contract":{insurance: 2.0}}, 
+					      "projectManagementHours":"0",
+					      "requirementsHours":0,
+					      "analysisDesignHours":0,
+					      "implementationHours":0,
+					      "testsHours":0,
+					      "deployHours":0,
+					      "environmentHours":0,},
+				      {"employee":{"id":15, "name":"Osvaldo", "surname":"Uribe", "employeeCode":"015", "annualGrossSalary":22000.00, 
+						  "roles":["IMPLEMENTATION", "TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL"],
+						  "contract":{insurance: 32.5}}, 
+					      "projectManagementHours":"0",
+					      "requirementsHours":0,
+					      "analysisDesignHours":0,
+					      "implementationHours":0,
+					      "testsHours":0,
+					      "deployHours":0,
+					      "environmentHours":0,},
+				      {"employee":{"id":16, "name":"Paloma", "surname":"Fiuza", "employeeCode":"016", "annualGrossSalary":21000.00, 
+						  "roles":["IMPLEMENTATION", "TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL"],
+						  "contract":{insurance: 32.5}}, 
+					      "projectManagementHours":"0",
+					      "requirementsHours":0,
+					      "analysisDesignHours":0,
+					      "implementationHours":0,
+					      "testsHours":0,
+					      "deployHours":0,
+					      "environmentHours":0,},		
+				      {"employee":{"id":17, "name":"Ramón", "surname":"Valdez", "employeeCode":"017", "annualGrossSalary":20000.00, 
+						  "roles":["TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL"],
+						  "contract":{insurance: 32.5}}, 
+					      "projectManagementHours":"0",
+					      "requirementsHours":0,
+					      "analysisDesignHours":0,
+					      "implementationHours":0,
+					      "testsHours":0,
+					      "deployHours":0,
+					      "environmentHours":0,},	
+				      {"employee":{"id":18, "name":"Sara", "surname":"Gavilanez", "employeeCode":"018", "annualGrossSalary":25000.00, 
+						  "roles":["TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL"],
+						  "contract":{insurance: 0.0}}, 
+					      "projectManagementHours":"0",
+					      "requirementsHours":0,
+					      "analysisDesignHours":0,
+					      "implementationHours":0,
+					      "testsHours":0,
+					      "deployHours":0,
+					      "environmentHours":0,},	
+				      {"employee":{"id":19, "name":"Tomas", "surname":"Zambrano", "employeeCode":"019", "annualGrossSalary":30000.00, 
+						  "roles":["TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL"],
+						  "contract":{insurance: 0.0}}, 
+					      "projectManagementHours":"0",
+					      "requirementsHours":0,
+					      "analysisDesignHours":0,
+					      "implementationHours":0,
+					      "testsHours":0,
+					      "deployHours":0,
+					      "environmentHours":0,},
+				      {"employee":{"id":20, "name":"Ursula", "surname":"del Mar", "employeeCode":"020", "annualGrossSalary":20000.00, 
+						  "roles":["TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL"],
+						  "contract":{insurance: 32.5}}, 
+					      "projectManagementHours":"0",
+					      "requirementsHours":0,
+					      "analysisDesignHours":0,
+					      "implementationHours":0,
+					      "testsHours":0,
+					      "deployHours":0,
+					      "environmentHours":0,},					      
+				  ];			
+		
 	}));
 	
 	it("Number of Project Management roles should be 4", function(){
@@ -184,13 +389,13 @@ describe("Test ResourceController", function(){
 		expect(scope.employeeHasRole(scope.resourcesBean.employeeList[19],"PROJECT_MANAGEMENT")).toBe(false);
 	});	
 	
-	//horas disponibles
+	//fase de inicio horas disponibles
 	it("Average available hours should has 104", function(){
-		expect(scope.averageEmployeeHours()).toBe(104);
+		expect(scope.inicioAverageEmployeeHours()).toBe(104);
 	});
 	
 	it("Anibal should has 104 available hours", function(){
-		expect(scope.availableEmployeeHours(scope.resourcesBean.employeeList[0])).toBe(104);
+		expect(scope.inicioAvailableEmployeeHours(scope.resourcesBean.employeeList[0])).toBe(104);
 	});
 	
 	//Fase de inicio - teorico relativo
@@ -261,35 +466,35 @@ describe("Test ResourceController", function(){
 	
 	//Fase de inicio - diferencia absoluta
 	it("Inicio Project Management absolute difference should be -2.3", function(){
-		expect(scope.inicioProjectManagementAbsoluteDifference()).toBe(-2.3);
+		expect(scope.inicioProjectManagementAbsoluteDifference()).toBeCloseTo(-2.3,1);
 	});		
 	
 	it("Inicio Requirements absolute difference should be -6.3", function(){
-		expect(scope.inicioRequirementsAbsoluteDifference()).toBe(-6.3);
+		expect(scope.inicioRequirementsAbsoluteDifference()).toBeCloseTo(-6.3,1);
 	});
 	
 	it("Inicio Analysis Design absolute difference should be -3.1", function(){
-		expect(scope.inicioAnalysisDesignAbsoluteDifference()).toBe(-3.1);
+		expect(scope.inicioAnalysisDesignAbsoluteDifference()).toBeCloseTo(-3.1,1);
 	});
 	
 	it("Inicio Implementation absolute difference should be -1.3", function(){
-		expect(scope.inicioImplementationAbsoluteDifference()).toBe(-1.3);
+		expect(scope.inicioImplementationAbsoluteDifference()).toBeCloseTo(-1.3,1);
 	});
 	
 	it("Inicio Tests absolute difference should be -1.3", function(){
-		expect(scope.inicioTestsAbsoluteDifference()).toBe(-1.3);
+		expect(scope.inicioTestsAbsoluteDifference()).toBeCloseTo(-1.3,1);
 	});
 	
 	it("Inicio Deploy absolute difference should be -0.5", function(){
-		expect(scope.inicioDeployAbsoluteDifference()).toBe(-0.5);
+		expect(scope.inicioDeployAbsoluteDifference()).toBeCloseTo(-0.5,1);
 	});
 	
 	it("Inicio Enviroment absolute difference should be -1.7", function(){
-		expect(scope.inicioEnviromentAbsoluteDifference()).toBe(-1.7);
+		expect(scope.inicioEnviromentAbsoluteDifference()).toBeCloseTo(-1.7,1);
 	});	
 	
 	it("Inicio Total absolute percentaje should be -16.5", function(){
-		expect(scope.inicioTotalAbsoluteDifference()).toBe(-16.5);
+		expect(scope.inicioTotalAbsoluteDifference()).toBeCloseTo(-16.5,1);
 	});		
 	
 	//Fase de inicio - diferencia relativas
