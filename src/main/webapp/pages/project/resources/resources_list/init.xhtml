@@ -10,7 +10,7 @@
 	
 	<div class="row persons_form">
 		<div class="col-sm-offset-2 col-sm-2">
-			<p:outputLabel for="input_init" value="Personas 2.8"
+			<p:outputLabel for="input_init" value="{{numOfProposalPeople|number:2}}"
 				styleClass="label_height" />
 		</div>
 		<div class="col-sm-2">
@@ -40,8 +40,8 @@
 				<td>{{inicioProjectManagementTheoricalAbsolute()|number:2}}</td>
 				<td>{{inicioProjectManagementAbsoluteDifference()}}</td>
 				<td><span class="percentaje">{{inicioProjectManagementRelativeDifference()|number:2}}</span></td>
-				<td>¿?</td>
-				<td>¿?</td>
+				<td>{{inicioProjectManagementProposal()|number:2}}</td>
+				<td>{{inicioProjectManagementProposalDiff()|number:2}}</td>
 			</tr>
 			<tr>
 				<td>Requisitos</td>
@@ -49,8 +49,8 @@
 				<td>{{inicioRequirementsTheoricalAbsolute()|number:2}}</td>
 				<td>{{inicioRequirementsAbsoluteDifference()}}</td>
 				<td><span class="percentaje">{{inicioRequirementsRelativeDifference()|number:2}}</span></td>
-				<td>¿?</td>
-				<td>¿?</td>
+				<td>{{inicioRequirementsProposal()|number:2}}</td>
+				<td>{{inicioRequirementsProposalDiff()|number:2}}</td>
 			</tr>
 			<tr>
 				<td>Analisis/Diseño</td>
@@ -58,8 +58,8 @@
 				<td>{{inicioAnalysisDesignTheoricalAbsolute()|number:2}}</td>
 				<td>{{inicioAnalysisDesignAbsoluteDifference()}}</td>
 				<td><span class="percentaje">{{inicioAnalysisDesignRelativeDifference()|number:2}}</span></td>
-				<td>¿?</td>
-				<td>¿?</td>
+				<td>{{inicioAnalysisDesignProposal()|number:2}}</td>
+				<td>{{inicioAnalysisDesignProposalDiff()|number:2}}</td>
 			</tr>
 			<tr>
 				<td>Implementación</td>
@@ -67,8 +67,8 @@
 				<td>{{inicioImplementationTheoricalAbsolute()|number:2}}</td>
 				<td>{{inicioImplementationAbsoluteDifference()}}</td>
 				<td><span class="percentaje">{{inicioImplementationRelativeDifference()|number:2}}</span></td>
-				<td>¿?</td>
-				<td>¿?</td>
+				<td>{{inicioImplementationProposal()|number:2}}</td>
+				<td>{{inicioImplementationProposalDiff()|number:2}}</td>
 			</tr>
 			<tr>
 				<td>Pruebas</td>
@@ -76,8 +76,8 @@
 				<td>{{inicioTestsTheoricalAbsolute()|number:2}}</td>
 				<td>{{inicioTestsAbsoluteDifference()}}</td>
 				<td><span class="percentaje">{{inicioTestsRelativeDifference()|number:2}}</span></td>
-				<td>¿?</td>
-				<td>¿?</td>
+				<td>{{inicioTestsProposal()|number:2}}</td>
+				<td>{{inicioTestsProposalDiff()|number:2}}</td>
 			</tr>
 			<tr>
 				<td>Despliegues</td>
@@ -85,8 +85,8 @@
 				<td>{{inicioDeployTheoricalAbsolute()|number:2}}</td>
 				<td>{{inicioDeployAbsoluteDifference()}}</td>
 				<td><span class="percentaje">{{inicioDeployRelativeDifference()|number:2}}</span></td>
-				<td>¿?</td>
-				<td>¿?</td>
+				<td>{{inicioDeployProposal()|number:2}}</td>
+				<td>{{inicioDeployProposalDiff()|number:2}}</td>
 			</tr>
 			<tr>
 				<td>Control de Versiones</td>
@@ -94,8 +94,8 @@
 				<td>{{inicioEnviromentTheoricalAbsolute()|number:2}}</td>
 				<td>{{inicioEnviromentAbsoluteDifference()}}</td>
 				<td><span class="percentaje">{{inicioEnviromentRelativeDifference()|number:2}}</span></td>
-				<td>¿?</td>
-				<td>¿?</td>
+				<td>{{inicioEnviromentProposal()|number:2}}</td>
+				<td>{{inicioEnviromentProposalDiff()|number:2}}</td>
 			</tr>
 			<tr>
 				<td>Totales</td>
@@ -103,8 +103,8 @@
 				<td>{{inicioTotalTheoricalAbsolute()|number:2}}</td>
 				<td>{{inicioTotalAbsoluteDifference()}}</td>
 				<td><span class="percentaje">{{inicioTotalRelativeDifference()|number:2}}</span></td>
-				<td>¿?</td>
-				<td>¿?</td>
+				<td>{{inicioTotalProposal()|number:2}}</td>
+				<td>{{inicioTotalProposalDiff()|number:2}}</td>
 			</tr>
 			
 		</table>
