@@ -185,8 +185,12 @@ describe("Test ResourceController", function(){
 	});	
 	
 	//horas disponibles
-	it("Anibal should has 88 available hours", function(){
-		expect(scope.availableEmployeeHours(scope.resourcesBean.employeeList[0])).toBe(88);
+	it("Average available hours should has 104", function(){
+		expect(scope.averageEmployeeHours()).toBe(104);
+	});
+	
+	it("Anibal should has 104 available hours", function(){
+		expect(scope.availableEmployeeHours(scope.resourcesBean.employeeList[0])).toBe(104);
 	});
 	
 	//Fase de inicio - teorico relativo
@@ -383,8 +387,41 @@ describe("Test ResourceController", function(){
 		expect(scope.inicioEnviromentProposal()).toBeCloseTo(26.0,1);
 	});	
 	
-	it("Inicio Total asigned percentaje should be 260.0", function(){
+	it("Inicio Total proposal should be 260.0", function(){
 		expect(scope.inicioTotalProposal()).toBeCloseTo(260.0,1);
+	});		
+	
+	//Fase de inicio - diferencia propuesta
+	it("Inicio Project Management proposal diff should be 0", function(){
+		expect(scope.inicioProjectManagementProposalDiff()).toBeCloseTo(0,1);
+	});		
+	
+	it("Inicio Requirements proposal diff should be 0", function(){
+		expect(scope.inicioRequirementsProposalDiff()).toBeCloseTo(0,1);
+	});
+	
+	it("Inicio Analysis Design proposal diff should be 0", function(){
+		expect(scope.inicioAnalysisDesignProposalDiff()).toBeCloseTo(0,1);
+	});
+	
+	it("Inicio Implementation proposal diff should be 0", function(){
+		expect(scope.inicioImplementationProposalDiff()).toBeCloseTo(0,1);
+	});
+	
+	it("Inicio Tests proposal diff should be 0", function(){
+		expect(scope.inicioTestsProposalDiff()).toBeCloseTo(0,1);
+	});
+	
+	it("Inicio Deploy proposal diff should be 0", function(){
+		expect(scope.inicioDeployProposalDiff()).toBeCloseTo(0,1);
+	});
+	
+	it("Inicio Enviroment proposal diff should be 0", function(){
+		expect(scope.inicioEnviromentProposalDiff()).toBeCloseTo(0,1);
+	});	
+	
+	it("Inicio Total proposal diff should be 0", function(){
+		expect(scope.inicioTotalProposalDiff()).toBeCloseTo(0,1);
 	});		
 	
 

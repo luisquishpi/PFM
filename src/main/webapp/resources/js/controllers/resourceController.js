@@ -249,42 +249,6 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 			$scope.inicioEnviromentAbsoluteDifference();
 	}
 	
-	//Fase de inicio - asignado
-	$scope.inicioProjectManagementAssigned = function(){
-		return 36.4;
-	}	
-	
-	$scope.inicioRequirementsAssigned = function(){
-		return 98.8;
-	}	
-	
-	$scope.inicioAnalysisDesignAssigned = function(){
-		return 49.4;
-	}
-	
-	$scope.inicioImplementationAssigned = function(){
-		return 20.8;
-	}	
-	
-	$scope.inicioTestsAssigned = function(){
-		return 20.8;
-	}	
-	
-	$scope.inicioDeployAssigned = function(){
-		return 7.8;
-	}	
-	
-	$scope.inicioEnviromentAssigned = function(){
-		return 26;
-	}
-	
-	$scope.inicioTotalAssigned = function(){
-		return $scope.inicioProjectManagementAssigned() + $scope.inicioRequirementsAssigned() + 
-			$scope.inicioAnalysisDesignAssigned() + $scope.inicioImplementationAssigned() + 
-			$scope.inicioTestsAssigned() + $scope.inicioDeployAssigned() +
-			$scope.inicioEnviromentAssigned();
-	}
-	
 	//Fase de inicio - diferencia relativa
 	$scope.inicioProjectManagementRelativeDifference = function(){
 		return ($scope.inicioProjectManagementAssigned()/$scope.inicioProjectManagementTheoricalAbsolute())*100;
@@ -355,24 +319,103 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 		$scope.inicioTestsProposal()+$scope.inicioDeployProposal()+$scope.inicioEnviromentProposal();
 	}
 	
+	//Fase de inicio - diferencia propuesta
+	$scope.inicioProjectManagementProposalDiff = function(){
+		return $scope.inicioProjectManagementAssigned()-$scope.inicioProjectManagementProposal();
+	}	
+	
+	$scope.inicioRequirementsProposalDiff = function(){
+		return $scope.inicioRequirementsAssigned()-$scope.inicioRequirementsProposal();
+	}	
+	
+	$scope.inicioAnalysisDesignProposalDiff = function(){
+		return $scope.inicioAnalysisDesignAssigned()-$scope.inicioAnalysisDesignProposal();
+	}
+	
+	$scope.inicioImplementationProposalDiff = function(){
+		return $scope.inicioImplementationAssigned()-$scope.inicioImplementationProposal();
+	}	
+	
+	$scope.inicioTestsProposalDiff = function(){
+		return $scope.inicioTestsAssigned()-$scope.inicioTestsProposal();
+	}	
+	
+	$scope.inicioDeployProposalDiff = function(){
+		return $scope.inicioDeployAssigned()-$scope.inicioDeployProposal();
+	}	
+	
+	$scope.inicioEnviromentProposalDiff = function(){
+		return $scope.inicioEnviromentAssigned()-$scope.inicioEnviromentProposal();
+	}
+	
+	$scope.inicioTotalProposalDiff = function(){
+		return $scope.inicioProjectManagementProposalDiff() + $scope.inicioRequirementsProposalDiff() + 
+			$scope.inicioAnalysisDesignProposalDiff() + $scope.inicioImplementationProposalDiff() + 
+			$scope.inicioTestsProposalDiff() + $scope.inicioDeployProposalDiff() +
+			$scope.inicioEnviromentProposalDiff();
+	}	
+	
+	//Fase de inicio - asignado
+	$scope.inicioProjectManagementAssigned = function(){
+		return 36.4;
+	}	
+	
+	$scope.inicioRequirementsAssigned = function(){
+		return 98.8;
+	}	
+	
+	$scope.inicioAnalysisDesignAssigned = function(){
+		return 49.4;
+	}
+	
+	$scope.inicioImplementationAssigned = function(){
+		return 20.8;
+	}	
+	
+	$scope.inicioTestsAssigned = function(){
+		return 20.8;
+	}	
+	
+	$scope.inicioDeployAssigned = function(){
+		return 7.8;
+	}	
+	
+	$scope.inicioEnviromentAssigned = function(){
+		return 26;
+	}
+	
+	$scope.inicioTotalAssigned = function(){
+		return $scope.inicioProjectManagementAssigned() + $scope.inicioRequirementsAssigned() + 
+			$scope.inicioAnalysisDesignAssigned() + $scope.inicioImplementationAssigned() + 
+			$scope.inicioTestsAssigned() + $scope.inicioDeployAssigned() +
+			$scope.inicioEnviromentAssigned();
+	}
+	
 	//calcula el numero de personas propuestas
 	$scope.averageEmployeeHours = function(){
-		var averageHoursPerDay = $scope.discipline.phases.schedule.averageHoursPerDay();
-		var iterationDays = $scope.resourcesBean.project.iterationDays;
-		return averageHoursPerDay*iterationDays;
+		var totalEmployeeHours = 0;
+		for(i=0; i < $scope.resourcesBean.employeeList.length; i++){
+			totalEmployeeHours += $scope.availableEmployeeHours($scope.resourcesBean.employeeList[i]);
+		}
+		return totalEmployeeHours/($scope.resourcesBean.employeeList.length-1);
 	}
 	
 	$scope.normalEmployeeHours = function(){
 		var averageHoursPerDay = $scope.discipline.phases.schedule.averageHoursPerDay();
 		var iterationDays = $scope.resourcesBean.project.iterationDays;
-		return averageHoursPerWeek*iterationDays;
+		return averageHoursPerDay*iterationDays;
 	}	
 	
 	$scope.availableEmployeeHours = function(employee){
-		for(i=0; i< employee.vacations.length; i++){
-			var numberOfVacationDays = DateUtils.dateDiffInDays(employee.vacations[i].start, employee.vacations[i].end);
+		var numberOfVacationDays = 0;
+		if(typeof employee.vacations!== 'undefined'){
+			for(i=0; i< employee.vacations.length; i++){
+				//todo: calcular las vacaciones
+				numberOfVacationDays = DateUtils.dateDiffInDays(employee.vacations[i].start, employee.vacations[i].end);
+			}
 		}
-		return 88;
+		numberOfVacationDays = 0;
+		return $scope.normalEmployeeHours();
 	}
 	
 	$scope.numberOfProposalsPeople = function(){
