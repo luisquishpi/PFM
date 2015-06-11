@@ -6,16 +6,18 @@ describe("Test ResourceController", function(){
 	
 	beforeEach(inject(function($controller, $rootScope){
 		scope = $rootScope;
-		scope.assignResourcesBean = {
+		scope.resourcesBean = {
 				  project:{
 					  cost: 85000,
 					  startString: "2/3/2015",
-					  endString: "4/9/2015", 
+					  endString: "4/9/2015",
+					  iterationDays: 13,
 				  },
 				  employeeList:[
 				  {"id":1, "name":"Anibal", "surname":"Pacheco", "employeeCode":"001", "annualGrossSalary":40500.00, 
 					      "roles":["PROJECT_MANAGEMENT", "REQUIREMENTS", "ANALYSIS_DESIGN", "IMPLEMENTATION", "TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL" ],
-					      "contract":{insurance: 32.5}},
+					      "contract":{insurance: 32.5},
+					      "vacations":[{"start": "3/3/2015", "end":"5/3/2015"}]},
 				  {"id":2, "name":"Beatriz", "surname":"Jimenez", "employeeCode":"002", "annualGrossSalary":38000.00, 
 						  "roles":["PROJECT_MANAGEMENT", "REQUIREMENTS", "ANALYSIS_DESIGN", "IMPLEMENTATION", "TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL" ],
 						  "contract":{insurance: 32.5}},
@@ -124,6 +126,7 @@ describe("Test ResourceController", function(){
 							monthsPerYear: 12,
 							hoursPerDay: 8,
 							daysPerWeek: function(){return 5;},
+							averageHoursPerDay: function(){return 8;},
 						}
 					},
 				}					
@@ -161,25 +164,34 @@ describe("Test ResourceController", function(){
 	
 	//salarios
 	it("Annibal Daily Salary should be 26.62 ", function(){
-		expect(scope.employeeSalaryHour(scope.assignResourcesBean.employeeList[0])).toBeCloseTo(26.62,1);
+		expect(scope.employeeSalaryHour(scope.resourcesBean.employeeList[0])).toBeCloseTo(26.62,1);
 	});
 	
 	it("Ernesto Daily Salary should be 19.84 ", function(){
-		expect(scope.employeeSalaryHour(scope.assignResourcesBean.employeeList[4])).toBeCloseTo(19.84,1);
+		expect(scope.employeeSalaryHour(scope.resourcesBean.employeeList[4])).toBeCloseTo(19.84,1);
 	});	
 	
 	it("Kiko Daily Salary should be 9.11", function(){
-		expect(scope.employeeSalaryHour(scope.assignResourcesBean.employeeList[10])).toBeCloseTo(9.11,1);
+		expect(scope.employeeSalaryHour(scope.resourcesBean.employeeList[10])).toBeCloseTo(9.11,1);
 	});	
 	
 	//roles
 	it("Anibal should has PROJECT_MANAGEMENT role", function(){
-		expect(scope.employeeHasRole(scope.assignResourcesBean.employeeList[0],"PROJECT_MANAGEMENT")).toBe(true);
+		expect(scope.employeeHasRole(scope.resourcesBean.employeeList[0],"PROJECT_MANAGEMENT")).toBe(true);
 	});
 	
 	it("Ursula should not has PROJECT_MANAGEMENT role", function(){
-		expect(scope.employeeHasRole(scope.assignResourcesBean.employeeList[19],"PROJECT_MANAGEMENT")).toBe(false);
+		expect(scope.employeeHasRole(scope.resourcesBean.employeeList[19],"PROJECT_MANAGEMENT")).toBe(false);
 	});	
+	
+	//horas disponibles
+	it("Average available hours should has 104", function(){
+		expect(scope.averageEmployeeHours()).toBe(104);
+	});
+	
+	it("Anibal should has 104 available hours", function(){
+		expect(scope.availableEmployeeHours(scope.resourcesBean.employeeList[0])).toBe(104);
+	});
 	
 	//Fase de inicio - teorico relativo
 	it("Inicio Project Management relative theorical percentaje should be 14", function(){
@@ -347,36 +359,69 @@ describe("Test ResourceController", function(){
 	});		
 	
 	//Fase de inicio - proposal
-	it("Inicio Project Management proposal should be 35.84", function(){
-		expect(scope.inicioProjectManagementProposal()).toBeCloseTo(35.84,1);
+	it("Inicio Project Management proposal should be 36.4", function(){
+		expect(scope.inicioProjectManagementProposal()).toBeCloseTo(36.4,1);
 	});		
 	
-	it("Inicio Requirements proposal should be 97.28", function(){
-		expect(scope.inicioRequirementsProposal()).toBeCloseTo(97.28,1);
+	it("Inicio Requirements proposal should be 98.8", function(){
+		expect(scope.inicioRequirementsProposal()).toBeCloseTo(98.8,1);
 	});
 	
-	it("Inicio Analysis Design proposal should be 48.64", function(){
-		expect(scope.inicioAnalysisDesignProposal()).toBeCloseTo(48.64,1);
+	it("Inicio Analysis Design proposal should be 49.4", function(){
+		expect(scope.inicioAnalysisDesignProposal()).toBeCloseTo(49.4,1);
 	});
 	
-	it("Inicio Implementation proposal should be 20.48", function(){
-		expect(scope.inicioImplementationProposal()).toBeCloseTo(20.48,1);
+	it("Inicio Implementation proposal should be 20.8", function(){
+		expect(scope.inicioImplementationProposal()).toBeCloseTo(20.8,1);
 	});
 	
-	it("Inicio Tests proposal should be 20.48", function(){
-		expect(scope.inicioTestsProposal()).toBeCloseTo(20.48,1);
+	it("Inicio Tests proposal should be 20.8", function(){
+		expect(scope.inicioTestsProposal()).toBeCloseTo(20.8,1);
 	});
 	
-	it("Inicio Deploy proposal should be 7.68", function(){
-		expect(scope.inicioDeployProposal()).toBeCloseTo(7.68,1);
+	it("Inicio Deploy proposal should be 7.8", function(){
+		expect(scope.inicioDeployProposal()).toBeCloseTo(7.8,1);
 	});
 	
-	it("Inicio Enviroment proposal should be 25.6", function(){
-		expect(scope.inicioEnviromentProposal()).toBeCloseTo(25.6,1);
+	it("Inicio Enviroment proposal should be 26.0", function(){
+		expect(scope.inicioEnviromentProposal()).toBeCloseTo(26.0,1);
 	});	
 	
-	it("Inicio Total asigned percentaje should be 256.01", function(){
-		expect(scope.inicioTotalProposal()).toBeCloseTo(256.01,1);
+	it("Inicio Total proposal should be 260.0", function(){
+		expect(scope.inicioTotalProposal()).toBeCloseTo(260.0,1);
+	});		
+	
+	//Fase de inicio - diferencia propuesta
+	it("Inicio Project Management proposal diff should be 0", function(){
+		expect(scope.inicioProjectManagementProposalDiff()).toBeCloseTo(0,1);
+	});		
+	
+	it("Inicio Requirements proposal diff should be 0", function(){
+		expect(scope.inicioRequirementsProposalDiff()).toBeCloseTo(0,1);
+	});
+	
+	it("Inicio Analysis Design proposal diff should be 0", function(){
+		expect(scope.inicioAnalysisDesignProposalDiff()).toBeCloseTo(0,1);
+	});
+	
+	it("Inicio Implementation proposal diff should be 0", function(){
+		expect(scope.inicioImplementationProposalDiff()).toBeCloseTo(0,1);
+	});
+	
+	it("Inicio Tests proposal diff should be 0", function(){
+		expect(scope.inicioTestsProposalDiff()).toBeCloseTo(0,1);
+	});
+	
+	it("Inicio Deploy proposal diff should be 0", function(){
+		expect(scope.inicioDeployProposalDiff()).toBeCloseTo(0,1);
+	});
+	
+	it("Inicio Enviroment proposal diff should be 0", function(){
+		expect(scope.inicioEnviromentProposalDiff()).toBeCloseTo(0,1);
+	});	
+	
+	it("Inicio Total proposal diff should be 0", function(){
+		expect(scope.inicioTotalProposalDiff()).toBeCloseTo(0,1);
 	});		
 	
 

@@ -85,7 +85,7 @@ projectApp.controller("scheduleController",['$scope', '$isTest', 'bridgeService'
 		return lista;
 	}
 	
-	$scope.averageHoursPerWeek = function(){
+	$scope.averageHoursPerDay = function(){
 		return $scope.hoursPerWeek()/$scope.daysPerWeek();
 	}
 }]);
