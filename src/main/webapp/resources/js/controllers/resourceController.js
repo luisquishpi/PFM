@@ -46,10 +46,43 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	    }, 0);
 	};
 	
-	$scope.validateInitprojectManagementHours=function(employeeResource){
-			if(employeeResource.employee.inicioAvailableEmployeeHours(employeeResource.projectManagementHours))
-					employeeResource.projectManagementHours = 0;
+	$scope.checkEmployee = function(employeeResource){
+		var employee_sel=employeeResource
+		var hours_assigned = parseFloat(employee_sel.projectManagementHours)+parseFloat(employee_sel.requirementsHours)+parseFloat(employee_sel.analysisDesignHours)+
+		parseFloat(employee_sel.implementationHours)+parseFloat(employee_sel.testsHours)+parseFloat(employee_sel.deployHours)+parseFloat(employee_sel.environmentHours);
+		return hours_assigned>employee_sel.employee.inicioAvailableEmployeeHours;
+		
 	}
+	
+	$scope.validateInitProjectManagementHours=function(employeeResource){		
+		if($scope.checkEmployee(employeeResource)||(isNaN(parseFloat(employeeResource.projectManagementHours))&&employeeResource.projectManagementHours!=""))
+			employeeResource.projectManagementHours = 0;
+	}
+	$scope.validateInitRequirementsHours=function(employeeResource){		
+		if($scope.checkEmployee(employeeResource)||isNaN(parseFloat(employeeResource.requirementsHours)))
+			employeeResource.requirementsHours = 0;
+	}
+	$scope.validateInitAnalysisDesignHours=function(employeeResource){		
+		if($scope.checkEmployee(employeeResource)||isNaN(parseFloat(employeeResource.analysisDesignHours)))
+			employeeResource.analysisDesignHours = 0;
+	}
+	$scope.validateInitImplementationHours=function(employeeResource){		
+		if($scope.checkEmployee(employeeResource)||isNaN(parseFloat(employeeResource.implementationHours)))
+			employeeResource.implementationHours = 0;
+	}
+	$scope.validateInitTestHours=function(employeeResource){		
+		if($scope.checkEmployee(employeeResource)||isNaN(parseFloat(employeeResource.testsHours)))
+			employeeResource.testsHours = 0;
+	}
+	$scope.validateInitDeployHours=function(employeeResource){		
+		if($scope.checkEmployee(employeeResource)||isNaN(parseFloat(employeeResource.deployHours)))
+			employeeResource.deployHours = 0;
+	}
+	$scope.validateInitEnvionmentHours=function(employeeResource){
+		if($scope.checkEmployee(employeeResource)||isNaN(parseFloat(employeeResource.environmentHours)))
+			employeeResource.environmentHours = 0;
+	}
+
 	
 	//Gestion en Init
 	$scope.addEmployeeInit = function(){
@@ -60,7 +93,7 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 					seen = true;
 			}
 			if(!seen){
-				$scope.employeeListSelected[p].availableEmployeeHours = $scope.inicioAvailableEmployeeHours($scope.employeeListSelected[p]);
+				$scope.employeeListSelected[p].inicioAvailableEmployeeHours = $scope.inicioAvailableEmployeeHours($scope.employeeListSelected[p]);
 				$scope.initEmployee.push(new EmployeeResource($scope.employeeListSelected[p]));
 			}
 			seen = false;
@@ -300,7 +333,6 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 		
 	//Fase de inicio - propuesta
 	$scope.inicioProjectManagementProposal = function(){
-		console.log($scope.inicioNumberOfAssignedPeople);
 		return ($scope.inicioProjectManagementTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*$scope.inicioNumberOfAssignedPeople)/($scope.inicioNumOfProposalPeople*100);
 	}	
 	
