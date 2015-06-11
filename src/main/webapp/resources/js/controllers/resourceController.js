@@ -91,7 +91,7 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 		var annualSalary = EmployeeUtils.totalAnnualSalary(employee);
 		var monthlySalary = annualSalary/$scope.discipline.phases.schedule.monthsPerYear;
 		var dailySalary = monthlySalary/$scope.discipline.phases.schedule.workDays;
-		return dailySalary/$scope.discipline.phases.schedule.hoursPerDay();
+		return dailySalary/$scope.discipline.phases.schedule.hoursPerDay;
 	}
 	
 	//verifica si un empleado tiene un rol
@@ -390,7 +390,7 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 			$scope.inicioTestsAssigned() + $scope.inicioDeployAssigned() +
 			$scope.inicioEnviromentAssigned();
 	}
-	/*
+	
 	//calcula el numero de personas propuestas
 	$scope.normalEmployeeHours = function(){
 		var averageHoursPerDay = $scope.discipline.phases.schedule.averageHoursPerDay();
@@ -422,15 +422,11 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 		return totalEmployeeHours/($scope.resourcesBean.employeeList.length-1);
 	}
 	
-	
 	$scope.avgEmployeeHours = $scope.averageEmployeeHours();
 	
-
 	$scope.numberOfProposalsPeople = function(){
 		return $scope.inicioTotalTheoricalAbsolute()/$scope.avgEmployeeHours;
 	}
 	
-	
-	$scope.numOfProposaleople = $scope.numberOfProposalsPeople();	
-	*/
+	$scope.numOfProposalPeople = $scope.numberOfProposalsPeople();	
 }]);
