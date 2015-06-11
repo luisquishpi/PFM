@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.MapKeyColumn;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -24,6 +25,7 @@ import upm.miw.pfm.utils.Utils;
 
 @Entity
 @Table(name = "project")
+@XmlRootElement
 public class Project implements IGenericEntity, Serializable {
 
 	private static final long serialVersionUID = 1L;

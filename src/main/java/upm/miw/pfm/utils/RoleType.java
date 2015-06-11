@@ -2,6 +2,9 @@ package upm.miw.pfm.utils;
 
 import java.io.Serializable;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public enum RoleType implements Serializable {
     PROJECT_MANAGEMENT("Gestión de proyectos"), REQUIREMENTS("Requisitos"), ANALYSIS_DESIGN(
             "Análisis y diseño"), IMPLEMENTATION("Implementación"), TESTS("Pruebas"), DEPLOY(
