@@ -115,55 +115,57 @@
 				<th class="ui-outputlabel ui-widget text-center">Nombre</th>
 				<th class="ui-outputlabel ui-widget text-center">Gestion Proyecto</th>
 				<th class="ui-outputlabel ui-widget text-center">Requisitos</th>
-				<th class="ui-outputlabel ui-widget text-center">Analisis/Diseño</th>
+				<th class="ui-outputlabel ui-widget text-center">Analisis y Diseño</th>
 				<th class="ui-outputlabel ui-widget text-center">Implementación</th>
 				<th class="ui-outputlabel ui-widget text-center">Pruebas</th>
 				<th class="ui-outputlabel ui-widget text-center">Despliegue</th>
 				<th class="ui-outputlabel ui-widget text-center">Control de versiones</th>
+				<th class="ui-outputlabel ui-widget text-center">Disponibilidad</th>
+				<th class="ui-outputlabel ui-widget text-center">Coste</th>
 				<th class="ui-outputlabel ui-widget text-center">Acciones</th>
 			</tr>
 			<tr ng-repeat="employeeResource in initEmployee">
 				
-				<td>
+				<td class="text-center">
 					<div class="col-xs-12">
 						{{employeeResource.employee.name}}
 					</div>	
 				</td>
-					<td>
+					<td class="text-center">
 						<div class="col-xs-12">
 						<p:outputLabel for="obj1" value=""/>
-						<p:inputText style="width:100%;" required="false" id="obj1" 
+						<p:inputText style="width:35px;" required="false" id="obj1" 
 							value="{{employeeResource.projectManagementHours}}"
 							 />
 						</div>	 
 					</td>
 				
-					<td>
+					<td class="text-center">
 						<div class="col-xs-12">
 						<p:outputLabel for="obj2" value=""/>
-						<p:inputText style="width:100%;" required="false" id="obj2" 
+						<p:inputText style="width:35px;" required="false" id="obj2" 
 							value="{{employeeResource.requirementsHours}}"
 							 />
 						</div>	 
 					</td>
-					<td>
+					<td class="text-center">
 						<div class="col-xs-12">
 							<p:outputLabel for="obj3" value=""/>
-							<p:inputText style="width:100%;" required="false" id="obj3" 
+							<p:inputText style="width:35px;" required="false" id="obj3" 
 								value="{{employeeResource.analysisDesignHours}}"
 								 />
 						</div>	 
 					</td>
-					<td>
+					<td class="text-center">
 						<div class="col-xs-12">
 							<p:outputLabel for="obj4" value=""/>
-							<p:inputText style="width:100%;" required="false" id="obj4" 
+							<p:inputText style="width:35px;" required="false" id="obj4" 
 								value="{{employeeResource.implementationHours}}"
 								 />
 						</div>	 
 					</td>
 				
-					<td>
+					<td class="text-center">
 						<div class="col-xs-12">
 							<p:outputLabel for="obj5" value=""/>
 							<p:inputText style="width:100%;" required="false" id="obj5" 
@@ -171,28 +173,31 @@
 								 />
 						</div>
 					</td>
-					<td>
+					<td class="text-center">
 						<div class="col-xs-12">
 							<p:outputLabel for="obj6" value=""/>
-							<p:inputText style="width:100%;" required="false" id="obj6" 
+							<p:inputText style="width:35px;" required="false" id="obj6" 
 								value="{{employeeResource.deployHours}}"
 								 />
 						</div>	 
 					</td>
 				
-					<td>
+					<td class="text-center">
 						<div class="col-xs-12">
 							<p:outputLabel for="obj7" value=""/>
-							<p:inputText style="width:100%;" required="false" id="obj7" 
+							<p:inputText style="width:35px;" required="false" id="obj7" 
 								value="{{employeeResource.environmentHours}}"
 								 />
 						</div>	 
 					</td>	
-					<td>
+					<td class="text-center">0/0</td>
+					<td class="text-center">0/0</td>
+					<td class="text-center">
 						<div class="col-xs-12">
 							<span ng-click="deleteEmployeeInit(employeeResource)" class="glyphicon glyphicon-remove" aria-hidden="true"/>
 						</div>	 
-					</td>		
+					</td>	
+						
 			</tr>	
 			<tr>
 				<td class="text-center">Totales</td>
@@ -203,6 +208,9 @@
 				<td class="text-center">{{initTestsHoursTotal()}}</td>
 				<td class="text-center">{{initDeployHoursTotal()}}</td>
 				<td class="text-center">{{initEnvironmentHoursTotal()}}</td>
+				<td class="text-center"></td>
+				<td class="text-center"></td>
+				<td class="text-center"></td>
 			</tr>
 		</table>
 		</fieldset>		

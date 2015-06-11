@@ -25,7 +25,7 @@
 			</tr>
 			<tr ng-repeat="employee in resourcesBean.employeeList">
 				<td class="text-center"><strong>{{employee.fullName}}</strong></td>
-				<td class="text-center">{{employeeSalaryHour(employee) | number}}</td>
+				<td class="text-center">{{employeeSalaryHour(employee)|number:2}}</td>
 				<td class="text-center">{{employeeHasRole(employee,"PROJECT_MANAGEMENT")===true?"X":""}}</td>
 				<td class="text-center">{{employeeHasRole(employee,"REQUIREMENTS")===true?"X":""}}</td>
 				<td class="text-center">{{employeeHasRole(employee,"ANALYSIS_DESIGN")===true?"X":""}}</td>
