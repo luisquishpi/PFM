@@ -15,6 +15,11 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 		this.environmentHours=0;
 	}
 	
+	$scope.assignHours = function(employeeResource){
+		return parseFloat(employeeResource.projectManagementHours)+parseFloat(employeeResource.requirementsHours)+parseFloat(employeeResource.analysisDesignHours)+
+		parseFloat(employeeResource.implementationHours)+parseFloat(employeeResource.testsHours)+parseFloat(employeeResource.deployHours)+parseFloat(employeeResource.environmentHours);
+	}
+	
 	$scope.discipline = bridgeService.shareData;
 	$scope.employeeListSelected=[];
 	$scope.initEmployee=[];
@@ -37,6 +42,11 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	    }, 0);
 	};
 	
+	$scope.validateInitprojectManagementHours=function(employeeResource){
+			if(employeeResource.employee.availableEmployeeHours<employeeResource.projectManagementHours)
+				employeeResource.projectManagementHours = 0;
+	}
+	
 	//Gestion en Init
 	$scope.addEmployeeInit = function(){
 		var seen = false;
@@ -45,8 +55,11 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 				if($scope.employeeListSelected[p].id == $scope.initEmployee[i].employee.id)
 					seen = true;
 			}
-			if(!seen)
+			if(!seen){
+				$scope.employeeListSelected[p].availableEmployeeHours = $scope.availableEmployeeHours($scope.employeeListSelected[p]);
+				console.log($scope.employeeListSelected[p]);
 				$scope.initEmployee.push(new EmployeeResource($scope.employeeListSelected[p]));
+			}
 			seen = false;
 		}
 	}
@@ -91,7 +104,7 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 		var annualSalary = EmployeeUtils.totalAnnualSalary(employee);
 		var monthlySalary = annualSalary/$scope.discipline.phases.schedule.monthsPerYear;
 		var dailySalary = monthlySalary/$scope.discipline.phases.schedule.workDays;
-		return dailySalary/$scope.discipline.phases.schedule.hoursPerDay;
+		return dailySalary/$scope.discipline.phases.schedule.hoursPerDay();
 	}
 	
 	//verifica si un empleado tiene un rol

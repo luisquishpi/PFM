@@ -134,7 +134,7 @@
 					<td class="text-center">
 						<div class="col-xs-12">
 						<p:outputLabel for="obj1" value=""/>
-						<p:inputText style="width:35px;" required="false" id="obj1" 
+						<p:inputText ng-change="validateInitprojectManagementHours(employeeResource)" style="width:35px;" required="false" id="obj1" 
 							value="{{employeeResource.projectManagementHours}}"
 							 />
 						</div>	 
@@ -190,7 +190,7 @@
 								 />
 						</div>	 
 					</td>	
-					<td class="text-center">0/0</td>
+					<td class="text-center">{{assignHours(employeeResource)}}/{{employeeResource.employee.availableEmployeeHours}}</td>
 					<td class="text-center">0/0</td>
 					<td class="text-center">
 						<div class="col-xs-12">
