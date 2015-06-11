@@ -1,5 +1,6 @@
 package upm.miw.pfm.models.entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -19,14 +20,18 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import upm.miw.pfm.utils.RoleType;
 
 @Entity
 @Table(name = "employee")
-public class Employee implements IGenericEntity{
+@XmlRootElement
+public class Employee implements IGenericEntity, Serializable{
 
-	@Id
+    private static final long serialVersionUID = 1L;
+
+    @Id
     @GeneratedValue
     private Integer id;
 

@@ -132,6 +132,7 @@ describe("Test ResourceController", function(){
 				}					
 			}
 		});
+		scope.inicioNumberOfAssignedPeople=2.5;
 		scope.initEmployee=[
 					  {"employee":{"id":1, "name":"Anibal", "surname":"Pacheco", "employeeCode":"001", "annualGrossSalary":40500.00, 
 						      "roles":["PROJECT_MANAGEMENT", "REQUIREMENTS", "ANALYSIS_DESIGN", "IMPLEMENTATION", "TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL" ],
