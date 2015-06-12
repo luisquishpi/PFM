@@ -29,8 +29,7 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	$scope.inicioNumberOfAssignedPeople=0;
 	
 	//funcion que agrega empleado al array
-	
-	$scope.copyEmployeeToList = function(employee, index){
+	$scope.copyEmployeeToList = function(employee){
 		if(employee.selected){
 			$scope.employeeListSelected.push(employee);
 		}
@@ -39,6 +38,14 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 			$scope.employeeListSelected.splice(index,1);
 		}
 	}
+	$scope.checkAll = function () {
+		$scope.employeeListSelected.splice(0,$scope.employeeListSelected.length);
+        angular.forEach($scope.resourcesBean.employeeList, function (employee) {
+        	employee.selected = $scope.selectedAll;
+            $scope.copyEmployeeToList(employee);
+        });
+
+    };
 	
 	$scope.sum = function(items, prop){
 	    return items.reduce( function(a, b){
