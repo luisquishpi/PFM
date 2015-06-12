@@ -133,7 +133,7 @@
 					<td class="text-center">
 						<div class="col-xs-12">
 						<p:outputLabel for="obj1" value=""/>
-						<p:inputText ng-change="validateInitprojectManagementHours(employeeResource)" style="width:35px;" required="false" id="obj1" 
+						<p:inputText ng-change="validateInitProjectManagementHours(employeeResource)" style="width:35px;" required="false" id="obj1" 
 							value="{{employeeResource.projectManagementHours}}"
 							 />
 						</div>	 
@@ -142,7 +142,7 @@
 					<td class="text-center">
 						<div class="col-xs-12">
 						<p:outputLabel for="obj2" value=""/>
-						<p:inputText style="width:35px;" required="false" id="obj2" 
+						<p:inputText ng-change="validateInitRequirementsHours(employeeResource)" style="width:35px;" required="false" id="obj2" 
 							value="{{employeeResource.requirementsHours}}"
 							 />
 						</div>	 
@@ -150,7 +150,7 @@
 					<td class="text-center">
 						<div class="col-xs-12">
 							<p:outputLabel for="obj3" value=""/>
-							<p:inputText style="width:35px;" required="false" id="obj3" 
+							<p:inputText ng-change="validateInitAnalysisDesignHours(employeeResource)" style="width:35px;" required="false" id="obj3" 
 								value="{{employeeResource.analysisDesignHours}}"
 								 />
 						</div>	 
@@ -158,7 +158,7 @@
 					<td class="text-center">
 						<div class="col-xs-12">
 							<p:outputLabel for="obj4" value=""/>
-							<p:inputText style="width:35px;" required="false" id="obj4" 
+							<p:inputText ng-change="validateInitImplementationHours(employeeResource)" style="width:35px;" required="false" id="obj4" 
 								value="{{employeeResource.implementationHours}}"
 								 />
 						</div>	 
@@ -167,7 +167,7 @@
 					<td class="text-center">
 						<div class="col-xs-12">
 							<p:outputLabel for="obj5" value=""/>
-							<p:inputText style="width:100%;" required="false" id="obj5" 
+							<p:inputText ng-change="validateInitTestHours(employeeResource)" style="width:100%;" required="false" id="obj5" 
 								value="{{employeeResource.testsHours}}"
 								 />
 						</div>
@@ -175,7 +175,7 @@
 					<td class="text-center">
 						<div class="col-xs-12">
 							<p:outputLabel for="obj6" value=""/>
-							<p:inputText style="width:35px;" required="false" id="obj6" 
+							<p:inputText ng-change="validateInitDeployHours(employeeResource)" style="width:35px;" required="false" id="obj6" 
 								value="{{employeeResource.deployHours}}"
 								 />
 						</div>	 
@@ -184,12 +184,12 @@
 					<td class="text-center">
 						<div class="col-xs-12">
 							<p:outputLabel for="obj7" value=""/>
-							<p:inputText style="width:35px;" required="false" id="obj7" 
+							<p:inputText ng-change="validateInitEnvionmentHours(employeeResource)" style="width:35px;" required="false" id="obj7" 
 								value="{{employeeResource.environmentHours}}"
 								 />
 						</div>	 
 					</td>	
-					<td class="text-center">{{assignHours(employeeResource)}}/{{employeeResource.employee.availableEmployeeHours}}</td>
+					<td class="text-center">{{assignHours(employeeResource)}}/{{employeeResource.employee.inicioAvailableEmployeeHours}}</td>
 					<td class="text-center">0/0</td>
 					<td class="text-center">
 						<div class="col-xs-12">
