@@ -483,4 +483,25 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	}
 	
 	$scope.inicioNumOfProposalPeople = $scope.inicioNumberOfProposalsPeople();	
+	
+	//fase de inicio - coste
+	totalAssignedHoursEmployee = function(employee,resourceArray){
+    	var result = 0;
+    	var keepGoing = true;
+        angular.forEach(resourceArray, function (tmpEmployee) {
+        	if(keepGoing){
+            	if(tmpEmployee.employee.id==employee.id){
+            		result = tmpEmployee.projectManagementHours+tmpEmployee.requirementsHours+
+            			tmpEmployee.analysisDesignHours+tmpEmployee.implementationHours+tmpEmployee.testsHours+
+            			tmpEmployee.deployHours+tmpEmployee.environmentHours;
+            		keepGoing = false;
+            	}
+        	}
+        });
+        return result;
+	}
+	
+	$scope.inicioEmployeeCost = function(employee){
+		return $scope.employeeSalaryHour(employee)*totalAssignedHoursEmployee(employee,$scope.initEmployee);
+	}
 }]);
