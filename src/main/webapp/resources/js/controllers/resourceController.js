@@ -31,7 +31,7 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	}
 	
 	//funcion que agrega empleado al array	
-	$scope.copyEmployeeToList = function(employee, index){
+	$scope.copyEmployeeToList = function(employee){
 		if(employee.selected){
 			$scope.employeeListSelected.push(employee);
 		}
@@ -40,6 +40,14 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 			$scope.employeeListSelected.splice(index,1);
 		}
 	}
+	$scope.checkAll = function () {
+		$scope.employeeListSelected.splice(0,$scope.employeeListSelected.length);
+        angular.forEach($scope.resourcesBean.employeeList, function (employee) {
+        	employee.selected = $scope.selectedAll;
+            $scope.copyEmployeeToList(employee);
+        });
+
+    };
 	
 	$scope.sum = function(items, prop){
 	    return items.reduce( function(a, b){
@@ -530,4 +538,25 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	}
 	
 	$scope.inicioNumOfProposalPeople = $scope.inicioNumberOfProposalsPeople();	
+	
+	//fase de inicio - coste
+	totalAssignedHoursEmployee = function(employee,resourceArray){
+    	var result = 0;
+    	var keepGoing = true;
+        angular.forEach(resourceArray, function (tmpEmployee) {
+        	if(keepGoing){
+            	if(tmpEmployee.employee.id==employee.id){
+            		result = tmpEmployee.projectManagementHours+tmpEmployee.requirementsHours+
+            			tmpEmployee.analysisDesignHours+tmpEmployee.implementationHours+tmpEmployee.testsHours+
+            			tmpEmployee.deployHours+tmpEmployee.environmentHours;
+            		keepGoing = false;
+            	}
+        	}
+        });
+        return result;
+	}
+	
+	$scope.inicioEmployeeCost = function(employee){
+		return $scope.employeeSalaryHour(employee)*totalAssignedHoursEmployee(employee,$scope.initEmployee);
+	}
 }]);

@@ -21,7 +21,9 @@
 				<th class="ui-outputlabel ui-widget">Pruebas</th>
 				<th class="ui-outputlabel ui-widget">Despliegue</th>
 				<th class="ui-outputlabel ui-widget">Control Versiones</th>
-				<th class="ui-outputlabel ui-widget">Acciones</th>
+				<th class="ui-outputlabel ui-widget text-center">Seleccione
+				<h:selectBooleanCheckbox ng-model="selectedAll" ng-click="checkAll()" />
+				</th>
 			</tr>
 			<tr ng-repeat="employee in resourcesBean.employeeList">
 				<td class="text-center"><strong>{{employee.fullName}}</strong></td>
@@ -35,18 +37,18 @@
 				<td class="text-center">{{employeeHasRole(employee,"ENVIROMENT_REVISION_CONTROL")===true?"X":""}}</td>
 				<td class="text-center"><h:selectBooleanCheckbox value="{{$index}}"
 						ng-model="employee.selected"
-						ng-change="copyEmployeeToList(employee,$index)" /></td>
+						ng-change="copyEmployeeToList(employee)" /></td>
 			</tr>
 			<tr>
 				<td class="text-center"><strong>Totales</strong></td>
 				<td></td>
-				<td class="text-center">{{numberOfProjectManagement}}</td>
-				<td class="text-center">{{numberOfRequirements}}</td>
-				<td class="text-center">{{numberOfAnalysisDesign}}</td>
-				<td class="text-center">{{numberOfImplementation}}</td>
-				<td class="text-center">{{numberOfTests}}</td>
-				<td class="text-center">{{numberOfDeploy}}</td>
-				<td class="text-center">{{numberOfEnviroment}}</td>
+				<td class="text-center">{{numberOfProjectManagement()}}</td>
+				<td class="text-center">{{numberOfRequirements()}}</td>
+				<td class="text-center">{{numberOfAnalysisDesign()}}</td>
+				<td class="text-center">{{numberOfImplementation()}}</td>
+				<td class="text-center">{{numberOfTests()}}</td>
+				<td class="text-center">{{numberOfDeploy()}}</td>
+				<td class="text-center">{{numberOfEnviroment()}}</td>
 				<td>&nbsp;</td>
 			</tr>
 		</table>
