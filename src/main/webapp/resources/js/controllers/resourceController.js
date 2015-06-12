@@ -541,9 +541,8 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	
 	//fase de inicio - coste
 	totalAssignedHoursEmployee = function(employeeResource){
-		return employeeResource.projectManagementHours+employeeResource.requirementsHours+
-		employeeResource.analysisDesignHours+employeeResource.implementationHours+employeeResource.testsHours+
-		employeeResource.deployHours+employeeResource.environmentHours;
+		return parseFloat(employeeResource.projectManagementHours)+parseFloat(employeeResource.requirementsHours)+parseFloat(employeeResource.analysisDesignHours)+
+		parseFloat(employeeResource.implementationHours)+parseFloat(employeeResource.testsHours)+parseFloat(employeeResource.deployHours)+parseFloat(employeeResource.environmentHours);;
 	}
 	
 	$scope.employeeCost = function(employeeResource){

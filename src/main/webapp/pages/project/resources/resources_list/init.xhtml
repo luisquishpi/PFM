@@ -190,7 +190,7 @@
 						</div>	 
 					</td>	
 					<td class="text-center">{{assignHours(employeeResource)}}/{{employeeResource.employee.availableEmployeeHours}}</td>
-					<td class="text-center">{{inicioEmployeeCost(employeeResource)}}</td>
+					<td class="text-center">{{employeeCost(employeeResource)|number:2}}</td>
 					<td class="text-center">
 						<div class="col-xs-12">
 							<span ng-click="deleteEmployee(employeeResource, 'init')" class="glyphicon glyphicon-remove" aria-hidden="true"/>
