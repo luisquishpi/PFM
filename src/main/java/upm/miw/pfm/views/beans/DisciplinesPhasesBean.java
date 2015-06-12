@@ -23,7 +23,7 @@ import upm.miw.pfm.utils.Utils;
 @ViewScoped
 public class DisciplinesPhasesBean {
 	
-	private Project project;
+	protected Project project;
     
     private ProjectSchedule projectSchedule;
 

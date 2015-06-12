@@ -12,12 +12,11 @@ import upm.miw.pfm.utils.Utils;
 @ViewScoped
 public class ShowTheoricalPhasesBean extends DisciplinesPhasesBean{
 	
-	private DisciplinesPhasesBean phasesBean;
-	
+
     public String process() {
-        if (phasesBean.getProject().getId() != null && phasesBean.getProject().getId() != -1) {
+        if (project.getId() != null && project.getId() != -1) {
             Project projectToUpdate = findSelectedProject();
-            projectToUpdate.setIterationDays(phasesBean.getProject().getIterationDays());
+            projectToUpdate.setIterationDays(project.getIterationDays());
             projectController.updateProject(projectToUpdate);
             LogManager.getLogger(clazz).debug("Proyecto a actualizar " + projectToUpdate);
             Utils.addMessage(FacesMessage.SEVERITY_INFO, "Proyecto",
