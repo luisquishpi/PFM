@@ -630,14 +630,14 @@ describe("Test ResourceController", function(){
 	});
 	
 	it("Henar should has  1674.65€ as cost", function(){
-		expect(scope.inicioEmployeeCost(scope.resourcesBean.employeeList[7])).toBeCloseTo(1674.65,1);
+		expect(scope.employeeCost(scope.initEmployee[7])).toBeCloseTo(1674.65,1);
 	});
 	
 	it("Carlos should has 2050.60€ as cost", function(){
-		expect(scope.inicioEmployeeCost(scope.resourcesBean.employeeList[2])).toBeCloseTo(2050.60,1);
+		expect(scope.employeeCost(scope.initEmployee[2])).toBeCloseTo(2050.60,1);
 	});	
 	
 	it("Beatriz should has  0€ as cost", function(){
-		expect(scope.inicioEmployeeCost(scope.resourcesBean.employeeList[1])).toBeCloseTo(0,1);
+		expect(scope.employeeCost(scope.initEmployee[1])).toBeCloseTo(0,1);
 	});	
 })
