@@ -37,7 +37,7 @@
 				<script
 					src="/PFM/resources/js/controllers/theoricalPhaseController.js"></script>
 				<script
-					src="/PFM/resources/js/controllers/resourceController.js"></script>
+					src="/PFM/resources/js/controllers/resourceControllerRefactor.js"></script>
 			
 		</ui:define>
 		<ui:define name="css">
@@ -50,7 +50,7 @@
 			<div class="panel-body">
 				<h:form prependId="false" ng-app="projectApp">
 					<div ng-cloak="">
-					<p:growl id="growl" sticky="false" life="5000" showDetail="false" />
+					<p:growl widgetVar="growl" id="growl" sticky="false" life="5000" showDetail="false" />
 					<div class="row">
 						<ui:include src="resources_list_project.xhtml" />
 					</div>

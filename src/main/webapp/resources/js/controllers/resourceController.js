@@ -14,6 +14,10 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 		this.deployHours=0;
 		this.environmentHours=0;
 	}
+	
+	function Phase(){
+		
+	}
 		
 	$scope.discipline = bridgeService.shareData;
 	$scope.employeeListSelected=[];

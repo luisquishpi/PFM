@@ -95,3 +95,9 @@ table td {
 .persons_form{
 	padding:10px;
 }
+
+.delete_icon{
+	position:absolute;
+	top:0;
+	left:0;
+}
