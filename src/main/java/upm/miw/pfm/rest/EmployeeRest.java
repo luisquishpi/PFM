@@ -18,7 +18,7 @@ public class EmployeeRest {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response save(final List<HoursRolePhase> listHours){
-	    System.out.println(listHours.get(0).getProject().getStart());
+		System.out.println(listHours.get(0));
 		/*try{
 			for(HoursRolePhase hours: listHours){
 				DaoFactory.getFactory().getHoursRolePhaseDao().create(hours);
