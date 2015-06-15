@@ -135,5 +135,4 @@ public class HoursRolePhase implements Serializable {
 				+ this.project + ", Work hours= " + this.workHours
 				+ ", Phase= " + this.phase + ", Role= " + this.role + "]";
 	}
-
 }

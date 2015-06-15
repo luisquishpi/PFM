@@ -11,10 +11,8 @@ import javax.ws.rs.core.Response;
 //import upm.miw.pfm.models.daos.DaoFactory;
 import upm.miw.pfm.models.entities.HoursRolePhase;
 
-@Path(EmployeeURI.PATH_EMPLOYEES)
 public class EmployeeRest {
 	
-	@Path(EmployeeURI.PATH_SAVE)
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response save(final List<HoursRolePhase> listHours){
