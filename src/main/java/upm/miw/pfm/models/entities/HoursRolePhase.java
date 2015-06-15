@@ -109,7 +109,7 @@ public class HoursRolePhase implements Serializable {
 		this.role = role;
 	}
 
-	/*@Override
+	@Override
 	public boolean equals(Object obj) {
 		HoursRolePhase hoursRolePhase = (HoursRolePhase) obj;
 		return this.employee.equals(hoursRolePhase.getEmployee())
@@ -118,13 +118,12 @@ public class HoursRolePhase implements Serializable {
 				&& this.role.equals(hoursRolePhase.getRole())
 				&& Math.abs(this.workHours.doubleValue()
 						- hoursRolePhase.getWorkHours().doubleValue()) < 0.0001f;
-	}*/
+	}
 
-	/*@Override
+	@Override
 	public String toString() {
 		return "[Employee= " + this.employee.getName() + ", Project= "
 				+ this.project.getName() + ", Work hours= " + this.workHours
 				+ ", Phase= " + this.phase + ", Role= " + this.role + "]";
-	}*/
-
+	}
 }
