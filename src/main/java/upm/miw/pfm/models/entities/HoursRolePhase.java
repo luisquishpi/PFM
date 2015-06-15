@@ -14,7 +14,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import upm.miw.pfm.utils.Phases;
+import upm.miw.pfm.utils.PhasesDeserializar;
 import upm.miw.pfm.utils.RoleType;
 
 @Entity
@@ -42,6 +46,7 @@ public class HoursRolePhase implements Serializable {
 	private Double workHours;
 
 	@Column(name = "phase", nullable = false)
+	@JsonProperty("Phases")
 	private Phases phase;
 
 	@Column(name = "role", nullable = false)
@@ -93,14 +98,18 @@ public class HoursRolePhase implements Serializable {
 		this.workHours = workHours;
 	}
 
+	@JsonProperty("Phases")
 	public Phases getPhase() {
 		return phase;
 	}
 
+	@JsonProperty("Phases")
+    @JsonDeserialize(using = PhasesDeserializar.class)
 	public void setPhase(Phases phase) {
 		this.phase = phase;
 	}
 
+	
 	public RoleType getRole() {
 		return role;
 	}
@@ -122,8 +131,8 @@ public class HoursRolePhase implements Serializable {
 
 	@Override
 	public String toString() {
-		return "[Employee= " + this.employee.getName() + ", Project= "
-				+ this.project.getName() + ", Work hours= " + this.workHours
+		return "[Employee= " + this.employee + ", Project= "
+				+ this.project + ", Work hours= " + this.workHours
 				+ ", Phase= " + this.phase + ", Role= " + this.role + "]";
 	}
 }

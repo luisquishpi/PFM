@@ -61,6 +61,7 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	//Se agrega el empleado a la fase correspondiente
 	$scope.addEmployee = function(phase){
 		var seen = false;
+		var count = 0;
 		for(var p=0;p<$scope.employeeListSelected.length;p++){
 			for(var i=0;i<phase.assignedEmployees.length;i++){
 				if($scope.employeeListSelected[p].id == phase.assignedEmployees[i].employee.id)
@@ -69,12 +70,15 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 			if(!seen){
 				$scope.employeeListSelected[p].availableHours = $scope.availableEmployeeHours(phase, $scope.employeeListSelected[p]);
 				phase.assignedEmployees.push(new EmployeeResource($scope.employeeListSelected[p]));
-				PF('growl').renderMessage({"summary":"Recursos",
-		            "detail":"Empleado "+$scope.employeeListSelected[p].name+" agregado a fase correctamente",
-		            "severity":"info"});
+				count++;
 			}
 			seen = false;
 		}
+		if(count > 0)
+			PF('growl').renderMessage({"summary":"Recursos",
+            "detail":count+" Empleado(s) agregado(s) a la fase correctamente",
+            "severity":"info"});
+		
 	}
 	
 	//Se elimina el empleado de la fase correspondiente
@@ -84,14 +88,15 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	
 	//Se calcula las horas asignadas del empleado perteneciente  cierta fase
 	$scope.assignHours = function(employeeResource){
-		return parseFloat(employeeResource.projectManagementHours)+parseFloat(employeeResource.requirementsHours)+parseFloat(employeeResource.analysisDesignHours)+
+		var hoursTotal = parseFloat(employeeResource.projectManagementHours)+parseFloat(employeeResource.requirementsHours)+parseFloat(employeeResource.analysisDesignHours)+
 		parseFloat(employeeResource.implementationHours)+parseFloat(employeeResource.testsHours)+parseFloat(employeeResource.deployHours)+parseFloat(employeeResource.environmentHours);
+		if(isNaN(hoursTotal))
+			return 0;
+		return hoursTotal;
 	}
 	
 	
 	$scope.sum = function(items, prop){
-		console.log(items);
-		console.log(prop);
 	    return items.reduce( function(a, b){
 	        return a + parseFloat(b[prop]);
 	    }, 0);
@@ -99,7 +104,10 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	
 	//Se cuentan las horas totales de disciplina de cierta fase
 	$scope.disciplineHoursTotal = function(phase, discipline){
-		return parseFloat($scope.sum(phase.assignedEmployees, discipline));
+		var hoursTotal = parseFloat($scope.sum(phase.assignedEmployees, discipline));
+		if(isNaN(hoursTotal))
+			return 0;
+		return hoursTotal;
 	}
 	
 	//Validaciones de asignacion de horas
