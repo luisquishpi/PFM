@@ -10,9 +10,13 @@
 </h:head>
 <h:body>
 	<script>
-        var empleado = {id:1, nombre:"Jose", apellido:"Pacheco", codigoEmp:"343f", totalGrossSalary:30000, roles:[1,2,3]};
-        var proyecto = {id:1, name: "SCRUM", cost: 85000, start:'2/3/2015', end:'4/9/2015'};
-        var array = [{empleado:empleado, proyecto:proyecto, workHours:36, phase: 0, role:0}];
+	
+	
+        var empleado = {id:1, name:"Jose", surname:"Pacheco", employeeCode:"343f", annualGrossSalary:30000,contract:1, roles:[1,2,3]};
+        var proyecto = {id:1, name: "SCRUM", cost: 85000, start:'2/3/2015', end:'4/9/2015', iterationDays:13, phasesPeople:{Inicio:2} };
+        var array = [{employee:empleado, project:proyecto, workHours:36, phase:{"Phases":"Inicio"}, role:0}];
+        
+        var phase = {"Phases":"Inicio"};
         
         $.ajax({
 	    	  headers: {
