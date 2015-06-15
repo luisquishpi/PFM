@@ -7,7 +7,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:p="http://primefaces.org/ui">
-	
+   	<script src="/PFM/resources/js/utils/on_key_press.js"></script>
 	<div class="row persons_form">
 		<div class="col-sm-offset-2 col-sm-2">
 			<p:outputLabel for="input_init" value="{{inicioNumOfProposalPeople|number:2}}"
@@ -16,7 +16,8 @@
 		<div class="col-sm-2">
 			<p:inputText id="input_init"
 				ng-model="inicioNumberOfAssignedPeople"
-				required="true" />
+				required="true" 
+				onkeypress="return isDecimalNumberKey(event)"/>
 		</div>
 		<div class="col-sm-offset-2 col-sm-4">
 			<button ng-click="addEmployee(initPhase)" type="button" class="btn btn-primary add_employee">Agregar empleado seleccionado</button>
@@ -121,6 +122,7 @@
 						<p:outputLabel for="obj1" value=""/>
 						<p:inputText ng-blur="validateProjectManagementHours(employeeResource)" style="width:40px;" required="false" id="obj1" 
 							value="{{employeeResource.projectManagementHours}}"
+							onkeypress="return isDecimalNumberKey(event)"
 							 />
 						</div>	 
 					</td>
@@ -130,6 +132,7 @@
 						<p:outputLabel for="obj2" value=""/>
 						<p:inputText ng-blur="validateRequirementsHours(employeeResource)" style="width:40px;" required="false" id="obj2" 
 							value="{{employeeResource.requirementsHours}}"
+							onkeypress="return isDecimalNumberKey(event)"
 							 />
 						</div>	 
 					</td>
@@ -138,6 +141,7 @@
 							<p:outputLabel for="obj3" value=""/>
 							<p:inputText ng-blur="validateAnalysisDesignHours(employeeResource)" style="width:40px;" required="false" id="obj3" 
 								value="{{employeeResource.analysisDesignHours}}"
+								onkeypress="return isDecimalNumberKey(event)"
 								 />
 						</div>	 
 					</td>
@@ -146,6 +150,7 @@
 							<p:outputLabel for="obj4" value=""/>
 							<p:inputText ng-blur="validateImplementationHours(employeeResource)" style="width:40px;" required="false" id="obj4" 
 								value="{{employeeResource.implementationHours}}"
+								onkeypress="return isDecimalNumberKey(event)"
 								 />
 						</div>	 
 					</td>
@@ -155,6 +160,7 @@
 							<p:outputLabel for="obj5" value=""/>
 							<p:inputText ng-blur="validateTestHours(employeeResource)" style="width:40px;" required="false" id="obj5" 
 								value="{{employeeResource.testsHours}}"
+								onkeypress="return isDecimalNumberKey(event)"
 								 />
 						</div>
 					</td>
@@ -163,6 +169,7 @@
 							<p:outputLabel for="obj6" value=""/>
 							<p:inputText ng-blur="validateDeployHours(employeeResource)" style="width:40px;" required="false" id="obj6" 
 								value="{{employeeResource.deployHours}}"
+								onkeypress="return isDecimalNumberKey(event)"
 								 />
 						</div>	 
 					</td>
@@ -172,6 +179,7 @@
 							<p:outputLabel for="obj7" value=""/>
 							<p:inputText ng-blur="validateEnvionmentHours(employeeResource)" style="width:40px;" required="false" id="obj7" 
 								value="{{employeeResource.environmentHours}}"
+								onkeypress="return isDecimalNumberKey(event)"
 								 />
 						</div>	 
 					</td>	
