@@ -15,10 +15,8 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import upm.miw.pfm.utils.Phases;
-import upm.miw.pfm.utils.PhasesDeserializar;
 import upm.miw.pfm.utils.RoleType;
 
 @Entity
@@ -98,13 +96,11 @@ public class HoursRolePhase implements Serializable {
 		this.workHours = workHours;
 	}
 
-	@JsonProperty("Phases")
 	public Phases getPhase() {
 		return phase;
 	}
 
-	@JsonProperty("Phases")
-    @JsonDeserialize(using = PhasesDeserializar.class)
+	
 	public void setPhase(Phases phase) {
 		this.phase = phase;
 	}

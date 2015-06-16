@@ -8,15 +8,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @XmlRootElement
 public enum Phases implements Serializable{
-	INICIO("one", "Inicio"), ELABORACION("two","Elaboracion"), CONSTRUCCION("three","Construccion"),
-	TRANSICION("four","Transicion");
-
-	private String id;
+	INICIO("Inicio"), ELABORACION("Elaboracion"), CONSTRUCCION("Construccion"),
+	TRANSICION("Transicion");
 	
 	private String description;
 	
-    private Phases(String id,String description) {
-    	this.id = id;
+    private Phases(String description) {
         this.description = description;
     }
 
@@ -24,21 +21,4 @@ public enum Phases implements Serializable{
     public String getDescription() {
         return description;
     }
-    
-    @JsonProperty("id")
-    public String getId() {
-        return id;
-    }
-
-    public static Phases fromId(final String id) {
-        if (id != null) {
-            for (Phases phase : Phases.values()) {
-                if (id.equalsIgnoreCase(phase.id)) {
-                    return phase;
-                }
-            }
-        }
-        return null;
-    }
-
 }
