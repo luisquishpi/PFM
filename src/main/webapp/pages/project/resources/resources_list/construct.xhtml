@@ -7,114 +7,199 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:p="http://primefaces.org/ui">
-		<div class="row persons_form">
+	<div class="row persons_form">
 		<div class="col-sm-offset-2 col-sm-2">
-			<p:outputLabel for="input_construct" value="Personas 2.8"
+			<p:outputLabel for="input_const" value="{{construccionNumOfProposalPeople|number:2}}"
 				styleClass="label_height" />
 		</div>
 		<div class="col-sm-2">
-			<p:inputText id="input_construct"
-				value=""
-				requiredMessage="Ingrese el nombre del proyecto"
-				required="true" />
+			<p:inputText id="input_const"
+				ng-model="construccionNumberOfAssignedPeople"
+				required="true" 
+				onkeypress="return isDecimalNumberKey(event)"/>
 		</div>
 		<div class="col-sm-offset-2 col-sm-4">
-			<button type="submit" class="btn btn-primary add_employee">Agregar empleado seleccionado</button>
+			<button ng-click="addEmployee(constPhase)" type="button" class="btn btn-primary add_employee">Agregar empleado seleccionado</button>
 		</div>
     </div>
 	<fieldset>
-		<table class="table table-condensed">
+		<table class="table">
 			<tr>
 				<th class="ui-outputlabel ui-widget"></th>
-				<th class="ui-outputlabel ui-widget">Teorico Relativo</th>
-				<th class="ui-outputlabel ui-widget">Teorico absoluto</th>
-				<th class="ui-outputlabel ui-widget">Diferencia Absoluta</th>
-				<th class="ui-outputlabel ui-widget">Diferencia Relativa</th>
-				<th class="ui-outputlabel ui-widget">Propuesta</th>
-				<th class="ui-outputlabel ui-widget">Diferencia Propuesta</th>
-				<th class="ui-outputlabel ui-widget">Asignado</th>
-			</tr>
+				<th class="ui-outputlabel ui-widget text-center">Teorico Relativo</th>
+				<th class="ui-outputlabel ui-widget text-center">Teorico absoluto</th>
+				<th class="ui-outputlabel ui-widget text-center">Diferencia Absoluta</th>
+				<th class="ui-outputlabel ui-widget text-center">Diferencia Relativa</th>
+				<th class="ui-outputlabel ui-widget text-center">Propuesta</th>
+				<th class="ui-outputlabel ui-widget text-center">Diferencia Propuesta</th>
+			</tr>				
 			<tr>
 				<td>Gestión Proyecto</td>
-				<td>14%</td>
-				<td>47.8</td>
-				<td>-0.8</td>
-				<td>98%</td>
-				<td>47.0</td>
-				<td>0.0</td>
-				<td>47.0</td>
+				<td class="text-center"><span class="percentaje">{{constPhase.projectManagementTheoricalRelative}}</span></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
 			</tr>
 			<tr>
 				<td>Requisitos</td>
-				<td>38%</td>
-				<td>129.8</td>
-				<td>-2.1</td>
-				<td>98%</td>
-				<td>127.7</td>
-				<td>0.0</td>
-				<td>127.7</td>
+				<td class="text-center"><span class="percentaje">{{constPhase.requirementsTheoricalRelative}}</span></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
 			</tr>
 			<tr>
 				<td>Analisis/Diseño</td>
-				<td>19%</td>
-				<td>64.9</td>
-				<td>-1.1</td>
-				<td>98%</td>
-				<td>63.8</td>
-				<td>63.8</td>
-				<td>0.0</td>
+				<td class="text-center"><span class="percentaje">{{constPhase.analysisDesignTheoricalRelative}}</span></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
 			</tr>
 			<tr>
 				<td>Implementación</td>
-				<td>8%</td>
-				<td>27.3</td>
-				<td>-0.4</td>
-				<td>98%</td>
-				<td>26.9</td>
-				<td>0.0</td>
-				<td>0.0</td>
+				<td class="text-center"><span class="percentaje">{{constPhase.implementationTheoricalRelative}}</span></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
 			</tr>
 			<tr>
 				<td>Pruebas</td>
-				<td>8%</td>
-				<td>27.3</td>
-				<td>-0.4</td>
-				<td>98%</td>
-				<td>26.9</td>
-				<td>0.0</td>
-				<td>0.0</td>
+				<td class="text-center"><span class="percentaje">{{constPhase.testsTheoricalRelative}}</span></td>
+				<td></td><td></td><td></td><td></td><td></td>
 			</tr>
 			<tr>
 				<td>Despliegues</td>
-				<td>3%</td>
-				<td>10.2</td>
-				<td>-0.1</td>
-				<td>99%</td>
-				<td>10.1</td>
-				<td>10.1</td>
-				<td>0.0</td>
+				<td class="text-center"><span class="percentaje">{{constPhase.deployTheoricalRelative}}</span></td>
+				<td></td><td></td><td></td><td></td><td></td>
 			</tr>
 			<tr>
 				<td>Control de Versiones</td>
-				<td>10%</td>
-				<td>34.2</td>
-				<td>-0.6</td>
-				<td>98%</td>
-				<td>33.6</td>
-				<td>33.6</td>
-				<td>0.0</td>
+				<td class="text-center"><span class="percentaje">{{constPhase.enviromentTheoricalRelative}}</span></td>
+				<td></td><td></td><td></td><td></td><td></td>
 			</tr>
 			<tr>
 				<td>Totales</td>
-				<td>100%</td>
-				<td>341.6</td>
-				<td>-5.6</td>
-				<td>98%</td>
-				<td>98%</td>
-				<td>336.0</td>
-				<td>0.0</td>
+				<td class="text-center"><span class="percentaje">{{constPhase.totalTheoricalRelative()}}</span></td>
+				<td></td><td></td><td></td><td></td><td></td>
 			</tr>
 			
 		</table>
 		</fieldset>
+		
+		<fieldset>
+		<div class="table-responsive">
+		<table class="table" ng-if="constPhase.assignedEmployees.length > 0">
+			<tr>
+				<th class="ui-outputlabel ui-widget text-center">Nombre</th>
+				<th class="ui-outputlabel ui-widget text-center">Gestion Proyecto</th>
+				<th class="ui-outputlabel ui-widget text-center">Requisitos</th>
+				<th class="ui-outputlabel ui-widget text-center">Analisis y Diseño</th>
+				<th class="ui-outputlabel ui-widget text-center">Implem.</th>
+				<th class="ui-outputlabel ui-widget text-center">Pruebas</th>
+				<th class="ui-outputlabel ui-widget text-center">Despliegue</th>
+				<th class="ui-outputlabel ui-widget text-center">Control de versiones</th>
+				<th class="ui-outputlabel ui-widget text-center">Disponibilidad</th>
+				<th class="ui-outputlabel ui-widget text-center">Coste</th>
+			</tr>
+			
+			<tr ng-repeat="employeeResource in constPhase.assignedEmployees">
+				
+				<td style="position:relative;" class="text-center">
+					<span ng-click="deleteEmployee(initPhase, employeeResource)" class="glyphicon glyphicon-remove delete_icon" aria-hidden="true"/>
+					<div class="col-xs-12">
+						{{employeeResource.employee.name}}
+					</div>	
+				</td>
+				<td class="text-center">
+					<div class="col-xs-12">
+					<p:outputLabel for="constObj1" value=""/>
+					<p:inputText ng-blur="validateProjectManagementHours(employeeResource)" style="width:40px;" required="false" id="constObj1" 
+						value="{{employeeResource.projectManagementHours}}"
+						onkeypress="return isDecimalNumberKey(event)"
+						 />
+					</div>	 
+				</td>
+				<td class="text-center">
+					<div class="col-xs-12">
+					<p:outputLabel for="constObj2" value=""/>
+					<p:inputText ng-blur="validateRequirementsHours(employeeResource)" style="width:40px;" required="false" id="constObj2" 
+						value="{{employeeResource.requirementsHours}}"
+						onkeypress="return isDecimalNumberKey(event)"
+						 />
+					</div>	 
+				</td>
+				<td class="text-center">
+					<div class="col-xs-12">
+						<p:outputLabel for="constObj3" value=""/>
+						<p:inputText ng-blur="validateAnalysisDesignHours(employeeResource)" style="width:40px;" required="false" id="constObj3" 
+							value="{{employeeResource.analysisDesignHours}}"
+							onkeypress="return isDecimalNumberKey(event)"
+							 />
+					</div>	 
+				</td>
+				<td class="text-center">
+					<div class="col-xs-12">
+						<p:outputLabel for="constObj4" value=""/>
+						<p:inputText ng-blur="validateImplementationHours(employeeResource)" style="width:40px;" required="false" id="constObj4" 
+							value="{{employeeResource.implementationHours}}"
+							onkeypress="return isDecimalNumberKey(event)"
+							 />
+					</div>	 
+				</td>
+			
+				<td class="text-center">
+					<div class="col-xs-12">
+						<p:outputLabel for="constObj5" value=""/>
+						<p:inputText ng-blur="validateTestHours(employeeResource)" style="width:40px;" required="false" id="constObj5" 
+							value="{{employeeResource.testsHours}}"
+							onkeypress="return isDecimalNumberKey(event)"
+							 />
+					</div>
+				</td>
+				<td class="text-center">
+					<div class="col-xs-12">
+						<p:outputLabel for="constObj6" value=""/>
+						<p:inputText ng-blur="validateDeployHours(employeeResource)" style="width:40px;" required="false" id="constObj6" 
+							value="{{employeeResource.deployHours}}"
+							onkeypress="return isDecimalNumberKey(event)"
+							 />
+					</div>	 
+				</td>
+			
+				<td class="text-center">
+					<div class="col-xs-12">
+						<p:outputLabel for="constObj7" value=""/>
+						<p:inputText ng-blur="validateEnvionmentHours(employeeResource)" style="width:40px;" required="false" id="constObj7" 
+							value="{{employeeResource.environmentHours}}"
+							onkeypress="return isDecimalNumberKey(event)"
+							 />
+					</div>	 
+				</td>	
+				<td class="text-center">{{assignHours(employeeResource)}}/{{employeeResource.employee.availableHours}}</td>
+				<td class="text-center"></td>
+			</tr>
+			
+			
+			<tr>
+				<td class="text-center">Totales</td>
+				<td class="text-center">{{disciplineHoursTotal(constPhase, "projectManagementHours")}}</td>
+				<td class="text-center">{{disciplineHoursTotal(constPhase, "requirementsHours")}}</td>
+				<td class="text-center">{{disciplineHoursTotal(constPhase, "analysisDesignHours")}}</td>
+				<td class="text-center">{{disciplineHoursTotal(constPhase, "implementationHours")}}</td>
+				<td class="text-center">{{disciplineHoursTotal(constPhase, "testsHours")}}</td>
+				<td class="text-center">{{disciplineHoursTotal(constPhase, "deployHours")}}</td>
+				<td class="text-center">{{disciplineHoursTotal(constPhase, "environmentHours")}}</td>
+				<td class="text-center"></td>
+				<td class="text-center"></td>
+			</tr>
+		</table>
+		</div>
+		</fieldset>	
 </ui:composition>	

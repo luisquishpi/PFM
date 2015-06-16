@@ -46,6 +46,10 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	$scope.initPhase.deployTheoricalRelative=$scope.discipline.initialPercentajeDeployment();
 	$scope.initPhase.enviromentTheoricalRelative=$scope.discipline.initialPercentajeVersion();
 	
+	$scope.elabPhase = new Phase();
+	$scope.transPhase = new Phase();
+	$scope.constPhase = new Phase();
+	
 	
 	//verifica si un empleado tiene un rol
 	$scope.employeeHasRole = function(employee, role){
