@@ -7,61 +7,86 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:p="http://primefaces.org/ui">
-
 	<fieldset>
-	<div style="width: 100%;height: 300px;overflow: auto;">
-		<table class="table table-striped">
-			<tr>
-				<th class="ui-outputlabel ui-widget">
-					<a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
-            			Empleado
-            			<span ng-show="sortType == 'name'"></span>
-            		</a>
-				</th>
-				<th class="ui-outputlabel ui-widget">
-					<a href="#" ng-click="sortType = 'name'">
-            			€/Hora
-            			<span ng-show="sortType == 'name'"></span>
-            		</a>
-				</th>
-				<th class="ui-outputlabel ui-widget">Gestión Proyectos</th>
-				<th class="ui-outputlabel ui-widget">Requisitos</th>
-				<th class="ui-outputlabel ui-widget">Análisis Diseño</th>
-				<th class="ui-outputlabel ui-widget">Implementación</th>
-				<th class="ui-outputlabel ui-widget">Pruebas</th>
-				<th class="ui-outputlabel ui-widget">Despliegue</th>
-				<th class="ui-outputlabel ui-widget">Control Versiones</th>
-				<th class="ui-outputlabel ui-widget text-center">Seleccione
-				<h:selectBooleanCheckbox ng-model="selectedAll" ng-click="checkAll()" />
-				</th>
-			</tr>
-			<tr ng-repeat="employee in resourcesBean.employeeList | orderBy:sortType:sortReverse">
-				<td class="text-center"><strong>{{employee.fullName}}</strong></td>
-				<td class="text-center">{{employeeSalaryHour(employee)|number:2}}</td>
-				<td class="text-center">{{employeeHasRole(employee,"PROJECT_MANAGEMENT")===true?"X":""}}</td>
-				<td class="text-center">{{employeeHasRole(employee,"REQUIREMENTS")===true?"X":""}}</td>
-				<td class="text-center">{{employeeHasRole(employee,"ANALYSIS_DESIGN")===true?"X":""}}</td>
-				<td class="text-center">{{employeeHasRole(employee,"IMPLEMENTATION")===true?"X":""}}</td>
-				<td class="text-center">{{employeeHasRole(employee,"TESTS")===true?"X":""}}</td>
-				<td class="text-center">{{employeeHasRole(employee,"DEPLOY")===true?"X":""}}</td>
-				<td class="text-center">{{employeeHasRole(employee,"ENVIROMENT_REVISION_CONTROL")===true?"X":""}}</td>
-				<td class="text-center"><h:selectBooleanCheckbox value="{{$index}}"
-						ng-model="employee.selected"
-						ng-change="copyEmployeeToList(employee)" /></td>
-			</tr>
-			<tr>
-				<td class="text-center"><strong>Totales</strong></td>
-				<td></td>
-				<td class="text-center">{{numberOfProjectManagement()}}</td>
-				<td class="text-center">{{numberOfRequirements()}}</td>
-				<td class="text-center">{{numberOfAnalysisDesign()}}</td>
-				<td class="text-center">{{numberOfImplementation()}}</td>
-				<td class="text-center">{{numberOfTests()}}</td>
-				<td class="text-center">{{numberOfDeploy()}}</td>
-				<td class="text-center">{{numberOfEnviroment()}}</td>
-				<td>&nbsp;</td>
-			</tr>
-		</table>
+		<div style="width: 100%;height: 300px;overflow: auto;">
+			<table class="table table-striped">
+				<tr>
+					<th class="ui-outputlabel ui-widget">
+						<a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
+	            			Empleado
+	            		</a>
+					</th>
+					<th class="ui-outputlabel ui-widget">
+						<a href="#" ng-click="sortType = 'annualGrossSalary'; sortReverse = !sortReverse">
+	            			€/Hora
+	            		</a>
+					</th>
+					<th class="ui-outputlabel ui-widget">
+						<a href="#" ng-click="sortType = ''; sortReverse = !sortReverse">
+	            			Gestión Proyectos
+	            		</a>
+					</th>
+					<th class="ui-outputlabel ui-widget">
+						<a href="#" ng-click="sortType = 'roles'; sortReverse = !sortReverse">
+	            			Requisitos
+	            		</a>	
+					</th>
+					<th class="ui-outputlabel ui-widget">
+						<a href="#" ng-click="sortType = 'roles'; sortReverse = !sortReverse">
+	            			Análisis Diseño
+	            		</a>
+					</th>
+					<th class="ui-outputlabel ui-widget">
+						<a href="#" ng-click="sortType = 'roles'; sortReverse = !sortReverse">
+	            			Implementación
+	            		</a>
+					</th>
+					<th class="ui-outputlabel ui-widget">
+						<a href="#" ng-click="sortType = 'roles'; sortReverse = !sortReverse">
+	            			Pruebas
+	            		</a>
+					</th>
+					<th class="ui-outputlabel ui-widget">
+						<a href="#" ng-click="sortType = 'roles'; sortReverse = !sortReverse">
+	            			Despliegue
+	            		</a>	
+					</th>
+					<th class="ui-outputlabel ui-widget">
+						<a href="#" ng-click="sortType = 'roles'; sortReverse = !sortReverse">
+	            			Control Versiones
+	            		</a>
+					</th>
+					<th class="ui-outputlabel ui-widget text-center">Seleccione
+					<h:selectBooleanCheckbox ng-model="selectedAll" ng-click="checkAll()" />
+					</th>
+				</tr>
+				<tr ng-repeat="employee in resourcesBean.employeeList | orderBy:sortType:sortReverse">
+					<td class="text-center"><strong>{{employee.fullName}}</strong></td>
+					<td class="text-center">{{employeeSalaryHour(employee)|number:2}}</td>
+					<td class="text-center">{{employeeHasRole(employee,"PROJECT_MANAGEMENT")===true?"X":""}}</td>
+					<td class="text-center">{{employeeHasRole(employee,"REQUIREMENTS")===true?"X":""}}</td>
+					<td class="text-center">{{employeeHasRole(employee,"ANALYSIS_DESIGN")===true?"X":""}}</td>
+					<td class="text-center">{{employeeHasRole(employee,"IMPLEMENTATION")===true?"X":""}}</td>
+					<td class="text-center">{{employeeHasRole(employee,"TESTS")===true?"X":""}}</td>
+					<td class="text-center">{{employeeHasRole(employee,"DEPLOY")===true?"X":""}}</td>
+					<td class="text-center">{{employeeHasRole(employee,"ENVIROMENT_REVISION_CONTROL")===true?"X":""}}</td>
+					<td class="text-center"><h:selectBooleanCheckbox value="{{$index}}"
+							ng-model="employee.selected"
+							ng-change="copyEmployeeToList(employee)" /></td>
+				</tr>
+				<tr>
+					<td class="text-center"><strong>Totales</strong></td>
+					<td></td>
+					<td class="text-center">{{numberOfProjectManagement()}}</td>
+					<td class="text-center">{{numberOfRequirements()}}</td>
+					<td class="text-center">{{numberOfAnalysisDesign()}}</td>
+					<td class="text-center">{{numberOfImplementation()}}</td>
+					<td class="text-center">{{numberOfTests()}}</td>
+					<td class="text-center">{{numberOfDeploy()}}</td>
+					<td class="text-center">{{numberOfEnviroment()}}</td>
+					<td>&nbsp;</td>
+				</tr>
+			</table>
 		</div>
 	</fieldset>
 </ui:composition>
