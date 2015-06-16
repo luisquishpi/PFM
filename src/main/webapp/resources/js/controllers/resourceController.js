@@ -2,8 +2,13 @@
  * AngularJS resourceController
  */
 
-projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService', 'workTimeService', 'EmployeeUtils', 'DateUtils', function ($scope, $isTest, bridgeService, workTimeService, EmployeeUtils, DateUtils) {  
-		
+projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService', 'workTimeService', 'EmployeeUtils', 'DateUtils', function ($scope, $isTest, bridgeService, workTimeService, EmployeeUtils, DateUtils) {
+	if(!$isTest){
+		  initJSFScope($scope);
+		  workTimeService.calculateWorkDaysAndHour($scope.resourcesBean.project.startString, 
+				  $scope.resourcesBean.project.endString, $scope.discipline.phases.schedule.listHoursEachDay());
+	}
+	var INIT_PHASE = "INIT";
 	function EmployeeResource(employee){
 		this.employee = employee;
 		this.projectManagementHours=0;
@@ -13,26 +18,247 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 		this.testsHours=0;
 		this.deployHours=0;
 		this.environmentHours=0;
+		this.availableEmployeeHours=0;
 	}
 	
-	function Phase(){
+	function Phase(phase){
+		this.phase = phase;
+		this.assignedEmployee = [];
+		this.numberOfAssignedPeople;
+
+		this.projectManagementTheoricalRelative;
+		this.requirementsTheoricalRelative;
+		this.analysisDesignTheoricalRelative;
+		this.implementationTheoricalRelative;
+		this.testsTheoricalRelative;
+		this.deployTheoricalRelative;
+		this.enviromentTheoricalRelative;
+		this.totalTheoricalRelative = function(){
+			return this.projectManagementTheoricalRelative+ this.requirementsTheoricalRelative+ 
+				this.analysisDesignTheoricalRelative+ this.implementationTheoricalRelative+ 
+				this.testsTheoricalRelative+ this.deployTheoricalRelative+
+				this.enviromentTheoricalRelative;
+		}
+		
+		this.projectManagementTheoricalAbsolute;
+		this.requirementsTheoricalAbsolute;
+		this.analysisDesignTheoricalAbsolute;
+		this.implementationTheoricalAbsolute;
+		this.testsTheoricalAbsolute;
+		this.deployTheoricalAbsolute;
+		this.enviromentTheoricalAbsolute;
+		this.totalTheoricalAbsolute = function(){
+			return this.projectManagementTheoricalAbsolute+ this.requirementsTheoricalAbsolute+ 
+				this.analysisDesignTheoricalAbsolute+ this.implementationTheoricalAbsolute+ 
+				this.testsTheoricalAbsolute+ this.deployTheoricalAbsolute+
+				this.enviromentTheoricalAbsolute;
+		}
+		
+		this.projectManagementAssigned;
+		this.requirementsAssigned;
+		this.analysisDesignAssigned;
+		this.implementationAssigned;
+		this.testsAssigned;
+		this.deployAssigned;
+		this.enviromentAssigned;
+		this.totalAssigned = function(){
+			return this.projectManagementAssigned+ this.requirementsAssigned+ 
+				this.analysisDesignAssigned+ this.implementationAssigned+ 
+				this.testsAssigned+this.deployAssigned+this.enviromentAssigned;
+		};
+		
+		this.projectManagementAbsoluteDifference = function(){
+			return this.projectManagementAssigned-this.projectManagementTheoricalAbsolute;
+		};
+		this.requirementsAbsoluteDifference = function(){
+			return this.requirementsAssigned-this.requirementsTheoricalAbsolute;
+		};
+		this.analysisDesignAbsoluteDifference = function(){
+			return this.analysisDesignAssigned-this.analysisDesignTheoricalAbsolute;
+		};
+		this.implementationAbsoluteDifference = function(){
+			return this.implementationAssigned-this.implementationTheoricalAbsolute;
+		};
+		this.testsAbsoluteDifference = function(){
+			return this.testsAssigned-this.testsTheoricalAbsolute;
+		};
+		this.deployAbsoluteDifference = function(){
+			return this.deployAssigned-this.deployTheoricalAbsolute;
+		};
+		this.enviromentAbsoluteDifference = function(){
+			return this.enviromentAssigned-this.enviromentTheoricalAbsolute;
+		};
+		this.totalAbsoluteDifference = function(){
+			return this.projectManagementAbsoluteDifference() + this.requirementsAbsoluteDifference() + 
+			this.analysisDesignAbsoluteDifference() + this.implementationAbsoluteDifference() + 
+			this.testsAbsoluteDifference() + this.deployAbsoluteDifference()+
+			this.enviromentAbsoluteDifference();
+		}
+		
+		this.projectManagementRelativeDifference = function(){
+			return (this.projectManagementAssigned/this.projectManagementTheoricalAbsolute)*100;
+		}
+		
+		this.requirementsRelativeDifference = function(){
+			return (this.requirementsAssigned/this.requirementsTheoricalAbsolute)*100;
+		}
+		
+		this.analysisDesignRelativeDifference = function(){
+			return (this.analysisDesignAssigned/this.analysisDesignTheoricalAbsolute)*100;
+		}
+		
+		this.implementationRelativeDifference = function(){
+			return (this.implementationAssigned/this.implementationTheoricalAbsolute)*100;
+		}
+		
+		this.testsRelativeDifference = function(){
+			return (this.testsAssigned/this.testsTheoricalAbsolute)*100;
+		}
+		
+		this.deployRelativeDifference = function(){
+			return (this.deployAssigned/this.deployTheoricalAbsolute)*100;
+		}
+		
+		this.enviromentRelativeDifference = function(){
+			return (this.enviromentAssigned/this.enviromentTheoricalAbsolute)*100;
+		}		
+		
+		this.totalRelativeDifference = function(){
+			return (this.totalAssigned()/this.totalTheoricalAbsolute())*100;;
+		}	
+		
+		this.projectManagementProposal = function(){
+			return (this.projectManagementTheoricalRelative*this.totalTheoricalAbsolute()*this.numberOfAssignedPeople)/(this.numberOfProposalsPeople()*100);
+		}	
+		
+		this.requirementsProposal = function(){
+			return (this.requirementsTheoricalRelative*this.totalTheoricalAbsolute()*this.numberOfAssignedPeople)/(this.numberOfProposalsPeople()*100);
+		}	
+		
+		this.analysisDesignProposal = function(){
+			return (this.analysisDesignTheoricalRelative*this.totalTheoricalAbsolute()*this.numberOfAssignedPeople)/(this.numberOfProposalsPeople()*100);
+		}
+		
+		this.implementationProposal = function(){
+			return (this.implementationTheoricalRelative*this.totalTheoricalAbsolute()*this.numberOfAssignedPeople)/(this.numberOfProposalsPeople()*100);
+		}	
+		
+		this.testsProposal = function(){
+			return (this.testsTheoricalRelative*this.totalTheoricalAbsolute()*this.numberOfAssignedPeople)/(this.numberOfProposalsPeople()*100);
+		}	
+		
+		this.deployProposal = function(){
+			return (this.deployTheoricalRelative*this.totalTheoricalAbsolute()*this.numberOfAssignedPeople)/(this.numberOfProposalsPeople()*100);
+		}	
+		
+		this.enviromentProposal = function(){
+			return (this.enviromentTheoricalRelative*this.totalTheoricalAbsolute()*this.numberOfAssignedPeople)/(this.numberOfProposalsPeople()*100);
+		}
+		
+		this.totalProposal = function(){
+			return this.projectManagementProposal()+this.requirementsProposal()+
+			this.analysisDesignProposal()+this.implementationProposal()+
+			this.testsProposal()+this.deployProposal()+this.enviromentProposal();
+		}
+		
+		this.projectManagementProposalDiff = function(){
+			return this.projectManagementAssigned-this.projectManagementProposal();
+		}	
+		
+		this.requirementsProposalDiff = function(){
+			return this.requirementsAssigned-this.requirementsProposal();
+		}	
+		
+		this.analysisDesignProposalDiff = function(){
+			return this.analysisDesignAssigned-this.analysisDesignProposal();
+		}
+		
+		this.implementationProposalDiff = function(){
+			return this.implementationAssigned-this.implementationProposal();
+		}	
+		
+		this.testsProposalDiff = function(){
+			return this.testsAssigned-this.testsProposal();
+		}	
+		
+		this.deployProposalDiff = function(){
+			return this.deployAssigned-this.deployProposal();
+		}	
+		
+		this.enviromentProposalDiff = function(){
+			return this.enviromentAssigned-this.enviromentProposal();
+		}
+		
+		this.totalProposalDiff = function(){
+			return this.projectManagementProposalDiff() + this.requirementsProposalDiff() + 
+				this.analysisDesignProposalDiff() + this.implementationProposalDiff() + 
+				this.testsProposalDiff() + this.deployProposalDiff() +
+				this.enviromentProposalDiff();
+		}			
+		
+		this.averageEmployeeHours = function(){
+			var totalEmployeeHours = 0;
+			for(i=0; i < $scope.resourcesBean.employeeList.length; i++){
+				totalEmployeeHours += $scope.availableEmployeeHours(phase,$scope.resourcesBean.employeeList[i]);
+			}
+			return totalEmployeeHours/($scope.resourcesBean.employeeList.length-1);
+		};
+		
+		this.availableEmployeeHours = function(employee){
+			return $scope.availableEmployeeHours(this.phase, employee);
+		}
+		
+		this.numberOfProposalsPeople = function(){
+			return this.totalTheoricalAbsolute()/this.averageEmployeeHours();
+		}
 		
 	}
-		
+	
+	$scope.sum = function(items, prop){
+	    return items.reduce( function(a, b){
+	        return a + parseFloat(b[prop]);
+	    }, 0);
+	};	
+	
+	calculateAssigned = function(employeeList, phase){
+		return parseFloat($scope.sum(employeeList, phase));
+	}	
+	
 	$scope.discipline = bridgeService.shareData;
 	$scope.employeeListSelected=[];
-	$scope.inicioNumberOfAssignedPeople=0;
-	if(!$isTest){
-		$scope.initEmployee=[];
-		$scope.elabEmployee=[];
-		$scope.constEmployee=[];
-		$scope.transEmployee=[];
+
+	//Inicialización de elementos de fase de inicio
+	$scope.initPhase = new Phase(INIT_PHASE);
+	
+	if($isTest){
+		$scope.initPhase.assignedEmployee = $scope.inicioAssignedEmployeeMock.employeeList;
+		$scope.initPhase.numberOfAssignedPeople = $scope.inicioNumberOfAssignedPeopleMock;
 	}
 	
-	$scope.assignHours = function(employeeResource){
-		return parseFloat(employeeResource.projectManagementHours)+parseFloat(employeeResource.requirementsHours)+parseFloat(employeeResource.analysisDesignHours)+
-		parseFloat(employeeResource.implementationHours)+parseFloat(employeeResource.testsHours)+parseFloat(employeeResource.deployHours)+parseFloat(employeeResource.environmentHours);
-	}
+
+	$scope.initPhase.projectManagementTheoricalRelative=$scope.discipline.initialPercentajeProjectManagment();
+	$scope.initPhase.requirementsTheoricalRelative=$scope.discipline.initialPercentajeRequirements();
+	$scope.initPhase.analysisDesignTheoricalRelative=$scope.discipline.initialPercentajeAnalysis();
+	$scope.initPhase.implementationTheoricalRelative=$scope.discipline.initialPercentajeImplementation();
+	$scope.initPhase.testsTheoricalRelative=$scope.discipline.initialPercentajeTests();
+	$scope.initPhase.deployTheoricalRelative=$scope.discipline.initialPercentajeDeployment();
+	$scope.initPhase.enviromentTheoricalRelative=$scope.discipline.initialPercentajeVersion();
+	
+	$scope.initPhase.projectManagementTheoricalAbsolute=$scope.discipline.initialProjectManagmentHour();
+	$scope.initPhase.requirementsTheoricalAbsolute=$scope.discipline.initialRequirementsHour();
+	$scope.initPhase.analysisDesignTheoricalAbsolute=$scope.discipline.initialAnalysisHour();
+	$scope.initPhase.implementationTheoricalAbsolute=$scope.discipline.initialImplementationHour();
+	$scope.initPhase.testsTheoricalAbsolute=$scope.discipline.initialTestsHour();
+	$scope.initPhase.deployTheoricalAbsolute=$scope.discipline.initialDeploymentHour();
+	$scope.initPhase.enviromentTheoricalAbsolute=$scope.discipline.initialVersionHour();	
+	
+	$scope.initPhase.projectManagementAssigned = calculateAssigned($scope.initPhase.assignedEmployee, 'projectManagementHours');
+	$scope.initPhase.requirementsAssigned = calculateAssigned($scope.initPhase.assignedEmployee, 'requirementsHours');
+	$scope.initPhase.analysisDesignAssigned = calculateAssigned($scope.initPhase.assignedEmployee, 'analysisDesignHours');
+	$scope.initPhase.implementationAssigned = calculateAssigned($scope.initPhase.assignedEmployee, 'implementationHours');
+	$scope.initPhase.testsAssigned = calculateAssigned($scope.initPhase.assignedEmployee, 'testsHours');
+	$scope.initPhase.deployAssigned = calculateAssigned($scope.initPhase.assignedEmployee, 'deployHours');
+	$scope.initPhase.enviromentAssigned = calculateAssigned($scope.initPhase.assignedEmployee, 'environmentHours');
 	
 	//funcion que agrega empleado al array	
 	$scope.copyEmployeeToList = function(employee){
@@ -44,26 +270,47 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 			$scope.employeeListSelected.splice(index,1);
 		}
 	}
-	$scope.checkAll = function () {
-		$scope.employeeListSelected.splice(0,$scope.employeeListSelected.length);
-        angular.forEach($scope.resourcesBean.employeeList, function (employee) {
-        	employee.selected = $scope.selectedAll;
-            $scope.copyEmployeeToList(employee);
-        });
-
-    };
 	
-	$scope.sum = function(items, prop){
-	    return items.reduce( function(a, b){
-	        return a + parseFloat(b[prop]);
-	    }, 0);
-	};
+	//Se agrega el empleado a la fase correspondiente
+	$scope.addEmployee = function(phase){
+		var seen = false;
+		for(var p=0;p<$scope.employeeListSelected.length;p++){
+			for(var i=0;i<phase.assignedEmployees.length;i++){
+				if($scope.employeeListSelected[p].id == phase.assignedEmployees[i].employee.id)
+					seen = true;
+			}
+			if(!seen){
+				$scope.employeeListSelected[p].availableHours = $scope.availableEmployeeHours(phase, $scope.employeeListSelected[p]);
+				phase.assignedEmployees.push(new EmployeeResource($scope.employeeListSelected[p]));
+				PF('growl').renderMessage({"summary":"Recursos",
+		            "detail":"Empleado "+$scope.employeeListSelected[p].name+" agregado a fase correctamente",
+		            "severity":"info"});
+			}
+			seen = false;
+		}
+	}
+	
+	//Se elimina el empleado de la fase correspondiente
+	$scope.deleteEmployee = function(phase, item){
+		phase.assignedEmployees.splice(phase.assignedEmployees.indexOf(item), 1);		
+	}
+	
+	//Se calcula las horas asignadas del empleado perteneciente  cierta fase
+	$scope.assignHours = function(employeeResource){
+		return parseFloat(employeeResource.projectManagementHours)+parseFloat(employeeResource.requirementsHours)+parseFloat(employeeResource.analysisDesignHours)+
+		parseFloat(employeeResource.implementationHours)+parseFloat(employeeResource.testsHours)+parseFloat(employeeResource.deployHours)+parseFloat(employeeResource.environmentHours);
+	}
+	
+	//Se cuentan las horas totales de disciplina de cierta fase
+	$scope.disciplineHoursTotal = function(phase, discipline){
+		return parseFloat($scope.sum(phase.assignedEmployees, discipline));
+	}
 	
 	//Validaciones de asignacion de horas
 	$scope.checkEmployee = function(employeeResource){
 		var hours_assigned = parseFloat(employeeResource.projectManagementHours)+parseFloat(employeeResource.requirementsHours)+parseFloat(employeeResource.analysisDesignHours)+
 		parseFloat(employeeResource.implementationHours)+parseFloat(employeeResource.testsHours)+parseFloat(employeeResource.deployHours)+parseFloat(employeeResource.environmentHours);
-		return hours_assigned>employeeResource.employee.availableEmployeeHours;
+		return hours_assigned>employeeResource.employee.availableHours;
 		
 	}	
 	$scope.validateProjectManagementHours=function(employeeResource){		
@@ -96,110 +343,30 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	}
 	// Fin validaciones de asignación de horas
 	
+	//Fase de inicio alcula el numero de personas propuestas
+	$scope.normalEmployeeHours = function(){
+		var averageHoursPerDay = $scope.discipline.phases.schedule.averageHoursPerDay();
+		var iterationDays = $scope.resourcesBean.project.iterationDays;
+		return averageHoursPerDay*iterationDays;
+	}	
 	
-	//add en Init
-	$scope.addEmployeeInit = function(){
-		var seen = false;
-		for(var p=0;p<$scope.employeeListSelected.length;p++){
-			for(var i=0;i<$scope.initEmployee.length;i++){
-				if($scope.employeeListSelected[p].id == $scope.initEmployee[i].employee.id)
-					seen = true;
-			}
-			if(!seen){
-				$scope.employeeListSelected[p].availableEmployeeHours = $scope.inicioAvailableEmployeeHours($scope.employeeListSelected[p]);
-				$scope.initEmployee.push(new EmployeeResource($scope.employeeListSelected[p]));
-			}
-			seen = false;
-		}
-	}
-	//add en Elab
-	$scope.addEmployeeElab = function(){
-		var seen = false;
-		for(var p=0;p<$scope.employeeListSelected.length;p++){
-			for(var i=0;i<$scope.elabEmployee.length;i++){
-				if($scope.employeeListSelected[p].id == $scope.elabEmployee[i].employee.id)
-					seen = true;
-			}
-			if(!seen){
-				$scope.employeeListSelected[p].availableEmployeeHours = $scope.elaboracionAvailableEmployeeHours($scope.employeeListSelected[p]);
-				$scope.elabEmployee.push(new EmployeeResource($scope.employeeListSelected[p]));
-			}
-			seen = false;
-		}
-	}
-	//add en Const
-	$scope.addEmployeeConst = function(){
-		var seen = false;
-		for(var p=0;p<$scope.employeeListSelected.length;p++){
-			for(var i=0;i<$scope.constEmployee.length;i++){
-				if($scope.employeeListSelected[p].id == $scope.constEmployee[i].employee.id)
-					seen = true;
-			}
-			if(!seen){
-				$scope.employeeListSelected[p].availableEmployeeHours = $scope.construccionAvailableEmployeeHours($scope.employeeListSelected[p]);
-				$scope.constEmployee.push(new EmployeeResource($scope.employeeListSelected[p]));
-			}
-			seen = false;
-		}
-	}
-	//add en Trans
-	$scope.addEmployeeTrans = function(){
-		var seen = false;
-		for(var p=0;p<$scope.employeeListSelected.length;p++){
-			for(var i=0;i<$scope.transEmployee.length;i++){
-				if($scope.employeeListSelected[p].id == $scope.transEmployee[i].employee.id)
-					seen = true;
-			}
-			if(!seen){
-				$scope.employeeListSelected[p].availableEmployeeHours = $scope.transAvailableEmployeeHours($scope.employeeListSelected[p]);
-				$scope.transEmployee.push(new EmployeeResource($scope.employeeListSelected[p]));
-			}
-			seen = false;
-		}
-	}
+	$scope.nmlEmployeeHours = $scope.normalEmployeeHours();
 	
-	$scope.deleteEmployee = function(item, phase){
-		console.log(phase);
-		if(phase=='init')
-			$scope.initEmployee.splice($scope.initEmployee.indexOf(item), 1); 
-		else if(phase=='elab')
-			$scope.elabEmployee.splice($scope.elabEmployee.indexOf(item), 1); 
-		else if(phase=='const')
-			$scope.constEmployee.splice($scope.constEmployee.indexOf(item), 1); 
-		else if(phase=='trans')
-			$scope.transEmployee.splice($scope.transEmployee.indexOf(item), 1);			
-	}
-			
-	$scope.initProjectManagementHoursTotal = function(phase){
-		return parseFloat($scope.sum($scope.initEmployee, 'projectManagementHours'));
-	}
-	$scope.initRequirementsHoursTotal = function(){
-		return parseFloat($scope.sum($scope.initEmployee, 'requirementsHours'));
-	}
-	$scope.initAnalysisDesignHoursTotal = function(){
-		return parseFloat($scope.sum($scope.initEmployee, 'analysisDesignHours'));
-	}
-	$scope.initImplementationHoursTotal = function(){
-		return parseFloat($scope.sum($scope.initEmployee, 'implementationHours'));
-	}
-	$scope.initTestsHoursTotal = function(){
-		return parseFloat($scope.sum($scope.initEmployee, 'testsHours'));
-	}
-	$scope.initDeployHoursTotal = function(){
-		return parseFloat($scope.sum($scope.initEmployee, 'deployHours'));
-	}
-	$scope.initEnvironmentHoursTotal = function(){
-		return parseFloat($scope.sum($scope.initEmployee, 'environmentHours'));
-	}
-	//
-		
+	$scope.availableEmployeeHours = function(phase, employee){
+		var numberOfVacationDays = 0;
+		if(typeof employee.vacations!== 'undefined'){
+			if(employee.vacations.length>0){
+				for(i=0; i<employee.vacations.length; i++){
+					//todo: calcular las vacaciones!
+					numberOfVacationDays = DateUtils.dateDiffInDays(employee.vacations[i].start, employee.vacations[i].end);
+				}
+			}
+		}
+		numberOfVacationDays = 0;
+		return $scope.nmlEmployeeHours;
+	}	
+	
 	var arrayRoles = ["PROJECT_MANAGEMENT", "REQUIREMENTS", "ANALYSIS_DESIGN", "IMPLEMENTATION", "TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL"];
-	
-	if(!$isTest){
-		  initJSFScope($scope);
-		  workTimeService.calculateWorkDaysAndHour($scope.resourcesBean.project.startString, 
-				  $scope.resourcesBean.project.endString, $scope.discipline.phases.schedule.listHoursEachDay());
-	}
 	
 	//calcula el salario por hora de un empleado
 	$scope.employeeSalaryHour = function(employee){
@@ -254,296 +421,9 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	$scope.numberOfEnviroment = function(){
 		var POSITION_OF_ROLE = 6;
 		return EmployeeUtils.countNumberOfRoles($scope.resourcesBean.employeeList, arrayRoles[POSITION_OF_ROLE]);
-	}	
-	
-	//Fase de inicio - teorico relativo
-	$scope.inicioProjectManagementTheoricalRelative = function(){
-		return $scope.discipline.initialPercentajeProjectManagment();
-	}	
-	
-	$scope.inicioRequirementsTheoricalRelative = function(){
-		return $scope.discipline.initialPercentajeRequirements();
-	}	
-	
-	$scope.inicioAnalysisDesignTheoricalRelative = function(){
-		return $scope.discipline.initialPercentajeAnalysis();
 	}
 	
-	$scope.inicioImplementationTheoricalRelative = function(){
-		return $scope.discipline.initialPercentajeImplementation();
-	}	
-	
-	$scope.inicioTestsTheoricalRelative = function(){
-		return $scope.discipline.initialPercentajeTests();
-	}	
-	
-	$scope.inicioDeployTheoricalRelative = function(){
-		return $scope.discipline.initialPercentajeDeployment();
-	}	
-	
-	$scope.inicioEnviromentTheoricalRelative = function(){
-		return $scope.discipline.initialPercentajeVersion();
-	}
-	
-	$scope.inicioTotalTheoricalRelative = function(){
-		return $scope.inicioProjectManagementTheoricalRelative() + $scope.inicioRequirementsTheoricalRelative() + 
-			$scope.inicioAnalysisDesignTheoricalRelative() + $scope.inicioImplementationTheoricalRelative() + 
-			$scope.inicioTestsTheoricalRelative() + $scope.inicioDeployTheoricalRelative() +
-			$scope.inicioEnviromentTheoricalRelative();
-	}
-	
-	//Fase de inicio - teorico absoluto
-	$scope.inicioProjectManagementTheoricalAbsolute = function(){
-		return $scope.discipline.initialProjectManagmentHour();
-	}	
-	
-	$scope.inicioRequirementsTheoricalAbsolute = function(){
-		return $scope.discipline.initialRequirementsHour();
-	}	
-	
-	$scope.inicioAnalysisDesignTheoricalAbsolute = function(){
-		return $scope.discipline.initialAnalysisHour();
-	}
-	
-	$scope.inicioImplementationTheoricalAbsolute = function(){
-		return $scope.discipline.initialImplementationHour();
-	}	
-	
-	$scope.inicioTestsTheoricalAbsolute = function(){
-		return $scope.discipline.initialTestsHour();
-	}	
-	
-	$scope.inicioDeployTheoricalAbsolute = function(){
-		return $scope.discipline.initialDeploymentHour();
-	}	
-	
-	$scope.inicioEnviromentTheoricalAbsolute = function(){
-		return $scope.discipline.initialVersionHour();
-	}
-	
-	$scope.inicioTotalTheoricalAbsolute = function(){
-		return $scope.inicioProjectManagementTheoricalAbsolute() + $scope.inicioRequirementsTheoricalAbsolute() + 
-			$scope.inicioAnalysisDesignTheoricalAbsolute() + $scope.inicioImplementationTheoricalAbsolute() + 
-			$scope.inicioTestsTheoricalAbsolute() + $scope.inicioDeployTheoricalAbsolute() +
-			$scope.inicioEnviromentTheoricalAbsolute();
-	}	
-	
-	//Fase de inicio - diferencia absoluta
-	$scope.inicioProjectManagementAbsoluteDifference = function(){
-		return $scope.inicioProjectManagementAssigned()-$scope.inicioProjectManagementTheoricalAbsolute();
-	}	
-	
-	$scope.inicioRequirementsAbsoluteDifference = function(){
-		return $scope.inicioRequirementsAssigned()-$scope.inicioRequirementsTheoricalAbsolute();
-	}	
-	
-	$scope.inicioAnalysisDesignAbsoluteDifference = function(){
-		return $scope.inicioAnalysisDesignAssigned()-$scope.inicioAnalysisDesignTheoricalAbsolute();
-	}
-	
-	$scope.inicioImplementationAbsoluteDifference = function(){
-		return $scope.inicioImplementationAssigned()-$scope.inicioImplementationTheoricalAbsolute();
-	}	
-	
-	$scope.inicioTestsAbsoluteDifference = function(){
-		return $scope.initTestsHoursTotal()-$scope.inicioTestsTheoricalAbsolute();
-	}	
-	
-	$scope.inicioDeployAbsoluteDifference = function(){
-		return $scope.initDeployHoursTotal()-$scope.inicioDeployTheoricalAbsolute();
-	}	
-	
-	$scope.inicioEnviromentAbsoluteDifference = function(){
-		return $scope.initEnvironmentHoursTotal()-$scope.inicioEnviromentTheoricalAbsolute();
-	}
-	
-	$scope.inicioTotalAbsoluteDifference = function(){
-		return $scope.inicioProjectManagementAbsoluteDifference() + $scope.inicioRequirementsAbsoluteDifference() + 
-			$scope.inicioAnalysisDesignAbsoluteDifference() + $scope.inicioImplementationAbsoluteDifference() + 
-			$scope.inicioTestsAbsoluteDifference() + $scope.inicioDeployAbsoluteDifference() +
-			$scope.inicioEnviromentAbsoluteDifference();
-	}
-	
-	//Fase de inicio - diferencia relativa
-	$scope.inicioProjectManagementRelativeDifference = function(){
-		return ($scope.inicioProjectManagementAssigned()/$scope.inicioProjectManagementTheoricalAbsolute())*100;
-	}	
-	
-	$scope.inicioRequirementsRelativeDifference = function(){
-		return ($scope.inicioRequirementsAssigned()/$scope.inicioRequirementsTheoricalAbsolute())*100;;
-	}	
-	
-	$scope.inicioAnalysisDesignRelativeDifference = function(){
-		return ($scope.inicioAnalysisDesignAssigned()/$scope.inicioAnalysisDesignTheoricalAbsolute())*100;;
-	}
-	
-	$scope.inicioImplementationRelativeDifference = function(){
-		return ($scope.inicioImplementationAssigned()/$scope.inicioImplementationTheoricalAbsolute())*100;;
-	}	
-	
-	$scope.inicioTestsRelativeDifference = function(){
-		return ($scope.inicioTestsAssigned()/$scope.inicioTestsTheoricalAbsolute())*100;;
-	}	
-	
-	$scope.inicioDeployRelativeDifference = function(){
-		return ($scope.inicioDeployAssigned()/$scope.inicioDeployTheoricalAbsolute())*100;;
-	}	
-	
-	$scope.inicioEnviromentRelativeDifference = function(){
-		return ($scope.inicioEnviromentAssigned()/$scope.inicioEnviromentTheoricalAbsolute())*100;;
-	}
-	
-	$scope.inicioTotalRelativeDifference = function(){
-		return ($scope.inicioTotalAssigned()/$scope.inicioTotalTheoricalAbsolute())*100;;
-	}
-		
-	//Fase de inicio - propuesta
-	$scope.inicioProjectManagementProposal = function(){
-		return ($scope.inicioProjectManagementTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*$scope.inicioNumberOfAssignedPeople)/($scope.inicioNumOfProposalPeople*100);
-	}	
-	
-	$scope.inicioRequirementsProposal = function(){
-		return ($scope.inicioRequirementsTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*$scope.inicioNumberOfAssignedPeople)/($scope.inicioNumOfProposalPeople*100);
-	}	
-	
-	$scope.inicioAnalysisDesignProposal = function(){
-		return ($scope.inicioAnalysisDesignTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*$scope.inicioNumberOfAssignedPeople)/($scope.inicioNumOfProposalPeople*100);
-	}
-	
-	$scope.inicioImplementationProposal = function(){
-		return ($scope.inicioImplementationTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*$scope.inicioNumberOfAssignedPeople)/($scope.inicioNumOfProposalPeople*100);
-	}	
-	
-	$scope.inicioTestsProposal = function(){
-		return ($scope.inicioTestsTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*$scope.inicioNumberOfAssignedPeople)/($scope.inicioNumOfProposalPeople*100);
-	}	
-	
-	$scope.inicioDeployProposal = function(){
-		return ($scope.inicioDeployTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*$scope.inicioNumberOfAssignedPeople)/($scope.inicioNumOfProposalPeople*100);
-	}	
-	
-	$scope.inicioEnviromentProposal = function(){
-		return ($scope.inicioEnviromentTheoricalRelative()*$scope.inicioTotalTheoricalAbsolute()*$scope.inicioNumberOfAssignedPeople)/($scope.inicioNumOfProposalPeople*100);
-	}
-	
-	$scope.inicioTotalProposal = function(){
-		return $scope.inicioProjectManagementProposal()+$scope.inicioRequirementsProposal()+
-		$scope.inicioAnalysisDesignProposal()+$scope.inicioImplementationProposal()+
-		$scope.inicioTestsProposal()+$scope.inicioDeployProposal()+$scope.inicioEnviromentProposal();
-	}
-	
-	//Fase de inicio - diferencia propuesta
-	$scope.inicioProjectManagementProposalDiff = function(){
-		return $scope.inicioProjectManagementAssigned()-$scope.inicioProjectManagementProposal();
-	}	
-	
-	$scope.inicioRequirementsProposalDiff = function(){
-		return $scope.inicioRequirementsAssigned()-$scope.inicioRequirementsProposal();
-	}	
-	
-	$scope.inicioAnalysisDesignProposalDiff = function(){
-		return $scope.inicioAnalysisDesignAssigned()-$scope.inicioAnalysisDesignProposal();
-	}
-	
-	$scope.inicioImplementationProposalDiff = function(){
-		return $scope.inicioImplementationAssigned()-$scope.inicioImplementationProposal();
-	}	
-	
-	$scope.inicioTestsProposalDiff = function(){
-		return $scope.inicioTestsAssigned()-$scope.inicioTestsProposal();
-	}	
-	
-	$scope.inicioDeployProposalDiff = function(){
-		return $scope.inicioDeployAssigned()-$scope.inicioDeployProposal();
-	}	
-	
-	$scope.inicioEnviromentProposalDiff = function(){
-		return $scope.inicioEnviromentAssigned()-$scope.inicioEnviromentProposal();
-	}
-	
-	$scope.inicioTotalProposalDiff = function(){
-		return $scope.inicioProjectManagementProposalDiff() + $scope.inicioRequirementsProposalDiff() + 
-			$scope.inicioAnalysisDesignProposalDiff() + $scope.inicioImplementationProposalDiff() + 
-			$scope.inicioTestsProposalDiff() + $scope.inicioDeployProposalDiff() +
-			$scope.inicioEnviromentProposalDiff();
-	}	
-	
-	//Fase de inicio - asignado
-	$scope.inicioProjectManagementAssigned = function(){
-		return $scope.initProjectManagementHoursTotal();
-	}	
-	
-	$scope.inicioRequirementsAssigned = function(){
-		return $scope.initRequirementsHoursTotal();
-	}	
-	
-	$scope.inicioAnalysisDesignAssigned = function(){
-		return $scope.initAnalysisDesignHoursTotal();
-	}
-	
-	$scope.inicioImplementationAssigned = function(){
-		return $scope.initImplementationHoursTotal();
-	}	
-	
-	$scope.inicioTestsAssigned = function(){
-		return $scope.initTestsHoursTotal();
-	}	
-	
-	$scope.inicioDeployAssigned = function(){
-		return $scope.initDeployHoursTotal();
-	}	
-	
-	$scope.inicioEnviromentAssigned = function(){
-		return $scope.initEnvironmentHoursTotal();
-	}
-	
-	$scope.inicioTotalAssigned = function(){
-		return $scope.inicioProjectManagementAssigned() + $scope.inicioRequirementsAssigned() + 
-			$scope.inicioAnalysisDesignAssigned() + $scope.inicioImplementationAssigned() + 
-			$scope.inicioTestsAssigned() + $scope.inicioDeployAssigned() +
-			$scope.inicioEnviromentAssigned();
-	}
-	
-	//Fase de inicio alcula el numero de personas propuestas
-	$scope.inicioNormalEmployeeHours = function(){
-		var averageHoursPerDay = $scope.discipline.phases.schedule.averageHoursPerDay();
-		var iterationDays = $scope.resourcesBean.project.iterationDays;
-		return averageHoursPerDay*iterationDays;
-	}	
-	
-	$scope.inicioNmlEmployeeHours = $scope.inicioNormalEmployeeHours();
-	
-	$scope.inicioAvailableEmployeeHours = function(employee){
-		var numberOfVacationDays = 0;
-		if(typeof employee.vacations!== 'undefined'){
-			if(employee.vacations.length>0){
-				for(i=0; i<employee.vacations.length; i++){
-					//todo: calcular las vacaciones!
-					numberOfVacationDays = DateUtils.dateDiffInDays(employee.vacations[i].start, employee.vacations[i].end);
-				}
-			}
-		}
-		numberOfVacationDays = 0;
-		return $scope.inicioNmlEmployeeHours;
-	}
-	
-	$scope.inicioAverageEmployeeHours = function(){
-		var totalEmployeeHours = 0;
-		for(i=0; i < $scope.resourcesBean.employeeList.length; i++){
-			totalEmployeeHours += $scope.inicioAvailableEmployeeHours($scope.resourcesBean.employeeList[i]);
-		}
-		return totalEmployeeHours/($scope.resourcesBean.employeeList.length-1);
-	}
-	
-	$scope.inicioAvgEmployeeHours = $scope.inicioAverageEmployeeHours();
-	
-	$scope.inicioNumberOfProposalsPeople = function(){
-		return $scope.inicioTotalTheoricalAbsolute()/$scope.inicioAvgEmployeeHours;
-	}
-	
-	$scope.inicioNumOfProposalPeople = $scope.inicioNumberOfProposalsPeople();	
-	
-	//fase de inicio - coste
+	//calcula el coste de cada empleado
 	totalAssignedHoursEmployee = function(employeeResource){
 		return parseFloat(employeeResource.projectManagementHours)+parseFloat(employeeResource.requirementsHours)+parseFloat(employeeResource.analysisDesignHours)+
 		parseFloat(employeeResource.implementationHours)+parseFloat(employeeResource.testsHours)+parseFloat(employeeResource.deployHours)+parseFloat(employeeResource.environmentHours);;
@@ -552,4 +432,58 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	$scope.employeeCost = function(employeeResource){
 		return $scope.employeeSalaryHour(employeeResource.employee)*totalAssignedHoursEmployee(employeeResource);
 	}
-}]);
+	
+	//servicio rest
+	$scope.saveHoursRolePhaseArray = function(){
+        var data = [];
+		 
+        for(employeeHours in $scope.initPhase.assignedEmployees){
+        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.projectMesignHours, phase:"INICIO", role:"PROJECT_MANAGEMENT"});
+        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.requirementsHours, phase:"INICIO", role:"REQUIREMENTS"});
+        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.analysisDementationHours, phase:"INICIO", role:"ANALYSIS_DESIGN"});
+        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.implanagementHours, phase:"INICIO", role:"IMPLEMENTATION"});
+        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.testsTheoricalRelative, phase:"INICIO", role:"TEST"});
+        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.deployTheoricalRelative, phase:"INICIO", role:"DEPLOY"});
+        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.environmentHours, phase:"INICIO", role:"ENVIRONMENT_REVISION_CONTROL"});
+        }
+        
+        for(employeeHours in $scope.elabPhase.assignedEmployees){
+        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.projectMesignHours, phase:"ELABORACION", role:"PROJECT_MANAGEMENT"});
+        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.requirementsHours, phase:"ELABORACION", role:"REQUIREMENTS"});
+        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.analysisDementationHours, phase:"ELABORACION", role:"ANALYSIS_DESIGN"});
+        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.implanagementHours, phase:"ELABORACION", role:"IMPLEMENTATION"});
+        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.testsTheoricalRelative, phase:"ELABORACION", role:"TEST"});
+        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.deployTheoricalRelative, phase:"ELABORACION", role:"DEPLOY"});
+        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.environmentHours, phase:"ELABORACION", role:"ENVIRONMENT_REVISION_CONTROL"});
+        }
+        
+        for(employeeHours in $scope.constrPhase.assignedEmployees){
+        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.projectMesignHours, phase:"CONSTRUCCION", role:"PROJECT_MANAGEMENT"});
+        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.requirementsHours, phase:"CONSTRUCCION", role:"REQUIREMENTS"});
+        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.analysisDementationHours, phase:"CONSTRUCCION", role:"ANALYSIS_DESIGN"});
+        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.implanagementHours, phase:"CONSTRUCCION", role:"IMPLEMENTATION"});
+        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.testsTheoricalRelative, phase:"CONSTRUCCION", role:"TEST"});
+        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.deployTheoricalRelative, phase:"CONSTRUCCION", role:"DEPLOY"});
+        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.environmentHours, phase:"CONSTRUCCION", role:"ENVIRONMENT_REVISION_CONTROL"});
+        }
+        
+        for(employeeHours in $scope.transPhase.assignedEmployees){
+        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.projectMesignHours, phase:"TRANSICION", role:"PROJECT_MANAGEMENT"});
+        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.requirementsHours, phase:"TRANSICION", role:"REQUIREMENTS"});
+        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.analysisDementationHours, phase:"TRANSICION", role:"ANALYSIS_DESIGN"});
+        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.implanagementHours, phase:"TRANSICION", role:"IMPLEMENTATION"});
+        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.testsTheoricalRelative, phase:"TRANSICION", role:"TEST"});
+        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.deployTheoricalRelative, phase:"TRANSICION", role:"DEPLOY"});
+        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.environmentHours, phase:"TRANSICION", role:"ENVIRONMENT_REVISION_CONTROL"});
+        }
+        
+		$http.post('/PFM/rest/Employees/Save', data).
+		    success(function(data, status, headers, config) {
+		      $scope.message = JSON.stringify(data);
+		    }).
+		    error(function(data, status, headers, config) {
+		      // log error
+		    })
+	}	
+
+}]);	
