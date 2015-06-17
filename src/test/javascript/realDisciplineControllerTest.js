@@ -21,9 +21,9 @@ describe("Test RealDisciplineController", function(){
 			}
 		});
 	}));
-	
 	/************************Personas-hora******************************/
 	//Fase de Inicio
+	/*
 	it("Inital hours for project management should be 36.4", function(){
 		expect(scope.ProjectManagmentHour()).toBe(36.4);
 	});
@@ -58,6 +58,7 @@ describe("Test RealDisciplineController", function(){
 		
 	/************************Personas-dia******************************/
 	//Fase de Inicio
+	/*
 	it("Inital days for project management should be 4.8398", function(){
 		expect(scope.ProjectManagmentDay()).toBe(4.8398);
 	});
@@ -92,6 +93,7 @@ describe("Test RealDisciplineController", function(){
 	
 	/************************Personas-mes******************************/
 	//Fase de Inicio
+	/*
 	it("Inital Months for project management should be 0.231", function(){
 		expect(scope.ProjectManagmentMonth()).toBe(0.231);
 	});
@@ -123,4 +125,5 @@ describe("Test RealDisciplineController", function(){
 	it("Inital total Months should be 1.65", function(){
 		expect(scope.totalMonth()).toBe(1.65);
 	});
+	*/
 });
