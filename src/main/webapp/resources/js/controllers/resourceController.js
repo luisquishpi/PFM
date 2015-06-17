@@ -67,10 +67,10 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 		this.deployAssigned;
 		this.enviromentAssigned;
 		this.totalAssigned = function(){
-			return ($scope.disciplineHoursTotal($scope.initPhase, "projectManagementHours")+$scope.disciplineHoursTotal($scope.initPhase, 'requirementsHours')
-			+$scope.disciplineHoursTotal($scope.initPhase, 'analysisDesignHours')+$scope.disciplineHoursTotal($scope.initPhase, 'implementationHours')
-			+$scope.disciplineHoursTotal($scope.initPhase, 'testsHours')+$scope.disciplineHoursTotal($scope.initPhase, 'deployHours')
-			+$scope.disciplineHoursTotal($scope.initPhase, 'environmentHours'));
+			return ($scope.disciplineHoursTotal($scope.initPhase.assignedEmployee, "projectManagementHours")+$scope.disciplineHoursTotal($scope.initPhase.assignedEmployee, 'requirementsHours')
+			+$scope.disciplineHoursTotal($scope.initPhase.assignedEmployee, 'analysisDesignHours')+$scope.disciplineHoursTotal($scope.initPhase.assignedEmployee, 'implementationHours')
+			+$scope.disciplineHoursTotal($scope.initPhase.assignedEmployee, 'testsHours')+$scope.disciplineHoursTotal($scope.initPhase.assignedEmployee, 'deployHours')
+			+$scope.disciplineHoursTotal($scope.initPhase.assignedEmployee, 'environmentHours'));
 		};
 		
 		this.projectManagementAbsoluteDifference = function(){
@@ -102,32 +102,31 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 		}
 		
 		this.projectManagementRelativeDifference = function(){
-			return ($scope.disciplineHoursTotal(this, "projectManagementHours")/this.projectManagementTheoricalAbsolute)*100;
+			return ($scope.disciplineHoursTotal(this.assignedEmployee, "projectManagementHours")/this.projectManagementTheoricalAbsolute)*100;
 		}
 		
 		this.requirementsRelativeDifference = function(){
-			return ($scope.disciplineHoursTotal(this, "requirementsHours")/this.requirementsTheoricalAbsolute)*100;
+			return ($scope.disciplineHoursTotal(this.assignedEmployee, "requirementsHours")/this.requirementsTheoricalAbsolute)*100;
 		}
 		
 		this.analysisDesignRelativeDifference = function(){
-			return ($scope.disciplineHoursTotal(this, "analysisDesignHours")/this.analysisDesignTheoricalAbsolute)*100;
+			return ($scope.disciplineHoursTotal(this.assignedEmployee, "analysisDesignHours")/this.analysisDesignTheoricalAbsolute)*100;
 		}
 		
 		this.implementationRelativeDifference = function(){
-			return ($scope.disciplineHoursTotal(this, "implementationHours")/this.implementationTheoricalAbsolute)*100;
+			return ($scope.disciplineHoursTotal(this.assignedEmployee, "implementationHours")/this.implementationTheoricalAbsolute)*100;
 		}
 		
 		this.testsRelativeDifference = function(){
-			return ($scope.disciplineHoursTotal(this, "testsHours")/this.testsTheoricalAbsolute)*100;
+			return ($scope.disciplineHoursTotal(this.assignedEmployee, "testsHours")/this.testsTheoricalAbsolute)*100;
 		}
 		
 		this.deployRelativeDifference = function(){
-			return ($scope.disciplineHoursTotal(this, "deployHours")/this.deployTheoricalAbsolute)*100;
+			return ($scope.disciplineHoursTotal(this.assignedEmployee, "deployHours")/this.deployTheoricalAbsolute)*100;
 		}
 		
 		this.enviromentRelativeDifference = function(){
-			console.log(this);
-			return ($scope.disciplineHoursTotal(this, "environmentHours")/this.enviromentTheoricalAbsolute)*100;
+			return ($scope.disciplineHoursTotal(this.assignedEmployee, "environmentHours")/this.enviromentTheoricalAbsolute)*100;
 		}		
 		
 		this.totalRelativeDifference = function(){
@@ -250,10 +249,11 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	};	
 	
 	//Se cuentan las horas totales de disciplina de cierta fase
-	$scope.disciplineHoursTotal = function(phase, discipline){
-		var hoursTotal = parseFloat($scope.sum(phase.assignedEmployee, discipline));
-		if(isNaN(hoursTotal))
+	$scope.disciplineHoursTotal = function(arrayEmployee, discipline){
+		var hoursTotal = parseFloat($scope.sum(arrayEmployee, discipline));
+		if(isNaN(hoursTotal)){
 			return 0;
+		}
 		return hoursTotal;
 	}
 	
@@ -287,14 +287,14 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	$scope.initPhase.deployTheoricalAbsolute=$scope.discipline.initialDeploymentHour();
 	$scope.initPhase.enviromentTheoricalAbsolute=$scope.discipline.initialVersionHour();	
 	
-	$scope.initPhase.projectManagementAssigned = $scope.disciplineHoursTotal($scope.initPhase, "projectManagementHours");
-	$scope.initPhase.requirementsAssigned = $scope.disciplineHoursTotal($scope.initPhase, 'requirementsHours');
-	$scope.initPhase.analysisDesignAssigned = $scope.disciplineHoursTotal($scope.initPhase, 'analysisDesignHours');
-	$scope.initPhase.implementationAssigned = $scope.disciplineHoursTotal($scope.initPhase, 'implementationHours');
-	$scope.initPhase.testsAssigned = $scope.disciplineHoursTotal($scope.initPhase, 'testsHours');
-	$scope.initPhase.deployAssigned = $scope.disciplineHoursTotal($scope.initPhase, 'deployHours');
-	$scope.initPhase.enviromentAssigned = $scope.disciplineHoursTotal($scope.initPhase, 'environmentHours');
-	
+	$scope.initPhase.projectManagementAssigned = $scope.disciplineHoursTotal($scope.initPhase.assignedEmployee, "projectManagementHours");
+	$scope.initPhase.requirementsAssigned = $scope.disciplineHoursTotal($scope.initPhase.assignedEmployee, 'requirementsHours');
+	$scope.initPhase.analysisDesignAssigned = $scope.disciplineHoursTotal($scope.initPhase.assignedEmployee, 'analysisDesignHours');
+	$scope.initPhase.implementationAssigned = $scope.disciplineHoursTotal($scope.initPhase.assignedEmployee, 'implementationHours');
+	$scope.initPhase.testsAssigned = $scope.disciplineHoursTotal($scope.initPhase.assignedEmployee, 'testsHours');
+	$scope.initPhase.deployAssigned = $scope.disciplineHoursTotal($scope.initPhase.assignedEmployee, 'deployHours');
+	$scope.initPhase.enviromentAssigned = $scope.disciplineHoursTotal($scope.initPhase.assignedEmployee, 'environmentHours');
+		
 	
 	//funcion que agrega empleado al array	
 	$scope.copyEmployeeToList = function(employee){
