@@ -22,6 +22,6 @@ public class ShowTheoricalPhasesBean extends DisciplinesPhasesBean{
             Utils.addMessage(FacesMessage.SEVERITY_INFO, "Proyecto",
                     "Se actualizó las fases teóricas satisfactoriamente");
         }
-        return "show_theorical_phases";
+        return "show_phases";
     }
 }

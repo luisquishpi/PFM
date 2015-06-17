@@ -81,21 +81,27 @@
                                     value="{{showTheoricalPhasesBean.employeeList}}" />   	
 								<h:panelGroup
 									rendered="#{not projectBean.emptyProject}">
-									<div ng-if="phasesFinished" ng-controller="theoricalDisciplineController">
-										<ngsync direction="serverToClient" value="{{projectBean.project}}" />
-										<div role="tabpanel">
-											<ul class="nav nav-tabs" role="tablist">
-												<li role="presentation" class="active"><a
-													href="#theorical" aria-controls="theorical" role="tab"
-													data-toggle="tab">Disciplinas teóricas</a></li>
-											</ul>	
-											<div class="tab-content">
-												<div role="tabpanel" class="tab-pane active" id="theorical">
-													<ui:include src="theorical_disciplines_pannel.xhtml" />
-												</div>
+								<div ng-if="phasesFinished" ng-controller="theoricalDisciplineController">
+									<ngsync direction="serverToClient" value="{{projectBean.project}}" />
+									<div role="tabpanel">
+										<ul class="nav nav-tabs" role="tablist">
+											<li role="presentation" class="active"><a
+												href="#theorical" aria-controls="theorical" role="tab"
+												data-toggle="tab">Teoricas</a></li>
+											<li role="presentation"><a href="#asigned"
+												aria-controls="asigned" role="tab" data-toggle="tab">Asignadas</a></li>
+										</ul>
+	
+										<div class="tab-content">
+											<div role="tabpanel" class="tab-pane active" id="theorical">
+												<ui:include src="theorical_disciplines_pannel.xhtml" />
+											</div>
+											<div role="tabpanel" class="tab-pane" id="asigned">
+												<ui:include src="asigned_disciplines_pannel.xhtml" />
 											</div>
 										</div>
 									</div>
+								</div>
 								</h:panelGroup>
 							</div>
 						</div>
