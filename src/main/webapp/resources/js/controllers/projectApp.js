@@ -95,6 +95,11 @@ projectApp.service("DateUtils", function(){
 		var d = moment.duration(ms);
 		return Math.floor(d.asDays());
 	}
+	
+	var DATE_FORMAT = "DD/MM/YYYY";
+	this.moment = function(date){
+		return moment(date, DATE_FORMAT);
+	}
 
 });
 
