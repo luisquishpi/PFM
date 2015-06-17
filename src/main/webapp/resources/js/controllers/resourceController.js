@@ -102,31 +102,32 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 		}
 		
 		this.projectManagementRelativeDifference = function(){
-			return ($scope.disciplineHoursTotal($scope.initPhase, "projectManagementHours")/this.projectManagementTheoricalAbsolute)*100;
+			return ($scope.disciplineHoursTotal(this, "projectManagementHours")/this.projectManagementTheoricalAbsolute)*100;
 		}
 		
 		this.requirementsRelativeDifference = function(){
-			return ($scope.disciplineHoursTotal($scope.initPhase, "requirementsHours")/this.requirementsTheoricalAbsolute)*100;
+			return ($scope.disciplineHoursTotal(this, "requirementsHours")/this.requirementsTheoricalAbsolute)*100;
 		}
 		
 		this.analysisDesignRelativeDifference = function(){
-			return ($scope.disciplineHoursTotal($scope.initPhase, "analysisDesignHours")/this.analysisDesignTheoricalAbsolute)*100;
+			return ($scope.disciplineHoursTotal(this, "analysisDesignHours")/this.analysisDesignTheoricalAbsolute)*100;
 		}
 		
 		this.implementationRelativeDifference = function(){
-			return ($scope.disciplineHoursTotal($scope.initPhase, "implementationHours")/this.implementationTheoricalAbsolute)*100;
+			return ($scope.disciplineHoursTotal(this, "implementationHours")/this.implementationTheoricalAbsolute)*100;
 		}
 		
 		this.testsRelativeDifference = function(){
-			return ($scope.disciplineHoursTotal($scope.initPhase, "testsHours")/this.testsTheoricalAbsolute)*100;
+			return ($scope.disciplineHoursTotal(this, "testsHours")/this.testsTheoricalAbsolute)*100;
 		}
 		
 		this.deployRelativeDifference = function(){
-			return ($scope.disciplineHoursTotal($scope.initPhase, "deployHours")/this.deployTheoricalAbsolute)*100;
+			return ($scope.disciplineHoursTotal(this, "deployHours")/this.deployTheoricalAbsolute)*100;
 		}
 		
 		this.enviromentRelativeDifference = function(){
-			return ($scope.disciplineHoursTotal($scope.initPhase, "environmentHours")/this.enviromentTheoricalAbsolute)*100;
+			console.log(this);
+			return ($scope.disciplineHoursTotal(this, "environmentHours")/this.enviromentTheoricalAbsolute)*100;
 		}		
 		
 		this.totalRelativeDifference = function(){
