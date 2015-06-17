@@ -36,58 +36,74 @@
 			<tr>
 				<td>Gestión Proyecto</td>
 				<td class="text-center"><span class="percentaje">{{constPhase.projectManagementTheoricalRelative}}</span></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
+				<td class="text-center">{{constPhase.projectManagementTheoricalAbsolute|number:2}}</td>
+				<td class="text-center">{{constPhase.projectManagementAbsoluteDifference()|number:2}}</td>
+				<td class="text-center"><span class="percentaje">{{constPhase.projectManagementRelativeDifference()|number:2}}</span></td>
+				<td class="text-center">{{constPhase.projectManagementProposal()|number:2}}</td>
+				<td class="text-center">{{constPhase.projectManagementProposalDiff()|number:2}}</td>
 			</tr>
 			<tr>
 				<td>Requisitos</td>
 				<td class="text-center"><span class="percentaje">{{constPhase.requirementsTheoricalRelative}}</span></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
+				<td class="text-center">{{constPhase.requirementsTheoricalAbsolute|number:2}}</td>
+				<td class="text-center">{{constPhase.requirementsAbsoluteDifference()|number:2}}</td>
+				<td class="text-center"><span class="percentaje">{{constPhase.requirementsRelativeDifference()|number:2}}</span></td>
+				<td class="text-center">{{constPhase.requirementsProposal()|number:2}}</td>
+				<td class="text-center">{{constPhase.requirementsProposalDiff()|number:2}}</td>
 			</tr>
 			<tr>
 				<td>Analisis/Diseño</td>
 				<td class="text-center"><span class="percentaje">{{constPhase.analysisDesignTheoricalRelative}}</span></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
+				<td class="text-center">{{constPhase.analysisDesignTheoricalAbsolute|number:2}}</td>
+				<td class="text-center">{{constPhase.analysisDesignAbsoluteDifference()|number:2}}</td>
+				<td class="text-center"><span class="percentaje">{{constPhase.analysisDesignRelativeDifference()|number:2}}</span></td>
+				<td class="text-center">{{constPhase.analysisDesignProposal()|number:2}}</td>
+				<td class="text-center">{{constPhase.analysisDesignProposalDiff()|number:2}}</td>
 			</tr>
 			<tr>
 				<td>Implementación</td>
 				<td class="text-center"><span class="percentaje">{{constPhase.implementationTheoricalRelative}}</span></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
+				<td class="text-center">{{constPhase.implementationTheoricalAbsolute|number:2}}</td>
+				<td class="text-center">{{constPhase.implementationAbsoluteDifference()|number:2}}</td>
+				<td class="text-center"><span class="percentaje">{{constPhase.implementationRelativeDifference()|number:2}}</span></td>
+				<td class="text-center">{{constPhase.implementationProposal()|number:2}}</td>
+				<td class="text-center">{{constPhase.implementationProposalDiff()|number:2}}</td>
 			</tr>
 			<tr>
 				<td>Pruebas</td>
 				<td class="text-center"><span class="percentaje">{{constPhase.testsTheoricalRelative}}</span></td>
-				<td></td><td></td><td></td><td></td><td></td>
+				<td class="text-center">{{constPhase.testsTheoricalAbsolute|number:2}}</td>
+				<td class="text-center">{{constPhase.testsAbsoluteDifference()|number:2}}</td>
+				<td class="text-center"><span class="percentaje">{{constPhase.testsRelativeDifference()|number:2}}</span></td>
+				<td class="text-center">{{constPhase.testsProposal()|number:2}}</td>
+				<td class="text-center">{{constPhase.testsProposalDiff()|number:2}}</td>
 			</tr>
 			<tr>
 				<td>Despliegues</td>
 				<td class="text-center"><span class="percentaje">{{constPhase.deployTheoricalRelative}}</span></td>
-				<td></td><td></td><td></td><td></td><td></td>
+				<td class="text-center">{{constPhase.deployTheoricalAbsolute|number:2}}</td>
+				<td class="text-center">{{constPhase.deployAbsoluteDifference()|number:2}}</td>
+				<td class="text-center"><span class="percentaje">{{constPhase.deployRelativeDifference()|number:2}}</span></td>
+				<td class="text-center">{{constPhase.deployProposal()|number:2}}</td>
+				<td class="text-center">{{constPhase.deployProposalDiff()|number:2}}</td>
 			</tr>
 			<tr>
 				<td>Control de Versiones</td>
 				<td class="text-center"><span class="percentaje">{{constPhase.enviromentTheoricalRelative}}</span></td>
-				<td></td><td></td><td></td><td></td><td></td>
+				<td class="text-center">{{constPhase.enviromentTheoricalAbsolute|number:2}}</td>
+				<td class="text-center">{{constPhase.enviromentAbsoluteDifference()|number:2}}</td>
+				<td class="text-center"><span class="percentaje">{{constPhase.enviromentRelativeDifference()|number:2}}</span></td>
+				<td class="text-center">{{constPhase.enviromentProposal()|number:2}}</td>
+				<td class="text-center">{{constPhase.enviromentProposalDiff()|number:2}}</td>
 			</tr>
 			<tr>
 				<td>Totales</td>
 				<td class="text-center"><span class="percentaje">{{constPhase.totalTheoricalRelative()}}</span></td>
-				<td></td><td></td><td></td><td></td><td></td>
+				<td class="text-center">{{constPhase.totalTheoricalAbsolute()|number:2}}</td>
+				<td class="text-center">{{constPhase.totalAbsoluteDifference()|number:2}}</td>
+				<td class="text-center"><span class="percentaje">{{constPhase.totalRelativeDifference()|number:2}}</span></td>
+				<td class="text-center">{{constPhase.totalProposal()|number:2}}</td>
+				<td class="text-center">{{constPhase.totalProposalDiff()|number:2}}</td>
 			</tr>
 			
 		</table>
@@ -112,7 +128,7 @@
 			<tr ng-repeat="employeeResource in constPhase.assignedEmployees">
 				
 				<td style="position:relative;" class="text-center">
-					<span ng-click="deleteEmployee(initPhase, employeeResource)" class="glyphicon glyphicon-remove delete_icon" aria-hidden="true"/>
+					<span ng-click="deleteEmployee(constPhase, employeeResource)" class="glyphicon glyphicon-remove delete_icon" aria-hidden="true"/>
 					<div class="col-xs-12">
 						{{employeeResource.employee.name}}
 					</div>	
@@ -183,7 +199,7 @@
 					</div>	 
 				</td>	
 				<td class="text-center">{{assignHours(employeeResource)}}/{{employeeResource.employee.availableHours}}</td>
-				<td class="text-center"></td>
+				<td class="text-center">{{employeeCost(employeeResource)|number:2}}</td>
 			</tr>
 			
 			
