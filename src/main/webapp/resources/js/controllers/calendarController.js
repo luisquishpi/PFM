@@ -2,11 +2,12 @@
  * Calendar controller
  */
 
-projectApp.controller("calendarController",['$scope', '$isTest', 'DateUtils', function($scope, $isTest, DateUtils) {
+projectApp.controller("calendarController",['$scope', '$isTest', 'DateUtils', 'bridgeService', function($scope, $isTest, DateUtils, bridgeService) {
 	if(!$isTest){
 	  initJSFScope($scope);
 	}
 	
+	$scope.isBridgeService = false;
 	$scope.startDate;
 	$scope.endDate;
 	$scope.iterationLength;
@@ -22,7 +23,7 @@ projectApp.controller("calendarController",['$scope', '$isTest', 'DateUtils', fu
 	                 {label:"C", color: "#99CCFF", textColor: "#000000"}, 
 	                 {label:"C", color: "#99CCFF", textColor: "#000000"}, 
 	                 {label:"C", color: "#99CCFF", textColor: "#000000"}, 
-	                 {label:"P", color: "#99FF99", textColor: "#000000"}];
+	                 {label:"T", color: "#99FF99", textColor: "#000000"}];
 	
 	
 	$scope.getEvents = function(startDate, endDate){
@@ -42,7 +43,8 @@ projectApp.controller("calendarController",['$scope', '$isTest', 'DateUtils', fu
 					start: moment(m),
 					allDay: true,
 					backgroundColor : iteration.color,
-					textColor: iteration.textColor
+					textColor: iteration.textColor,
+					hours : hours
 				});
 			}
 		}
@@ -53,7 +55,8 @@ projectApp.controller("calendarController",['$scope', '$isTest', 'DateUtils', fu
 				end: moment($scope.holidays[i].end).add(1,'days'),
 				allDay: true,
 				backgroundColor : '#FF3333',
-				borderColor : '#FF3333'
+				borderColor : '#FF3333',
+				hours : 0
 			});
 		}
 		return events;
@@ -99,5 +102,10 @@ projectApp.controller("calendarController",['$scope', '$isTest', 'DateUtils', fu
 		var it = parseInt((days-1) / $scope.iterationLength);
 		var phaseId = it > 9 ? 9 : it;
 		return { label: $scope.phases[phaseId].label + "-" + (it + 1), color : $scope.phases[phaseId].color, textColor : $scope.phases[phaseId].textColor};
+	}
+	
+	$scope.toBridgeService = function(){
+		$scope.isBridgeService = true;
+		bridgeService.shareData = $scope;
 	}
 }]);
