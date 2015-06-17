@@ -8,7 +8,7 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:p="http://primefaces.org/ui">
 	<fieldset>
-		<div style="width: 100%;height: 300px;overflow: auto;">
+		<div style="width: 100%;height: 300px;overflow:auto">
 			<table class="table table-striped">
 				<tr>
 					<th class="ui-outputlabel ui-widget">
@@ -22,37 +22,37 @@
 	            		</a>
 					</th>
 					<th class="ui-outputlabel ui-widget">
-						<a href="#" ng-click="sortType = ''; sortReverse = !sortReverse">
+						<a href="#" ng-click="setSortType('PROJECT_MANAGEMENT'); sortReverse = !sortReverse">
 	            			Gestión Proyectos
 	            		</a>
 					</th>
 					<th class="ui-outputlabel ui-widget">
-						<a href="#" ng-click="sortType = 'roles'; sortReverse = !sortReverse">
+						<a href="#" ng-click="setSortType('REQUIREMENTS'); sortReverse = !sortReverse">
 	            			Requisitos
 	            		</a>	
 					</th>
 					<th class="ui-outputlabel ui-widget">
-						<a href="#" ng-click="sortType = 'roles'; sortReverse = !sortReverse">
+						<a href="#" ng-click="setSortType('ANALYSIS_DESIGN'); sortReverse = !sortReverse">
 	            			Análisis Diseño
 	            		</a>
 					</th>
 					<th class="ui-outputlabel ui-widget">
-						<a href="#" ng-click="sortType = 'roles'; sortReverse = !sortReverse">
+						<a href="#" ng-click="setSortType('IMPLEMENTATION'); sortReverse = !sortReverse">
 	            			Implementación
 	            		</a>
 					</th>
 					<th class="ui-outputlabel ui-widget">
-						<a href="#" ng-click="sortType = 'roles'; sortReverse = !sortReverse">
+						<a href="#" ng-click="setSortType('TESTS'); sortReverse = !sortReverse">
 	            			Pruebas
 	            		</a>
 					</th>
 					<th class="ui-outputlabel ui-widget">
-						<a href="#" ng-click="sortType = 'roles'; sortReverse = !sortReverse">
+						<a href="#" ng-click="setSortType('DEPLOY'); sortReverse = !sortReverse">
 	            			Despliegue
 	            		</a>	
 					</th>
 					<th class="ui-outputlabel ui-widget">
-						<a href="#" ng-click="sortType = 'roles'; sortReverse = !sortReverse">
+						<a href="#" ng-click="setSortType('ENVIROMENT_REVISION_CONTROL'); sortReverse = !sortReverse">
 	            			Control Versiones
 	            		</a>
 					</th>
@@ -61,16 +61,16 @@
 					</th>
 				</tr>
 				<tr ng-repeat="employee in resourcesBean.employeeList | orderBy:sortType:sortReverse">
-					<td class="text-center"><strong>{{employee.fullName}}</strong></td>
-					<td class="text-center">{{employeeSalaryHour(employee)|number:2}}</td>
-					<td class="text-center">{{employeeHasRole(employee,"PROJECT_MANAGEMENT")===true?"X":""}}</td>
-					<td class="text-center">{{employeeHasRole(employee,"REQUIREMENTS")===true?"X":""}}</td>
-					<td class="text-center">{{employeeHasRole(employee,"ANALYSIS_DESIGN")===true?"X":""}}</td>
-					<td class="text-center">{{employeeHasRole(employee,"IMPLEMENTATION")===true?"X":""}}</td>
-					<td class="text-center">{{employeeHasRole(employee,"TESTS")===true?"X":""}}</td>
-					<td class="text-center">{{employeeHasRole(employee,"DEPLOY")===true?"X":""}}</td>
-					<td class="text-center">{{employeeHasRole(employee,"ENVIROMENT_REVISION_CONTROL")===true?"X":""}}</td>
-					<td class="text-center"><h:selectBooleanCheckbox value="{{$index}}"
+					<td class="sort text-center"><strong>{{employee.fullName}}</strong></td>
+					<td class="sort text-center">{{employeeSalaryHour(employee)|number:2}}</td>
+					<td class="sort text-center">{{employeeHasRole(employee,"PROJECT_MANAGEMENT")===true?"X":""}}</td>
+					<td class="sort text-center">{{employeeHasRole(employee,"REQUIREMENTS")===true?"X":""}}</td>
+					<td class="sort text-center">{{employeeHasRole(employee,"ANALYSIS_DESIGN")===true?"X":""}}</td>
+					<td class="sort text-center">{{employeeHasRole(employee,"IMPLEMENTATION")===true?"X":""}}</td>
+					<td class="sort text-center">{{employeeHasRole(employee,"TESTS")===true?"X":""}}</td>
+					<td class="sort text-center">{{employeeHasRole(employee,"DEPLOY")===true?"X":""}}</td>
+					<td class="sort text-center">{{employeeHasRole(employee,"ENVIROMENT_REVISION_CONTROL")===true?"X":""}}</td>
+					<td class="sort text-center"><h:selectBooleanCheckbox value="{{$index}}"
 							ng-model="employee.selected"
 							ng-change="copyEmployeeToList(employee)" /></td>
 				</tr>

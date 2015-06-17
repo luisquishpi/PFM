@@ -4,6 +4,11 @@
 
 projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService', 'workTimeService', 'EmployeeUtils', 'DateUtils', function ($scope, $isTest, bridgeService, workTimeService, EmployeeUtils, DateUtils) {
 	$scope.discipline = bridgeService.shareData;
+	$scope.setSortType = function(type){
+		$scope.sortType = function(element){
+			return element.roles.indexOf(type);
+		}
+	};
 	if(!$isTest){
 		  initJSFScope($scope);
 		  workTimeService.calculateWorkDaysAndHour($scope.resourcesBean.project.startString, 
@@ -125,8 +130,7 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 			return ($scope.disciplineHoursTotal(this, "deployHours")/this.deployTheoricalAbsolute)*100;
 		}
 		
-		this.enviromentRelativeDifference = function(){
-			console.log(this);
+		this.enviromentRelativeDifference = function(){			
 			return ($scope.disciplineHoursTotal(this, "environmentHours")/this.enviromentTheoricalAbsolute)*100;
 		}		
 		
