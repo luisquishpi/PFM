@@ -36,58 +36,74 @@
 			<tr>
 				<td>Gestión Proyecto</td>
 				<td class="text-center"><span class="percentaje">{{elabPhase.projectManagementTheoricalRelative}}</span></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
+				<td class="text-center">{{elabPhase.projectManagementTheoricalAbsolute|number:2}}</td>
+				<td class="text-center">{{elabPhase.projectManagementAbsoluteDifference()|number:2}}</td>
+				<td class="text-center"><span class="percentaje">{{elabPhase.projectManagementRelativeDifference()|number:2}}</span></td>
+				<td class="text-center">{{elabPhase.projectManagementProposal()|number:2}}</td>
+				<td class="text-center">{{elabPhase.projectManagementProposalDiff()|number:2}}</td>
 			</tr>
 			<tr>
 				<td>Requisitos</td>
 				<td class="text-center"><span class="percentaje">{{elabPhase.requirementsTheoricalRelative}}</span></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
+				<td class="text-center">{{elabPhase.requirementsTheoricalAbsolute|number:2}}</td>
+				<td class="text-center">{{elabPhase.requirementsAbsoluteDifference()|number:2}}</td>
+				<td class="text-center"><span class="percentaje">{{elabPhase.requirementsRelativeDifference()|number:2}}</span></td>
+				<td class="text-center">{{elabPhase.requirementsProposal()|number:2}}</td>
+				<td class="text-center">{{elabPhase.requirementsProposalDiff()|number:2}}</td>
 			</tr>
 			<tr>
 				<td>Analisis/Diseño</td>
 				<td class="text-center"><span class="percentaje">{{elabPhase.analysisDesignTheoricalRelative}}</span></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
+				<td class="text-center">{{elabPhase.analysisDesignTheoricalAbsolute|number:2}}</td>
+				<td class="text-center">{{elabPhase.analysisDesignAbsoluteDifference()|number:2}}</td>
+				<td class="text-center"><span class="percentaje">{{elabPhase.analysisDesignRelativeDifference()|number:2}}</span></td>
+				<td class="text-center">{{elabPhase.analysisDesignProposal()|number:2}}</td>
+				<td class="text-center">{{elabPhase.analysisDesignProposalDiff()|number:2}}</td>
 			</tr>
 			<tr>
 				<td>Implementación</td>
 				<td class="text-center"><span class="percentaje">{{elabPhase.implementationTheoricalRelative}}</span></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
+				<td class="text-center">{{elabPhase.implementationTheoricalAbsolute|number:2}}</td>
+				<td class="text-center">{{elabPhase.implementationAbsoluteDifference()|number:2}}</td>
+				<td class="text-center"><span class="percentaje">{{elabPhase.implementationRelativeDifference()|number:2}}</span></td>
+				<td class="text-center">{{elabPhase.implementationProposal()|number:2}}</td>
+				<td class="text-center">{{elabPhase.implementationProposalDiff()|number:2}}</td>
 			</tr>
 			<tr>
 				<td>Pruebas</td>
 				<td class="text-center"><span class="percentaje">{{elabPhase.testsTheoricalRelative}}</span></td>
-				<td></td><td></td><td></td><td></td><td></td>
+				<td class="text-center">{{elabPhase.testsTheoricalAbsolute|number:2}}</td>
+				<td class="text-center">{{elabPhase.testsAbsoluteDifference()|number:2}}</td>
+				<td class="text-center"><span class="percentaje">{{elabPhase.testsRelativeDifference()|number:2}}</span></td>
+				<td class="text-center">{{elabPhase.testsProposal()|number:2}}</td>
+				<td class="text-center">{{elabPhase.testsProposalDiff()|number:2}}</td>
 			</tr>
 			<tr>
 				<td>Despliegues</td>
 				<td class="text-center"><span class="percentaje">{{elabPhase.deployTheoricalRelative}}</span></td>
-				<td></td><td></td><td></td><td></td><td></td>
+				<td class="text-center">{{elabPhase.deployTheoricalAbsolute|number:2}}</td>
+				<td class="text-center">{{elabPhase.deployAbsoluteDifference()|number:2}}</td>
+				<td class="text-center"><span class="percentaje">{{elabPhase.deployRelativeDifference()|number:2}}</span></td>
+				<td class="text-center">{{elabPhase.deployProposal()|number:2}}</td>
+				<td class="text-center">{{elabPhase.deployProposalDiff()|number:2}}</td>
 			</tr>
 			<tr>
 				<td>Control de Versiones</td>
 				<td class="text-center"><span class="percentaje">{{elabPhase.enviromentTheoricalRelative}}</span></td>
-				<td></td><td></td><td></td><td></td><td></td>
+				<td class="text-center">{{elabPhase.enviromentTheoricalAbsolute|number:2}}</td>
+				<td class="text-center">{{elabPhase.enviromentAbsoluteDifference()|number:2}}</td>
+				<td class="text-center"><span class="percentaje">{{elabPhase.enviromentRelativeDifference()|number:2}}</span></td>
+				<td class="text-center">{{elabPhase.enviromentProposal()|number:2}}</td>
+				<td class="text-center">{{elabPhase.enviromentProposalDiff()|number:2}}</td>
 			</tr>
 			<tr>
 				<td>Totales</td>
 				<td class="text-center"><span class="percentaje">{{elabPhase.totalTheoricalRelative()}}</span></td>
-				<td></td><td></td><td></td><td></td><td></td>
+				<td class="text-center">{{elabPhase.totalTheoricalAbsolute()|number:2}}</td>
+				<td class="text-center">{{elabPhase.totalAbsoluteDifference()|number:2}}</td>
+				<td class="text-center"><span class="percentaje">{{elabPhase.totalRelativeDifference()|number:2}}</span></td>
+				<td class="text-center">{{elabPhase.totalProposal()|number:2}}</td>
+				<td class="text-center">{{elabPhase.totalProposalDiff()|number:2}}</td>
 			</tr>
 			
 		</table>
@@ -112,7 +128,7 @@
 			<tr ng-repeat="employeeResource in elabPhase.assignedEmployees">
 				
 				<td style="position:relative;" class="text-center">
-					<span ng-click="deleteEmployee(initPhase, employeeResource)" class="glyphicon glyphicon-remove delete_icon" aria-hidden="true"/>
+					<span ng-click="deleteEmployee(elabPhase, employeeResource)" class="glyphicon glyphicon-remove delete_icon" aria-hidden="true"/>
 					<div class="col-xs-12">
 						{{employeeResource.employee.name}}
 					</div>	
@@ -183,7 +199,7 @@
 					</div>	 
 				</td>	
 				<td class="text-center">{{assignHours(employeeResource)}}/{{employeeResource.employee.availableHours}}</td>
-				<td class="text-center"></td>
+				<td class="text-center">{{employeeCost(employeeResource)|number:2}}</td>
 			</tr>
 			
 			

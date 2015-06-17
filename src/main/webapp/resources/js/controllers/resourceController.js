@@ -10,6 +10,10 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 				  $scope.resourcesBean.project.endString, $scope.discipline.phases.schedule.listHoursEachDay());
 	}
 	var INIT_PHASE = "INIT";
+	var ELAB_PHASE = "ELAB";
+	var CONST_PHASE = "CONST";
+	var TRANS_PHASE = "TRANS";
+	
 	function EmployeeResource(employee){
 		this.employee = employee;
 		this.projectManagementHours=0;
@@ -253,7 +257,10 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	}
 	
 	$scope.employeeListSelected=[];
-
+	
+	$scope.elabPhase = new Phase(ELAB_PHASE);
+	$scope.constPhase = new Phase(CONST_PHASE);
+	$scope.transPhase = new Phase(TRANS_PHASE);
 	//Inicialización de elementos de fase de inicio
 	$scope.initPhase = new Phase(INIT_PHASE);
 	
@@ -486,7 +493,7 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
         	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.environmentHours, phase:"ELABORACION", role:"ENVIRONMENT_REVISION_CONTROL"});
         }
         
-        for(employeeHours in $scope.constrPhase.assignedEmployee){
+        for(employeeHours in $scope.constPhase.assignedEmployee){
         	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.projectMesignHours, phase:"CONSTRUCCION", role:"PROJECT_MANAGEMENT"});
         	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.requirementsHours, phase:"CONSTRUCCION", role:"REQUIREMENTS"});
         	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.analysisDementationHours, phase:"CONSTRUCCION", role:"ANALYSIS_DESIGN"});
