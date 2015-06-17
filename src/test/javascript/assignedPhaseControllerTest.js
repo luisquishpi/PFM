@@ -2,7 +2,7 @@
  * Test del controlador del calendario
  */
 
-describe("Test calendarController", function() {
+describe("Test AssignedPhasesController", function() {
 
 	beforeEach(module("projectApp"));
 
@@ -180,5 +180,42 @@ describe("Test calendarController", function() {
 	});
 	it("Lengths::TransitionPhase - Iteration %: should be 0", function() {
 		expect(scope.getPhaseLength(scope.transitionPhaseLength)).toBeCloseTo(0);
+	});
+	/* PROJECT LENGTH */
+	it("Lengths::Project - Hours: should be 34", function() {
+		expect(scope.projectHours).toBe(34);
+	});
+	it("Lengths::Project - Length: should be 100", function() {
+		expect(scope.projectLength).toBe(100);
+	});
+	it("Lengths::Project - Days: should be 6", function() {
+		expect(scope.projectDays).toBe(6);
+	});
+	it("Lengths::Project - Months: should be 0.28", function() {
+		expect(scope.projectMonths).toBeCloseTo(0.28,1);
+	});
+	it("Lengths::Project - Start Date: should be 1/3/2015", function() {
+		expect(scope.projectStartDate.isSame(moment.utc("1/3/2015", DATE_FORMAT))).toBe(true);
+	});
+	it("Lengths::Project - End Date: should be null", function() {
+		expect(scope.projectEndDate).toBe(null);
+	});
+	it("Lengths::Project - Iterations: should be 10", function() {
+		expect(scope.projectIterations).toBe(10);
+	});
+	it("Lengths::Project - Initial Iteration: should be 1", function() {
+		expect(scope.projectInitialIterations).toBe(1);
+	});
+	it("Lengths::Project - Final Iteration: should be 10", function() {
+		expect(scope.projectFinalIterations).toBe(10);
+	});
+	it("Lengths::Project - Average Hours: should be 3.4", function() {
+		expect(scope.projectAvgIterationHours).toBe(3.4);
+	});
+	it("Lengths::Project - Average Days: should be 0.6", function() {
+		expect(scope.projectAvgIterationDays).toBe(0.6);
+	});
+	it("Lengths::Project - Average Months: should be 0.028", function() {
+		expect(scope.projectAvgIterationMonths).toBeCloseTo(0.028,2);
 	});
 });
