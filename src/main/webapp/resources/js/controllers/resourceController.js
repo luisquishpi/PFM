@@ -584,30 +584,45 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	
 	function pushToDataArray(employees, data, tagPhase){
 		for(var i=0; i< employees.length;i++){
-        	data.push({project:{id:1}, employee: employees[i].employee, workHours: employees[i].projectManagementHours, phase:tagPhase, role:"PROJECT_MANAGEMENT"});
-        	data.push({project:{id:1}, employee: employees[i].employee, workHours: employees[i].requirementsHours, phase:tagPhase, role:"REQUIREMENTS"});
-        	data.push({project:{id:1}, employee: employees[i].employee, workHours: employees[i].analysisDementationHours, phase:tagPhase, role:"ANALYSIS_DESIGN"});
-        	data.push({project:{id:1}, employee: employees[i].employee, workHours: employees[i].implanagementHours, phase:tagPhase, role:"IMPLEMENTATION"});
-        	data.push({project:{id:1}, employee: employees[i].employee, workHours: employees[i].testsTheoricalRelative, phase:tagPhase, role:"TEST"});
-        	data.push({project:{id:1}, employee: employees[i].employee, workHours: employees[i].deployTheoricalRelative, phase:tagPhase, role:"DEPLOY"});
-        	data.push({project:{id:1}, employee: employees[i].employee, workHours: employees[i].environmentHours, phase:tagPhase, role:"ENVIRONMENT_REVISION_CONTROL"});
+        	data.push({project:{id:$scope.resourcesBean.project.id}, employee: employees[i].employee, workHours: employees[i].projectManagementHours, phase:tagPhase, role:"PROJECT_MANAGEMENT"});
+        	data.push({project:{id:$scope.resourcesBean.project.id}, employee: employees[i].employee, workHours: employees[i].requirementsHours, phase:tagPhase, role:"REQUIREMENTS"});
+        	data.push({project:{id:$scope.resourcesBean.project.id}, employee: employees[i].employee, workHours: employees[i].analysisDesignHours, phase:tagPhase, role:"ANALYSIS_DESIGN"});
+        	data.push({project:{id:$scope.resourcesBean.project.id}, employee: employees[i].employee, workHours: employees[i].implementationHours, phase:tagPhase, role:"IMPLEMENTATION"});
+        	data.push({project:{id:$scope.resourcesBean.project.id}, employee: employees[i].employee, workHours: employees[i].testsHours, phase:tagPhase, role:"TEST"});
+        	data.push({project:{id:$scope.resourcesBean.project.id}, employee: employees[i].employee, workHours: employees[i].deployHours, phase:tagPhase, role:"DEPLOY"});
+        	data.push({project:{id:$scope.resourcesBean.project.id}, employee: employees[i].employee, workHours: employees[i].environmentHours, phase:tagPhase, role:"ENVIRONMENT_REVISION_CONTROL"});
         }
 	}
 	
 	//servicio rest
 	$scope.saveHoursRolePhaseArray = function(){
-        var data = [];
-        pushToDataArray($scope.initPhase.assignedEmployee, data, "INICIO");
-        pushToDataArray($scope.elabPhase.assignedEmployee, data, "ELABORACION");
-        pushToDataArray($scope.transPhase.assignedEmployee, data, "CONSTRUCCION");
-        pushToDataArray($scope.constPhase.assignedEmployee, data, "TRANSICION");
+		var data = [];
+        var dataHours = [];
+        pushToDataArray($scope.initPhase.assignedEmployee, dataHours, "INICIO");
+        pushToDataArray($scope.elabPhase.assignedEmployee, dataHours, "ELABORACION");
+        pushToDataArray($scope.transPhase.assignedEmployee, dataHours, "CONSTRUCCION");
+        pushToDataArray($scope.constPhase.assignedEmployee, dataHours, "TRANSICION");
+        
+        var dataProposals = [];
+        dataProposals.push({"INICIO":$scope.initPhase.numberOfAssignedPeople});
+        dataProposals.push({"ELABORACION":$scope.elabPhase.numberOfAssignedPeople});
+        dataProposals.push({"CONSTRUCCION":$scope.constPhase.numberOfAssignedPeople});
+        dataProposals.push({"TRANSICION":$scope.transPhase.numberOfAssignedPeople});
+        
+        data.push(dataHours);
+        data.push(dataProposals);
+        
 
 		$http.post('/PFM/rest/Employees/Save', data).
 		    success(function(data, status, headers, config) {
-		      $scope.message = JSON.stringify(data);
+		    	PF('growl').renderMessage({"summary":"Recursos",
+		            "detail":"Se han guardado los recursos correctamente",
+		            "severity":"info"});
 		    }).
 		    error(function(data, status, headers, config) {
-		      // log error
+		    	PF('growl').renderMessage({"summary":"Recursos",
+		            "detail":"Se ha producido un error al guardar los recursos",
+		            "severity":"error"});
 		    })
 	}	
 }]);	
