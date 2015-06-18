@@ -17,7 +17,8 @@ projectApp.controller("assignedPhaseController",
 			$scope.calendarController = bridgeService.shareData;
 		}
 
-		var projectDays = $scope.calendarController.getEvents($scope.calendarController.startDate, $scope.calendarController.endDate);
+		var projectDays = $scope.calendarController.getEvents(moment.utc($scope.calendarController.startDate), moment.utc($scope.calendarController.endDate));
+		
 		
 		$scope.inceptionPhaseLength = new PhaseLength("I", projectDays, $scope.projectSchedule);
 		$scope.elaborationPhaseLength = new PhaseLength("E", projectDays, $scope.projectSchedule);
@@ -73,11 +74,11 @@ projectApp.controller("assignedPhaseController",
 				return this.phaseDays.length;
 			}
 			this.months = function() {
-				return this.days() / this.projectSchedule.workDays;
+				return this.days() / 21;
 			}
 			this.startDate = this.phaseDays[0] ? this.phaseDays[0].startDate : null;
 			this.endDate = this.phaseDays[this.phaseDays.length - 1] ? this.phaseDays[this.phaseDays.length - 1].startDate : null;
-			this.iterations = this.days() / this.projectSchedule.project.iterationDays;
+			this.iterations = this.days() / 13;
 			this.initialIteration = 0;
 			this.finalIteration = function() {
 				var result = this.iterations

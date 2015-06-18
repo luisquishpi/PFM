@@ -7,6 +7,7 @@ projectApp.controller("calendarController",['$scope', '$isTest', 'DateUtils', 'b
 	  initJSFScope($scope);
 	}
 	
+	$scope.calendarFinished = false;
 	$scope.isBridgeService = false;
 	$scope.startDate;
 	$scope.endDate;
@@ -27,6 +28,7 @@ projectApp.controller("calendarController",['$scope', '$isTest', 'DateUtils', 'b
 	
 	
 	$scope.getEvents = function(startDate, endDate){
+		console.log(startDate);
 		if($scope.workHours === undefined){
 			return [];
 		}
@@ -48,6 +50,7 @@ projectApp.controller("calendarController",['$scope', '$isTest', 'DateUtils', 'b
 				});
 			}
 		}
+		console.log('hola');
 		for (var i = 0; i < $scope.holidays.length; i++){
 			events.push({
 				title: 'F E S T I V O',
@@ -108,4 +111,5 @@ projectApp.controller("calendarController",['$scope', '$isTest', 'DateUtils', 'b
 		$scope.isBridgeService = true;
 		bridgeService.shareData = $scope;
 	}
+	$scope.calendarFinished = true;
 }]);

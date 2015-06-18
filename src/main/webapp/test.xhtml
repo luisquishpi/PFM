@@ -15,8 +15,11 @@ xmlns:c="http://java.sun.com/jsp/jstl/core">
 <script src="/PFM/resources/js/controllers/assignedPhaseController.js"></script>
 </head>
 <body>
-    <c:set var="startDate" scope="request" value="#{showTheoricalPhasesBean}" />
-    <div ng-app="projectApp" ng-controller="calendarController">
+    <c:set var="startDate" scope="request" value="#{showTheoricalPhasesBean.project.start}" />
+    <c:set var="endDate" scope="request" value="#{showTheoricalPhasesBean.project.end}" />
+    <c:set var="iterationLegth" scope="request" value="#{showTheoricalPhasesBean.project.iterationLength}" />
+    <c:set var="workHours" scope="request" value="#{showTheoricalPhasesBean.pprojectSchedule.workHours}" />
+    <div ng-controller="calendarController">
         <ngsync direction="serverToClient" value="{{startDate}}" />
         {{toBridgeService()}}
         <div ng-if="isBridgeService" ng-controller="assignedPhaseController">

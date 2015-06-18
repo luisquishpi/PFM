@@ -23,7 +23,12 @@ public class EmployeeRest {
 		System.out.println(listHours.get(0));
 		try{
 			for(HoursRolePhase hours: listHours){
-				DaoFactory.getFactory().getHoursRolePhaseDao().create(hours);
+				if(DaoFactory.getFactory().getHoursRolePhaseDao().read(hours.getId()) == null){
+					DaoFactory.getFactory().getHoursRolePhaseDao().create(hours);
+				}else{
+					DaoFactory.getFactory().getHoursRolePhaseDao().update(hours);
+				}
+				
 			}
 			return Response.status(201).build();
 		}catch(Exception e){

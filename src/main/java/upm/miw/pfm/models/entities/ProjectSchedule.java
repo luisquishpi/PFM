@@ -105,6 +105,10 @@ public class ProjectSchedule implements Serializable {
     public void setWorkDays(Integer workDays) {
         this.workDays = workDays;
     }
+    
+    public Map<WeekDays, Double> getWeekHours(){
+    	return weekHours;
+    }
 
     public Double getMondayHours() {
         return weekHours.get(WeekDays.MONDAY_HOURS);
