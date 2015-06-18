@@ -2,7 +2,7 @@
  * AngularJS resourceController
  */
 
-projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService', 'workTimeService', 'EmployeeUtils', 'DateUtils', function ($scope, $isTest, bridgeService, workTimeService, EmployeeUtils, DateUtils) {
+projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService', 'workTimeService', 'EmployeeUtils', 'DateUtils', '$http', function ($scope, $isTest, bridgeService, workTimeService, EmployeeUtils, DateUtils, $http) {
 	$scope.discipline = bridgeService.shareData;
 	$scope.setSortType = function(type){
 		$scope.sortType = function(element){
@@ -580,49 +580,27 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 		return $scope.employeeSalaryHour(employeeResource.employee)*totalAssignedHoursEmployee(employeeResource);
 	}
 	
+	
+	
+	function pushToDataArray(employees, data, tagPhase){
+		for(var i=0; i< employees.length;i++){
+        	data.push({project:{id:1}, employee: employees[i].employee, workHours: employees[i].projectManagementHours, phase:tagPhase, role:"PROJECT_MANAGEMENT"});
+        	data.push({project:{id:1}, employee: employees[i].employee, workHours: employees[i].requirementsHours, phase:tagPhase, role:"REQUIREMENTS"});
+        	data.push({project:{id:1}, employee: employees[i].employee, workHours: employees[i].analysisDementationHours, phase:tagPhase, role:"ANALYSIS_DESIGN"});
+        	data.push({project:{id:1}, employee: employees[i].employee, workHours: employees[i].implanagementHours, phase:tagPhase, role:"IMPLEMENTATION"});
+        	data.push({project:{id:1}, employee: employees[i].employee, workHours: employees[i].testsTheoricalRelative, phase:tagPhase, role:"TEST"});
+        	data.push({project:{id:1}, employee: employees[i].employee, workHours: employees[i].deployTheoricalRelative, phase:tagPhase, role:"DEPLOY"});
+        	data.push({project:{id:1}, employee: employees[i].employee, workHours: employees[i].environmentHours, phase:tagPhase, role:"ENVIRONMENT_REVISION_CONTROL"});
+        }
+	}
+	
 	//servicio rest
 	$scope.saveHoursRolePhaseArray = function(){
         var data = [];
-		 
-        for(employeeHours in $scope.initPhase.assignedEmployee){
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.projectMesignHours, phase:"INICIO", role:"PROJECT_MANAGEMENT"});
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.requirementsHours, phase:"INICIO", role:"REQUIREMENTS"});
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.analysisDementationHours, phase:"INICIO", role:"ANALYSIS_DESIGN"});
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.implanagementHours, phase:"INICIO", role:"IMPLEMENTATION"});
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.testsTheoricalRelative, phase:"INICIO", role:"TEST"});
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.deployTheoricalRelative, phase:"INICIO", role:"DEPLOY"});
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.environmentHours, phase:"INICIO", role:"ENVIRONMENT_REVISION_CONTROL"});
-        }
-        
-        for(employeeHours in $scope.elabPhase.assignedEmployee){
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.projectMesignHours, phase:"ELABORACION", role:"PROJECT_MANAGEMENT"});
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.requirementsHours, phase:"ELABORACION", role:"REQUIREMENTS"});
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.analysisDementationHours, phase:"ELABORACION", role:"ANALYSIS_DESIGN"});
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.implanagementHours, phase:"ELABORACION", role:"IMPLEMENTATION"});
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.testsTheoricalRelative, phase:"ELABORACION", role:"TEST"});
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.deployTheoricalRelative, phase:"ELABORACION", role:"DEPLOY"});
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.environmentHours, phase:"ELABORACION", role:"ENVIRONMENT_REVISION_CONTROL"});
-        }
-        
-        for(employeeHours in $scope.constPhase.assignedEmployee){
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.projectMesignHours, phase:"CONSTRUCCION", role:"PROJECT_MANAGEMENT"});
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.requirementsHours, phase:"CONSTRUCCION", role:"REQUIREMENTS"});
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.analysisDementationHours, phase:"CONSTRUCCION", role:"ANALYSIS_DESIGN"});
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.implanagementHours, phase:"CONSTRUCCION", role:"IMPLEMENTATION"});
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.testsTheoricalRelative, phase:"CONSTRUCCION", role:"TEST"});
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.deployTheoricalRelative, phase:"CONSTRUCCION", role:"DEPLOY"});
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.environmentHours, phase:"CONSTRUCCION", role:"ENVIRONMENT_REVISION_CONTROL"});
-        }
-        
-        for(employeeHours in $scope.transPhase.assignedEmployee){
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.projectMesignHours, phase:"TRANSICION", role:"PROJECT_MANAGEMENT"});
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.requirementsHours, phase:"TRANSICION", role:"REQUIREMENTS"});
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.analysisDementationHours, phase:"TRANSICION", role:"ANALYSIS_DESIGN"});
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.implanagementHours, phase:"TRANSICION", role:"IMPLEMENTATION"});
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.testsTheoricalRelative, phase:"TRANSICION", role:"TEST"});
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.deployTheoricalRelative, phase:"TRANSICION", role:"DEPLOY"});
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.environmentHours, phase:"TRANSICION", role:"ENVIRONMENT_REVISION_CONTROL"});
-        }
+        pushToDataArray($scope.initPhase.assignedEmployee, data, "INICIO");
+        pushToDataArray($scope.elabPhase.assignedEmployee, data, "ELABORACION");
+        pushToDataArray($scope.transPhase.assignedEmployee, data, "CONSTRUCCION");
+        pushToDataArray($scope.constPhase.assignedEmployee, data, "TRANSICION");
 
 		$http.post('/PFM/rest/Employees/Save', data).
 		    success(function(data, status, headers, config) {
