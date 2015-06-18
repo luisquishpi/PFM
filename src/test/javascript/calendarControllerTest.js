@@ -77,7 +77,7 @@ describe("Test calendarController", function() {
 	});
 	
 	it("Iteration should be P-10", function() {
-		expect(scope.getIteration(130).label).toBe("P-10");
+		expect(scope.getIteration(130).label).toBe("T-10");
 	});
 	/*
 	it("getEvents should be 3[ 2 project days and 1 holiday ]", function() {

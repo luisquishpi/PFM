@@ -4,6 +4,11 @@
 
 projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService', 'workTimeService', 'EmployeeUtils', 'DateUtils', function ($scope, $isTest, bridgeService, workTimeService, EmployeeUtils, DateUtils) {
 	$scope.discipline = bridgeService.shareData;
+	$scope.setSortType = function(type){
+		$scope.sortType = function(element){
+			return element.roles.indexOf(type);
+		}
+	};
 	if(!$isTest){
 		  initJSFScope($scope);
 		  workTimeService.calculateWorkDaysAndHour($scope.resourcesBean.project.startString, 
@@ -67,8 +72,10 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 		this.deployAssigned;
 		this.enviromentAssigned;
 		this.totalAssigned = function(){
-			return this.projectManagementAssigned + this.requirementsAssigned + this.analysisDesignAssigned + this.implementationAssigned + 
-				this.testsAssigned + this.deployAssigned + this.enviromentAssigned;
+			return ($scope.disciplineHoursTotal(this.assignedEmployee, "projectManagementHours")+$scope.disciplineHoursTotal(this.assignedEmployee, 'requirementsHours')
+				+$scope.disciplineHoursTotal(this.assignedEmployee, 'analysisDesignHours')+$scope.disciplineHoursTotal(this.assignedEmployee, 'implementationHours')
+				+$scope.disciplineHoursTotal(this.assignedEmployee, 'testsHours')+$scope.disciplineHoursTotal(this.assignedEmployee, 'deployHours')
+				+$scope.disciplineHoursTotal(this.assignedEmployee, 'environmentHours'));
 		};
 		
 		this.projectManagementAbsoluteDifference = function(){
@@ -100,31 +107,31 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 		}
 		
 		this.projectManagementRelativeDifference = function(){
-			return ($scope.disciplineHoursTotal(this, "projectManagementHours")/this.projectManagementTheoricalAbsolute)*100;
+			return ($scope.disciplineHoursTotal(this.assignedEmployee, "projectManagementHours")/this.projectManagementTheoricalAbsolute)*100;
 		}
 		
 		this.requirementsRelativeDifference = function(){
-			return ($scope.disciplineHoursTotal(this, "requirementsHours")/this.requirementsTheoricalAbsolute)*100;
+			return ($scope.disciplineHoursTotal(this.assignedEmployee, "requirementsHours")/this.requirementsTheoricalAbsolute)*100;
 		}
 		
 		this.analysisDesignRelativeDifference = function(){
-			return ($scope.disciplineHoursTotal(this, "analysisDesignHours")/this.analysisDesignTheoricalAbsolute)*100;
+			return ($scope.disciplineHoursTotal(this.assignedEmployee, "analysisDesignHours")/this.analysisDesignTheoricalAbsolute)*100;
 		}
 		
 		this.implementationRelativeDifference = function(){
-			return ($scope.disciplineHoursTotal(this, "implementationHours")/this.implementationTheoricalAbsolute)*100;
+			return ($scope.disciplineHoursTotal(this.assignedEmployee, "implementationHours")/this.implementationTheoricalAbsolute)*100;
 		}
 		
 		this.testsRelativeDifference = function(){
-			return ($scope.disciplineHoursTotal(this, "testsHours")/this.testsTheoricalAbsolute)*100;
+			return ($scope.disciplineHoursTotal(this.assignedEmployee, "testsHours")/this.testsTheoricalAbsolute)*100;
 		}
 		
 		this.deployRelativeDifference = function(){
-			return ($scope.disciplineHoursTotal(this, "deployHours")/this.deployTheoricalAbsolute)*100;
+			return ($scope.disciplineHoursTotal(this.assignedEmployee, "deployHours")/this.deployTheoricalAbsolute)*100;
 		}
 		
 		this.enviromentRelativeDifference = function(){
-			return ($scope.disciplineHoursTotal(this, "environmentHours")/this.enviromentTheoricalAbsolute)*100;
+			return ($scope.disciplineHoursTotal(this.assignedEmployee, "environmentHours")/this.enviromentTheoricalAbsolute)*100;
 		}		
 		
 		this.totalRelativeDifference = function(){
@@ -260,10 +267,11 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	};	
 	
 	//Se cuentan las horas totales de disciplina de cierta fase
-	$scope.disciplineHoursTotal = function(phase, discipline){
-		var hoursTotal = parseFloat($scope.sum(phase.assignedEmployee, discipline));
-		if(isNaN(hoursTotal))
+	$scope.disciplineHoursTotal = function(arrayEmployee, discipline){
+		var hoursTotal = parseFloat($scope.sum(arrayEmployee, discipline));
+		if(isNaN(hoursTotal)){
 			return 0;
+		}
 		return hoursTotal;
 	}
 	
@@ -314,13 +322,13 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	$scope.initPhase.deployTheoricalAbsolute=$scope.discipline.initialDeploymentHour();
 	$scope.initPhase.enviromentTheoricalAbsolute=$scope.discipline.initialVersionHour();	
 	
-	$scope.initPhase.projectManagementAssigned = $scope.disciplineHoursTotal($scope.initPhase, "projectManagementHours");
-	$scope.initPhase.requirementsAssigned = $scope.disciplineHoursTotal($scope.initPhase, 'requirementsHours');
-	$scope.initPhase.analysisDesignAssigned = $scope.disciplineHoursTotal($scope.initPhase, 'analysisDesignHours');
-	$scope.initPhase.implementationAssigned = $scope.disciplineHoursTotal($scope.initPhase, 'implementationHours');
-	$scope.initPhase.testsAssigned = $scope.disciplineHoursTotal($scope.initPhase, 'testsHours');
-	$scope.initPhase.deployAssigned = $scope.disciplineHoursTotal($scope.initPhase, 'deployHours');
-	$scope.initPhase.enviromentAssigned = $scope.disciplineHoursTotal($scope.initPhase, 'environmentHours');
+	$scope.initPhase.projectManagementAssigned = $scope.disciplineHoursTotal($scope.initPhase.assignedEmployee, "projectManagementHours");
+	$scope.initPhase.requirementsAssigned = $scope.disciplineHoursTotal($scope.initPhase.assignedEmployee, 'requirementsHours');
+	$scope.initPhase.analysisDesignAssigned = $scope.disciplineHoursTotal($scope.initPhase.assignedEmployee, 'analysisDesignHours');
+	$scope.initPhase.implementationAssigned = $scope.disciplineHoursTotal($scope.initPhase.assignedEmployee, 'implementationHours');
+	$scope.initPhase.testsAssigned = $scope.disciplineHoursTotal($scope.initPhase.assignedEmployee, 'testsHours');
+	$scope.initPhase.deployAssigned = $scope.disciplineHoursTotal($scope.initPhase.assignedEmployee, 'deployHours');
+	$scope.initPhase.enviromentAssigned = $scope.disciplineHoursTotal($scope.initPhase.assignedEmployee, 'environmentHours');
 	
 	//Inicialización de elementos de fase de elaboracion
 	$scope.elabPhase.projectManagementTheoricalRelative=$scope.discipline.elaborationPercentajeProjectManagment();
@@ -339,13 +347,13 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	$scope.elabPhase.deployTheoricalAbsolute=$scope.discipline.elaborationDeploymentHour();
 	$scope.elabPhase.enviromentTheoricalAbsolute=$scope.discipline.elaborationVersionHour();	
 	
-	$scope.elabPhase.projectManagementAssigned = $scope.disciplineHoursTotal($scope.elabPhase, "projectManagementHours");
-	$scope.elabPhase.requirementsAssigned = $scope.disciplineHoursTotal($scope.elabPhase, 'requirementsHours');
-	$scope.elabPhase.analysisDesignAssigned = $scope.disciplineHoursTotal($scope.elabPhase, 'analysisDesignHours');
-	$scope.elabPhase.implementationAssigned = $scope.disciplineHoursTotal($scope.elabPhase, 'implementationHours');
-	$scope.elabPhase.testsAssigned = $scope.disciplineHoursTotal($scope.elabPhase, 'testsHours');
-	$scope.elabPhase.deployAssigned = $scope.disciplineHoursTotal($scope.elabPhase, 'deployHours');
-	$scope.elabPhase.enviromentAssigned = $scope.disciplineHoursTotal($scope.elabPhase, 'environmentHours');
+	$scope.elabPhase.projectManagementAssigned = $scope.disciplineHoursTotal($scope.elabPhase.assignedEmployee, "projectManagementHours");
+	$scope.elabPhase.requirementsAssigned = $scope.disciplineHoursTotal($scope.elabPhase.assignedEmployee, 'requirementsHours');
+	$scope.elabPhase.analysisDesignAssigned = $scope.disciplineHoursTotal($scope.elabPhase.assignedEmployee, 'analysisDesignHours');
+	$scope.elabPhase.implementationAssigned = $scope.disciplineHoursTotal($scope.elabPhase.assignedEmployee, 'implementationHours');
+	$scope.elabPhase.testsAssigned = $scope.disciplineHoursTotal($scope.elabPhase.assignedEmployee, 'testsHours');
+	$scope.elabPhase.deployAssigned = $scope.disciplineHoursTotal($scope.elabPhase.assignedEmployee, 'deployHours');
+	$scope.elabPhase.enviromentAssigned = $scope.disciplineHoursTotal($scope.elabPhase.assignedEmployee, 'environmentHours');
 	
 	//Inicialización de elementos de fase de construccion
 	$scope.constPhase.projectManagementTheoricalRelative=$scope.discipline.constructionPercentajeProjectManagment();
@@ -364,13 +372,13 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	$scope.constPhase.deployTheoricalAbsolute=$scope.discipline.constructionDeploymentHour();
 	$scope.constPhase.enviromentTheoricalAbsolute=$scope.discipline.constructionVersionHour();	
 	
-	$scope.constPhase.projectManagementAssigned = $scope.disciplineHoursTotal($scope.constPhase, "projectManagementHours");
-	$scope.constPhase.requirementsAssigned = $scope.disciplineHoursTotal($scope.constPhase, 'requirementsHours');
-	$scope.constPhase.analysisDesignAssigned = $scope.disciplineHoursTotal($scope.constPhase, 'analysisDesignHours');
-	$scope.constPhase.implementationAssigned = $scope.disciplineHoursTotal($scope.constPhase, 'implementationHours');
-	$scope.constPhase.testsAssigned = $scope.disciplineHoursTotal($scope.constPhase, 'testsHours');
-	$scope.constPhase.deployAssigned = $scope.disciplineHoursTotal($scope.constPhase, 'deployHours');
-	$scope.constPhase.enviromentAssigned = $scope.disciplineHoursTotal($scope.constPhase, 'environmentHours');	
+	$scope.constPhase.projectManagementAssigned = $scope.disciplineHoursTotal($scope.constPhase.assignedEmployee, "projectManagementHours");
+	$scope.constPhase.requirementsAssigned = $scope.disciplineHoursTotal($scope.constPhase.assignedEmployee, 'requirementsHours');
+	$scope.constPhase.analysisDesignAssigned = $scope.disciplineHoursTotal($scope.constPhase.assignedEmployee, 'analysisDesignHours');
+	$scope.constPhase.implementationAssigned = $scope.disciplineHoursTotal($scope.constPhase.assignedEmployee, 'implementationHours');
+	$scope.constPhase.testsAssigned = $scope.disciplineHoursTotal($scope.constPhase.assignedEmployee, 'testsHours');
+	$scope.constPhase.deployAssigned = $scope.disciplineHoursTotal($scope.constPhase.assignedEmployee, 'deployHours');
+	$scope.constPhase.enviromentAssigned = $scope.disciplineHoursTotal($scope.constPhase.assignedEmployee, 'environmentHours');	
 	
 	
 	//Inicialización de elementos de fase de transicion
@@ -390,13 +398,13 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	$scope.transPhase.deployTheoricalAbsolute=$scope.discipline.transitionDeploymentHour();
 	$scope.transPhase.enviromentTheoricalAbsolute=$scope.discipline.transitionVersionHour();	
 	
-	$scope.transPhase.projectManagementAssigned = $scope.disciplineHoursTotal($scope.transPhase, "projectManagementHours");
-	$scope.transPhase.requirementsAssigned = $scope.disciplineHoursTotal($scope.transPhase, 'requirementsHours');
-	$scope.transPhase.analysisDesignAssigned = $scope.disciplineHoursTotal($scope.transPhase, 'analysisDesignHours');
-	$scope.transPhase.implementationAssigned = $scope.disciplineHoursTotal($scope.transPhase, 'implementationHours');
-	$scope.transPhase.testsAssigned = $scope.disciplineHoursTotal($scope.transPhase, 'testsHours');
-	$scope.transPhase.deployAssigned = $scope.disciplineHoursTotal($scope.transPhase, 'deployHours');
-	$scope.transPhase.enviromentAssigned = $scope.disciplineHoursTotal($scope.transPhase, 'environmentHours');	
+	$scope.transPhase.projectManagementAssigned = $scope.disciplineHoursTotal($scope.transPhase.assignedEmployee, "projectManagementHours");
+	$scope.transPhase.requirementsAssigned = $scope.disciplineHoursTotal($scope.transPhase.assignedEmployee, 'requirementsHours');
+	$scope.transPhase.analysisDesignAssigned = $scope.disciplineHoursTotal($scope.transPhase.assignedEmployee, 'analysisDesignHours');
+	$scope.transPhase.implementationAssigned = $scope.disciplineHoursTotal($scope.transPhase.assignedEmployee, 'implementationHours');
+	$scope.transPhase.testsAssigned = $scope.disciplineHoursTotal($scope.transPhase.assignedEmployee, 'testsHours');
+	$scope.transPhase.deployAssigned = $scope.disciplineHoursTotal($scope.transPhase.assignedEmployee, 'deployHours');
+	$scope.transPhase.enviromentAssigned = $scope.disciplineHoursTotal($scope.transPhase.assignedEmployee, 'environmentHours');	
 	
 	//funcion que agrega empleado al array	
 	$scope.copyEmployeeToList = function(employee){
