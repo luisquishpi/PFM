@@ -29,7 +29,7 @@ public class EmployeeRest {
 				DaoFactory.getFactory().getHoursRolePhaseDao().deleteAll();
 				DaoFactory.getFactory().getHoursRolePhaseDao().create(hours);
 			}
-			Project project = rest.getHoursRolePhase().get(0).getProject();
+			Project project = DaoFactory.getFactory().getProjectDao().read(rest.getHoursRolePhase().get(0).getProject().getId());
 			System.out.println(project);
 			project.setPeopleInicio(rest.getPeoplePhase().get(0));
 			project.setPeopleElaboracion(rest.getPeoplePhase().get(1));
