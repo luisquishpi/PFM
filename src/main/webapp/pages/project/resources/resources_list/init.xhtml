@@ -20,8 +20,9 @@
 				onkeypress="return isDecimalNumberKey(event)"/>
 		</div>
 		<div class="col-sm-offset-2 col-sm-4">
-			<button ng-click="addEmployee(initPhase)" type="button" class="btn btn-primary add_employee">Agregar empleado seleccionado</button>
+			<p:commandButton type="button" style="float:right;" value="Agregar empleado seleccionado" ng-click="addEmployee(initPhase)" icon="ui-icon-plus"></p:commandButton>
 		</div>
+		<div style="clear_both;"></div>
     </div>
 		<fieldset>
 		
@@ -205,13 +206,13 @@
 			</tr>
 			<tr>
 				<td class="text-center">Totales</td>
-				<td class="text-center">{{disciplineHoursTotal(initPhase, "projectManagementHours")}}</td>
-				<td class="text-center">{{disciplineHoursTotal(initPhase, "requirementsHours")}}</td>
-				<td class="text-center">{{disciplineHoursTotal(initPhase, "analysisDesignHours")}}</td>
-				<td class="text-center">{{disciplineHoursTotal(initPhase, "implementationHours")}}</td>
-				<td class="text-center">{{disciplineHoursTotal(initPhase, "testsHours")}}</td>
-				<td class="text-center">{{disciplineHoursTotal(initPhase, "deployHours")}}</td>
-				<td class="text-center">{{disciplineHoursTotal(initPhase, "environmentHours")}}</td>
+				<td class="text-center">{{disciplineHoursTotal(initPhase.assignedEmployee, "projectManagementHours")}}</td>
+				<td class="text-center">{{disciplineHoursTotal(initPhase.assignedEmployee, "requirementsHours")}}</td>
+				<td class="text-center">{{disciplineHoursTotal(initPhase.assignedEmployee, "analysisDesignHours")}}</td>
+				<td class="text-center">{{disciplineHoursTotal(initPhase.assignedEmployee, "implementationHours")}}</td>
+				<td class="text-center">{{disciplineHoursTotal(initPhase.assignedEmployee, "testsHours")}}</td>
+				<td class="text-center">{{disciplineHoursTotal(initPhase.assignedEmployee, "deployHours")}}</td>
+				<td class="text-center">{{disciplineHoursTotal(initPhase.assignedEmployee, "environmentHours")}}</td>
 				<td class="text-center"></td>
 				<td class="text-center"></td>
 			</tr>

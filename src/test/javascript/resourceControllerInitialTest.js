@@ -1,4 +1,4 @@
-describe("Test ResourceController", function(){
+describe("Test ResourceController Initial Phase", function(){
 	beforeEach(module("projectApp"));
 	
 	var resourceController;
@@ -339,7 +339,7 @@ describe("Test ResourceController", function(){
 					elaborationImplementationHour: function(){return 143.8;},
 					elaborationTestsHour: function(){return 110.6;},
 					elaborationDeploymentHour: function(){return 33.2;},
-					elaborationVersionHour: function(){return 88.5;},
+					elaborationVersionHour: function(){return 88.5;},	
 					
 					constructionPercentajeProjectManagment: function(){return 10;},
 					constructionPercentajeRequirements: function(){return 8;},
@@ -371,7 +371,7 @@ describe("Test ResourceController", function(){
 					transitionImplementationHour: function(){return 105.1;},
 					transitionTestsHour: function(){return 132.8;},
 					transitionDeploymentHour: function(){return 165.9;},
-					transitionVersionHour: function(){return 27.7;},						
+					transitionVersionHour: function(){return 22.7;},	
 					phases:{
 							schedule:{
 								listHoursEachDay: function(){ 
@@ -389,55 +389,257 @@ describe("Test ResourceController", function(){
 		});	
 	}));
 	
-	it("Number of Project Management roles should be 4", function(){
-		expect(scope.numberOfProjectManagement()).toBe(4);
+	//fase de inicio horas disponibles
+	it("Average available hours should has 104", function(){
+		expect(scope.initPhase.averageEmployeeHours()).toBe(104);
 	});
 	
-	it("Number of Requirements roles should be 8", function(){
-		expect(scope.numberOfRequirements()).toBe(8);
+	it("Anibal should has 104 available hours", function(){
+		expect(scope.initPhase.availableEmployeeHours(scope.resourcesBean.employeeList[0])).toBe(104);
 	});
 	
-	it("Number of Analysis Designt roles should be 10", function(){
-		expect(scope.numberOfAnalysisDesign()).toBe(10);
+	//Fase de inicio - teorico relativo
+	it("Project Management relative theorical percentaje should be 14", function(){
+		expect(scope.initPhase.projectManagementTheoricalRelative).toBe(14);
+	});		
+	
+	it("Requirements relative theorical percentaje should be 38", function(){
+		expect(scope.initPhase.requirementsTheoricalRelative).toBe(38);
 	});
 	
-	it("Number of Implementation should be 14", function(){
-		expect(scope.numberOfImplementation()).toBe(14);
+	it("Analysis Design relative theorical percentaje should be 19", function(){
+		expect(scope.initPhase.analysisDesignTheoricalRelative).toBe(19);
 	});
 	
-	it("Number of Tests roles should be 14", function(){
-		expect(scope.numberOfTests()).toBe(14);
+	it("Implementation relative theorical percentaje should be 8", function(){
+		expect(scope.initPhase.implementationTheoricalRelative).toBe(8);
 	});
 	
-	it("Number of Deploy roles should be 12", function(){
-		expect(scope.numberOfDeploy()).toBe(12);
+	it("Tests relative theorical percentaje should be 8", function(){
+		expect(scope.initPhase.testsTheoricalRelative).toBe(8);
 	});
 	
-	it("Number of Enviroment and Revision Control roles should be 12", function(){
-		expect(scope.numberOfEnviroment()).toBe(12);
+	it("Deploy relative theorical percentaje should be 3", function(){
+		expect(scope.initPhase.deployTheoricalRelative).toBe(3);
+	});
+	
+	it("Enviroment relative theorical percentaje should be 10", function(){
+		expect(scope.initPhase.enviromentTheoricalRelative).toBe(10);
+	});
+	
+	it("Total relative theorical percentaje should be 100", function(){
+		expect(scope.initPhase.totalTheoricalRelative()).toBe(100);
+	});
+	
+	//Fase de inicio - teorico absoluto
+	it("Project Management theorical absolute percentaje should be 38.7", function(){
+		expect(scope.initPhase.projectManagementTheoricalAbsolute).toBe(38.7);
+	});		
+	
+	it("Requirements theorical absolute should be 105.1", function(){
+		expect(scope.initPhase.requirementsTheoricalAbsolute).toBe(105.1);
+	});
+	
+	it("Analysis Design theorical absolute should be 52.5", function(){
+		expect(scope.initPhase.analysisDesignTheoricalAbsolute).toBe(52.5);
+	});
+	
+	it("Implementation theorical absolute should be 22.1", function(){
+		expect(scope.initPhase.implementationTheoricalAbsolute).toBe(22.1);
+	});
+	
+	it("Tests theorical absolute should be 22.1", function(){
+		expect(scope.initPhase.testsTheoricalAbsolute).toBe(22.1);
+	});
+	
+	it("Deploy theorical absolute percentaje should be 8.3", function(){
+		expect(scope.initPhase.deployTheoricalAbsolute).toBe(8.3);
+	});
+	
+	it("Enviroment theorical absolute percentaje should be 27.7", function(){
+		expect(scope.initPhase.enviromentTheoricalAbsolute).toBe(27.7);
 	});	
 	
-	//salarios
-	it("Annibal Daily Salary should be 26.62 ", function(){
-		expect(scope.employeeSalaryHour(scope.resourcesBean.employeeList[0])).toBeCloseTo(26.62,1);
+	it("Total absolute theorical percentaje should be 276.5", function(){
+		expect(scope.initPhase.totalTheoricalAbsolute()).toBeCloseTo(276.5,1);
 	});
 	
-	it("Ernesto Daily Salary should be 19.84 ", function(){
-		expect(scope.employeeSalaryHour(scope.resourcesBean.employeeList[4])).toBeCloseTo(19.84,1);
-	});	
+	//Fase de inicio - diferencia absoluta
+	it("Project Management absolute difference should be -2.3", function(){
+		expect(scope.initPhase.projectManagementAbsoluteDifference()).toBeCloseTo(-2.3,1);
+	});		
 	
-	it("Kiko Daily Salary should be 9.11", function(){
-		expect(scope.employeeSalaryHour(scope.resourcesBean.employeeList[10])).toBeCloseTo(9.11,1);
-	});	
-	
-	//roles
-	it("Anibal should has PROJECT_MANAGEMENT role", function(){
-		expect(scope.employeeHasRole(scope.resourcesBean.employeeList[0],"PROJECT_MANAGEMENT")).toBe(true);
+	it("Requirements absolute difference should be -6.3", function(){
+		expect(scope.initPhase.requirementsAbsoluteDifference()).toBeCloseTo(-6.3,1);
 	});
 	
-	it("Ursula should not has PROJECT_MANAGEMENT role", function(){
-		expect(scope.employeeHasRole(scope.resourcesBean.employeeList[19],"PROJECT_MANAGEMENT")).toBe(false);
+	it("Analysis Design absolute difference should be -3.1", function(){
+		expect(scope.initPhase.analysisDesignAbsoluteDifference()).toBeCloseTo(-3.1,1);
+	});
+	
+	it("Implementation absolute difference should be -1.3", function(){
+		expect(scope.initPhase.implementationAbsoluteDifference()).toBeCloseTo(-1.3,1);
+	});
+	
+	it("Tests absolute difference should be -1.3", function(){
+		expect(scope.initPhase.testsAbsoluteDifference()).toBeCloseTo(-1.3,1);
+	});
+	
+	it("Deploy absolute difference should be -0.5", function(){
+		expect(scope.initPhase.deployAbsoluteDifference()).toBeCloseTo(-0.5,1);
+	});
+	
+	it("Enviroment absolute difference should be -1.7", function(){
+		expect(scope.initPhase.enviromentAbsoluteDifference()).toBeCloseTo(-1.7,1);
 	});	
 	
+	it("Total absolute percentaje should be -16.5", function(){
+		expect(scope.initPhase.totalAbsoluteDifference()).toBeCloseTo(-16.5,1);
+	});		
 
+	
+	//Fase de inicio - diferencia relativas
+	it("Project Management relative difference should be 94", function(){
+		expect(Math.round(scope.initPhase.projectManagementRelativeDifference())).toBe(94);
+	});		
+	
+	it("Requirements relative difference should be 94", function(){
+		expect(Math.round(scope.initPhase.requirementsRelativeDifference())).toBe(94);
+	});
+	
+	it("Analysis Design relative difference should be 94", function(){
+		expect(Math.round(scope.initPhase.analysisDesignRelativeDifference())).toBe(94);
+	});
+	
+	it("Implementation relative difference should be 94", function(){
+		expect(Math.round(scope.initPhase.implementationRelativeDifference())).toBe(94);
+	});
+	
+	it("Tests relative difference should be 94", function(){
+		expect(Math.round(scope.initPhase.testsRelativeDifference())).toBe(94);
+	});
+	
+	it("Deploy relative difference should be 94", function(){
+		expect(Math.round(scope.initPhase.deployRelativeDifference())).toBe(94);
+	});
+	
+	it("Enviroment relative difference should be 94", function(){
+		expect(Math.round(scope.initPhase.enviromentRelativeDifference())).toBe(94);
+	});	
+	
+	it("Total absolute theorical percentaje should be 94", function(){
+		expect(Math.round(scope.initPhase.totalRelativeDifference())).toBe(94);
+	});	
+	
+	
+	//Fase de inicio - assigned
+	it("Project Management assigned should be 36.4", function(){
+		expect(scope.initPhase.projectManagementAssigned).toBe(36.4);
+	});		
+	
+	it("Requirements assigned should be 98.8", function(){
+		expect(scope.initPhase.requirementsAssigned).toBe(98.8);
+	});
+	
+	it("Analysis Design assigned should be 49.4", function(){
+		expect(scope.initPhase.analysisDesignAssigned).toBe(49.4);
+	});
+	
+	it("Implementation assigned should be 20.8", function(){
+		expect(scope.initPhase.implementationAssigned).toBe(20.8);
+	});
+	
+	it("Tests assigned should be 20.8", function(){
+		expect(scope.initPhase.testsAssigned).toBe(20.8);
+	});
+	
+	it("Deploy assigned should be 7.8", function(){
+		expect(scope.initPhase.deployAssigned).toBe(7.8);
+	});
+	
+	it("Enviroment assigned should be 26", function(){
+		expect(scope.initPhase.enviromentAssigned).toBe(26);
+	});	
+	
+	it("Total asigned percentaje should be 260", function(){
+		expect(scope.initPhase.totalAssigned()).toBe(260);
+	});		
+	
+	//Fase de inicio - proposal
+	it("Project Management proposal should be 36.4", function(){
+		expect(scope.initPhase.projectManagementProposal()).toBeCloseTo(36.4,1);
+	});		
+	
+	it("Requirements proposal should be 98.8", function(){
+		expect(scope.initPhase.requirementsProposal()).toBeCloseTo(98.8,1);
+	});
+	
+	it("Analysis Design proposal should be 49.4", function(){
+		expect(scope.initPhase.analysisDesignProposal()).toBeCloseTo(49.4,1);
+	});
+	
+	it("Implementation proposal should be 20.8", function(){
+		expect(scope.initPhase.implementationProposal()).toBeCloseTo(20.8,1);
+	});
+	
+	it("Tests proposal should be 20.8", function(){
+		expect(scope.initPhase.testsProposal()).toBeCloseTo(20.8,1);
+	});
+	
+	it("Deploy proposal should be 7.8", function(){
+		expect(scope.initPhase.deployProposal()).toBeCloseTo(7.8,1);
+	});
+	
+	it("Enviroment proposal should be 26.0", function(){
+		expect(scope.initPhase.enviromentProposal()).toBeCloseTo(26.0,1);
+	});	
+	
+	it("Total proposal should be 260.0", function(){
+		expect(scope.initPhase.totalProposal()).toBeCloseTo(260.0,1);
+	});		
+	
+	//Fase de inicio - diferencia propuesta
+	it("Project Management proposal diff should be 0", function(){
+		expect(scope.initPhase.projectManagementProposalDiff()).toBeCloseTo(0,1);
+	});		
+	
+	it("Requirements proposal diff should be 0", function(){
+		expect(scope.initPhase.requirementsProposalDiff()).toBeCloseTo(0,1);
+	});
+	
+	it("Analysis Design proposal diff should be 0", function(){
+		expect(scope.initPhase.analysisDesignProposalDiff()).toBeCloseTo(0,1);
+	});
+	
+	it("Implementation proposal diff should be 0", function(){
+		expect(scope.initPhase.implementationProposalDiff()).toBeCloseTo(0,1);
+	});
+	
+	it("Tests proposal diff should be 0", function(){
+		expect(scope.initPhase.testsProposalDiff()).toBeCloseTo(0,1);
+	});
+	
+	it("Deploy proposal diff should be 0", function(){
+		expect(scope.initPhase.deployProposalDiff()).toBeCloseTo(0,1);
+	});
+	
+	it("Enviroment proposal diff should be 0", function(){
+		expect(scope.initPhase.enviromentProposalDiff()).toBeCloseTo(0,1);
+	});	
+	
+	it("Total proposal diff should be 0", function(){
+		expect(scope.initPhase.totalProposalDiff()).toBeCloseTo(0,1);
+	});
+	
+	it("Henar should has  1674.65€ as cost", function(){
+		expect(scope.employeeCost(scope.inicioAssignedEmployeeMock.employeeList[7])).toBeCloseTo(1674.65,1);
+	});
+	
+	it("Carlos should has 2050.60€ as cost", function(){
+		expect(scope.employeeCost(scope.inicioAssignedEmployeeMock.employeeList[2])).toBeCloseTo(2050.60,1);
+	});	
+	
+	it("Beatriz should has  0€ as cost", function(){
+		expect(scope.employeeCost(scope.inicioAssignedEmployeeMock.employeeList[1])).toBeCloseTo(0,1);
+	});
 })
