@@ -604,14 +604,12 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
         pushToDataArray($scope.constPhase.assignedEmployee, dataHours, "TRANSICION");
         
         var dataProposals = [];
-        dataProposals.push({"INICIO":$scope.initPhase.numberOfAssignedPeople});
-        dataProposals.push({"ELABORACION":$scope.elabPhase.numberOfAssignedPeople});
-        dataProposals.push({"CONSTRUCCION":$scope.constPhase.numberOfAssignedPeople});
-        dataProposals.push({"TRANSICION":$scope.transPhase.numberOfAssignedPeople});
+        dataProposals.push($scope.initPhase.numberOfAssignedPeople);
+        dataProposals.push($scope.elabPhase.numberOfAssignedPeople);
+        dataProposals.push($scope.constPhase.numberOfAssignedPeople);
+        dataProposals.push($scope.transPhase.numberOfAssignedPeople);
         
-        data.push(dataHours);
-        data.push(dataProposals);
-        
+        data.push({hoursRolePhase:dataHours, peoplePhase:dataProposals});        
 
 		$http.post('/PFM/rest/Employees/Save', data).
 		    success(function(data, status, headers, config) {
