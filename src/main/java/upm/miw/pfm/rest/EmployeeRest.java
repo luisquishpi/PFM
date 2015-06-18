@@ -30,6 +30,7 @@ public class EmployeeRest {
 				DaoFactory.getFactory().getHoursRolePhaseDao().create(hours);
 			}
 			Project project = rest.getHoursRolePhase().get(0).getProject();
+			System.out.println(project);
 			project.setPeopleInicio(rest.getPeoplePhase().get(0));
 			project.setPeopleElaboracion(rest.getPeoplePhase().get(1));
 			project.setPeopleConstruccion(rest.getPeoplePhase().get(2));
