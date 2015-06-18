@@ -56,8 +56,8 @@ public class Employee implements IGenericEntity, Serializable{
     @CollectionTable(name = "employee_roles", joinColumns = @JoinColumn(name = "employee_id"))
     @Column(name = "role")
     private Set<RoleType> roles;
-    
-    @Transient
+
+	@Transient
     private final float DELTA = 0.001f;
     
     @Transient

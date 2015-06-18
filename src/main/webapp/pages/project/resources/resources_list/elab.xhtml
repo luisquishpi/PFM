@@ -9,17 +9,17 @@
 	xmlns:p="http://primefaces.org/ui">
 	<div class="row persons_form">
 		<div class="col-sm-offset-2 col-sm-2">
-			<p:outputLabel for="input_elab" value="{{elaboracionNumOfProposalPeople|number:2}}"
+			<p:outputLabel for="input_elab" value="{{elabPhase.numberOfProposalsPeople()|number:2}}"
 				styleClass="label_height" />
 		</div>
 		<div class="col-sm-2">
 			<p:inputText id="input_elab"
-				ng-model="elaboracionNumberOfAssignedPeople"
+				ng-model="elabPhase.numberOfAssignedPeople"
 				required="true" 
 				onkeypress="return isDecimalNumberKey(event)"/>
 		</div>
 		<div class="col-sm-offset-2 col-sm-4">
-			<button ng-click="addEmployee(elabPhase)" type="button" class="btn btn-primary add_employee">Agregar empleado seleccionado</button>
+			<p:commandButton type="button" style="float:right;" value="Agregar empleado seleccionado" ng-click="addEmployee(elabPhase)" icon="ui-icon-plus"></p:commandButton>
 		</div>
     </div>
 	<fieldset>
@@ -111,7 +111,7 @@
 		
 		<fieldset>
 		<div class="table-responsive">
-		<table class="table" ng-if="elabPhase.assignedEmployees.length > 0">
+		<table class="table" ng-if="elabPhase.assignedEmployee.length > 0">
 			<tr>
 				<th class="ui-outputlabel ui-widget text-center">Nombre</th>
 				<th class="ui-outputlabel ui-widget text-center">Gestion Proyecto</th>
@@ -125,7 +125,7 @@
 				<th class="ui-outputlabel ui-widget text-center">Coste</th>
 			</tr>
 			
-			<tr ng-repeat="employeeResource in elabPhase.assignedEmployees">
+			<tr ng-repeat="employeeResource in elabPhase.assignedEmployee">
 				
 				<td style="position:relative;" class="text-center">
 					<span ng-click="deleteEmployee(elabPhase, employeeResource)" class="glyphicon glyphicon-remove delete_icon" aria-hidden="true"/>
@@ -205,13 +205,13 @@
 			
 			<tr>
 				<td class="text-center">Totales</td>
-				<td class="text-center">{{disciplineHoursTotal(elabPhase, "projectManagementHours")}}</td>
-				<td class="text-center">{{disciplineHoursTotal(elabPhase, "requirementsHours")}}</td>
-				<td class="text-center">{{disciplineHoursTotal(elabPhase, "analysisDesignHours")}}</td>
-				<td class="text-center">{{disciplineHoursTotal(elabPhase, "implementationHours")}}</td>
-				<td class="text-center">{{disciplineHoursTotal(elabPhase, "testsHours")}}</td>
-				<td class="text-center">{{disciplineHoursTotal(elabPhase, "deployHours")}}</td>
-				<td class="text-center">{{disciplineHoursTotal(elabPhase, "environmentHours")}}</td>
+				<td class="text-center">{{disciplineHoursTotal(elabPhase.assignedEmployee, "projectManagementHours")}}</td>
+				<td class="text-center">{{disciplineHoursTotal(elabPhase.assignedEmployee, "requirementsHours")}}</td>
+				<td class="text-center">{{disciplineHoursTotal(elabPhase.assignedEmployee, "analysisDesignHours")}}</td>
+				<td class="text-center">{{disciplineHoursTotal(elabPhase.assignedEmployee, "implementationHours")}}</td>
+				<td class="text-center">{{disciplineHoursTotal(elabPhase.assignedEmployee, "testsHours")}}</td>
+				<td class="text-center">{{disciplineHoursTotal(elabPhase.assignedEmployee, "deployHours")}}</td>
+				<td class="text-center">{{disciplineHoursTotal(elabPhase.assignedEmployee, "environmentHours")}}</td>
 				<td class="text-center"></td>
 				<td class="text-center"></td>
 			</tr>

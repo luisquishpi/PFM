@@ -20,6 +20,7 @@ projectApp.controller("assignedPhaseController",
 		var projectDays = $scope.calendarController.getEvents(moment.utc($scope.calendarController.startDate), moment.utc($scope.calendarController.endDate));
 		
 		
+		/* PHASES OBJECTS */
 		$scope.inceptionPhaseLength = new PhaseLength("I", projectDays, $scope.projectSchedule);
 		$scope.elaborationPhaseLength = new PhaseLength("E", projectDays, $scope.projectSchedule);
 		$scope.constructionPhaseLength = new PhaseLength("C", projectDays, $scope.projectSchedule);
@@ -32,20 +33,45 @@ projectApp.controller("assignedPhaseController",
 				+ $scope.elaborationPhaseLength.initialIteration;
 		$scope.transitionPhaseLength.initialIteration = $scope.constructionPhaseLength.iterations
 				+ $scope.constructionPhaseLength.initialIteration;
-
-		var projectHours = $scope.inceptionPhaseLength.hours()
+		
+		/* PROJECT TOTALS */
+		$scope.projectHours = $scope.inceptionPhaseLength.hours()
 				+ $scope.elaborationPhaseLength.hours()
 				+ $scope.constructionPhaseLength.hours()
 				+ $scope.transitionPhaseLength.hours();
 		
+		$scope.projectLength = 100;
+		
+		$scope.projectDays = $scope.inceptionPhaseLength.days() + 
+		$scope.elaborationPhaseLength.days() +
+		$scope.constructionPhaseLength.days() +
+		$scope.transitionPhaseLength.days();
+		
+		$scope.projectMonths = $scope.inceptionPhaseLength.months() + 
+		$scope.elaborationPhaseLength.months() +
+		$scope.constructionPhaseLength.months() +
+		$scope.transitionPhaseLength.months();
+		
+		$scope.projectStartDate = $scope.inceptionPhaseLength.startDate;
+		$scope.projectEndDate = $scope.transitionPhaseLength.endDate;
+		
+		$scope.projectIterations = 10;
+		$scope.projectInitialIterations = 1;
+		$scope.projectFinalIterations = 10;
+		$scope.projectAvgIterationHours = $scope.projectHours / 10;
+		$scope.projectAvgIterationDays = $scope.projectDays / 10;
+		$scope.projectAvgIterationMonths = $scope.projectMonths / 10;
+		
+		
+		
 		$scope.getPhaseLength = function(phase){
-			return phase.hours() / projectHours;
+			return phase.hours() / $scope.projectHours;
 		};
 
-		function PhaseLength(phase, projectDays,
-				projectSchedule) {
+		function PhaseLength(phase, projectDays, projectSchedule) {
 			this.phase = phase;
 			this.projectSchedule = projectSchedule;
+			this._phaseHours = null;
 
 			this.phaseDays = projectDays
 					.filter(
@@ -61,13 +87,17 @@ projectApp.controller("assignedPhaseController",
 								}
 								return 1;
 							});
-
+			/* LENGTH */
 			this.hours = function() {
+				if(this._phaseHours != null){
+					return this._phaseHours;
+				}
 				var phaseHours = 0;
 				this.phaseDays.forEach(function(element,
 						index, array) {
 					phaseHours += parseInt(element.hours);
 				});
+				this._phaseHours = phaseHours;
 				return phaseHours;
 			}
 			this.days = function() {
@@ -89,6 +119,9 @@ projectApp.controller("assignedPhaseController",
 			this.avgIterationHours = this.iterations == 0 ? 0 : this.hours() / this.iterations;
 			this.avgIterationDays = this.iterations == 0 ? 0 : this.days() / this.iterations;
 			this.avgIterationMonths = this.iterations == 0 ? 0 : this.months() / this.iterations;
+			
+			/* EFFORT */
+			
 		}
 
 	} 

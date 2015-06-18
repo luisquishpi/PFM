@@ -25,13 +25,13 @@ public class DisciplinesPhasesBean {
 	
 	protected Project project;
     
-	protected ProjectSchedule projectSchedule;
+    private ProjectSchedule projectSchedule;
 
-	protected List<Project> projectList;
+    private List<Project> projectList;
 
-	protected List<Employee> employeeList;
+    private List<Employee> employeeList;
 
-	protected boolean emptyProject;
+    private boolean emptyProject;
 
     protected final static Class<ListProjectsBean> clazz = ListProjectsBean.class;
 

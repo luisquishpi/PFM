@@ -2,8 +2,13 @@
  * AngularJS resourceController
  */
 
-projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService', 'workTimeService', 'EmployeeUtils', 'DateUtils', function ($scope, $isTest, bridgeService, workTimeService, EmployeeUtils, DateUtils) {
+projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService', 'workTimeService', 'EmployeeUtils', 'DateUtils', '$http', function ($scope, $isTest, bridgeService, workTimeService, EmployeeUtils, DateUtils, $http) {
 	$scope.discipline = bridgeService.shareData;
+	$scope.setSortType = function(type){
+		$scope.sortType = function(element){
+			return element.roles.indexOf(type);
+		}
+	};
 	if(!$isTest){
 		  initJSFScope($scope);
 		  workTimeService.calculateWorkDaysAndHour($scope.resourcesBean.project.startString, 
@@ -67,10 +72,10 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 		this.deployAssigned;
 		this.enviromentAssigned;
 		this.totalAssigned = function(){
-			return ($scope.disciplineHoursTotal($scope.initPhase, "projectManagementHours")+$scope.disciplineHoursTotal($scope.initPhase, 'requirementsHours')
-			+$scope.disciplineHoursTotal($scope.initPhase, 'analysisDesignHours')+$scope.disciplineHoursTotal($scope.initPhase, 'implementationHours')
-			+$scope.disciplineHoursTotal($scope.initPhase, 'testsHours')+$scope.disciplineHoursTotal($scope.initPhase, 'deployHours')
-			+$scope.disciplineHoursTotal($scope.initPhase, 'environmentHours'));
+			return ($scope.disciplineHoursTotal(this.assignedEmployee, "projectManagementHours")+$scope.disciplineHoursTotal(this.assignedEmployee, 'requirementsHours')
+				+$scope.disciplineHoursTotal(this.assignedEmployee, 'analysisDesignHours')+$scope.disciplineHoursTotal(this.assignedEmployee, 'implementationHours')
+				+$scope.disciplineHoursTotal(this.assignedEmployee, 'testsHours')+$scope.disciplineHoursTotal(this.assignedEmployee, 'deployHours')
+				+$scope.disciplineHoursTotal(this.assignedEmployee, 'environmentHours'));
 		};
 		
 		this.projectManagementAbsoluteDifference = function(){
@@ -102,32 +107,31 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 		}
 		
 		this.projectManagementRelativeDifference = function(){
-			return ($scope.disciplineHoursTotal(this, "projectManagementHours")/this.projectManagementTheoricalAbsolute)*100;
+			return ($scope.disciplineHoursTotal(this.assignedEmployee, "projectManagementHours")/this.projectManagementTheoricalAbsolute)*100;
 		}
 		
 		this.requirementsRelativeDifference = function(){
-			return ($scope.disciplineHoursTotal(this, "requirementsHours")/this.requirementsTheoricalAbsolute)*100;
+			return ($scope.disciplineHoursTotal(this.assignedEmployee, "requirementsHours")/this.requirementsTheoricalAbsolute)*100;
 		}
 		
 		this.analysisDesignRelativeDifference = function(){
-			return ($scope.disciplineHoursTotal(this, "analysisDesignHours")/this.analysisDesignTheoricalAbsolute)*100;
+			return ($scope.disciplineHoursTotal(this.assignedEmployee, "analysisDesignHours")/this.analysisDesignTheoricalAbsolute)*100;
 		}
 		
 		this.implementationRelativeDifference = function(){
-			return ($scope.disciplineHoursTotal(this, "implementationHours")/this.implementationTheoricalAbsolute)*100;
+			return ($scope.disciplineHoursTotal(this.assignedEmployee, "implementationHours")/this.implementationTheoricalAbsolute)*100;
 		}
 		
 		this.testsRelativeDifference = function(){
-			return ($scope.disciplineHoursTotal(this, "testsHours")/this.testsTheoricalAbsolute)*100;
+			return ($scope.disciplineHoursTotal(this.assignedEmployee, "testsHours")/this.testsTheoricalAbsolute)*100;
 		}
 		
 		this.deployRelativeDifference = function(){
-			return ($scope.disciplineHoursTotal(this, "deployHours")/this.deployTheoricalAbsolute)*100;
+			return ($scope.disciplineHoursTotal(this.assignedEmployee, "deployHours")/this.deployTheoricalAbsolute)*100;
 		}
 		
 		this.enviromentRelativeDifference = function(){
-			console.log(this);
-			return ($scope.disciplineHoursTotal(this, "environmentHours")/this.enviromentTheoricalAbsolute)*100;
+			return ($scope.disciplineHoursTotal(this.assignedEmployee, "environmentHours")/this.enviromentTheoricalAbsolute)*100;
 		}		
 		
 		this.totalRelativeDifference = function(){
@@ -228,19 +232,32 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 		this.averageEmployeeHours = function(){
 			var totalEmployeeHours = 0;
 			for(i=0; i < $scope.resourcesBean.employeeList.length; i++){
-				totalEmployeeHours += $scope.availableEmployeeHours(phase,$scope.resourcesBean.employeeList[i]);
+				totalEmployeeHours += $scope.availableEmployeeHours(this,$scope.resourcesBean.employeeList[i]);
 			}
 			return totalEmployeeHours/($scope.resourcesBean.employeeList.length-1);
 		};
 		
 		this.availableEmployeeHours = function(employee){
-			return $scope.availableEmployeeHours(this.phase, employee);
+			return $scope.availableEmployeeHours(this, employee);
 		}
 		
 		this.numberOfProposalsPeople = function(){
 			return this.totalTheoricalAbsolute()/this.averageEmployeeHours();
 		}
 		
+		this.availableHoursFactor = function(){
+			if(this.phase===INIT_PHASE || this.phase===TRANS_PHASE){
+				return 1;
+			}
+			
+			if(this.phase===ELAB_PHASE){
+				return 3;
+			}	
+
+			if(this.phase===CONST_PHASE){
+				return 5;
+			}			
+		}
 	}
 	
 	$scope.sum = function(items, prop){
@@ -250,27 +267,45 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	};	
 	
 	//Se cuentan las horas totales de disciplina de cierta fase
-	$scope.disciplineHoursTotal = function(phase, discipline){
-		var hoursTotal = parseFloat($scope.sum(phase.assignedEmployee, discipline));
-		if(isNaN(hoursTotal))
+	$scope.disciplineHoursTotal = function(arrayEmployee, discipline){
+		var hoursTotal = parseFloat($scope.sum(arrayEmployee, discipline));
+		if(isNaN(hoursTotal)){
 			return 0;
+		}
 		return hoursTotal;
 	}
 	
 	$scope.employeeListSelected=[];
 	
+	$scope.initPhase = new Phase(INIT_PHASE);
 	$scope.elabPhase = new Phase(ELAB_PHASE);
 	$scope.constPhase = new Phase(CONST_PHASE);
 	$scope.transPhase = new Phase(TRANS_PHASE);
-	//Inicialización de elementos de fase de inicio
-	$scope.initPhase = new Phase(INIT_PHASE);
 	
 	if($isTest){
-		$scope.initPhase.assignedEmployee = $scope.inicioAssignedEmployeeMock.employeeList;
-		$scope.initPhase.numberOfAssignedPeople = $scope.inicioNumberOfAssignedPeopleMock;
-	}
-	
+		if($scope.phaseTest==INIT_PHASE){
+			$scope.initPhase.assignedEmployee = $scope.inicioAssignedEmployeeMock.employeeList;
+			$scope.initPhase.numberOfAssignedPeople = $scope.inicioNumberOfAssignedPeopleMock;	
+		}
 
+		if($scope.phaseTest==ELAB_PHASE){
+			$scope.elabPhase.assignedEmployee = $scope.elaboracionAssignedEmployeeMock.employeeList;
+			$scope.elabPhase.numberOfAssignedPeople = $scope.elaboracionNumberOfAssignedPeopleMock;		
+		}
+		
+		if($scope.phaseTest==CONST_PHASE){
+			$scope.constPhase.assignedEmployee = $scope.construccionAssignedEmployeeMock.employeeList;
+			$scope.constPhase.numberOfAssignedPeople = $scope.construccionNumberOfAssignedPeopleMock;		
+		}		
+		
+		if($scope.phaseTest==TRANS_PHASE){
+			$scope.transPhase.assignedEmployee = $scope.transicionAssignedEmployeeMock.employeeList;
+			$scope.transPhase.numberOfAssignedPeople = $scope.transicionNumberOfAssignedPeopleMock;		
+		}			
+
+	}
+
+	//Inicialización de elementos de fase de inicio
 	$scope.initPhase.projectManagementTheoricalRelative=$scope.discipline.initialPercentajeProjectManagment();
 	$scope.initPhase.requirementsTheoricalRelative=$scope.discipline.initialPercentajeRequirements();
 	$scope.initPhase.analysisDesignTheoricalRelative=$scope.discipline.initialPercentajeAnalysis();
@@ -287,14 +322,89 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	$scope.initPhase.deployTheoricalAbsolute=$scope.discipline.initialDeploymentHour();
 	$scope.initPhase.enviromentTheoricalAbsolute=$scope.discipline.initialVersionHour();	
 	
-	$scope.initPhase.projectManagementAssigned = $scope.disciplineHoursTotal($scope.initPhase, "projectManagementHours");
-	$scope.initPhase.requirementsAssigned = $scope.disciplineHoursTotal($scope.initPhase, 'requirementsHours');
-	$scope.initPhase.analysisDesignAssigned = $scope.disciplineHoursTotal($scope.initPhase, 'analysisDesignHours');
-	$scope.initPhase.implementationAssigned = $scope.disciplineHoursTotal($scope.initPhase, 'implementationHours');
-	$scope.initPhase.testsAssigned = $scope.disciplineHoursTotal($scope.initPhase, 'testsHours');
-	$scope.initPhase.deployAssigned = $scope.disciplineHoursTotal($scope.initPhase, 'deployHours');
-	$scope.initPhase.enviromentAssigned = $scope.disciplineHoursTotal($scope.initPhase, 'environmentHours');
+	$scope.initPhase.projectManagementAssigned = $scope.disciplineHoursTotal($scope.initPhase.assignedEmployee, "projectManagementHours");
+	$scope.initPhase.requirementsAssigned = $scope.disciplineHoursTotal($scope.initPhase.assignedEmployee, 'requirementsHours');
+	$scope.initPhase.analysisDesignAssigned = $scope.disciplineHoursTotal($scope.initPhase.assignedEmployee, 'analysisDesignHours');
+	$scope.initPhase.implementationAssigned = $scope.disciplineHoursTotal($scope.initPhase.assignedEmployee, 'implementationHours');
+	$scope.initPhase.testsAssigned = $scope.disciplineHoursTotal($scope.initPhase.assignedEmployee, 'testsHours');
+	$scope.initPhase.deployAssigned = $scope.disciplineHoursTotal($scope.initPhase.assignedEmployee, 'deployHours');
+	$scope.initPhase.enviromentAssigned = $scope.disciplineHoursTotal($scope.initPhase.assignedEmployee, 'environmentHours');
 	
+	//Inicialización de elementos de fase de elaboracion
+	$scope.elabPhase.projectManagementTheoricalRelative=$scope.discipline.elaborationPercentajeProjectManagment();
+	$scope.elabPhase.requirementsTheoricalRelative=$scope.discipline.elaborationPercentajeRequirements();
+	$scope.elabPhase.analysisDesignTheoricalRelative=$scope.discipline.elaborationPercentajeAnalysis();
+	$scope.elabPhase.implementationTheoricalRelative=$scope.discipline.elaborationPercentajeImplementation();
+	$scope.elabPhase.testsTheoricalRelative=$scope.discipline.elaborationPercentajeTests();
+	$scope.elabPhase.deployTheoricalRelative=$scope.discipline.elaborationPercentajeDeployment();
+	$scope.elabPhase.enviromentTheoricalRelative=$scope.discipline.elaborationPercentajeVersion();
+	
+	$scope.elabPhase.projectManagementTheoricalAbsolute=$scope.discipline.elaborationProjectManagmentHour();
+	$scope.elabPhase.requirementsTheoricalAbsolute=$scope.discipline.elaborationRequirementsHour();
+	$scope.elabPhase.analysisDesignTheoricalAbsolute=$scope.discipline.elaborationAnalysisHour();
+	$scope.elabPhase.implementationTheoricalAbsolute=$scope.discipline.elaborationImplementationHour();
+	$scope.elabPhase.testsTheoricalAbsolute=$scope.discipline.elaborationTestsHour();
+	$scope.elabPhase.deployTheoricalAbsolute=$scope.discipline.elaborationDeploymentHour();
+	$scope.elabPhase.enviromentTheoricalAbsolute=$scope.discipline.elaborationVersionHour();	
+	
+	$scope.elabPhase.projectManagementAssigned = $scope.disciplineHoursTotal($scope.elabPhase.assignedEmployee, "projectManagementHours");
+	$scope.elabPhase.requirementsAssigned = $scope.disciplineHoursTotal($scope.elabPhase.assignedEmployee, 'requirementsHours');
+	$scope.elabPhase.analysisDesignAssigned = $scope.disciplineHoursTotal($scope.elabPhase.assignedEmployee, 'analysisDesignHours');
+	$scope.elabPhase.implementationAssigned = $scope.disciplineHoursTotal($scope.elabPhase.assignedEmployee, 'implementationHours');
+	$scope.elabPhase.testsAssigned = $scope.disciplineHoursTotal($scope.elabPhase.assignedEmployee, 'testsHours');
+	$scope.elabPhase.deployAssigned = $scope.disciplineHoursTotal($scope.elabPhase.assignedEmployee, 'deployHours');
+	$scope.elabPhase.enviromentAssigned = $scope.disciplineHoursTotal($scope.elabPhase.assignedEmployee, 'environmentHours');
+	
+	//Inicialización de elementos de fase de construccion
+	$scope.constPhase.projectManagementTheoricalRelative=$scope.discipline.constructionPercentajeProjectManagment();
+	$scope.constPhase.requirementsTheoricalRelative=$scope.discipline.constructionPercentajeRequirements();
+	$scope.constPhase.analysisDesignTheoricalRelative=$scope.discipline.constructionPercentajeAnalysis();
+	$scope.constPhase.implementationTheoricalRelative=$scope.discipline.constructionPercentajeImplementation();
+	$scope.constPhase.testsTheoricalRelative=$scope.discipline.constructionPercentajeTests();
+	$scope.constPhase.deployTheoricalRelative=$scope.discipline.constructionPercentajeDeployment();
+	$scope.constPhase.enviromentTheoricalRelative=$scope.discipline.constructionPercentajeVersion();
+	
+	$scope.constPhase.projectManagementTheoricalAbsolute=$scope.discipline.constructionProjectManagmentHour();
+	$scope.constPhase.requirementsTheoricalAbsolute=$scope.discipline.constructionRequirementsHour();
+	$scope.constPhase.analysisDesignTheoricalAbsolute=$scope.discipline.constructionAnalysisHour();
+	$scope.constPhase.implementationTheoricalAbsolute=$scope.discipline.constructionImplementationHour();
+	$scope.constPhase.testsTheoricalAbsolute=$scope.discipline.constructionTestsHour();
+	$scope.constPhase.deployTheoricalAbsolute=$scope.discipline.constructionDeploymentHour();
+	$scope.constPhase.enviromentTheoricalAbsolute=$scope.discipline.constructionVersionHour();	
+	
+	$scope.constPhase.projectManagementAssigned = $scope.disciplineHoursTotal($scope.constPhase.assignedEmployee, "projectManagementHours");
+	$scope.constPhase.requirementsAssigned = $scope.disciplineHoursTotal($scope.constPhase.assignedEmployee, 'requirementsHours');
+	$scope.constPhase.analysisDesignAssigned = $scope.disciplineHoursTotal($scope.constPhase.assignedEmployee, 'analysisDesignHours');
+	$scope.constPhase.implementationAssigned = $scope.disciplineHoursTotal($scope.constPhase.assignedEmployee, 'implementationHours');
+	$scope.constPhase.testsAssigned = $scope.disciplineHoursTotal($scope.constPhase.assignedEmployee, 'testsHours');
+	$scope.constPhase.deployAssigned = $scope.disciplineHoursTotal($scope.constPhase.assignedEmployee, 'deployHours');
+	$scope.constPhase.enviromentAssigned = $scope.disciplineHoursTotal($scope.constPhase.assignedEmployee, 'environmentHours');	
+	
+	
+	//Inicialización de elementos de fase de transicion
+	$scope.transPhase.projectManagementTheoricalRelative=$scope.discipline.transitionPercentajeProjectManagment();
+	$scope.transPhase.requirementsTheoricalRelative=$scope.discipline.transitionPercentajeRequirements();
+	$scope.transPhase.analysisDesignTheoricalRelative=$scope.discipline.transitionPercentajeAnalysis();
+	$scope.transPhase.implementationTheoricalRelative=$scope.discipline.transitionPercentajeImplementation();
+	$scope.transPhase.testsTheoricalRelative=$scope.discipline.transitionPercentajeTests();
+	$scope.transPhase.deployTheoricalRelative=$scope.discipline.transitionPercentajeDeployment();
+	$scope.transPhase.enviromentTheoricalRelative=$scope.discipline.transitionPercentajeVersion();
+	
+	$scope.transPhase.projectManagementTheoricalAbsolute=$scope.discipline.transitionProjectManagmentHour();
+	$scope.transPhase.requirementsTheoricalAbsolute=$scope.discipline.transitionRequirementsHour();
+	$scope.transPhase.analysisDesignTheoricalAbsolute=$scope.discipline.transitionAnalysisHour();
+	$scope.transPhase.implementationTheoricalAbsolute=$scope.discipline.transitionImplementationHour();
+	$scope.transPhase.testsTheoricalAbsolute=$scope.discipline.transitionTestsHour();
+	$scope.transPhase.deployTheoricalAbsolute=$scope.discipline.transitionDeploymentHour();
+	$scope.transPhase.enviromentTheoricalAbsolute=$scope.discipline.transitionVersionHour();	
+	
+	$scope.transPhase.projectManagementAssigned = $scope.disciplineHoursTotal($scope.transPhase.assignedEmployee, "projectManagementHours");
+	$scope.transPhase.requirementsAssigned = $scope.disciplineHoursTotal($scope.transPhase.assignedEmployee, 'requirementsHours');
+	$scope.transPhase.analysisDesignAssigned = $scope.disciplineHoursTotal($scope.transPhase.assignedEmployee, 'analysisDesignHours');
+	$scope.transPhase.implementationAssigned = $scope.disciplineHoursTotal($scope.transPhase.assignedEmployee, 'implementationHours');
+	$scope.transPhase.testsAssigned = $scope.disciplineHoursTotal($scope.transPhase.assignedEmployee, 'testsHours');
+	$scope.transPhase.deployAssigned = $scope.disciplineHoursTotal($scope.transPhase.assignedEmployee, 'deployHours');
+	$scope.transPhase.enviromentAssigned = $scope.disciplineHoursTotal($scope.transPhase.assignedEmployee, 'environmentHours');	
 	
 	//funcion que agrega empleado al array	
 	$scope.copyEmployeeToList = function(employee){
@@ -400,7 +510,7 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 			}
 		}
 		numberOfVacationDays = 0;
-		return $scope.nmlEmployeeHours;
+		return $scope.nmlEmployeeHours*phase.availableHoursFactor();
 	}	
 	
 	var arrayRoles = ["PROJECT_MANAGEMENT", "REQUIREMENTS", "ANALYSIS_DESIGN", "IMPLEMENTATION", "TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL"];
@@ -470,50 +580,28 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 		return $scope.employeeSalaryHour(employeeResource.employee)*totalAssignedHoursEmployee(employeeResource);
 	}
 	
+	
+	
+	function pushToDataArray(employees, data, tagPhase){
+		for(var i=0; i< employees.length;i++){
+        	data.push({project:{id:1}, employee: employees[i].employee, workHours: employees[i].projectManagementHours, phase:tagPhase, role:"PROJECT_MANAGEMENT"});
+        	data.push({project:{id:1}, employee: employees[i].employee, workHours: employees[i].requirementsHours, phase:tagPhase, role:"REQUIREMENTS"});
+        	data.push({project:{id:1}, employee: employees[i].employee, workHours: employees[i].analysisDementationHours, phase:tagPhase, role:"ANALYSIS_DESIGN"});
+        	data.push({project:{id:1}, employee: employees[i].employee, workHours: employees[i].implanagementHours, phase:tagPhase, role:"IMPLEMENTATION"});
+        	data.push({project:{id:1}, employee: employees[i].employee, workHours: employees[i].testsTheoricalRelative, phase:tagPhase, role:"TEST"});
+        	data.push({project:{id:1}, employee: employees[i].employee, workHours: employees[i].deployTheoricalRelative, phase:tagPhase, role:"DEPLOY"});
+        	data.push({project:{id:1}, employee: employees[i].employee, workHours: employees[i].environmentHours, phase:tagPhase, role:"ENVIRONMENT_REVISION_CONTROL"});
+        }
+	}
+	
 	//servicio rest
 	$scope.saveHoursRolePhaseArray = function(){
         var data = [];
-		 
-        for(employeeHours in $scope.initPhase.assignedEmployee){
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.projectMesignHours, phase:"INICIO", role:"PROJECT_MANAGEMENT"});
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.requirementsHours, phase:"INICIO", role:"REQUIREMENTS"});
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.analysisDementationHours, phase:"INICIO", role:"ANALYSIS_DESIGN"});
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.implanagementHours, phase:"INICIO", role:"IMPLEMENTATION"});
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.testsTheoricalRelative, phase:"INICIO", role:"TEST"});
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.deployTheoricalRelative, phase:"INICIO", role:"DEPLOY"});
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.environmentHours, phase:"INICIO", role:"ENVIRONMENT_REVISION_CONTROL"});
-        }
-        
-        for(employeeHours in $scope.elabPhase.assignedEmployee){
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.projectMesignHours, phase:"ELABORACION", role:"PROJECT_MANAGEMENT"});
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.requirementsHours, phase:"ELABORACION", role:"REQUIREMENTS"});
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.analysisDementationHours, phase:"ELABORACION", role:"ANALYSIS_DESIGN"});
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.implanagementHours, phase:"ELABORACION", role:"IMPLEMENTATION"});
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.testsTheoricalRelative, phase:"ELABORACION", role:"TEST"});
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.deployTheoricalRelative, phase:"ELABORACION", role:"DEPLOY"});
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.environmentHours, phase:"ELABORACION", role:"ENVIRONMENT_REVISION_CONTROL"});
-        }
-        
-        for(employeeHours in $scope.constPhase.assignedEmployee){
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.projectMesignHours, phase:"CONSTRUCCION", role:"PROJECT_MANAGEMENT"});
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.requirementsHours, phase:"CONSTRUCCION", role:"REQUIREMENTS"});
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.analysisDementationHours, phase:"CONSTRUCCION", role:"ANALYSIS_DESIGN"});
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.implanagementHours, phase:"CONSTRUCCION", role:"IMPLEMENTATION"});
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.testsTheoricalRelative, phase:"CONSTRUCCION", role:"TEST"});
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.deployTheoricalRelative, phase:"CONSTRUCCION", role:"DEPLOY"});
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.environmentHours, phase:"CONSTRUCCION", role:"ENVIRONMENT_REVISION_CONTROL"});
-        }
-        
-        for(employeeHours in $scope.transPhase.assignedEmployee){
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.projectMesignHours, phase:"TRANSICION", role:"PROJECT_MANAGEMENT"});
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.requirementsHours, phase:"TRANSICION", role:"REQUIREMENTS"});
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.analysisDementationHours, phase:"TRANSICION", role:"ANALYSIS_DESIGN"});
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.implanagementHours, phase:"TRANSICION", role:"IMPLEMENTATION"});
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.testsTheoricalRelative, phase:"TRANSICION", role:"TEST"});
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.deployTheoricalRelative, phase:"TRANSICION", role:"DEPLOY"});
-        	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.environmentHours, phase:"TRANSICION", role:"ENVIRONMENT_REVISION_CONTROL"});
-        }
-        
+        pushToDataArray($scope.initPhase.assignedEmployee, data, "INICIO");
+        pushToDataArray($scope.elabPhase.assignedEmployee, data, "ELABORACION");
+        pushToDataArray($scope.transPhase.assignedEmployee, data, "CONSTRUCCION");
+        pushToDataArray($scope.constPhase.assignedEmployee, data, "TRANSICION");
+
 		$http.post('/PFM/rest/Employees/Save', data).
 		    success(function(data, status, headers, config) {
 		      $scope.message = JSON.stringify(data);

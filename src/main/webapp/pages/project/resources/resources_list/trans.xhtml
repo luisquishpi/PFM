@@ -9,17 +9,17 @@
 	xmlns:p="http://primefaces.org/ui">
 	<div class="row persons_form">
 		<div class="col-sm-offset-2 col-sm-2">
-			<p:outputLabel for="input_trans" value="{{transicionNumOfProposalPeople|number:2}}"
+			<p:outputLabel for="input_trans" value="{{transPhase.numberOfProposalsPeople()|number:2}}"
 				styleClass="label_height" />
 		</div>
 		<div class="col-sm-2">
 			<p:inputText id="input_trans"
-				ng-model="transicionNumberOfAssignedPeople"
+				ng-model="transPhase.numberOfAssignedPeople"
 				required="true" 
 				onkeypress="return isDecimalNumberKey(event)"/>
 		</div>
 		<div class="col-sm-offset-2 col-sm-4">
-			<button ng-click="addEmployee(transPhase)" type="button" class="btn btn-primary add_employee">Agregar empleado seleccionado</button>
+			<p:commandButton type="button" style="float:right;" value="Agregar empleado seleccionado" ng-click="addEmployee(transPhase)" icon="ui-icon-plus"></p:commandButton>
 		</div>
     </div>
 	<fieldset>
@@ -111,7 +111,7 @@
 		
 		<fieldset>
 		<div class="table-responsive">
-		<table class="table" ng-if="transPhase.assignedEmployees.length > 0">
+		<table class="table" ng-if="transPhase.assignedEmployee.length > 0">
 			<tr>
 				<th class="ui-outputlabel ui-widget text-center">Nombre</th>
 				<th class="ui-outputlabel ui-widget text-center">Gestion Proyecto</th>
@@ -125,7 +125,7 @@
 				<th class="ui-outputlabel ui-widget text-center">Coste</th>
 			</tr>
 			
-			<tr ng-repeat="employeeResource in transPhase.assignedEmployees">
+			<tr ng-repeat="employeeResource in transPhase.assignedEmployee">
 				
 				<td style="position:relative;" class="text-center">
 					<span ng-click="deleteEmployee(transPhase, employeeResource)" class="glyphicon glyphicon-remove delete_icon" aria-hidden="true"/>
@@ -205,13 +205,13 @@
 			
 			<tr>
 				<td class="text-center">Totales</td>
-				<td class="text-center">{{disciplineHoursTotal(transPhase, "projectManagementHours")}}</td>
-				<td class="text-center">{{disciplineHoursTotal(transPhase, "requirementsHours")}}</td>
-				<td class="text-center">{{disciplineHoursTotal(transPhase, "analysisDesignHours")}}</td>
-				<td class="text-center">{{disciplineHoursTotal(transPhase, "implementationHours")}}</td>
-				<td class="text-center">{{disciplineHoursTotal(transPhase, "testsHours")}}</td>
-				<td class="text-center">{{disciplineHoursTotal(transPhase, "deployHours")}}</td>
-				<td class="text-center">{{disciplineHoursTotal(transPhase, "environmentHours")}}</td>
+				<td class="text-center">{{disciplineHoursTotal(transPhase.assignedEmployee, "projectManagementHours")}}</td>
+				<td class="text-center">{{disciplineHoursTotal(transPhase.assignedEmployee, "requirementsHours")}}</td>
+				<td class="text-center">{{disciplineHoursTotal(transPhase.assignedEmployee, "analysisDesignHours")}}</td>
+				<td class="text-center">{{disciplineHoursTotal(transPhase.assignedEmployee, "implementationHours")}}</td>
+				<td class="text-center">{{disciplineHoursTotal(transPhase.assignedEmployee, "testsHours")}}</td>
+				<td class="text-center">{{disciplineHoursTotal(transPhase.assignedEmployee, "deployHours")}}</td>
+				<td class="text-center">{{disciplineHoursTotal(transPhase.assignedEmployee, "environmentHours")}}</td>
 				<td class="text-center"></td>
 				<td class="text-center"></td>
 			</tr>
