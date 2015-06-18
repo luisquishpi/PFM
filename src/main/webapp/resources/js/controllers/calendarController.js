@@ -28,7 +28,6 @@ projectApp.controller("calendarController",['$scope', '$isTest', 'DateUtils', 'b
 	
 	
 	$scope.getEvents = function(startDate, endDate){
-		console.log(startDate);
 		if($scope.workHours === undefined){
 			return [];
 		}

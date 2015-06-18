@@ -14,8 +14,9 @@
 	
         var employee = {id:1};
         var project = {id:1};
-        var array = [{employee:employee, project:project, workHours:36, phase:"INICIO", role:"DEPLOY"}];
-        
+        var array = [{employee:employee, project:project, workHours:36, phase:"INICIO", role:"DEPLOY"}, {employee:employee, project:project, workHours:36, phase:"INICIO", role:"DEPLOY"}];
+        var data = [{"INICIO": 12.0}];
+        var superArray = {hoursRolePhase: array, peoplePhase: data};
         $.ajax({
 	    	  headers: {
 	    		  'Content-Type' : 'application/json'
@@ -23,7 +24,7 @@
               type: 'post',
 		      dataType: 'json',
 	          url: "${root}/PFM/rest/Employees/Save",
-	          data: JSON.stringify(array)
+	          data: JSON.stringify(superArray)
 	    });
         
     </script>

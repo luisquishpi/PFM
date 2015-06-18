@@ -10,15 +10,22 @@
     
      
     <div ng-controller="calendarController">
-        <ngsync direction="serverToClient" value="#{showAssignedPhasesBean.project.start}" />
-        <ngsync direction="serverToClient" value="#{showAssignedPhasesBean.project.end}" />
-        <ngsync direction="serverToClient" value="#{showAssignedPhasesBean.project.iterationDays}" />
-        <ngsync direction="serverToClient" value="#{showAssignedPhasesBean.holidays}" />
-        #{showAssignedPhasesBean.project.start}
+    	<c:set var="startDate" scope="request" value="#{showAssignedPhasesBean.project.start}" />
+	    <c:set var="endDate" scope="request" value="#{showAssignedPhasesBean.project.end}" />
+	    <c:set var="iterationDays" scope="request" value="#{showAssignedPhasesBean.project.iterationDays}" />
+	    <c:set var="holidays" scope="request" value="#{showAssignedPhasesBean.holidays}" />
+    	
+        <ngsync direction="serverToClient" value="{{startDate}}" />
+        <ngsync direction="serverToClient" value="{{endDate}}" />
+        <ngsync direction="serverToClient" value="{{iterationDays}}" />
+        <ngsync direction="serverToClient" value="{{holidays}}" />
+        {{startDate}}
         {{toBridgeService()}}
         
          <div ng-if="calendarFinished" ng-controller="assignedPhaseController">
-            <ngsync direction="serverToClient" value="#{showAssignedPhasesBean.projectSchedule}" />
+         	<c:set var="projectSchedule" scope="request" value="#{showAssignedPhasesBean.projectSchedule}" />
+         
+            <ngsync direction="serverToClient" value="{{projectSchedule}}" />
 	        {{projectSchedule}}
 	        	<table class="table table-condensed">
 					<tr>
