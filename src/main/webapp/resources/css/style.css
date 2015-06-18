@@ -35,6 +35,7 @@ puilabel, label {
 
 .label_height {
 	line-height: 30px;
+	float:right;
 }
 
 table td {

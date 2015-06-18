@@ -9,17 +9,17 @@
 	xmlns:p="http://primefaces.org/ui">
 	<div class="row persons_form">
 		<div class="col-sm-offset-2 col-sm-2">
-			<p:outputLabel for="input_const" value="{{construccionNumOfProposalPeople|number:2}}"
+			<p:outputLabel for="input_const" value="{{constPhase.numberOfProposalsPeople()|number:2}}"
 				styleClass="label_height" />
 		</div>
 		<div class="col-sm-2">
 			<p:inputText id="input_const"
-				ng-model="construccionNumberOfAssignedPeople"
+				ng-model="constPhase.numberOfAssignedPeople"
 				required="true" 
 				onkeypress="return isDecimalNumberKey(event)"/>
 		</div>
 		<div class="col-sm-offset-2 col-sm-4">
-			<button ng-click="addEmployee(constPhase)" type="button" class="btn btn-primary add_employee">Agregar empleado seleccionado</button>
+			<p:commandButton type="button" style="float:right;" value="Agregar empleado seleccionado" ng-click="addEmployee(constPhase)" icon="ui-icon-plus"></p:commandButton>
 		</div>
     </div>
 	<fieldset>
@@ -111,7 +111,7 @@
 		
 		<fieldset>
 		<div class="table-responsive">
-		<table class="table" ng-if="constPhase.assignedEmployees.length > 0">
+		<table class="table" ng-if="constPhase.assignedEmployee.length > 0">
 			<tr>
 				<th class="ui-outputlabel ui-widget text-center">Nombre</th>
 				<th class="ui-outputlabel ui-widget text-center">Gestion Proyecto</th>
@@ -125,7 +125,7 @@
 				<th class="ui-outputlabel ui-widget text-center">Coste</th>
 			</tr>
 			
-			<tr ng-repeat="employeeResource in constPhase.assignedEmployees">
+			<tr ng-repeat="employeeResource in constPhase.assignedEmployee">
 				
 				<td style="position:relative;" class="text-center">
 					<span ng-click="deleteEmployee(constPhase, employeeResource)" class="glyphicon glyphicon-remove delete_icon" aria-hidden="true"/>
@@ -205,13 +205,13 @@
 			
 			<tr>
 				<td class="text-center">Totales</td>
-				<td class="text-center">{{disciplineHoursTotal(constPhase, "projectManagementHours")}}</td>
-				<td class="text-center">{{disciplineHoursTotal(constPhase, "requirementsHours")}}</td>
-				<td class="text-center">{{disciplineHoursTotal(constPhase, "analysisDesignHours")}}</td>
-				<td class="text-center">{{disciplineHoursTotal(constPhase, "implementationHours")}}</td>
-				<td class="text-center">{{disciplineHoursTotal(constPhase, "testsHours")}}</td>
-				<td class="text-center">{{disciplineHoursTotal(constPhase, "deployHours")}}</td>
-				<td class="text-center">{{disciplineHoursTotal(constPhase, "environmentHours")}}</td>
+				<td class="text-center">{{disciplineHoursTotal(constPhase.assignedEmployee, "projectManagementHours")}}</td>
+				<td class="text-center">{{disciplineHoursTotal(constPhase.assignedEmployee, "requirementsHours")}}</td>
+				<td class="text-center">{{disciplineHoursTotal(constPhase.assignedEmployee, "analysisDesignHours")}}</td>
+				<td class="text-center">{{disciplineHoursTotal(constPhase.assignedEmployee, "implementationHours")}}</td>
+				<td class="text-center">{{disciplineHoursTotal(constPhase.assignedEmployee, "testsHours")}}</td>
+				<td class="text-center">{{disciplineHoursTotal(constPhase.assignedEmployee, "deployHours")}}</td>
+				<td class="text-center">{{disciplineHoursTotal(constPhase.assignedEmployee, "environmentHours")}}</td>
 				<td class="text-center"></td>
 				<td class="text-center"></td>
 			</tr>

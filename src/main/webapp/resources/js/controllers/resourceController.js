@@ -623,7 +623,7 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
         	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.deployTheoricalRelative, phase:"TRANSICION", role:"DEPLOY"});
         	data.push({project:{id:1}, employee: employeeHours.employee, workHours: employeeHours.environmentHours, phase:"TRANSICION", role:"ENVIRONMENT_REVISION_CONTROL"});
         }
-        
+
 		$http.post('/PFM/rest/Employees/Save', data).
 		    success(function(data, status, headers, config) {
 		      $scope.message = JSON.stringify(data);
