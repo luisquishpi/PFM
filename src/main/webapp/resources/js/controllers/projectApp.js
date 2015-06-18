@@ -142,3 +142,48 @@ projectApp.service("EmployeeUtils", function(){
 		return result;
 	}	
 });
+projectApp.service("ProjectResourcesService", function(){
+	
+	this.toEmployeeResourceList = function(hoursRolePhaseList, projectSchedule, phase) {
+    	/*var list = [];
+    	/*var availability = projectSchedule.averageHoursPerDay() * projectSchedule.project.iterationDays; 
+    	hoursRolePhaseList.forEach(function logArrayElements(element, index, array) {
+    	    
+    	});
+    	return list;*/
+		return [
+        { employee : { id : 1},
+        	hourlyCost : 12,
+			projectManagementHours : 20,
+			requirementsHours : 40,
+			analysisDesignHours : 20,
+			implementationHours : 0,
+			testsHours : 0,
+			deployHours : 20,
+			environmentHours : 0,
+			totalHours : function(){ return 100 },
+			availableEmployeeHours : 100}
+		];
+    }
+	
+	/*function employeeSalaryHour (employee){
+		var annualSalary = EmployeeUtils.totalAnnualSalary(employee);
+		var monthlySalary = annualSalary/$scope.discipline.phases.schedule.monthsPerYear;
+		var dailySalary = monthlySalary/$scope.discipline.phases.schedule.workDays;
+		return dailySalary/$scope.discipline.phases.schedule.hoursPerDay();
+	}*/
+	
+	function EmployeeResource(){
+		this.employee = null;
+		this.hourlyCost = 0;
+		this.projectManagementHours=0;
+		this.requirementsHours=0;
+		this.analysisDesignHours=0;
+		this.implementationHours=0;
+		this.testsHours=0;
+		this.deployHours=0;
+		this.environmentHours=0;
+		this.availableEmployeeHours = 0;
+	}
+
+});
