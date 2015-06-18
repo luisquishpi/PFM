@@ -45,6 +45,11 @@
 				rel="stylesheet" />
 			<link href="/PFM/resources/css/style.css"
 				rel="stylesheet" />
+				<style>
+				th a{
+						color:black !important;
+					}	
+				</style>
 		</ui:define>
 		<ui:define name="content">
 			<div class="panel-body">
@@ -75,6 +80,10 @@
 										<ngsync direction="serverToClient" value="{{resourcesBean.project}}" />	
 										<ngsync direction="serverToClient"
 												value="#{resourcesBean.employeeList}" />
+										<p:commandButton styleClass="save_resources" value="Guardar"
+											icon="ui-icon-disk" update="growl" ajax="false"
+											ng-click="saveHoursRolePhaseArray()" />
+										<div style="clear:both;"></div>	
 										<div class="row">
 											<ui:include src="resources_list_employee.xhtml" /> 
 										</div>										

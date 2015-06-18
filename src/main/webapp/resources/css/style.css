@@ -88,10 +88,6 @@ table td {
   display: none !important;
 }
 
-.add_employee{
-	width:100%;
-}
-
 .persons_form{
 	padding:10px;
 }
@@ -100,4 +96,19 @@ table td {
 	position:absolute;
 	top:0;
 	left:0;
+}
+
+.save_resources{
+	position:absolute;
+	top:20px;
+	right:26px;
+	width:200px;	
+}
+
+.add_employee{
+	width:200px;
+}
+
+.save resources .ui-button-icon-left{
+	left:30% !important;
 }
