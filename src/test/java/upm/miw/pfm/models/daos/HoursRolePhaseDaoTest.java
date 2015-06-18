@@ -105,6 +105,28 @@ public class HoursRolePhaseDaoTest {
     	assertEquals(hoursRolePhaseDao.findAll(), list);
     }
     
+    @Test
+    public void testFindByProject(){
+        List<HoursRolePhase> list = new ArrayList<HoursRolePhase>();
+        HoursRolePhase hoursRolePhase2 = new HoursRolePhase(employee, project, 52D, Phases.ELABORACION, RoleType.DEPLOY);
+        HoursRolePhase hoursRolePhase3 = new HoursRolePhase(employee, project, 32D, Phases.ELABORACION, RoleType.ANALYSIS_DESIGN);
+
+        Date start = Utils.buildDate(2015, Calendar.APRIL, 2);
+        Date end = Utils.buildDate(2015, Calendar.DECEMBER, 4);
+        Project project2 = new Project("Scrum+X^P", start, end, 185000.0);
+        projectDao.create(project2);
+        HoursRolePhase hoursRolePhase4 = new HoursRolePhase(employee, project2, 32D, Phases.TRANSICION, RoleType.REQUIREMENTS);
+
+        list.add(hoursRolePhase);
+        list.add(hoursRolePhase2);
+        list.add(hoursRolePhase3);
+        hoursRolePhaseDao.create(hoursRolePhase2);
+        hoursRolePhaseDao.create(hoursRolePhase3);
+        hoursRolePhaseDao.create(hoursRolePhase4);
+        
+        assertEquals(hoursRolePhaseDao.findByProject(project), list);
+    }    
+    
     @After
     public void after(){
     	hoursRolePhaseDao.deleteAll();

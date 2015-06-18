@@ -110,6 +110,8 @@ table td {
 	width:200px;
 }
 
+.add_employee:focus{outline:0 !important;}
+
 .save resources .ui-button-icon-left{
 	left:30% !important;
 }
