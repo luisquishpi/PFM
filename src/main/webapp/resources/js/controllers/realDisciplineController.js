@@ -75,6 +75,32 @@ projectApp.controller("realDisciplineController", ['$scope', '$isTest', 'bridgeS
 			return this.totalHour()/$scope.realDisciplineBean.hoursPerDay;;
 		}
 		
+		//Recursos Personas Mes
+		this.ProjectManagmentMonth = function(){
+			return this.ProjectManagmentDay()/$scope.realDisciplineBean.workDaysPerMonth;
+		}	
+		this.RequirementsMonth = function(){
+			return this.RequirementsDay()/$scope.realDisciplineBean.workDaysPerMonth;
+		}
+		this.AnalysisMonth = function(){
+			return this.AnalysisDay()/$scope.realDisciplineBean.workDaysPerMonth;
+		}
+		this.ImplementationMonth = function(){
+			return this.ImplementationDay()/$scope.realDisciplineBean.workDaysPerMonth;
+		}
+		this.TestsMonth = function(){
+			return this.TestsDay()/$scope.realDisciplineBean.workDaysPerMonth;
+		}
+		this.DeploymentMonth = function(){
+			return this.DeploymentDay()/$scope.realDisciplineBean.workDaysPerMonth;
+		}
+		this.VersionMonth = function(){
+			return this.VersionDay()/$scope.realDisciplineBean.workDaysPerMonth;
+		}
+		this.totalMonth = function(){
+			return this.totalDay()/$scope.realDisciplineBean.workDaysPerMonth;;
+		}
+		
 		//distribucion		
 		this.projectManagementDistribution = function(){
 			return (parseFloat(this.totalAssignedProjectManagement)/this.totalHour())*100;
@@ -100,9 +126,7 @@ projectApp.controller("realDisciplineController", ['$scope', '$isTest', 'bridgeS
 		this.totalDistribution = function(){			
 			return (parseFloat(this.projectManagementDistribution())+parseFloat(this.RequirementsDistribution())+parseFloat(this.AnalysisDistribution())
 			+parseFloat(this.ImplementationDistribution())+parseFloat(this.TestsDistribution())+parseFloat(this.DeployDistribution())+parseFloat(this.VersionDistribution()));
-		}
-		
-		
+		}		
 	}
 	
 	$scope.initPhase = new Phase();
@@ -206,6 +230,39 @@ projectApp.controller("realDisciplineController", ['$scope', '$isTest', 'bridgeS
 	$scope.totalTotalDay = function(){
 		return($scope.initPhase.totalDay()+$scope.elabPhase.totalDay()+
 		$scope.constPhase.totalDay()+$scope.transPhase.totalDay());
+	}
+	
+	$scope.totalProjectManagementMonth = function(){
+		return($scope.initPhase.ProjectManagmentMonth()+$scope.elabPhase.ProjectManagmentMonth()+
+		$scope.constPhase.ProjectManagmentMonth()+$scope.transPhase.ProjectManagmentMonth());
+	}
+	$scope.totalRequirementsMonth = function(){
+		return($scope.initPhase.RequirementsMonth()+$scope.elabPhase.RequirementsMonth()+
+		$scope.constPhase.RequirementsMonth()+$scope.transPhase.RequirementsMonth());
+	}
+	$scope.totalAnalysisMonth = function(){
+		return($scope.initPhase.AnalysisMonth()+$scope.elabPhase.AnalysisMonth()+
+		$scope.constPhase.AnalysisMonth()+$scope.transPhase.AnalysisMonth());
+	}
+	$scope.totalImplementationMonth = function(){
+		return($scope.initPhase.ImplementationMonth()+$scope.elabPhase.ImplementationMonth()+
+		$scope.constPhase.ImplementationMonth()+$scope.transPhase.ImplementationMonth());
+	}
+	$scope.totalTestsMonth = function(){
+		return($scope.initPhase.TestsMonth()+$scope.elabPhase.TestsMonth()+
+		$scope.constPhase.TestsMonth()+$scope.transPhase.TestsMonth());
+	}
+	$scope.totalDeploymentMonth = function(){
+		return($scope.initPhase.DeploymentMonth()+$scope.elabPhase.DeploymentMonth()+
+		$scope.constPhase.DeploymentMonth()+$scope.transPhase.DeploymentMonth());
+	}
+	$scope.totalVersionMonth = function(){
+		return($scope.initPhase.VersionMonth()+$scope.elabPhase.VersionMonth()+
+		$scope.constPhase.VersionMonth()+$scope.transPhase.VersionMonth());
+	}
+	$scope.totalTotalMonth = function(){
+		return($scope.initPhase.totalMonth()+$scope.elabPhase.totalMonth()+
+		$scope.constPhase.totalMonth()+$scope.transPhase.totalMonth());
 	}
 	
 	$scope.totalProjectManagementDistribution = function(){
