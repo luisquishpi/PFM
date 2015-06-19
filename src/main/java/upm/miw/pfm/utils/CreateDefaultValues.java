@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.apache.logging.log4j.LogManager;
 
 import upm.miw.pfm.models.daos.ContractDao;
 import upm.miw.pfm.models.daos.DaoFactory;
@@ -19,15 +20,19 @@ import upm.miw.pfm.models.entities.Project;
 import upm.miw.pfm.models.entities.ProjectSchedule;
 
 public class CreateDefaultValues {
-	
+    private final static Class<CreateDefaultValues> clazz = CreateDefaultValues.class;
+
 	public static void main(String[] args){
-			
+        LogManager.getLogger(clazz).debug("Iniciando creacion de valores default");
+
 		ContractDao contractDao = DaoFactory.getFactory().getContractDao();
         ProjectDao projectDao = DaoFactory.getFactory().getProjectDao();
         ProjectScheduleDao projectScheduleDao = DaoFactory.getFactory().getProjectScheduleDao();
         EmployeeDao employeeDao = DaoFactory.getFactory().getEmployeeDao();
         HolidayDao holidayDao = DaoFactory.getFactory().getHolidayDao();
-        
+
+        LogManager.getLogger(clazz).debug("Creacion de contratos");
+
         Contract contract = new Contract("Fijo", 32.5);
         Contract contract2 = new Contract("Becario", 2.0);
         Contract contract3 = new Contract("Consultor", 0.0);
@@ -76,6 +81,8 @@ public class CreateDefaultValues {
         roles7.add(RoleType.ENVIROMENT_REVISION_CONTROL);
         roles7.add(RoleType.TESTS);
         
+        LogManager.getLogger(clazz).debug("Creacion de empleados");
+
         Employee employee = new Employee("Anibal", "Pacheco", "007", 40500.00, contract, roles);
         Employee employee2 = new Employee("Beatriz", "Pacheco", "007", 38000.00, contract, roles);
         Employee employee3 = new Employee("Carlos", "Pacheco", "007", 30000.00, contract, roles2);
@@ -118,17 +125,21 @@ public class CreateDefaultValues {
         employeeDao.create(employee19);
         employeeDao.create(employee20);
         
+        LogManager.getLogger(clazz).debug("Creacion de proyecto");
         Date start = Utils.buildDate(2015, Calendar.MARCH, 2);
         Date end = Utils.buildDate(2015, Calendar.SEPTEMBER, 4);
         Project project = new Project("Scrum", start, end, 85000.0);
         project.setIterationDays(13);
         projectDao.create(project);
         
+        LogManager.getLogger(clazz).debug("Creacion de horario");
         ProjectSchedule projectSchedule = new ProjectSchedule(project, 21, 8D, 8D, 8D, 8D, 8D, 0D, 0D);
         projectSchedule.setProject(project);
         projectScheduleDao.create(projectSchedule);
         
+        LogManager.getLogger(clazz).debug("Creacion de festivo");
         Holiday holiday = new Holiday(Utils.buildDate(2015, 3, 3),Utils.buildDate(2015, 3, 4));
         holidayDao.create(holiday);
+        LogManager.getLogger(clazz).debug("Finalizando creacion de valores default");
 	}
 }
