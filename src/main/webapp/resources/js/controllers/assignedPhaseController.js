@@ -162,7 +162,7 @@ projectApp.controller("assignedPhaseController",
 			}
 			this.startDate = this.phaseDays[0] ? this.phaseDays[0].startDate : null;
 			this.endDate = this.phaseDays[this.phaseDays.length - 1] ? this.phaseDays[this.phaseDays.length - 1].startDate : null;
-			this.iterations = this.days() / 13;
+			this.iterations = this.days() / this.projectSchedule.project.iterationDays;
 			this.initialIteration = 0;
 			this.finalIteration = function() {
 				var result = this.iterations
