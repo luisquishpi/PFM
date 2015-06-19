@@ -188,6 +188,40 @@ describe("Test RealDisciplineController", function(){
 	it("Transition total hours should be 520.0", function(){
 		expect(scope.transPhase.totalHour()).toBe(520.0);
 	});
+	
+	//Persona Hora total proyecto
+	//Proyecto
+	it("Proyect total hour for project management should be 604.1999999999999", function(){
+		expect(scope.totalProjectManagementHour()).toBe(604.1999999999999);
+	});
+	
+	it("Proyect total hour for requirements should be 607.3999999999999", function(){
+		expect(scope.totalRequirementsHour()).toBe(607.3999999999999);
+	});
+	
+	it("Proyect total hour for analysis should be 1045.7", function(){
+		expect(scope.totalAnalysisHour()).toBe(1045.7);
+	});
+
+	it("Proyect total hour for implementation should be 1499.1999999999998", function(){
+		expect(scope.totalImplementationHour()).toBe(1499.1999999999998);
+	});
+	
+	it("Proyect total hour for test should be 1128.4", function(){
+		expect(scope.totalTestsHour()).toBe(1128.4);
+	});
+	
+	it("Proyect total hour for deployment should be 305.8", function(){
+		expect(scope.totalDeploymentHour()).toBe(305.8);
+	});
+	
+	it("Proyect total hour for environment should be 321.4", function(){
+		expect(scope.totalVersionHour()).toBe(321.4);
+	});
+	
+	it("Proyect total hour Days should be 5512.099999999999", function(){
+		expect(scope.totalTotalHour()).toBe(5512.099999999999);
+	});
 		
 	/************************Distribución******************************/
 	//Fase de Inicio
@@ -317,5 +351,39 @@ describe("Test RealDisciplineController", function(){
 	
 	it("Transition Distribution Days should be 100", function(){
 		expect(scope.transPhase.totalDistribution()).toBe(100);
+	});
+	
+	//Persona Hora total proyecto
+	//Proyecto
+	it("Proyect distribution for project management should be 10.961339598338201", function(){
+		expect(scope.totalProjectManagementDistribution()).toBe(10.961339598338201);
+	});
+	
+	it("Proyect distribution for requirements should be 11.019393697501858", function(){
+		expect(scope.totalRequirementsDistribution()).toBe(11.019393697501858);
+	});
+	
+	it("Proyect distribution for analysis should be 18.970991092324162", function(){
+		expect(scope.totalAnalysisDistribution()).toBe(18.970991092324162);
+	});
+
+	it("Proyect distribution for implementation should be 27.198345458173833", function(){
+		expect(scope.totalImplementationDistribution()).toBe(27.198345458173833);
+	});
+	
+	it("Proyect distribution for test should be 20.471326717584954", function(){
+		expect(scope.totalTestsDistribution()).toBe(20.471326717584954);
+	});
+	
+	it("Proyect distribution for deployment should be 5.547794851327081", function(){
+		expect(scope.totalDeploymentDistribution()).toBe(5.547794851327081);
+	});
+	
+	it("Proyect distribution for environment should be 5.8308085847499145", function(){
+		expect(scope.totalVersionDistribution()).toBe(5.8308085847499145);
+	});
+	
+	it("Proyect distribution Days should be 100", function(){
+		expect(scope.totalTotalDistribution()).toBe(100);
 	});
 });
