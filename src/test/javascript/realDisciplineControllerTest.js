@@ -47,7 +47,8 @@ describe("Test RealDisciplineController", function(){
 					deployAssigned:156.0,
 					enviromentAssigned:26.0
 				},
-				hoursPerDay: 8
+				hoursPerDay: 8,
+				workDaysPerMonth: 21
 		}
 		
 		controller = $controller("realDisciplineController", {
@@ -440,4 +441,214 @@ describe("Test RealDisciplineController", function(){
 	it("Elaboration total day for total should be 136.51250000000002", function(){
 		expect(scope.elabPhase.totalDay()).toBe(136.51250000000002);
 	});
+	
+	//Fase construcción
+	it("Construction total day for project management should be 45.5", function(){
+		expect(scope.constPhase.ProjectManagmentDay()).toBe(45.5);
+	});
+	it("Construction total day for requierements should be 36.4", function(){
+		expect(scope.constPhase.RequirementsDay()).toBe(36.4);
+	});
+	it("Construction total day for analysis should be 72.8", function(){
+		expect(scope.constPhase.AnalysisDay()).toBe(72.8);
+	});
+	it("Construction total day for implementation should be 154.7", function(){
+		expect(scope.constPhase.ImplementationDay()).toBe(154.7);
+	});
+	it("Construction total day for tests should be 109.2", function(){
+		expect(scope.constPhase.TestsDay()).toBe(109.2);
+	});
+	it("Construction total day for deployment should be 13.65", function(){
+		expect(scope.constPhase.DeploymentDay()).toBe(13.65);
+	});
+	it("Construction total day for version should be 22.75", function(){
+		expect(scope.constPhase.VersionDay()).toBe(22.75);
+	});
+	it("Construction total day for total should be 454.99999999999994", function(){
+		expect(scope.constPhase.totalDay()).toBe(454.99999999999994);
+	});
+	
+	//Fase transición
+	it("Transition total day for project management should be 9.1", function(){
+		expect(scope.transPhase.ProjectManagmentDay()).toBe(9.1);
+	});
+	it("Transition total day for requierements should be 2.6", function(){
+		expect(scope.transPhase.RequirementsDay()).toBe(2.6);
+	});
+	it("Transition total day for analysis should be 2.6", function(){
+		expect(scope.transPhase.AnalysisDay()).toBe(2.6);
+	});
+	it("Transition total day for implementation should be 12.35", function(){
+		expect(scope.transPhase.ImplementationDay()).toBe(12.35);
+	});
+	it("Transition total day for tests should be 15.6", function(){
+		expect(scope.transPhase.TestsDay()).toBe(15.6);
+	});
+	it("Transition total day for deployment should be 19.5", function(){
+		expect(scope.transPhase.DeploymentDay()).toBe(19.5);
+	});
+	it("Transition total day for version should be 3.25", function(){
+		expect(scope.transPhase.VersionDay()).toBe(3.25);
+	});
+	it("Transition total day for total should be 65.0", function(){
+		expect(scope.transPhase.totalDay()).toBe(65.0);
+	});
+	
+	//Fase Proyecto
+	it("Proyect total day for project management should be 75.52499999999999", function(){
+		expect(scope.totalProjectManagementDay()).toBe(75.52499999999999);
+	});
+	it("Proyect total day for requierements should be 75.92499999999998", function(){
+		expect(scope.totalRequirementsDay()).toBe(75.92499999999998);
+	});
+	it("Proyect total day for analysis should be 130.7125", function(){
+		expect(scope.totalAnalysisDay()).toBe(130.7125);
+	});
+	it("Proyect total day for implementation should be 187.39999999999998", function(){
+		expect(scope.totalImplementationDay()).toBe(187.39999999999998);
+	});
+	it("Proyect total day for tests should be 141.05", function(){
+		expect(scope.totalTestsDay()).toBe(141.05);
+	});
+	it("Proyect total day for deployment should be 38.225", function(){
+		expect(scope.totalDeploymentDay()).toBe(38.225);
+	});
+	it("Proyect total day for version should be 40.175", function(){
+		expect(scope.totalVersionDay()).toBe(40.175);
+	});
+	it("Proyect total day for total should be 689.0124999999999", function(){
+		expect(scope.totalTotalDay()).toBe(689.0124999999999);
+	});
+	
+	//Persona mes
+	//Fase inicio
+	it("Initial total month for project management should be 0.21666666666666665", function(){
+		expect(scope.initPhase.ProjectManagmentMonth()).toBe(0.21666666666666665);
+	});
+	it("Initial total month for requierements should be 0.5880952380952381", function(){
+		expect(scope.initPhase.RequirementsMonth()).toBe(0.5880952380952381);
+	});
+	it("Initial total month for analysis should be 0.29404761904761906", function(){
+		expect(scope.initPhase.AnalysisMonth()).toBe(0.29404761904761906);
+	});
+	it("Initial total month for implementation should be 0.12380952380952381", function(){
+		expect(scope.initPhase.ImplementationMonth()).toBe(0.12380952380952381);
+	});
+	it("Initial total month for tests should be 0.12380952380952381", function(){
+		expect(scope.initPhase.TestsMonth()).toBe(0.12380952380952381);
+	});
+	it("Initial total month for deployment should be 0.04642857142857143", function(){
+		expect(scope.initPhase.DeploymentMonth()).toBe(0.04642857142857143);
+	});
+	it("Initial total month for version should be 0.15476190476190477", function(){
+		expect(scope.initPhase.VersionMonth()).toBe(0.15476190476190477);
+	});
+	it("Initial total month for total should be 1.5476190476190477", function(){
+		expect(scope.initPhase.totalMonth()).toBe(1.5476190476190477);
+	});
+
+	//Fase elaboracion
+	it("Elaboration total month for project management should be 0.7797619047619048", function(){
+		expect(scope.elabPhase.ProjectManagmentMonth()).toBe(0.7797619047619048);
+	});
+	it("Elaboration total month for requierements should be 1.1702380952380953", function(){
+		expect(scope.elabPhase.RequirementsMonth()).toBe(1.1702380952380953);
+	});
+	it("Elaboration total month for analysis should be 2.3398809523809527", function(){
+		expect(scope.elabPhase.AnalysisMonth()).toBe(2.3398809523809527);
+	});
+	it("Elaboration total month for implementation should be 0.8452380952380952", function(){
+		expect(scope.elabPhase.ImplementationMonth()).toBe(0.8452380952380952);
+	});
+	it("Elaboration total month for tests should be 0.65", function(){
+		expect(scope.elabPhase.TestsMonth()).toBe(0.65);
+	});
+	it("Elaboration total month for deployment should be 0.1952380952380952", function(){
+		expect(scope.elabPhase.DeploymentMonth()).toBe(0.1952380952380952);
+	});
+	it("Elaboration total month for version should be 0.5202380952380953", function(){
+		expect(scope.elabPhase.VersionMonth()).toBe(0.5202380952380953);
+	});
+	it("Elaboration total month for total should be 6.500595238095239", function(){
+		expect(scope.elabPhase.totalMonth()).toBe(6.500595238095239);
+	});
+
+	//Fase construcción
+	it("Construction total month for project management should be 2.1666666666666665", function(){
+		expect(scope.constPhase.ProjectManagmentMonth()).toBe(2.1666666666666665);
+	});
+	it("Construction total month for requierements should be 1.7333333333333332", function(){
+		expect(scope.constPhase.RequirementsMonth()).toBe(1.7333333333333332);
+	});
+	it("Construction total month for analysis should be 3.4666666666666663", function(){
+		expect(scope.constPhase.AnalysisMonth()).toBe(3.4666666666666663);
+	});
+	it("Construction total month for implementation should be 7.366666666666666", function(){
+		expect(scope.constPhase.ImplementationMonth()).toBe(7.366666666666666);
+	});
+	it("Construction total month for tests should be 5.20", function(){
+		expect(scope.constPhase.TestsMonth()).toBe(5.20);
+	});
+	it("Construction total month for deployment should be 0.65", function(){
+		expect(scope.constPhase.DeploymentMonth()).toBe(0.65);
+	});
+	it("Construction total month for version should be 1.0833333333333333", function(){
+		expect(scope.constPhase.VersionMonth()).toBe(1.0833333333333333);
+	});
+	it("Construction total month for total should be 21.666666666666664", function(){
+		expect(scope.constPhase.totalMonth()).toBe(21.666666666666664);
+	});
+	
+	//Fase transición
+	it("Transition total month for project management should be 0.4333333333333333", function(){
+		expect(scope.transPhase.ProjectManagmentMonth()).toBe(0.4333333333333333);
+	});
+	it("Transition total month for requierements should be 0.12380952380952381", function(){
+		expect(scope.transPhase.RequirementsMonth()).toBe(0.12380952380952381);
+	});
+	it("Transition total month for analysis should be 0.12380952380952381", function(){
+		expect(scope.transPhase.AnalysisMonth()).toBe(0.12380952380952381);
+	});
+	it("Transition total month for implementation should be 0.5880952380952381", function(){
+		expect(scope.transPhase.ImplementationMonth()).toBe(0.5880952380952381);
+	});
+	it("Transition total month for tests should be 0.7428571428571429", function(){
+		expect(scope.transPhase.TestsMonth()).toBe(0.7428571428571429);
+	});
+	it("Transition total month for deployment should be 0.9285714285714286", function(){
+		expect(scope.transPhase.DeploymentMonth()).toBe(0.9285714285714286);
+	});
+	it("Transition total month for version should be 0.15476190476190477", function(){
+		expect(scope.transPhase.VersionMonth()).toBe(0.15476190476190477);
+	});
+	it("Transition total month for total should be 3.0952380952380953", function(){
+		expect(scope.transPhase.totalMonth()).toBe(3.0952380952380953);
+	});
+		
+	//Fase proyecto
+	it("Proyect total month for project management should be 3.596428571428571", function(){
+		expect(scope.totalProjectManagementMonth()).toBe(3.596428571428571);
+	});
+	it("Proyect total month for requierements should be 3.61547619047619", function(){
+		expect(scope.totalRequirementsMonth()).toBe(3.61547619047619);
+	});
+	it("Proyect total month for analysis should be 6.224404761904761", function(){
+		expect(scope.totalAnalysisMonth()).toBe(6.224404761904761);
+	});
+	it("Proyect total month for implementation should be 8.923809523809524", function(){
+		expect(scope.totalImplementationMonth()).toBe(8.923809523809524);
+	});
+	it("Proyect total month for tests should be 6.716666666666667", function(){
+		expect(scope.totalTestsMonth()).toBe(6.716666666666667);
+	});
+	it("Proyect total month for deployment should be 1.8202380952380952", function(){
+		expect(scope.totalDeploymentMonth()).toBe(1.8202380952380952);
+	});
+	it("Proyect total month for version should be 1.913095238095238", function(){
+		expect(scope.totalVersionMonth()).toBe(1.913095238095238);
+	});
+	it("Proyect total month for total should be 32.81011904761905", function(){
+		expect(scope.totalTotalMonth()).toBe(32.81011904761905);
+	});
+	
 });
