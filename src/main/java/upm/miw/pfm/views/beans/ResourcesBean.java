@@ -43,7 +43,7 @@ public class ResourcesBean {
     @EJB
     private HoursRolePhaseController hoursRolePhaseController;
 
-    private final static Class<ListProjectsBean> clazz = ListProjectsBean.class;
+    private final static Class<ResourcesBean> clazz = ResourcesBean.class;
 
     private boolean emptyProject;
 
@@ -90,14 +90,16 @@ public class ResourcesBean {
 
     public void onChangeProject(ValueChangeEvent e) {
         Integer selectedProject = (Integer) e.getNewValue();
-        LogManager.getLogger(this).debug("Id de proyecto seleccionado " + selectedProject);
+        LogManager.getLogger(clazz).debug("Id de proyecto seleccionado " + selectedProject);
         if (selectedProject != -1) {
             this.project.setId(selectedProject);
             this.project = findSelectedProject();
             this.projectSchedule = setScheduleController.getProjectSchedule(project.getId());
-            LogManager.getLogger(this).debug("Proyecto cargado " + this.project);
+            LogManager.getLogger(clazz).debug("Proyecto cargado " + this.project);
             this.resourcesList = hoursRolePhaseController.getResources(this.project);
-            LogManager.getLogger(this).debug("Recursos cargados " + this.resourcesList.size());
+            LogManager.getLogger(clazz).debug("Recursos cargados " + this.resourcesList.size());
+            this.employeeList = employeeController.listEmployees();
+            LogManager.getLogger(clazz).info("Se encontraron " + this.employeeList.size() + " empleados");
             this.emptyProject = false;
         } else {
             this.emptyProject = true;
@@ -106,7 +108,7 @@ public class ResourcesBean {
     }
 
     public boolean isEmptyProject() {
-        LogManager.getLogger(this).debug("is empty " + this.project);
+        LogManager.getLogger(clazz).debug("is empty " + this.project);
         return emptyProject;
     }
 
@@ -114,10 +116,6 @@ public class ResourcesBean {
     public void init() {
         projectList = projectController.listProjects();
         LogManager.getLogger(clazz).info("Se encontraron " + projectList.size() + " proyectos");
-
-        employeeList = employeeController.listEmployees();
-        LogManager.getLogger(clazz).info("Se encontraron " + employeeList.size() + " empleados");
-
     }
 
     public ProjectSchedule getProjectSchedule() {
