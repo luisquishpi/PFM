@@ -589,17 +589,15 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 		return $scope.employeeSalaryHour(employeeResource.employee)*totalAssignedHoursEmployee(employeeResource);
 	}
 	
-	
-	
 	function pushToDataArray(employees, data, tagPhase){
 		for(var i=0; i< employees.length;i++){
-        	data.push({project:{id:$scope.resourcesBean.project.id}, employee: employees[i].employee, workHours: employees[i].projectManagementHours, phase:tagPhase, role:"PROJECT_MANAGEMENT"});
-        	data.push({project:{id:$scope.resourcesBean.project.id}, employee: employees[i].employee, workHours: employees[i].requirementsHours, phase:tagPhase, role:"REQUIREMENTS"});
-        	data.push({project:{id:$scope.resourcesBean.project.id}, employee: employees[i].employee, workHours: employees[i].analysisDesignHours, phase:tagPhase, role:"ANALYSIS_DESIGN"});
-        	data.push({project:{id:$scope.resourcesBean.project.id}, employee: employees[i].employee, workHours: employees[i].implementationHours, phase:tagPhase, role:"IMPLEMENTATION"});
-        	data.push({project:{id:$scope.resourcesBean.project.id}, employee: employees[i].employee, workHours: employees[i].testsHours, phase:tagPhase, role:"TEST"});
-        	data.push({project:{id:$scope.resourcesBean.project.id}, employee: employees[i].employee, workHours: employees[i].deployHours, phase:tagPhase, role:"DEPLOY"});
-        	data.push({project:{id:$scope.resourcesBean.project.id}, employee: employees[i].employee, workHours: employees[i].environmentHours, phase:tagPhase, role:"ENVIRONMENT_REVISION_CONTROL"});
+        	data.push({project:{id:$scope.resourcesBean.project.id}, employee: employees[i].employee, workHours: employees[i].projectManagementHours, phase:tagPhase, role:arrayRoles[0]});
+        	data.push({project:{id:$scope.resourcesBean.project.id}, employee: employees[i].employee, workHours: employees[i].requirementsHours, phase:tagPhase, role:arrayRoles[1]});
+        	data.push({project:{id:$scope.resourcesBean.project.id}, employee: employees[i].employee, workHours: employees[i].analysisDesignHours, phase:tagPhase, role:arrayRoles[2]});
+        	data.push({project:{id:$scope.resourcesBean.project.id}, employee: employees[i].employee, workHours: employees[i].implementationHours, phase:tagPhase, role:arrayRoles[3]});
+        	data.push({project:{id:$scope.resourcesBean.project.id}, employee: employees[i].employee, workHours: employees[i].testsHours, phase:tagPhase, role:arrayRoles[4]});
+        	data.push({project:{id:$scope.resourcesBean.project.id}, employee: employees[i].employee, workHours: employees[i].deployHours, phase:tagPhase, role:arrayRoles[5]});
+        	data.push({project:{id:$scope.resourcesBean.project.id}, employee: employees[i].employee, workHours: employees[i].environmentHours, phase:tagPhase, role:arrayRoles[6]});
         }
 	}
 	
@@ -618,7 +616,7 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
         dataProposals.push($scope.constPhase.numberOfAssignedPeople);
         dataProposals.push($scope.transPhase.numberOfAssignedPeople);
         
-        data.push({hoursRolePhase:dataHours, peoplePhase:dataProposals});        
+        data.push({hoursRolePhase:dataHours, peoplePhase:dataProposals});
 
 		$http.post('/PFM/rest/Employees/Save', data).
 		    success(function(data, status, headers, config) {
