@@ -432,6 +432,7 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 				count++;
 			}
 			$scope.resourcesBean.employeeList[$scope.resourcesBean.employeeList.indexOf($scope.employeeListSelected[p])].selected=false;
+			$scope.selectedAll = false;
 			seen = false;
 		}
 		if(count > 0)
