@@ -188,6 +188,40 @@ describe("Test RealDisciplineController", function(){
 	it("Transition total hours should be 520.0", function(){
 		expect(scope.transPhase.totalHour()).toBe(520.0);
 	});
+	
+	//Persona Hora total proyecto
+	//Proyecto
+	it("Proyect total hour for project management should be 604.1999999999999", function(){
+		expect(scope.totalProjectManagementHour()).toBe(604.1999999999999);
+	});
+	
+	it("Proyect total hour for requirements should be 607.3999999999999", function(){
+		expect(scope.RequirementsHourHour()).toBe(607.3999999999999);
+	});
+	
+	it("Proyect total hour for analysis should be 1045.7", function(){
+		expect(scope.totalAnalysisHour()).toBe(1045.7);
+	});
+
+	it("Proyect total hour for implementation should be 1499.1999999999998", function(){
+		expect(scope.totalImplementationHour()).toBe(1499.1999999999998);
+	});
+	
+	it("Proyect total hour for test should be 1128.4", function(){
+		expect(scope.totalTestsHour()).toBe(1128.4);
+	});
+	
+	it("Proyect total hour for deployment should be 305.8", function(){
+		expect(scope.totalDeploymentHour()).toBe(305.8);
+	});
+	
+	it("Proyect total hour for environment should be 321.4", function(){
+		expect(scope.totalVersionHour()).toBe(321.4);
+	});
+	
+	it("Proyect total hour Days should be 5512.099999999999", function(){
+		expect(scope.totalTotalHour()).toBe(5512.099999999999);
+	});
 		
 	/************************Distribución******************************/
 	//Fase de Inicio
