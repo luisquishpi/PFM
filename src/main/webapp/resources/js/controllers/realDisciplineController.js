@@ -120,7 +120,7 @@ projectApp.controller("realDisciplineController", ['$scope', '$isTest', 'bridgeS
 		return($scope.initPhase.ProjectManagmentHour()+$scope.elabPhase.ProjectManagmentHour()+
 		$scope.constPhase.ProjectManagmentHour()+$scope.transPhase.ProjectManagmentHour());
 	}
-	$scope.RequirementsHourHour = function(){
+	$scope.totalRequirementsHour = function(){
 		return($scope.initPhase.RequirementsHour()+$scope.elabPhase.RequirementsHour()+
 		$scope.constPhase.RequirementsHour()+$scope.transPhase.RequirementsHour());
 	}
@@ -147,6 +147,31 @@ projectApp.controller("realDisciplineController", ['$scope', '$isTest', 'bridgeS
 	$scope.totalTotalHour = function(){
 		return($scope.initPhase.totalHour()+$scope.elabPhase.totalHour()+
 		$scope.constPhase.totalHour()+$scope.transPhase.totalHour());
+	}
+	
+	$scope.totalProjectManagementDistribution = function(){
+		return ($scope.totalProjectManagementHour()/$scope.totalTotalHour())*100;
+	}
+	$scope.totalRequirementsDistribution = function(){
+		return ($scope.totalRequirementsHour()/$scope.totalTotalHour())*100;
+	}
+	$scope.totalAnalysisDistribution = function(){
+		return ($scope.totalAnalysisHour()/$scope.totalTotalHour())*100;
+	}
+	$scope.totalImplementationDistribution = function(){
+		return ($scope.totalImplementationHour()/$scope.totalTotalHour())*100;
+	}
+	$scope.totalTestsDistribution = function(){
+		return ($scope.totalTestsHour()/$scope.totalTotalHour())*100;
+	}
+	$scope.totalDeploymentDistribution = function(){
+		return ($scope.totalDeploymentHour()/$scope.totalTotalHour())*100;
+	}
+	$scope.totalVersionDistribution = function(){
+		return ($scope.totalVersionHour()/$scope.totalTotalHour())*100;
+	}
+	$scope.totalTotalDistribution = function(){
+		return ($scope.totalTotalHour()/$scope.totalTotalHour())*100;
 	}
 	
 	
