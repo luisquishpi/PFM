@@ -444,6 +444,14 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 		phase.assignedEmployee.splice(phase.assignedEmployee.indexOf(item), 1);		
 	}
 	
+	$scope.checkAll = function () {
+		$scope.employeeListSelected.splice(0,$scope.employeeListSelected.length);
+	    angular.forEach($scope.resourcesBean.employeeList, function (employee) {
+	    	employee.selected = $scope.selectedAll;
+	        $scope.copyEmployeeToList(employee);
+	    });
+	};
+	
 	//Se calcula las horas asignadas del empleado perteneciente  cierta fase
 	$scope.assignHours = function(employeeResource){
 		var hours=parseFloat(employeeResource.projectManagementHours)+parseFloat(employeeResource.requirementsHours)+parseFloat(employeeResource.analysisDesignHours)+

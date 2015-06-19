@@ -49,6 +49,32 @@ projectApp.controller("realDisciplineController", ['$scope', '$isTest', 'bridgeS
 			parseFloat(this.totalAssignedVersion);
 		}
 		
+		//Recursos Personas Día
+		this.ProjectManagmentDay = function(){
+			return this.ProjectManagmentHour()/$scope.realDisciplineBean.hoursPerDay;
+		}	
+		this.RequirementsDay = function(){
+			return this.RequirementsHour()/$scope.realDisciplineBean.hoursPerDay;
+		}
+		this.AnalysisDay = function(){
+			return this.AnalysisHour()/$scope.realDisciplineBean.hoursPerDay;
+		}
+		this.ImplementationDay = function(){
+			return this.ImplementationHour()/$scope.realDisciplineBean.hoursPerDay;
+		}
+		this.TestsDay = function(){
+			return this.TestsHour()/$scope.realDisciplineBean.hoursPerDay;
+		}
+		this.DeploymentDay = function(){
+			return this.DeploymentHour()/$scope.realDisciplineBean.hoursPerDay;
+		}
+		this.VersionDay = function(){
+			return this.VersionHour()/$scope.realDisciplineBean.hoursPerDay;
+		}
+		this.totalDay = function(){
+			return this.totalHour()/$scope.realDisciplineBean.hoursPerDay;;
+		}
+		
 		//distribucion		
 		this.projectManagementDistribution = function(){
 			return (parseFloat(this.totalAssignedProjectManagement)/this.totalHour())*100;

@@ -46,7 +46,8 @@ describe("Test RealDisciplineController", function(){
 					testsAssigned:124.8,
 					deployAssigned:156.0,
 					enviromentAssigned:26.0
-				}				
+				},
+				hoursPerDay: 8
 		}
 		
 		controller = $controller("realDisciplineController", {
@@ -385,5 +386,58 @@ describe("Test RealDisciplineController", function(){
 	
 	it("Proyect distribution Days should be 100", function(){
 		expect(scope.totalTotalDistribution()).toBe(100);
+	});
+	
+	//Persona dia
+	//Fase inicio
+	it("Initial total day for project management should be 4.55", function(){
+		expect(scope.initPhase.ProjectManagmentDay()).toBe(4.55);
+	});
+	it("Initial total day for requierements should be 12.35", function(){
+		expect(scope.initPhase.RequirementsDay()).toBe(12.35);
+	});
+	it("Initial total day for analysis should be 6.175", function(){
+		expect(scope.initPhase.AnalysisDay()).toBe(6.175);
+	});
+	it("Initial total day for implementation should be 2.6", function(){
+		expect(scope.initPhase.ImplementationDay()).toBe(2.6);
+	});
+	it("Initial total day for tests should be 2.6", function(){
+		expect(scope.initPhase.TestsDay()).toBe(2.6);
+	});
+	it("Initial total day for deployment should be 0.975", function(){
+		expect(scope.initPhase.DeploymentDay()).toBe(0.975);
+	});
+	it("Initial total day for version should be 3.25", function(){
+		expect(scope.initPhase.VersionDay()).toBe(3.25);
+	});
+	it("Initial total day for total should be 32.5", function(){
+		expect(scope.initPhase.totalDay()).toBe(32.5);
+	});
+	
+	//Fase elaboracion
+	it("Elaboration total day for project management should be 16.375", function(){
+		expect(scope.elabPhase.ProjectManagmentDay()).toBe(16.375);
+	});
+	it("Elaboration total day for requierements should be 24.575", function(){
+		expect(scope.elabPhase.RequirementsDay()).toBe(24.575);
+	});
+	it("Elaboration total day for analysis should be 49.1375", function(){
+		expect(scope.elabPhase.AnalysisDay()).toBe(49.1375);
+	});
+	it("Elaboration total day for implementation should be 17.75", function(){
+		expect(scope.elabPhase.ImplementationDay()).toBe(17.75);
+	});
+	it("Elaboration total day for tests should be 13.65", function(){
+		expect(scope.elabPhase.TestsDay()).toBe(13.65);
+	});
+	it("Elaboration total day for deployment should be 4.1", function(){
+		expect(scope.elabPhase.DeploymentDay()).toBe(4.1);
+	});
+	it("Elaboration total day for version should be 10.925", function(){
+		expect(scope.elabPhase.VersionDay()).toBe(10.925);
+	});
+	it("Elaboration total day for total should be 136.51250000000002", function(){
+		expect(scope.elabPhase.totalDay()).toBe(136.51250000000002);
 	});
 });
