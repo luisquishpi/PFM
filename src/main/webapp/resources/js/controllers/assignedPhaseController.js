@@ -72,7 +72,7 @@ projectApp.controller("assignedPhaseController",
 			this.phase = phase;
 			this.projectSchedule = projectSchedule;
 			this._phaseHours = null;
-			console.log(this.projectSchedule);
+			//console.log(this.projectSchedule);
 			this.phaseDays = projectDays
 					.filter(
 							function(el) {

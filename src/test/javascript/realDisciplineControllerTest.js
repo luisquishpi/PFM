@@ -440,4 +440,82 @@ describe("Test RealDisciplineController", function(){
 	it("Elaboration total day for total should be 136.51250000000002", function(){
 		expect(scope.elabPhase.totalDay()).toBe(136.51250000000002);
 	});
+	
+	//Fase construcción
+	it("Construction total day for project management should be 45.5", function(){
+		expect(scope.constPhase.ProjectManagmentDay()).toBe(45.5);
+	});
+	it("Construction total day for requierements should be 36.4", function(){
+		expect(scope.constPhase.RequirementsDay()).toBe(36.4);
+	});
+	it("Construction total day for analysis should be 72.8", function(){
+		expect(scope.constPhase.AnalysisDay()).toBe(72.8);
+	});
+	it("Construction total day for implementation should be 154.7", function(){
+		expect(scope.constPhase.ImplementationDay()).toBe(154.7);
+	});
+	it("Construction total day for tests should be 109.2", function(){
+		expect(scope.constPhase.TestsDay()).toBe(109.2);
+	});
+	it("Construction total day for deployment should be 13.65", function(){
+		expect(scope.constPhase.DeploymentDay()).toBe(13.65);
+	});
+	it("Construction total day for version should be 22.75", function(){
+		expect(scope.constPhase.VersionDay()).toBe(22.75);
+	});
+	it("Construction total day for total should be 454.99999999999994", function(){
+		expect(scope.constPhase.totalDay()).toBe(454.99999999999994);
+	});
+	
+	//Fase transición
+	it("Transition total day for project management should be 9.1", function(){
+		expect(scope.transPhase.ProjectManagmentDay()).toBe(9.1);
+	});
+	it("Transition total day for requierements should be 2.6", function(){
+		expect(scope.transPhase.RequirementsDay()).toBe(2.6);
+	});
+	it("Transition total day for analysis should be 2.6", function(){
+		expect(scope.transPhase.AnalysisDay()).toBe(2.6);
+	});
+	it("Transition total day for implementation should be 12.35", function(){
+		expect(scope.transPhase.ImplementationDay()).toBe(12.35);
+	});
+	it("Transition total day for tests should be 15.6", function(){
+		expect(scope.transPhase.TestsDay()).toBe(15.6);
+	});
+	it("Transition total day for deployment should be 19.5", function(){
+		expect(scope.transPhase.DeploymentDay()).toBe(19.5);
+	});
+	it("Transition total day for version should be 3.25", function(){
+		expect(scope.transPhase.VersionDay()).toBe(3.25);
+	});
+	it("Transition total day for total should be 65.0", function(){
+		expect(scope.transPhase.totalDay()).toBe(65.0);
+	});
+	
+	//Fase Proyecto
+	it("Proyect total day for project management should be 75.52499999999999", function(){
+		expect(scope.totalProjectManagementDay()).toBe(75.52499999999999);
+	});
+	it("Proyect total day for requierements should be 75.92499999999998", function(){
+		expect(scope.totalRequirementsDay()).toBe(75.92499999999998);
+	});
+	it("Proyect total day for analysis should be 130.7125", function(){
+		expect(scope.totalAnalysisDay()).toBe(130.7125);
+	});
+	it("Proyect total day for implementation should be 187.39999999999998", function(){
+		expect(scope.totalImplementationDay()).toBe(187.39999999999998);
+	});
+	it("Proyect total day for tests should be 141.05", function(){
+		expect(scope.totalTestsDay()).toBe(141.05);
+	});
+	it("Proyect total day for deployment should be 38.225", function(){
+		expect(scope.totalDeploymentDay()).toBe(38.225);
+	});
+	it("Proyect total day for version should be 40.175", function(){
+		expect(scope.totalVersionDay()).toBe(40.175);
+	});
+	it("Proyect total day for total should be 689.0124999999999", function(){
+		expect(scope.totalTotalDay()).toBe(689.0124999999999);
+	});
 });

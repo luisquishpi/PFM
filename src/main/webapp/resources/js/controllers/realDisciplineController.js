@@ -175,6 +175,39 @@ projectApp.controller("realDisciplineController", ['$scope', '$isTest', 'bridgeS
 		$scope.constPhase.totalHour()+$scope.transPhase.totalHour());
 	}
 	
+	$scope.totalProjectManagementDay = function(){
+		return($scope.initPhase.ProjectManagmentDay()+$scope.elabPhase.ProjectManagmentDay()+
+		$scope.constPhase.ProjectManagmentDay()+$scope.transPhase.ProjectManagmentDay());
+	}
+	$scope.totalRequirementsDay = function(){
+		return($scope.initPhase.RequirementsDay()+$scope.elabPhase.RequirementsDay()+
+		$scope.constPhase.RequirementsDay()+$scope.transPhase.RequirementsDay());
+	}
+	$scope.totalAnalysisDay = function(){
+		return($scope.initPhase.AnalysisDay()+$scope.elabPhase.AnalysisDay()+
+		$scope.constPhase.AnalysisDay()+$scope.transPhase.AnalysisDay());
+	}
+	$scope.totalImplementationDay = function(){
+		return($scope.initPhase.ImplementationDay()+$scope.elabPhase.ImplementationDay()+
+		$scope.constPhase.ImplementationDay()+$scope.transPhase.ImplementationDay());
+	}
+	$scope.totalTestsDay = function(){
+		return($scope.initPhase.TestsDay()+$scope.elabPhase.TestsDay()+
+		$scope.constPhase.TestsDay()+$scope.transPhase.TestsDay());
+	}
+	$scope.totalDeploymentDay = function(){
+		return($scope.initPhase.DeploymentDay()+$scope.elabPhase.DeploymentDay()+
+		$scope.constPhase.DeploymentDay()+$scope.transPhase.DeploymentDay());
+	}
+	$scope.totalVersionDay = function(){
+		return($scope.initPhase.VersionDay()+$scope.elabPhase.VersionDay()+
+		$scope.constPhase.VersionDay()+$scope.transPhase.VersionDay());
+	}
+	$scope.totalTotalDay = function(){
+		return($scope.initPhase.totalDay()+$scope.elabPhase.totalDay()+
+		$scope.constPhase.totalDay()+$scope.transPhase.totalDay());
+	}
+	
 	$scope.totalProjectManagementDistribution = function(){
 		return ($scope.totalProjectManagementHour()/$scope.totalTotalHour())*100;
 	}
@@ -198,7 +231,5 @@ projectApp.controller("realDisciplineController", ['$scope', '$isTest', 'bridgeS
 	}
 	$scope.totalTotalDistribution = function(){
 		return ($scope.totalTotalHour()/$scope.totalTotalHour())*100;
-	}
-	
-	
+	}	
 }]);
