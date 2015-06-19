@@ -49,54 +49,60 @@
 					<div ng-cloak="">
 					<p:growl id="growl" sticky="false" life="5000" showDetail="false" />
 						<div ng-controller="scheduleController">
-							<c:set var="projectBean" scope="request"
-								value="#{showTheoricalDisciplinesBean}" />
-							<ngsync direction="serverToClient"
-								value="{{projectBean.projectSchedule}}" />
-							<fieldset>
-									<ngsync direction="serverToClient"
-										value="#{projectBean.project}" />
-									<div class="row">
-										<div class="col-lg-2">
-											<p:outputLabel for="project" value="Proyecto: "
-												styleClass="label_height" />
-										</div>
-										<div class="col-lg-2">
-											<h:selectOneMenu id="project"
-												value="#{projectBean.project.id}" immediate="true"
-												onchange="submit()"
-												valueChangeListener="#{projectBean.onChangeProject}">
-												<f:selectItem itemLabel="Seleccione el proyecto" itemValue="-1"
-													noSelectionOption="true" />
-												<f:selectItems value="#{projectBean.projectList}"
-													var="project" itemValue="#{project.id}"
-													itemLabel="#{project.name}" />
-											</h:selectOneMenu>
-										</div>
-									</div>
-							</fieldset>
-
-							<h:panelGroup rendered="#{not projectBean.emptyProject}">
-								<div role="tabpanel">
-									<ul class="nav nav-tabs" role="tablist">
-										<li role="presentation" class="active"><a
-											href="#theorical" aria-controls="theorical" role="tab"
-											data-toggle="tab">Disciplinas teóricas</a></li>
-										<li role="presentation"><a
-											href="#real" aria-controls="real" role="tab"
-											data-toggle="tab">Disciplinas reales</a></li>
-									</ul>
-									<div class="tab-content">
-										<div role="tabpanel" class="tab-pane active" id="theorical">
-											<ui:include src="theorical_disciplines_pannel.xhtml" />
-										</div>
-										<div role="tabpanel" class="tab-pane" id="real">
-											<ui:include src="real_disciplines_pannel.xhtml" />
-										</div>
-									</div>
-								</div>
-
-							</h:panelGroup>
+							<c:set var="projectBean" scope="request" value="#{showTheoricalDisciplinesBean}" />
+							<ngsync direction="serverToClient" value="{{projectBean.projectSchedule}}" />
+							<div ng-if="scheduleFinished" ng-controller="theoricalPhaseController">
+                                <c:set var="showTheoricalPhasesBean" scope="request" value="#{showTheoricalDisciplinesBean}" />
+                                <ngsync direction="serverToClient" value="{{showTheoricalPhasesBean.project}}" />
+                                <ngsync direction="serverToClient" value="{{showTheoricalPhasesBean.employeeList}}" />
+	                                <div ng-if="phasesFinished" ng-controller="theoricalDisciplineController">
+	                                    <ngsync direction="serverToClient" value="{{projectBean.project}}" />
+										<fieldset>
+												<ngsync direction="serverToClient"
+													value="#{projectBean.project}" />
+												<div class="row">
+													<div class="col-lg-2">
+														<p:outputLabel for="project" value="Proyecto: "
+															styleClass="label_height" />
+													</div>
+													<div class="col-lg-2">
+														<h:selectOneMenu id="project"
+															value="#{projectBean.project.id}" immediate="true"
+															onchange="submit()"
+															valueChangeListener="#{projectBean.onChangeProject}">
+															<f:selectItem itemLabel="Seleccione el proyecto" itemValue="-1"
+																noSelectionOption="true" />
+															<f:selectItems value="#{projectBean.projectList}"
+																var="project" itemValue="#{project.id}"
+																itemLabel="#{project.name}" />
+														</h:selectOneMenu>
+													</div>
+												</div>
+										</fieldset>
+			
+										<h:panelGroup rendered="#{not projectBean.emptyProject}">
+											<div role="tabpanel">
+												<ul class="nav nav-tabs" role="tablist">
+													<li role="presentation" class="active"><a
+														href="#theorical" aria-controls="theorical" role="tab"
+														data-toggle="tab">Disciplinas teóricas</a></li>
+													<li role="presentation"><a
+														href="#real" aria-controls="real" role="tab"
+														data-toggle="tab">Disciplinas reales</a></li>
+												</ul>
+												<div class="tab-content">
+													<div role="tabpanel" class="tab-pane active" id="theorical">
+														<ui:include src="theorical_disciplines_pannel.xhtml" />
+													</div>
+													<div role="tabpanel" class="tab-pane" id="real">
+														<ui:include src="real_disciplines_pannel.xhtml" />
+													</div>
+												</div>
+											</div>
+			
+										</h:panelGroup>
+							     </div>
+							</div>
 						</div>
 					</div>
 				</h:form>
