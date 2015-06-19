@@ -26,6 +26,8 @@
 			<script
 				src="/PFM/resources/js/controllers/theoricalDisciplineController.js"></script>
 			<script
+				src="/PFM/resources/js/controllers/realDisciplineController.js"></script>
+			<script
 				src="/PFM/resources/js/controllers/theoricalPhaseController.js"></script>
 			<script>
 			
@@ -73,31 +75,28 @@
 										</div>
 									</div>
 							</fieldset>
-							<div ng-if="scheduleFinished" ng-controller="theoricalPhaseController">
-							    <c:set var="showTheoricalPhasesBean" scope="request"
-                                value="#{showTheoricalDisciplinesBean}" />
-								<ngsync direction="serverToClient" value="{{showTheoricalPhasesBean.project}}" />
-								<ngsync direction="serverToClient" 
-                                    value="{{showTheoricalPhasesBean.employeeList}}" />   	
-								<h:panelGroup
-									rendered="#{not projectBean.emptyProject}">
-									<div ng-if="phasesFinished" ng-controller="theoricalDisciplineController">
-										<ngsync direction="serverToClient" value="{{projectBean.project}}" />
-										<div role="tabpanel">
-											<ul class="nav nav-tabs" role="tablist">
-												<li role="presentation" class="active"><a
-													href="#theorical" aria-controls="theorical" role="tab"
-													data-toggle="tab">Disciplinas teóricas</a></li>
-											</ul>	
-											<div class="tab-content">
-												<div role="tabpanel" class="tab-pane active" id="theorical">
-													<ui:include src="theorical_disciplines_pannel.xhtml" />
-												</div>
-											</div>
+
+							<h:panelGroup rendered="#{not projectBean.emptyProject}">
+								<div role="tabpanel">
+									<ul class="nav nav-tabs" role="tablist">
+										<li role="presentation" class="active"><a
+											href="#theorical" aria-controls="theorical" role="tab"
+											data-toggle="tab">Disciplinas teóricas</a></li>
+										<li role="presentation"><a
+											href="#real" aria-controls="real" role="tab"
+											data-toggle="tab">Disciplinas reales</a></li>
+									</ul>
+									<div class="tab-content">
+										<div role="tabpanel" class="tab-pane active" id="theorical">
+											<ui:include src="theorical_disciplines_pannel.xhtml" />
+										</div>
+										<div role="tabpanel" class="tab-pane" id="real">
+											<ui:include src="real_disciplines_pannel.xhtml" />
 										</div>
 									</div>
-								</h:panelGroup>
-							</div>
+								</div>
+
+							</h:panelGroup>
 						</div>
 					</div>
 				</h:form>

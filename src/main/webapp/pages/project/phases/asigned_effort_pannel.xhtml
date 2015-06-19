@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+	<table class="table table-condensed">
+		<tr>
+			<th>&nbsp;</th>
+			<th class="ui-outputlabel ui-widget">Inicio</th>
+			<th class="ui-outputlabel ui-widget">Elaboración</th>
+			<th class="ui-outputlabel ui-widget">Construcción</th>
+			<th class="ui-outputlabel ui-widget">Transición</th>
+			<th class="ui-outputlabel ui-widget">Proyecto</th>
+		</tr>
+		<tr>
+			<td class="ui-outputlabel ui-widget"><strong>Distribución</strong></td>
+            <td class="ui-outputlabel ui-widget">{{inicioPercentajeEffort()}}%</td>
+            <td class="ui-outputlabel ui-widget">{{elaboracionPercentajeEffort()}}%</td>
+            <td class="ui-outputlabel ui-widget">{{construccionPercentajeEffort()}}%</td>
+            <td class="ui-outputlabel ui-widget">{{transicionPercentajeEffort()}}%</td>
+            <td class="ui-outputlabel ui-widget">{{proyectoPercentajeEffort()}}%</td>
+		</tr>
+		<tr>
+			<td class="ui-outputlabel ui-widget"><strong>Coste</strong></td>
+            <td class="ui-outputlabel ui-widget">{{inicioCosteEffort() | number:2}}<span class="currency"></span></td>
+            <td class="ui-outputlabel ui-widget">{{elaboracionCosteEffort() | number:2}}<span class="currency"></span></td>
+            <td class="ui-outputlabel ui-widget">{{construccionCosteEffort() | number:2}}<span class="currency"></span></td>
+            <td class="ui-outputlabel ui-widget">{{transicionCosteEffort() | number:2}}<span class="currency"></span></td>
+            <td class="ui-outputlabel ui-widget">{{proyectoCosteEffort() | number:2}}<span class="currency"></span></td>
+		</tr>
+		<tr>
+			<td class="ui-outputlabel ui-widget"><strong>Personas-hora</strong></td>
+            <td class="ui-outputlabel ui-widget">{{(inicioPeopleHour() | number:2) || (0 | number:2)}}</td>
+            <td class="ui-outputlabel ui-widget">{{(elaboracionPeopleHour() | number:2) || (0 | number:2)}}</td>
+            <td class="ui-outputlabel ui-widget">{{(construccionPeopleHour() | number:2) || (0 | number:2)}}</td>
+            <td class="ui-outputlabel ui-widget">{{(transicionPeopleHour() | number:2) || (0 | number:2)}}</td>
+            <td class="ui-outputlabel ui-widget">{{(proyectoPeopleHour() | number:2) || (0 | number:2)}}</td>
+		</tr>
+		<tr>
+			<td class="ui-outputlabel ui-widget"><strong>Personas-dia</strong></td>
+            <td class="ui-outputlabel ui-widget">{{(inicioPeopleDay() | number:2) || (0 | number:2)}}</td>
+            <td class="ui-outputlabel ui-widget">{{(elaboracionPeopleDay() | number:2) || (0 | number:2)}}</td>
+            <td class="ui-outputlabel ui-widget">{{(construccionPeopleDay() | number:2) || (0 | number:2)}}</td>
+            <td class="ui-outputlabel ui-widget">{{(transicionPeopleDay() | number:2) || (0 | number:2)}}</td>
+            <td class="ui-outputlabel ui-widget">{{(proyectoPeopleDay() | number:2) || (0 | number:2)}}</td>
+		</tr>
+		<tr>
+			<td class="ui-outputlabel ui-widget"><strong>Personas-mes</strong></td>
+            <td class="ui-outputlabel ui-widget">{{(inicioPeopleMonth() | number:2) || (0 | number:2)}}</td>
+            <td class="ui-outputlabel ui-widget">{{(elaboracionPeopleMonth() | number:2) || (0 | number:2)}}</td>
+            <td class="ui-outputlabel ui-widget">{{(construccionPeopleMonth() | number:2) || (0 | number:2)}}</td>
+            <td class="ui-outputlabel ui-widget">{{(transicionPeopleMonth() | number:2) || (0 | number:2)}}</td>
+            <td class="ui-outputlabel ui-widget">{{(proyectoPeopleMonth() | number:2) || (0 | number:2)}}</td>
+		</tr>
+		<tr>
+			<td class="ui-outputlabel ui-widget"><strong>Personas</strong></td>
+            <td class="ui-outputlabel ui-widget">{{(inicioPeople() | number:2) || (0 | number:2)}}</td>
+            <td class="ui-outputlabel ui-widget">{{(elaboracionPeople() | number:2) || (0 | number:2)}}</td>
+            <td class="ui-outputlabel ui-widget">{{(construccionPeople() | number:2) || (0 | number:2)}}</td>
+            <td class="ui-outputlabel ui-widget">{{(transicionPeople() | number:2) || (0 | number:2)}}</td>
+            <td class="ui-outputlabel ui-widget">{{(proyectoPeople() | number:2) || (0 | number:2)}}</td>
+		</tr>
+		<tr>
+			<td class="ui-outputlabel ui-widget"><strong>Distribución/iteración</strong></td>
+            <td class="ui-outputlabel ui-widget">{{inicioDistribucionIteration() | number:2}}%</td>
+            <td class="ui-outputlabel ui-widget">{{elaboracionDistribucionIteration() | number:2}}%</td>
+            <td class="ui-outputlabel ui-widget">{{construccionDistribucionIteration() | number:2}}%</td>
+            <td class="ui-outputlabel ui-widget">{{transicionDistribucionIteration() | number:2}}%</td>
+            <td class="ui-outputlabel ui-widget">{{proyectoDistribucionIteration() | number:2}}%</td>
+		</tr>
+		<tr>
+			<td class="ui-outputlabel ui-widget"><strong>Personas-hora/iteración</strong></td>
+            <td class="ui-outputlabel ui-widget">{{(inicioPersonHourIteration() | number:2) || (0 | number:2)}}</td>
+            <td class="ui-outputlabel ui-widget">{{(elaboracionPersonHourIteration() | number:2) || (0 | number:2)}}</td>
+            <td class="ui-outputlabel ui-widget">{{(construccionPersonHourIteration() | number:2) || (0 | number:2)}}</td>
+            <td class="ui-outputlabel ui-widget">{{(transicionPersonHourIteration() | number:2) || (0 | number:2)}}</td>
+            <td class="ui-outputlabel ui-widget">{{(proyectoPersonHourIteration() | number:2) || (0 | number:2)}}</td>
+		</tr>
+		<tr>
+			<td class="ui-outputlabel ui-widget"><strong>Personas-día/iteración</strong></td>
+            <td class="ui-outputlabel ui-widget">{{(inicioPersonDayIteration() | number:2) || (0 | number:2)}}</td>
+            <td class="ui-outputlabel ui-widget">{{(elaboracionPersonDayIteration() | number:2) || (0 | number:2)}}</td>
+            <td class="ui-outputlabel ui-widget">{{(construccionPersonDayIteration() | number:2) || (0 | number:2)}}</td>
+            <td class="ui-outputlabel ui-widget">{{(transicionPersonDayIteration() | number:2) || (0 | number:2)}}</td>
+            <td class="ui-outputlabel ui-widget">{{(proyectoPersonDayIteration() | number:2) || (0 | number:2)}}</td>
+		</tr>
+		<tr>
+			<td class="ui-outputlabel ui-widget"><strong>Personas-mes/iteración</strong></td>
+            <td class="ui-outputlabel ui-widget">{{(inicioPersonMonthIteration() | number:2) || (0 | number:2)}}</td>
+            <td class="ui-outputlabel ui-widget">{{(elaboracionPersonMonthIteration() | number:2) || (0 | number:2)}}</td>
+            <td class="ui-outputlabel ui-widget">{{(construccionPersonMonthIteration() | number:2) || (0 | number:2)}}</td>
+            <td class="ui-outputlabel ui-widget">{{(transicionPersonMonthIteration() | number:2) || (0 | number:2)}}</td>
+            <td class="ui-outputlabel ui-widget">{{(proyectoPersonMonthIteration() | number:2) || (0 | number:2)}}</td>
+		</tr>
+	</table>
+	
+</ui:composition>

@@ -416,7 +416,7 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 			$scope.employeeListSelected.splice(index,1);
 		}
 	}
-	
+		
 	//Se agrega el empleado a la fase correspondiente
 	$scope.addEmployee = function(phase){
 		var seen = false;
@@ -431,6 +431,8 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 				phase.assignedEmployee.push(new EmployeeResource($scope.employeeListSelected[p]));
 				count++;
 			}
+			$scope.resourcesBean.employeeList[$scope.resourcesBean.employeeList.indexOf($scope.employeeListSelected[p])].selected=false;
+			$scope.selectedAll = false;
 			seen = false;
 		}
 		if(count > 0)
@@ -443,6 +445,14 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	$scope.deleteEmployee = function(phase, item){
 		phase.assignedEmployee.splice(phase.assignedEmployee.indexOf(item), 1);		
 	}
+	
+	$scope.checkAll = function () {
+		$scope.employeeListSelected.splice(0,$scope.employeeListSelected.length);
+	    angular.forEach($scope.resourcesBean.employeeList, function (employee) {
+	    	employee.selected = $scope.selectedAll;
+	        $scope.copyEmployeeToList(employee);
+	    });
+	};
 	
 	//Se calcula las horas asignadas del empleado perteneciente  cierta fase
 	$scope.assignHours = function(employeeResource){
@@ -580,17 +590,15 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 		return $scope.employeeSalaryHour(employeeResource.employee)*totalAssignedHoursEmployee(employeeResource);
 	}
 	
-	
-	
 	function pushToDataArray(employees, data, tagPhase){
 		for(var i=0; i< employees.length;i++){
-        	data.push({project:{id:$scope.resourcesBean.project.id}, employee: employees[i].employee, workHours: employees[i].projectManagementHours, phase:tagPhase, role:"PROJECT_MANAGEMENT"});
-        	data.push({project:{id:$scope.resourcesBean.project.id}, employee: employees[i].employee, workHours: employees[i].requirementsHours, phase:tagPhase, role:"REQUIREMENTS"});
-        	data.push({project:{id:$scope.resourcesBean.project.id}, employee: employees[i].employee, workHours: employees[i].analysisDesignHours, phase:tagPhase, role:"ANALYSIS_DESIGN"});
-        	data.push({project:{id:$scope.resourcesBean.project.id}, employee: employees[i].employee, workHours: employees[i].implementationHours, phase:tagPhase, role:"IMPLEMENTATION"});
-        	data.push({project:{id:$scope.resourcesBean.project.id}, employee: employees[i].employee, workHours: employees[i].testsHours, phase:tagPhase, role:"TEST"});
-        	data.push({project:{id:$scope.resourcesBean.project.id}, employee: employees[i].employee, workHours: employees[i].deployHours, phase:tagPhase, role:"DEPLOY"});
-        	data.push({project:{id:$scope.resourcesBean.project.id}, employee: employees[i].employee, workHours: employees[i].environmentHours, phase:tagPhase, role:"ENVIRONMENT_REVISION_CONTROL"});
+        	data.push({project:{id:$scope.resourcesBean.project.id}, employee: employees[i].employee, workHours: employees[i].projectManagementHours, phase:tagPhase, role:arrayRoles[0]});
+        	data.push({project:{id:$scope.resourcesBean.project.id}, employee: employees[i].employee, workHours: employees[i].requirementsHours, phase:tagPhase, role:arrayRoles[1]});
+        	data.push({project:{id:$scope.resourcesBean.project.id}, employee: employees[i].employee, workHours: employees[i].analysisDesignHours, phase:tagPhase, role:arrayRoles[2]});
+        	data.push({project:{id:$scope.resourcesBean.project.id}, employee: employees[i].employee, workHours: employees[i].implementationHours, phase:tagPhase, role:arrayRoles[3]});
+        	data.push({project:{id:$scope.resourcesBean.project.id}, employee: employees[i].employee, workHours: employees[i].testsHours, phase:tagPhase, role:arrayRoles[4]});
+        	data.push({project:{id:$scope.resourcesBean.project.id}, employee: employees[i].employee, workHours: employees[i].deployHours, phase:tagPhase, role:arrayRoles[5]});
+        	data.push({project:{id:$scope.resourcesBean.project.id}, employee: employees[i].employee, workHours: employees[i].environmentHours, phase:tagPhase, role:arrayRoles[6]});
         }
 	}
 	
@@ -604,14 +612,12 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
         pushToDataArray($scope.constPhase.assignedEmployee, dataHours, "TRANSICION");
         
         var dataProposals = [];
-        dataProposals.push({"INICIO":$scope.initPhase.numberOfAssignedPeople});
-        dataProposals.push({"ELABORACION":$scope.elabPhase.numberOfAssignedPeople});
-        dataProposals.push({"CONSTRUCCION":$scope.constPhase.numberOfAssignedPeople});
-        dataProposals.push({"TRANSICION":$scope.transPhase.numberOfAssignedPeople});
+        dataProposals.push($scope.initPhase.numberOfAssignedPeople);
+        dataProposals.push($scope.elabPhase.numberOfAssignedPeople);
+        dataProposals.push($scope.constPhase.numberOfAssignedPeople);
+        dataProposals.push($scope.transPhase.numberOfAssignedPeople);
         
-        data.push(dataHours);
-        data.push(dataProposals);
-        
+        data.push({hoursRolePhase:dataHours, peoplePhase:dataProposals});
 
 		$http.post('/PFM/rest/Employees/Save', data).
 		    success(function(data, status, headers, config) {

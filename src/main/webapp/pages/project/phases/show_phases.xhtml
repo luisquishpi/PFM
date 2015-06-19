@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:body>
+	<ui:composition template="#{root}/WEB-INF/template/commonLayout.xhtml">
+		<ui:define name="header">
+            Consultar fases teóricas
+        </ui:define>
+		<ui:define name="javascript">
+			<script>
+				var projectApp = angular.module('projectApp',
+						[ "angularfaces" ]);
+				app.value("$isTest", false);
+			</script>
+			<script src="/PFM/resources/js/controllers/projectApp.js"></script>
+			<script src="/PFM/resources/js/controllers/scheduleController.js"></script>
+			<script
+				src="/PFM/resources/css/selectboxit/js/jquery.selectBoxIt.min.js"></script>
+			<script src="/PFM/resources/js/libs/moment.js"></script>
+			<script
+				src="/PFM/resources/js/controllers/theoricalPhaseController.js"></script>
+			<script
+				src="/PFM/resources/js/controllers/calendarController.js"></script>
+			<script
+				src="/PFM/resources/js/controllers/assignedPhaseController.js"></script>
+				
+			<script src="/PFM/resources/js/utils/on_key_press.js"></script>
+			<script>
+				$(function() {
+					var selectBox = $("#project").selectBoxIt();
+				});
+			</script>
+		</ui:define>
+		<ui:define name="css">
+			<link href="/PFM/resources/css/bootstrap/css/bootstrap.min.css"
+				rel="stylesheet" />
+			<link
+				href="/PFM/resources/css/selectboxit/css/jquery.selectBoxIt.css"
+				rel="stylesheet" />
+		</ui:define>
+		<ui:define name="content">
+			<div class="panel-body">
+				<h:form prependId="false" ng-app="projectApp">
+					<div ng-cloak=""> 
+					<p:growl id="growl" sticky="false" life="5000" showDetail="true" />
+					<div ng-controller="scheduleController">
+						<c:set var="projectBean" scope="request"
+							value="#{showTheoricalPhasesBean}" />
+						<ngsync direction="serverToClient"
+							value="{{projectBean.projectSchedule}}" />
+						<ui:include src="../project_pannel.xhtml" />
+						<h:panelGroup
+							rendered="#{not showTheoricalPhasesBean.emptyProject}">
+							   
+								<div role="tabpanel">
+									<ul class="nav nav-tabs" role="tablist">
+										<li role="presentation" class="active"><a
+											href="#theorical" aria-controls="theorical" role="tab"
+											data-toggle="tab">Teoricas</a></li>
+										<li role="presentation"><a href="#asigned"
+											aria-controls="asigned" role="tab" data-toggle="tab">Asignadas</a></li>
+									</ul>
+
+									<div class="tab-content">
+										<div role="tabpanel" class="tab-pane active" id="theorical">
+											<ui:include src="show_theorical_phases.xhtml" />
+										</div>
+									
+										<div role="tabpanel" class="tab-pane" id="asigned">
+											<ui:include src="show_asigned_phases.html" />
+										</div>
+									</div>
+								</div>
+							
+						</h:panelGroup>
+					</div>
+					</div>
+				</h:form>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+</html>
