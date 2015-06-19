@@ -416,7 +416,7 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 			$scope.employeeListSelected.splice(index,1);
 		}
 	}
-	
+		
 	//Se agrega el empleado a la fase correspondiente
 	$scope.addEmployee = function(phase){
 		var seen = false;
@@ -431,6 +431,7 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 				phase.assignedEmployee.push(new EmployeeResource($scope.employeeListSelected[p]));
 				count++;
 			}
+			$scope.resourcesBean.employeeList[$scope.resourcesBean.employeeList.indexOf($scope.employeeListSelected[p])].selected=false;
 			seen = false;
 		}
 		if(count > 0)
