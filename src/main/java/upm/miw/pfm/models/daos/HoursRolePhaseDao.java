@@ -8,5 +8,7 @@ import upm.miw.pfm.models.entities.Project;
 public interface HoursRolePhaseDao extends GenericDao<HoursRolePhase, Integer>{
     
     public List<HoursRolePhase> findByProject(Project project);
+    
+    public void deleteByProject(Project project);
 
 }

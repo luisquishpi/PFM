@@ -35,8 +35,49 @@ describe("Test AssignedPhasesController", function() {
 		};
 		scope.projectSchedule = {
 				workDays : 21,
-				project : {iterationDays : 2}
+				project : {iterationDays : 2},
+				mondayHours : 40,
+				tuesdayHours : 40,
+				wednesdayHours : 40,
+				thursdayHours : 40,
+				fridayHours : 40,
+				saturdayHours : 0,
+				sundayHours :0
 		};
+		var employee1 = { id: 1, annualGrossSalary : 24192, contract : { insurance : 0 } };
+		var employee2 = { id: 2, annualGrossSalary : 24192, contract : { insurance : 0 } };
+		var employee3 = { id: 3, annualGrossSalary : 24192, contract : { insurance : 0 } };
+		var employee4 = { id: 4, annualGrossSalary : 24192, contract : { insurance : 0 } };
+		/*
+		PROJECT_MANAGEMENT
+		REQUIREMENTS
+		ANALYSIS_DESIGN
+        IMPLEMENTATION
+        TESTS
+        DEPLOY
+        ENVIROMENT_REVISION_CONTROL
+        */ 
+		scope.phasesEmployees = [
+		                         { employee: employee1, workHours: 20, phase: 'INICIO', role: 'PROJECT_MANAGEMENT' },
+		                         { employee: employee1, workHours: 40, phase: 'INICIO', role: 'REQUIREMENTS' },
+		                         { employee: employee1, workHours: 20, phase: 'INICIO', role: 'ANALYSIS_DESIGN' },
+		                         { employee: employee1, workHours: 20, phase: 'INICIO', role: 'DEPLOY' },
+		                         
+		                         { employee: employee1, workHours: 20, phase: 'ELABORACION', role: 'PROJECT_MANAGEMENT' },
+		                         { employee: employee1, workHours: 40, phase: 'ELABORACION', role: 'REQUIREMENTS' },
+		                         { employee: employee1, workHours: 20, phase: 'ELABORACION', role: 'ANALYSIS_DESIGN' },
+		                         { employee: employee1, workHours: 20, phase: 'ELABORACION', role: 'DEPLOY' },
+		                         
+		                         { employee: employee1, workHours: 20, phase: 'CONSTRUCCION', role: 'PROJECT_MANAGEMENT' },
+		                         { employee: employee1, workHours: 40, phase: 'CONSTRUCCION', role: 'REQUIREMENTS' },
+		                         { employee: employee1, workHours: 20, phase: 'CONSTRUCCION', role: 'ANALYSIS_DESIGN' },
+		                         { employee: employee1, workHours: 20, phase: 'CONSTRUCCION', role: 'DEPLOY' },
+		                         
+		                         { employee: employee1, workHours: 20, phase: 'TRANSICION', role: 'PROJECT_MANAGEMENT' },
+		                         { employee: employee1, workHours: 40, phase: 'TRANSICION', role: 'REQUIREMENTS' },
+		                         { employee: employee1, workHours: 20, phase: 'TRANSICION', role: 'ANALYSIS_DESIGN' },
+		                         { employee: employee1, workHours: 20, phase: 'TRANSICION', role: 'DEPLOY' },
+								];
 		controller = $controller("assignedPhaseController", {
 			$scope : scope,
 			$isTest : true,
@@ -200,8 +241,8 @@ describe("Test AssignedPhasesController", function() {
 	it("Lengths::Project - End Date: should be null", function() {
 		expect(scope.projectEndDate).toBe(null);
 	});
-	it("Lengths::Project - Iterations: should be 10", function() {
-		expect(scope.projectIterations).toBe(10);
+	it("Lengths::Project - Iterations: should be 3", function() {
+		expect(scope.projectIterations).toBe(3);
 	});
 	it("Lengths::Project - Initial Iteration: should be 1", function() {
 		expect(scope.projectInitialIterations).toBe(1);
@@ -217,5 +258,61 @@ describe("Test AssignedPhasesController", function() {
 	});
 	it("Lengths::Project - Average Months: should be 0.028", function() {
 		expect(scope.projectAvgIterationMonths).toBeCloseTo(0.028,2);
+	});
+	/* ITERATION EFFORT % */
+	it("Efforts::InceptionPhase - Cost : should be 1200", function() {
+		expect(scope.inceptionPhaseLength.cost()).toBeCloseTo(1200,1);
+	});
+	it("Efforts::InceptionPhase - TotalHours : should be 100", function() {
+		expect(scope.inceptionPhaseLength.totalHours()).toBeCloseTo(100,1);
+	});
+	it("Efforts::InceptionPhase - TotalDays : should be 2.50", function() {
+		expect(scope.inceptionPhaseLength.totalDays).toBeCloseTo(2.50,1);
+	});
+	it("Efforts::InceptionPhase - Total Months : should be 0.11", function() {
+		expect(scope.inceptionPhaseLength.totalMonths).toBeCloseTo(0.11,1);
+	});
+	it("Efforts::InceptionPhase - Real Employees : should be 1", function() {
+		expect(scope.inceptionPhaseLength.realEmployees()).toBe(1);
+	});
+	it("Efforts::InceptionPhase - iterationResourcesPerHour : should be 100", function() {
+		expect(scope.inceptionPhaseLength.iterationResourcesPerHour()).toBeCloseTo(100,1);
+	});
+	it("Efforts::InceptionPhase - iterationResourcesPerDay : should be 2.50", function() {
+		expect(scope.inceptionPhaseLength.iterationResourcesPerDay()).toBeCloseTo(2.50,1);
+	});
+	it("Efforts::InceptionPhase - iterationResourcesPerMonth : should be 0.11", function() {
+		expect(scope.inceptionPhaseLength.iterationResourcesPerMonth()).toBeCloseTo(0.11,1);
+	});
+	/* PROJECT EFFORT */
+	it("Efforts::Project - Effort : should be 100", function() {
+		expect(scope.projectEffort).toBe(100);
+	});
+	it("Efforts::Project - Cost : should be 1200", function() {
+		expect(scope.projectCost).toBe(4800);
+	});
+	it("Efforts::Project - projectEffortHours : should be 400", function() {
+		expect(scope.projectEffortHours).toBe(400);
+	});
+	it("Efforts::Project - projectEffortDays : should be 10", function() {
+		expect(scope.projectEffortDays).toBe(10);
+	});
+	it("Efforts::Project - projectEffortMonths : should be 0.47", function() {
+		expect(scope.projectEffortMonths).toBeCloseTo(0.47,1);
+	});
+	it("Efforts::Project - projectEmployees : should be 0.11", function() {
+		expect(isFinite(scope.projectEmployees)).toBe(false);
+	});
+	it("Efforts::Project - projectIterationDistribution : should be 33.33", function() {
+		expect(scope.projectIterationDistribution).toBeCloseTo(33.33,1);
+	});
+	it("Efforts::Project - projectIterationResourcesPerHour : should be 133.33", function() {
+		expect(scope.projectIterationResourcesPerHour).toBeCloseTo(133.33,1);
+	});
+	it("Efforts::Project - projectIterationResourcesPerDay : should be 3.33", function() {
+		expect(scope.projectIterationResourcesPerDay).toBeCloseTo(3.33,1);
+	});
+	it("Efforts::Project - projectIterationResourcesPerMonth : should be 0.15", function() {
+		expect(scope.projectIterationResourcesPerMonth).toBeCloseTo(0.15,1);
 	});
 });
