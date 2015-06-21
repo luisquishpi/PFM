@@ -7,300 +7,306 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:p="http://primefaces.org/ui">
-	<div ng-if="phasesFinished" ng-controller="realDisciplineController">
-		<table class="table table-condensed">
-			<tr>
-				<th>&nbsp;</th>
-				<th class="ui-outputlabel ui-widget">Inicio</th>
-				<th class="ui-outputlabel ui-widget">Elaboración</th>
-				<th class="ui-outputlabel ui-widget">Construcción</th>
-				<th class="ui-outputlabel ui-widget">Transición</th>
-				<th class="ui-outputlabel ui-widget">Proyecto</th>
-			</tr>
-			<tr>
-				<td class="ui-outputlabel ui-widget"><strong>DISTRIBUCIÓN</strong></td>
-	            <td>&nbsp;</td>
-	            <td>&nbsp;</td>
-	            <td>&nbsp;</td>
-	            <td>&nbsp;</td>
-			</tr>
-			<tr>
-				<td class="ui-outputlabel ui-widget">Gestión del proyecto</td>
-	            <td class="ui-outputlabel ui-widget">{{initPhase.projectManagementDistribution}}%</td>
-	            <td class="ui-outputlabel ui-widget">{{elabPhase.projectManagementDistribution}}%</td>
-	            <td class="ui-outputlabel ui-widget">{{transPhase.projectManagementDistribution}}%</td>
-	            <td class="ui-outputlabel ui-widget">{{constPhase.projectManagementDistribution}}%</td>
-	            <td class="ui-outputlabel ui-widget">{{}}%</td>
-			</tr>
-			<tr>
-				<td class="ui-outputlabel ui-widget">Requisitos</td>
-	            <td class="ui-outputlabel ui-widget">{{initPhase.RequirementsDistribution}}%</td>
-	            <td class="ui-outputlabel ui-widget">{{elabPhase.RequirementsDistribution}}%</td>
-	            <td class="ui-outputlabel ui-widget">{{transPhase.RequirementsDistribution}}%</td>
-	            <td class="ui-outputlabel ui-widget">{{constPhase.RequirementsDistribution}}%</td>
-	            <td class="ui-outputlabel ui-widget">{{}}%</td>
-			</tr>
-			<tr>
-				<td class="ui-outputlabel ui-widget">Análisis y diseño</td>
-	            <td class="ui-outputlabel ui-widget">{{initPhase.AnalysisDistribution}}%</td>
-	            <td class="ui-outputlabel ui-widget">{{elabPhase.AnalysisDistribution}}%</td>
-	            <td class="ui-outputlabel ui-widget">{{transPhase.AnalysisDistribution}}%</td>
-	            <td class="ui-outputlabel ui-widget">{{constPhase.AnalysisDistribution}}%</td>
-	            <td class="ui-outputlabel ui-widget">{{}}%</td>
-			</tr>
-			<tr>
-				<td class="ui-outputlabel ui-widget">Implementación</td>
-	            <td class="ui-outputlabel ui-widget">{{initPhase.ImplementationDistribution}}%</td>
-	            <td class="ui-outputlabel ui-widget">{{elabPhase.ImplementationDistribution}}%</td>
-	            <td class="ui-outputlabel ui-widget">{{transPhase.ImplementationDistribution}}%</td>
-	            <td class="ui-outputlabel ui-widget">{{constPhase.ImplementationDistribution}}%</td>
-	            <td class="ui-outputlabel ui-widget">{{}}%</td>
-			</tr>
-			<tr>
-				<td class="ui-outputlabel ui-widget">Pruebas</td>
-	            <td class="ui-outputlabel ui-widget">{{initPhase.TestsDistribution}}%</td>
-	            <td class="ui-outputlabel ui-widget">{{elabPhase.TestsDistribution}}%</td>
-	            <td class="ui-outputlabel ui-widget">{{transPhase.TestsDistribution}}%</td>
-	            <td class="ui-outputlabel ui-widget">{{constPhase.TestsDistribution}}%</td>
-	            <td class="ui-outputlabel ui-widget">{{}}%</td>
-			</tr>
-			<tr>
-				<td class="ui-outputlabel ui-widget">Despliegue</td>
-	            <td class="ui-outputlabel ui-widget">{{initPhase.DeployDistribution}}%</td>
-	            <td class="ui-outputlabel ui-widget">{{elabPhase.DeployDistribution}}%</td>
-	            <td class="ui-outputlabel ui-widget">{{transPhase.DeployDistribution}}%</td>
-	            <td class="ui-outputlabel ui-widget">{{constPhase.DeployDistribution}}%</td>
-	            <td class="ui-outputlabel ui-widget">{{}}%</td>
-			</tr>
-			<tr>
-				<td class="ui-outputlabel ui-widget">Entorno y control de versiones</td>
-	            <td class="ui-outputlabel ui-widget">{{initPhase.VersionDistribution}}%</td>
-	            <td class="ui-outputlabel ui-widget">{{elabPhase.VersionDistribution}}%</td>
-	            <td class="ui-outputlabel ui-widget">{{transPhase.VersionDistribution}}%</td>
-	            <td class="ui-outputlabel ui-widget">{{constPhase.VersionDistribution}}%</td>
-	            <td class="ui-outputlabel ui-widget">{{}}%</td>
-			</tr>
-			<tr>
-				<td class="ui-outputlabel ui-widget">TOTAL</td>
-	            <td class="ui-outputlabel ui-widget">{{initPhase.totalDistribution}}%</td>
-	            <td class="ui-outputlabel ui-widget">{{elabPhase.totalDistribution}}%</td>
-	            <td class="ui-outputlabel ui-widget">{{transPhase.totalDistribution}}%</td>
-	            <td class="ui-outputlabel ui-widget">{{constPhase.totalDistribution}}%</td>
-	            <td class="ui-outputlabel ui-widget">{{}}%</td>
-			</tr>
-			<tr>
-				<td class="ui-outputlabel ui-widget"><strong>PERSONAS-HORA</strong></td>
-	            <td>&nbsp;</td>
-	            <td>&nbsp;</td>
-	            <td>&nbsp;</td>
-	            <td>&nbsp;</td>
-			</tr>
-			<tr>
-				<td class="ui-outputlabel ui-widget">Gestión del proyecto</td>
-	            <td class="ui-outputlabel ui-widget">{{initPhase.ProjectManagmentHour}}</td>
-	            <td class="ui-outputlabel ui-widget">{{elabPhase.ProjectManagmentHour}}</td>
-	            <td class="ui-outputlabel ui-widget">{{transPhase.ProjectManagmentHour}}</td>
-	            <td class="ui-outputlabel ui-widget">{{constPhase.ProjectManagmentHour}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-			</tr>
-			<tr>
-				<td class="ui-outputlabel ui-widget">Requisitos</td>
-	            <td class="ui-outputlabel ui-widget">{{initPhase.RequirementsHour}}</td>
-	            <td class="ui-outputlabel ui-widget">{{elabPhase.RequirementsHour}}</td>
-	            <td class="ui-outputlabel ui-widget">{{transPhase.RequirementsHour}}</td>
-	            <td class="ui-outputlabel ui-widget">{{constPhase.RequirementsHour}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-			</tr>
-			<tr>
-				<td class="ui-outputlabel ui-widget">Análisis y diseño</td>
-	            <td class="ui-outputlabel ui-widget">{{initPhase.AnalysisHour}}</td>
-	            <td class="ui-outputlabel ui-widget">{{elabPhase.AnalysisHour}}</td>
-	            <td class="ui-outputlabel ui-widget">{{transPhase.AnalysisHour}}</td>
-	            <td class="ui-outputlabel ui-widget">{{constPhase.AnalysisHour}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-			</tr>
-			<tr>
-				<td class="ui-outputlabel ui-widget">Implementación</td>
-	            <td class="ui-outputlabel ui-widget">{{initPhase.ImplementationHour}}</td>
-	            <td class="ui-outputlabel ui-widget">{{elabPhase.ImplementationHour}}</td>
-	            <td class="ui-outputlabel ui-widget">{{transPhase.ImplementationHour}}</td>
-	            <td class="ui-outputlabel ui-widget">{{constPhase.ImplementationHour}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-			</tr>
-			<tr>
-				<td class="ui-outputlabel ui-widget">Pruebas</td>
-	            <td class="ui-outputlabel ui-widget">{{initPhase.TestsHour}}</td>
-	            <td class="ui-outputlabel ui-widget">{{elabPhase.TestsHour}}</td>
-	            <td class="ui-outputlabel ui-widget">{{transPhase.TestsHour}}</td>
-	            <td class="ui-outputlabel ui-widget">{{constPhase.TestsHour}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-			</tr>
-			<tr>
-				<td class="ui-outputlabel ui-widget">Despliegue</td>
-	            <td class="ui-outputlabel ui-widget">{{initPhase.DeploymentHour}}</td>
-	            <td class="ui-outputlabel ui-widget">{{elabPhase.DeploymentHour}}</td>
-	            <td class="ui-outputlabel ui-widget">{{transPhase.DeploymentHour}}</td>
-	            <td class="ui-outputlabel ui-widget">{{constPhase.DeploymentHour}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-			</tr>
-			<tr>
-				<td class="ui-outputlabel ui-widget">Entorno y control de versiones</td>
-	            <td class="ui-outputlabel ui-widget">{{initPhase.VersionHour}}</td>
-	            <td class="ui-outputlabel ui-widget">{{elabPhase.VersionHour}}</td>
-	            <td class="ui-outputlabel ui-widget">{{transPhase.VersionHour}}</td>
-	            <td class="ui-outputlabel ui-widget">{{constPhase.VersionHour}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-			</tr>
-			<tr>
-				<td class="ui-outputlabel ui-widget">TOTAL</td>
-	            <td class="ui-outputlabel ui-widget">{{initPhase.totalHour}}</td>
-	            <td class="ui-outputlabel ui-widget">{{elabPhase.totalHour}}</td>
-	            <td class="ui-outputlabel ui-widget">{{transPhase.totalHour}}</td>
-	            <td class="ui-outputlabel ui-widget">{{constPhase.totalHour}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-			</tr>
-			<tr>
-				<td class="ui-outputlabel ui-widget"><strong>PERSONAS-DÍA</strong></td>
-	            <td>&nbsp;</td>
-	            <td>&nbsp;</td>
-	            <td>&nbsp;</td>
-	            <td>&nbsp;</td>
-			</tr>
-			<tr>
-				<td class="ui-outputlabel ui-widget">Gestión del proyecto</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-			</tr>
-			<tr>
-				<td class="ui-outputlabel ui-widget">Requisitos</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-			</tr>
-			<tr>
-				<td class="ui-outputlabel ui-widget">Análisis y diseño</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-			</tr>
-			<tr>
-				<td class="ui-outputlabel ui-widget">Implementación</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-			</tr>
-			<tr>
-				<td class="ui-outputlabel ui-widget">Pruebas</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-			</tr>
-			<tr>
-				<td class="ui-outputlabel ui-widget">Despliegue</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-			</tr>
-			<tr>
-				<td class="ui-outputlabel ui-widget">Entorno y control de versiones</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-			</tr>
-			<tr>
-				<td class="ui-outputlabel ui-widget">TOTAL</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-			</tr>
-			<tr>
-				<td class="ui-outputlabel ui-widget"><strong>PERSONAS-MES</strong></td>
-	            <td>&nbsp;</td>
-	            <td>&nbsp;</td>
-	            <td>&nbsp;</td>
-	            <td>&nbsp;</td>
-			</tr>
-			<tr>
-				<td class="ui-outputlabel ui-widget">Gestión del proyecto</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-			</tr>
-			<tr>
-				<td class="ui-outputlabel ui-widget">Requisitos</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-			</tr>
-			<tr>
-				<td class="ui-outputlabel ui-widget">Análisis y diseño</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-			</tr>
-			<tr>
-				<td class="ui-outputlabel ui-widget">Implementación</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-			</tr>
-			<tr>
-				<td class="ui-outputlabel ui-widget">Pruebas</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-			</tr>
-			<tr>
-				<td class="ui-outputlabel ui-widget">Despliegue</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-			</tr>
-			<tr>
-				<td class="ui-outputlabel ui-widget">Entorno y control de versiones</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-			</tr>
-			<tr>
-				<td class="ui-outputlabel ui-widget">TOTAL</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-	            <td class="ui-outputlabel ui-widget">{{}}</td>
-			</tr>
-		</table>
+	<div ng-if="disciplinesFinished" ng-controller="resourceController">
+	<c:set var="resourcesBean" scope="request" value="#{showTheoricalPhasesBean}" />
+        <ngsync direction="serverToClient" value="{{resourcesBean.project}}" /> 
+        <ngsync direction="serverToClient"  value="#{resourcesBean.employeeList}"/>
+	    <div ng-if="resourceFinished" ng-controller="realDisciplineController">
+	        <ngsync direction="serverToClient" value="{{realDisciplinesBean.initPhase}}" />
+		    <table class="table table-condensed">
+				<tr>
+					<th>&nbsp;</th>
+					<th class="ui-outputlabel ui-widget">Inicio</th>
+					<th class="ui-outputlabel ui-widget">Elaboración</th>
+					<th class="ui-outputlabel ui-widget">Construcción</th>
+					<th class="ui-outputlabel ui-widget">Transición</th>
+					<th class="ui-outputlabel ui-widget">Proyecto</th>
+				</tr>
+				<tr>
+					<td class="ui-outputlabel ui-widget"><strong>DISTRIBUCIÓN</strong></td>
+		            <td>&nbsp;</td>
+		            <td>&nbsp;</td>
+		            <td>&nbsp;</td>
+		            <td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="ui-outputlabel ui-widget">Gestión del proyecto</td>
+		            <td class="ui-outputlabel ui-widget">{{initPhase.projectManagementDistribution()}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{elabPhase.projectManagementDistribution}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{transPhase.projectManagementDistribution}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{constPhase.projectManagementDistribution}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{totalProjectManagementHour}}%</td>
+				</tr>
+				<tr>
+					<td class="ui-outputlabel ui-widget">Requisitos</td>
+		            <td class="ui-outputlabel ui-widget">{{initPhase.RequirementsDistribution}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{elabPhase.RequirementsDistribution}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{transPhase.RequirementsDistribution}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{constPhase.RequirementsDistribution}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{totalRequirementsHour}}%</td>
+				</tr>
+				<tr>
+					<td class="ui-outputlabel ui-widget">Análisis y diseño</td>
+		            <td class="ui-outputlabel ui-widget">{{initPhase.AnalysisDistribution}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{elabPhase.AnalysisDistribution}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{transPhase.AnalysisDistribution}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{constPhase.AnalysisDistribution}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{totalAnalysisHour}}%</td>
+				</tr>
+				<tr>
+					<td class="ui-outputlabel ui-widget">Implementación</td>
+		            <td class="ui-outputlabel ui-widget">{{initPhase.ImplementationDistribution}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{elabPhase.ImplementationDistribution}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{transPhase.ImplementationDistribution}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{constPhase.ImplementationDistribution}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{totalImplementationHour}}%</td>
+				</tr>
+				<tr>
+					<td class="ui-outputlabel ui-widget">Pruebas</td>
+		            <td class="ui-outputlabel ui-widget">{{initPhase.TestsDistribution}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{elabPhase.TestsDistribution}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{transPhase.TestsDistribution}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{constPhase.TestsDistribution}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{totalTestsHour}}%</td>
+				</tr>
+				<tr>
+					<td class="ui-outputlabel ui-widget">Despliegue</td>
+		            <td class="ui-outputlabel ui-widget">{{initPhase.DeployDistribution}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{elabPhase.DeployDistribution}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{transPhase.DeployDistribution}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{constPhase.DeployDistribution}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{totalDeploymentHour}}%</td>
+				</tr>
+				<tr>
+					<td class="ui-outputlabel ui-widget">Entorno y control de versiones</td>
+		            <td class="ui-outputlabel ui-widget">{{initPhase.VersionDistribution}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{elabPhase.VersionDistribution}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{transPhase.VersionDistribution}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{constPhase.VersionDistribution}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{totalVersionHour}}%</td>
+				</tr>
+				<tr>
+					<td class="ui-outputlabel ui-widget">TOTAL</td>
+		            <td class="ui-outputlabel ui-widget">{{initPhase.totalDistribution}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{elabPhase.totalDistribution}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{transPhase.totalDistribution}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{constPhase.totalDistribution}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{totalTotalHour}}%</td>
+				</tr>
+				<tr>
+					<td class="ui-outputlabel ui-widget"><strong>PERSONAS-HORA</strong></td>
+		            <td>&nbsp;</td>
+		            <td>&nbsp;</td>
+		            <td>&nbsp;</td>
+		            <td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="ui-outputlabel ui-widget">Gestión del proyecto</td>
+		            <td class="ui-outputlabel ui-widget">{{initPhase.ProjectManagmentHour}}</td>
+		            <td class="ui-outputlabel ui-widget">{{elabPhase.ProjectManagmentHour}}</td>
+		            <td class="ui-outputlabel ui-widget">{{transPhase.ProjectManagmentHour}}</td>
+		            <td class="ui-outputlabel ui-widget">{{constPhase.ProjectManagmentHour}}</td>
+		            <td class="ui-outputlabel ui-widget">{{totalProjectManagementHour}}</td>
+				</tr>
+				<tr>
+					<td class="ui-outputlabel ui-widget">Requisitos</td>
+		            <td class="ui-outputlabel ui-widget">{{initPhase.RequirementsHour}}</td>
+		            <td class="ui-outputlabel ui-widget">{{elabPhase.RequirementsHour}}</td>
+		            <td class="ui-outputlabel ui-widget">{{transPhase.RequirementsHour}}</td>
+		            <td class="ui-outputlabel ui-widget">{{constPhase.RequirementsHour}}</td>
+		            <td class="ui-outputlabel ui-widget">{{totalRequirementsHour}}</td>
+				</tr>
+				<tr>
+					<td class="ui-outputlabel ui-widget">Análisis y diseño</td>
+		            <td class="ui-outputlabel ui-widget">{{initPhase.AnalysisHour}}</td>
+		            <td class="ui-outputlabel ui-widget">{{elabPhase.AnalysisHour}}</td>
+		            <td class="ui-outputlabel ui-widget">{{transPhase.AnalysisHour}}</td>
+		            <td class="ui-outputlabel ui-widget">{{constPhase.AnalysisHour}}</td>
+		            <td class="ui-outputlabel ui-widget">{{totalAnalysisHour}}</td>
+				</tr>
+				<tr>
+					<td class="ui-outputlabel ui-widget">Implementación</td>
+		            <td class="ui-outputlabel ui-widget">{{initPhase.ImplementationHour}}</td>
+		            <td class="ui-outputlabel ui-widget">{{elabPhase.ImplementationHour}}</td>
+		            <td class="ui-outputlabel ui-widget">{{transPhase.ImplementationHour}}</td>
+		            <td class="ui-outputlabel ui-widget">{{constPhase.ImplementationHour}}</td>
+		            <td class="ui-outputlabel ui-widget">{{totalImplementationHour}}</td>
+				</tr>
+				<tr>
+					<td class="ui-outputlabel ui-widget">Pruebas</td>
+		            <td class="ui-outputlabel ui-widget">{{initPhase.TestsHour}}</td>
+		            <td class="ui-outputlabel ui-widget">{{elabPhase.TestsHour}}</td>
+		            <td class="ui-outputlabel ui-widget">{{transPhase.TestsHour}}</td>
+		            <td class="ui-outputlabel ui-widget">{{constPhase.TestsHour}}</td>
+		            <td class="ui-outputlabel ui-widget">{{totalTestsHour}}</td>
+				</tr>
+				<tr>
+					<td class="ui-outputlabel ui-widget">Despliegue</td>
+		            <td class="ui-outputlabel ui-widget">{{initPhase.DeploymentHour}}</td>
+		            <td class="ui-outputlabel ui-widget">{{elabPhase.DeploymentHour}}</td>
+		            <td class="ui-outputlabel ui-widget">{{transPhase.DeploymentHour}}</td>
+		            <td class="ui-outputlabel ui-widget">{{constPhase.DeploymentHour}}</td>
+		            <td class="ui-outputlabel ui-widget">{{totalDeploymentHour}}</td>
+				</tr>
+				<tr>
+					<td class="ui-outputlabel ui-widget">Entorno y control de versiones</td>
+		            <td class="ui-outputlabel ui-widget">{{initPhase.VersionHour}}</td>
+		            <td class="ui-outputlabel ui-widget">{{elabPhase.VersionHour}}</td>
+		            <td class="ui-outputlabel ui-widget">{{transPhase.VersionHour}}</td>
+		            <td class="ui-outputlabel ui-widget">{{constPhase.VersionHour}}</td>
+		            <td class="ui-outputlabel ui-widget">{{totalVersionHour}}</td>
+				</tr>
+				<tr>
+					<td class="ui-outputlabel ui-widget">TOTAL</td>
+		            <td class="ui-outputlabel ui-widget">{{initPhase.totalHour}}</td>
+		            <td class="ui-outputlabel ui-widget">{{elabPhase.totalHour}}</td>
+		            <td class="ui-outputlabel ui-widget">{{transPhase.totalHour}}</td>
+		            <td class="ui-outputlabel ui-widget">{{constPhase.totalHour}}</td>
+		            <td class="ui-outputlabel ui-widget">{{totalTotalHour}}</td>
+				</tr>
+				<tr>
+					<td class="ui-outputlabel ui-widget"><strong>PERSONAS-DÍA</strong></td>
+		            <td>&nbsp;</td>
+		            <td>&nbsp;</td>
+		            <td>&nbsp;</td>
+		            <td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="ui-outputlabel ui-widget">Gestión del proyecto</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+				</tr>
+				<tr>
+					<td class="ui-outputlabel ui-widget">Requisitos</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+				</tr>
+				<tr>
+					<td class="ui-outputlabel ui-widget">Análisis y diseño</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+				</tr>
+				<tr>
+					<td class="ui-outputlabel ui-widget">Implementación</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+				</tr>
+				<tr>
+					<td class="ui-outputlabel ui-widget">Pruebas</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+				</tr>
+				<tr>
+					<td class="ui-outputlabel ui-widget">Despliegue</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+				</tr>
+				<tr>
+					<td class="ui-outputlabel ui-widget">Entorno y control de versiones</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+				</tr>
+				<tr>
+					<td class="ui-outputlabel ui-widget">TOTAL</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+				</tr>
+				<tr>
+					<td class="ui-outputlabel ui-widget"><strong>PERSONAS-MES</strong></td>
+		            <td>&nbsp;</td>
+		            <td>&nbsp;</td>
+		            <td>&nbsp;</td>
+		            <td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="ui-outputlabel ui-widget">Gestión del proyecto</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+				</tr>
+				<tr>
+					<td class="ui-outputlabel ui-widget">Requisitos</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+				</tr>
+				<tr>
+					<td class="ui-outputlabel ui-widget">Análisis y diseño</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+				</tr>
+				<tr>
+					<td class="ui-outputlabel ui-widget">Implementación</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+				</tr>
+				<tr>
+					<td class="ui-outputlabel ui-widget">Pruebas</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+				</tr>
+				<tr>
+					<td class="ui-outputlabel ui-widget">Despliegue</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+				</tr>
+				<tr>
+					<td class="ui-outputlabel ui-widget">Entorno y control de versiones</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+				</tr>
+				<tr>
+					<td class="ui-outputlabel ui-widget">TOTAL</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+		            <td class="ui-outputlabel ui-widget">{{}}</td>
+				</tr>
+			</table>
+		</div>
 	</div>
 </ui:composition>

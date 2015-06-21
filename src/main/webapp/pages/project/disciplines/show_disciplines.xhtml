@@ -29,8 +29,9 @@
 				src="/PFM/resources/js/controllers/realDisciplineController.js"></script>
 			<script
 				src="/PFM/resources/js/controllers/theoricalPhaseController.js"></script>
+			<script
+                src="/PFM/resources/js/controllers/resourceController.js"></script>
 			<script>
-			
 				$(function() {
 					var selectBox = $("#project").selectBoxIt();
 				});
@@ -56,28 +57,25 @@
                                 <ngsync direction="serverToClient" value="{{showTheoricalPhasesBean.project}}" />
                                 <ngsync direction="serverToClient" value="{{showTheoricalPhasesBean.employeeList}}" />
 	                                <div ng-if="phasesFinished" ng-controller="theoricalDisciplineController">
-	                                    <ngsync direction="serverToClient" value="{{projectBean.project}}" />
 										<fieldset>
-												<ngsync direction="serverToClient"
-													value="#{projectBean.project}" />
-												<div class="row">
-													<div class="col-lg-2">
-														<p:outputLabel for="project" value="Proyecto: "
-															styleClass="label_height" />
-													</div>
-													<div class="col-lg-2">
-														<h:selectOneMenu id="project"
-															value="#{projectBean.project.id}" immediate="true"
-															onchange="submit()"
-															valueChangeListener="#{projectBean.onChangeProject}">
-															<f:selectItem itemLabel="Seleccione el proyecto" itemValue="-1"
-																noSelectionOption="true" />
-															<f:selectItems value="#{projectBean.projectList}"
-																var="project" itemValue="#{project.id}"
-																itemLabel="#{project.name}" />
-														</h:selectOneMenu>
-													</div>
+											<div class="row">
+												<div class="col-lg-2">
+													<p:outputLabel for="project" value="Proyecto: "
+														styleClass="label_height" />
 												</div>
+												<div class="col-lg-2">
+													<h:selectOneMenu id="project"
+														value="#{projectBean.project.id}" immediate="true"
+														onchange="submit()"
+														valueChangeListener="#{projectBean.onChangeProject}">
+														<f:selectItem itemLabel="Seleccione el proyecto" itemValue="-1"
+															noSelectionOption="true" />
+														<f:selectItems value="#{projectBean.projectList}"
+															var="project" itemValue="#{project.id}"
+															itemLabel="#{project.name}" />
+													</h:selectOneMenu>
+												</div>
+											</div>
 										</fieldset>
 			
 										<h:panelGroup rendered="#{not projectBean.emptyProject}">

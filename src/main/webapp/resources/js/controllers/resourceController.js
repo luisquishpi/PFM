@@ -14,6 +14,7 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 		  workTimeService.calculateWorkDaysAndHour($scope.resourcesBean.project.startString, 
 				  $scope.resourcesBean.project.endString, $scope.discipline.phases.schedule.listHoursEachDay());
 	}
+	$scope.resourceFinished = false;
 	var INIT_PHASE = "INIT";
 	var ELAB_PHASE = "ELAB";
 	var CONST_PHASE = "CONST";
@@ -623,4 +624,5 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 		            "severity":"error"});
 		    })
 	}	
+	$scope.resourceFinished = true;
 }]);	
