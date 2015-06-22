@@ -2,7 +2,7 @@
  * AngularJS resourceController
  */
 
-projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService', 'workTimeService', 'EmployeeUtils', 'DateUtils', '$http', function ($scope, $isTest, bridgeService, workTimeService, EmployeeUtils, DateUtils, $http) {
+projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService', 'workTimeService', 'EmployeeUtils', 'DateUtils', '$http', 'projectResourcesService', function ($scope, $isTest, bridgeService, workTimeService, EmployeeUtils, DateUtils, $http, projectResourcesService) {
 	$scope.discipline = bridgeService.shareData;
 	$scope.setSortType = function(type){
 		$scope.sortType = function(element){
@@ -30,6 +30,12 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 		this.deployHours=0;
 		this.environmentHours=0;
 		this.availableEmployeeHours=0;
+	}
+	
+	function ProjectInfo(){
+		this.resourcesList;
+		this.schedule;
+		this.project;
 	}
 	
 	function Phase(phase){
@@ -304,8 +310,19 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 			$scope.transPhase.numberOfAssignedPeople = $scope.transicionNumberOfAssignedPeopleMock;		
 		}			
 
+	}else{
+		if($scope.resourcesBean.resourcesList!='undefined'){
+			var projectInfo = new ProjectInfo();
+			projectInfo.resourcesList = $scope.resourcesBean.resourcesList;
+			projectInfo.schedule = $scope.discipline.phases.schedule;
+			projectInfo.project = $scope.resourcesBean.project;
+			$scope.initPhase.assignedEmployee = projectResourcesService.toEmployeeResourceList(projectInfo, $scope.initPhase, "INICIO");
+			$scope.elabPhase.assignedEmployee = projectResourcesService.toEmployeeResourceList(projectInfo, $scope.elabPhase, "ELABORACION");
+			$scope.constPhase.assignedEmployee = projectResourcesService.toEmployeeResourceList(projectInfo,$scope.constPhase, "CONSTRUCCION");
+			$scope.transPhase.assignedEmployee = projectResourcesService.toEmployeeResourceList(projectInfo, $scope.transPhase, "TRANSICION");
+		}
 	}
-
+	
 	//Inicialización de elementos de fase de inicio
 	$scope.initPhase.projectManagementTheoricalRelative=$scope.discipline.initialPercentajeProjectManagment();
 	$scope.initPhase.requirementsTheoricalRelative=$scope.discipline.initialPercentajeRequirements();
@@ -508,8 +525,7 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 		return averageHoursPerDay*iterationDays;
 	}	
 	
-	$scope.nmlEmployeeHours = $scope.normalEmployeeHours();
-	
+
 	$scope.availableEmployeeHours = function(phase, employee){
 		var numberOfVacationDays = 0;
 		if(typeof employee.vacations!== 'undefined'){
@@ -521,7 +537,7 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 			}
 		}
 		numberOfVacationDays = 0;
-		return $scope.nmlEmployeeHours*phase.availableHoursFactor();
+		return $scope.normalEmployeeHours()*phase.availableHoursFactor();
 	}	
 	
 	var arrayRoles = ["PROJECT_MANAGEMENT", "REQUIREMENTS", "ANALYSIS_DESIGN", "IMPLEMENTATION", "TESTS", "DEPLOY", "ENVIROMENT_REVISION_CONTROL"];

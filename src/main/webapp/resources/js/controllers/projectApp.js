@@ -142,29 +142,122 @@ projectApp.service("EmployeeUtils", function(){
 		return result;
 	}	
 });
-projectApp.service("ProjectResourcesService", function(){
+projectApp.service("projectResourcesService", function(){
+	Array.prototype.unique = function() {
+	    var a = [], l = this.length;
+	    for(var i=0; i<l; i++) {
+	      for(var j=i+1; j<l; j++)
+	            if (this[i].id === this[j].id) j = ++i;
+	      a.push(this[i]);
+	    }
+	    return a;
+	};	
 	
-	this.toEmployeeResourceList = function(hoursRolePhaseList, projectSchedule, phase) {
-    	/*var list = [];
-    	/*var availability = projectSchedule.averageHoursPerDay() * projectSchedule.project.iterationDays; 
-    	hoursRolePhaseList.forEach(function logArrayElements(element, index, array) {
-    	    
-    	});
-    	return list;*/
-		return [
-        { employee : { id : 1},
-        	hourlyCost : 12,
-			projectManagementHours : 20,
-			requirementsHours : 40,
-			analysisDesignHours : 20,
-			implementationHours : 0,
-			testsHours : 0,
-			deployHours : 20,
-			environmentHours : 0,
-			totalHours : function(){ return 100 },
-			availableEmployeeHours : 100}
-		];
+	Array.prototype.exists = function(employee) {
+	    var a = [], l = this.length;
+	    for(var i=0; i<l; i++) {
+	    	if (this[i].id === employee.id){
+	    		return true;
+	    	}
+	    }
+	    return false;
+	};	
+	
+	function mapPhaseStrToPhaseEnum(phaseStr){
+		if(phaseStr==="INIT"){
+			return "INICIO";
+		}
+		if(phaseStr==="ELAB"){
+			return "ELABORACION";
+		}
+		if(phaseStr==="CONST"){
+			return "CONSTRUCCION";
+		}
+		if(phaseStr==="TRANS"){
+			return "TRANSICION";
+		}
+	}
+	
+	function convertFromHourRolePhaseToEmployeeResource(employeeResource, resource){
+		if(resource.role==='PROJECT_MANAGEMENT'){
+			employeeResource.projectManagementHours = resource.workHours;
+		}
+		if(resource.role==='REQUIREMENTS'){
+			employeeResource.requirementsHours = resource.workHours;
+		}
+		if(resource.role==='ANALYSIS_DESIGN'){
+			employeeResource.analysisDesignHours = resource.workHours;
+		}
+		if(resource.role==='IMPLEMENTATION'){
+			employeeResource.implementationHours = resource.workHours;
+		}
+		if(resource.role==='TESTS'){
+			employeeResource.testsHours = resource.workHours;
+		}
+		if(resource.role==='DEPLOY'){
+			employeeResource.deployHours = resource.workHours;
+		}
+		if(resource.role==='ENVIROMENT_REVISION_CONTROL'){
+			employeeResource.environmentHours = resource.workHours;
+		}
+		employeeResource.hourlyCost = 0;
+		employeeResource.availableEmployeeHours = 0;
+	}
+	
+	function getEmployeeList(resourcesList){
+		var employeeList = [];
+		resourcesList.map(function(resource){
+			var employee = resource.employee;
+			employeeList.push(employee);
+		});
+
+		employeeList = employeeList.unique();
+		return employeeList;
+	}
+	
+	
+	function normalEmployeeHours(projectInfo){
+		var averageHoursPerDay = projectInfo.schedule.averageHoursPerDay();
+		var iterationDays = projectInfo.project.iterationDays;
+		return averageHoursPerDay*iterationDays;
+	}
+	
+	function availableEmployeeHours(projectInfo, phase, employee){
+		var numberOfVacationDays = 0;
+		if(typeof employee.vacations!== 'undefined'){
+			if(employee.vacations.length>0){
+				for(i=0; i<employee.vacations.length; i++){
+					//todo: calcular las vacaciones!
+					numberOfVacationDays = DateUtils.dateDiffInDays(employee.vacations[i].start, employee.vacations[i].end);
+				}
+			}
+		}
+		numberOfVacationDays = 0;
+		return normalEmployeeHours(projectInfo)*phase.availableHoursFactor();
+	}	
+
+	this.toEmployeeResourceList = function(projectInfo, phase) {
+		var employeeList = getEmployeeList(projectInfo.resourcesList);
+		var employeeResourceList = [];
+
+		employeeList.map(function(employee){
+			var employeeResource = new EmployeeResource();
+			var existsInPhase = false;
+			projectInfo.resourcesList.map(function(resource){
+				if(resource.Phases===mapPhaseStrToPhaseEnum(phase.phase) && resource.employee.id===employee.id){
+					employee.availableHours = availableEmployeeHours(projectInfo, phase, employee);
+					employeeResource.employee = employee;
+					convertFromHourRolePhaseToEmployeeResource(employeeResource, resource);
+					existsInPhase = true;
+				}
+			})
+			if(existsInPhase){
+				employeeResourceList.push(employeeResource);
+			}
+		});
+		return employeeResourceList;
     }
+	
 	
 	/*function employeeSalaryHour (employee){
 		var annualSalary = EmployeeUtils.totalAnnualSalary(employee);
