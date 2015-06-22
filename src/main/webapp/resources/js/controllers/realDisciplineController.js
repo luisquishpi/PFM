@@ -12,6 +12,9 @@ projectApp.controller("realDisciplineController", ['$scope', '$isTest', 'bridgeS
 		$scope.disciplinesFinished = true;
 	}
 	
+	
+	console.log($scope.disciplinesPhasesBean);
+	
 	function Phase(){
 		this.totalAssignedProjectManagement;
 		this.totalAssignedRequirements;

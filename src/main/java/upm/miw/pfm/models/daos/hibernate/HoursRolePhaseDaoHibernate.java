@@ -11,6 +11,7 @@ import upm.miw.pfm.models.daos.HoursRolePhaseDao;
 import upm.miw.pfm.models.entities.HoursRolePhase;
 import upm.miw.pfm.models.entities.Project;
 import upm.miw.pfm.utils.HibernateUtil;
+import upm.miw.pfm.utils.Phases;
 
 public class HoursRolePhaseDaoHibernate extends GenericDaoHibernate<HoursRolePhase, Integer>
         implements HoursRolePhaseDao {
@@ -72,5 +73,29 @@ public class HoursRolePhaseDaoHibernate extends GenericDaoHibernate<HoursRolePha
             }
         }
     }
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Double> getAssignedHoursPerPhase(
+			Project project, Phases phase) {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		List<Double> result = new ArrayList<Double>();
+        try {
+            session.beginTransaction();
+            Query query = session.createQuery("select sum(h.workHours) from HoursRolePhase h WHERE h.project = :project and  h.phase = :phase GROUP BY role");
+            query.setParameter("project", project);  
+            query.setParameter("phase", phase);
+            result = query.list();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+        return result;
+	}
 
 }

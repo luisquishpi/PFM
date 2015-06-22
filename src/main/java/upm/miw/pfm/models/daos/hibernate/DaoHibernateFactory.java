@@ -45,5 +45,4 @@ public class DaoHibernateFactory extends DaoFactory {
 	public HoursRolePhaseDao getHoursRolePhaseDao() {
 		return new HoursRolePhaseDaoHibernate();
 	}
-
 }
