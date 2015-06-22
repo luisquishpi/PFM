@@ -8,7 +8,7 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:p="http://primefaces.org/ui">
 	<div ng-if="disciplinesFinished" ng-controller="resourceController">
-	<c:set var="resourcesBean" scope="request" value="#{showTheoricalPhasesBean}" />
+	<c:set var="resourcesBean" scope="request" value="#{disciplinesPhasesBean}" />
         <ngsync direction="serverToClient" value="{{resourcesBean.project}}" /> 
         <ngsync direction="serverToClient"  value="#{resourcesBean.employeeList}"/>
 	    <div ng-if="resourceFinished" ng-controller="realDisciplineController">

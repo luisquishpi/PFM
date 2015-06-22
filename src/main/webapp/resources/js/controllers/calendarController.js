@@ -49,7 +49,6 @@ projectApp.controller("calendarController",['$scope', '$isTest', 'DateUtils', 'b
 				});
 			}
 		}
-		console.log('hola');
 		for (var i = 0; i < $scope.holidays.length; i++){
 			events.push({
 				title: 'F E S T I V O',

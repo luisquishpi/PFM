@@ -10,9 +10,9 @@
 	
 	<div ng-if="scheduleFinished" ng-controller="theoricalPhaseController">
 		<ngsync direction="serverToClient"
-			value="{{showTheoricalPhasesBean.project}}" />
+			value="{{disciplinesPhasesBean.project}}" />
         <ngsync direction="serverToClient" 
-            value="{{showTheoricalPhasesBean.employeeList}}" />   
+            value="{{disciplinesPhasesBean.employeeList}}" />   
 			<table class="table table-condensed">
 				<tr>
 					<th>&nbsp;</th>

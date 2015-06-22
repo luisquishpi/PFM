@@ -10,23 +10,22 @@
     
      
     <div ng-controller="calendarController">
-    	<c:set var="startDate" scope="request" value="#{showAssignedPhasesBean.project.start}" />
-	    <c:set var="endDate" scope="request" value="#{showAssignedPhasesBean.project.end}" />
-	    <c:set var="iterationDays" scope="request" value="#{showAssignedPhasesBean.project.iterationDays}" />
-	    <c:set var="holidays" scope="request" value="#{showAssignedPhasesBean.holidays}" />
+    	<c:set var="startDate" scope="request" value="#{disciplinesPhasesBean.project.start}" />
+	    <c:set var="endDate" scope="request" value="#{disciplinesPhasesBean.project.end}" />
+	    <c:set var="iterationLength" scope="request" value="#{disciplinesPhasesBean.project.iterationDays}" />
+	    <c:set var="holidays" scope="request" value="#{disciplinesPhasesBean.holidays}" />
+	    <c:set var="workHours" scope="request" value="#{disciplinesPhasesBean.workHours}" />
     	
         <ngsync direction="serverToClient" value="{{startDate}}" />
         <ngsync direction="serverToClient" value="{{endDate}}" />
-        <ngsync direction="serverToClient" value="{{iterationDays}}" />
+        <ngsync direction="serverToClient" value="{{iterationLength}}" />
         <ngsync direction="serverToClient" value="{{holidays}}" />
-        {{startDate}}
+        <ngsync direction="serverToClient" value="{{workHours}}" />
         {{toBridgeService()}}
         
          <div ng-if="calendarFinished" ng-controller="assignedPhaseController">
-         	<c:set var="projectSchedule" scope="request" value="#{showAssignedPhasesBean.projectSchedule}" />
-         
+         	<c:set var="projectSchedule" scope="request" value="#{disciplinesPhasesBean.projectSchedule}" />
             <ngsync direction="serverToClient" value="{{projectSchedule}}" />
-	        {{projectSchedule}}
 	        	<table class="table table-condensed">
 					<tr>
 						<th>&nbsp;</th>
@@ -38,11 +37,11 @@
 					</tr>
 			        <tr>
 			            <td class="ui-outputlabel ui-widget"><strong>Distribución</strong></td>
-			            <td class="ui-outputlabel ui-widget">{{inicioPercentaje()}}%</td>
-			            <td class="ui-outputlabel ui-widget">{{elaboracionPercentaje()}}%</td>
-			            <td class="ui-outputlabel ui-widget">{{construccionPercentaje()}}%</td>
-			            <td class="ui-outputlabel ui-widget">{{transicionPercentaje()}}%</td>
-			            <td class="ui-outputlabel ui-widget">{{proyectoPercentaje()}}%</td>
+			            <td class="ui-outputlabel ui-widget">{{getPhaseLength(inceptionPhaseLength) | number:2}}%</td>
+			            <td class="ui-outputlabel ui-widget">{{getPhaseLength(elaborationPhaseLength) | number:2}}%</td>
+			            <td class="ui-outputlabel ui-widget">{{getPhaseLength(constructionPhaseLength) | number:2}}%</td>
+			            <td class="ui-outputlabel ui-widget">{{getPhaseLength(transitionPhaseLength) | number:2}}%</td>
+			            <td class="ui-outputlabel ui-widget">{{projectLength}}%</td>
 			        </tr>
 			        <tr>
 			            <td class="ui-outputlabel ui-widget"><strong>Horas</strong></td>
@@ -50,7 +49,7 @@
 			            <td class="ui-outputlabel ui-widget">{{elaborationPhaseLength.hours() | number:2}}</td>
 			            <td class="ui-outputlabel ui-widget">{{constructionPhaseLength.hours() | number:2}}</td>
 			            <td class="ui-outputlabel ui-widget">{{transitionPhaseLength.hours() | number:2}}</td>
-			            <td class="ui-outputlabel ui-widget">{{projectHours() | number:2}}</td>
+			            <td class="ui-outputlabel ui-widget">{{projectHours | number:2}}</td>
 			        </tr>  
 			        <tr>
 			            <td class="ui-outputlabel ui-widget"><strong>Días</strong></td>
@@ -58,7 +57,7 @@
 			            <td class="ui-outputlabel ui-widget">{{elaborationPhaseLength.days() | number:2}}</td>
 			            <td class="ui-outputlabel ui-widget">{{constructionPhaseLength.days() | number:2}}</td>
 			            <td class="ui-outputlabel ui-widget">{{transitionPhaseLength.days() | number:2}}</td>
-			            <td class="ui-outputlabel ui-widget">{{projectDays() | number:2}}</td>
+			            <td class="ui-outputlabel ui-widget">{{projectDays | number:2}}</td>
 			        </tr>              
 					<tr>
 						<td class="ui-outputlabel ui-widget"><strong>Meses</strong></td>
@@ -66,25 +65,25 @@
 			            <td class="ui-outputlabel ui-widget">{{elaborationPhaseLength.months() | number:2}}</td>
 			            <td class="ui-outputlabel ui-widget">{{constructionPhaseLength.months() | number:2}}</td>
 			            <td class="ui-outputlabel ui-widget">{{transitionPhaseLength.months() | number:2}}</td>
-			            <td class="ui-outputlabel ui-widget">{{projectMonths() | number:2}}</td>
+			            <td class="ui-outputlabel ui-widget">{{projectMonths | number:2}}</td>
 					</tr>
 					<tr>
 						<td class="ui-outputlabel ui-widget"><strong>Fecha
 								inicio</strong></td>
-						<td class="ui-outputlabel ui-widget">{{inceptionPhaseLength.startDate}}</td>
-						<td class="ui-outputlabel ui-widget">{{elaborationPhaseLength.startDate}}</td>
-						<td class="ui-outputlabel ui-widget">{{constructionPhaseLength.startDate}}</td>
-						<td class="ui-outputlabel ui-widget">{{transitionPhaseLength.startDate}}</td>
-						<td class="ui-outputlabel ui-widget">{{projectStartDate()}}</td>
+						<td class="ui-outputlabel ui-widget">{{inceptionPhaseLength.startDate.format("DD/MM/YYYY")}}</td>
+						<td class="ui-outputlabel ui-widget">{{elaborationPhaseLength.startDate.format("DD/MM/YYYY")}}</td>
+						<td class="ui-outputlabel ui-widget">{{constructionPhaseLength.startDate.format("DD/MM/YYYY")}}</td>
+						<td class="ui-outputlabel ui-widget">{{transitionPhaseLength.startDate.format("DD/MM/YYYY")}}</td>
+						<td class="ui-outputlabel ui-widget">{{projectStartDate.format("DD/MM/YYYY")}}</td>
 					</tr>
 					<tr>
 						<td class="ui-outputlabel ui-widget"><strong>Fecha
 								final</strong></td>
-			            <td class="ui-outputlabel ui-widget">{{inceptionPhaseLength.endDate}}</td>
-			            <td class="ui-outputlabel ui-widget">{{elaborationPhaseLength.endDate}}</td>
-			            <td class="ui-outputlabel ui-widget">{{constructionPhaseLength.endDate}}</td>
-			            <td class="ui-outputlabel ui-widget">{{transitionPhaseLength.endDate}}</td>
-			            <td class="ui-outputlabel ui-widget">{{projectEndDate()}}</td>
+			            <td class="ui-outputlabel ui-widget">{{inceptionPhaseLength.endDate.format("DD/MM/YYYY")}}</td>
+			            <td class="ui-outputlabel ui-widget">{{elaborationPhaseLength.endDate.format("DD/MM/YYYY")}}</td>
+			            <td class="ui-outputlabel ui-widget">{{constructionPhaseLength.endDate.format("DD/MM/YYYY")}}</td>
+			            <td class="ui-outputlabel ui-widget">{{transitionPhaseLength.endDate.format("DD/MM/YYYY")}}</td>
+			            <td class="ui-outputlabel ui-widget">{{projectEndDate.format("DD/MM/YYYY")}}</td>
 					</tr>
 					<tr>
 						<td class="ui-outputlabel ui-widget"><strong>Iteraciones</strong></td>
@@ -92,7 +91,7 @@
 			            <td class="ui-outputlabel ui-widget">{{elaborationPhaseLength.iterations | number:2}}</td>
 			            <td class="ui-outputlabel ui-widget">{{constructionPhaseLength.iterations | number:2}}</td>
 			            <td class="ui-outputlabel ui-widget">{{transitionPhaseLength.iterations | number:2}}</td>
-			            <td class="ui-outputlabel ui-widget">{{inceptionPhaseLength.iterations | number:2}}</td>
+			            <td class="ui-outputlabel ui-widget">{{projectIterations | number:2}}</td>
 					</tr>
 					<tr>
 						<td class="ui-outputlabel ui-widget"><strong>Inicio
@@ -101,7 +100,7 @@
 			            <td class="ui-outputlabel ui-widget">{{elaborationPhaseLength.initialIteration | number:2}}</td>
 			            <td class="ui-outputlabel ui-widget">{{constructionPhaseLength.initialIteration | number:2}}</td>
 			            <td class="ui-outputlabel ui-widget">{{transitionPhaseLength.initialIteration | number:2}}</td>
-			            <td class="ui-outputlabel ui-widget">{{projectStartIteration() | number:2}}</td>
+			            <td class="ui-outputlabel ui-widget">{{projectInitialIterations | number:2}}</td>
 					</tr>
 					<tr>
 						<td class="ui-outputlabel ui-widget"><strong>Fin
@@ -110,7 +109,7 @@
 			            <td class="ui-outputlabel ui-widget">{{elaborationPhaseLength.finalIteration() | number:2}}</td>
 			            <td class="ui-outputlabel ui-widget">{{constructionPhaseLength.finalIteration() | number:2}}</td>
 			            <td class="ui-outputlabel ui-widget">{{transitionPhaseLength.finalIteration() | number:2}}</td>
-			            <td class="ui-outputlabel ui-widget">{{projectEndIteration() | number:2}}</td>
+			            <td class="ui-outputlabel ui-widget">{{projectFinalIterations | number:2}}</td>
 					</tr>
 					<tr>
 						<td class="ui-outputlabel ui-widget"><strong>Media/horas
@@ -119,7 +118,7 @@
 			            <td class="ui-outputlabel ui-widget">{{elaborationPhaseLength.avgIterationHours | number:2}}</td>
 			            <td class="ui-outputlabel ui-widget">{{constructionPhaseLength.avgIterationHours | number:2}}</td>
 			            <td class="ui-outputlabel ui-widget">{{transitionPhaseLength.avgIterationHours | number:2}}</td>
-			            <td class="ui-outputlabel ui-widget">{{projectAverageHours() | number:2}}</td>
+			            <td class="ui-outputlabel ui-widget">{{projectAvgIterationHours | number:2}}</td>
 					</tr>
 					<tr>
 						<td class="ui-outputlabel ui-widget"><strong>Media/días
@@ -128,7 +127,7 @@
 			            <td class="ui-outputlabel ui-widget">{{elaborationPhaseLength.avgIterationDays | number:2}}</td>
 			            <td class="ui-outputlabel ui-widget">{{constructionPhaseLength.avgIterationDays | number:2}}</td>
 			            <td class="ui-outputlabel ui-widget">{{transitionPhaseLength.avgIterationDays | number:2}}</td>
-			            <td class="ui-outputlabel ui-widget">{{projectAverageDays() | number:2}}</td>
+			            <td class="ui-outputlabel ui-widget">{{projectAvgIterationDays | number:2}}</td>
 					</tr>
 					<tr>
 						<td class="ui-outputlabel ui-widget"><strong>Media/meses
@@ -137,7 +136,7 @@
 			            <td class="ui-outputlabel ui-widget">{{elaborationPhaseLength.avgIterationMonths | number:2}}</td>
 			            <td class="ui-outputlabel ui-widget">{{constructionPhaseLength.avgIterationMonths | number:2}}</td>
 			            <td class="ui-outputlabel ui-widget">{{transitionPhaseLength.avgIterationMonths | number:2}}</td>
-			            <td class="ui-outputlabel ui-widget">{{projectAverageMonths() | number:2}}</td>
+			            <td class="ui-outputlabel ui-widget">{{projectAvgIterationMonths | number:2}}</td>
 					</tr>
 				</table>
 	    </div>

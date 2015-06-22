@@ -8,7 +8,7 @@ projectApp.controller("theoricalPhaseController", ['$scope', '$isTest', 'bridgeS
 	$scope.schedule = bridgeService.shareData;
 	if(!$isTest){
 		  initJSFScope($scope);
-		  workTimeService.calculateWorkDaysAndHour($scope.showTheoricalPhasesBean.project.startString, $scope.showTheoricalPhasesBean.project.endString, $scope.schedule.listHoursEachDay());
+		  workTimeService.calculateWorkDaysAndHour($scope.disciplinesPhasesBean.project.startString, $scope.disciplinesPhasesBean.project.endString, $scope.schedule.listHoursEachDay());
 	}
 
 	//Constantes
@@ -36,11 +36,11 @@ projectApp.controller("theoricalPhaseController", ['$scope', '$isTest', 'bridgeS
 	}
 	
 	$scope.initStartDate = function(){
-		return moment($scope.showTheoricalPhasesBean.project.startString, DATE_FORMAT).format(DATE_FORMAT);
+		return moment($scope.disciplinesPhasesBean.project.startString, DATE_FORMAT).format(DATE_FORMAT);
 	}
 	
 	$scope.initEndDate = function(){
-		return addDaysToDate($scope.showTheoricalPhasesBean.project.startString, $scope.naturalDays*($scope.inicioPercentaje()/100));
+		return addDaysToDate($scope.disciplinesPhasesBean.project.startString, $scope.naturalDays*($scope.inicioPercentaje()/100));
 	}	
 	
 	$scope.ElabStartDate = function(){
@@ -69,11 +69,11 @@ projectApp.controller("theoricalPhaseController", ['$scope', '$isTest', 'bridgeS
 	
 	$scope.averageMonthCost = function(){
 		var cost = 0;
-		for(i = 0; i < $scope.showTheoricalPhasesBean.employeeList.length; i++){
-			cost += $scope.showTheoricalPhasesBean.employeeList[i].annualGrossSalary + 
-				$scope.showTheoricalPhasesBean.employeeList[i].annualGrossSalary*$scope.showTheoricalPhasesBean.employeeList[i].contract.insurance/100;
+		for(i = 0; i < $scope.disciplinesPhasesBean.employeeList.length; i++){
+			cost += $scope.disciplinesPhasesBean.employeeList[i].annualGrossSalary + 
+				$scope.disciplinesPhasesBean.employeeList[i].annualGrossSalary*$scope.disciplinesPhasesBean.employeeList[i].contract.insurance/100;
 		}
-		return (cost/$scope.showTheoricalPhasesBean.employeeList.length)/$scope.schedule.monthsPerYear;		
+		return (cost/$scope.disciplinesPhasesBean.employeeList.length)/$scope.schedule.monthsPerYear;		
 	}
 	
 	$scope.avgMonthCost = $scope.averageMonthCost();
@@ -349,23 +349,23 @@ projectApp.controller("theoricalPhaseController", ['$scope', '$isTest', 'bridgeS
 	
 	//Fila de Coste
 	$scope.inicioCosteEffort = function() {
-		return $scope.showTheoricalPhasesBean.project.cost*($scope.inicioPercentajeEffort()/100);
+		return $scope.disciplinesPhasesBean.project.cost*($scope.inicioPercentajeEffort()/100);
 	}
 	
 	$scope.elaboracionCosteEffort = function() {
-		return $scope.showTheoricalPhasesBean.project.cost*($scope.elaboracionPercentajeEffort()/100);
+		return $scope.disciplinesPhasesBean.project.cost*($scope.elaboracionPercentajeEffort()/100);
 	}	
 	
 	$scope.construccionCosteEffort = function() {
-		return $scope.showTheoricalPhasesBean.project.cost*($scope.construccionPercentajeEffort()/100);
+		return $scope.disciplinesPhasesBean.project.cost*($scope.construccionPercentajeEffort()/100);
 	}	
 	
 	$scope.transicionCosteEffort = function() {
-		return $scope.showTheoricalPhasesBean.project.cost*($scope.transicionPercentajeEffort()/100);
+		return $scope.disciplinesPhasesBean.project.cost*($scope.transicionPercentajeEffort()/100);
 	}	
 	
 	$scope.proyectoCosteEffort = function() {
-		return $scope.showTheoricalPhasesBean.project.cost*($scope.proyectoPercentajeEffort()/100);
+		return $scope.disciplinesPhasesBean.project.cost*($scope.proyectoPercentajeEffort()/100);
 	}
 	//Fin de Fila de Coste		
 	
