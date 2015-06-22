@@ -9,6 +9,12 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 			return element.roles.indexOf(type);
 		}
 	};
+	$scope.setSortCostHour = function(){
+		$scope.sortType = function(element){
+			return $scope.employeeSalaryHour(element);
+		}
+	};
+	
 	if(!$isTest){
 		  initJSFScope($scope);
 		  workTimeService.calculateWorkDaysAndHour($scope.resourcesBean.project.startString, 
