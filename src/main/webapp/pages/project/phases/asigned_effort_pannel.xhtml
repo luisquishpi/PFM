@@ -30,74 +30,74 @@
 			</tr>
 			<tr>
 				<td class="ui-outputlabel ui-widget"><strong>Coste</strong></td>
-	            <td class="ui-outputlabel ui-widget">{{inicioCosteEffort() | number:2}}<span class="currency"></span></td>
-	            <td class="ui-outputlabel ui-widget">{{elaboracionCosteEffort() | number:2}}<span class="currency"></span></td>
-	            <td class="ui-outputlabel ui-widget">{{construccionCosteEffort() | number:2}}<span class="currency"></span></td>
-	            <td class="ui-outputlabel ui-widget">{{transicionCosteEffort() | number:2}}<span class="currency"></span></td>
+	            <td class="ui-outputlabel ui-widget">{{inceptionPhaseLength.cost() | number:2}}<span class="currency"></span></td>
+	            <td class="ui-outputlabel ui-widget">{{elaborationPhaseLength.cost() | number:2}}<span class="currency"></span></td>
+	            <td class="ui-outputlabel ui-widget">{{constructionPhaseLength.cost() | number:2}}<span class="currency"></span></td>
+	            <td class="ui-outputlabel ui-widget">{{transitionPhaseLength.cost() | number:2}}<span class="currency"></span></td>
 	            <td class="ui-outputlabel ui-widget">{{proyectoCosteEffort() | number:2}}<span class="currency"></span></td>
 			</tr>
 			<tr>
 				<td class="ui-outputlabel ui-widget"><strong>Personas-hora</strong></td>
-	            <td class="ui-outputlabel ui-widget">{{(inicioPeopleHour() | number:2) || (0 | number:2)}}</td>
-	            <td class="ui-outputlabel ui-widget">{{(elaboracionPeopleHour() | number:2) || (0 | number:2)}}</td>
-	            <td class="ui-outputlabel ui-widget">{{(construccionPeopleHour() | number:2) || (0 | number:2)}}</td>
-	            <td class="ui-outputlabel ui-widget">{{(transicionPeopleHour() | number:2) || (0 | number:2)}}</td>
+	            <td class="ui-outputlabel ui-widget">{{(inceptionPhaseLength.totalHours() | number:2) || (0 | number:2)}}</td>
+	            <td class="ui-outputlabel ui-widget">{{(elaborationPhaseLength.totalHours() | number:2) || (0 | number:2)}}</td>
+	            <td class="ui-outputlabel ui-widget">{{(constructionPhaseLength.totalHours() | number:2) || (0 | number:2)}}</td>
+	            <td class="ui-outputlabel ui-widget">{{(transitionPhaseLength.totalHours() | number:2) || (0 | number:2)}}</td>
 	            <td class="ui-outputlabel ui-widget">{{(proyectoPeopleHour() | number:2) || (0 | number:2)}}</td>
 			</tr>
 			<tr>
 				<td class="ui-outputlabel ui-widget"><strong>Personas-dia</strong></td>
-	            <td class="ui-outputlabel ui-widget">{{(inicioPeopleDay() | number:2) || (0 | number:2)}}</td>
-	            <td class="ui-outputlabel ui-widget">{{(elaboracionPeopleDay() | number:2) || (0 | number:2)}}</td>
-	            <td class="ui-outputlabel ui-widget">{{(construccionPeopleDay() | number:2) || (0 | number:2)}}</td>
-	            <td class="ui-outputlabel ui-widget">{{(transicionPeopleDay() | number:2) || (0 | number:2)}}</td>
+	            <td class="ui-outputlabel ui-widget">{{(inceptionPhaseLength.totalDays | number:2) || (0 | number:2)}}</td>
+	            <td class="ui-outputlabel ui-widget">{{(elaborationPhaseLength.totalDays | number:2) || (0 | number:2)}}</td>
+	            <td class="ui-outputlabel ui-widget">{{(cosntructionPhaseLength.totalDays | number:2) || (0 | number:2)}}</td>
+	            <td class="ui-outputlabel ui-widget">{{(transitionPhaseLength.totalDays | number:2) || (0 | number:2)}}</td>
 	            <td class="ui-outputlabel ui-widget">{{(proyectoPeopleDay() | number:2) || (0 | number:2)}}</td>
 			</tr>
 			<tr>
 				<td class="ui-outputlabel ui-widget"><strong>Personas-mes</strong></td>
-	            <td class="ui-outputlabel ui-widget">{{(inicioPeopleMonth() | number:2) || (0 | number:2)}}</td>
-	            <td class="ui-outputlabel ui-widget">{{(elaboracionPeopleMonth() | number:2) || (0 | number:2)}}</td>
-	            <td class="ui-outputlabel ui-widget">{{(construccionPeopleMonth() | number:2) || (0 | number:2)}}</td>
-	            <td class="ui-outputlabel ui-widget">{{(transicionPeopleMonth() | number:2) || (0 | number:2)}}</td>
+	            <td class="ui-outputlabel ui-widget">{{(inceptionPhaseLength.totalMonths | number:2) || (0 | number:2)}}</td>
+	            <td class="ui-outputlabel ui-widget">{{(elaborationPhaseLength.totalMonths | number:2) || (0 | number:2)}}</td>
+	            <td class="ui-outputlabel ui-widget">{{(constructionPhaseLength.totalMonths | number:2) || (0 | number:2)}}</td>
+	            <td class="ui-outputlabel ui-widget">{{(transitionPhaseLength.totalMonths | number:2) || (0 | number:2)}}</td>
 	            <td class="ui-outputlabel ui-widget">{{(proyectoPeopleMonth() | number:2) || (0 | number:2)}}</td>
 			</tr>
 			<tr>
 				<td class="ui-outputlabel ui-widget"><strong>Personas</strong></td>
-	            <td class="ui-outputlabel ui-widget">{{(inicioPeople() | number:2) || (0 | number:2)}}</td>
-	            <td class="ui-outputlabel ui-widget">{{(elaboracionPeople() | number:2) || (0 | number:2)}}</td>
-	            <td class="ui-outputlabel ui-widget">{{(construccionPeople() | number:2) || (0 | number:2)}}</td>
-	            <td class="ui-outputlabel ui-widget">{{(transicionPeople() | number:2) || (0 | number:2)}}</td>
+	            <td class="ui-outputlabel ui-widget">{{(inceptionPhaseLength.realEmployees() | number:2) || (0 | number:2)}}</td>
+	            <td class="ui-outputlabel ui-widget">{{(elaborationPhaseLength.realEmployees() | number:2) || (0 | number:2)}}</td>
+	            <td class="ui-outputlabel ui-widget">{{(constructionPhaseLength.realEmployees() | number:2) || (0 | number:2)}}</td>
+	            <td class="ui-outputlabel ui-widget">{{(transitionPhaseLength.realEmployees() | number:2) || (0 | number:2)}}</td>
 	            <td class="ui-outputlabel ui-widget">{{(proyectoPeople() | number:2) || (0 | number:2)}}</td>
 			</tr>
 			<tr>
 				<td class="ui-outputlabel ui-widget"><strong>Distribución/iteración</strong></td>
-	            <td class="ui-outputlabel ui-widget">{{inicioDistribucionIteration() | number:2}}%</td>
-	            <td class="ui-outputlabel ui-widget">{{elaboracionDistribucionIteration() | number:2}}%</td>
-	            <td class="ui-outputlabel ui-widget">{{construccionDistribucionIteration() | number:2}}%</td>
-	            <td class="ui-outputlabel ui-widget">{{transicionDistribucionIteration() | number:2}}%</td>
+	            <td class="ui-outputlabel ui-widget">{{inceptionPhaseLength.iterationResourcesPerHour() | number:2}}%</td>
+	            <td class="ui-outputlabel ui-widget">{{elaborationPhaseLength.iterationResourcesPerHour() | number:2}}%</td>
+	            <td class="ui-outputlabel ui-widget">{{constructionPhaseLength.iterationResourcesPerHour() | number:2}}%</td>
+	            <td class="ui-outputlabel ui-widget">{{transitionPhaseLength.iterationResourcesPerHour() | number:2}}%</td>
 	            <td class="ui-outputlabel ui-widget">{{proyectoDistribucionIteration() | number:2}}%</td>
 			</tr>
 			<tr>
 				<td class="ui-outputlabel ui-widget"><strong>Personas-hora/iteración</strong></td>
-	            <td class="ui-outputlabel ui-widget">{{(inicioPersonHourIteration() | number:2) || (0 | number:2)}}</td>
-	            <td class="ui-outputlabel ui-widget">{{(elaboracionPersonHourIteration() | number:2) || (0 | number:2)}}</td>
-	            <td class="ui-outputlabel ui-widget">{{(construccionPersonHourIteration() | number:2) || (0 | number:2)}}</td>
-	            <td class="ui-outputlabel ui-widget">{{(transicionPersonHourIteration() | number:2) || (0 | number:2)}}</td>
+	            <td class="ui-outputlabel ui-widget">{{(inceptionPhaseLength.iterationResourcesPerHour() | number:2) || (0 | number:2)}}</td>
+	            <td class="ui-outputlabel ui-widget">{{(elaborationPhaseLength.iterationResourcesPerHour() | number:2) || (0 | number:2)}}</td>
+	            <td class="ui-outputlabel ui-widget">{{(constructionPhaseLength.iterationResourcesPerHour() | number:2) || (0 | number:2)}}</td>
+	            <td class="ui-outputlabel ui-widget">{{(transitionPhaseLength.iterationResourcesPerHour() | number:2) || (0 | number:2)}}</td>
 	            <td class="ui-outputlabel ui-widget">{{(proyectoPersonHourIteration() | number:2) || (0 | number:2)}}</td>
 			</tr>
 			<tr>
 				<td class="ui-outputlabel ui-widget"><strong>Personas-día/iteración</strong></td>
-	            <td class="ui-outputlabel ui-widget">{{(inicioPersonDayIteration() | number:2) || (0 | number:2)}}</td>
-	            <td class="ui-outputlabel ui-widget">{{(elaboracionPersonDayIteration() | number:2) || (0 | number:2)}}</td>
-	            <td class="ui-outputlabel ui-widget">{{(construccionPersonDayIteration() | number:2) || (0 | number:2)}}</td>
-	            <td class="ui-outputlabel ui-widget">{{(transicionPersonDayIteration() | number:2) || (0 | number:2)}}</td>
+	            <td class="ui-outputlabel ui-widget">{{(inceptionPhaseLength.iterationResourcesPerDay() | number:2) || (0 | number:2)}}</td>
+	            <td class="ui-outputlabel ui-widget">{{(elaborationPhaseLength.iterationResourcesPerDay() | number:2) || (0 | number:2)}}</td>
+	            <td class="ui-outputlabel ui-widget">{{(constructionPhaseLength.iterationResourcesPerDay() | number:2) || (0 | number:2)}}</td>
+	            <td class="ui-outputlabel ui-widget">{{(transitionPhaseLength.iterationResourcesPerDay() | number:2) || (0 | number:2)}}</td>
 	            <td class="ui-outputlabel ui-widget">{{(proyectoPersonDayIteration() | number:2) || (0 | number:2)}}</td>
 			</tr>
 			<tr>
 				<td class="ui-outputlabel ui-widget"><strong>Personas-mes/iteración</strong></td>
-	            <td class="ui-outputlabel ui-widget">{{(inicioPersonMonthIteration() | number:2) || (0 | number:2)}}</td>
-	            <td class="ui-outputlabel ui-widget">{{(elaboracionPersonMonthIteration() | number:2) || (0 | number:2)}}</td>
-	            <td class="ui-outputlabel ui-widget">{{(construccionPersonMonthIteration() | number:2) || (0 | number:2)}}</td>
-	            <td class="ui-outputlabel ui-widget">{{(transicionPersonMonthIteration() | number:2) || (0 | number:2)}}</td>
+	            <td class="ui-outputlabel ui-widget">{{(inceptionPhaseLength.iterationResourcesPerMonth() | number:2) || (0 | number:2)}}</td>
+	            <td class="ui-outputlabel ui-widget">{{(elaborationPhaseLength.iterationResourcesPerMonth() | number:2) || (0 | number:2)}}</td>
+	            <td class="ui-outputlabel ui-widget">{{(constructionPhaseLength.iterationResourcesPerMonth() | number:2) || (0 | number:2)}}</td>
+	            <td class="ui-outputlabel ui-widget">{{(transitionPhaseLength.iterationResourcesPerMonth() | number:2) || (0 | number:2)}}</td>
 	            <td class="ui-outputlabel ui-widget">{{(proyectoPersonMonthIteration() | number:2) || (0 | number:2)}}</td>
 			</tr>
 		</table>
