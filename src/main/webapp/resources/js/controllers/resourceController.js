@@ -41,7 +41,7 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	function Phase(phase){
 		this.phase = phase;
 		this.assignedEmployee = [];
-		this.numberOfAssignedPeople;
+		this.numberOfAssignedPeople=0;
 
 		this.projectManagementTheoricalRelative;
 		this.requirementsTheoricalRelative;

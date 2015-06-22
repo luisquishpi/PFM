@@ -60,7 +60,7 @@
 										<div class="row" style="margin-top: 10px">
 											<div class="col-sm-3">
 												<p:outputLabel for="workDays" value="Días laborales/mes:"
-													styleClass="label_height" />
+													styleClass="label_height_not" />
 											</div>
 											<div class="col-sm-2">
 												<p:inputText id="workDays"
@@ -73,7 +73,7 @@
 											</div>
 											<div class="col-sm-2">
 												<p:outputLabel for="mondayHours" value="Lunes:"
-													styleClass="label_height" />
+													styleClass="label_height_not" />
 											</div>
 											<div class="col-sm-2">
 												<p:inputText id="mondayHours"
@@ -86,7 +86,7 @@
 											</div>
 											<div class="col-sm-2">
 												<p:outputLabel for="hoursPerWeek" value="Total horas:"
-													styleClass="label_height" />
+													styleClass="label_height_not" />
 											</div>
 											<div class="col-sm-1">
 												<h:outputText id="hoursPerWeek" value="{{hoursPerWeek()}}" />
@@ -95,14 +95,14 @@
 										<div class="row">
 											<div class="col-sm-3">
 												<p:outputLabel for="monthsPerYear"
-													value="Meses laborales/año:" styleClass="label_height" />
+													value="Meses laborales/año:" styleClass="label_height_not" />
 											</div>
 											<div class="col-sm-2 right-text">
 												<h:outputText id="monthsPerYear" value="{{monthsPerYear}}" />
 											</div>
 											<div class="col-sm-2">
 												<p:outputLabel for="tuesdayHours" value="Martes:"
-													styleClass="label_height" />
+													styleClass="label_height_not" />
 											</div>
 											<div class="col-sm-2">
 												<p:inputText id="tuesdayHours"
@@ -115,7 +115,7 @@
 											</div>
 											<div class="col-sm-2">
 												<p:outputLabel for="hoursPerDay" value="Media laboral:"
-													styleClass="label_height" />
+													styleClass="label_height_not" />
 											</div>
 											<div class="col-sm-1">
 												<h:outputText id="hoursPerDay"
@@ -125,7 +125,7 @@
 										<div class="row">
 											<div class="col-sm-3">
 												<p:outputLabel for="hoursPerDay2"
-													value="Horas laborales/día:" styleClass="label_height" />
+													value="Horas laborales/día:" styleClass="label_height_not" />
 											</div>
 											<div class="col-sm-2 right-text">
 												<h:outputText id="hoursPerDay2"
@@ -133,7 +133,7 @@
 											</div>
 											<div class="col-sm-2">
 												<p:outputLabel for="wednesdayHours" value="Miercoles:"
-													styleClass="label_height" />
+													styleClass="label_height_not" />
 											</div>
 											<div class="col-sm-2">
 												<p:inputText id="wednesdayHours"
@@ -148,14 +148,14 @@
 										<div class="row">
 											<div class="col-sm-3">
 												<p:outputLabel for="daysPerYear" value="Días/año:"
-													styleClass="label_height" />
+													styleClass="label_height_not" />
 											</div>
 											<div class="col-sm-2 right-text">
 												<h:outputText id="daysPerYear" value="{{daysPerYear()}}" />
 											</div>
 											<div class="col-sm-2">
 												<p:outputLabel for="thursdayHours" value="Jueves:"
-													styleClass="label_height" />
+													styleClass="label_height_not" />
 											</div>
 											<div class="col-sm-2">
 												<p:inputText id="thursdayHours"
@@ -170,7 +170,7 @@
 										<div class="row">
 											<div class="col-sm-3">
 												<p:outputLabel for="hoursPerMonth" value="Horas/mes:"
-													styleClass="label_height" />
+													styleClass="label_height_not" />
 											</div>
 											<div class="col-sm-2 right-text">
 												<h:outputText id="hoursPerMonth"
@@ -178,7 +178,7 @@
 											</div>
 											<div class="col-sm-2">
 												<p:outputLabel for="fridayHours" value="Viernes:"
-													styleClass="label_height" />
+													styleClass="label_height_not" />
 											</div>
 											<div class="col-sm-2">
 												<p:inputText id="fridayHours"
@@ -193,7 +193,7 @@
 										<div class="row">
 											<div class="col-sm-3">
 												<p:outputLabel for="hoursPerYear" value="Horas/año:"
-													styleClass="label_height" />
+													styleClass="label_height_not" />
 											</div>
 											<div class="col-sm-2 right-text">
 												<h:outputText id="hoursPerYear"
@@ -201,7 +201,7 @@
 											</div>
 											<div class="col-sm-2">
 												<p:outputLabel for="saturdayHours" value="Sábado:"
-													styleClass="label_height" />
+													styleClass="label_height_not" />
 											</div>
 											<div class="col-sm-2">
 												<p:inputText id="saturdayHours"
@@ -217,7 +217,7 @@
 											<div class="col-sm-5"></div>
 											<div class="col-sm-2">
 												<p:outputLabel for="sundayHours" value="Domingo:"
-													styleClass="label_height" />
+													styleClass="label_height_not" />
 											</div>
 											<div class="col-sm-2">
 												<p:inputText id="sundayHours"
@@ -239,7 +239,7 @@
 													<div class="row">
 														<div class="col-sm-5">
 															<p:outputLabel for="name" value="Nombre:"
-																styleClass="label_height" />
+																styleClass="label_height_not" />
 														</div>
 														<div class="col-sm-6">
 															<p:inputText id="name"
@@ -247,14 +247,11 @@
 																requiredMessage="Ingrese el nombre del proyecto"
 																required="true" />
 														</div>
-														<div ng-if="{{prohectBean.project.name}}==''">
-															<p>Viene vacío</p>
-														</div>
 													</div>
 													<div class="row">
 														<div class="col-sm-5">
 															<p:outputLabel for="startString" value="Fecha de inicio:"
-																styleClass="label_height" />
+																styleClass="label_height_not" />
 														</div>
 														<div class="col-sm-6">
 															<p:inputText styleClass="datepicker" size="25" readonly="#{facesContext.renderResponse}" 																
@@ -266,7 +263,7 @@
 													<div class="row">
 														<div class="col-sm-5">
 															<p:outputLabel for="endString" value="Fecha de fin:"
-																styleClass="label_height" />
+																styleClass="label_height_not" />
 														</div>
 														<div class="col-sm-6">
 															<p:inputText styleClass="datepicker" size="25" readonly="#{facesContext.renderResponse}" 
@@ -278,7 +275,7 @@
 													<div class="row">
 														<div class="col-sm-5">
 															<p:outputLabel for="cost" value="Presupuesto:"
-																styleClass="label_height" />
+																styleClass="label_height_not" />
 														</div>
 														<div class="col-sm-6">
 															<p:inputText id="cost"
@@ -297,26 +294,26 @@
 														<tbody>
 															<tr>
 																<td><p:outputLabel for="naturalMonths"
-																		value="Meses naturales:" styleClass="label_height" />
+																		value="Meses naturales:" styleClass="label_height_not" />
 																	<h:outputText id="naturalMonths"
 																		value="{{naturalMonths() | number:2}}" /></td>
 																<td><p:outputLabel for="workMonths"
-																		value="Meses laborales:" styleClass="label_height" />
+																		value="Meses laborales:" styleClass="label_height_not" />
 																	<h:outputText id="workMonths"
 																		value="{{workMonths() | number:2}}" /></td>
 															</tr>
 															<tr>
 																<td><p:outputLabel for="naturalDays"
-																		value="Días naturales:" styleClass="label_height" /> <h:outputText
+																		value="Días naturales:" styleClass="label_height_not" /> <h:outputText
 																		id="naturalDays" value="{{naturalDays}}" /></td>
 																<td><p:outputLabel for="workDaysProject"
-																		value="Días laborales:" styleClass="label_height" /> <h:outputText
+																		value="Días laborales:" styleClass="label_height_not" /> <h:outputText
 																		id="workDaysProject" value="{{workDays}}" /></td>
 															</tr>
 															<tr>
 																<td></td>
 																<td><p:outputLabel for="workHours"
-																		value="Horas laborales:" styleClass="label_height" />
+																		value="Horas laborales:" styleClass="label_height_not" />
 																	<h:outputText id="workHours" value="{{workHours}}" /></td>
 															</tr>
 														</tbody>
@@ -325,29 +322,29 @@
 														<tbody>
 															<tr>
 																<td><p:outputLabel for="costNaturalMonth"
-																		value="Coste/mes natural:" styleClass="label_height" />
+																		value="Coste/mes natural:" styleClass="label_height_not" />
 																	<h:outputText class="currency" id="costNaturalMonth"
 																		value="{{costNaturalMonth() | number:2}}" /></td>
 																<td><p:outputLabel for="costWorkMonth"
-																		value="Coste/mes laboral:" styleClass="label_height" />
+																		value="Coste/mes laboral:" styleClass="label_height_not" />
 																	<h:outputText class="currency" id="costWorkMonth"
 																		value="{{costWorkMonth() | number:2}}" /></td>
 															</tr>
 	
 															<tr>
 																<td><p:outputLabel for="costNaturalDay"
-																		value="Coste/día natural:" styleClass="label_height" />
+																		value="Coste/día natural:" styleClass="label_height_not" />
 																	<h:outputText class="currency" id="costNaturalDay"
 																		value="{{costNaturalDay() | number:2}}" /></td>
 																<td><p:outputLabel for="costWorkDay"
-																		value="Coste/día laboral:" styleClass="label_height" />
+																		value="Coste/día laboral:" styleClass="label_height_not" />
 																	<h:outputText class="currency" id="costWorkDay"
 																		value="{{costWorkDay() | number:2}}" /></td>
 															</tr>
 	
 															<tr>
 																<td><p:outputLabel for="costWorkHour"
-																		value="Coste/hora laboral:" styleClass="label_height" />
+																		value="Coste/hora laboral:" styleClass="label_height_not" />
 																	<h:outputText class="currency" id="costWorkHour"
 																		value="{{costWorkHour() | number:2}}" /></td>
 																<td></td>
