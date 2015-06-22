@@ -7,7 +7,7 @@ projectApp.controller("realDisciplineController", ['$scope', '$isTest', 'bridgeS
 		  initJSFScope($scope);
 	}	
 	$scope.schedule = bridgeService.shareData;
-
+	
 	if(!$isTest){
 		bridgeService.shareData= $scope;
 		$scope.disciplinesFinished = true;
@@ -52,6 +52,7 @@ projectApp.controller("realDisciplineController", ['$scope', '$isTest', 'bridgeS
 		
 		//Recursos Personas Día
 		this.ProjectManagmentDay = function(){
+			console.log(this.ProjectManagmentHour()/$scope.schedule.hoursPerDay());
 			return this.ProjectManagmentHour()/$scope.schedule.hoursPerDay();
 		}	
 		this.RequirementsDay = function(){
