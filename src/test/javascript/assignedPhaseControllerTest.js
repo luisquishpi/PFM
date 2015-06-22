@@ -14,22 +14,22 @@ describe("Test AssignedPhasesController", function() {
 		scope.calendarController.getEvents = function(){
 			return [
 		        { title: "I",
-		          startDate: moment.utc("2/3/2015", DATE_FORMAT),
+		          start: moment.utc("2/3/2015", DATE_FORMAT),
 				  hours : 8 },
 				{ title: "I",
-				  startDate: moment.utc("1/3/2015", DATE_FORMAT),
+				  start: moment.utc("1/3/2015", DATE_FORMAT),
 				  hours : 2 },
 			  	{ title: "E",
-				  startDate: moment.utc("6/3/2015", DATE_FORMAT),
+				  start: moment.utc("6/3/2015", DATE_FORMAT),
 				  hours : 4 },
 				{ title: "E",
-				  startDate: moment.utc("5/3/2015", DATE_FORMAT),
+				  start: moment.utc("5/3/2015", DATE_FORMAT),
 				  hours : 4 },
 				{ title: "E",
-				  startDate: moment.utc("3/3/2015", DATE_FORMAT),
+				  start: moment.utc("3/3/2015", DATE_FORMAT),
 				  hours : 8 },
 				{ title: "E",
-				  startDate: moment.utc("4/3/2015", DATE_FORMAT),
+				  start: moment.utc("4/3/2015", DATE_FORMAT),
 				  hours : 8 }
 	        ];
 		};

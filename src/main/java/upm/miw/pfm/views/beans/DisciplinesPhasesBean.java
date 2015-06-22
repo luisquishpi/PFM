@@ -20,6 +20,7 @@ import upm.miw.pfm.controllers.ProjectController;
 import upm.miw.pfm.controllers.SetScheduleController;
 import upm.miw.pfm.models.entities.Employee;
 import upm.miw.pfm.models.entities.Holiday;
+import upm.miw.pfm.models.entities.HoursRolePhase;
 import upm.miw.pfm.models.entities.Project;
 import upm.miw.pfm.models.entities.ProjectSchedule;
 import upm.miw.pfm.utils.PhaseRoleAssigned;
@@ -40,6 +41,8 @@ public class DisciplinesPhasesBean {
 	private List<Employee> employeeList;
 
 	private List<Holiday> holidays;
+	
+	private List<HoursRolePhase> hoursList;
 
 	public List<PhaseRoleAssigned> getAssignedHoursList() {
 		return assignedHoursList;
@@ -105,6 +108,8 @@ public class DisciplinesPhasesBean {
 				"Se encontraron " + projectList.size() + " proyectos");
 		this.holidays = holidayController.holidayList();
 		employeeList = employeeController.listEmployees();
+		
+		this.hoursList = hoursRolePhaseController.getResources(project);
 		LogManager.getLogger(clazz).info(
 				"Se encontraron " + employeeList.size() + " empleados");
 	}
@@ -164,6 +169,14 @@ public class DisciplinesPhasesBean {
 
 	public void setHolidays(List<Holiday> holidays) {
 		this.holidays = holidays;
+	}
+	
+	public List<HoursRolePhase> getHoursList() {
+		return hoursList;
+	}
+
+	public void setHoursList(List<HoursRolePhase> hoursList) {
+		this.hoursList = hoursList;
 	}
 
 	public Double[] getWorkHours() {

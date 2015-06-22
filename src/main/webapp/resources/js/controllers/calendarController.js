@@ -33,7 +33,7 @@ projectApp.controller("calendarController",['$scope', '$isTest', 'DateUtils', 'b
 		}
 		var events = [];
 		var projectDay = null;
-		for (var m = moment(startDate); m.isBefore(endDate); m.add(1, "days")){
+		for (var m = moment(startDate); !m.isAfter(endDate); m.add(1, "days")){
 			var validDay = $scope.getProjectDay(m, projectDay);
 			if( validDay > 0){
 				projectDay = validDay;
@@ -66,16 +66,19 @@ projectApp.controller("calendarController",['$scope', '$isTest', 'DateUtils', 'b
 	$scope.getProjectDay = function(date, previousDay){
 		var days = 0;
 		var isHoliday = false;
+		
 		if($scope.workHours[date.day()] != 0 && DateUtils.isBetween(date, $scope.startDate, $scope.endDate) ){
+			
 			for (var i = 0; i < $scope.holidays.length; i++){
 				if(DateUtils.isBetween(date,$scope.holidays[i].start,$scope.holidays[i].end)){
 					isHoliday = true;
 					break;
 				}
 			}
+			
 			if(!isHoliday){
 				if(previousDay == null){
-					var m = moment.utc($scope.startDate);
+					var m = moment($scope.startDate);
 					do{
 						isHoliday = false;
 						if($scope.workHours[m.day()] != 0){

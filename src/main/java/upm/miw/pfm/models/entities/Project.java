@@ -52,7 +52,7 @@ public class Project implements IGenericEntity, Serializable {
 	@ElementCollection(fetch = FetchType.EAGER)
 	@MapKeyColumn(name = "phase")
 	@CollectionTable(name = "phases_people", joinColumns = @javax.persistence.JoinColumn(name = "project_id"))
-	@Column(name = "hours")
+	@Column(name = "people")
 	@Fetch (FetchMode.SELECT)
 	private Map<Phases, Double> phasesPeople;
 
