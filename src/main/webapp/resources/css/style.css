@@ -38,6 +38,10 @@ puilabel, label {
 	float:right;
 }
 
+.label_height_not{
+	line-height:30px;
+}
+
 table td {
 	font-family: Verdana, Arial, sans-serif;
 }

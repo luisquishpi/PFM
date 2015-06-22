@@ -9,6 +9,12 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 			return element.roles.indexOf(type);
 		}
 	};
+	$scope.setSortCostHour = function(){
+		$scope.sortType = function(element){
+			return $scope.employeeSalaryHour(element);
+		}
+	};
+	
 	if(!$isTest){
 		  initJSFScope($scope);
 		  workTimeService.calculateWorkDaysAndHour($scope.resourcesBean.project.startString, 
@@ -41,7 +47,7 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	function Phase(phase){
 		this.phase = phase;
 		this.assignedEmployee = [];
-		this.numberOfAssignedPeople;
+		this.numberOfAssignedPeople=0;
 
 		this.projectManagementTheoricalRelative;
 		this.requirementsTheoricalRelative;
@@ -457,6 +463,7 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 			PF('growl').renderMessage({"summary":"Recursos",
             "detail":count+" Empleado(s) agregado(s) a la fase correctamente",
             "severity":"info"});
+		$scope.employeeListSelected=[];
 	}
 	
 	//Se elimina el empleado de la fase correspondiente

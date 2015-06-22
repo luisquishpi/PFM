@@ -82,9 +82,8 @@ projectApp.service("DateUtils", function(){
     	test = moment.utc(test).set('hour', 10);
     	
     	var between = test.isAfter(start, 'day') && test.isBefore(end, 'day');
-    	var sameStart = test.isSame(start, 'day');
-    	var sameEnd = test.isSame(end, 'day');
-    	
+    	var sameStart = test.diff(start, 'days') == 0; //test.isSame(start, 'day');
+    	var sameEnd = test.diff(end, 'days') == 0; //test.isSame(end, 'day');
     	return between || sameStart  || sameEnd;
     }
 	

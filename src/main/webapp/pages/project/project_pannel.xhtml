@@ -9,7 +9,7 @@
 	xmlns:p="http://primefaces.org/ui">
 	<fieldset>
 		<ngsync direction="serverToClient"
-			value="#{showTheoricalPhasesBean.project}" />
+			value="#{disciplinesPhasesBean.project}" />
 		<div class="row">
 			<div class="col-lg-2">
 				<p:outputLabel for="project" value="Proyecto: "
@@ -17,18 +17,18 @@
 			</div>
 			<div class="col-lg-2">
 				<h:selectOneMenu id="project"
-					value="#{showTheoricalPhasesBean.project.id}" immediate="true"
+					value="#{disciplinesPhasesBean.project.id}" immediate="false"
 					onchange="submit()"
-					valueChangeListener="#{showTheoricalPhasesBean.onChangeProject}">
+					valueChangeListener="#{disciplinesPhasesBean.onChangeProject}">
 					<f:selectItem itemLabel="Seleccione el proyecto" itemValue="-1"
 						noSelectionOption="true" />
-					<f:selectItems value="#{showTheoricalPhasesBean.projectList}"
+					<f:selectItems value="#{disciplinesPhasesBean.projectList}"
 						var="project" itemValue="#{project.id}"
 						itemLabel="#{project.name}" />
 				</h:selectOneMenu>
 			</div>
 		</div>
-		<h:panelGroup rendered="#{not showTheoricalPhasesBean.emptyProject}">
+		<h:panelGroup rendered="#{not disciplinesPhasesBean.emptyProject}">
 			<div ng-if="scheduleFinished" ng-controller="theoricalPhaseController">
 				<div class="row">
 					<div class="col-lg-2">
@@ -45,7 +45,7 @@
 					</div>
 					<div class="col-lg-2">
 						<p:spinner id="dias_iteracion"
-							value="{{showTheoricalPhasesBean.project.iterationDays}}"
+							value="{{disciplinesPhasesBean.project.iterationDays}}"
 							ng-required="true"
 							validatorMessage="Número de días debe ser mayor a 0"
 							stepFactor="1"
@@ -59,14 +59,14 @@
 				</div>
 				<div class="padding-table">
 					<p:commandButton value="Guardar"
-						action="#{showTheoricalPhasesBean.process}" icon="ui-icon-disk"
+						action="#{disciplinesPhasesBean.process}" icon="ui-icon-disk"
 						ajax="false" />
 					<p:button outcome="/home.xhtml" value="Volver"
 						icon="ui-icon-arrowreturn-1-w"></p:button>
 				</div>
 			</div>
 		</h:panelGroup>
-		<h:panelGroup rendered="#{showTheoricalPhasesBean.emptyProject}">
+		<h:panelGroup rendered="#{disciplinesPhasesBean.emptyProject}">
 			<p:button outcome="/home.xhtml" value="Volver"
 				icon="ui-icon-arrowreturn-1-w"></p:button>
 		</h:panelGroup>
