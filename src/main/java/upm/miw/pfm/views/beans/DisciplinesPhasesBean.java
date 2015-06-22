@@ -128,8 +128,6 @@ public class DisciplinesPhasesBean {
 		return project;
 	}
 
-
-
     public boolean isEmptyProject() {
         return emptyProject;
     }
@@ -184,5 +182,4 @@ public class DisciplinesPhasesBean {
 		}
 		return "show_phases";
 	}
-
 }

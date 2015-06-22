@@ -50,10 +50,10 @@
 					<div ng-cloak="">
 					<p:growl id="growl" sticky="false" life="5000" showDetail="false" />
 						<div ng-controller="scheduleController">
-							<c:set var="projectBean" scope="request" value="#{disciplinesDisciplinesBean}" />
+							<c:set var="projectBean" scope="request" value="#{disciplinesPhasesBean}" />
 							<ngsync direction="serverToClient" value="{{projectBean.projectSchedule}}" />
 							<div ng-if="scheduleFinished" ng-controller="theoricalPhaseController">
-                                <c:set var="disciplinesPhasesBean" scope="request" value="#{disciplinesDisciplinesBean}" />
+                                <c:set var="disciplinesPhasesBean" scope="request" value="#{disciplinesPhasesBean}" />
                                 <ngsync direction="serverToClient" value="{{disciplinesPhasesBean.project}}" />
                                 <ngsync direction="serverToClient" value="{{disciplinesPhasesBean.employeeList}}" />
 	                                <div ng-if="phasesFinished" ng-controller="theoricalDisciplineController">
