@@ -6,13 +6,12 @@ projectApp.controller("realDisciplineController", ['$scope', '$isTest', 'bridgeS
 	if(!$isTest){
 		  initJSFScope($scope);
 	}	
-	$scope.resources = bridgeService.shareData;
+	$scope.schedule = bridgeService.shareData;
+
 	if(!$isTest){
 		bridgeService.shareData= $scope;
 		$scope.disciplinesFinished = true;
 	}
-	
-	console.log($scope.disciplinesPhasesBean);
 	
 	function Phase(){
 		this.totalAssignedProjectManagement;
@@ -53,54 +52,54 @@ projectApp.controller("realDisciplineController", ['$scope', '$isTest', 'bridgeS
 		
 		//Recursos Personas Día
 		this.ProjectManagmentDay = function(){
-			return this.ProjectManagmentHour()/$scope.disciplinesPhasesBean.hoursPerDay;
+			return this.ProjectManagmentHour()/$scope.schedule.hoursPerDay();
 		}	
 		this.RequirementsDay = function(){
-			return this.RequirementsHour()/$scope.disciplinesPhasesBean.hoursPerDay;
+			return this.RequirementsHour()/$scope.schedule.hoursPerDay();
 		}
 		this.AnalysisDay = function(){
-			return this.AnalysisHour()/$scope.disciplinesPhasesBean.hoursPerDay;
+			return this.AnalysisHour()/$scope.schedule.hoursPerDay();
 		}
 		this.ImplementationDay = function(){
-			return this.ImplementationHour()/$scope.disciplinesPhasesBean.hoursPerDay;
+			return this.ImplementationHour()/$scope.schedule.hoursPerDay();
 		}
 		this.TestsDay = function(){
-			return this.TestsHour()/$scope.disciplinesPhasesBean.hoursPerDay;
+			return this.TestsHour()/$scope.schedule.hoursPerDay();
 		}
 		this.DeploymentDay = function(){
-			return this.DeploymentHour()/$scope.disciplinesPhasesBean.hoursPerDay;
+			return this.DeploymentHour()/$scope.schedule.hoursPerDay();
 		}
 		this.VersionDay = function(){
-			return this.VersionHour()/$scope.disciplinesPhasesBean.hoursPerDay;
+			return this.VersionHour()/$scope.schedule.hoursPerDay();
 		}
 		this.totalDay = function(){
-			return this.totalHour()/$scope.disciplinesPhasesBean.hoursPerDay;;
+			return this.totalHour()/$scope.schedule.hoursPerDay();
 		}
 		
 		//Recursos Personas Mes
 		this.ProjectManagmentMonth = function(){
-			return this.ProjectManagmentDay()/$scope.disciplinesPhasesBean.workDaysPerMonth;
+			return this.ProjectManagmentDay()/$scope.schedule.workDays;
 		}	
 		this.RequirementsMonth = function(){
-			return this.RequirementsDay()/$scope.disciplinesPhasesBean.workDaysPerMonth;
+			return this.RequirementsDay()/$scope.schedule.workDays;
 		}
 		this.AnalysisMonth = function(){
-			return this.AnalysisDay()/$scope.disciplinesPhasesBean.workDaysPerMonth;
+			return this.AnalysisDay()/$scope.schedule.workDays;
 		}
 		this.ImplementationMonth = function(){
-			return this.ImplementationDay()/$scope.disciplinesPhasesBean.workDaysPerMonth;
+			return this.ImplementationDay()/$scope.schedule.workDays;
 		}
 		this.TestsMonth = function(){
-			return this.TestsDay()/$scope.disciplinesPhasesBean.workDaysPerMonth;
+			return this.TestsDay()/$scope.schedule.workDays;
 		}
 		this.DeploymentMonth = function(){
-			return this.DeploymentDay()/$scope.disciplinesPhasesBean.workDaysPerMonth;
+			return this.DeploymentDay()/$scope.schedule.workDays;
 		}
 		this.VersionMonth = function(){
-			return this.VersionDay()/$scope.disciplinesPhasesBean.workDaysPerMonth;
+			return this.VersionDay()/$scope.schedule.workDays;
 		}
 		this.totalMonth = function(){
-			return this.totalDay()/$scope.disciplinesPhasesBean.workDaysPerMonth;;
+			return this.totalDay()/$scope.schedule.workDays
 		}
 		
 		//distribucion		
