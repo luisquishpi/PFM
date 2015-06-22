@@ -1,5 +1,6 @@
 package upm.miw.pfm.views.beans;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -34,15 +35,19 @@ public class DisciplinesPhasesBean {
     
     private List<PhaseRoleAssigned> assignedHoursList;
     
-    private List<Double> initPhaseAssignedHours;
-    private List<Double> elabPhaseAssignedHours;
-    private List<Double> constPhaseAssignedHours;
-    private List<Double> transPhaseAssignedHours;
 	private List<Project> projectList;
 
 	private List<Employee> employeeList;
 
 	private List<Holiday> holidays;
+
+	public List<PhaseRoleAssigned> getAssignedHoursList() {
+		return assignedHoursList;
+	}
+
+	public void setAssignedHoursList(List<PhaseRoleAssigned> assignedHoursList) {
+		this.assignedHoursList = assignedHoursList;
+	}
 
 	private boolean emptyProject;
 
@@ -66,6 +71,7 @@ public class DisciplinesPhasesBean {
 	public DisciplinesPhasesBean() {
 		this.project = new Project();
 		this.projectSchedule = new ProjectSchedule();
+		this.assignedHoursList = new ArrayList<PhaseRoleAssigned>();
 		this.project.setId(-1);
 		this.project.setCost(0.00);
 		this.project.setStart(Utils.now(Utils.DD_MM_YYYY_FORMAT));

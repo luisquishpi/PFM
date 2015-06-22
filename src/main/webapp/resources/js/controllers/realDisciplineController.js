@@ -13,7 +13,7 @@ projectApp.controller("realDisciplineController", ['$scope', '$isTest', 'bridgeS
 	}
 	
 	
-	console.log($scope.showTheoricalPhasesBean);
+	console.log($scope.disciplinesPhasesBean);
 	
 	function Phase(){
 		this.totalAssignedProjectManagement;
