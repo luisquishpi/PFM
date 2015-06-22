@@ -53,54 +53,54 @@ projectApp.controller("realDisciplineController", ['$scope', '$isTest', 'bridgeS
 		
 		//Recursos Personas Día
 		this.ProjectManagmentDay = function(){
-			return this.ProjectManagmentHour()/$scope.realDisciplineBean.hoursPerDay;
+			return this.ProjectManagmentHour()/$scope.disciplinesPhasesBean.hoursPerDay;
 		}	
 		this.RequirementsDay = function(){
-			return this.RequirementsHour()/$scope.realDisciplineBean.hoursPerDay;
+			return this.RequirementsHour()/$scope.disciplinesPhasesBean.hoursPerDay;
 		}
 		this.AnalysisDay = function(){
-			return this.AnalysisHour()/$scope.realDisciplineBean.hoursPerDay;
+			return this.AnalysisHour()/$scope.disciplinesPhasesBean.hoursPerDay;
 		}
 		this.ImplementationDay = function(){
-			return this.ImplementationHour()/$scope.realDisciplineBean.hoursPerDay;
+			return this.ImplementationHour()/$scope.disciplinesPhasesBean.hoursPerDay;
 		}
 		this.TestsDay = function(){
-			return this.TestsHour()/$scope.realDisciplineBean.hoursPerDay;
+			return this.TestsHour()/$scope.disciplinesPhasesBean.hoursPerDay;
 		}
 		this.DeploymentDay = function(){
-			return this.DeploymentHour()/$scope.realDisciplineBean.hoursPerDay;
+			return this.DeploymentHour()/$scope.disciplinesPhasesBean.hoursPerDay;
 		}
 		this.VersionDay = function(){
-			return this.VersionHour()/$scope.realDisciplineBean.hoursPerDay;
+			return this.VersionHour()/$scope.disciplinesPhasesBean.hoursPerDay;
 		}
 		this.totalDay = function(){
-			return this.totalHour()/$scope.realDisciplineBean.hoursPerDay;;
+			return this.totalHour()/$scope.disciplinesPhasesBean.hoursPerDay;;
 		}
 		
 		//Recursos Personas Mes
 		this.ProjectManagmentMonth = function(){
-			return this.ProjectManagmentDay()/$scope.realDisciplineBean.workDaysPerMonth;
+			return this.ProjectManagmentDay()/$scope.disciplinesPhasesBean.workDaysPerMonth;
 		}	
 		this.RequirementsMonth = function(){
-			return this.RequirementsDay()/$scope.realDisciplineBean.workDaysPerMonth;
+			return this.RequirementsDay()/$scope.disciplinesPhasesBean.workDaysPerMonth;
 		}
 		this.AnalysisMonth = function(){
-			return this.AnalysisDay()/$scope.realDisciplineBean.workDaysPerMonth;
+			return this.AnalysisDay()/$scope.disciplinesPhasesBean.workDaysPerMonth;
 		}
 		this.ImplementationMonth = function(){
-			return this.ImplementationDay()/$scope.realDisciplineBean.workDaysPerMonth;
+			return this.ImplementationDay()/$scope.disciplinesPhasesBean.workDaysPerMonth;
 		}
 		this.TestsMonth = function(){
-			return this.TestsDay()/$scope.realDisciplineBean.workDaysPerMonth;
+			return this.TestsDay()/$scope.disciplinesPhasesBean.workDaysPerMonth;
 		}
 		this.DeploymentMonth = function(){
-			return this.DeploymentDay()/$scope.realDisciplineBean.workDaysPerMonth;
+			return this.DeploymentDay()/$scope.disciplinesPhasesBean.workDaysPerMonth;
 		}
 		this.VersionMonth = function(){
-			return this.VersionDay()/$scope.realDisciplineBean.workDaysPerMonth;
+			return this.VersionDay()/$scope.disciplinesPhasesBean.workDaysPerMonth;
 		}
 		this.totalMonth = function(){
-			return this.totalDay()/$scope.realDisciplineBean.workDaysPerMonth;;
+			return this.totalDay()/$scope.disciplinesPhasesBean.workDaysPerMonth;;
 		}
 		
 		//distribucion		
@@ -150,22 +150,22 @@ projectApp.controller("realDisciplineController", ['$scope', '$isTest', 'bridgeS
 	$scope.elabPhase.totalAssignedVersion = $scope.disciplinesPhasesBean.assignedHoursList[1].sumRoles[6];
 	
 	$scope.transPhase = new Phase();
-	$scope.transPhase.totalAssignedProjectManagement = $scope.disciplinesPhasesBean.assignedHoursList[2].sumRoles[0];
-	$scope.transPhase.totalAssignedRequirements = $scope.disciplinesPhasesBean.assignedHoursList[2].sumRoles[1];
-	$scope.transPhase.totalAssignedAnalysisDesign = $scope.disciplinesPhasesBean.assignedHoursList[2].sumRoles[2];
-	$scope.transPhase.totalAssignedImplementation = $scope.disciplinesPhasesBean.assignedHoursList[2].sumRoles[3];
-	$scope.transPhase.totalAssignedTests = $scope.disciplinesPhasesBean.assignedHoursList[2].sumRoles[4];
-	$scope.transPhase.totalAssignedDeployment = $scope.disciplinesPhasesBean.assignedHoursList[2].sumRoles[5];
-	$scope.transPhase.totalAssignedVersion = $scope.disciplinesPhasesBean.assignedHoursList[2].sumRoles[6];
+	$scope.transPhase.totalAssignedProjectManagement = $scope.disciplinesPhasesBean.assignedHoursList[3].sumRoles[0];
+	$scope.transPhase.totalAssignedRequirements = $scope.disciplinesPhasesBean.assignedHoursList[3].sumRoles[1];
+	$scope.transPhase.totalAssignedAnalysisDesign = $scope.disciplinesPhasesBean.assignedHoursList[3].sumRoles[2];
+	$scope.transPhase.totalAssignedImplementation = $scope.disciplinesPhasesBean.assignedHoursList[3].sumRoles[3];
+	$scope.transPhase.totalAssignedTests = $scope.disciplinesPhasesBean.assignedHoursList[3].sumRoles[4];
+	$scope.transPhase.totalAssignedDeployment = $scope.disciplinesPhasesBean.assignedHoursList[3].sumRoles[5];
+	$scope.transPhase.totalAssignedVersion = $scope.disciplinesPhasesBean.assignedHoursList[3].sumRoles[6];
 	
 	$scope.constPhase = new Phase();
-	$scope.constPhase.totalAssignedProjectManagement = $scope.disciplinesPhasesBean.assignedHoursList[3].sumRoles[0];
-	$scope.constPhase.totalAssignedRequirements = $scope.disciplinesPhasesBean.assignedHoursList[3].sumRoles[1];
-	$scope.constPhase.totalAssignedAnalysisDesign = $scope.disciplinesPhasesBean.assignedHoursList[3].sumRoles[2];
-	$scope.constPhase.totalAssignedImplementation = $scope.disciplinesPhasesBean.assignedHoursList[3].sumRoles[3];
-	$scope.constPhase.totalAssignedTests = $scope.disciplinesPhasesBean.assignedHoursList[3].sumRoles[4];
-	$scope.constPhase.totalAssignedDeployment = $scope.disciplinesPhasesBean.assignedHoursList[3].sumRoles[5];
-	$scope.constPhase.totalAssignedVersion = $scope.disciplinesPhasesBean.assignedHoursList[3].sumRoles[6];	
+	$scope.constPhase.totalAssignedProjectManagement = $scope.disciplinesPhasesBean.assignedHoursList[2].sumRoles[0];
+	$scope.constPhase.totalAssignedRequirements = $scope.disciplinesPhasesBean.assignedHoursList[2].sumRoles[1];
+	$scope.constPhase.totalAssignedAnalysisDesign = $scope.disciplinesPhasesBean.assignedHoursList[2].sumRoles[2];
+	$scope.constPhase.totalAssignedImplementation = $scope.disciplinesPhasesBean.assignedHoursList[2].sumRoles[3];
+	$scope.constPhase.totalAssignedTests = $scope.disciplinesPhasesBean.assignedHoursList[2].sumRoles[4];
+	$scope.constPhase.totalAssignedDeployment = $scope.disciplinesPhasesBean.assignedHoursList[2].sumRoles[5];
+	$scope.constPhase.totalAssignedVersion = $scope.disciplinesPhasesBean.assignedHoursList[2].sumRoles[6];	
 	
 		
 	$scope.totalProjectManagementHour = function(){

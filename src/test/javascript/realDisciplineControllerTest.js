@@ -10,47 +10,16 @@ describe("Test RealDisciplineController", function(){
 	
 	beforeEach(inject(function($controller, $rootScope){
 		scope = $rootScope;
-		scope.realDisciplineBean = {
-				initPhase:{
-					projectManagementAssigned:36.4,
-					requirementsAssigned:98.8,
-					analysisDesignAssigned:49.4,
-					implementationAssigned:20.8,
-					testsAssigned:20.8,
-					deployAssigned:7.8,
-					enviromentAssigned:26.0
-				},
-				elabPhase:{
-					projectManagementAssigned:131.0,
-					requirementsAssigned:196.6,
-					analysisDesignAssigned:393.1,
-					implementationAssigned:142.0,
-					testsAssigned:109.2,
-					deployAssigned:32.8,
-					enviromentAssigned:87.4
-				},
-				constPhase:{
-					projectManagementAssigned:364.0,
-					requirementsAssigned:291.2,
-					analysisDesignAssigned:582.4,
-					implementationAssigned:1237.6,
-					testsAssigned:873.6,
-					deployAssigned:109.2,
-					enviromentAssigned:182
-				},
-				transPhase:{
-					projectManagementAssigned:72.8,
-					requirementsAssigned:20.8,
-					analysisDesignAssigned:20.8,
-					implementationAssigned:98.8,
-					testsAssigned:124.8,
-					deployAssigned:156.0,
-					enviromentAssigned:26.0
-				},
+		scope.disciplinesPhasesBean = {
+				assignedHoursList:[
+					 {sumRoles:[36.4, 98.9, 49.4, 20.8, 20.8, 7.8, 26.0]},
+					 {sumRoles:[131.0, 196.6, 393.1, 142.0, 109.2, 32.8, 87.4]},
+					 {sumRoles:[364.0, 291.2, 582.4, 1237.6, 873.6, 109.2, 182]},
+					 {sumRoles:[72.8, 20.8, 20.8, 98.8, 124.8, 156.0, 26.0]},
+				],
 				hoursPerDay: 8,
 				workDaysPerMonth: 21
-		}
-		
+		};
 		controller = $controller("realDisciplineController", {
 			$scope: scope,
 			$isTest: true,

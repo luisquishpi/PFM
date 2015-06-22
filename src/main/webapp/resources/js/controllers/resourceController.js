@@ -446,6 +446,7 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 			PF('growl').renderMessage({"summary":"Recursos",
             "detail":count+" Empleado(s) agregado(s) a la fase correctamente",
             "severity":"info"});
+		$scope.employeeListSelected=[];
 	}
 	
 	//Se elimina el empleado de la fase correspondiente
