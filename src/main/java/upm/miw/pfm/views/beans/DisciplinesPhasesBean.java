@@ -18,6 +18,7 @@ import upm.miw.pfm.controllers.SetScheduleController;
 import upm.miw.pfm.models.entities.Employee;
 import upm.miw.pfm.models.entities.Project;
 import upm.miw.pfm.models.entities.ProjectSchedule;
+import upm.miw.pfm.utils.PhaseRoleAssigned;
 import upm.miw.pfm.utils.Utils;
 
 @ManagedBean
@@ -31,6 +32,13 @@ public class DisciplinesPhasesBean {
     private List<Project> projectList;
 
     private List<Employee> employeeList;
+    
+    private List<PhaseRoleAssigned> assignedHoursList;
+    
+    private List<Double> initPhaseAssignedHours;
+    private List<Double> elabPhaseAssignedHours;
+    private List<Double> constPhaseAssignedHours;
+    private List<Double> transPhaseAssignedHours;
 
     private boolean emptyProject;
 
@@ -83,7 +91,7 @@ public class DisciplinesPhasesBean {
     public List<Employee> getEmployeeList() {
         return employeeList;
     }
-
+    
     public void setEmployeeList(List<Employee> employeeList) {
         this.employeeList = employeeList;
     }
@@ -97,20 +105,35 @@ public class DisciplinesPhasesBean {
             this.projectSchedule = setScheduleController.getProjectSchedule(project.getId());
             LogManager.getLogger(clazz).debug("Proyecto cargado " + this.project);
             LogManager.getLogger(clazz).info("Project schedule asociado " + this.projectSchedule);
-            hoursRolePhaseController.getAssignedHoursPerRole(project);
+            assignedHoursList = hoursRolePhaseController.getAssignedHoursPerRole(project);
             this.emptyProject = false;
         } else {
             this.emptyProject = true;
         }
         FacesContext.getCurrentInstance().renderResponse();
     }
+    
+    public List<Double> getInitPhaseAssignedHours() {
+		return assignedHoursList.get(0).getSumRoles();
+	}
 
-    protected Project findSelectedProject() {
+	public List<Double> getElabPhaseAssignedHours() {
+		return assignedHoursList.get(1).getSumRoles();
+	}
+
+	public List<Double> getConstPhaseAssignedHours() {
+		return assignedHoursList.get(2).getSumRoles();
+	}
+
+	public List<Double> getTransPhaseAssignedHours() {
+		return assignedHoursList.get(3).getSumRoles();
+	}
+
+	protected Project findSelectedProject() {
         return projectController.getProject(this.project.getId());
     }
 
     public boolean isEmptyProject() {
         return emptyProject;
     }
-
 }
