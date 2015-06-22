@@ -31,107 +31,67 @@
 				</tr>
 				<tr>
 					<td class="ui-outputlabel ui-widget">Gestión del proyecto</td>
-		            <td class="ui-outputlabel ui-widget">{{initPhase.projectManagementDistribution}}%</td>
-		            <!--<td class="ui-outputlabel ui-widget">{{elabPhase.projectManagementDistribution}}%</td>
-		           	<td class="ui-outputlabel ui-widget">{{constPhase.projectManagementDistribution}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{transPhase.projectManagementDistribution}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{totalProjectManagementHour}}%</td>-->
-		            <td class="ui-outputlabel ui-widget">12%</td>
-		            <td class="ui-outputlabel ui-widget">10%</td>
-		            <td class="ui-outputlabel ui-widget">14%</td>
-		            <td class="ui-outputlabel ui-widget">10.96%</td>
-		            
+		            <td class="ui-outputlabel ui-widget">{{initPhase.projectManagementDistribution() | number:2}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{elabPhase.projectManagementDistribution() | number:2}}%</td>
+		           	<td class="ui-outputlabel ui-widget">{{constPhase.projectManagementDistribution() | number:2}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{transPhase.projectManagementDistribution() | number:2}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{totalProjectManagementDistribution() | number:2}}%</td>            
 				</tr>
 				<tr>
 					<td class="ui-outputlabel ui-widget">Requisitos</td>
-					<!--<td class="ui-outputlabel ui-widget">{{initPhase.RequirementsDistribution}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{elabPhase.RequirementsDistribution}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{constPhase.RequirementsDistribution}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{transPhase.RequirementsDistribution}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{totalRequirementsHour}}%</td>-->
-		            <td class="ui-outputlabel ui-widget">38%</td>
-		            <td class="ui-outputlabel ui-widget">18%</td>
-		            <td class="ui-outputlabel ui-widget">8%</td>
-		            <td class="ui-outputlabel ui-widget">4%</td>
-		            <td class="ui-outputlabel ui-widget">11.01%</td>
+					<td class="ui-outputlabel ui-widget">{{initPhase.RequirementsDistribution() | number:2}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{elabPhase.RequirementsDistribution() | number:2}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{constPhase.RequirementsDistribution() | number:2}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{transPhase.RequirementsDistribution() | number:2}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{totalRequirementsDistribution() | number:2}}%</td>
 				</tr>
 				<tr>
 					<td class="ui-outputlabel ui-widget">Análisis y diseño</td>
-					<!--<td class="ui-outputlabel ui-widget">{{initPhase.AnalysisDistribution}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{elabPhase.AnalysisDistribution}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{constPhase.AnalysisDistribution}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{transPhase.AnalysisDistribution}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{totalAnalysisHour}}%</td>-->
-		            <td class="ui-outputlabel ui-widget">19%</td>
-		            <td class="ui-outputlabel ui-widget">36%</td>
-		            <td class="ui-outputlabel ui-widget">16%</td>
-		            <td class="ui-outputlabel ui-widget">4%</td>
-		            <td class="ui-outputlabel ui-widget">18.97%</td>
+					<td class="ui-outputlabel ui-widget">{{initPhase.AnalysisDistribution() | number:2}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{elabPhase.AnalysisDistribution() | number:2}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{constPhase.AnalysisDistribution() | number:2}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{transPhase.AnalysisDistribution() | number:2}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{totalAnalysisDistribution() | number:2}}%</td>
 				</tr>
 				<tr>
 					<td class="ui-outputlabel ui-widget">Implementación</td>
-					<!--<td class="ui-outputlabel ui-widget">{{initPhase.ImplementationDistribution}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{elabPhase.ImplementationDistribution}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{constPhase.ImplementationDistribution}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{transPhase.ImplementationDistribution}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{totalImplementationHour}}%</td>-->
-		            <td class="ui-outputlabel ui-widget">8%</td>
-		            <td class="ui-outputlabel ui-widget">13%</td>
-		            <td class="ui-outputlabel ui-widget">34%</td>
-		            <td class="ui-outputlabel ui-widget">19%</td>
-		            <td class="ui-outputlabel ui-widget">27.20%</td>
+					<td class="ui-outputlabel ui-widget">{{initPhase.ImplementationDistribution() | number:2}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{elabPhase.ImplementationDistribution() | number:2}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{constPhase.ImplementationDistribution() | number:2}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{transPhase.ImplementationDistribution() | number:2}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{totalImplementationDistribution() | number:2}}%</td>
 				</tr>
 				<tr>
 					<td class="ui-outputlabel ui-widget">Pruebas</td>
-					<!--<td class="ui-outputlabel ui-widget">{{initPhase.TestsDistribution}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{elabPhase.TestsDistribution}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{constPhase.TestsDistribution}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{transPhase.TestsDistribution}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{totalTestsHour}}%</td>-->
-		            <td class="ui-outputlabel ui-widget">8%</td>
-		            <td class="ui-outputlabel ui-widget">10%</td>
-		            <td class="ui-outputlabel ui-widget">24%</td>
-		            <td class="ui-outputlabel ui-widget">24%</td>
-		            <td class="ui-outputlabel ui-widget">20.47%</td>
+					<td class="ui-outputlabel ui-widget">{{initPhase.TestsDistribution() | number:2}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{elabPhase.TestsDistribution() | number:2}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{constPhase.TestsDistribution() | number:2}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{transPhase.TestsDistribution() | number:2}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{totalTestsDistribution() | number:2}}%</td>
 				</tr>
 				<tr>
 					<td class="ui-outputlabel ui-widget">Despliegue</td>
-					<!--<td class="ui-outputlabel ui-widget">{{initPhase.DeployDistribution}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{elabPhase.DeployDistribution}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{constPhase.DeployDistribution}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{transPhase.DeployDistribution}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{totalDeploymentHour}}%</td>-->
-		            <td class="ui-outputlabel ui-widget">3%</td>
-		            <td class="ui-outputlabel ui-widget">3%</td>
-		            <td class="ui-outputlabel ui-widget">3%</td>
-		            <td class="ui-outputlabel ui-widget">30%</td>
-		            <td class="ui-outputlabel ui-widget">5.55%</td>
+					<td class="ui-outputlabel ui-widget">{{initPhase.DeployDistribution() | number:2}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{elabPhase.DeployDistribution() | number:2}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{constPhase.DeployDistribution() | number:2}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{transPhase.DeployDistribution() | number:2}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{totalDeploymentDistribution() | number:2}}%</td>
 				</tr>
 				<tr>
 					<td class="ui-outputlabel ui-widget">Entorno y control de versiones</td>
-					<!--<td class="ui-outputlabel ui-widget">{{initPhase.VersionDistribution}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{elabPhase.VersionDistribution}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{constPhase.VersionDistribution}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{transPhase.VersionDistribution}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{totalVersionHour}}%</td>-->
-		            <td class="ui-outputlabel ui-widget">10%</td>
-		            <td class="ui-outputlabel ui-widget">8%</td>
-		            <td class="ui-outputlabel ui-widget">5%</td>
-		            <td class="ui-outputlabel ui-widget">5%</td>
-		            <td class="ui-outputlabel ui-widget">5.83%</td>
+					<td class="ui-outputlabel ui-widget">{{initPhase.VersionDistribution() | number:2}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{elabPhase.VersionDistribution() | number:2}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{constPhase.VersionDistribution() | number:2}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{transPhase.VersionDistribution() | number:2}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{totalVersionDistribution() | number:2}}%</td>
 				</tr>
 				<tr>
 					<td class="ui-outputlabel ui-widget">TOTAL</td>
-					<!--<td class="ui-outputlabel ui-widget">{{initPhase.totalDistribution}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{elabPhase.totalDistribution}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{constPhase.totalDistribution}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{transPhase.totalDistribution}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{totalTotalHour}}%</td>-->
-		            <td class="ui-outputlabel ui-widget">100%</td>
-		            <td class="ui-outputlabel ui-widget">100%</td>
-		            <td class="ui-outputlabel ui-widget">100%</td>
-		            <td class="ui-outputlabel ui-widget">100%</td>
-		            <td class="ui-outputlabel ui-widget">100%</td>
+					<td class="ui-outputlabel ui-widget">{{initPhase.totalDistribution() | number:2}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{elabPhase.totalDistribution() | number:2}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{constPhase.totalDistribution() | number:2}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{transPhase.totalDistribution() | number:2}}%</td>
+		            <td class="ui-outputlabel ui-widget">{{totalTotalDistribution() | number:2}}%</td>
 				</tr>
 				<tr>
 					<td class="ui-outputlabel ui-widget"><strong>PERSONAS-HORA</strong></td>
@@ -142,107 +102,67 @@
 				</tr>
 				<tr>
 					<td class="ui-outputlabel ui-widget">Gestión del proyecto</td>
-					<!--<td class="ui-outputlabel ui-widget">{{initPhase.ProjectManagmentHour}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{elabPhase.ProjectManagmentHour}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{constPhase.ProjectManagmentHour}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{transPhase.ProjectManagmentHour}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{totalProjectManagementHour}}%</td>-->
-		            <td class="ui-outputlabel ui-widget">36.4</td>
-		            <td class="ui-outputlabel ui-widget">131</td>
-		            <td class="ui-outputlabel ui-widget">364</td>
-		            <td class="ui-outputlabel ui-widget">72.8</td>
-		            <td class="ui-outputlabel ui-widget">604.2</td>
+					<td class="ui-outputlabel ui-widget">{{initPhase.ProjectManagmentHour() | number:2}}</td>
+		            <td class="ui-outputlabel ui-widget">{{elabPhase.ProjectManagmentHour() | number:2}}</td>
+		            <td class="ui-outputlabel ui-widget">{{constPhase.ProjectManagmentHour() | number:2}}</td>
+		            <td class="ui-outputlabel ui-widget">{{transPhase.ProjectManagmentHour() | number:2}}</td>
+		            <td class="ui-outputlabel ui-widget">{{totalProjectManagementHour() | number:2}}</td>
 				</tr>
 				<tr>
 					<td class="ui-outputlabel ui-widget">Requisitos</td>
-					<!--<td class="ui-outputlabel ui-widget">{{initPhase.RequirementsHour}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{elabPhase.RequirementsHour}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{constPhase.RequirementsHour}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{transPhase.RequirementsHour}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{totalRequirementsHour}}%</td>-->
-		            <td class="ui-outputlabel ui-widget">98.8</td>
-		            <td class="ui-outputlabel ui-widget">196.6</td>
-		            <td class="ui-outputlabel ui-widget">291.2</td>
-		            <td class="ui-outputlabel ui-widget">20.8</td>
-		            <td class="ui-outputlabel ui-widget">607.4</td>
+					<td class="ui-outputlabel ui-widget">{{initPhase.RequirementsHour() | number:2}}</td>
+		            <td class="ui-outputlabel ui-widget">{{elabPhase.RequirementsHour() | number:2}}</td>
+		            <td class="ui-outputlabel ui-widget">{{constPhase.RequirementsHour() | number:2}}</td>
+		            <td class="ui-outputlabel ui-widget">{{transPhase.RequirementsHour() | number:2}}</td>
+		            <td class="ui-outputlabel ui-widget">{{totalRequirementsHour() | number:2}}</td>
 				</tr>
 				<tr>
 					<td class="ui-outputlabel ui-widget">Análisis y diseño</td>
-					<!--<td class="ui-outputlabel ui-widget">{{initPhase.AnalysisHour}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{elabPhase.AnalysisHour}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{constPhase.AnalysisHour}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{transPhase.AnalysisHour}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{totalAnalysisHour}}%</td>-->
-		            <td class="ui-outputlabel ui-widget">49.4</td>
-		            <td class="ui-outputlabel ui-widget">393.1</td>
-		            <td class="ui-outputlabel ui-widget">582.4</td>
-		            <td class="ui-outputlabel ui-widget">20.8</td>
-		            <td class="ui-outputlabel ui-widget">1045.7</td>
+					<td class="ui-outputlabel ui-widget">{{initPhase.AnalysisHour() | number:2}}</td>
+		            <td class="ui-outputlabel ui-widget">{{elabPhase.AnalysisHour() | number:2}}</td>
+		            <td class="ui-outputlabel ui-widget">{{constPhase.AnalysisHour() | number:2}}</td>
+		            <td class="ui-outputlabel ui-widget">{{transPhase.AnalysisHour() | number:2}}</td>
+		            <td class="ui-outputlabel ui-widget">{{totalAnalysisHour() | number:2}}</td>
 				</tr>
 				<tr>
 					<td class="ui-outputlabel ui-widget">Implementación</td>
-					<!--<td class="ui-outputlabel ui-widget">{{initPhase.ImplementationHour}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{elabPhase.ImplementationHour}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{constPhase.ImplementationHour}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{transPhase.ImplementationHour}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{totalImplementationHour}}%</td>-->
-		            <td class="ui-outputlabel ui-widget">20.8</td>
-		            <td class="ui-outputlabel ui-widget">142</td>
-		            <td class="ui-outputlabel ui-widget">1237.6</td>
-		            <td class="ui-outputlabel ui-widget">98.8</td>
-		            <td class="ui-outputlabel ui-widget">1499.2</td>
+					<td class="ui-outputlabel ui-widget">{{initPhase.ImplementationHour() | number:2}}</td>
+		            <td class="ui-outputlabel ui-widget">{{elabPhase.ImplementationHour() | number:2}}</td>
+		            <td class="ui-outputlabel ui-widget">{{constPhase.ImplementationHour() | number:2}}</td>
+		            <td class="ui-outputlabel ui-widget">{{transPhase.ImplementationHour() | number:2}}</td>
+		            <td class="ui-outputlabel ui-widget">{{totalImplementationHour() | number:2}}</td>
 				</tr>
 				<tr>
 					<td class="ui-outputlabel ui-widget">Pruebas</td>
-					<!--<td class="ui-outputlabel ui-widget">{{initPhase.TestsHour}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{elabPhase.TestsHour}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{constPhase.TestsHour}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{transPhase.TestsHour}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{totalTestsHour}}%</td>-->
-		            <td class="ui-outputlabel ui-widget">20.8</td>
-		            <td class="ui-outputlabel ui-widget">109.2</td>
-		            <td class="ui-outputlabel ui-widget">873.6</td>
-		            <td class="ui-outputlabel ui-widget">124.8</td>
-		            <td class="ui-outputlabel ui-widget">1128.4</td>
+					<td class="ui-outputlabel ui-widget">{{initPhase.TestsHour() | number:2}}</td>
+		            <td class="ui-outputlabel ui-widget">{{elabPhase.TestsHour() | number:2}}</td>
+		            <td class="ui-outputlabel ui-widget">{{constPhase.TestsHour() | number:2}}</td>
+		            <td class="ui-outputlabel ui-widget">{{transPhase.TestsHour() | number:2}}</td>
+		            <td class="ui-outputlabel ui-widget">{{totalTestsHour() | number:2}}</td>
 				</tr>
 				<tr>
 					<td class="ui-outputlabel ui-widget">Despliegue</td>
-					<!--<td class="ui-outputlabel ui-widget">{{initPhase.DeploymentHour}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{elabPhase.DeploymentHour}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{constPhase.DeploymentHour}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{transPhase.DeploymentHour}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{totalDeploymentHour}}%</td>-->
-		            <td class="ui-outputlabel ui-widget">7.8</td>
-		            <td class="ui-outputlabel ui-widget">32.8</td>
-		            <td class="ui-outputlabel ui-widget">109.2</td>
-		            <td class="ui-outputlabel ui-widget">156</td>
-		            <td class="ui-outputlabel ui-widget">305.8</td>
+					<td class="ui-outputlabel ui-widget">{{initPhase.DeploymentHour() | number:2}}</td>
+		            <td class="ui-outputlabel ui-widget">{{elabPhase.DeploymentHour() | number:2}}</td>
+		            <td class="ui-outputlabel ui-widget">{{constPhase.DeploymentHour() | number:2}}</td>
+		            <td class="ui-outputlabel ui-widget">{{transPhase.DeploymentHour() | number:2}}</td>
+		            <td class="ui-outputlabel ui-widget">{{totalDeploymentHour() | number:2}}</td>
 				</tr>
 				<tr>
 					<td class="ui-outputlabel ui-widget">Entorno y control de versiones</td>
-					<!--<td class="ui-outputlabel ui-widget">{{initPhase.VersionHour}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{elabPhase.VersionHour}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{constPhase.VersionHour}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{transPhase.VersionHour}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{totalVersionHour}}%</td>-->
-		            <td class="ui-outputlabel ui-widget">26</td>
-		            <td class="ui-outputlabel ui-widget">87.4</td>
-		            <td class="ui-outputlabel ui-widget">182</td>
-		            <td class="ui-outputlabel ui-widget">26</td>
-		            <td class="ui-outputlabel ui-widget">321.4</td>
+					<td class="ui-outputlabel ui-widget">{{initPhase.VersionHour() | number:2}}</td>
+		            <td class="ui-outputlabel ui-widget">{{elabPhase.VersionHour() | number:2}}</td>
+		            <td class="ui-outputlabel ui-widget">{{constPhase.VersionHour() | number:2}}</td>
+		            <td class="ui-outputlabel ui-widget">{{transPhase.VersionHour() | number:2}}</td>
+		            <td class="ui-outputlabel ui-widget">{{totalVersionHour() | number:2}}</td>
 				</tr>
 				<tr>
 					<td class="ui-outputlabel ui-widget">TOTAL</td>
-					<!--<td class="ui-outputlabel ui-widget">{{initPhase.totalHour}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{elabPhase.totalHour}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{constPhase.totalHour}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{transPhase.totalHour}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{totalTotalHour}}%</td>-->
-		            <td class="ui-outputlabel ui-widget">260</td>
-		            <td class="ui-outputlabel ui-widget">1092.1</td>
-		            <td class="ui-outputlabel ui-widget">3639</td>
-		            <td class="ui-outputlabel ui-widget">520</td>
-		            <td class="ui-outputlabel ui-widget">5512.1</td>
+					<td class="ui-outputlabel ui-widget">{{initPhase.totalHour() | number:2}}</td>
+		            <td class="ui-outputlabel ui-widget">{{elabPhase.totalHour() | number:2}}</td>
+		            <td class="ui-outputlabel ui-widget">{{constPhase.totalHour() | number:2}}</td>
+		            <td class="ui-outputlabel ui-widget">{{transPhase.totalHour() | number:2}}</td>
+		            <td class="ui-outputlabel ui-widget">{{totalTotalHour() | number:2}}</td>
 				</tr>
 				<tr>
 					<td class="ui-outputlabel ui-widget"><strong>PERSONAS-DÍA</strong></td>
@@ -252,69 +172,69 @@
 		            <td>&nbsp;</td>
 				</tr>
 				<tr>
-					<td class="ui-outputlabel ui-widget">Gestión del proyecto</td>
-		            <td class="ui-outputlabel ui-widget">4.55</td>
-		            <td class="ui-outputlabel ui-widget">16.37</td>
-		            <td class="ui-outputlabel ui-widget">45.5</td>
-		            <td class="ui-outputlabel ui-widget">9.1</td>
-		            <td class="ui-outputlabel ui-widget">75.52</td>
-				</tr>
-				<tr>
-					<td class="ui-outputlabel ui-widget">Requisitos</td>
-		            <td class="ui-outputlabel ui-widget">12.35</td>
-		            <td class="ui-outputlabel ui-widget">24.57</td>
-		            <td class="ui-outputlabel ui-widget">36.4</td>
-		            <td class="ui-outputlabel ui-widget">2.6</td>
-		            <td class="ui-outputlabel ui-widget">75.92</td>
-				</tr>
-				<tr>
-					<td class="ui-outputlabel ui-widget">Análisis y diseño</td>
-		            <td class="ui-outputlabel ui-widget">6.17</td>
-		            <td class="ui-outputlabel ui-widget">49.14</td>
-		            <td class="ui-outputlabel ui-widget">72.8</td>
-		            <td class="ui-outputlabel ui-widget">2.6</td>
-		            <td class="ui-outputlabel ui-widget">130.71</td>
-				</tr>
-				<tr>
-					<td class="ui-outputlabel ui-widget">Implementación</td>
-		            <td class="ui-outputlabel ui-widget">2.6</td>
-		            <td class="ui-outputlabel ui-widget">17.75</td>
-		            <td class="ui-outputlabel ui-widget">154.7</td>
-		            <td class="ui-outputlabel ui-widget">12.35</td>
-		            <td class="ui-outputlabel ui-widget">187.4</td>
-				</tr>
-				<tr>
-					<td class="ui-outputlabel ui-widget">Pruebas</td>
-		            <td class="ui-outputlabel ui-widget">2.6</td>
-		            <td class="ui-outputlabel ui-widget">13.65</td>
-		            <td class="ui-outputlabel ui-widget">109.2</td>
-		            <td class="ui-outputlabel ui-widget">15.6</td>
-		            <td class="ui-outputlabel ui-widget">141.05</td>
-				</tr>
-				<tr>
-					<td class="ui-outputlabel ui-widget">Despliegue</td>
-		            <td class="ui-outputlabel ui-widget">0.97</td>
-		            <td class="ui-outputlabel ui-widget">4.1</td>
-		            <td class="ui-outputlabel ui-widget">13.65</td>
-		            <td class="ui-outputlabel ui-widget">19.5</td>
-		            <td class="ui-outputlabel ui-widget">38.22</td>
-				</tr>
-				<tr>
-					<td class="ui-outputlabel ui-widget">Entorno y control de versiones</td>
-		            <td class="ui-outputlabel ui-widget">3.25</td>
-		            <td class="ui-outputlabel ui-widget">10.92</td>
-		            <td class="ui-outputlabel ui-widget">22.75</td>
-		            <td class="ui-outputlabel ui-widget">3.25</td>
-		            <td class="ui-outputlabel ui-widget">40.17</td>
-				</tr>
-				<tr>
-					<td class="ui-outputlabel ui-widget">TOTAL</td>
-		            <td class="ui-outputlabel ui-widget">32.5</td>
-		            <td class="ui-outputlabel ui-widget">136.51</td>
-		            <td class="ui-outputlabel ui-widget">455</td>
-		            <td class="ui-outputlabel ui-widget">65</td>
-		            <td class="ui-outputlabel ui-widget">689.01</td>
-				</tr>
+                    <td class="ui-outputlabel ui-widget">Gestión del proyecto</td>
+                    <td class="ui-outputlabel ui-widget">{{initPhase.ProjectManagmentDay() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{elabPhase.ProjectManagmentDay() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{constPhase.ProjectManagmentDay() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{transPhase.ProjectManagmentDay() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{totalProjectManagementDay() | number:2}}</td>
+                </tr>
+                <tr>
+                    <td class="ui-outputlabel ui-widget">Requisitos</td>
+                    <td class="ui-outputlabel ui-widget">{{initPhase.RequirementsDay() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{elabPhase.RequirementsDay() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{constPhase.RequirementsDay() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{transPhase.RequirementsDay() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{totalRequirementsDay() | number:2}}</td>
+                </tr>
+                <tr>
+                    <td class="ui-outputlabel ui-widget">Análisis y diseño</td>
+                    <td class="ui-outputlabel ui-widget">{{initPhase.AnalysisDay() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{elabPhase.AnalysisDay() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{constPhase.AnalysisDay() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{transPhase.AnalysisDay() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{totalAnalysisDay() | number:2}}</td>
+                </tr>
+                <tr>
+                    <td class="ui-outputlabel ui-widget">Implementación</td>
+                    <td class="ui-outputlabel ui-widget">{{initPhase.ImplementationDay() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{elabPhase.ImplementationDay() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{constPhase.ImplementationDay() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{transPhase.ImplementationDay() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{totalImplementationDay() | number:2}}</td>
+                </tr>
+                <tr>
+                    <td class="ui-outputlabel ui-widget">Pruebas</td>
+                    <td class="ui-outputlabel ui-widget">{{initPhase.TestsDay() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{elabPhase.TestsDay() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{constPhase.TestsDay() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{transPhase.TestsDay() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{totalTestsDay() | number:2}}</td>
+                </tr>
+                <tr>
+                    <td class="ui-outputlabel ui-widget">Despliegue</td>
+                    <td class="ui-outputlabel ui-widget">{{initPhase.DeploymentDay() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{elabPhase.DeploymentDay() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{constPhase.DeploymentDay() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{transPhase.DeploymentDay() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{totalDeploymentDay() | number:2}}</td>
+                </tr>
+                <tr>
+                    <td class="ui-outputlabel ui-widget">Entorno y control de versiones</td>
+                    <td class="ui-outputlabel ui-widget">{{initPhase.VersionDay() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{elabPhase.VersionDay() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{constPhase.VersionDay() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{transPhase.VersionDay() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{totalVersionDay() | number:2}}</td>
+                </tr>
+                <tr>
+                    <td class="ui-outputlabel ui-widget">TOTAL</td>
+                    <td class="ui-outputlabel ui-widget">{{initPhase.totalDay() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{elabPhase.totalDay() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{constPhase.totalDay() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{transPhase.totalDay() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{totalTotalDay() | number:2}}</td>
+                </tr>
 				<tr>
 					<td class="ui-outputlabel ui-widget"><strong>PERSONAS-MES</strong></td>
 		            <td>&nbsp;</td>
@@ -323,69 +243,69 @@
 		            <td>&nbsp;</td>
 				</tr>
 				<tr>
-					<td class="ui-outputlabel ui-widget">Gestión del proyecto</td>
-		            <td class="ui-outputlabel ui-widget">0.22</td>
-		            <td class="ui-outputlabel ui-widget">0.78</td>
-		            <td class="ui-outputlabel ui-widget">2.17</td>
-		            <td class="ui-outputlabel ui-widget">0.43</td>
-		            <td class="ui-outputlabel ui-widget">3.6</td>
-				</tr>
-				<tr>
-					<td class="ui-outputlabel ui-widget">Requisitos</td>
-		            <td class="ui-outputlabel ui-widget">0.59</td>
-		            <td class="ui-outputlabel ui-widget">1.17</td>
-		            <td class="ui-outputlabel ui-widget">1.73</td>
-		            <td class="ui-outputlabel ui-widget">0.12</td>
-		            <td class="ui-outputlabel ui-widget">3.62</td>
-				</tr>
-				<tr>
-					<td class="ui-outputlabel ui-widget">Análisis y diseño</td>
-		            <td class="ui-outputlabel ui-widget">0.29</td>
-		            <td class="ui-outputlabel ui-widget">2.34</td>
-		            <td class="ui-outputlabel ui-widget">3.47</td>
-		            <td class="ui-outputlabel ui-widget">0.12</td>
-		            <td class="ui-outputlabel ui-widget">6.22</td>
-				</tr>
-				<tr>
-					<td class="ui-outputlabel ui-widget">Implementación</td>
-		            <td class="ui-outputlabel ui-widget">0.12</td>
-		            <td class="ui-outputlabel ui-widget">0.85</td>
-		            <td class="ui-outputlabel ui-widget">7.37</td>
-		            <td class="ui-outputlabel ui-widget">0.59</td>
-		            <td class="ui-outputlabel ui-widget">8.92</td>
-				</tr>
-				<tr>
-					<td class="ui-outputlabel ui-widget">Pruebas</td>
-		            <td class="ui-outputlabel ui-widget">0.12</td>
-		            <td class="ui-outputlabel ui-widget">0.65</td>
-		            <td class="ui-outputlabel ui-widget">5.20</td>
-		            <td class="ui-outputlabel ui-widget">0.74</td>
-		            <td class="ui-outputlabel ui-widget">6.72</td>
-				</tr>
-				<tr>
-					<td class="ui-outputlabel ui-widget">Despliegue</td>
-		            <td class="ui-outputlabel ui-widget">0.05</td>
-		            <td class="ui-outputlabel ui-widget">0.19</td>
-		            <td class="ui-outputlabel ui-widget">0.65</td>
-		            <td class="ui-outputlabel ui-widget">0.93</td>
-		            <td class="ui-outputlabel ui-widget">1.82</td>
-				</tr>
-				<tr>
-					<td class="ui-outputlabel ui-widget">Entorno y control de versiones</td>
-		            <td class="ui-outputlabel ui-widget">0.15</td>
-		            <td class="ui-outputlabel ui-widget">0.52</td>
-		            <td class="ui-outputlabel ui-widget">1.08</td>
-		            <td class="ui-outputlabel ui-widget">0.15</td>
-		            <td class="ui-outputlabel ui-widget">1.91</td>
-				</tr>
-				<tr>
-					<td class="ui-outputlabel ui-widget">TOTAL</td>
-		            <td class="ui-outputlabel ui-widget">1.55</td>
-		            <td class="ui-outputlabel ui-widget">6.5</td>
-		            <td class="ui-outputlabel ui-widget">21.67</td>
-		            <td class="ui-outputlabel ui-widget">3.09</td>
-		            <td class="ui-outputlabel ui-widget">32.81</td>
-				</tr>
+                    <td class="ui-outputlabel ui-widget">Gestión del proyecto</td>
+                    <td class="ui-outputlabel ui-widget">{{initPhase.ProjectManagmentMonth() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{elabPhase.ProjectManagmentMonth() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{constPhase.ProjectManagmentMonth() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{transPhase.ProjectManagmentMonth() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{totalProjectManagementMonth() | number:2}}</td>
+                </tr>
+                <tr>
+                    <td class="ui-outputlabel ui-widget">Requisitos</td>
+                    <td class="ui-outputlabel ui-widget">{{initPhase.RequirementsMonth() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{elabPhase.RequirementsMonth() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{constPhase.RequirementsMonth() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{transPhase.RequirementsMonth() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{totalRequirementsMonth() | number:2}}</td>
+                </tr>
+                <tr>
+                    <td class="ui-outputlabel ui-widget">Análisis y diseño</td>
+                    <td class="ui-outputlabel ui-widget">{{initPhase.AnalysisMonth() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{elabPhase.AnalysisMonth() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{constPhase.AnalysisMonth() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{transPhase.AnalysisMonth() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{totalAnalysisMonth() | number:2}}</td>
+                </tr>
+                <tr>
+                    <td class="ui-outputlabel ui-widget">Implementación</td>
+                    <td class="ui-outputlabel ui-widget">{{initPhase.ImplementationMonth() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{elabPhase.ImplementationMonth() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{constPhase.ImplementationMonth() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{transPhase.ImplementationMonth() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{totalImplementationMonth() | number:2}}</td>
+                </tr>
+                <tr>
+                    <td class="ui-outputlabel ui-widget">Pruebas</td>
+                    <td class="ui-outputlabel ui-widget">{{initPhase.TestsMonth() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{elabPhase.TestsMonth() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{constPhase.TestsMonth() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{transPhase.TestsMonth() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{totalTestsMonth() | number:2}}</td>
+                </tr>
+                <tr>
+                    <td class="ui-outputlabel ui-widget">Despliegue</td>
+                    <td class="ui-outputlabel ui-widget">{{initPhase.DeploymentMonth() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{elabPhase.DeploymentMonth() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{constPhase.DeploymentMonth() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{transPhase.DeploymentMonth() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{totalDeploymentMonth() | number:2}}</td>
+                </tr>
+                <tr>
+                    <td class="ui-outputlabel ui-widget">Entorno y control de versiones</td>
+                    <td class="ui-outputlabel ui-widget">{{initPhase.VersionMonth() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{elabPhase.VersionMonth() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{constPhase.VersionMonth() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{transPhase.VersionMonth() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{totalVersionMonth() | number:2}}</td>
+                </tr>
+                <tr>
+                    <td class="ui-outputlabel ui-widget">TOTAL</td>
+                    <td class="ui-outputlabel ui-widget">{{initPhase.totalMonth() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{elabPhase.totalMonth() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{constPhase.totalMonth() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{transPhase.totalMonth() | number:2}}</td>
+                    <td class="ui-outputlabel ui-widget">{{totalTotalMonth() | number:2}}</td>
+                </tr>
 			</table>
 		</div>
 	</div>
