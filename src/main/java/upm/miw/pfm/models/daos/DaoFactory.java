@@ -39,5 +39,5 @@ public abstract class DaoFactory {
         return this.concreteDao;
     }
 
-	public abstract HoursRolePhaseDao getHoursRolePhaseDao();     
+	public abstract HoursRolePhaseDao getHoursRolePhaseDao();
 }

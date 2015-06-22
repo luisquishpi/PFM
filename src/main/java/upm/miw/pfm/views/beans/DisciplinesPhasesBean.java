@@ -12,6 +12,7 @@ import javax.faces.event.ValueChangeEvent;
 import org.apache.logging.log4j.LogManager;
 
 import upm.miw.pfm.controllers.EmployeeController;
+import upm.miw.pfm.controllers.HoursRolePhaseController;
 import upm.miw.pfm.controllers.ProjectController;
 import upm.miw.pfm.controllers.SetScheduleController;
 import upm.miw.pfm.models.entities.Employee;
@@ -43,6 +44,9 @@ public class DisciplinesPhasesBean {
 
     @EJB
     private SetScheduleController setScheduleController;
+    
+    @EJB
+    private HoursRolePhaseController hoursRolePhaseController;
 
     public DisciplinesPhasesBean() {
         this.project = new Project();
@@ -93,6 +97,7 @@ public class DisciplinesPhasesBean {
             this.projectSchedule = setScheduleController.getProjectSchedule(project.getId());
             LogManager.getLogger(clazz).debug("Proyecto cargado " + this.project);
             LogManager.getLogger(clazz).info("Project schedule asociado " + this.projectSchedule);
+            hoursRolePhaseController.getAssignedHoursPerRole(project);
             this.emptyProject = false;
         } else {
             this.emptyProject = true;
