@@ -16,9 +16,9 @@ projectApp.controller("assignedPhaseController",
 			$scope.calendarController = bridgeService.shareData;
 		}
 
-		var projectDays = $scope.calendarController.getEvents(moment.utc($scope.calendarController.startDate), moment.utc($scope.calendarController.endDate));
+		var projectDays = $scope.calendarController.getEvents(moment($scope.calendarController.startDate), moment($scope.calendarController.endDate));
 		
-		
+		console.log(projectDays);
 		/* PHASES OBJECTS */
 		$scope.inceptionPhaseLength = new PhaseLength("I", projectDays, $scope.projectSchedule, $scope.phasesEmployees);
 		$scope.elaborationPhaseLength = new PhaseLength("E", projectDays, $scope.projectSchedule, $scope.phasesEmployees);
@@ -102,7 +102,7 @@ projectApp.controller("assignedPhaseController",
 		
 		/* PHASE SUMMARIES */
 		$scope.getPhaseLength = function(phase){
-			return phase.hours() / $scope.projectHours;
+			return 100*phase.hours() / $scope.projectHours;
 		};
 		$scope.getPhaseEffortDistribution = function(phase){
 			var total = $scope.inceptionPhaseLength.totalHours +
@@ -123,7 +123,6 @@ projectApp.controller("assignedPhaseController",
 			this.phase = phase;
 			this.projectSchedule = projectSchedule;
 			this._phaseHours = null;
-			//console.log(this.projectSchedule);
 			this.phaseDays = projectDays
 					.filter(
 							function(el) {
@@ -132,13 +131,12 @@ projectApp.controller("assignedPhaseController",
 							})
 					.sort(
 							function(a, b) {
-								if (a.startDate
-										.isBefore(b.startDate)) {
+								if (a.start
+										.isBefore(b.start)) {
 									return -1;
 								}
 								return 1;
 							});
-			
 			this.phaseEmployees = projectResourcesService.toEmployeeResourceList(phasesEmployees, projectSchedule, this.phase);
 			
 			/* LENGTH */
@@ -160,8 +158,9 @@ projectApp.controller("assignedPhaseController",
 			this.months = function() {
 				return this.days() / 21;
 			}
-			this.startDate = this.phaseDays[0] ? this.phaseDays[0].startDate : null;
-			this.endDate = this.phaseDays[this.phaseDays.length - 1] ? this.phaseDays[this.phaseDays.length - 1].startDate : null;
+			this.startDate = this.phaseDays[0] ? this.phaseDays[0].start : null;
+			this.endDate = moment(this.phaseDays[this.phaseDays.length - 1] ? this.phaseDays[this.phaseDays.length - 1].start : null, "DD/MM/YYYY");
+			
 			this.iterations = this.days() / this.projectSchedule.project.iterationDays;
 			this.initialIteration = 0;
 			this.finalIteration = function() {

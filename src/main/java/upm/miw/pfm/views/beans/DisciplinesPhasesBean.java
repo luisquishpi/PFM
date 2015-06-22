@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -13,9 +14,11 @@ import org.apache.logging.log4j.LogManager;
 
 import upm.miw.pfm.controllers.EmployeeController;
 import upm.miw.pfm.controllers.HoursRolePhaseController;
+import upm.miw.pfm.controllers.HolidayController;
 import upm.miw.pfm.controllers.ProjectController;
 import upm.miw.pfm.controllers.SetScheduleController;
 import upm.miw.pfm.models.entities.Employee;
+import upm.miw.pfm.models.entities.Holiday;
 import upm.miw.pfm.models.entities.Project;
 import upm.miw.pfm.models.entities.ProjectSchedule;
 import upm.miw.pfm.utils.PhaseRoleAssigned;
@@ -24,14 +27,10 @@ import upm.miw.pfm.utils.Utils;
 @ManagedBean
 @ViewScoped
 public class DisciplinesPhasesBean {
-	
+
 	protected Project project;
-    
-    private ProjectSchedule projectSchedule;
 
-    private List<Project> projectList;
-
-    private List<Employee> employeeList;
+	protected ProjectSchedule projectSchedule;
     
     private List<PhaseRoleAssigned> assignedHoursList;
     
@@ -39,62 +38,42 @@ public class DisciplinesPhasesBean {
     private List<Double> elabPhaseAssignedHours;
     private List<Double> constPhaseAssignedHours;
     private List<Double> transPhaseAssignedHours;
+	private List<Project> projectList;
 
-    private boolean emptyProject;
+	private List<Employee> employeeList;
 
-    protected final static Class<ListProjectsBean> clazz = ListProjectsBean.class;
+	private List<Holiday> holidays;
 
-    @EJB
-    protected ProjectController projectController;
-    
-    @EJB
-    private EmployeeController employeeController;
+	private boolean emptyProject;
 
     @EJB
     private SetScheduleController setScheduleController;
     
     @EJB
     private HoursRolePhaseController hoursRolePhaseController;
-
-    public DisciplinesPhasesBean() {
-        this.project = new Project();
-        this.projectSchedule = new ProjectSchedule();
-        this.project.setId(-1);
-        this.project.setCost(0.00);
-        this.project.setStart(Utils.now(Utils.DD_MM_YYYY_FORMAT));
-        this.project.setEnd(Utils.now(Utils.DD_MM_YYYY_FORMAT));
-        this.project.setIterationDays(0);
-        this.emptyProject = true;
-    }
-
-    @PostConstruct
-    public void init() {
-        projectList = projectController.listProjects();
-        LogManager.getLogger(clazz).info("Se encontraron " + projectList.size() + " proyectos");
-        
-        employeeList = employeeController.listEmployees();
-        LogManager.getLogger(clazz).info("Se encontraron " + employeeList.size() + " empleados");
-    }
-
-    public Project getProject() {
-        return project;
-    }
-
-    public ProjectSchedule getProjectSchedule() {
-        return projectSchedule;
-    }
     
-    public List<Project> getProjectList() {
-        return projectList;
-    }
+	protected final static Class<ListProjectsBean> clazz = ListProjectsBean.class;
 
-    public List<Employee> getEmployeeList() {
-        return employeeList;
-    }
-    
-    public void setEmployeeList(List<Employee> employeeList) {
-        this.employeeList = employeeList;
-    }
+	@EJB
+	protected ProjectController projectController;
+
+	@EJB
+	private EmployeeController employeeController;
+
+	@EJB
+	private HolidayController holidayController;
+
+	public DisciplinesPhasesBean() {
+		this.project = new Project();
+		this.projectSchedule = new ProjectSchedule();
+		this.project.setId(-1);
+		this.project.setCost(0.00);
+		this.project.setStart(Utils.now(Utils.DD_MM_YYYY_FORMAT));
+		this.project.setEnd(Utils.now(Utils.DD_MM_YYYY_FORMAT));
+		this.project.setIterationDays(0);
+		this.emptyProject = true;
+
+	}
 
     public void onChangeProject(ValueChangeEvent e) {
         Integer selectedProject = (Integer) e.getNewValue();
@@ -113,10 +92,22 @@ public class DisciplinesPhasesBean {
         FacesContext.getCurrentInstance().renderResponse();
     }
     
-    public List<Double> getInitPhaseAssignedHours() {
-		return assignedHoursList.get(0).getSumRoles();
+	@PostConstruct
+	public void init() {
+		projectList = projectController.listProjects();
+		LogManager.getLogger(clazz).info(
+				"Se encontraron " + projectList.size() + " proyectos");
+		this.holidays = holidayController.holidayList();
+		employeeList = employeeController.listEmployees();
+		LogManager.getLogger(clazz).info(
+				"Se encontraron " + employeeList.size() + " empleados");
 	}
 
+	
+	public List<Double> getInitPhaseAssignedHours() {
+		return assignedHoursList.get(0).getSumRoles();
+    }
+	
 	public List<Double> getElabPhaseAssignedHours() {
 		return assignedHoursList.get(1).getSumRoles();
 	}
@@ -133,7 +124,65 @@ public class DisciplinesPhasesBean {
         return projectController.getProject(this.project.getId());
     }
 
+	public Project getProject() {
+		return project;
+	}
+
+
+
     public boolean isEmptyProject() {
         return emptyProject;
     }
+
+	public ProjectSchedule getProjectSchedule() {
+		return projectSchedule;
+	}
+
+	public void setProjectSchedule(ProjectSchedule projectSchedule) {
+		this.projectSchedule = projectSchedule;
+	}
+
+	public List<Project> getProjectList() {
+		return projectList;
+	}
+
+	public List<Employee> getEmployeeList() {
+		return employeeList;
+	}
+
+	public void setEmployeeList(List<Employee> employeeList) {
+		this.employeeList = employeeList;
+	}
+
+	public List<Holiday> getHolidays() {
+		return holidays;
+	}
+
+	public void setHolidays(List<Holiday> holidays) {
+		this.holidays = holidays;
+	}
+
+	public Double[] getWorkHours() {
+		return new Double[] { projectSchedule.getSundayHours(),
+				projectSchedule.getMondayHours(),
+				projectSchedule.getTuesdayHours(),
+				projectSchedule.getWednesdayHours(),
+				projectSchedule.getThursdayHours(),
+				projectSchedule.getFridayHours(),
+				projectSchedule.getSaturdayHours() };
+	}
+
+	public String process() {
+		if (project.getId() != null && project.getId() != -1) {
+			Project projectToUpdate = findSelectedProject();
+			projectToUpdate.setIterationDays(project.getIterationDays());
+			projectController.updateProject(projectToUpdate);
+			LogManager.getLogger(clazz).debug(
+					"Proyecto a actualizar " + projectToUpdate);
+			Utils.addMessage(FacesMessage.SEVERITY_INFO, "Proyecto",
+					"Se actualizó las fases teóricas satisfactoriamente");
+		}
+		return "show_phases";
+	}
+
 }

@@ -70,11 +70,11 @@
 							<ngsync direction="serverToClient"
 								value="#{projectBean.project}" />
 							<div ng-if="scheduleFinished" ng-controller="theoricalPhaseController">
-							    <c:set var="showTheoricalPhasesBean" scope="request"
+							    <c:set var="disciplinesPhasesBean" scope="request"
 			                             value="#{resourcesBean}" />
-								<ngsync direction="serverToClient" value="{{showTheoricalPhasesBean.project}}" />
+								<ngsync direction="serverToClient" value="{{disciplinesPhasesBean.project}}" />
 								<ngsync direction="serverToClient" 
-			                                 value="{{showTheoricalPhasesBean.employeeList}}" /> 
+			                                 value="{{disciplinesPhasesBean.employeeList}}" /> 
 			                    <div ng-if="phasesFinished" ng-controller="theoricalDisciplineController">
 									<ngsync direction="serverToClient" value="{{projectBean.project}}" />	
 									<div ng-if="disciplinesFinished" ng-controller="resourceController">

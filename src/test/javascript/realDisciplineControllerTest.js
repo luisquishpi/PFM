@@ -355,7 +355,6 @@ describe("Test RealDisciplineController", function(){
 		expect(scope.transPhase.totalDistribution()).toBe(100);
 	});
 	
-	//Persona Hora total proyecto
 	//Proyecto
 	it("Proyect distribution for project management should be 10.961339598338201", function(){
 		expect(scope.totalProjectManagementDistribution()).toBe(10.961339598338201);
