@@ -7,7 +7,11 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:p="http://primefaces.org/ui">
-	<div ng-if="disciplinesFinished" ng-controller="resourceController">
+	<div ng-if="scheduleFinished" ng-controller="scheduleController">
+	<c:set var="projectBean" scope="request" value="#{disciplinesPhasesBean}" />
+	<ngsync direction="serverToClient" value="{{projectBean.projectSchedule}}" />
+	<ngsync direction="serverToClient" value="#{projectBean.project}" />
+	<div ng-if="scheduleFinished" ng-controller="resourceController">
 	<c:set var="resourcesBean" scope="request" value="#{disciplinesPhasesBean}" />
         <ngsync direction="serverToClient" value="{{resourcesBean.project}}" /> 
         <ngsync direction="serverToClient"  value="#{resourcesBean.employeeList}"/>
@@ -309,4 +313,5 @@
 			</table>
 		</div>
 	</div>
+</div>	
 </ui:composition>
