@@ -289,7 +289,7 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 		
 		if($scope.phaseTest==CONST_PHASE){
 			$scope.constPhase.assignedEmployee = $scope.construccionAssignedEmployeeMock.employeeList;
-			$scope.constPhase.numberOfAssignedPeople = $scope.construccionNumberOfAssignedPeopleMock;		
+			$scope.constPhase.numberOfAssignedPeople = $scope.construccionNumberOfAssignedPeopleMock;	
 		}		
 		
 		if($scope.phaseTest==TRANS_PHASE){
@@ -308,6 +308,10 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 			$scope.constPhase.assignedEmployee = projectResourcesService.toEmployeeResourceList(projectInfo,$scope.constPhase);
 			$scope.transPhase.assignedEmployee = projectResourcesService.toEmployeeResourceList(projectInfo, $scope.transPhase);
 		}
+		$scope.initPhase.numberOfAssignedPeople=$scope.resourcesBean.project.peopleInicio;
+		$scope.elabPhase.numberOfAssignedPeople=$scope.resourcesBean.project.peopleElaboracion;
+		$scope.constPhase.numberOfAssignedPeople=$scope.resourcesBean.project.peopleConstruccion;
+		$scope.transPhase.numberOfAssignedPeople=$scope.resourcesBean.project.peopleTransicion;
 	}
 	
 	//Inicialización de elementos de fase de inicio
@@ -335,8 +339,6 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	$scope.initPhase.deployAssigned = $scope.disciplineHoursTotal($scope.initPhase.assignedEmployee, 'deployHours');
 	$scope.initPhase.enviromentAssigned = $scope.disciplineHoursTotal($scope.initPhase.assignedEmployee, 'environmentHours');
 	
-	$scope.initPhase.numberOfAssignedPeople=$scope.resourcesBean.project.peopleInicio;
-	
 	//Inicialización de elementos de fase de elaboracion
 	$scope.elabPhase.projectManagementTheoricalRelative=$scope.discipline.elaborationPercentajeProjectManagment();
 	$scope.elabPhase.requirementsTheoricalRelative=$scope.discipline.elaborationPercentajeRequirements();
@@ -361,8 +363,6 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	$scope.elabPhase.testsAssigned = $scope.disciplineHoursTotal($scope.elabPhase.assignedEmployee, 'testsHours');
 	$scope.elabPhase.deployAssigned = $scope.disciplineHoursTotal($scope.elabPhase.assignedEmployee, 'deployHours');
 	$scope.elabPhase.enviromentAssigned = $scope.disciplineHoursTotal($scope.elabPhase.assignedEmployee, 'environmentHours');
-	
-	$scope.elabPhase.numberOfAssignedPeople=$scope.resourcesBean.project.peopleElaboracion;
 	
 	//Inicialización de elementos de fase de construccion
 	$scope.constPhase.projectManagementTheoricalRelative=$scope.discipline.constructionPercentajeProjectManagment();
@@ -389,8 +389,6 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	$scope.constPhase.deployAssigned = $scope.disciplineHoursTotal($scope.constPhase.assignedEmployee, 'deployHours');
 	$scope.constPhase.enviromentAssigned = $scope.disciplineHoursTotal($scope.constPhase.assignedEmployee, 'environmentHours');
 	
-	$scope.constPhase.numberOfAssignedPeople=$scope.resourcesBean.project.peopleConstruccion;	
-	
 	//Inicialización de elementos de fase de transicion
 	$scope.transPhase.projectManagementTheoricalRelative=$scope.discipline.transitionPercentajeProjectManagment();
 	$scope.transPhase.requirementsTheoricalRelative=$scope.discipline.transitionPercentajeRequirements();
@@ -415,8 +413,6 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	$scope.transPhase.testsAssigned = $scope.disciplineHoursTotal($scope.transPhase.assignedEmployee, 'testsHours');
 	$scope.transPhase.deployAssigned = $scope.disciplineHoursTotal($scope.transPhase.assignedEmployee, 'deployHours');
 	$scope.transPhase.enviromentAssigned = $scope.disciplineHoursTotal($scope.transPhase.assignedEmployee, 'environmentHours');
-	
-	$scope.transPhase.numberOfAssignedPeople=$scope.resourcesBean.project.peopleTransicion;
 	
 	//funcion que agrega empleado al array	
 	$scope.copyEmployeeToList = function(employee){
