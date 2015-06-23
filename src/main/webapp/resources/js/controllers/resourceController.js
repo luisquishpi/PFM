@@ -228,10 +228,10 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 		
 		this.averageEmployeeHours = function(){
 			var totalEmployeeHours = 0;
-			for(i=0; i < $scope.resourcesBean.employeeList.length; i++){
-				totalEmployeeHours += $scope.availableEmployeeHours(this,$scope.resourcesBean.employeeList[i]);
+			for(var i=0; i < $scope.resourcesBean.employeeList.length; i++){
+				totalEmployeeHours = totalEmployeeHours + $scope.availableEmployeeHours(this,$scope.resourcesBean.employeeList[i]);
 			}
-			return totalEmployeeHours/($scope.resourcesBean.employeeList.length-1);
+			return totalEmployeeHours/($scope.resourcesBean.employeeList.length);
 		};
 		
 		this.availableEmployeeHours = function(employee){

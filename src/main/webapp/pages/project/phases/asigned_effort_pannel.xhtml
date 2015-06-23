@@ -43,10 +43,10 @@
 					</tr>
 					<tr>
 						<td class="ui-outputlabel ui-widget"><strong>Distribución</strong></td>
-			            <td class="ui-outputlabel ui-widget">{{getPhaseEffortDistribution(inceptionPhaseLength)}}%</td>
-			            <td class="ui-outputlabel ui-widget">{{getPhaseEffortDistribution(elaborationPhaseLength)}}%</td>
-			            <td class="ui-outputlabel ui-widget">{{getPhaseEffortDistribution(constructionPhaseLength)}}%</td>
-			            <td class="ui-outputlabel ui-widget">{{getPhaseEffortDistribution(transitionPhaseLength)}}%</td>
+			            <td class="ui-outputlabel ui-widget">{{100*getPhaseEffortDistribution(inceptionPhaseLength) | number:2}}%</td>
+			            <td class="ui-outputlabel ui-widget">{{100*getPhaseEffortDistribution(elaborationPhaseLength) | number:2}}%</td>
+			            <td class="ui-outputlabel ui-widget">{{100*getPhaseEffortDistribution(constructionPhaseLength) | number:2}}%</td>
+			            <td class="ui-outputlabel ui-widget">{{100*getPhaseEffortDistribution(transitionPhaseLength) | number:2}}%</td>
 			            <td class="ui-outputlabel ui-widget">{{projectEffort}}%</td>
 					</tr>
 					<tr>
@@ -91,10 +91,10 @@
 					</tr>
 					<tr>
 						<td class="ui-outputlabel ui-widget"><strong>Distribución/iteración</strong></td>
-			            <td class="ui-outputlabel ui-widget">{{inceptionPhaseLength.iterationResourcesPerHour() | number:2}}%</td>
-			            <td class="ui-outputlabel ui-widget">{{elaborationPhaseLength.iterationResourcesPerHour() | number:2}}%</td>
-			            <td class="ui-outputlabel ui-widget">{{constructionPhaseLength.iterationResourcesPerHour() | number:2}}%</td>
-			            <td class="ui-outputlabel ui-widget">{{transitionPhaseLength.iterationResourcesPerHour() | number:2}}%</td>
+			            <td class="ui-outputlabel ui-widget">{{100*getIterationDistribution(inceptionPhaseLength) | number:2}}%</td>
+			            <td class="ui-outputlabel ui-widget">{{100*getIterationDistribution(elaborationPhaseLength) | number:2}}%</td>
+			            <td class="ui-outputlabel ui-widget">{{100*getIterationDistribution(constructionPhaseLength) | number:2}}%</td>
+			            <td class="ui-outputlabel ui-widget">{{100*getIterationDistribution(transitionPhaseLength) | number:2}}%</td>
 			            <td class="ui-outputlabel ui-widget">{{projectIterationDistribution | number:2}}%</td>
 					</tr>
 					<tr>
