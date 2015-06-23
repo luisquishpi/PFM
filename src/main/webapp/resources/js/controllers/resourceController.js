@@ -434,8 +434,9 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 					seen = true;
 			}
 			if(!seen){
-				$scope.employeeListSelected[p].availableHours = $scope.availableEmployeeHours(phase, $scope.employeeListSelected[p]);
-				phase.assignedEmployee.push(new EmployeeResource($scope.employeeListSelected[p]));
+				var emp = new EmployeeResource($scope.employeeListSelected[p]);
+				emp.availableEmployeeHours=$scope.availableEmployeeHours(phase, $scope.employeeListSelected[p]);
+				phase.assignedEmployee.push(emp);
 				count++;
 			}
 			$scope.resourcesBean.employeeList[$scope.resourcesBean.employeeList.indexOf($scope.employeeListSelected[p])].selected=false;
@@ -475,7 +476,7 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	$scope.checkEmployee = function(employeeResource){
 		var hours_assigned = parseFloat(employeeResource.projectManagementHours)+parseFloat(employeeResource.requirementsHours)+parseFloat(employeeResource.analysisDesignHours)+
 		parseFloat(employeeResource.implementationHours)+parseFloat(employeeResource.testsHours)+parseFloat(employeeResource.deployHours)+parseFloat(employeeResource.environmentHours);
-		return hours_assigned>employeeResource.employee.availableHours;
+		return hours_assigned>employeeResource.availableEmployeeHours;
 		
 	}	
 	$scope.validateProjectManagementHours=function(employeeResource){		
