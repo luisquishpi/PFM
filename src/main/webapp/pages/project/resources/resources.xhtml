@@ -81,6 +81,8 @@
 										<ngsync direction="serverToClient" value="{{resourcesBean.project}}" />	
 										<ngsync direction="serverToClient"
 												value="#{resourcesBean.employeeList}" />
+                                        <ngsync direction="serverToClient"
+                                                value="#{resourcesBean.resourcesList}" />												
 										<p:commandButton styleClass="save_resources" value="Guardar"
 											icon="ui-icon-disk" update="growl" type="button"
 											ng-click="saveHoursRolePhaseArray()" />
