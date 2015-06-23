@@ -200,7 +200,6 @@ projectApp.service("projectResourcesService", function(){
 			employeeResource.environmentHours = resource.workHours;
 		}
 		employeeResource.hourlyCost = 0;
-		employeeResource.availableEmployeeHours = 0;
 	}
 	
 	function getEmployeeList(resourcesList){
@@ -244,7 +243,7 @@ projectApp.service("projectResourcesService", function(){
 			var existsInPhase = false;
 			projectInfo.resourcesList.map(function(resource){
 				if(resource.Phases===mapPhaseStrToPhaseEnum(phase.phase) && resource.employee.id===employee.id){
-					employee.availableHours = availableEmployeeHours(projectInfo, phase, employee);
+					employeeResource.availableEmployeeHours = availableEmployeeHours(projectInfo, phase, employee);
 					employeeResource.employee = employee;
 					convertFromHourRolePhaseToEmployeeResource(employeeResource, resource);
 					existsInPhase = true;
