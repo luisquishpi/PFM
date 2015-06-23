@@ -475,6 +475,10 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 		return $scope.checkNan(hours);
 	}
 	
+	$scope.employeeLeft = function(employeeResource){
+		return employeeResource.availableEmployeeHours - $scope.assignHours(employeeResource);
+	}
+	
 	//Validaciones de asignacion de horas
 	$scope.checkEmployee = function(employeeResource){
 		var hours_assigned = parseFloat(employeeResource.projectManagementHours)+parseFloat(employeeResource.requirementsHours)+parseFloat(employeeResource.analysisDesignHours)+

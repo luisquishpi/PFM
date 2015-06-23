@@ -198,20 +198,20 @@
 							 />
 					</div>	 
 				</td>	
-				<td class="text-center">{{assignHours(employeeResource)}}/{{employeeResource.availableEmployeeHours}}</td>
+				<td class="text-center">{{assignHours(employeeResource)}}/{{employeeResource.availableEmployeeHours}}<br/><span class="employee_left">{{employeeLeft(employeeResource)|number:2}}</span></td>
 				<td class="text-center">{{employeeCost(employeeResource)|number:2}}</td>
 			</tr>
 			
 			
 			<tr>
 				<td class="text-center">Totales</td>
-				<td class="text-center">{{disciplineHoursTotal(constPhase.assignedEmployee, "projectManagementHours")}}</td>
-				<td class="text-center">{{disciplineHoursTotal(constPhase.assignedEmployee, "requirementsHours")}}</td>
-				<td class="text-center">{{disciplineHoursTotal(constPhase.assignedEmployee, "analysisDesignHours")}}</td>
-				<td class="text-center">{{disciplineHoursTotal(constPhase.assignedEmployee, "implementationHours")}}</td>
-				<td class="text-center">{{disciplineHoursTotal(constPhase.assignedEmployee, "testsHours")}}</td>
-				<td class="text-center">{{disciplineHoursTotal(constPhase.assignedEmployee, "deployHours")}}</td>
-				<td class="text-center">{{disciplineHoursTotal(constPhase.assignedEmployee, "environmentHours")}}</td>
+				<td class="text-center">{{disciplineHoursTotal(constPhase.assignedEmployee, "projectManagementHours")|number:2}}</td>
+				<td class="text-center">{{disciplineHoursTotal(constPhase.assignedEmployee, "requirementsHours")|number:2}}</td>
+				<td class="text-center">{{disciplineHoursTotal(constPhase.assignedEmployee, "analysisDesignHours")|number:2}}</td>
+				<td class="text-center">{{disciplineHoursTotal(constPhase.assignedEmployee, "implementationHours")|number:2}}</td>
+				<td class="text-center">{{disciplineHoursTotal(constPhase.assignedEmployee, "testsHours")|number:2}}</td>
+				<td class="text-center">{{disciplineHoursTotal(constPhase.assignedEmployee, "deployHours")|number:2}}</td>
+				<td class="text-center">{{disciplineHoursTotal(constPhase.assignedEmployee, "environmentHours")|number:2}}</td>
 				<td class="text-center"></td>
 				<td class="text-center"></td>
 			</tr>
