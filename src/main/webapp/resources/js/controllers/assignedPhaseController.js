@@ -120,23 +120,23 @@ projectApp.controller("assignedPhaseController",
 			return $scope.getPhaseEffortDistribution(phase) / phase.iterations;
 		};
 
-		var INIT_PHASE = "INICIO";
-		var ELAB_PHASE = "ELABORACION";
-		var CONST_PHASE = "CONSTRUCCION";
-		var TRANS_PHASE = "TRANSICION";
+		var INIT_PHASE = "INIT";
+		var ELAB_PHASE = "ELAB";
+		var CONST_PHASE = "CONST";
+		var TRANS_PHASE = "TRANS";
 		
 		function Phase(phase){
 			this.phase = phase;
 			this.availableHoursFactor = function(){
-				if(this.phase===INIT_PHASE || this.phase===TRANS_PHASE){
+				if(this.phase==="INIT" || this.phase==="TRANS"){
 					return 1;
 				}
 				
-				if(this.phase===ELAB_PHASE){
+				if(this.phase==="ELAB"){
 					return 3;
 				}	
 
-				if(this.phase===CONST_PHASE){
+				if(this.phase==="CONST"){
 					return 5;
 				}			
 			}
@@ -226,7 +226,6 @@ projectApp.controller("assignedPhaseController",
 			var phaseObj = new Phase(phaseString(this.phase));
 			
 			this.phaseEmployees = projectResourcesService.toEmployeeResourceList(projectInfo, phaseObj);
-			
 			/* LENGTH */
 			this.hours = function() {
 				if(this._phaseHours != null){

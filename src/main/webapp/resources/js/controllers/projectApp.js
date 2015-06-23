@@ -199,7 +199,7 @@ projectApp.service("projectResourcesService", function(){
 		if(resource.role==='ENVIROMENT_REVISION_CONTROL'){
 			employeeResource.environmentHours = resource.workHours;
 		}
-		employeeResource.hourlyCost = 0;
+		
 	}
 	
 	function getEmployeeList(resourcesList){
