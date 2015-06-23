@@ -45,7 +45,6 @@ public class HoursRolePhaseControllerEjb implements HoursRolePhaseController {
 		pra.setSumRoles(DaoFactory.getFactory().getHoursRolePhaseDao().getAssignedHoursPerPhase(project, Phases.TRANSICION));		
 		listPra.add(pra);
 		
-		System.out.println(listPra);
 		return listPra;
 	}
 

@@ -15,6 +15,12 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 		}
 	};
 	
+	$scope.checkNan = function(value){
+		if(isNaN(value))
+			return 0;
+		return value; 
+	}
+	
 	if(!$isTest){
 		  initJSFScope($scope);
 		  workTimeService.calculateWorkDaysAndHour($scope.resourcesBean.project.startString, 
@@ -152,53 +158,31 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 		}	
 		
 		this.projectManagementProposal = function(){
-			var val = (parseFloat(this.projectManagementTheoricalRelative)*parseFloat(this.totalTheoricalAbsolute())*parseFloat(this.numberOfAssignedPeople))/(parseFloat(this.numberOfProposalsPeople())*100);
-			if(isNaN(val))
-				return 0;
-			return val;
+			return $scope.checkNan((parseFloat(this.projectManagementTheoricalRelative)*parseFloat(this.totalTheoricalAbsolute())*parseFloat(this.numberOfAssignedPeople))/(parseFloat(this.numberOfProposalsPeople())*100));
 		}	
 		
 		this.requirementsProposal = function(){
-			var val = (parseFloat(this.requirementsTheoricalRelative)*parseFloat(this.totalTheoricalAbsolute())*parseFloat(this.numberOfAssignedPeople))/(parseFloat(this.numberOfProposalsPeople())*100);
-			if(isNaN(val))
-				return 0;
-			return val;
+			return $scope.checkNan((parseFloat(this.requirementsTheoricalRelative)*parseFloat(this.totalTheoricalAbsolute())*parseFloat(this.numberOfAssignedPeople))/(parseFloat(this.numberOfProposalsPeople())*100));
 		}	
 		
 		this.analysisDesignProposal = function(){
-			var val = (parseFloat(this.analysisDesignTheoricalRelative)*parseFloat(this.totalTheoricalAbsolute())*parseFloat(this.numberOfAssignedPeople))/(parseFloat(this.numberOfProposalsPeople())*100);
-			if(isNaN(val))
-				return 0;
-			return val;
+			return $scope.checkNan((parseFloat(this.analysisDesignTheoricalRelative)*parseFloat(this.totalTheoricalAbsolute())*parseFloat(this.numberOfAssignedPeople))/(parseFloat(this.numberOfProposalsPeople())*100));
 		}
 		
 		this.implementationProposal = function(){
-			var val = (parseFloat(this.implementationTheoricalRelative)*parseFloat(this.totalTheoricalAbsolute())*parseFloat(this.numberOfAssignedPeople))/(parseFloat(this.numberOfProposalsPeople())*100);
-			if(isNaN(val))
-				return 0;
-			return val;
+			return $scope.checkNan((parseFloat(this.implementationTheoricalRelative)*parseFloat(this.totalTheoricalAbsolute())*parseFloat(this.numberOfAssignedPeople))/(parseFloat(this.numberOfProposalsPeople())*100));
 		}	
 		
 		this.testsProposal = function(){
-			var val = (parseFloat(this.testsTheoricalRelative)*parseFloat(this.totalTheoricalAbsolute())*parseFloat(this.numberOfAssignedPeople))/(parseFloat(this.numberOfProposalsPeople())*100);
-			if(isNaN(val))
-				return 0;
-			return val;
-			
+			return $scope.checkNan((parseFloat(this.testsTheoricalRelative)*parseFloat(this.totalTheoricalAbsolute())*parseFloat(this.numberOfAssignedPeople))/(parseFloat(this.numberOfProposalsPeople())*100));			
 		}	
 		
 		this.deployProposal = function(){
-			var val = (parseFloat(this.deployTheoricalRelative)*parseFloat(this.totalTheoricalAbsolute())*parseFloat(this.numberOfAssignedPeople))/(parseFloat(this.numberOfProposalsPeople())*100);
-			if(isNaN(val))
-				return 0;
-			return val;
+			return $scope.checkNan((parseFloat(this.deployTheoricalRelative)*parseFloat(this.totalTheoricalAbsolute())*parseFloat(this.numberOfAssignedPeople))/(parseFloat(this.numberOfProposalsPeople())*100));
 		}	
 		
 		this.enviromentProposal = function(){
-			var val = (parseFloat(this.enviromentTheoricalRelative)*parseFloat(this.totalTheoricalAbsolute())*parseFloat(this.numberOfAssignedPeople))/(parseFloat(this.numberOfProposalsPeople())*100);
-			if(isNaN(val))
-				return 0;
-			return val;
+			return $scope.checkNan((parseFloat(this.enviromentTheoricalRelative)*parseFloat(this.totalTheoricalAbsolute())*parseFloat(this.numberOfAssignedPeople))/(parseFloat(this.numberOfProposalsPeople())*100));
 		}
 		
 		this.totalProposal = function(){			
@@ -282,10 +266,7 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	//Se cuentan las horas totales de disciplina de cierta fase
 	$scope.disciplineHoursTotal = function(arrayEmployee, discipline){
 		var hoursTotal = parseFloat($scope.sum(arrayEmployee, discipline));
-		if(isNaN(hoursTotal)){
-			return 0;
-		}
-		return hoursTotal;
+		return $scope.checkNan(hoursTotal);
 	}
 	
 	$scope.employeeListSelected=[];
@@ -487,9 +468,7 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	$scope.assignHours = function(employeeResource){
 		var hours=parseFloat(employeeResource.projectManagementHours)+parseFloat(employeeResource.requirementsHours)+parseFloat(employeeResource.analysisDesignHours)+
 		parseFloat(employeeResource.implementationHours)+parseFloat(employeeResource.testsHours)+parseFloat(employeeResource.deployHours)+parseFloat(employeeResource.environmentHours);
-		if(isNaN(hours))
-			return 0;
-		return hours;
+		return $scope.checkNan(hours);
 	}
 	
 	//Validaciones de asignacion de horas
