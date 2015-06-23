@@ -14,7 +14,6 @@
 		</div>
 		<div class="col-sm-2">
 			<p:inputText id="input_trans"
-			    value="{{resourcesBean.project.peopleTransicion}}"
 				ng-model="transPhase.numberOfAssignedPeople"
 				required="true" 
 				onkeypress="return isDecimalNumberKey(event)"/>
@@ -199,7 +198,7 @@
 							 />
 					</div>	 
 				</td>	
-				<td class="text-center">{{assignHours(employeeResource)}}/{{employeeResource.employee.availableHours}}</td>
+				<td class="text-center">{{assignHours(employeeResource)}}/{{employeeResource.availableEmployeeHours}}</td>
 				<td class="text-center">{{employeeCost(employeeResource)|number:2}}</td>
 			</tr>
 			
