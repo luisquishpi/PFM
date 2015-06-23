@@ -52,7 +52,6 @@ projectApp.controller("realDisciplineController", ['$scope', '$isTest', 'bridgeS
 		
 		//Recursos Personas Día
 		this.ProjectManagmentDay = function(){
-			console.log(this.ProjectManagmentHour()/$scope.schedule.hoursPerDay());
 			return this.ProjectManagmentHour()/$scope.schedule.hoursPerDay();
 		}	
 		this.RequirementsDay = function(){
@@ -100,34 +99,58 @@ projectApp.controller("realDisciplineController", ['$scope', '$isTest', 'bridgeS
 			return this.VersionDay()/$scope.schedule.workDays;
 		}
 		this.totalMonth = function(){
-			return this.totalDay()/$scope.schedule.workDays
+			return this.totalDay()/$scope.schedule.workDays;
 		}
 		
 		//distribucion		
 		this.projectManagementDistribution = function(){
-			return (parseFloat(this.totalAssignedProjectManagement)/this.totalHour())*100;
+			var value= (parseFloat(this.totalAssignedProjectManagement)/this.totalHour())*100;
+			if(isNaN(value))
+				return 0;
+			return value;
 		}
 		this.RequirementsDistribution = function(){
-			return (parseFloat(this.totalAssignedRequirements)/this.totalHour())*100;
+			var value=(parseFloat(this.totalAssignedRequirements)/this.totalHour())*100;
+			if(isNaN(value))
+				return 0;
+			return value;
 		}
 		this.AnalysisDistribution = function(){
-			return (parseFloat(this.totalAssignedAnalysisDesign)/this.totalHour())*100;
+			var value=(parseFloat(this.totalAssignedAnalysisDesign)/this.totalHour())*100;
+			if(isNaN(value))
+				return 0;
+			return value;
 		}
 		this.ImplementationDistribution = function(){
-			return (parseFloat(this.totalAssignedImplementation/this.totalHour()))*100;
+			var value=(parseFloat(this.totalAssignedImplementation/this.totalHour()))*100;
+			if(isNaN(value))
+				return 0;
+			return value;
 		}
 		this.TestsDistribution = function(){
-			return (parseFloat(this.totalAssignedTests)/this.totalHour())*100;
+			var value=(parseFloat(this.totalAssignedTests)/this.totalHour())*100;
+			if(isNaN(value))
+				return 0;
+			return value;
 		}
 		this.DeployDistribution = function(){
-			return (parseFloat(this.totalAssignedDeployment)/this.totalHour())*100;
+			var value=(parseFloat(this.totalAssignedDeployment)/this.totalHour())*100;
+			if(isNaN(value))
+				return 0;
+			return value;
 		}
 		this.VersionDistribution = function(){
-			return (parseFloat(this.totalAssignedVersion)/this.totalHour())*100;
+			var value=(parseFloat(this.totalAssignedVersion)/this.totalHour())*100;
+			if(isNaN(value))
+				return 0;
+			return value;
 		}
 		this.totalDistribution = function(){			
-			return (parseFloat(this.projectManagementDistribution())+parseFloat(this.RequirementsDistribution())+parseFloat(this.AnalysisDistribution())
+			var value=(parseFloat(this.projectManagementDistribution())+parseFloat(this.RequirementsDistribution())+parseFloat(this.AnalysisDistribution())
 			+parseFloat(this.ImplementationDistribution())+parseFloat(this.TestsDistribution())+parseFloat(this.DeployDistribution())+parseFloat(this.VersionDistribution()));
+			if(isNaN(value))
+				return 0;
+			return value;
 		}		
 	}
 	
@@ -268,27 +291,51 @@ projectApp.controller("realDisciplineController", ['$scope', '$isTest', 'bridgeS
 	}
 	
 	$scope.totalProjectManagementDistribution = function(){
-		return ($scope.totalProjectManagementHour()/$scope.totalTotalHour())*100;
+		var value=($scope.totalProjectManagementHour()/$scope.totalTotalHour())*100;
+		if(isNaN(value))
+			return 0;
+		return value;
 	}
 	$scope.totalRequirementsDistribution = function(){
-		return ($scope.totalRequirementsHour()/$scope.totalTotalHour())*100;
+		var value=($scope.totalRequirementsHour()/$scope.totalTotalHour())*100;
+		if(isNaN(value))
+			return 0;
+		return value;
 	}
 	$scope.totalAnalysisDistribution = function(){
-		return ($scope.totalAnalysisHour()/$scope.totalTotalHour())*100;
+		var value=($scope.totalAnalysisHour()/$scope.totalTotalHour())*100;
+		if(isNaN(value))
+			return 0;
+		return value;
 	}
 	$scope.totalImplementationDistribution = function(){
-		return ($scope.totalImplementationHour()/$scope.totalTotalHour())*100;
+		var value=($scope.totalImplementationHour()/$scope.totalTotalHour())*100;
+		if(isNaN(value))
+			return 0;
+		return value;
 	}
 	$scope.totalTestsDistribution = function(){
-		return ($scope.totalTestsHour()/$scope.totalTotalHour())*100;
+		var value=($scope.totalTestsHour()/$scope.totalTotalHour())*100;
+		if(isNaN(value))
+			return 0;
+		return value;
 	}
 	$scope.totalDeploymentDistribution = function(){
-		return ($scope.totalDeploymentHour()/$scope.totalTotalHour())*100;
+		var value=($scope.totalDeploymentHour()/$scope.totalTotalHour())*100;
+		if(isNaN(value))
+			return 0;
+		return value;
 	}
 	$scope.totalVersionDistribution = function(){
-		return ($scope.totalVersionHour()/$scope.totalTotalHour())*100;
+		var value=($scope.totalVersionHour()/$scope.totalTotalHour())*100;
+		if(isNaN(value))
+			return 0;
+		return value;
 	}
 	$scope.totalTotalDistribution = function(){
-		return ($scope.totalTotalHour()/$scope.totalTotalHour())*100;
+		var value=($scope.totalTotalHour()/$scope.totalTotalHour())*100;
+		if(isNaN(value))
+			return 0;
+		return value;
 	}	
 }]);

@@ -94,6 +94,7 @@ public class DisciplinesPhasesBean {
             LogManager.getLogger(clazz).debug("Proyecto cargado " + this.project);
             LogManager.getLogger(clazz).info("Project schedule asociado " + this.projectSchedule);
             assignedHoursList = hoursRolePhaseController.getAssignedHoursPerRole(project);
+            this.hoursList = hoursRolePhaseController.getResources(project);
             this.emptyProject = false;
         } else {
             this.emptyProject = true;

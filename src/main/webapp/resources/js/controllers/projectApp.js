@@ -237,7 +237,7 @@ projectApp.service("projectResourcesService", function(){
 	this.toEmployeeResourceList = function(projectInfo, phase) {
 		var employeeList = getEmployeeList(projectInfo.resourcesList);
 		var employeeResourceList = [];
-
+		
 		employeeList.map(function(employee){
 			var employeeResource = new EmployeeResource();
 			var existsInPhase = false;
@@ -245,6 +245,7 @@ projectApp.service("projectResourcesService", function(){
 				if(resource.Phases===mapPhaseStrToPhaseEnum(phase.phase) && resource.employee.id===employee.id){
 					employeeResource.availableEmployeeHours = availableEmployeeHours(projectInfo, phase, employee);
 					employeeResource.employee = employee;
+					employeeResource.hourlyCost = employeeSalaryHour(employee, projectInfo.schedule);
 					convertFromHourRolePhaseToEmployeeResource(employeeResource, resource);
 					existsInPhase = true;
 				}
@@ -253,16 +254,18 @@ projectApp.service("projectResourcesService", function(){
 				employeeResourceList.push(employeeResource);
 			}
 		});
+		
 		return employeeResourceList;
     }
 	
 	
-	/*function employeeSalaryHour (employee){
-		var annualSalary = EmployeeUtils.totalAnnualSalary(employee);
-		var monthlySalary = annualSalary/$scope.discipline.phases.schedule.monthsPerYear;
-		var dailySalary = monthlySalary/$scope.discipline.phases.schedule.workDays;
-		return dailySalary/$scope.discipline.phases.schedule.hoursPerDay();
-	}*/
+	function employeeSalaryHour (employee, projectSchedule){
+		
+		var annualSalary = employee.annualGrossSalary;
+		var monthlySalary = annualSalary/12;
+		var dailySalary = monthlySalary/projectSchedule.workDays;
+		return dailySalary/projectSchedule.averageHoursPerDay();
+	}
 	
 	function EmployeeResource(){
 		this.employee = null;
@@ -275,6 +278,16 @@ projectApp.service("projectResourcesService", function(){
 		this.deployHours=0;
 		this.environmentHours=0;
 		this.availableEmployeeHours = 0;
+		this.totalHours = function(){
+			return this.projectManagementHours + 
+			this.requirementsHours + 
+			this.analysisDesignHours +  
+			this.implementationHours +
+			this.testsHours +
+			this.deployHours +
+			this.environmentHours;
+			
+		}
 	}
 
 });

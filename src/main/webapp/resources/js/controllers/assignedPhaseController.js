@@ -8,12 +8,18 @@ projectApp.controller("assignedPhaseController",
 	'$isTest',
 	'bridgeService',
 	'DateUtils',
-	'ProjectResourcesService',
+	'projectResourcesService',
 	function($scope, $isTest, bridgeService, DateUtils, projectResourcesService) {
 
 		if (!$isTest) {
 			initJSFScope($scope);
 			$scope.calendarController = bridgeService.shareData;
+		}
+		
+		function ProjectInfo(){
+			this.resourcesList;
+			this.schedule;
+			this.project;
 		}
 
 		var projectDays = $scope.calendarController.getEvents(moment($scope.calendarController.startDate), moment($scope.calendarController.endDate));		
@@ -103,20 +109,94 @@ projectApp.controller("assignedPhaseController",
 			return 100*phase.hours() / $scope.projectHours;
 		};
 		$scope.getPhaseEffortDistribution = function(phase){
-			var total = $scope.inceptionPhaseLength.totalHours +
-			$scope.elaborationPhaseLength.totalHours +
-			$scope.constructionPhaseLength.totalHours +
-			$scope.transitionPhaseLength.totalHours;
+			var total = $scope.inceptionPhaseLength.totalHours() +
+			$scope.elaborationPhaseLength.totalHours() +
+			$scope.constructionPhaseLength.totalHours() +
+			$scope.transitionPhaseLength.totalHours();
 			
-			return phase.totalHours / total;
-		};
-		$scope.getIterationDistribution = function(phase){
-			return $scope.getPhaseEffortDistribution(phase) / phase.iterations;
+			return phase.totalHours() / total;
 		};
 		$scope.getIterationDistribution = function(phase){
 			return $scope.getPhaseEffortDistribution(phase) / phase.iterations;
 		};
 
+		var INIT_PHASE = "INICIO";
+		var ELAB_PHASE = "ELABORACION";
+		var CONST_PHASE = "CONSTRUCCION";
+		var TRANS_PHASE = "TRANSICION";
+		
+		function Phase(phase){
+			this.phase = phase;
+			this.availableHoursFactor = function(){
+				if(this.phase===INIT_PHASE || this.phase===TRANS_PHASE){
+					return 1;
+				}
+				
+				if(this.phase===ELAB_PHASE){
+					return 3;
+				}	
+
+				if(this.phase===CONST_PHASE){
+					return 5;
+				}			
+			}
+		}
+		
+		function phaseString(phase){
+			if(phase==="I"){
+				return "INIT";
+			}
+			if(phase==="E"){
+				return "ELAB";
+			}
+			if(phase==="C"){
+				return "CONST";
+			}
+			if(phase==="T"){
+				return "TRANS";
+			}
+		}
+		
+		$scope.daysPerWeek = function(){
+			var days = 0;
+			if($scope.projectSchedule.mondayHours > 0){
+				days = days +1;
+			}
+			if($scope.projectSchedule.tuesdayHours > 0){
+				days = days +1;
+			}
+			if($scope.projectSchedule.wednesdayHours > 0){
+				days = days +1;
+			}
+			if($scope.projectSchedule.thursdayHours > 0){
+				days = days +1;
+			}
+			if($scope.projectSchedule.fridayHours > 0){
+				days = days +1;
+			}
+			if($scope.projectSchedule.saturdayHours > 0){
+				days = days +1;
+			}
+			if($scope.projectSchedule.sundayHours > 0){
+				days = days +1;
+			}
+			return days;
+		}	
+		
+		$scope.hoursPerWeek = function() {
+			return $scope.projectSchedule.mondayHours
+					+ $scope.projectSchedule.tuesdayHours
+					+ $scope.projectSchedule.wednesdayHours
+					+ $scope.projectSchedule.thursdayHours
+					+ $scope.projectSchedule.fridayHours
+					+ $scope.projectSchedule.saturdayHours
+					+ $scope.projectSchedule.sundayHours;
+		}
+		
+		$scope.averageHoursPerDay = function(){
+			return $scope.hoursPerWeek()/$scope.daysPerWeek();
+		}
+		
 		function PhaseLength(phase, projectDays, projectSchedule, phasesEmployees) {
 			this.phase = phase;
 			this.projectSchedule = projectSchedule;
@@ -135,8 +215,17 @@ projectApp.controller("assignedPhaseController",
 								}
 								return 1;
 							});
+			projectSchedule.averageHoursPerDay = function(){
+				return $scope.averageHoursPerDay();
+			}
+			var projectInfo = new ProjectInfo();
+			projectInfo.resourcesList = phasesEmployees;
+			projectInfo.schedule = projectSchedule;
+			projectInfo.project = projectSchedule.project;
 			
-			this.phaseEmployees = projectResourcesService.toEmployeeResourceList(phasesEmployees, projectSchedule, this.phase);
+			var phaseObj = new Phase(phaseString(this.phase));
+			
+			this.phaseEmployees = projectResourcesService.toEmployeeResourceList(projectInfo, phaseObj);
 			
 			/* LENGTH */
 			this.hours = function() {
@@ -185,7 +274,7 @@ projectApp.controller("assignedPhaseController",
 				this.phaseEmployees.forEach(function(el, i, arr){
 					hours += el.totalHours();
 				});
-				return hours;
+				return isNaN(hours) ? 0 : hours;
 			};
 			
 			this.hoursPerWeek = function() {

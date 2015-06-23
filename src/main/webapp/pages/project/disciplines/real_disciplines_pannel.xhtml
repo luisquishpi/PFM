@@ -11,11 +11,7 @@
 	<c:set var="projectBean" scope="request" value="#{disciplinesPhasesBean}" />
 	<ngsync direction="serverToClient" value="{{projectBean.projectSchedule}}" />
 	<ngsync direction="serverToClient" value="#{projectBean.project}" />
-	<div ng-if="scheduleFinished" ng-controller="resourceController">
-	<c:set var="resourcesBean" scope="request" value="#{disciplinesPhasesBean}" />
-        <ngsync direction="serverToClient" value="{{resourcesBean.project}}" /> 
-        <ngsync direction="serverToClient"  value="#{resourcesBean.employeeList}"/>
-	    <div ng-if="resourceFinished" ng-controller="realDisciplineController">
+	    <div  ng-controller="realDisciplineController">
 	    <ngsync direction="serverToClient"  value="{{disciplinesPhasesBean.assignedHoursList}}"/>
 		    <table class="table table-condensed">
 				<tr>
@@ -35,11 +31,11 @@
 				</tr>
 				<tr>
 					<td class="ui-outputlabel ui-widget">Gestión del proyecto</td>
-		            <td class="ui-outputlabel ui-widget">{{initPhase.projectManagementDistribution() | number:2}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{elabPhase.projectManagementDistribution() | number:2}}%</td>
-		           	<td class="ui-outputlabel ui-widget">{{constPhase.projectManagementDistribution() | number:2}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{transPhase.projectManagementDistribution() | number:2}}%</td>
-		            <td class="ui-outputlabel ui-widget">{{totalProjectManagementDistribution() | number:2}}%</td>            
+		            <td class="ui-outputlabel ui-widget">{{initPhase.projectManagementDistribution() | number:2}}</td>
+		            <td class="ui-outputlabel ui-widget">{{elabPhase.projectManagementDistribution() | number:2}}</td>
+		           	<td class="ui-outputlabel ui-widget">{{constPhase.projectManagementDistribution() | number:2}}</td>
+		            <td class="ui-outputlabel ui-widget">{{transPhase.projectManagementDistribution() | number:2}}</td>
+		            <td class="ui-outputlabel ui-widget">{{totalProjectManagementDistribution() | number:2}}</td>            
 				</tr>
 				<tr>
 					<td class="ui-outputlabel ui-widget">Requisitos</td>
@@ -313,5 +309,4 @@
 			</table>
 		</div>
 	</div>
-</div>	
 </ui:composition>
