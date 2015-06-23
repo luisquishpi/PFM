@@ -98,25 +98,25 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 		};
 		
 		this.projectManagementAbsoluteDifference = function(){
-			return this.projectManagementAssigned-this.projectManagementTheoricalAbsolute;
+			return ($scope.disciplineHoursTotal(this.assignedEmployee, "projectManagementHours"))-this.projectManagementTheoricalAbsolute;
 		};
 		this.requirementsAbsoluteDifference = function(){
-			return this.requirementsAssigned-this.requirementsTheoricalAbsolute;
+			return ($scope.disciplineHoursTotal(this.assignedEmployee, "requirementsHours"))-this.requirementsTheoricalAbsolute;
 		};
 		this.analysisDesignAbsoluteDifference = function(){
-			return this.analysisDesignAssigned-this.analysisDesignTheoricalAbsolute;
+			return ($scope.disciplineHoursTotal(this.assignedEmployee, "analysisDesignHours"))-this.analysisDesignTheoricalAbsolute;
 		};
 		this.implementationAbsoluteDifference = function(){
-			return this.implementationAssigned-this.implementationTheoricalAbsolute;
+			return ($scope.disciplineHoursTotal(this.assignedEmployee, "implementationHours"))-this.implementationTheoricalAbsolute;
 		};
 		this.testsAbsoluteDifference = function(){
-			return this.testsAssigned-this.testsTheoricalAbsolute;
+			return ($scope.disciplineHoursTotal(this.assignedEmployee, "testsHours"))-this.testsTheoricalAbsolute;
 		};
 		this.deployAbsoluteDifference = function(){
-			return this.deployAssigned-this.deployTheoricalAbsolute;
+			return ($scope.disciplineHoursTotal(this.assignedEmployee, "deployHours"))-this.deployTheoricalAbsolute;
 		};
 		this.enviromentAbsoluteDifference = function(){
-			return this.enviromentAssigned-this.enviromentTheoricalAbsolute;
+			return ($scope.disciplineHoursTotal(this.assignedEmployee, "environmentHours"))-this.enviromentTheoricalAbsolute;
 		};
 		this.totalAbsoluteDifference = function(){
 			return this.projectManagementAbsoluteDifference() + this.requirementsAbsoluteDifference() + 
@@ -192,31 +192,31 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 		}
 		
 		this.projectManagementProposalDiff = function(){
-			return this.projectManagementAssigned-this.projectManagementProposal();
+			return ($scope.disciplineHoursTotal(this.assignedEmployee, "projectManagementHours"))-this.projectManagementProposal();
 		}	
 		
 		this.requirementsProposalDiff = function(){
-			return this.requirementsAssigned-this.requirementsProposal();
+			return ($scope.disciplineHoursTotal(this.assignedEmployee, "requirementsHours"))-this.requirementsProposal();
 		}	
 		
 		this.analysisDesignProposalDiff = function(){
-			return this.analysisDesignAssigned-this.analysisDesignProposal();
+			return ($scope.disciplineHoursTotal(this.assignedEmployee, "analysisDesignHours"))-this.analysisDesignProposal();
 		}
 		
 		this.implementationProposalDiff = function(){
-			return this.implementationAssigned-this.implementationProposal();
+			return ($scope.disciplineHoursTotal(this.assignedEmployee, "implementationHours"))-this.implementationProposal();
 		}	
 		
 		this.testsProposalDiff = function(){
-			return this.testsAssigned-this.testsProposal();
+			return ($scope.disciplineHoursTotal(this.assignedEmployee, "testsHours"))-this.testsProposal();
 		}	
 		
 		this.deployProposalDiff = function(){
-			return this.deployAssigned-this.deployProposal();
+			return ($scope.disciplineHoursTotal(this.assignedEmployee, "deployHours"))-this.deployProposal();
 		}	
 		
 		this.enviromentProposalDiff = function(){
-			return this.enviromentAssigned-this.enviromentProposal();
+			return ($scope.disciplineHoursTotal(this.assignedEmployee, "environmentHours"))-this.enviromentProposal();
 		}
 		
 		this.totalProposalDiff = function(){
