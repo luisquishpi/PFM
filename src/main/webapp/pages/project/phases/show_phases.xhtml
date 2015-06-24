@@ -25,11 +25,10 @@
 			<script src="/PFM/resources/js/libs/moment.js"></script>
 			<script
 				src="/PFM/resources/js/controllers/theoricalPhaseController.js"></script>
-			<script
-				src="/PFM/resources/js/controllers/calendarController.js"></script>
+			<script src="/PFM/resources/js/controllers/calendarController.js"></script>
 			<script
 				src="/PFM/resources/js/controllers/assignedPhaseController.js"></script>
-				
+
 			<script src="/PFM/resources/js/utils/on_key_press.js"></script>
 			<script>
 				$(function() {
@@ -47,17 +46,16 @@
 		<ui:define name="content">
 			<div class="panel-body">
 				<h:form prependId="false" ng-app="projectApp">
-					<div ng-cloak=""> 
-					<p:growl id="growl" sticky="false" life="5000" showDetail="true" />
-					<div ng-controller="scheduleController">
-						<c:set var="projectBean" scope="request"
-							value="#{disciplinesPhasesBean}" />
-						<ngsync direction="serverToClient"
-							value="{{projectBean.projectSchedule}}" />
+					<div ng-cloak="">
+						<p:growl id="growl" sticky="false" life="5000" showDetail="true" />
+
 						<ui:include src="../project_pannel.xhtml" />
-						<h:panelGroup
-							rendered="#{not disciplinesPhasesBean.emptyProject}">
-							   
+						<h:panelGroup rendered="#{not disciplinesPhasesBean.emptyProject}">
+							<div ng-controller="scheduleController">
+								<c:set var="projectBean" scope="request"
+									value="#{disciplinesPhasesBean}" />
+								<ngsync direction="serverToClient"
+									value="{{projectBean.projectSchedule}}" />
 								<div role="tabpanel">
 									<ul class="nav nav-tabs" role="tablist">
 										<li role="presentation" class="active"><a
@@ -71,16 +69,16 @@
 										<div role="tabpanel" class="tab-pane active" id="theorical">
 											<ui:include src="show_theorical_phases.xhtml" />
 										</div>
-									
+
 										<div role="tabpanel" class="tab-pane" id="asigned">
 											<ui:include src="show_asigned_phases.html" />
 										</div>
 									</div>
 								</div>
-							
+							</div>
 						</h:panelGroup>
 					</div>
-					</div>
+
 				</h:form>
 			</div>
 		</ui:define>
