@@ -119,16 +119,11 @@ projectApp.controller("assignedPhaseController",
 		$scope.getIterationDistribution = function(phase){
 			return $scope.getPhaseEffortDistribution(phase) / phase.iterations;
 		};
-
-		/*var INIT_PHASE = "INIT";
-		var ELAB_PHASE = "ELAB";
-		var CONST_PHASE = "CONST";
-		var TRANS_PHASE = "TRANS";*/
 		
 		function Phase(phase){
 			this.phase = phase;
 			this.availableHoursFactor = function(){
-				if(this.phase=== "INIT" || this.phase==="TRANS"){
+				if(this.phase==="INIT" || this.phase==="TRANS"){
 					return 1;
 				}
 				
@@ -320,7 +315,7 @@ projectApp.controller("assignedPhaseController",
 			this.realEmployees = function(){
 				var persons = 0;
 				this.phaseEmployees.forEach(function(el, i, arr){
-					persons += el.totalHours() / el.employee.availableHours;
+					persons += el.totalHours() / el.availableEmployeeHours;
 				});
 				return persons;
 			}; 

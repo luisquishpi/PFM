@@ -119,3 +119,8 @@ table td {
 .save resources .ui-button-icon-left{
 	left:30% !important;
 }
+
+.employee_left{
+	font-size:13px;
+	font-weight:bold;
+}

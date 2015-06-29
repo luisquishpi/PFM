@@ -33,26 +33,26 @@
 									<tr class="active"><th>Datos generales del empleado</th></tr>
 									<tr>
 										<td>
-											<p:outputLabel value="Código:" styleClass="label_height" />
+											<p:outputLabel value="Código:" styleClass="label_height_not" />
 											<h:outputText value="{{getEmployeeBean.employee.employeeCode}}" />
 										</td>
 									</tr>
 									<tr>	
 										<td>
-											<p:outputLabel value="Nombre:" styleClass="label_height" />
+											<p:outputLabel value="Nombre:" styleClass="label_height_not" />
 											<h:outputText value="{{getEmployeeBean.employee.name}} {{getEmployeeBean.employee.surname}}" />
 										</td>
 									</tr>
 									<tr>	
 										<td>
-											<p:outputLabel value="Contrato:" styleClass="label_height" />
+											<p:outputLabel value="Contrato:" styleClass="label_height_not" />
 											<h:outputText
 											value="{{getEmployeeBean.employee.contract.contractType}} ({{getEmployeeBean.employee.contract.insurance}}%)" />
 										</td>
 									</tr>
 									<tr>	
 										<td>
-											<p:outputLabel value="Bruto anual:" styleClass="label_height" />
+											<p:outputLabel value="Bruto anual:" styleClass="label_height_not" />
 											<h:outputText
 											value="{{getEmployeeBean.employee.annualGrossSalary}}">
 											<f:convertNumber locale="pt-PT" currencySymbol="€" type="currency"/>
@@ -61,7 +61,7 @@
 									</tr>
 									<tr>	
 										<td>
-											<p:outputLabel value="Total anual:" styleClass="label_height" />
+											<p:outputLabel value="Total anual:" styleClass="label_height_not" />
 											<h:outputText
 											value="{{getEmployeeBean.employee.annualNetSalary}}">
 											<f:convertNumber locale="pt-PT" currencySymbol="€" type="currency"/>
@@ -70,7 +70,7 @@
 									</tr>
 									<tr>	
 										<td>
-											<p:outputLabel value="Total mensual:" styleClass="label_height" />
+											<p:outputLabel value="Total mensual:" styleClass="label_height_not" />
 											<h:outputText
 											value="{{getEmployeeBean.employee.monthlySalary}}">
 											<f:convertNumber locale="pt-PT" currencySymbol="€" type="currency"/>

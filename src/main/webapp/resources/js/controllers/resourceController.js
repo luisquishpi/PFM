@@ -15,6 +15,12 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 		}
 	};
 	
+	$scope.checkNan = function(value){
+		if(isNaN(value))
+			return 0;
+		return value; 
+	}
+	
 	if(!$isTest){
 		  initJSFScope($scope);
 		  workTimeService.calculateWorkDaysAndHour($scope.resourcesBean.project.startString, 
@@ -92,25 +98,25 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 		};
 		
 		this.projectManagementAbsoluteDifference = function(){
-			return this.projectManagementAssigned-this.projectManagementTheoricalAbsolute;
+			return ($scope.disciplineHoursTotal(this.assignedEmployee, "projectManagementHours"))-this.projectManagementTheoricalAbsolute;
 		};
 		this.requirementsAbsoluteDifference = function(){
-			return this.requirementsAssigned-this.requirementsTheoricalAbsolute;
+			return ($scope.disciplineHoursTotal(this.assignedEmployee, "requirementsHours"))-this.requirementsTheoricalAbsolute;
 		};
 		this.analysisDesignAbsoluteDifference = function(){
-			return this.analysisDesignAssigned-this.analysisDesignTheoricalAbsolute;
+			return ($scope.disciplineHoursTotal(this.assignedEmployee, "analysisDesignHours"))-this.analysisDesignTheoricalAbsolute;
 		};
 		this.implementationAbsoluteDifference = function(){
-			return this.implementationAssigned-this.implementationTheoricalAbsolute;
+			return ($scope.disciplineHoursTotal(this.assignedEmployee, "implementationHours"))-this.implementationTheoricalAbsolute;
 		};
 		this.testsAbsoluteDifference = function(){
-			return this.testsAssigned-this.testsTheoricalAbsolute;
+			return ($scope.disciplineHoursTotal(this.assignedEmployee, "testsHours"))-this.testsTheoricalAbsolute;
 		};
 		this.deployAbsoluteDifference = function(){
-			return this.deployAssigned-this.deployTheoricalAbsolute;
+			return ($scope.disciplineHoursTotal(this.assignedEmployee, "deployHours"))-this.deployTheoricalAbsolute;
 		};
 		this.enviromentAbsoluteDifference = function(){
-			return this.enviromentAssigned-this.enviromentTheoricalAbsolute;
+			return ($scope.disciplineHoursTotal(this.assignedEmployee, "environmentHours"))-this.enviromentTheoricalAbsolute;
 		};
 		this.totalAbsoluteDifference = function(){
 			return this.projectManagementAbsoluteDifference() + this.requirementsAbsoluteDifference() + 
@@ -152,53 +158,31 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 		}	
 		
 		this.projectManagementProposal = function(){
-			var val = (parseFloat(this.projectManagementTheoricalRelative)*parseFloat(this.totalTheoricalAbsolute())*parseFloat(this.numberOfAssignedPeople))/(parseFloat(this.numberOfProposalsPeople())*100);
-			if(isNaN(val))
-				return 0;
-			return val;
+			return $scope.checkNan((parseFloat(this.projectManagementTheoricalRelative)*parseFloat(this.totalTheoricalAbsolute())*parseFloat(this.numberOfAssignedPeople))/(parseFloat(this.numberOfProposalsPeople())*100));
 		}	
 		
 		this.requirementsProposal = function(){
-			var val = (parseFloat(this.requirementsTheoricalRelative)*parseFloat(this.totalTheoricalAbsolute())*parseFloat(this.numberOfAssignedPeople))/(parseFloat(this.numberOfProposalsPeople())*100);
-			if(isNaN(val))
-				return 0;
-			return val;
+			return $scope.checkNan((parseFloat(this.requirementsTheoricalRelative)*parseFloat(this.totalTheoricalAbsolute())*parseFloat(this.numberOfAssignedPeople))/(parseFloat(this.numberOfProposalsPeople())*100));
 		}	
 		
 		this.analysisDesignProposal = function(){
-			var val = (parseFloat(this.analysisDesignTheoricalRelative)*parseFloat(this.totalTheoricalAbsolute())*parseFloat(this.numberOfAssignedPeople))/(parseFloat(this.numberOfProposalsPeople())*100);
-			if(isNaN(val))
-				return 0;
-			return val;
+			return $scope.checkNan((parseFloat(this.analysisDesignTheoricalRelative)*parseFloat(this.totalTheoricalAbsolute())*parseFloat(this.numberOfAssignedPeople))/(parseFloat(this.numberOfProposalsPeople())*100));
 		}
 		
 		this.implementationProposal = function(){
-			var val = (parseFloat(this.implementationTheoricalRelative)*parseFloat(this.totalTheoricalAbsolute())*parseFloat(this.numberOfAssignedPeople))/(parseFloat(this.numberOfProposalsPeople())*100);
-			if(isNaN(val))
-				return 0;
-			return val;
+			return $scope.checkNan((parseFloat(this.implementationTheoricalRelative)*parseFloat(this.totalTheoricalAbsolute())*parseFloat(this.numberOfAssignedPeople))/(parseFloat(this.numberOfProposalsPeople())*100));
 		}	
 		
 		this.testsProposal = function(){
-			var val = (parseFloat(this.testsTheoricalRelative)*parseFloat(this.totalTheoricalAbsolute())*parseFloat(this.numberOfAssignedPeople))/(parseFloat(this.numberOfProposalsPeople())*100);
-			if(isNaN(val))
-				return 0;
-			return val;
-			
+			return $scope.checkNan((parseFloat(this.testsTheoricalRelative)*parseFloat(this.totalTheoricalAbsolute())*parseFloat(this.numberOfAssignedPeople))/(parseFloat(this.numberOfProposalsPeople())*100));			
 		}	
 		
 		this.deployProposal = function(){
-			var val = (parseFloat(this.deployTheoricalRelative)*parseFloat(this.totalTheoricalAbsolute())*parseFloat(this.numberOfAssignedPeople))/(parseFloat(this.numberOfProposalsPeople())*100);
-			if(isNaN(val))
-				return 0;
-			return val;
+			return $scope.checkNan((parseFloat(this.deployTheoricalRelative)*parseFloat(this.totalTheoricalAbsolute())*parseFloat(this.numberOfAssignedPeople))/(parseFloat(this.numberOfProposalsPeople())*100));
 		}	
 		
 		this.enviromentProposal = function(){
-			var val = (parseFloat(this.enviromentTheoricalRelative)*parseFloat(this.totalTheoricalAbsolute())*parseFloat(this.numberOfAssignedPeople))/(parseFloat(this.numberOfProposalsPeople())*100);
-			if(isNaN(val))
-				return 0;
-			return val;
+			return $scope.checkNan((parseFloat(this.enviromentTheoricalRelative)*parseFloat(this.totalTheoricalAbsolute())*parseFloat(this.numberOfAssignedPeople))/(parseFloat(this.numberOfProposalsPeople())*100));
 		}
 		
 		this.totalProposal = function(){			
@@ -208,31 +192,31 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 		}
 		
 		this.projectManagementProposalDiff = function(){
-			return this.projectManagementAssigned-this.projectManagementProposal();
+			return ($scope.disciplineHoursTotal(this.assignedEmployee, "projectManagementHours"))-this.projectManagementProposal();
 		}	
 		
 		this.requirementsProposalDiff = function(){
-			return this.requirementsAssigned-this.requirementsProposal();
+			return ($scope.disciplineHoursTotal(this.assignedEmployee, "requirementsHours"))-this.requirementsProposal();
 		}	
 		
 		this.analysisDesignProposalDiff = function(){
-			return this.analysisDesignAssigned-this.analysisDesignProposal();
+			return ($scope.disciplineHoursTotal(this.assignedEmployee, "analysisDesignHours"))-this.analysisDesignProposal();
 		}
 		
 		this.implementationProposalDiff = function(){
-			return this.implementationAssigned-this.implementationProposal();
+			return ($scope.disciplineHoursTotal(this.assignedEmployee, "implementationHours"))-this.implementationProposal();
 		}	
 		
 		this.testsProposalDiff = function(){
-			return this.testsAssigned-this.testsProposal();
+			return ($scope.disciplineHoursTotal(this.assignedEmployee, "testsHours"))-this.testsProposal();
 		}	
 		
 		this.deployProposalDiff = function(){
-			return this.deployAssigned-this.deployProposal();
+			return ($scope.disciplineHoursTotal(this.assignedEmployee, "deployHours"))-this.deployProposal();
 		}	
 		
 		this.enviromentProposalDiff = function(){
-			return this.enviromentAssigned-this.enviromentProposal();
+			return ($scope.disciplineHoursTotal(this.assignedEmployee, "environmentHours"))-this.enviromentProposal();
 		}
 		
 		this.totalProposalDiff = function(){
@@ -244,10 +228,10 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 		
 		this.averageEmployeeHours = function(){
 			var totalEmployeeHours = 0;
-			for(i=0; i < $scope.resourcesBean.employeeList.length; i++){
-				totalEmployeeHours += $scope.availableEmployeeHours(this,$scope.resourcesBean.employeeList[i]);
+			for(var i=0; i < $scope.resourcesBean.employeeList.length; i++){
+				totalEmployeeHours = totalEmployeeHours + $scope.availableEmployeeHours(this,$scope.resourcesBean.employeeList[i]);
 			}
-			return totalEmployeeHours/($scope.resourcesBean.employeeList.length-1);
+			return totalEmployeeHours/($scope.resourcesBean.employeeList.length);
 		};
 		
 		this.availableEmployeeHours = function(employee){
@@ -282,10 +266,7 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	//Se cuentan las horas totales de disciplina de cierta fase
 	$scope.disciplineHoursTotal = function(arrayEmployee, discipline){
 		var hoursTotal = parseFloat($scope.sum(arrayEmployee, discipline));
-		if(isNaN(hoursTotal)){
-			return 0;
-		}
-		return hoursTotal;
+		return $scope.checkNan(hoursTotal);
 	}
 	
 	$scope.employeeListSelected=[];
@@ -308,7 +289,7 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 		
 		if($scope.phaseTest==CONST_PHASE){
 			$scope.constPhase.assignedEmployee = $scope.construccionAssignedEmployeeMock.employeeList;
-			$scope.constPhase.numberOfAssignedPeople = $scope.construccionNumberOfAssignedPeopleMock;		
+			$scope.constPhase.numberOfAssignedPeople = $scope.construccionNumberOfAssignedPeopleMock;	
 		}		
 		
 		if($scope.phaseTest==TRANS_PHASE){
@@ -327,6 +308,10 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 			$scope.constPhase.assignedEmployee = projectResourcesService.toEmployeeResourceList(projectInfo,$scope.constPhase);
 			$scope.transPhase.assignedEmployee = projectResourcesService.toEmployeeResourceList(projectInfo, $scope.transPhase);
 		}
+		$scope.initPhase.numberOfAssignedPeople=$scope.resourcesBean.project.peopleInicio;
+		$scope.elabPhase.numberOfAssignedPeople=$scope.resourcesBean.project.peopleElaboracion;
+		$scope.constPhase.numberOfAssignedPeople=$scope.resourcesBean.project.peopleConstruccion;
+		$scope.transPhase.numberOfAssignedPeople=$scope.resourcesBean.project.peopleTransicion;
 	}
 	
 	//Inicialización de elementos de fase de inicio
@@ -354,8 +339,6 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	$scope.initPhase.deployAssigned = $scope.disciplineHoursTotal($scope.initPhase.assignedEmployee, 'deployHours');
 	$scope.initPhase.enviromentAssigned = $scope.disciplineHoursTotal($scope.initPhase.assignedEmployee, 'environmentHours');
 	
-	$scope.initPhase.numberOfAssignedPeople=$scope.resourcesBean.project.peopleInicio;
-	
 	//Inicialización de elementos de fase de elaboracion
 	$scope.elabPhase.projectManagementTheoricalRelative=$scope.discipline.elaborationPercentajeProjectManagment();
 	$scope.elabPhase.requirementsTheoricalRelative=$scope.discipline.elaborationPercentajeRequirements();
@@ -380,8 +363,6 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	$scope.elabPhase.testsAssigned = $scope.disciplineHoursTotal($scope.elabPhase.assignedEmployee, 'testsHours');
 	$scope.elabPhase.deployAssigned = $scope.disciplineHoursTotal($scope.elabPhase.assignedEmployee, 'deployHours');
 	$scope.elabPhase.enviromentAssigned = $scope.disciplineHoursTotal($scope.elabPhase.assignedEmployee, 'environmentHours');
-	
-	$scope.elabPhase.numberOfAssignedPeople=$scope.resourcesBean.project.peopleElaboracion;
 	
 	//Inicialización de elementos de fase de construccion
 	$scope.constPhase.projectManagementTheoricalRelative=$scope.discipline.constructionPercentajeProjectManagment();
@@ -408,8 +389,6 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	$scope.constPhase.deployAssigned = $scope.disciplineHoursTotal($scope.constPhase.assignedEmployee, 'deployHours');
 	$scope.constPhase.enviromentAssigned = $scope.disciplineHoursTotal($scope.constPhase.assignedEmployee, 'environmentHours');
 	
-	$scope.constPhase.numberOfAssignedPeople=$scope.resourcesBean.project.peopleConstruccion;	
-	
 	//Inicialización de elementos de fase de transicion
 	$scope.transPhase.projectManagementTheoricalRelative=$scope.discipline.transitionPercentajeProjectManagment();
 	$scope.transPhase.requirementsTheoricalRelative=$scope.discipline.transitionPercentajeRequirements();
@@ -434,8 +413,6 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	$scope.transPhase.testsAssigned = $scope.disciplineHoursTotal($scope.transPhase.assignedEmployee, 'testsHours');
 	$scope.transPhase.deployAssigned = $scope.disciplineHoursTotal($scope.transPhase.assignedEmployee, 'deployHours');
 	$scope.transPhase.enviromentAssigned = $scope.disciplineHoursTotal($scope.transPhase.assignedEmployee, 'environmentHours');
-	
-	$scope.transPhase.numberOfAssignedPeople=$scope.resourcesBean.project.peopleTransicion;
 	
 	//funcion que agrega empleado al array	
 	$scope.copyEmployeeToList = function(employee){
@@ -491,9 +468,11 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	$scope.assignHours = function(employeeResource){
 		var hours=parseFloat(employeeResource.projectManagementHours)+parseFloat(employeeResource.requirementsHours)+parseFloat(employeeResource.analysisDesignHours)+
 		parseFloat(employeeResource.implementationHours)+parseFloat(employeeResource.testsHours)+parseFloat(employeeResource.deployHours)+parseFloat(employeeResource.environmentHours);
-		if(isNaN(hours))
-			return 0;
-		return hours;
+		return $scope.checkNan(hours);
+	}
+	
+	$scope.employeeLeft = function(employeeResource){
+		return employeeResource.availableEmployeeHours - $scope.assignHours(employeeResource);
 	}
 	
 	//Validaciones de asignacion de horas

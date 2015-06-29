@@ -199,6 +199,7 @@ projectApp.service("projectResourcesService", function(){
 		if(resource.role==='ENVIROMENT_REVISION_CONTROL'){
 			employeeResource.environmentHours = resource.workHours;
 		}
+		
 	}
 	
 	function getEmployeeList(resourcesList){
@@ -241,7 +242,7 @@ projectApp.service("projectResourcesService", function(){
 			var existsInPhase = false;
 			projectInfo.resourcesList.map(function(resource){
 				if(resource.Phases===mapPhaseStrToPhaseEnum(phase.phase) && resource.employee.id===employee.id){
-					employee.availableHours = availableEmployeeHours(projectInfo, phase, employee);
+					employeeResource.availableEmployeeHours = availableEmployeeHours(projectInfo, phase, employee);
 					employeeResource.employee = employee;
 					employeeResource.hourlyCost = employeeSalaryHour(employee, projectInfo.schedule);
 					convertFromHourRolePhaseToEmployeeResource(employeeResource, resource);

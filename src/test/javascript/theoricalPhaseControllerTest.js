@@ -6,7 +6,7 @@ describe("Test TheoricalPhaseController", function(){
 	
 	beforeEach(inject(function($controller, $rootScope){
 		scope = $rootScope;
-		scope.showTheoricalPhasesBean = {
+		scope.disciplinesPhasesBean = {
 				  project:{
 					  cost: 85000,
 					  startString: "2/3/2015",
