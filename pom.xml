@@ -186,10 +186,10 @@
 					</execution>
 				</executions>
 				<configuration>
+				    <keepServerAlive>true</keepServerAlive>
 					<preloadSources>
 						<source>${project.basedir}/src/main/webapp/resources/js/libs/jquery-1.11.2.min.js</source>
 						<source>${project.basedir}/src/main/webapp/resources/js/libs/angular.min.js</source>
-						<source>${project.basedir}/src/main/webapp/resources/js/libs/angular-mocks.js</source>
 						<source>${project.basedir}/src/main/webapp/resources/js/libs/angular-mocks.js</source>
 						<source>${project.basedir}/src/test/resources/app_test.js</source>
 						<source>${project.basedir}/src/main/webapp/resources/js/libs/mockAngularFaces.js</source>
@@ -198,6 +198,31 @@
 					<jsSrcDir>${project.basedir}/src/main/webapp/resources/js/controllers</jsSrcDir>					
 				</configuration>
 			</plugin>
+			<plugin>
+		      <groupId>com.github.timurstrekalov</groupId>
+		      <artifactId>saga-maven-plugin</artifactId>
+		      <version>1.5.4</version>
+		      <executions>
+		        <execution>
+		          <goals>
+		            <goal>coverage</goal>
+		          </goals>
+		        </execution>
+		      </executions>
+		      <configuration>
+		        <baseDir>http://localhost:${jasmine.serverPort}</baseDir>
+		        <outputDir>coverage/</outputDir>
+		        <noInstrumentPatterns>
+		          <pattern>.*/spec/.*</pattern> <!-- Don't instrument specs -->
+		          <pattern>.+/jquery-1.11.2.min\.js</pattern>
+		          <pattern>.+/angular.min\.js</pattern>
+		          <pattern>.+/angular-mocks\.js</pattern>
+		          <pattern>.+/mockAngularFaces\.js</pattern>
+		          <pattern>.+/wizardController\.js</pattern>
+		          <pattern>.+/moment\.js</pattern>
+		        </noInstrumentPatterns>
+		      </configuration>
+		    </plugin>
 		</plugins>
 	</build>
 	<reporting>
