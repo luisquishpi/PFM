@@ -79,7 +79,7 @@ public class HolidayDaoTest {
         listHoliday.add(holiday1);
         listHoliday.add(holiday2);
 
-        assertEquals(6, holidayDao.findAll().size());
+        assertEquals(3, holidayDao.findAll().size());
     }
   
     @Test

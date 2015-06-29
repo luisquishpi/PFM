@@ -188,6 +188,7 @@
 		          <pattern>.+/angular.min\.js</pattern>
 		          <pattern>.+/angular-mocks\.js</pattern>
 		          <pattern>.+/mockAngularFaces\.js</pattern>
+		          <pattern>.+/wizardController\.js</pattern>
 		          <pattern>.+/moment\.js</pattern>
 		        </noInstrumentPatterns>
 		      </configuration>
