@@ -30,24 +30,16 @@ public class EmployeeRest {
         try {
             if (!data.isEmpty()) {
                 RestElement rest = data.get(0);
-                LogManager.getLogger(clazz).debug("Recursos a guardar "+rest.getHoursRolePhase().size());
-                
                 Project project = DaoFactory.getFactory().getProjectDao()
                         .read(rest.getHoursRolePhase().get(0).getProject().getId());
-                project.setPeopleInicio(rest.numberOfInitPhasePeople());
-                project.setPeopleElaboracion(rest.numberOfElaborationPhasePeople());
-                project.setPeopleConstruccion(rest.numberOfConstructionPhasePeople());
-                project.setPeopleTransicion(rest.numberOfTransitionPhasePeople());
-
-                DaoFactory.getFactory().getProjectDao().update(project);
-                LogManager.getLogger(clazz).debug("Proyecto a asignar recursos " + project);
                 
+                addResourcesToProject(project, rest);
+                DaoFactory.getFactory().getProjectDao().update(project);
                 DaoFactory.getFactory().getHoursRolePhaseDao().deleteByProject(project);
                 for (HoursRolePhase hours : rest.getHoursRolePhase()) {
-                    LogManager.getLogger(clazz).debug("Guardando data a traves de rest "+hours);
                     DaoFactory.getFactory().getHoursRolePhaseDao().create(hours);
                 }
-
+                LogManager.getLogger(clazz).debug("Recursos de proyecto guardados: " + project);
                 return Response.status(201).build();
             }
             LogManager.getLogger(clazz).debug("Data recibida esta vacia ");
@@ -57,6 +49,13 @@ public class EmployeeRest {
             e.printStackTrace();
             return Response.status(500).build();
         }
+    }
+    
+    private void addResourcesToProject(Project project, RestElement restElement){
+        project.setPeopleInicio(restElement.numberOfInitPhasePeople());
+        project.setPeopleElaboracion(restElement.numberOfElaborationPhasePeople());
+        project.setPeopleConstruccion(restElement.numberOfConstructionPhasePeople());
+        project.setPeopleTransicion(restElement.numberOfTransitionPhasePeople());
     }
 
 }
