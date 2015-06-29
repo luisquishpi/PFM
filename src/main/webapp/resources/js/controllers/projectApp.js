@@ -230,13 +230,12 @@ projectApp.service("projectResourcesService", function(){
 			}
 		}
 		numberOfVacationDays = 0;
-		return normalEmployeeHours(projectInfo)*phase.availableHoursFactor();
+		return normalEmployeeHours(projectInfo) * phase.availableHoursFactor();
 	}	
 
 	this.toEmployeeResourceList = function(projectInfo, phase) {
 		var employeeList = getEmployeeList(projectInfo.resourcesList);
 		var employeeResourceList = [];
-		
 		employeeList.map(function(employee){
 			var employeeResource = new EmployeeResource();
 			var existsInPhase = false;

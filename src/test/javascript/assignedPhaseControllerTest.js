@@ -44,10 +44,10 @@ describe("Test AssignedPhasesController", function() {
 				saturdayHours : 0,
 				sundayHours :0
 		};
-		var employee1 = { id: 1, annualGrossSalary : 24192, contract : { insurance : 0 } };
-		var employee2 = { id: 2, annualGrossSalary : 24192, contract : { insurance : 0 } };
-		var employee3 = { id: 3, annualGrossSalary : 24192, contract : { insurance : 0 } };
-		var employee4 = { id: 4, annualGrossSalary : 24192, contract : { insurance : 0 } };
+		var employee1 = { id: 1, annualGrossSalary : 120960, contract : { insurance : 0 } };
+		var employee2 = { id: 2, annualGrossSalary : 120960, contract : { insurance : 0 } };
+		var employee3 = { id: 3, annualGrossSalary : 120960, contract : { insurance : 0 } };
+		var employee4 = { id: 4, annualGrossSalary : 120960, contract : { insurance : 0 } };
 		/*
 		PROJECT_MANAGEMENT
 		REQUIREMENTS
@@ -58,25 +58,25 @@ describe("Test AssignedPhasesController", function() {
         ENVIROMENT_REVISION_CONTROL
         */ 
 		scope.phasesEmployees = [
-		                         { employee: employee1, workHours: 20, phase: 'INICIO', role: 'PROJECT_MANAGEMENT' },
-		                         { employee: employee1, workHours: 40, phase: 'INICIO', role: 'REQUIREMENTS' },
-		                         { employee: employee1, workHours: 20, phase: 'INICIO', role: 'ANALYSIS_DESIGN' },
-		                         { employee: employee1, workHours: 20, phase: 'INICIO', role: 'DEPLOY' },
+		                         { employee: employee1, workHours: 20, Phases: 'INICIO', role: 'PROJECT_MANAGEMENT' },
+		                         { employee: employee1, workHours: 40, Phases: 'INICIO', role: 'REQUIREMENTS' },
+		                         { employee: employee1, workHours: 20, Phases: 'INICIO', role: 'ANALYSIS_DESIGN' },
+		                         { employee: employee1, workHours: 20, Phases: 'INICIO', role: 'DEPLOY' },
 		                         
-		                         { employee: employee1, workHours: 20, phase: 'ELABORACION', role: 'PROJECT_MANAGEMENT' },
-		                         { employee: employee1, workHours: 40, phase: 'ELABORACION', role: 'REQUIREMENTS' },
-		                         { employee: employee1, workHours: 20, phase: 'ELABORACION', role: 'ANALYSIS_DESIGN' },
-		                         { employee: employee1, workHours: 20, phase: 'ELABORACION', role: 'DEPLOY' },
+		                         { employee: employee1, workHours: 20, Phases: 'ELABORACION', role: 'PROJECT_MANAGEMENT' },
+		                         { employee: employee1, workHours: 40, Phases: 'ELABORACION', role: 'REQUIREMENTS' },
+		                         { employee: employee1, workHours: 20, Phases: 'ELABORACION', role: 'ANALYSIS_DESIGN' },
+		                         { employee: employee1, workHours: 20, Phases: 'ELABORACION', role: 'DEPLOY' },
 		                         
-		                         { employee: employee1, workHours: 20, phase: 'CONSTRUCCION', role: 'PROJECT_MANAGEMENT' },
-		                         { employee: employee1, workHours: 40, phase: 'CONSTRUCCION', role: 'REQUIREMENTS' },
-		                         { employee: employee1, workHours: 20, phase: 'CONSTRUCCION', role: 'ANALYSIS_DESIGN' },
-		                         { employee: employee1, workHours: 20, phase: 'CONSTRUCCION', role: 'DEPLOY' },
+		                         { employee: employee1, workHours: 20, Phases: 'CONSTRUCCION', role: 'PROJECT_MANAGEMENT' },
+		                         { employee: employee1, workHours: 40, Phases: 'CONSTRUCCION', role: 'REQUIREMENTS' },
+		                         { employee: employee1, workHours: 20, Phases: 'CONSTRUCCION', role: 'ANALYSIS_DESIGN' },
+		                         { employee: employee1, workHours: 20, Phases: 'CONSTRUCCION', role: 'DEPLOY' },
 		                         
-		                         { employee: employee1, workHours: 20, phase: 'TRANSICION', role: 'PROJECT_MANAGEMENT' },
-		                         { employee: employee1, workHours: 40, phase: 'TRANSICION', role: 'REQUIREMENTS' },
-		                         { employee: employee1, workHours: 20, phase: 'TRANSICION', role: 'ANALYSIS_DESIGN' },
-		                         { employee: employee1, workHours: 20, phase: 'TRANSICION', role: 'DEPLOY' },
+		                         { employee: employee1, workHours: 20, Phases: 'TRANSICION', role: 'PROJECT_MANAGEMENT' },
+		                         { employee: employee1, workHours: 40, Phases: 'TRANSICION', role: 'REQUIREMENTS' },
+		                         { employee: employee1, workHours: 20, Phases: 'TRANSICION', role: 'ANALYSIS_DESIGN' },
+		                         { employee: employee1, workHours: 20, Phases: 'TRANSICION', role: 'DEPLOY' },
 								];
 		controller = $controller("assignedPhaseController", {
 			$scope : scope,
@@ -87,14 +87,14 @@ describe("Test AssignedPhasesController", function() {
 	/*
 	 * ------------------- Lengths -------------------
 	 */
-	/* HOURS */
+	// HOURS /
 	it("Lengths::InceptionPhase - Hours: should be 10", function() {
 		expect(scope.inceptionPhaseLength.hours()).toBe(10);
 	});
 	it("Lengths::ElaborationPhase - Hours: should be 24", function() {
 		expect(scope.elaborationPhaseLength.hours()).toBe(24);
 	});
-	/* DAYS */
+	// DAYS /
 	it("Lengths::InceptionPhase - Days: should be 2", function() {
 		expect(scope.inceptionPhaseLength.days()).toBe(2);
 	});
@@ -104,7 +104,7 @@ describe("Test AssignedPhasesController", function() {
 	it("Lengths::ConstructionPhase - Days: should be 0", function() {
 		expect(scope.constructionPhaseLength.days()).toBe(0);
 	});
-	/* MONTHS */
+	// MONTHS /
 	it("Lengths::InceptionPhase - Months: should be 0.09", function() {
 		expect(scope.inceptionPhaseLength.months()).toBeCloseTo(0.09,1);
 	});
@@ -114,7 +114,7 @@ describe("Test AssignedPhasesController", function() {
 	it("Lengths::ConstructionPhase - Months: should be 0", function() {
 		expect(scope.constructionPhaseLength.months()).toBe(0);
 	});
-	/* START DATE */
+	// START DATE /
 	it("Lengths::InceptionPhase - Start date: should be 1/3/2015", function() {
 		expect(scope.inceptionPhaseLength.startDate.isSame(moment.utc("1/3/2015", DATE_FORMAT))).toBe(true);
 	});
@@ -124,7 +124,7 @@ describe("Test AssignedPhasesController", function() {
 	it("Lengths::ConstructionPhase - Start date: should be null", function() {
 		expect(scope.constructionPhaseLength.startDate).toBe(null);
 	});
-	/* END DATE */
+	// END DATE /
 	it("Lengths::InceptionPhase - End date: should be 2/3/2015", function() {
 		expect(scope.inceptionPhaseLength.endDate.isSame(moment.utc("2/3/2015", DATE_FORMAT))).toBe(true);
 	});
@@ -134,7 +134,7 @@ describe("Test AssignedPhasesController", function() {
 	it("Lengths::ConstructionPhase - End date: should be null", function() {
 		expect(scope.constructionPhaseLength.endDate).toBe(null);
 	});
-	/* ITERATIONS */
+	// ITERATIONS /
 	it("Lengths::InceptionPhase - iterations: should be 1", function() {
 		expect(scope.inceptionPhaseLength.iterations).toBe(1);
 	});
@@ -144,7 +144,7 @@ describe("Test AssignedPhasesController", function() {
 	it("Lengths::ConstructionPhase - iterations: should be 0", function() {
 		expect(scope.constructionPhaseLength.iterations).toBe(0);
 	});
-	/* INITIAL ITERATIONS */
+	// INITIAL ITERATIONS /
 	it("Lengths::InceptionPhase - initialIterations: should be 1", function() {
 		expect(scope.inceptionPhaseLength.initialIteration).toBe(1);
 	});
@@ -157,7 +157,7 @@ describe("Test AssignedPhasesController", function() {
 	it("Lengths::TransitionPhase - initialIterations: should be 4", function() {
 		expect(scope.transitionPhaseLength.initialIteration).toBe(4);
 	});
-	/* FINAL ITERATIONS */
+	// FINAL ITERATIONS /
 	it("Lengths::InceptionPhase - final Iteration: should be 1", function() {
 		expect(scope.inceptionPhaseLength.finalIteration()).toBe(1);
 	});
@@ -170,7 +170,7 @@ describe("Test AssignedPhasesController", function() {
 	it("Lengths::TransitionPhase - final Iteration: should be 3", function() {
 		expect(scope.transitionPhaseLength.finalIteration()).toBe(3);
 	});
-	/* AVERAGE ITERATION HOURS */
+	// AVERAGE ITERATION HOURS /
 	it("Lengths::InceptionPhase - Avg Iteration Hours: should be 10", function() {
 		expect(scope.inceptionPhaseLength.avgIterationHours).toBe(10);
 	});
@@ -183,7 +183,7 @@ describe("Test AssignedPhasesController", function() {
 	it("Lengths::TransitionPhase - Avg Iteration Hours: should be 0", function() {
 		expect(scope.transitionPhaseLength.avgIterationHours).toBe(0);
 	});
-	/* AVERAGE ITERATION DAYS */
+	// AVERAGE ITERATION DAYS /
 	it("Lengths::InceptionPhase - Avg Iteration Days: should be 1", function() {
 		expect(scope.inceptionPhaseLength.avgIterationDays).toBe(2);
 	});
@@ -196,7 +196,7 @@ describe("Test AssignedPhasesController", function() {
 	it("Lengths::TransitionPhase - Avg Iteration Days: should be 0", function() {
 		expect(scope.transitionPhaseLength.avgIterationDays).toBe(0);
 	});
-	/* AVERAGE ITERATIONS MONTHS */
+	// AVERAGE ITERATIONS MONTHS /
 	it("Lengths::InceptionPhase - Avg Iteration Months: should be 0.09", function() {
 		expect(scope.inceptionPhaseLength.avgIterationMonths).toBeCloseTo(0.09,1);
 	});
@@ -209,12 +209,12 @@ describe("Test AssignedPhasesController", function() {
 	it("Lengths::TransitionPhase - Avg Iteration Months: should be 0", function() {
 		expect(scope.transitionPhaseLength.avgIterationMonths).toBe(0);
 	});
-	/* ITERATION LENGTH % */
-	it("Lengths::InceptionPhase - Iteration %: should be 0.29", function() {
-		expect(scope.getPhaseLength(scope.inceptionPhaseLength)).toBeCloseTo(0.29,1);
+	// ITERATION LENGTH % /
+	it("Lengths::InceptionPhase - Iteration %: should be 29.4", function() {
+		expect(scope.getPhaseLength(scope.inceptionPhaseLength)).toBeCloseTo(29.4,1);
 	});
-	it("Lengths::ElaborationPhase - Iteration %: should be 0.70", function() {
-		expect(scope.getPhaseLength(scope.elaborationPhaseLength)).toBeCloseTo(0.70,1);
+	it("Lengths::ElaborationPhase - Iteration %: should be 70.5", function() {
+		expect(scope.getPhaseLength(scope.elaborationPhaseLength)).toBeCloseTo(70.58,1);
 	});
 	it("Lengths::ConstructionPhase - Iteration %: should be 0", function() {
 		expect(scope.getPhaseLength(scope.constructionPhaseLength)).toBeCloseTo(0);
@@ -222,7 +222,7 @@ describe("Test AssignedPhasesController", function() {
 	it("Lengths::TransitionPhase - Iteration %: should be 0", function() {
 		expect(scope.getPhaseLength(scope.transitionPhaseLength)).toBeCloseTo(0);
 	});
-	/* PROJECT LENGTH */
+	// PROJECT LENGTH /
 	it("Lengths::Project - Hours: should be 34", function() {
 		expect(scope.projectHours).toBe(34);
 	});
@@ -259,7 +259,7 @@ describe("Test AssignedPhasesController", function() {
 	it("Lengths::Project - Average Months: should be 0.028", function() {
 		expect(scope.projectAvgIterationMonths).toBeCloseTo(0.028,2);
 	});
-	/* ITERATION EFFORT % */
+	// ITERATION EFFORT % /
 	it("Efforts::InceptionPhase - Cost : should be 1200", function() {
 		expect(scope.inceptionPhaseLength.cost()).toBeCloseTo(1200,1);
 	});
@@ -273,7 +273,7 @@ describe("Test AssignedPhasesController", function() {
 		expect(scope.inceptionPhaseLength.totalMonths).toBeCloseTo(0.11,1);
 	});
 	it("Efforts::InceptionPhase - Real Employees : should be 1", function() {
-		expect(scope.inceptionPhaseLength.realEmployees()).toBe(1);
+		expect(scope.inceptionPhaseLength.realEmployees()).toBeCloseTo(1.25,1);
 	});
 	it("Efforts::InceptionPhase - iterationResourcesPerHour : should be 100", function() {
 		expect(scope.inceptionPhaseLength.iterationResourcesPerHour()).toBeCloseTo(100,1);
@@ -284,7 +284,7 @@ describe("Test AssignedPhasesController", function() {
 	it("Efforts::InceptionPhase - iterationResourcesPerMonth : should be 0.11", function() {
 		expect(scope.inceptionPhaseLength.iterationResourcesPerMonth()).toBeCloseTo(0.11,1);
 	});
-	/* PROJECT EFFORT */
+	// PROJECT EFFORT /
 	it("Efforts::Project - Effort : should be 100", function() {
 		expect(scope.projectEffort).toBe(100);
 	});
