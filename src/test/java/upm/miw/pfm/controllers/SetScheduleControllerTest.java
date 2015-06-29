@@ -20,7 +20,7 @@ public class SetScheduleControllerTest {
     private SetScheduleController controller;
     private Project project;
     private ProjectSchedule schedule;
-
+  
     private static final double DELTA = 1e-15;
 
     @Before

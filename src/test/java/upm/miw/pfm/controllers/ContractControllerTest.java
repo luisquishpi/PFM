@@ -16,7 +16,7 @@ public class ContractControllerTest {
 
     ContractController contractController;
     Contract contract;
-
+   
     @Before
     public void before() {
         contractController = new ContractControllerEjb();

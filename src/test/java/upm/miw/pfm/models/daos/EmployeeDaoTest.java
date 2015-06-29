@@ -184,6 +184,20 @@ public class EmployeeDaoTest {
         vacationDao.create(vacation);
         assertEquals(vacation, vacationDao.read(vacation.getId()));
     }
+    
+    @Test
+    public void testExistVacation(){
+    	startDate = Utils.buildDate(2015, 10, 1);
+        endDate = Utils.buildDate(2015, 10, 15);
+        vacation = new Vacation(startDate, endDate, employee);
+        vacationDao.create(vacation);
+    	assertTrue((vacationDao.exists(vacation)));
+    	
+    	startDate = Utils.buildDate(2016, 9, 1);
+        endDate = Utils.buildDate(2016, 10, 15);
+        vacation = new Vacation(startDate, endDate, employee);
+        assertFalse((vacationDao.exists(vacation)));
+    }
 
     @Test
     public void testFindVacationsByEmployee() {

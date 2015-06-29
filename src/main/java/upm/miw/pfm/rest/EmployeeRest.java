@@ -20,13 +20,13 @@ import upm.miw.pfm.utils.RestElement;
 public class EmployeeRest {
 
     private final static Class<EmployeeRest> clazz = EmployeeRest.class;
-
+    
     @Path(EmployeeURI.PATH_SAVE)
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Response save(final List<RestElement> data) {
         LogManager.getLogger(clazz).debug("Guardando data a traves de rest ");
-
+        System.out.println(data.get(0));
         try {
             if (!data.isEmpty()) {
                 RestElement rest = data.get(0);
@@ -57,6 +57,7 @@ public class EmployeeRest {
             e.printStackTrace();
             return Response.status(500).build();
         }
+
     }
 
 }

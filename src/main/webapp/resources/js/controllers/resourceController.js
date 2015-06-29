@@ -479,7 +479,7 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
 	$scope.checkEmployee = function(employeeResource){
 		var hours_assigned = parseFloat(employeeResource.projectManagementHours)+parseFloat(employeeResource.requirementsHours)+parseFloat(employeeResource.analysisDesignHours)+
 		parseFloat(employeeResource.implementationHours)+parseFloat(employeeResource.testsHours)+parseFloat(employeeResource.deployHours)+parseFloat(employeeResource.environmentHours);
-		return hours_assigned>employeeResource.availableEmployeeHours;
+		return parseFloat(hours_assigned.toFixed(2))>employeeResource.availableEmployeeHours;
 		
 	}	
 	$scope.validateProjectManagementHours=function(employeeResource){		
@@ -621,8 +621,8 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
         var dataHours = [];
         pushToDataArray($scope.initPhase.assignedEmployee, dataHours, "INICIO");
         pushToDataArray($scope.elabPhase.assignedEmployee, dataHours, "ELABORACION");
-        pushToDataArray($scope.transPhase.assignedEmployee, dataHours, "CONSTRUCCION");
-        pushToDataArray($scope.constPhase.assignedEmployee, dataHours, "TRANSICION");
+        pushToDataArray($scope.constPhase.assignedEmployee, dataHours, "CONSTRUCCION");
+        pushToDataArray($scope.transPhase.assignedEmployee, dataHours, "TRANSICION");
         
         var dataProposals = [];
         dataProposals.push($scope.initPhase.numberOfAssignedPeople);
@@ -632,7 +632,10 @@ projectApp.controller("resourceController", ['$scope', '$isTest', 'bridgeService
         
         data.push({hoursRolePhase:dataHours, peoplePhase:dataProposals});
 
-		$http.post('/PFM/rest/Employees/Save', data).
+		console.log("Data a Guardar");
+		console.log(data);
+        
+        $http.post('/PFM/rest/Employees/Save', data).
 		    success(function(data, status, headers, config) {
 		    	PF('growl').renderMessage({"summary":"Recursos",
 		            "detail":"Se han guardado los recursos correctamente",

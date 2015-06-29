@@ -18,7 +18,7 @@ public class SetHolidaysControllerTest {
 	private HolidayController holidayController;
 
     private Holiday holiday;
-
+    
     @Before
     public void before() {
     	new MockHolidayDao();

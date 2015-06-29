@@ -12,6 +12,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import upm.miw.pfm.models.daos.DaoFactory;
+import upm.miw.pfm.models.daos.ProjectDao;
 import upm.miw.pfm.models.daos.hibernate.DaoHibernateFactory;
 import upm.miw.pfm.models.entities.Project;
 import upm.miw.pfm.utils.Utils;
@@ -39,11 +41,9 @@ public class ProjectDaoTest {
 
     @Test
     public void testUpdate() {
-        Project project2 = new Project("RUP", Utils.buildDate(2015, Calendar.MARCH, 5),
-                Utils.buildDate(2015, Calendar.JULY, 4), 7000.0);
-        project2.setId(project.getId());
-        projectDao.update(project2);
-        assertEquals(projectDao.read(project.getId()), project2);
+        project.setName("Rup");
+        projectDao.update(project);
+        assertEquals(projectDao.read(project.getId()), project);
     }
 
     @Test

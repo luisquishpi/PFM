@@ -14,6 +14,7 @@ import org.junit.Test;
 import upm.miw.pfm.controllers.ejbs.EmployeeControllerEjb;
 import upm.miw.pfm.controllers.ejbs.VacationControllerEjb;
 import upm.miw.pfm.mocks.MockEmployeeDao;
+import upm.miw.pfm.mocks.MockProjectScheduleDao;
 import upm.miw.pfm.mocks.MockVacationDao;
 import upm.miw.pfm.models.entities.Contract;
 import upm.miw.pfm.models.entities.Employee;
@@ -37,6 +38,8 @@ public class VacationControllerTest {
     Date startDate;
 
     Date endDate;
+    
+    MockVacationDao mc;
 
     static List<Vacation> mockListVacation;
 

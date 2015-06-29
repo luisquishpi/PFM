@@ -3,6 +3,7 @@ package upm.miw.pfm.controllers;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -14,7 +15,9 @@ import upm.miw.pfm.controllers.ejbs.EmployeeControllerEjb;
 import upm.miw.pfm.mocks.MockEmployeeDao;
 import upm.miw.pfm.models.entities.Contract;
 import upm.miw.pfm.models.entities.Employee;
+import upm.miw.pfm.models.entities.Vacation;
 import upm.miw.pfm.utils.RoleType;
+import upm.miw.pfm.utils.Utils;
 
 public class EmployeeControllerTest {
 
@@ -25,7 +28,11 @@ public class EmployeeControllerTest {
     private Contract contract;
 
     private Set<RoleType> roles;
+    
+    Date startDate;
 
+    Date endDate;
+    
     @Before
     public void before() {
         employeeController = new EmployeeControllerEjb();
@@ -60,6 +67,20 @@ public class EmployeeControllerTest {
     	employee.setName("Josefina");
     	employeeController.updateEmployee(employee);
     	assertEquals(employeeController.getEmployee(employee.getId()), employee);
+    }
+    
+    @Test
+    public void listEmployeesWithVacation(){
+    	List<Employee> employeeListWithVacation = new ArrayList<Employee>();
+    	Employee employee = new Employee(2, "Manuel", "Leunam", "A", 40500.00, contract, roles);
+    	List<Vacation> vacations = new ArrayList<Vacation>();	
+    	startDate = Utils.buildDate(2015, 10, 1);
+        endDate = Utils.buildDate(2015, 10, 2);
+    	vacations.add(new Vacation(startDate, endDate, employee));
+    	employee.setVacations(vacations);
+    	employeeListWithVacation.add(employee);
+    	new MockEmployeeDao(employeeListWithVacation);
+    	assertEquals(employeeController.listEmployeesWithVacations(), employeeListWithVacation);
     }
 
 }

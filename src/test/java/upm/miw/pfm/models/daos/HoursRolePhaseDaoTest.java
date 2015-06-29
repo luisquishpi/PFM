@@ -92,6 +92,12 @@ public class HoursRolePhaseDaoTest {
     }
     
     @Test
+    public void testDeleteByProject(){
+    	hoursRolePhaseDao.deleteByProject(project);
+    	assertNull(hoursRolePhaseDao.read(hoursRolePhase.getId()));
+    }
+    
+    @Test
     public void testFindAll(){
     	List<HoursRolePhase> list = new ArrayList<HoursRolePhase>();
     	HoursRolePhase hoursRolePhase2 = new HoursRolePhase(employee, project, 52D, Phases.ELABORACION, RoleType.DEPLOY);
@@ -125,7 +131,20 @@ public class HoursRolePhaseDaoTest {
         hoursRolePhaseDao.create(hoursRolePhase4);
         
         assertEquals(hoursRolePhaseDao.findByProject(project), list);
-    }    
+    }  
+    
+    @Test
+    public void testGetAssignedHoursPerPhase(){
+    	List<Double> sumPhases = new ArrayList<Double>();
+    	sumPhases.add(34.4);
+    	assertEquals(hoursRolePhaseDao.getAssignedHoursPerPhase(project, Phases.INICIO), sumPhases);
+        hoursRolePhaseDao.create(new HoursRolePhase(employee, project, 12.4, Phases.ELABORACION, RoleType.ANALYSIS_DESIGN));
+    	hoursRolePhaseDao.create(new HoursRolePhase(employee, project, 15.4, Phases.ELABORACION, RoleType.DEPLOY));
+    	sumPhases.clear();
+    	sumPhases.add(12.4);
+    	sumPhases.add(15.4);
+    	assertEquals(hoursRolePhaseDao.getAssignedHoursPerPhase(project, Phases.ELABORACION), sumPhases);
+    }
     
     @After
     public void after(){

@@ -23,4 +23,5 @@ public class PhaseRoleAssigned {
 		return "PhaseRoleAssigned [phase=" + phase + ", sumRoles=" + sumRoles
 				+ "]";
 	}
+	
 }
