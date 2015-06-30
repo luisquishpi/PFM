@@ -6,7 +6,6 @@ projectApp.controller("theoricalPhaseController", ['$scope', '$isTest', 'bridgeS
 	
 	$scope.phasesFinished = false;
 	$scope.schedule = bridgeService.shareData;
-	console.log($scope.schedule);
 	if(!$isTest){
 		  initJSFScope($scope);
 		  workTimeService.calculateWorkDaysAndHour($scope.disciplinesPhasesBean.project.startString, $scope.disciplinesPhasesBean.project.endString, $scope.schedule.listHoursEachDay());

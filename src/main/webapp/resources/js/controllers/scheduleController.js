@@ -68,7 +68,6 @@ projectApp.controller("scheduleController",['$scope', '$isTest', 'bridgeService'
 	    				"projectBean.projectSchedule.workDays"
 	                    ], function(newValues, oldValues, scope) {
 		bridgeService.shareData=scope;
-		console.log("termino schedule");
 		$scope.scheduleFinished = true;
 	  });
 	}
