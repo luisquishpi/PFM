@@ -9,6 +9,42 @@
 	xmlns:p="http://primefaces.org/ui">
 	
 	<div role="tabpanel">
+		<div ng-if="scheduleFinished" ng-controller="theoricalPhaseController">
+		<h:panelGroup rendered="#{not disciplinesPhasesBean.emptyProject}">		
+			<div class="phases_form">							
+				<div class="row">
+					<div class="col-sm-3">
+						<p:outputLabel for="dias_recomendados" value="Días recomendados: "
+							styleClass="label_height_not" />
+						<h:outputText id="dias_recomendados" value="{{recomendedDays() | number:2}}"
+							styleClass="ui-outputlabel ui-widget label_height_not results_label" />	
+					</div>
+					<div class="col-sm-5">
+						<p:outputLabel for="dias_iteracion" value="Días por iteración: "
+							styleClass="label_height_not" />
+						<p:spinner id="dias_iteracion"
+							value="{{disciplinesPhasesBean.project.iterationDays}}"
+							ng-required="true"
+							validatorMessage="Número de días debe ser mayor a 0"
+							stepFactor="1"
+							onkeypress="return isNumberKey(event)"
+							styleClass="results_label">
+							<f:convertNumber minFractionDigits="0" maxFractionDigits="0"
+								locale="en_US" />
+							<f:validator
+								validatorId="upm.miw.pfm.utils.GreaterThanZeroValidator" />
+						</p:spinner>	
+					</div>
+				</div>
+				<div class="padding-table">
+					<p:commandButton value="Guardar"
+						action="#{disciplinesPhasesBean.process}" icon="ui-icon-disk"
+						ajax="false" />
+					<p:button outcome="/home.xhtml" value="Volver"
+						icon="ui-icon-arrowreturn-1-w"></p:button>
+				</div>
+			</div>	 
+		</h:panelGroup>
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation" class="active"><a
 				href="#duration" aria-controls="duration" role="tab"
@@ -16,13 +52,18 @@
 			<li role="presentation"><a href="#effort"
 				aria-controls="effort" role="tab" data-toggle="tab">Esfuerzo</a></li>
 		</ul>
-
-		<div class="tab-content">
-			<div role="tabpanel" class="tab-pane active" id="duration">
-				<ui:include src="duration_pannel.xhtml" />
-			</div>
-			<div role="tabpanel" class="tab-pane" id="effort">
-				<ui:include src="effort_pannel.xhtml" />
+		
+		<ngsync direction="serverToClient"
+			value="{{disciplinesPhasesBean.project}}" />
+        <ngsync direction="serverToClient" 
+            value="{{disciplinesPhasesBean.employeeList}}" />  
+			<div class="tab-content">
+				<div role="tabpanel" class="tab-pane active" id="duration">
+					<ui:include src="duration_pannel.xhtml" />
+				</div>
+				<div role="tabpanel" class="tab-pane" id="effort">
+					<ui:include src="effort_pannel.xhtml" />
+				</div>
 			</div>
 		</div>
 	</div>

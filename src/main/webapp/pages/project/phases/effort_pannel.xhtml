@@ -7,12 +7,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:p="http://primefaces.org/ui">
-	
-	<div ng-if="scheduleFinished" ng-controller="theoricalPhaseController">
-		<ngsync direction="serverToClient"
-			value="{{disciplinesPhasesBean.project}}" />
-        <ngsync direction="serverToClient" 
-            value="{{disciplinesPhasesBean.employeeList}}" />   
+	 
 		<table class="table table-condensed">
 			<tr>
 				<th>&nbsp;</th>
@@ -103,5 +98,4 @@
 	            <td class="ui-outputlabel ui-widget">{{(proyectoPersonMonthIteration() | number:2) || (0 | number:2)}}</td>
 			</tr>
 		</table>
-	</div>
 </ui:composition>

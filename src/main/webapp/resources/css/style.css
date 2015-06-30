@@ -124,3 +124,15 @@ table td {
 	font-size:13px;
 	font-weight:bold;
 }
+
+.phases_form{
+	margin:10px 0 0 1px !important;	
+}
+
+.results_label{
+	margin-left:5px;
+}
+
+.input_resources{
+	width:46px;
+}

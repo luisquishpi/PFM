@@ -48,35 +48,33 @@
 				<h:form prependId="false" ng-app="projectApp">
 					<div ng-cloak="">
 						<p:growl id="growl" sticky="false" life="5000" showDetail="true" />
-
-						<ui:include src="../project_pannel.xhtml" />
-						<h:panelGroup rendered="#{not disciplinesPhasesBean.emptyProject}">
-							<div ng-controller="scheduleController">
-								<c:set var="projectBean" scope="request"
+						<div ng-controller="scheduleController">
+						<c:set var="projectBean" scope="request"
 									value="#{disciplinesPhasesBean}" />
-								<ngsync direction="serverToClient"
+						<ngsync direction="serverToClient"
 									value="{{projectBean.projectSchedule}}" />
+						<ui:include src="../project_pannel.xhtml" />
+							<h:panelGroup rendered="#{not disciplinesPhasesBean.emptyProject}">							
 								<div role="tabpanel">
-									<ul class="nav nav-tabs" role="tablist">
-										<li role="presentation" class="active"><a
-											href="#theorical" aria-controls="theorical" role="tab"
-											data-toggle="tab">Teoricas</a></li>
-										<li role="presentation"><a href="#asigned"
-											aria-controls="asigned" role="tab" data-toggle="tab">Asignadas</a></li>
-									</ul>
-
-									<div class="tab-content">
-										<div role="tabpanel" class="tab-pane active" id="theorical">
-											<ui:include src="show_theorical_phases.xhtml" />
-										</div>
-
-										<div role="tabpanel" class="tab-pane" id="asigned">
-											<ui:include src="show_asigned_phases.html" />
+										<ul class="nav nav-tabs" role="tablist">
+											<li role="presentation" class="active"><a
+												href="#theorical" aria-controls="theorical" role="tab"
+												data-toggle="tab">Teoricas</a></li>
+											<li role="presentation"><a href="#asigned"
+												aria-controls="asigned" role="tab" data-toggle="tab">Asignadas</a></li>
+										</ul>
+										<div class="tab-content">
+											<div role="tabpanel" class="tab-pane active" id="theorical">
+												<ui:include src="show_theorical_phases.xhtml" />
+											</div>
+	
+											<div role="tabpanel" class="tab-pane" id="asigned">
+												<ui:include src="show_asigned_phases.html" />
+											</div>
 										</div>
 									</div>
-								</div>
-							</div>
-						</h:panelGroup>
+							</h:panelGroup>
+						</div>
 					</div>
 
 				</h:form>
