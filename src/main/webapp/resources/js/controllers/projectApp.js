@@ -79,13 +79,22 @@ projectApp.service("DateUtils", function(){
     	
     	start = moment(start).set('hour',10);
     	end = moment(end).set('hour',10);
-    	test = moment.utc(test).set('hour', 10);
+    	test = moment(test).set('hour', 10);
     	
     	var between = test.isAfter(start, 'day') && test.isBefore(end, 'day');
-    	var sameStart = test.diff(start, 'days') == 0; //test.isSame(start, 'day');
-    	var sameEnd = test.diff(end, 'days') == 0; //test.isSame(end, 'day');
+    	var sameStart = sameDate(test, start);
+    	var sameEnd = test.diff(end, 'days') == 0;
+    	
     	return between || sameStart  || sameEnd;
     }
+	
+	function sameDate(a,b){
+		var result = true;
+		for(var i = 0; i < 3; i++){
+			result = result && a.toArray()[i] == b.toArray()[i];
+		}
+		return result;
+	}
 	
 	this.dateDiffInDays = function(start, end) {
 		start = moment(start,"DD/MM/YYYY HH:mm:ss");

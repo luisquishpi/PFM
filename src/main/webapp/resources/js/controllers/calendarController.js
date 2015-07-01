@@ -33,6 +33,7 @@ projectApp.controller("calendarController",['$scope', '$isTest', 'DateUtils', 'b
 		}
 		var events = [];
 		var projectDay = null;
+		
 		for (var m = moment(startDate); !m.isAfter(endDate); m.add(1, "days")){
 			var validDay = $scope.getProjectDay(m, projectDay);
 			if( validDay > 0){
